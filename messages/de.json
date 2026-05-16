@@ -1,0 +1,185 @@
+{
+  "metadata": {
+    "title": "DeutschPilot – Premium Deutschkurse & Retreats",
+    "description": "DeutschPilot ist die Premium-Lernplattform für schnelle Fortschritte, echte Ergebnisse und neue Möglichkeiten."
+  },
+  "nav": {
+    "courses": "Kurse",
+    "academy": "Online Akademie",
+    "retreats": "Retreats",
+    "community": "Community",
+    "about": "Über uns",
+    "magazine": "Magazin",
+    "login": "Login",
+    "register": "Kostenlos testen",
+    "logout": "Abmelden",
+    "dashboard": "Dashboard"
+  },
+  "hero": {
+    "badge": "Premium Deutschkurse & Retreats",
+    "title": "Deutsch lernen.\nDein Weg.\nDeine Zukunft.",
+    "subtitle": "DeutschPilot ist mehr als ein Kurs – es ist dein persönlicher Kompass für schnelle Fortschritte und echte Ziele.",
+    "cta1": "Kostenlos testen",
+    "cta2": "Dein Niveau bestimmen",
+    "rating": "4,9 von 5 Sternen aus 1.200+ Bewertungen",
+    "success": "Erfolgsgeschichten ansehen"
+  },
+  "stats": {
+    "students": "Zufriedene Teilnehmer",
+    "recommend": "Empfehlen DeutschPilot weiter",
+    "experience": "Jahre Erfahrung",
+    "levels": "Kurslevel (A1–C1)",
+    "support": "KI-Lernbegleitung"
+  },
+  "courses": {
+    "title": "Unsere Deutschkurse",
+    "subtitle": "Finde den Kurs, der zu dir passt.",
+    "viewAll": "Alle Kurse ansehen",
+    "duration": "Wochen",
+    "from": "ab",
+    "popular": "BELIEBTESTER KURS",
+    "features": {
+      "online": "Online & Retreat",
+      "certificate": "Zertifikat inklusive"
+    },
+    "levels": {
+      "A1": { "name": "A1", "label": "Anfänger" },
+      "A2": { "name": "A2", "label": "Grundlagen" },
+      "B1": { "name": "B1", "label": "Mittelstufe" },
+      "B2": { "name": "B2", "label": "Fortgeschritten" },
+      "C1": { "name": "C1", "label": "Kompetent" }
+    }
+  },
+  "features": {
+    "title": "Warum DeutschPilot?",
+    "items": {
+      "intensive": { "title": "Superintensivkurse", "desc": "Schneller lernen mit maximaler Struktur – online oder vor Ort." },
+      "live": { "title": "Live-Unterricht", "desc": "Interaktive Sessions mit erfahrenen Lehrer:innen." },
+      "ai": { "title": "KI-Lernbegleitung", "desc": "Dein KI-Tutor hilft dir rund um die Uhr." },
+      "community": { "title": "Community", "desc": "Lerne mit motivierten Menschen weltweit." },
+      "certificate": { "title": "Zertifikat", "desc": "Erhalte ein anerkanntes Zertifikat für dein Niveau." },
+      "retreats": { "title": "Retreats", "desc": "Intensiv lernen in inspirierender Umgebung." }
+    }
+  },
+  "testimonials": {
+    "title": "Erfolgsgeschichten",
+    "subtitle": "Echte Erfolge",
+    "viewAll": "Alle Geschichten ansehen",
+    "items": {
+      "maria": { "name": "Maria L.", "result": "B2 in 3 Monaten", "text": "Die Live-Sessions und die Community haben mir enorm geholfen. Ich fühle mich jetzt sicher im Alltag und im Job." },
+      "jonas": { "name": "Jonas S.", "result": "B1 in 2 Monaten", "text": "Dank DeutschPilot habe ich mein B1-Level viel schneller erreicht als erwartet. Die Struktur und der Lehrer sind einfach top!" },
+      "aylin": { "name": "Aylin K.", "result": "A2 in 6 Wochen", "text": "Der Superintensivkurs im Retreat war die beste Entscheidung. Lernen in dieser Umgebung ist unschlagbar." }
+    }
+  },
+  "retreats": {
+    "title": "Intensiv lernen. Abschalten. Auftanken.",
+    "subtitle": "Unsere Sprach-Retreats verbinden intensives Lernen mit Erholung, Natur und inspirierenden Menschen.",
+    "cta": "Retreats entdecken",
+    "features": {
+      "duration": "7 Tage Intensivkurs",
+      "accommodation": "Unterkunft & Verpflegung",
+      "activities": "Freizeit & Ausflüge",
+      "networking": "Networking & Community"
+    }
+  },
+  "howItWorks": {
+    "subtitle": "SO FUNKTIONIERT'S",
+    "title": "Dein Weg zum Erfolg",
+    "steps": {
+      "discover": { "title": "Entdecken", "desc": "Finde den Kurs, der zu deinem Niveau und deinen Zielen passt." },
+      "reserve": { "title": "Reservieren", "desc": "Sichere dir deinen Platz mit einer kostenlosen Reservierung." },
+      "apply": { "title": "Bewerben", "desc": "Fülle das Bewerbungsformular aus und lerne uns kennen." },
+      "start": { "title": "Starten", "desc": "Beginne deinen Kurs und erreiche deine Ziele." }
+    }
+  },
+  "studentJourney": {
+    "subtitle": "DEINE REISE",
+    "title": "Vom Anfänger zum Experten",
+    "steps": {
+      "discover": { "title": "Entdecken", "desc": "Erkunde unsere Kurse und finde deinen perfekten Einstieg." },
+      "reserve": { "title": "Reservieren", "desc": "Sichere dir deinen Platz mit einer einfachen Reservierung." },
+      "apply": { "title": "Bewerben", "desc": "Teile uns deine Ziele und Motivation mit." },
+      "learn": { "title": "Lernen", "desc": "Tauche ein in interaktiven Unterricht und Community." },
+      "certify": { "title": "Zertifizieren", "desc": "Erhalte dein anerkanntes Zertifikat." }
+    }
+  },
+  "community": {
+    "subtitle": "COMMUNITY",
+    "title": "Lerne zusammen. Wachse gemeinsam.",
+    "description": "Trete unserer globalen Community bei, tausche dich aus und lerne von motivierten Lernenden aus aller Welt.",
+    "features": {
+      "members": "Mitglieder",
+      "events": "Live-Events",
+      "countries": "Länder",
+      "exchange": "Sprachaustausch"
+    },
+    "cta": "Community beitreten",
+    "preview": "Mitglieder aus 60+ Ländern lernen gemeinsam"
+  },
+  "cta": {
+    "title": "Bereit für deinen nächsten Schritt?",
+    "subtitle": "Starte deine Reise mit DeutschPilot.",
+    "cta1": "Kostenlos testen",
+    "cta2": "Dein Niveau bestimmen"
+  },
+  "footer": {
+    "tagline": "Sprache. Zukunft. Du.",
+    "description": "Dein persönlicher Kompass für schnelle Fortschritte im Deutschen.",
+    "columns": {
+      "courses": "Kurse",
+      "company": "Unternehmen",
+      "legal": "Rechtliches"
+    },
+    "links": {
+      "a1": "A1 Anfänger",
+      "a2": "A2 Grundlagen",
+      "b1": "B1 Mittelstufe",
+      "b2": "B2 Fortgeschritten",
+      "c1": "C1 Kompetent",
+      "about": "Über uns",
+      "careers": "Karriere",
+      "blog": "Blog",
+      "contact": "Kontakt",
+      "privacy": "Datenschutz",
+      "terms": "AGB",
+      "imprint": "Impressum"
+    },
+    "copyright": "© {year} DeutschPilot. Alle Rechte vorbehalten."
+  },
+  "auth": {
+    "login": "Anmelden",
+    "register": "Registrieren",
+    "email": "E-Mail",
+    "password": "Passwort",
+    "name": "Name",
+    "forgotPassword": "Passwort vergessen?",
+    "noAccount": "Noch kein Konto?",
+    "hasAccount": "Bereits registriert?",
+    "or": "oder",
+    "continueWithGoogle": "Mit Google fortfahren"
+  },
+  "dashboard": {
+    "welcome": "Willkommen zurück",
+    "myCourses": "Meine Kurse",
+    "progress": "Fortschritt",
+    "achievements": "Erfolge",
+    "schedule": "Stundenplan",
+    "settings": "Einstellungen",
+    "continueLearning": "Weiterlernen",
+    "completed": "Abgeschlossen",
+    "hoursLearned": "Stunden gelernt",
+    "currentStreak": "Aktuelle Serie"
+  },
+  "admin": {
+    "title": "Admin Dashboard",
+    "users": "Benutzer",
+    "courses": "Kurse",
+    "enrollments": "Einschreibungen",
+    "payments": "Zahlungen",
+    "messages": "Nachrichten",
+    "totalUsers": "Gesamtbenutzer",
+    "activeUsers": "Aktive Benutzer",
+    "totalRevenue": "Gesamtumsatz",
+    "newSignups": "Neuanmeldungen"
+  }
+}

@@ -1,0 +1,185 @@
+{
+  "metadata": {
+    "title": "DeutschPilot – Premium German Courses & Retreats",
+    "description": "DeutschPilot is the premium learning platform for fast progress, real results, and new opportunities."
+  },
+  "nav": {
+    "courses": "Courses",
+    "academy": "Online Academy",
+    "retreats": "Retreats",
+    "community": "Community",
+    "about": "About Us",
+    "magazine": "Magazine",
+    "login": "Login",
+    "register": "Try for free",
+    "logout": "Logout",
+    "dashboard": "Dashboard"
+  },
+  "hero": {
+    "badge": "Premium German Courses & Retreats",
+    "title": "Learn German.\nYour Path.\nYour Future.",
+    "subtitle": "DeutschPilot is more than a course – it is your personal compass for rapid progress and real goals.",
+    "cta1": "Try for free",
+    "cta2": "Determine your level",
+    "rating": "4.9 out of 5 stars from 1,200+ reviews",
+    "success": "Watch success stories"
+  },
+  "stats": {
+    "students": "Satisfied participants",
+    "recommend": "Recommend DeutschPilot",
+    "experience": "Years of experience",
+    "levels": "Course levels (A1–C1)",
+    "support": "AI learning companion"
+  },
+  "courses": {
+    "title": "Our German Courses",
+    "subtitle": "Find the course that fits you.",
+    "viewAll": "View all courses",
+    "duration": "weeks",
+    "from": "from",
+    "popular": "MOST POPULAR COURSE",
+    "features": {
+      "online": "Online & Retreat",
+      "certificate": "Certificate included"
+    },
+    "levels": {
+      "A1": { "name": "A1", "label": "Beginner" },
+      "A2": { "name": "A2", "label": "Basics" },
+      "B1": { "name": "B1", "label": "Intermediate" },
+      "B2": { "name": "B2", "label": "Advanced" },
+      "C1": { "name": "C1", "label": "Competent" }
+    }
+  },
+  "features": {
+    "title": "Why DeutschPilot?",
+    "items": {
+      "intensive": { "title": "Super Intensive Courses", "desc": "Learn faster with maximum structure – online or on-site." },
+      "live": { "title": "Live Classes", "desc": "Interactive sessions with experienced teachers." },
+      "ai": { "title": "AI Learning Companion", "desc": "Your AI tutor helps you around the clock." },
+      "community": { "title": "Community", "desc": "Learn with motivated people worldwide." },
+      "certificate": { "title": "Certificate", "desc": "Receive a recognized certificate for your level." },
+      "retreats": { "title": "Retreats", "desc": "Intensive learning in an inspiring environment." }
+    }
+  },
+  "testimonials": {
+    "title": "Success Stories",
+    "subtitle": "Real Success",
+    "viewAll": "View all stories",
+    "items": {
+      "maria": { "name": "Maria L.", "result": "B2 in 3 months", "text": "The live sessions and community helped me tremendously. I now feel confident in everyday life and at work." },
+      "jonas": { "name": "Jonas S.", "result": "B1 in 2 months", "text": "Thanks to DeutschPilot, I reached my B1 level much faster than expected. The structure and teachers are simply top-notch!" },
+      "aylin": { "name": "Aylin K.", "result": "A2 in 6 weeks", "text": "The super intensive retreat course was the best decision. Learning in this environment is unbeatable." }
+    }
+  },
+  "retreats": {
+    "title": "Intensive learning. Switch off. Recharge.",
+    "subtitle": "Our language retreats combine intensive learning with relaxation, nature, and inspiring people.",
+    "cta": "Discover retreats",
+    "features": {
+      "duration": "7-day intensive course",
+      "accommodation": "Accommodation & meals",
+      "activities": "Leisure & excursions",
+      "networking": "Networking & Community"
+    }
+  },
+  "howItWorks": {
+    "subtitle": "HOW IT WORKS",
+    "title": "Your Path to Success",
+    "steps": {
+      "discover": { "title": "Discover", "desc": "Find the course that matches your level and goals." },
+      "reserve": { "title": "Reserve", "desc": "Secure your spot with a free reservation." },
+      "apply": { "title": "Apply", "desc": "Fill out the application form and get to know us." },
+      "start": { "title": "Start", "desc": "Begin your course and achieve your goals." }
+    }
+  },
+  "studentJourney": {
+    "subtitle": "YOUR JOURNEY",
+    "title": "From Beginner to Expert",
+    "steps": {
+      "discover": { "title": "Discover", "desc": "Explore our courses and find your perfect starting point." },
+      "reserve": { "title": "Reserve", "desc": "Secure your spot with an easy reservation." },
+      "apply": { "title": "Apply", "desc": "Share your goals and motivation with us." },
+      "learn": { "title": "Learn", "desc": "Dive into interactive classes and community." },
+      "certify": { "title": "Certify", "desc": "Receive your recognized certificate." }
+    }
+  },
+  "community": {
+    "subtitle": "COMMUNITY",
+    "title": "Learn together. Grow together.",
+    "description": "Join our global community, exchange ideas, and learn from motivated learners around the world.",
+    "features": {
+      "members": "Members",
+      "events": "Live Events",
+      "countries": "Countries",
+      "exchange": "Language Exchange"
+    },
+    "cta": "Join Community"
+  },
+  "cta": {
+    "title": "Ready for your next step?",
+    "subtitle": "Start your journey with DeutschPilot.",
+    "cta1": "Try for free",
+    "cta2": "Determine your level"
+  },
+  "footer": {
+    "tagline": "Language. Future. You.",
+    "description": "Your personal compass for rapid progress in German.",
+    "columns": {
+      "courses": "Courses",
+      "company": "Company",
+      "legal": "Legal"
+    },
+    "links": {
+      "a1": "A1 Beginner",
+      "a2": "A2 Basics",
+      "b1": "B1 Intermediate",
+      "b2": "B2 Advanced",
+      "c1": "C1 Competent",
+      "about": "About Us",
+      "careers": "Careers",
+      "blog": "Blog",
+      "contact": "Contact",
+      "privacy": "Privacy Policy",
+      "terms": "Terms of Service",
+      "imprint": "Imprint"
+    },
+    "copyright": "© {year} DeutschPilot. All rights reserved."
+  },
+  "auth": {
+    "login": "Sign In",
+    "register": "Sign Up",
+    "email": "Email",
+    "password": "Password",
+    "name": "Name",
+    "forgotPassword": "Forgot password?",
+    "noAccount": "No account yet?",
+    "hasAccount": "Already registered?",
+    "or": "or",
+    "continueWithGoogle": "Continue with Google"
+  },
+  "dashboard": {
+    "welcome": "Welcome back",
+    "myCourses": "My Courses",
+    "progress": "Progress",
+    "achievements": "Achievements",
+    "schedule": "Schedule",
+    "settings": "Settings",
+    "continueLearning": "Continue learning",
+    "completed": "Completed",
+    "hoursLearned": "Hours learned",
+    "currentStreak": "Current streak"
+  },
+  "admin": {
+    "title": "Admin Dashboard",
+    "users": "Users",
+    "courses": "Courses",
+    "enrollments": "Enrollments",
+    "payments": "Payments",
+    "messages": "Messages",
+    "analytics": "Analytics",
+    "totalUsers": "Total users",
+    "activeUsers": "Active users",
+    "totalRevenue": "Total revenue",
+    "newSignups": "New signups"
+  }
+}

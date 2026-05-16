@@ -1,0 +1,468 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  STUDENT
+  ADMIN
+  TEACHER
+}
+
+enum CEFRLevel {
+  A1
+  A2
+  B1
+  B2
+  C1
+  C2
+}
+
+enum CourseFormat {
+  ONLINE
+  RETREAT
+  HYBRID
+}
+
+enum ApplicationStatus {
+  DRAFT
+  SUBMITTED
+  UNDER_REVIEW
+  APPROVED
+  REJECTED
+}
+
+enum ReservationStatus {
+  PENDING
+  CONFIRMED
+  CANCELLED
+}
+
+enum PaymentStatus {
+  PENDING
+  PAID
+  INVOICED
+  REFUNDED
+  FAILED
+}
+
+enum PaymentMethod {
+  STRIPE
+  BANK_TRANSFER
+  INVOICE
+}
+
+enum DocumentType {
+  PASSPORT
+  CERTIFICATE
+  CV
+  OTHER
+}
+
+enum SessionStatus {
+  SCHEDULED
+  LIVE
+  COMPLETED
+  CANCELLED
+}
+
+enum NotificationType {
+  INFO
+  SUCCESS
+  WARNING
+  REMINDER
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String  @map("user_id")
+  type              String
+  provider          String
+  providerAccountId String  @map("provider_account_id")
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@map("accounts")
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique @map("session_token")
+  userId       String   @map("user_id")
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("sessions")
+}
+
+model User {
+  id              String   @id @default(cuid())
+  email           String   @unique
+  emailVerified   DateTime?
+  passwordHash    String?  @map("password_hash")
+  name            String
+  image           String?
+  role            Role     @default(STUDENT)
+  locale          String   @default("en")
+  createdAt       DateTime @default(now()) @map("created_at")
+  updatedAt       DateTime @updatedAt @map("updated_at")
+
+  accounts        Account[]
+  sessions        Session[]
+  studentProfile  StudentProfile?
+  applications    Application[]
+  reservations    Reservation[]
+  enrollments     CourseEnrollment[]
+  payments        Payment[]
+  documents       UploadedDocument[]
+  homework        Homework[]
+  progressRecords ProgressRecord[]
+  certificates    Certificate[]
+  retreatBookings RetreatBooking[]
+  sentMessages    Message[] @relation("Sender")
+  receivedMessages Message[] @relation("Recipient")
+  notifications   Notification[]
+  adminNotes      AdminNote[] @relation("NotesOnUser")
+  authoredNotes   AdminNote[] @relation("NotesByAdmin")
+  taughtCourses   Course[]   @relation("CourseTeacher")
+  testimonials    Testimonial[]
+  blogPosts       BlogPost[]
+
+  @@map("users")
+}
+
+model StudentProfile {
+  id              String   @id @default(cuid())
+  userId          String   @unique @map("user_id")
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  country         String?
+  city            String?
+  phone           String?
+  currentLevel    CEFRLevel? @map("current_level")
+  targetLevel     CEFRLevel? @map("target_level")
+  occupation      String?
+  motivation      String?  @db.Text
+  goals           String?  @db.Text
+  preferredFormat CourseFormat? @map("preferred_format")
+  streakDays      Int      @default(0) @map("streak_days")
+  totalSessions   Int      @default(0) @map("total_sessions")
+  vocabLearned    Int      @default(0) @map("vocab_learned")
+  createdAt       DateTime @default(now()) @map("created_at")
+  updatedAt       DateTime @updatedAt @map("updated_at")
+
+  @@map("student_profiles")
+}
+
+model Course {
+  id                  String   @id @default(cuid())
+  slug                String   @unique
+  title               String
+  titleDe             String   @map("title_de")
+  description         String   @db.Text
+  descriptionDe       String   @db.Text @map("description_de")
+  level               CEFRLevel
+  format              CourseFormat
+  durationWeeks       Int      @map("duration_weeks")
+  hoursPerWeek        Int      @map("hours_per_week")
+  priceEur            Int      @map("price_eur")
+  maxSeats            Int      @map("max_seats")
+  availableSeats      Int      @map("available_seats")
+  startDate           DateTime @map("start_date")
+  endDate             DateTime @map("end_date")
+  certificateIncluded Boolean  @default(false) @map("certificate_included")
+  coverImage          String?  @map("cover_image")
+  curriculum          Json?
+  teacherId           String?  @map("teacher_id")
+  teacher             User?    @relation("CourseTeacher", fields: [teacherId], references: [id])
+  enrollments         CourseEnrollment[]
+  reservations        Reservation[]
+  applications        Application[]
+  sessions            LiveSession[]
+  homework            Homework[]
+  certificates        Certificate[]
+  isPublished         Boolean  @default(false) @map("is_published")
+  createdAt           DateTime @default(now()) @map("created_at")
+  updatedAt           DateTime @updatedAt @map("updated_at")
+
+  @@index([level, format, isPublished])
+  @@map("courses")
+}
+
+model CourseEnrollment {
+  id          String   @id @default(cuid())
+  userId      String   @map("user_id")
+  user        User     @relation(fields: [userId], references: [id])
+  courseId    String   @map("course_id")
+  course      Course   @relation(fields: [courseId], references: [id])
+  enrolledAt  DateTime @default(now()) @map("enrolled_at")
+  completedAt DateTime? @map("completed_at")
+  progressPct Int      @default(0) @map("progress_pct")
+
+  @@unique([userId, courseId])
+  @@map("course_enrollments")
+}
+
+model Reservation {
+  id          String            @id @default(cuid())
+  userId      String?           @map("user_id")
+  user        User?             @relation(fields: [userId], references: [id])
+  courseId    String            @map("course_id")
+  course      Course            @relation(fields: [courseId], references: [id])
+  guestEmail  String?           @map("guest_email")
+  guestName   String?           @map("guest_name")
+  status      ReservationStatus @default(PENDING)
+  expiresAt   DateTime          @map("expires_at")
+  createdAt   DateTime          @default(now()) @map("created_at")
+
+  @@map("reservations")
+}
+
+model Application {
+  id             String            @id @default(cuid())
+  userId         String            @map("user_id")
+  user           User              @relation(fields: [userId], references: [id])
+  courseId       String            @map("course_id")
+  course         Course            @relation(fields: [courseId], references: [id])
+  status         ApplicationStatus @default(DRAFT)
+  motivation     String            @db.Text
+  goals          String            @db.Text
+  currentLevel   CEFRLevel?        @map("current_level")
+  availability   String?
+  specialRequest String?           @db.Text @map("special_request")
+  reviewedById   String?           @map("reviewed_by_id")
+  reviewNote     String?           @db.Text @map("review_note")
+  submittedAt    DateTime?         @map("submitted_at")
+  reviewedAt     DateTime?         @map("reviewed_at")
+  createdAt      DateTime          @default(now()) @map("created_at")
+  updatedAt      DateTime          @updatedAt @map("updated_at")
+
+  @@map("applications")
+}
+
+model Payment {
+  id                  String        @id @default(cuid())
+  userId              String        @map("user_id")
+  user                User          @relation(fields: [userId], references: [id])
+  amountCents         Int           @map("amount_cents")
+  currency            String        @default("EUR")
+  status              PaymentStatus @default(PENDING)
+  method              PaymentMethod
+  stripeSessionId     String?       @map("stripe_session_id")
+  stripePaymentIntent String?       @map("stripe_payment_intent")
+  invoiceUrl          String?       @map("invoice_url")
+  description         String?
+  paidAt              DateTime?     @map("paid_at")
+  createdAt           DateTime      @default(now()) @map("created_at")
+
+  @@map("payments")
+}
+
+model UploadedDocument {
+  id        String   @id @default(cuid())
+  userId    String   @map("user_id")
+  user      User     @relation(fields: [userId], references: [id])
+  type      DocumentType
+  fileName  String   @map("file_name")
+  fileUrl   String   @map("file_url")
+  fileSize  Int      @map("file_size")
+  mimeType  String   @map("mime_type")
+  uploadedAt DateTime @default(now()) @map("uploaded_at")
+
+  @@map("uploaded_documents")
+}
+
+model LiveSession {
+  id           String        @id @default(cuid())
+  courseId     String        @map("course_id")
+  course       Course        @relation(fields: [courseId], references: [id])
+  title        String
+  startsAt     DateTime      @map("starts_at")
+  endsAt       DateTime      @map("ends_at")
+  meetingUrl   String?       @map("meeting_url")
+  recordingUrl String?       @map("recording_url")
+  status       SessionStatus @default(SCHEDULED)
+  createdAt    DateTime      @default(now()) @map("created_at")
+
+  @@map("live_sessions")
+}
+
+model Homework {
+  id            String   @id @default(cuid())
+  courseId      String   @map("course_id")
+  course        Course   @relation(fields: [courseId], references: [id])
+  userId        String   @map("user_id")
+  user          User     @relation(fields: [userId], references: [id])
+  title         String
+  instructions  String   @db.Text
+  dueAt         DateTime @map("due_at")
+  submittedAt   DateTime? @map("submitted_at")
+  submissionUrl String?  @map("submission_url")
+  feedback      String?  @db.Text
+  grade         String?
+  createdAt     DateTime @default(now()) @map("created_at")
+
+  @@map("homework")
+}
+
+model ProgressRecord {
+  id         String   @id @default(cuid())
+  userId     String   @map("user_id")
+  user       User     @relation(fields: [userId], references: [id])
+  module     String
+  scorePct   Int      @map("score_pct")
+  notes      String?
+  recordedAt DateTime @default(now()) @map("recorded_at")
+
+  @@map("progress_records")
+}
+
+model Certificate {
+  id               String   @id @default(cuid())
+  userId           String   @map("user_id")
+  user             User     @relation(fields: [userId], references: [id])
+  courseId         String   @map("course_id")
+  course           Course   @relation(fields: [courseId], references: [id])
+  level            CEFRLevel
+  issuedAt         DateTime @default(now()) @map("issued_at")
+  certificateUrl   String   @map("certificate_url")
+  verificationCode String   @unique @map("verification_code")
+
+  @@map("certificates")
+}
+
+model Testimonial {
+  id          String   @id @default(cuid())
+  userId      String?  @map("user_id")
+  user        User?    @relation(fields: [userId], references: [id])
+  name        String
+  country     String
+  quote       String   @db.Text
+  rating      Int      @default(5)
+  fromLevel   CEFRLevel? @map("from_level")
+  toLevel     CEFRLevel? @map("to_level")
+  avatar      String?
+  isPublished Boolean  @default(false) @map("is_published")
+  createdAt   DateTime @default(now()) @map("created_at")
+
+  @@map("testimonials")
+}
+
+model BlogPost {
+  id          String   @id @default(cuid())
+  slug        String   @unique
+  title       String
+  titleDe     String?  @map("title_de")
+  excerpt     String   @db.Text
+  content     String   @db.Text
+  contentDe   String?  @db.Text @map("content_de")
+  coverImage  String?  @map("cover_image")
+  category    String
+  authorId    String   @map("author_id")
+  author      User     @relation(fields: [authorId], references: [id])
+  isPublished Boolean  @default(false) @map("is_published")
+  publishedAt DateTime? @map("published_at")
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  @@map("blog_posts")
+}
+
+model Retreat {
+  id             String   @id @default(cuid())
+  slug           String   @unique
+  title          String
+  location       String
+  country        String   @default("Germany")
+  description    String   @db.Text
+  startDate      DateTime @map("start_date")
+  endDate        DateTime @map("end_date")
+  priceEur       Int      @map("price_eur")
+  maxGuests      Int      @map("max_guests")
+  availableSpots Int      @map("available_spots")
+  included       Json
+  itinerary      Json
+  coverImage     String?  @map("cover_image")
+  gallery        Json?
+  isPublished    Boolean  @default(false) @map("is_published")
+  bookings       RetreatBooking[]
+  createdAt      DateTime @default(now()) @map("created_at")
+
+  @@map("retreats")
+}
+
+model RetreatBooking {
+  id         String            @id @default(cuid())
+  retreatId  String            @map("retreat_id")
+  retreat    Retreat           @relation(fields: [retreatId], references: [id])
+  userId     String            @map("user_id")
+  user       User              @relation(fields: [userId], references: [id])
+  guests     Int               @default(1)
+  status     ReservationStatus @default(PENDING)
+  totalCents Int               @map("total_cents")
+  createdAt  DateTime          @default(now()) @map("created_at")
+
+  @@map("retreat_bookings")
+}
+
+model Message {
+  id          String   @id @default(cuid())
+  senderId    String   @map("sender_id")
+  sender      User     @relation("Sender", fields: [senderId], references: [id])
+  recipientId String   @map("recipient_id")
+  recipient   User     @relation("Recipient", fields: [recipientId], references: [id])
+  subject     String?
+  body        String   @db.Text
+  readAt      DateTime? @map("read_at")
+  createdAt   DateTime @default(now()) @map("created_at")
+
+  @@index([recipientId, readAt])
+  @@map("messages")
+}
+
+model Notification {
+  id        String           @id @default(cuid())
+  userId    String           @map("user_id")
+  user      User             @relation(fields: [userId], references: [id])
+  type      NotificationType
+  title     String
+  body      String
+  link      String?
+  readAt    DateTime?        @map("read_at")
+  createdAt DateTime         @default(now()) @map("created_at")
+
+  @@index([userId, readAt])
+  @@map("notifications")
+}
+
+model AdminNote {
+  id          String   @id @default(cuid())
+  authorId    String   @map("author_id")
+  author      User     @relation("NotesByAdmin", fields: [authorId], references: [id])
+  targetUserId String  @map("target_user_id")
+  targetUser  User     @relation("NotesOnUser", fields: [targetUserId], references: [id])
+  body        String   @db.Text
+  createdAt   DateTime @default(now()) @map("created_at")
+
+  @@map("admin_notes")
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+  @@map("verificationtokens")
+}
