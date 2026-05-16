@@ -52,9 +52,9 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
           where: { email: parsed.data.email },
         });
 
-        if (!user || !user.password) return null;
+        if (!user || !user.passwordHash) return null;
 
-        const valid = await bcrypt.compare(parsed.data.password, user.password);
+        const valid = await bcrypt.compare(parsed.data.password, user.passwordHash);
         if (!valid) return null;
 
         return {
