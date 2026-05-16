@@ -1,11 +1,15 @@
 "use client";
 
+import Link from "next/link";
+import { useParams } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export function CTASection() {
   const t = useTranslations("cta");
+  const params = useParams();
+  const locale = (params?.locale as string) ?? "de";
 
   return (
     <section className="py-20 bg-navy-900">
@@ -20,17 +24,21 @@ export function CTASection() {
             </h2>
             <p className="text-white/50 mb-8">{t("subtitle")}</p>
             <div className="flex flex-wrap justify-center gap-4">
-              <Button size="lg" className="bg-gold text-navy-900 hover:bg-gold/90 font-semibold">
-                {t("cta1")}
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-white/20 text-white hover:bg-white/10"
-              >
-                {t("cta2")}
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
+              <Link href={`/${locale}/signup` as any}>
+                <Button size="lg" className="bg-gold text-navy-900 hover:bg-gold/90 font-semibold">
+                  {t("cta1")}
+                </Button>
+              </Link>
+              <Link href={`/${locale}/placement-test` as any}>
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="border-white/20 text-white hover:bg-white/10"
+                >
+                  {t("cta2")}
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+              </Link>
             </div>
           </div>
         </div>

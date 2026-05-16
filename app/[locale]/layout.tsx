@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { NextIntlClientProvider, useMessages } from "next-intl";
 import { SessionProvider } from "next-auth/react";
-import { locales, type Locale } from "@/i18n";
+import { locales, RTL_LOCALES, type Locale } from "@/i18n";
 import { Toaster } from "@/components/ui/toaster";
 import { headingFont, bodyFont, monoFont } from "@/lib/fonts";
 import "./globals.css";
@@ -41,9 +41,10 @@ export default function RootLayout({
   }
 
   const messages = useMessages();
+  const dir = RTL_LOCALES.includes(locale as Locale) ? "rtl" : "ltr";
 
   return (
-    <html lang={locale} className={`${headingFont.variable} ${bodyFont.variable} ${monoFont.variable}`}>
+    <html lang={locale} dir={dir} className={`${headingFont.variable} ${bodyFont.variable} ${monoFont.variable}`}>
       <body className="font-sans antialiased">
         <NextIntlClientProvider locale={locale} messages={messages}>
           <SessionProvider>{children}</SessionProvider>

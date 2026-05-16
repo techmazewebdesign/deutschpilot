@@ -50,7 +50,7 @@ export function Footer() {
               {["a1", "a2", "b1", "b2", "c1"].map((level) => (
                 <li key={level}>
                   <Link
-                    href={`/${locale}/kurse` as any}
+                    href={`/${locale}/courses` as any}
                     className="text-sm text-white/40 hover:text-gold transition-colors"
                   >
                     {t(`links.${level}`)}
@@ -64,7 +64,7 @@ export function Footer() {
           <div>
             <h4 className="text-sm font-semibold text-white mb-4">{t("columns.company")}</h4>
             <ul className="space-y-2">
-              {["about", "careers", "blog", "contact"].map((link) => (
+              {["about", "contact"].map((link) => (
                 <li key={link}>
                   <Link
                     href={`/${locale}/${link}` as any}
@@ -81,7 +81,7 @@ export function Footer() {
           <div>
             <h4 className="text-sm font-semibold text-white mb-4">{t("columns.legal")}</h4>
             <ul className="space-y-2">
-              {["privacy", "terms", "imprint"].map((link) => (
+              {["privacy", "terms", "impressum"].map((link) => (
                 <li key={link}>
                   <Link
                     href={`/${locale}/${link}` as any}

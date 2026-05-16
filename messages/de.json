@@ -142,7 +142,8 @@
       "contact": "Kontakt",
       "privacy": "Datenschutz",
       "terms": "AGB",
-      "imprint": "Impressum"
+      "imprint": "Impressum",
+      "impressum": "Impressum"
     },
     "copyright": "© {year} DeutschPilot. Alle Rechte vorbehalten."
   },

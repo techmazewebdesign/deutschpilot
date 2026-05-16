@@ -1,12 +1,16 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
+import { useParams } from "next/navigation";
 import { useTranslations } from "next-intl";
-import { Play, ArrowRight } from "lucide-react";
+import { Play } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export function HeroSection() {
   const t = useTranslations("hero");
+  const params = useParams();
+  const locale = (params?.locale as string) ?? "de";
   const titleLines = t("title").split("\n");
 
   return (
@@ -65,19 +69,23 @@ export function HeroSection() {
 
           {/* CTA Buttons */}
           <div className="flex flex-wrap gap-3 mb-10">
-            <Button
-              size="lg"
-              className="bg-[#D9B173] text-[#071424] hover:bg-[#B98A4E] font-semibold rounded-md px-7"
-            >
-              {t("cta1")}
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              className="border-[#C9D2DE]/30 text-[#C9D2DE] hover:bg-white/5 hover:border-[#CEA66F]/50 rounded-md px-7"
-            >
-              {t("cta2")}
-            </Button>
+            <Link href={`/${locale}/signup` as any}>
+              <Button
+                size="lg"
+                className="bg-[#D9B173] text-[#071424] hover:bg-[#B98A4E] font-semibold rounded-md px-7"
+              >
+                {t("cta1")}
+              </Button>
+            </Link>
+            <Link href={`/${locale}/placement-test` as any}>
+              <Button
+                size="lg"
+                variant="outline"
+                className="border-[#C9D2DE]/30 text-[#C9D2DE] hover:bg-white/5 hover:border-[#CEA66F]/50 rounded-md px-7"
+              >
+                {t("cta2")}
+              </Button>
+            </Link>
           </div>
 
           {/* Success story pill */}

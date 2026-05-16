@@ -1,11 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { useParams } from "next/navigation";
+import { useParams, usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
-import { Menu, X, Globe, ChevronDown } from "lucide-react";
+import { Menu, Globe, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -16,29 +16,49 @@ import {
 import { cn } from "@/lib/utils";
 
 const navLinks = [
-  { href: "/kurse", key: "courses" },
-  { href: "/online-akademie", key: "academy" },
+  { href: "/courses", key: "courses" },
+  { href: "/online-academy", key: "academy" },
   { href: "/retreats", key: "retreats" },
   { href: "/community", key: "community" },
-  { href: "/uber-uns", key: "about" },
-  { href: "/magazin", key: "magazine" },
+  { href: "/about", key: "about" },
+  { href: "/magazine", key: "magazine" },
+];
+
+const languages = [
+  { code: "en", name: "English" },
+  { code: "de", name: "Deutsch" },
+  { code: "ar", name: "العربية" },
+  { code: "fa", name: "فارسی" },
+  { code: "hi", name: "हिन्दी" },
+  { code: "ta", name: "தமிழ்" },
 ];
 
 export function Navigation() {
   const t = useTranslations("nav");
   const params = useParams();
+  const pathname = usePathname();
   const locale = (params?.locale as string) ?? "de";
   const [isScrolled, setIsScrolled] = useState(false);
+  const [langOpen, setLangOpen] = useState(false);
+  const langRef = useRef<HTMLDivElement>(null);
 
-  if (typeof window !== "undefined") {
-    window.addEventListener("scroll", () => {
-      setIsScrolled(window.scrollY > 20);
-    });
-  }
+  useEffect(() => {
+    const handleScroll = () => setIsScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
-  const otherLocale = locale === "de" ? "en" : "de";
-  const currentPath = typeof window !== "undefined" ? window.location.pathname : "";
-  const pathWithoutLocale = currentPath.replace(`/${locale}`, "") || "/";
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (langRef.current && !langRef.current.contains(e.target as Node)) {
+        setLangOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  const pathWithoutLocale = pathname.replace(`/${locale}`, "") || "/";
 
   return (
     <header
@@ -53,7 +73,6 @@ export function Navigation() {
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
           <Link href={`/${locale}` as any} className="flex items-center gap-2">
-            {/* Wing icon — mix-blend-mode:screen makes dark navy bg invisible, gold stays */}
             <div style={{ mixBlendMode: "screen" }} className="flex-shrink-0">
               <Image
                 src="/Images/Deurschpilot_logo.png"
@@ -89,21 +108,42 @@ export function Navigation() {
 
           {/* Right side */}
           <div className="hidden lg:flex items-center gap-4">
-            <Link
-              href={`/${otherLocale}${pathWithoutLocale}` as any}
-              className="flex items-center gap-1 text-sm text-white/70 hover:text-white transition-colors"
-            >
-              <Globe className="h-4 w-4" />
-              <span className="uppercase">{locale}</span>
-              <ChevronDown className="h-3 w-3" />
-            </Link>
+            {/* Language dropdown */}
+            <div className="relative" ref={langRef}>
+              <button
+                onClick={() => setLangOpen(!langOpen)}
+                className="flex items-center gap-1 text-sm text-white/70 hover:text-white transition-colors"
+              >
+                <Globe className="h-4 w-4" />
+                <span className="uppercase">{locale}</span>
+                <ChevronDown className={cn("h-3 w-3 transition-transform duration-200", langOpen && "rotate-180")} />
+              </button>
+              {langOpen && (
+                <div className="absolute right-0 top-full mt-2 w-36 rounded-md bg-[#0B1B33] border border-white/10 shadow-xl overflow-hidden z-50">
+                  {languages.map((lang) => (
+                    <Link
+                      key={lang.code}
+                      href={`/${lang.code}${pathWithoutLocale}` as any}
+                      onClick={() => setLangOpen(false)}
+                      className={cn(
+                        "flex items-center px-4 py-2 text-sm transition-colors hover:bg-white/5",
+                        lang.code === locale ? "text-[#CEA66F] bg-[#CEA66F]/5" : "text-white/70 hover:text-white"
+                      )}
+                    >
+                      {lang.name}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
+
             <Link href={`/${locale}/login` as any}>
               <Button variant="ghost" className="text-white/80 hover:text-white hover:bg-white/10">
                 {t("login")}
               </Button>
             </Link>
-            <Link href={`/${locale}/register` as any}>
-              <Button className="bg-gold text-navy-900 hover:bg-gold/90 font-semibold">
+            <Link href={`/${locale}/signup` as any}>
+              <Button className="bg-[#D9B173] text-[#071424] hover:bg-[#B98A4E] font-semibold">
                 {t("register")}
               </Button>
             </Link>
@@ -116,29 +156,56 @@ export function Navigation() {
                 <Menu className="h-6 w-6" />
               </Button>
             </SheetTrigger>
-            <SheetContent side="right" className="w-[300px] bg-navy-900 border-white/10">
+            <SheetContent side="right" className="w-[300px] bg-[#071424] border-white/10">
               <div className="flex flex-col gap-6 mt-8">
                 {navLinks.map((link) => (
                   <SheetClose asChild key={link.href}>
                     <Link
                       href={`/${locale}${link.href}` as any}
-                      className="text-lg font-medium text-white/80 hover:text-gold transition-colors"
+                      className="text-lg font-medium text-white/80 hover:text-[#CEA66F] transition-colors"
                     >
                       {t(link.key)}
                     </Link>
                   </SheetClose>
                 ))}
-                <div className="border-t border-white/10 pt-6 flex flex-col gap-4">
-                  <Link href={`/${locale}/login` as any}>
-                    <Button variant="outline" className="w-full border-white/20 text-white hover:bg-white/10">
-                      {t("login")}
-                    </Button>
-                  </Link>
-                  <Link href={`/${locale}/register` as any}>
-                    <Button className="w-full bg-gold text-navy-900 hover:bg-gold/90 font-semibold">
-                      {t("register")}
-                    </Button>
-                  </Link>
+
+                {/* Language switcher in mobile */}
+                <div className="border-t border-white/10 pt-4">
+                  <p className="text-[10px] text-white/40 uppercase tracking-widest mb-3">Language</p>
+                  <div className="grid grid-cols-2 gap-2">
+                    {languages.map((lang) => (
+                      <SheetClose asChild key={lang.code}>
+                        <Link
+                          href={`/${lang.code}${pathWithoutLocale}` as any}
+                          className={cn(
+                            "text-sm px-3 py-2 rounded text-center transition-colors border",
+                            lang.code === locale
+                              ? "bg-[#CEA66F]/10 text-[#CEA66F] border-[#CEA66F]/30"
+                              : "text-white/60 hover:text-white hover:bg-white/5 border-white/10"
+                          )}
+                        >
+                          {lang.name}
+                        </Link>
+                      </SheetClose>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="border-t border-white/10 pt-4 flex flex-col gap-3">
+                  <SheetClose asChild>
+                    <Link href={`/${locale}/login` as any}>
+                      <Button variant="outline" className="w-full border-white/20 text-white hover:bg-white/10">
+                        {t("login")}
+                      </Button>
+                    </Link>
+                  </SheetClose>
+                  <SheetClose asChild>
+                    <Link href={`/${locale}/signup` as any}>
+                      <Button className="w-full bg-[#D9B173] text-[#071424] hover:bg-[#B98A4E] font-semibold">
+                        {t("register")}
+                      </Button>
+                    </Link>
+                  </SheetClose>
                 </div>
               </div>
             </SheetContent>

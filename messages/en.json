@@ -141,7 +141,8 @@
       "contact": "Contact",
       "privacy": "Privacy Policy",
       "terms": "Terms of Service",
-      "imprint": "Imprint"
+      "imprint": "Imprint",
+      "impressum": "Imprint"
     },
     "copyright": "© {year} DeutschPilot. All rights reserved."
   },
