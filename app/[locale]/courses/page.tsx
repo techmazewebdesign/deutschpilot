@@ -3,18 +3,29 @@ import Link from "next/link";
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
 import { PlaceholderPage } from "@/components/placeholder-page";
+import { createServerSupabaseClient } from "@/lib/supabaseServer";
 import { PLACEHOLDER_LOCALES } from "@/i18n";
+import { BookOpen, ChevronRight } from "lucide-react";
 
-const courseData = [
-  { level: "A1", price: 299, label: "Beginner", image: "https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=600&q=80" },
-  { level: "A2", price: 349, label: "Basics", image: "https://images.unsplash.com/photo-1560969184-10fe8719e047?w=600&q=80" },
-  { level: "B1", price: 399, label: "Intermediate", image: "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=600&q=80", popular: true },
-  { level: "B2", price: 449, label: "Advanced", image: "https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=600&q=80" },
-  { level: "C1", price: 499, label: "Competent", image: "https://images.unsplash.com/photo-1529655683826-aba9b3e77383?w=600&q=80" },
-];
+const LEVELS = ["A1", "A2", "B1", "B2", "C1"] as const;
 
-export default async function CoursesPage({ params }: { params: { locale: string } }) {
+const levelColors: Record<string, string> = {
+  A1: "bg-emerald-500/15 text-emerald-300 border-emerald-500/30",
+  A2: "bg-blue-500/15 text-blue-300 border-blue-500/30",
+  B1: "bg-violet-500/15 text-violet-300 border-violet-500/30",
+  B2: "bg-amber-500/15 text-amber-300 border-amber-500/30",
+  C1: "bg-rose-500/15 text-rose-300 border-rose-500/30",
+};
+
+export default async function CoursesPage({
+  params,
+  searchParams,
+}: {
+  params: { locale: string };
+  searchParams?: { level?: string };
+}) {
   const { locale } = params;
+  const levelFilter = searchParams?.level ?? "";
 
   if (PLACEHOLDER_LOCALES.includes(locale as any)) {
     return (
@@ -26,15 +37,26 @@ export default async function CoursesPage({ params }: { params: { locale: string
     );
   }
 
-  const t = await getTranslations({ locale, namespace: "courses" });
+  const [t, tLearn] = await Promise.all([
+    getTranslations({ locale, namespace: "courses" }),
+    getTranslations({ locale, namespace: "learn" }),
+  ]);
+
+  const supabase = createServerSupabaseClient();
+  let query = supabase.from("courses").select("*").eq("is_published", true);
+  if (levelFilter && LEVELS.includes(levelFilter as any)) {
+    query = query.eq("level", levelFilter);
+  }
+  const { data: courses } = await query.order("level");
 
   return (
     <>
       <Navigation />
-      <main className="min-h-screen bg-[#071424]">
+      <main className="min-h-screen bg-[#072143]">
         <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-          <div className="text-center mb-14">
-            <p className="text-xs font-medium tracking-wider text-[#CEA66F] uppercase mb-3">{t("subtitle")}</p>
+          {/* Header */}
+          <div className="text-center mb-12">
+            <p className="text-xs font-medium tracking-wider text-[#E0B873] uppercase mb-3">{t("subtitle")}</p>
             <h1 className="text-4xl sm:text-5xl font-serif font-bold text-white mb-4">{t("title")}</h1>
             <p className="text-[#C9D2DE] max-w-xl mx-auto">
               {locale === "de"
@@ -43,48 +65,73 @@ export default async function CoursesPage({ params }: { params: { locale: string
             </p>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-5">
-            {courseData.map((course) => (
-              <div
-                key={course.level}
-                className={`relative rounded-xl overflow-hidden border border-white/10 bg-[#0B1B33]/50 hover:bg-[#0B1B33] transition-all group ${
-                  course.popular ? "ring-1 ring-[#CEA66F]/50" : ""
+          {/* Level filter */}
+          <div className="flex flex-wrap justify-center gap-2 mb-10">
+            <Link
+              href={`/${locale}/courses` as any}
+              className={`px-4 py-1.5 rounded-full text-sm font-medium border transition-colors ${
+                !levelFilter
+                  ? "bg-[#E0B873] text-[#05101E] border-[#E0B873]"
+                  : "border-white/20 text-white/60 hover:text-white hover:border-white/40"
+              }`}
+            >
+              {tLearn("allLevels")}
+            </Link>
+            {LEVELS.map((lvl) => (
+              <Link
+                key={lvl}
+                href={`/${locale}/courses?level=${lvl}` as any}
+                className={`px-4 py-1.5 rounded-full text-sm font-medium border transition-colors ${
+                  levelFilter === lvl
+                    ? "bg-[#E0B873] text-[#05101E] border-[#E0B873]"
+                    : "border-white/20 text-white/60 hover:text-white hover:border-white/40"
                 }`}
               >
-                {course.popular && (
-                  <div className="absolute top-3 left-1/2 -translate-x-1/2 z-10">
-                    <span className="bg-[#CEA66F] text-[#071424] text-[10px] font-bold tracking-wider uppercase px-3 py-1 rounded-full">
-                      {t("popular")}
-                    </span>
-                  </div>
-                )}
-                <div
-                  className="h-36 bg-cover bg-center"
-                  style={{ backgroundImage: `url(${course.image})` }}
-                />
-                <div className="p-5">
-                  <div className="text-3xl font-bold text-white mb-1">{course.level}</div>
-                  <div className="text-sm text-white/60 mb-4">{t(`levels.${course.level}.label`)}</div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-lg font-bold text-white">{course.price} €</span>
-                    <Link
-                      href={`/${locale}/signup` as any}
-                      className="h-8 w-8 rounded-full border border-white/20 flex items-center justify-center group-hover:bg-[#CEA66F] group-hover:border-[#CEA66F] transition-colors"
-                    >
-                      <svg className="h-4 w-4 text-white/60 group-hover:text-[#071424]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-                      </svg>
-                    </Link>
-                  </div>
-                </div>
-              </div>
+                {lvl}
+              </Link>
             ))}
           </div>
 
-          <div className="text-center mt-12">
+          {/* Course grid */}
+          {!courses || courses.length === 0 ? (
+            <div className="text-center py-16 text-white/40">
+              <BookOpen className="h-10 w-10 mx-auto mb-3 opacity-40" />
+              <p>{tLearn("noCourses")}</p>
+            </div>
+          ) : (
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              {courses.map((course: any) => (
+                <Link
+                  key={course.id}
+                  href={`/${locale}/courses/${course.slug}` as any}
+                  className="group relative rounded-xl border border-white/10 bg-[#0A2A50]/50 hover:bg-[#0A2A50] hover:border-[#E0B873]/30 transition-all overflow-hidden"
+                >
+                  {/* Level bar */}
+                  <div className="h-1 w-full bg-gradient-to-r from-[#E0B873] to-[#C99B50]" />
+                  <div className="p-6">
+                    <span className={`inline-block text-[10px] font-bold tracking-widest uppercase px-2.5 py-1 rounded-full border mb-4 ${levelColors[course.level] ?? levelColors.A1}`}>
+                      {course.level}
+                    </span>
+                    <h2 className="text-lg font-serif font-bold text-white mb-2 group-hover:text-[#E0B873] transition-colors">
+                      {course.title}
+                    </h2>
+                    <p className="text-sm text-white/50 leading-relaxed line-clamp-3 mb-4">
+                      {course.description}
+                    </p>
+                    <div className="flex items-center gap-1.5 text-[#E0B873] text-sm font-medium">
+                      {tLearn("startCourse")}
+                      <ChevronRight className="h-4 w-4" />
+                    </div>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          )}
+
+          <div className="text-center mt-14">
             <Link
               href={`/${locale}/signup` as any}
-              className="inline-block bg-[#D9B173] text-[#071424] font-semibold px-8 py-3 rounded-md hover:bg-[#B98A4E] transition-colors"
+              className="inline-block bg-[#E0B873] text-[#072143] font-semibold px-8 py-3 rounded-md hover:bg-[#C99B50] transition-colors"
             >
               {locale === "de" ? "Jetzt kostenlos starten" : "Start for free"}
             </Link>
