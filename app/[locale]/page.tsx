@@ -1,30 +1,36 @@
 import { Navigation } from "@/components/navigation";
 import { HeroSection } from "@/components/sections/hero";
-import { FeaturesSection } from "@/components/sections/features";
-import { CoursesSection } from "@/components/sections/courses";
+import { LevelJourneySection } from "@/components/sections/level-journey";
+import { RoomShowcaseSection } from "@/components/sections/room-showcase";
+import { AIShowcaseSection } from "@/components/sections/ai-showcase";
+import { DailyMissionSection } from "@/components/sections/daily-mission";
+import { DashboardPreviewSection } from "@/components/sections/dashboard-preview";
+import { CertificateSection } from "@/components/sections/certificate";
+import { FinalCTASection } from "@/components/sections/final-cta";
 import { HowItWorksSection } from "@/components/sections/how-it-works";
-import { StudentJourneySection } from "@/components/sections/student-journey";
-import { TestimonialsSection } from "@/components/sections/testimonials";
-import { RetreatsSection } from "@/components/sections/retreats";
-import { CommunitySection } from "@/components/sections/community";
-import { CTASection } from "@/components/sections/cta";
+import { LiveClassesPreviewSection } from "@/components/sections/live-classes-preview";
+import { TeachersPreviewSection } from "@/components/sections/teachers-preview";
+import { SplitCTASection } from "@/components/sections/split-cta";
 import { Footer } from "@/components/footer";
 
-export const dynamic = 'force-dynamic';
+export const dynamic = "force-dynamic";
 
 export default function HomePage() {
   return (
     <main className="min-h-screen bg-navy-900">
       <Navigation />
       <HeroSection />
-      <FeaturesSection />
-      <CoursesSection />
+      <LevelJourneySection />
+      <RoomShowcaseSection />
+      <AIShowcaseSection />
+      <DailyMissionSection />
       <HowItWorksSection />
-      <StudentJourneySection />
-      <TestimonialsSection />
-      <RetreatsSection />
-      <CommunitySection />
-      <CTASection />
+      <LiveClassesPreviewSection />
+      <TeachersPreviewSection />
+      <DashboardPreviewSection />
+      <CertificateSection />
+      <SplitCTASection />
+      <FinalCTASection />
       <Footer />
     </main>
   );

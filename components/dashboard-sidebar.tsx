@@ -75,7 +75,7 @@ export function DashboardSidebar({ locale }: SidebarProps) {
     <aside className="hidden lg:flex flex-col w-64 min-h-screen bg-[#071424] border-r border-[#E0B873]/8 flex-shrink-0">
       {/* Logo */}
       <div className="px-6 py-5 border-b border-white/5">
-        <Link href={`/${locale}` as any} className="flex items-center gap-2">
+        <Link href={`/${locale}`} className="flex items-center gap-2">
           <div style={{ mixBlendMode: "screen" }} className="flex-shrink-0">
             <Image src="/Images/Deurschpilot_logo.png" alt="DeutschPilot" width={36} height={36} className="h-8 w-8 object-contain" />
           </div>
@@ -114,7 +114,7 @@ export function DashboardSidebar({ locale }: SidebarProps) {
           const Icon = item.icon;
           const active = isActive(item.href);
           return (
-            <Link key={item.href} href={item.href as any}
+            <Link key={item.href} href={item.href}
               className={cn("flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-all",
                 active ? "bg-[#E0B873]/12 text-[#E0B873] border border-[#E0B873]/20" : "text-white/60 hover:text-white hover:bg-white/5"
               )}>
@@ -131,7 +131,7 @@ export function DashboardSidebar({ locale }: SidebarProps) {
             const Icon = item.icon;
             const active = isActive(item.href);
             return (
-              <Link key={item.href} href={item.href as any}
+              <Link key={item.href} href={item.href}
                 className={cn("flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-all",
                   active ? "bg-[#E0B873]/12 text-[#E0B873] border border-[#E0B873]/20" : "text-white/60 hover:text-white hover:bg-white/5"
                 )}>

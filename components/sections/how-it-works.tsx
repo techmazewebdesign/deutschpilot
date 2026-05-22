@@ -1,58 +1,74 @@
 "use client";
 
-import { useTranslations } from "next-intl";
-import { CheckCircle2 } from "lucide-react";
+import { useRef } from "react";
+import { motion, useInView } from "framer-motion";
+import { BookOpen, Brain, Video, Trophy } from "lucide-react";
 
-const steps = ["discover", "reserve", "apply", "start"];
+const steps = [
+  {
+    icon: BookOpen,
+    step: "01",
+    title: "Choose Your Level",
+    description: "Take a quick placement test or pick your level. We have structured rooms from A1 to C1.",
+  },
+  {
+    icon: Brain,
+    step: "02",
+    title: "Learn with AI",
+    description: "Practice vocabulary, grammar, and conversation with your personal AI Trainer — anytime, anywhere.",
+  },
+  {
+    icon: Video,
+    step: "03",
+    title: "Join Live Classes",
+    description: "Book a live session with a real German teacher via Google Meet and accelerate your progress.",
+  },
+  {
+    icon: Trophy,
+    step: "04",
+    title: "Track Progress",
+    description: "Complete exercises, earn streaks, and watch your level badge grow as you advance.",
+  },
+];
 
 export function HowItWorksSection() {
-  const t = useTranslations("howItWorks");
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-60px" });
 
   return (
-    <section className="py-24 md:py-32 bg-navy-900">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <p className="text-xs font-medium tracking-wider text-gold uppercase mb-4">
-            {t("subtitle")}
-          </p>
-          <h2 className="text-3xl sm:text-4xl font-serif font-bold text-white">
-            {t("title")}
-          </h2>
-        </div>
+    <section ref={ref} className="bg-[#071424] py-20 lg:py-24 border-t border-white/[0.04]">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <motion.div
+          className="text-center mb-14"
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5 }}
+        >
+          <p className="text-[11px] font-semibold tracking-[0.2em] text-[#E0B873] uppercase mb-2">How It Works</p>
+          <h2 className="text-3xl lg:text-4xl font-serif font-bold text-white">Start Learning in 4 Steps</h2>
+        </motion.div>
 
-        <div className="relative">
-          {/* Gold connecting line */}
-          <div className="hidden md:block absolute top-1/2 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/30 to-transparent -translate-y-1/2" />
-
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-4">
-            {steps.map((step, index) => (
-              <div
-                key={step}
-                className="relative flex flex-col items-center text-center animate-fade-in"
-                style={{ animationDelay: `${index * 0.15}s` }}
-              >
-                {/* Circle with number */}
-                <div className="relative z-10 w-16 h-16 rounded-full border-2 border-gold/30 bg-navy-800 flex items-center justify-center mb-6 shadow-[0_8px_40px_rgba(201,169,97,0.08)]">
-                  <span className="text-xl font-bold text-gold font-mono">
-                    {index + 1}
-                  </span>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {steps.map((step, i) => (
+            <motion.div
+              key={step.step}
+              initial={{ opacity: 0, y: 24 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.5, delay: 0.1 + i * 0.1 }}
+              className="relative flex flex-col gap-4 p-6 rounded-2xl border border-white/8 bg-[#0A1E35]/50 hover:border-[#E0B873]/20 transition-colors"
+            >
+              <div className="flex items-center justify-between">
+                <div className="h-10 w-10 rounded-xl bg-[#E0B873]/10 flex items-center justify-center">
+                  <step.icon className="h-5 w-5 text-[#E0B873]" />
                 </div>
-
-                {/* Step content */}
-                <h3 className="text-lg font-semibold text-white mb-2">
-                  {t(`steps.${step}.title`)}
-                </h3>
-                <p className="text-sm text-white/50 leading-relaxed">
-                  {t(`steps.${step}.desc`)}
-                </p>
-
-                {/* Checkmark for completed steps */}
-                {index < steps.length - 1 && (
-                  <div className="hidden md:block absolute top-1/2 left-[calc(50%+2rem)] w-full h-px bg-gold/20 -translate-y-1/2" />
-                )}
+                <span className="text-3xl font-bold text-white/5">{step.step}</span>
               </div>
-            ))}
-          </div>
+              <div>
+                <h3 className="text-base font-serif font-bold text-white mb-1">{step.title}</h3>
+                <p className="text-xs text-white/45 leading-relaxed">{step.description}</p>
+              </div>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>

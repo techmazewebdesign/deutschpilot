@@ -192,7 +192,7 @@ export function PlacementQuiz({ locale, userId }: Props) {
 
           {userId && (
             <Link
-              href={`/${locale}/dashboard` as any}
+              href={`/${locale}/dashboard`}
               className="px-6 py-3 rounded-md border border-white/15 text-white/60 text-sm font-medium hover:text-white hover:border-white/30 transition-colors"
             >
               {t("goToDashboard")}
@@ -201,7 +201,7 @@ export function PlacementQuiz({ locale, userId }: Props) {
 
           {!userId && (
             <Link
-              href={`/${locale}/signup` as any}
+              href={`/${locale}/signup`}
               className="px-6 py-3 rounded-md border border-[#E0B873]/30 text-[#E0B873] text-sm font-medium hover:bg-[#E0B873]/10 transition-colors"
             >
               {t("loginToSave")}

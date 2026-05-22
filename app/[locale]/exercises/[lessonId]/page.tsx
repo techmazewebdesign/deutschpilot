@@ -1,11 +1,12 @@
 import { getTranslations } from "next-intl/server";
 import { notFound, redirect } from "next/navigation";
 import Link from "next/link";
-import { DashboardSidebar } from "@/components/dashboard-sidebar";
+import { AppLayout } from "@/components/app/app-layout";
 import { Quiz } from "@/components/learn/quiz";
+import { auth } from "@/lib/auth";
 import { createServerSupabaseClient } from "@/lib/supabaseServer";
-import { PLACEHOLDER_LOCALES } from "@/i18n";
-import { ArrowLeft } from "lucide-react";
+import { isPlaceholderLocale } from "@/i18n";
+import { ArrowLeft, FlaskConical, ChevronRight } from "lucide-react";
 
 export const dynamic = "force-dynamic";
 
@@ -16,15 +17,13 @@ export default async function ExercisesPage({
 }) {
   const { locale, lessonId } = params;
 
-  if (PLACEHOLDER_LOCALES.includes(locale as any)) notFound();
+  if (isPlaceholderLocale(locale)) notFound();
+
+  const session = await auth();
+  if (!session?.user) redirect(`/${locale}/signin`);
 
   const supabase = createServerSupabaseClient();
 
-  // Auth guard
-  const { data: { session } } = await supabase.auth.getSession();
-  if (!session) redirect(`/${locale}/login`);
-
-  // Fetch lesson (to get title, course_id and slug)
   const { data: lesson } = await supabase
     .from("lessons")
     .select("id, title, slug, course_id, courses(title, slug)")
@@ -33,9 +32,8 @@ export default async function ExercisesPage({
 
   if (!lesson) notFound();
 
-  const course: any = lesson.courses;
+  const course = ((lesson.courses as Array<{ title: string; slug: string }> | null) ?? [])[0] ?? null;
 
-  // Fetch exercises for this lesson
   const { data: exercises } = await supabase
     .from("exercises")
     .select("id, question, type, options, correct_answer, explanation")
@@ -43,68 +41,70 @@ export default async function ExercisesPage({
     .order("created_at");
 
   const tLearn = await getTranslations({ locale, namespace: "learn" });
+  const de = locale === "de";
+  const exerciseList = (exercises ?? []) as {
+    id: string; question: string; type: string;
+    options: string[] | null; correct_answer: string; explanation: string | null;
+  }[];
 
   return (
-    <div className="flex min-h-screen bg-[#05101E]">
-      <DashboardSidebar locale={locale} />
+    <AppLayout locale={locale} userName={session.user.name ?? session.user.email?.split("@")[0] ?? "Student"}>
+      <div className="px-5 lg:px-10 py-6 lg:py-8 max-w-3xl w-full mx-auto">
 
-      <div className="flex-1 flex flex-col overflow-auto">
-        {/* Mobile top bar */}
-        <header className="sticky top-0 z-20 bg-[#071424]/90 backdrop-blur-md border-b border-white/5 px-6 py-4 lg:hidden">
-          <span className="text-sm font-bold tracking-wider text-white uppercase">DeutschPilot</span>
-        </header>
+        {/* Breadcrumb */}
+        <div className="flex items-center gap-1.5 text-xs text-white/35 mb-6 flex-wrap">
+          {course && (
+            <>
+              <Link href={`/${locale}/rooms/${course.slug}`} className="hover:text-[#E0B873] transition-colors truncate max-w-[100px]">
+                {course.title}
+              </Link>
+              <ChevronRight className="h-3 w-3 flex-shrink-0" />
+              <Link href={`/${locale}/lessons/${lesson.slug}`} className="hover:text-[#E0B873] transition-colors truncate max-w-[120px]">
+                {lesson.title}
+              </Link>
+              <ChevronRight className="h-3 w-3 flex-shrink-0" />
+            </>
+          )}
+          <span className="text-white/55">{tLearn("goToExercises")}</span>
+        </div>
 
-        <main className="flex-1 px-6 lg:px-10 py-8 max-w-3xl w-full mx-auto">
-          {/* Breadcrumb */}
-          <div className="flex items-center gap-2 text-xs text-white/40 mb-6">
-            {course && (
-              <>
-                <Link href={`/${locale}/courses/${course.slug}` as any} className="hover:text-[#E0B873] transition-colors">
-                  {course.title}
-                </Link>
-                <span>/</span>
-                <Link href={`/${locale}/lessons/${lesson.slug}` as any} className="hover:text-[#E0B873] transition-colors">
-                  {lesson.title}
-                </Link>
-                <span>/</span>
-              </>
-            )}
-            <span className="text-white/60">{tLearn("goToExercises")}</span>
-          </div>
-
-          {/* Header */}
-          <div className="mb-8">
-            <p className="text-xs font-medium text-[#E0B873] uppercase tracking-widest mb-1">
-              {tLearn("goToExercises")}
+        {/* Quiz header card */}
+        <div className="relative overflow-hidden rounded-2xl border border-[#E0B873]/20 bg-gradient-to-br from-[#0E2845] via-[#0A1E35] to-[#071424] p-6 mb-6">
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,_rgba(224,184,115,0.08)_0%,_transparent_60%)]" />
+          <div className="relative">
+            <div className="flex items-center gap-2 mb-3">
+              <div className="h-6 w-6 rounded-md bg-[#E0B873]/15 flex items-center justify-center">
+                <FlaskConical className="h-3.5 w-3.5 text-[#E0B873]" />
+              </div>
+              <span className="text-[10px] font-semibold text-[#E0B873]/70 uppercase tracking-[0.2em]">
+                {de ? "Quiz" : "Quiz"} · {exerciseList.length} {de ? "Fragen" : "questions"}
+              </span>
+            </div>
+            <h1 className="text-2xl lg:text-3xl font-serif font-bold text-white mb-1">{lesson.title}</h1>
+            <p className="text-sm text-white/40">
+              {de ? "Wähle die richtige Antwort für jede Frage." : "Select the correct answer for each question."}
             </p>
-            <h1 className="text-2xl font-serif font-bold text-white">{lesson.title}</h1>
-            <p className="text-sm text-white/40 mt-1">
-              {(exercises ?? []).length} {tLearn("correct")} · {locale === "de" ? "Wähle die richtige Antwort." : "Select the correct answer."}
-            </p>
           </div>
+        </div>
 
-          {/* Quiz */}
-          <Quiz
-            exercises={(exercises ?? []) as any}
-            lessonId={lessonId}
-            courseId={lesson.course_id}
-            userId={session.user.id}
-            locale={locale}
-            lessonSlug={lesson.slug}
-          />
+        {/* Quiz component */}
+        <Quiz
+          exercises={exerciseList}
+          lessonId={lessonId}
+          courseId={lesson.course_id}
+          userId={session.user.id}
+          locale={locale}
+          lessonSlug={lesson.slug}
+        />
 
-          {/* Back link */}
-          <div className="mt-8">
-            <Link
-              href={`/${locale}/lessons/${lesson.slug}` as any}
-              className="inline-flex items-center gap-1.5 text-sm text-white/40 hover:text-[#E0B873] transition-colors"
-            >
-              <ArrowLeft className="h-4 w-4" />
-              {tLearn("backToLesson")}
-            </Link>
-          </div>
-        </main>
+        <div className="mt-8">
+          <Link href={`/${locale}/lessons/${lesson.slug}`}
+            className="inline-flex items-center gap-1.5 text-sm text-white/35 hover:text-[#E0B873] transition-colors">
+            <ArrowLeft className="h-4 w-4" />
+            {tLearn("backToLesson")}
+          </Link>
+        </div>
       </div>
-    </div>
+    </AppLayout>
   );
 }

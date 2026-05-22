@@ -1,0 +1,4 @@
+-- ============================================================
+-- SUPERSEDED — use migration-firebase-uid-fix.sql instead.
+-- That file fixes ALL tables, not just profiles.
+-- ============================================================

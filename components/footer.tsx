@@ -50,7 +50,7 @@ export function Footer() {
               {["a1", "a2", "b1", "b2", "c1"].map((level) => (
                 <li key={level}>
                   <Link
-                    href={`/${locale}/courses` as any}
+                    href={`/${locale}/courses`}
                     className="text-sm text-white/40 hover:text-gold transition-colors"
                   >
                     {t(`links.${level}`)}
@@ -67,7 +67,7 @@ export function Footer() {
               {["about", "contact"].map((link) => (
                 <li key={link}>
                   <Link
-                    href={`/${locale}/${link}` as any}
+                    href={`/${locale}/${link}`}
                     className="text-sm text-white/40 hover:text-gold transition-colors"
                   >
                     {t(`links.${link}`)}
@@ -84,7 +84,7 @@ export function Footer() {
               {["privacy", "terms", "impressum"].map((link) => (
                 <li key={link}>
                   <Link
-                    href={`/${locale}/${link}` as any}
+                    href={`/${locale}/${link}`}
                     className="text-sm text-white/40 hover:text-gold transition-colors"
                   >
                     {t(`links.${link}`)}

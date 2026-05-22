@@ -24,12 +24,12 @@ export function CTASection() {
             </h2>
             <p className="text-white/50 mb-8">{t("subtitle")}</p>
             <div className="flex flex-wrap justify-center gap-4">
-              <Link href={`/${locale}/signup` as any}>
+              <Link href={`/${locale}/signup`}>
                 <Button size="lg" className="bg-gold text-navy-900 hover:bg-gold/90 font-semibold">
                   {t("cta1")}
                 </Button>
               </Link>
-              <Link href={`/${locale}/placement-test` as any}>
+              <Link href={`/${locale}/placement-test`}>
                 <Button
                   size="lg"
                   variant="outline"

@@ -1,34 +1,39 @@
 {
   "metadata": {
-    "title": "DeutschPilot – Premium Deutschkurse & Retreats",
+    "title": "DeutschPilot – Premium-Deutschkurse & Retreats",
     "description": "DeutschPilot ist die Premium-Lernplattform für schnelle Fortschritte, echte Ergebnisse und neue Möglichkeiten."
   },
   "nav": {
+    "home": "Startseite",
     "courses": "Kurse",
-    "academy": "Online Akademie",
+    "academy": "Online-Akademie",
     "retreats": "Retreats",
     "community": "Community",
     "about": "Über uns",
     "magazine": "Magazin",
-    "login": "Login",
+    "levels": "Niveaus",
+    "rooms": "Räume",
+    "aiTrainer": "KI-Trainer",
+    "pricing": "Preise",
+    "login": "Anmelden",
     "register": "Kostenlos testen",
     "logout": "Abmelden",
     "dashboard": "Dashboard"
   },
   "hero": {
-    "badge": "Premium Deutschkurse & Retreats",
+    "badge": "Premium-Deutschkurse & Retreats",
     "title": "Deutsch lernen.\nDein Weg.\nDeine Zukunft.",
     "subtitle": "DeutschPilot ist mehr als ein Kurs – es ist dein persönlicher Kompass für schnelle Fortschritte und echte Ziele.",
     "cta1": "Kostenlos testen",
-    "cta2": "Dein Niveau bestimmen",
+    "cta2": "Niveau bestimmen",
     "rating": "4,9 von 5 Sternen aus 1.200+ Bewertungen",
     "success": "Erfolgsgeschichten ansehen"
   },
   "stats": {
-    "students": "Zufriedene Teilnehmer",
+    "students": "Zufriedene Teilnehmer:innen",
     "recommend": "Empfehlen DeutschPilot weiter",
     "experience": "Jahre Erfahrung",
-    "levels": "Kurslevel (A1–C1)",
+    "levels": "Kursniveaus (A1–C1)",
     "support": "KI-Lernbegleitung"
   },
   "courses": {
@@ -43,7 +48,7 @@
       "certificate": "Zertifikat inklusive"
     },
     "levels": {
-      "A1": { "name": "A1", "label": "Anfänger" },
+      "A1": { "name": "A1", "label": "Anfänger:in" },
       "A2": { "name": "A2", "label": "Grundlagen" },
       "B1": { "name": "B1", "label": "Mittelstufe" },
       "B2": { "name": "B2", "label": "Fortgeschritten" },
@@ -55,7 +60,7 @@
     "items": {
       "intensive": { "title": "Superintensivkurse", "desc": "Schneller lernen mit maximaler Struktur – online oder vor Ort." },
       "live": { "title": "Live-Unterricht", "desc": "Interaktive Sessions mit erfahrenen Lehrer:innen." },
-      "ai": { "title": "KI-Lernbegleitung", "desc": "Dein KI-Tutor hilft dir rund um die Uhr." },
+      "ai": { "title": "KI-Lernbegleitung", "desc": "Dein KI-Tutor unterstützt dich rund um die Uhr." },
       "community": { "title": "Community", "desc": "Lerne mit motivierten Menschen weltweit." },
       "certificate": { "title": "Zertifikat", "desc": "Erhalte ein anerkanntes Zertifikat für dein Niveau." },
       "retreats": { "title": "Retreats", "desc": "Intensiv lernen in inspirierender Umgebung." }
@@ -66,8 +71,8 @@
     "subtitle": "Echte Erfolge",
     "viewAll": "Alle Geschichten ansehen",
     "items": {
-      "maria": { "name": "Maria L.", "result": "B2 in 3 Monaten", "text": "Die Live-Sessions und die Community haben mir enorm geholfen. Ich fühle mich jetzt sicher im Alltag und im Job." },
-      "jonas": { "name": "Jonas S.", "result": "B1 in 2 Monaten", "text": "Dank DeutschPilot habe ich mein B1-Level viel schneller erreicht als erwartet. Die Struktur und der Lehrer sind einfach top!" },
+      "maria": { "name": "Maria L.", "result": "B2 in 3 Monaten", "text": "Die Live-Sessions und die Community haben mir enorm geholfen. Im Alltag und im Job fühle ich mich jetzt richtig sicher." },
+      "jonas": { "name": "Jonas S.", "result": "B1 in 2 Monaten", "text": "Dank DeutschPilot habe ich mein B1-Niveau viel schneller erreicht als erwartet. Struktur und Lehrer:innen sind einfach top." },
       "aylin": { "name": "Aylin K.", "result": "A2 in 6 Wochen", "text": "Der Superintensivkurs im Retreat war die beste Entscheidung. Lernen in dieser Umgebung ist unschlagbar." }
     }
   },
@@ -76,10 +81,10 @@
     "subtitle": "Unsere Sprach-Retreats verbinden intensives Lernen mit Erholung, Natur und inspirierenden Menschen.",
     "cta": "Retreats entdecken",
     "features": {
-      "duration": "7 Tage Intensivkurs",
+      "duration": "7-tägiger Intensivkurs",
       "accommodation": "Unterkunft & Verpflegung",
       "activities": "Freizeit & Ausflüge",
-      "networking": "Networking & Community"
+      "networking": "Netzwerk & Community"
     }
   },
   "howItWorks": {
@@ -94,33 +99,33 @@
   },
   "studentJourney": {
     "subtitle": "DEINE REISE",
-    "title": "Vom Anfänger zum Experten",
+    "title": "Vom Anfänger zum Profi",
     "steps": {
       "discover": { "title": "Entdecken", "desc": "Erkunde unsere Kurse und finde deinen perfekten Einstieg." },
       "reserve": { "title": "Reservieren", "desc": "Sichere dir deinen Platz mit einer einfachen Reservierung." },
-      "apply": { "title": "Bewerben", "desc": "Teile uns deine Ziele und Motivation mit." },
-      "learn": { "title": "Lernen", "desc": "Tauche ein in interaktiven Unterricht und Community." },
+      "apply": { "title": "Bewerben", "desc": "Teile uns deine Ziele und deine Motivation mit." },
+      "learn": { "title": "Lernen", "desc": "Tauche ein in interaktiven Unterricht und die Community." },
       "certify": { "title": "Zertifizieren", "desc": "Erhalte dein anerkanntes Zertifikat." }
     }
   },
   "community": {
     "subtitle": "COMMUNITY",
-    "title": "Lerne zusammen. Wachse gemeinsam.",
-    "description": "Trete unserer globalen Community bei, tausche dich aus und lerne von motivierten Lernenden aus aller Welt.",
+    "title": "Gemeinsam lernen. Gemeinsam wachsen.",
+    "description": "Tritt unserer globalen Community bei, tausche dich aus und lerne von motivierten Lernenden aus aller Welt.",
     "features": {
       "members": "Mitglieder",
       "events": "Live-Events",
       "countries": "Länder",
       "exchange": "Sprachaustausch"
     },
-    "cta": "Community beitreten",
-    "preview": "Mitglieder aus 60+ Ländern lernen gemeinsam"
+    "cta": "Der Community beitreten",
+    "preview": "Mitglieder aus über 60 Ländern lernen gemeinsam"
   },
   "cta": {
     "title": "Bereit für deinen nächsten Schritt?",
     "subtitle": "Starte deine Reise mit DeutschPilot.",
     "cta1": "Kostenlos testen",
-    "cta2": "Dein Niveau bestimmen"
+    "cta2": "Niveau bestimmen"
   },
   "footer": {
     "tagline": "Sprache. Zukunft. Du.",
@@ -131,7 +136,7 @@
       "legal": "Rechtliches"
     },
     "links": {
-      "a1": "A1 Anfänger",
+      "a1": "A1 Anfänger:in",
       "a2": "A2 Grundlagen",
       "b1": "B1 Mittelstufe",
       "b2": "B2 Fortgeschritten",
@@ -168,18 +173,19 @@
     "settings": "Einstellungen",
     "continueLearning": "Weiterlernen",
     "completed": "Abgeschlossen",
-    "hoursLearned": "Stunden gelernt",
+    "hoursLearned": "Lernstunden",
     "currentStreak": "Aktuelle Serie"
   },
   "admin": {
-    "title": "Admin Dashboard",
-    "users": "Benutzer",
+    "title": "Admin-Dashboard",
+    "users": "Benutzer:innen",
     "courses": "Kurse",
     "enrollments": "Einschreibungen",
     "payments": "Zahlungen",
     "messages": "Nachrichten",
-    "totalUsers": "Gesamtbenutzer",
-    "activeUsers": "Aktive Benutzer",
+    "analytics": "Auswertungen",
+    "totalUsers": "Benutzer:innen gesamt",
+    "activeUsers": "Aktive Benutzer:innen",
     "totalRevenue": "Gesamtumsatz",
     "newSignups": "Neuanmeldungen"
   },
@@ -209,11 +215,11 @@
     "videoLesson": "Videolektion",
     "lessonContent": "Lektionsinhalt",
     "courseProgress": "Kursfortschritt",
-    "recommendedCourse": "Empfohlen für dich"
+    "recommendedCourse": "Für dich empfohlen"
   },
   "placementTest": {
     "title": "Einstufungstest",
-    "subtitle": "Kostenlos · 10 Fragen · ~5 Minuten",
+    "subtitle": "Kostenlos · 10 Fragen · ca. 5 Minuten",
     "intro": "Beantworte 10 Multiple-Choice-Fragen, um dein aktuelles Deutschniveau zu ermitteln. Dein Ergebnis wird in deinem Profil gespeichert.",
     "start": "Test starten",
     "question": "Frage",
@@ -223,9 +229,9 @@
     "yourLevel": "Dein Deutschniveau",
     "score": "Punkte",
     "saveLevel": "Niveau in meinem Profil speichern",
-    "levelSaved": "Niveau wurde in deinem Profil gespeichert!",
+    "levelSaved": "Niveau wurde in deinem Profil gespeichert.",
     "retake": "Test wiederholen",
     "goToDashboard": "Zum Dashboard",
-    "loginToSave": "Anmelden um Ergebnis zu speichern"
+    "loginToSave": "Anmelden, um dein Ergebnis zu speichern"
   }
 }

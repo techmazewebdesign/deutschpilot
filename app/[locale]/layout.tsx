@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { NextIntlClientProvider, useMessages } from "next-intl";
-import { SessionProvider } from "next-auth/react";
+import { AuthProvider } from "@/contexts/auth-context";
 import { locales, RTL_LOCALES, type Locale } from "@/i18n";
 import { Toaster } from "@/components/ui/toaster";
 import { headingFont, bodyFont, monoFont } from "@/lib/fonts";
@@ -47,7 +47,7 @@ export default function RootLayout({
     <html lang={locale} dir={dir} className={`${headingFont.variable} ${bodyFont.variable} ${monoFont.variable}`}>
       <body className="font-sans antialiased">
         <NextIntlClientProvider locale={locale} messages={messages}>
-          <SessionProvider>{children}</SessionProvider>
+          <AuthProvider>{children}</AuthProvider>
           <Toaster />
         </NextIntlClientProvider>
       </body>

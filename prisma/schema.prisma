@@ -115,9 +115,13 @@ model User {
   name            String
   image           String?
   role            Role     @default(STUDENT)
-  locale          String   @default("en")
-  createdAt       DateTime @default(now()) @map("created_at")
-  updatedAt       DateTime @updatedAt @map("updated_at")
+  locale                    String    @default("en")
+  confirmationCode          String?   @map("confirmation_code")
+  confirmationCodeExpiresAt DateTime? @map("confirmation_code_expires_at")
+  passwordResetToken        String?   @unique @map("password_reset_token")
+  passwordResetTokenExpiry  DateTime? @map("password_reset_token_expiry")
+  createdAt                 DateTime  @default(now()) @map("created_at")
+  updatedAt                 DateTime  @updatedAt @map("updated_at")
 
   accounts        Account[]
   sessions        Session[]

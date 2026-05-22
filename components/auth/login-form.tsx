@@ -4,41 +4,76 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
-import { createClient } from "@/lib/supabaseClient";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { firebaseAuth } from "@/lib/firebase";
 import { Loader2 } from "lucide-react";
 
 interface Props {
   locale: string;
 }
 
+function firebaseError(code: string, de: boolean): string {
+  const map: Record<string, [string, string]> = {
+    "auth/invalid-credential": ["E-Mail oder Passwort falsch.", "Incorrect email or password."],
+    "auth/wrong-password": ["E-Mail oder Passwort falsch.", "Incorrect email or password."],
+    "auth/user-not-found": ["Kein Konto gefunden.", "No account found."],
+    "auth/user-disabled": ["Dieses Konto ist deaktiviert.", "This account has been disabled."],
+    "auth/too-many-requests": ["Zu viele Versuche. Bitte warte kurz.", "Too many attempts. Please wait."],
+    "auth/invalid-email": ["Bitte eine gültige E-Mail eingeben.", "Please enter a valid email address."],
+  };
+  const entry = map[code];
+  if (entry) return de ? entry[0] : entry[1];
+  return de ? "E-Mail oder Passwort falsch." : "Incorrect email or password.";
+}
+
 export function LoginForm({ locale }: Props) {
   const t = useTranslations("auth");
   const router = useRouter();
+  const de = locale === "de";
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+
+  const inputClass =
+    "w-full rounded-md bg-white/5 border border-white/10 text-white px-4 py-2.5 text-sm placeholder:text-white/20 focus:outline-none focus:border-[#E0B873]/50 transition-all";
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setLoading(true);
     setError("");
 
-    const supabase = createClient();
-    const { error: authError } = await supabase.auth.signInWithPassword({ email, password });
+    try {
+      const cred = await signInWithEmailAndPassword(firebaseAuth, email, password);
+      const user = cred.user;
 
-    if (authError) {
-      setError(authError.message);
+      if (!user.emailVerified) {
+        router.push(`/${locale}/verify-email`);
+        return;
+      }
+
+      const idToken = await user.getIdToken(true);
+      const sessionRes = await fetch("/api/auth/session", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ idToken }),
+      });
+
+      if (!sessionRes.ok) {
+        setError(de ? "Sitzung konnte nicht erstellt werden." : "Session could not be created.");
+        return;
+      }
+
+      router.push(`/${locale}/dashboard`);
+      router.refresh();
+    } catch (err: unknown) {
+      const code = (err as { code?: string }).code ?? "";
+      setError(firebaseError(code, de));
+    } finally {
       setLoading(false);
-      return;
     }
-
-    router.push(`/${locale}/dashboard`);
-    router.refresh();
   }
-
-  const inputClass =
-    "w-full rounded-md bg-white/5 border border-white/10 text-white px-4 py-2.5 text-sm placeholder:text-white/20 focus:outline-none focus:border-[#E0B873]/50 transition-all";
 
   return (
     <div className="w-full max-w-sm">
@@ -46,7 +81,7 @@ export function LoginForm({ locale }: Props) {
         <h1 className="text-3xl font-serif font-bold text-white mb-2">{t("login")}</h1>
         <p className="text-[#C9D2DE] text-sm">
           {t("noAccount")}{" "}
-          <Link href={`/${locale}/signup` as any} className="text-[#E0B873] hover:underline">
+          <Link href={`/${locale}/signup`} className="text-[#E0B873] hover:underline">
             {t("register")}
           </Link>
         </p>
@@ -54,7 +89,9 @@ export function LoginForm({ locale }: Props) {
 
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
-          <label className="block text-xs font-medium text-white/60 uppercase tracking-wider mb-1.5">{t("email")}</label>
+          <label className="block text-xs font-medium text-white/60 uppercase tracking-wider mb-1.5">
+            {t("email")}
+          </label>
           <input
             type="email"
             value={email}
@@ -66,7 +103,9 @@ export function LoginForm({ locale }: Props) {
           />
         </div>
         <div>
-          <label className="block text-xs font-medium text-white/60 uppercase tracking-wider mb-1.5">{t("password")}</label>
+          <label className="block text-xs font-medium text-white/60 uppercase tracking-wider mb-1.5">
+            {t("password")}
+          </label>
           <input
             type="password"
             value={password}

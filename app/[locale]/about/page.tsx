@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
 import { PlaceholderPage } from "@/components/placeholder-page";
-import { PLACEHOLDER_LOCALES } from "@/i18n";
+import { isPlaceholderLocale } from "@/i18n";
 
 const content: Record<string, { title: string; subtitle: string; body: string; cta: string }> = {
   de: {
@@ -22,7 +22,7 @@ const content: Record<string, { title: string; subtitle: string; body: string; c
 export default function AboutPage({ params }: { params: { locale: string } }) {
   const { locale } = params;
 
-  if (PLACEHOLDER_LOCALES.includes(locale as any)) {
+  if (isPlaceholderLocale(locale)) {
     return (
       <>
         <Navigation />
@@ -55,7 +55,7 @@ export default function AboutPage({ params }: { params: { locale: string } }) {
             ))}
           </div>
           <div className="text-center">
-            <Link href={`/${locale}/signup` as any} className="inline-block bg-[#D9B173] text-[#071424] font-semibold px-8 py-3 rounded-md hover:bg-[#B98A4E] transition-colors">
+            <Link href={`/${locale}/signup`} className="inline-block bg-[#D9B173] text-[#071424] font-semibold px-8 py-3 rounded-md hover:bg-[#B98A4E] transition-colors">
               {c.cta}
             </Link>
           </div>

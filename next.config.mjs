@@ -8,7 +8,8 @@ const nextConfig = {
     domains: ["images.unsplash.com", "utfs.io", "uploadthing.com"],
   },
   experimental: {
-    typedRoutes: true,
+    typedRoutes: false,
+    serverComponentsExternalPackages: ["firebase-admin"],
   },
 };
 

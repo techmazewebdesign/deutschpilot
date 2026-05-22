@@ -2,18 +2,14 @@ import Link from "next/link";
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
 import { PlaceholderPage } from "@/components/placeholder-page";
-import { PLACEHOLDER_LOCALES } from "@/i18n";
-
-const articles = [
-  { slug: "1", de: { title: "10 Tipps für schnelles Deutsch lernen", category: "Lerntipps" }, en: { title: "10 Tips for Learning German Fast", category: "Learning Tips" } },
-  { slug: "2", de: { title: "Die besten Apps für Deutschlerner", category: "Ressourcen" }, en: { title: "The Best Apps for German Learners", category: "Resources" } },
-  { slug: "3", de: { title: "Grammatik ohne Stress: Ein Leitfaden", category: "Grammatik" }, en: { title: "Grammar Without Stress: A Guide", category: "Grammar" } },
-];
+import { isPlaceholderLocale } from "@/i18n";
+import { BookOpen, Bell, PenLine } from "lucide-react";
 
 export default function MagazinePage({ params }: { params: { locale: string } }) {
   const { locale } = params;
+  const de = locale === "de";
 
-  if (PLACEHOLDER_LOCALES.includes(locale as any)) {
+  if (isPlaceholderLocale(locale)) {
     return (
       <>
         <Navigation />
@@ -23,36 +19,57 @@ export default function MagazinePage({ params }: { params: { locale: string } })
     );
   }
 
-  const heading = locale === "de" ? "Magazin" : "Magazine";
-  const subheading = locale === "de" ? "Tipps, Guides & Inspiration" : "Tips, guides & inspiration";
+  const features = [
+    {
+      icon: <BookOpen className="h-6 w-6 text-[#E0B873]" />,
+      de: { title: "Lernartikel", body: "Tiefgehende Artikel zu Grammatik, Vokabeln und Kultur – geschrieben für echte Lernende." },
+      en: { title: "Learning Articles", body: "In-depth articles on grammar, vocabulary, and culture — written for real learners." },
+    },
+    {
+      icon: <PenLine className="h-6 w-6 text-[#E0B873]" />,
+      de: { title: "Lernertipps", body: "Praktische Strategien von Sprachlernern, die es geschafft haben." },
+      en: { title: "Learner Tips", body: "Practical strategies from language learners who made it." },
+    },
+    {
+      icon: <Bell className="h-6 w-6 text-[#E0B873]" />,
+      de: { title: "Benachrichtigt werden", body: "Werde als Erste/r informiert, wenn neue Artikel erscheinen." },
+      en: { title: "Get Notified", body: "Be first to know when new articles go live." },
+    },
+  ];
 
   return (
     <>
       <Navigation />
       <main className="min-h-screen bg-[#071424]">
-        <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
-          <div className="text-center mb-14">
-            <p className="text-xs font-medium tracking-wider text-[#CEA66F] uppercase mb-3">{subheading}</p>
-            <h1 className="text-4xl sm:text-5xl font-serif font-bold text-white">{heading}</h1>
+        <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto text-center">
+          <span className="inline-block text-xs font-semibold tracking-widest text-[#E0B873] uppercase mb-4">
+            {de ? "Demnächst" : "Coming Soon"}
+          </span>
+          <h1 className="text-4xl sm:text-5xl font-serif font-bold text-white mb-5">
+            {de ? "DeutschPilot Magazin" : "DeutschPilot Magazine"}
+          </h1>
+          <p className="text-[#C9D2DE] max-w-xl mx-auto mb-14 leading-relaxed">
+            {de
+              ? "Unser Magazin ist noch in Arbeit. Wir erstellen gerade hochwertige Inhalte, die deinen Lernweg begleiten."
+              : "Our magazine is still in the works. We're crafting quality content to support your learning journey."}
+          </p>
+
+          <div className="grid sm:grid-cols-3 gap-5 mb-14 text-left">
+            {features.map((f) => (
+              <div key={f.en.title} className="bg-[#0A1E35]/70 border border-white/10 rounded-2xl p-6">
+                <div className="mb-3">{f.icon}</div>
+                <h3 className="text-sm font-bold text-white mb-1.5">{de ? f.de.title : f.en.title}</h3>
+                <p className="text-xs text-white/50 leading-relaxed">{de ? f.de.body : f.en.body}</p>
+              </div>
+            ))}
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {articles.map((article) => {
-              const a = locale === "de" ? article.de : article.en;
-              return (
-                <div key={article.slug} className="bg-[#0B1B33]/50 border border-white/10 rounded-xl overflow-hidden hover:border-[#CEA66F]/30 transition-colors group">
-                  <div className="h-40 bg-gradient-to-br from-[#1B3150] to-[#0B1B33]" />
-                  <div className="p-5">
-                    <span className="text-[10px] font-medium tracking-wider text-[#CEA66F] uppercase">{a.category}</span>
-                    <h2 className="text-white font-semibold mt-2 mb-3 group-hover:text-[#CEA66F] transition-colors">{a.title}</h2>
-                    <Link href={`/${locale}/magazine` as any} className="text-xs text-white/40 hover:text-white/70 transition-colors">
-                      {locale === "de" ? "Weiterlesen →" : "Read more →"}
-                    </Link>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
+          <a
+            href="mailto:hello@deutschpilot.com"
+            className="inline-block bg-[#E0B873] text-[#072143] font-semibold px-8 py-3 rounded-xl hover:bg-[#C99B50] transition-colors"
+          >
+            {de ? "Benachrichtigung anfragen" : "Request to be notified"}
+          </a>
         </section>
       </main>
       <Footer />

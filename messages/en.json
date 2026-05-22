@@ -4,35 +4,40 @@
     "description": "DeutschPilot is the premium learning platform for fast progress, real results, and new opportunities."
   },
   "nav": {
+    "home": "Home",
     "courses": "Courses",
     "academy": "Online Academy",
     "retreats": "Retreats",
     "community": "Community",
-    "about": "About Us",
+    "about": "About",
     "magazine": "Magazine",
-    "login": "Login",
+    "levels": "Levels",
+    "rooms": "Rooms",
+    "aiTrainer": "AI Trainer",
+    "pricing": "Pricing",
+    "login": "Sign in",
     "register": "Try for free",
-    "logout": "Logout",
+    "logout": "Sign out",
     "dashboard": "Dashboard"
   },
   "hero": {
     "badge": "Premium German Courses & Retreats",
-    "title": "Learn German.\nYour Path.\nYour Future.",
-    "subtitle": "DeutschPilot is more than a course – it is your personal compass for rapid progress and real goals.",
+    "title": "Learn German.\nYour way.\nYour future.",
+    "subtitle": "DeutschPilot is more than a course — it's your personal compass for fast progress and real goals.",
     "cta1": "Try for free",
-    "cta2": "Determine your level",
-    "rating": "4.9 out of 5 stars from 1,200+ reviews",
+    "cta2": "Find your level",
+    "rating": "4.9 out of 5 from 1,200+ reviews",
     "success": "Watch success stories"
   },
   "stats": {
-    "students": "Satisfied participants",
+    "students": "Happy learners",
     "recommend": "Recommend DeutschPilot",
     "experience": "Years of experience",
     "levels": "Course levels (A1–C1)",
     "support": "AI learning companion"
   },
   "courses": {
-    "title": "Our German Courses",
+    "title": "Our German courses",
     "subtitle": "Find the course that fits you.",
     "viewAll": "View all courses",
     "duration": "weeks",
@@ -44,86 +49,87 @@
     },
     "levels": {
       "A1": { "name": "A1", "label": "Beginner" },
-      "A2": { "name": "A2", "label": "Basics" },
+      "A2": { "name": "A2", "label": "Elementary" },
       "B1": { "name": "B1", "label": "Intermediate" },
-      "B2": { "name": "B2", "label": "Advanced" },
-      "C1": { "name": "C1", "label": "Competent" }
+      "B2": { "name": "B2", "label": "Upper-Intermediate" },
+      "C1": { "name": "C1", "label": "Advanced" }
     }
   },
   "features": {
     "title": "Why DeutschPilot?",
     "items": {
-      "intensive": { "title": "Super Intensive Courses", "desc": "Learn faster with maximum structure – online or on-site." },
-      "live": { "title": "Live Classes", "desc": "Interactive sessions with experienced teachers." },
-      "ai": { "title": "AI Learning Companion", "desc": "Your AI tutor helps you around the clock." },
-      "community": { "title": "Community", "desc": "Learn with motivated people worldwide." },
-      "certificate": { "title": "Certificate", "desc": "Receive a recognized certificate for your level." },
-      "retreats": { "title": "Retreats", "desc": "Intensive learning in an inspiring environment." }
+      "intensive": { "title": "Super-intensive courses", "desc": "Learn faster with maximum structure — online or on site." },
+      "live": { "title": "Live classes", "desc": "Interactive sessions with experienced teachers." },
+      "ai": { "title": "AI learning companion", "desc": "Your AI tutor supports you around the clock." },
+      "community": { "title": "Community", "desc": "Learn alongside motivated people worldwide." },
+      "certificate": { "title": "Certificate", "desc": "Earn a recognised certificate for your level." },
+      "retreats": { "title": "Retreats", "desc": "Immersive learning in an inspiring environment." }
     }
   },
   "testimonials": {
-    "title": "Success Stories",
-    "subtitle": "Real Success",
+    "title": "Success stories",
+    "subtitle": "Real results",
     "viewAll": "View all stories",
     "items": {
-      "maria": { "name": "Maria L.", "result": "B2 in 3 months", "text": "The live sessions and community helped me tremendously. I now feel confident in everyday life and at work." },
-      "jonas": { "name": "Jonas S.", "result": "B1 in 2 months", "text": "Thanks to DeutschPilot, I reached my B1 level much faster than expected. The structure and teachers are simply top-notch!" },
-      "aylin": { "name": "Aylin K.", "result": "A2 in 6 weeks", "text": "The super intensive retreat course was the best decision. Learning in this environment is unbeatable." }
+      "maria": { "name": "Maria L.", "result": "B2 in 3 months", "text": "The live sessions and the community helped me enormously. I now feel confident in everyday life and at work." },
+      "jonas": { "name": "Jonas S.", "result": "B1 in 2 months", "text": "Thanks to DeutschPilot, I reached B1 much faster than expected. The structure and the teachers are simply top-notch." },
+      "aylin": { "name": "Aylin K.", "result": "A2 in 6 weeks", "text": "The super-intensive retreat was the best decision. Learning in that environment is unbeatable." }
     }
   },
   "retreats": {
-    "title": "Intensive learning. Switch off. Recharge.",
+    "title": "Learn deeply. Switch off. Recharge.",
     "subtitle": "Our language retreats combine intensive learning with relaxation, nature, and inspiring people.",
     "cta": "Discover retreats",
     "features": {
       "duration": "7-day intensive course",
       "accommodation": "Accommodation & meals",
       "activities": "Leisure & excursions",
-      "networking": "Networking & Community"
+      "networking": "Networking & community"
     }
   },
   "howItWorks": {
     "subtitle": "HOW IT WORKS",
-    "title": "Your Path to Success",
+    "title": "Your path to success",
     "steps": {
       "discover": { "title": "Discover", "desc": "Find the course that matches your level and goals." },
       "reserve": { "title": "Reserve", "desc": "Secure your spot with a free reservation." },
       "apply": { "title": "Apply", "desc": "Fill out the application form and get to know us." },
-      "start": { "title": "Start", "desc": "Begin your course and achieve your goals." }
+      "start": { "title": "Start", "desc": "Begin your course and reach your goals." }
     }
   },
   "studentJourney": {
     "subtitle": "YOUR JOURNEY",
-    "title": "From Beginner to Expert",
+    "title": "From beginner to expert",
     "steps": {
       "discover": { "title": "Discover", "desc": "Explore our courses and find your perfect starting point." },
       "reserve": { "title": "Reserve", "desc": "Secure your spot with an easy reservation." },
       "apply": { "title": "Apply", "desc": "Share your goals and motivation with us." },
-      "learn": { "title": "Learn", "desc": "Dive into interactive classes and community." },
-      "certify": { "title": "Certify", "desc": "Receive your recognized certificate." }
+      "learn": { "title": "Learn", "desc": "Dive into interactive classes and the community." },
+      "certify": { "title": "Certify", "desc": "Earn your recognised certificate." }
     }
   },
   "community": {
     "subtitle": "COMMUNITY",
     "title": "Learn together. Grow together.",
-    "description": "Join our global community, exchange ideas, and learn from motivated learners around the world.",
+    "description": "Join our global community, exchange ideas, and learn alongside motivated learners from around the world.",
     "features": {
       "members": "Members",
-      "events": "Live Events",
+      "events": "Live events",
       "countries": "Countries",
-      "exchange": "Language Exchange"
+      "exchange": "Language exchange"
     },
-    "cta": "Join Community"
+    "cta": "Join the community",
+    "preview": "Members from 60+ countries learning together"
   },
   "cta": {
     "title": "Ready for your next step?",
     "subtitle": "Start your journey with DeutschPilot.",
     "cta1": "Try for free",
-    "cta2": "Determine your level"
+    "cta2": "Find your level"
   },
   "footer": {
     "tagline": "Language. Future. You.",
-    "description": "Your personal compass for rapid progress in German.",
+    "description": "Your personal compass for fast progress in German.",
     "columns": {
       "courses": "Courses",
       "company": "Company",
@@ -131,36 +137,36 @@
     },
     "links": {
       "a1": "A1 Beginner",
-      "a2": "A2 Basics",
+      "a2": "A2 Elementary",
       "b1": "B1 Intermediate",
-      "b2": "B2 Advanced",
-      "c1": "C1 Competent",
-      "about": "About Us",
+      "b2": "B2 Upper-Intermediate",
+      "c1": "C1 Advanced",
+      "about": "About us",
       "careers": "Careers",
       "blog": "Blog",
       "contact": "Contact",
-      "privacy": "Privacy Policy",
-      "terms": "Terms of Service",
+      "privacy": "Privacy policy",
+      "terms": "Terms of service",
       "imprint": "Imprint",
       "impressum": "Imprint"
     },
     "copyright": "© {year} DeutschPilot. All rights reserved."
   },
   "auth": {
-    "login": "Sign In",
-    "register": "Sign Up",
+    "login": "Sign in",
+    "register": "Sign up",
     "email": "Email",
     "password": "Password",
     "name": "Name",
-    "forgotPassword": "Forgot password?",
-    "noAccount": "No account yet?",
-    "hasAccount": "Already registered?",
+    "forgotPassword": "Forgot your password?",
+    "noAccount": "Don't have an account yet?",
+    "hasAccount": "Already have an account?",
     "or": "or",
     "continueWithGoogle": "Continue with Google"
   },
   "dashboard": {
     "welcome": "Welcome back",
-    "myCourses": "My Courses",
+    "myCourses": "My courses",
     "progress": "Progress",
     "achievements": "Achievements",
     "schedule": "Schedule",
@@ -171,28 +177,28 @@
     "currentStreak": "Current streak"
   },
   "admin": {
-    "title": "Admin Dashboard",
+    "title": "Admin dashboard",
     "users": "Users",
     "courses": "Courses",
-    "enrollments": "Enrollments",
+    "enrollments": "Enrolments",
     "payments": "Payments",
     "messages": "Messages",
     "analytics": "Analytics",
     "totalUsers": "Total users",
     "activeUsers": "Active users",
     "totalRevenue": "Total revenue",
-    "newSignups": "New signups"
+    "newSignups": "New sign-ups"
   },
   "learn": {
-    "allLevels": "All Levels",
+    "allLevels": "All levels",
     "filterByLevel": "Filter by level",
     "noCourses": "No courses available yet.",
-    "startCourse": "Start Course",
+    "startCourse": "Start course",
     "continueCourse": "Continue",
     "lessonCount": "{count} lessons",
     "backToCourses": "Back to courses",
     "backToCourse": "Back to course",
-    "startFirstLesson": "Start First Lesson",
+    "startFirstLesson": "Start first lesson",
     "lessons": "Lessons",
     "lesson": "Lesson",
     "markComplete": "Mark as completed",
@@ -206,24 +212,24 @@
     "of": "of",
     "tryAgain": "Try again",
     "backToLesson": "Back to lesson",
-    "videoLesson": "Video Lesson",
-    "lessonContent": "Lesson Content",
+    "videoLesson": "Video lesson",
+    "lessonContent": "Lesson content",
     "courseProgress": "Course progress",
     "recommendedCourse": "Recommended for you"
   },
   "placementTest": {
-    "title": "Placement Test",
+    "title": "Placement test",
     "subtitle": "Free · 10 questions · ~5 minutes",
     "intro": "Answer 10 multiple-choice questions to find your current German level. Your result will be saved to your profile.",
     "start": "Start the test",
     "question": "Question",
     "of": "of",
     "submit": "Submit answers",
-    "result": "Your Result",
+    "result": "Your result",
     "yourLevel": "Your German level",
     "score": "Score",
     "saveLevel": "Save level to my profile",
-    "levelSaved": "Level saved to your profile!",
+    "levelSaved": "Level saved to your profile.",
     "retake": "Take the test again",
     "goToDashboard": "Go to dashboard",
     "loginToSave": "Sign in to save your result"

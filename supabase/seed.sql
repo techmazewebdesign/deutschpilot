@@ -162,7 +162,7 @@ VALUES
   <li><strong>schlafen gehen</strong> – to go to sleep</li>
 </ul>
 <h3>Example Sentences</h3>
-<p>Ich stehe um 7 Uhr auf. – I get up at 7 o''clock.<br>
+<p>Ich stehe um 7 Uhr auf. – I get up at 7 o'clock.<br>
 Ich frühstücke um halb acht. – I have breakfast at half past seven.<br>
 Um 18 Uhr komme ich nach Hause. – At 6 pm I come home.</p>',
    1, NULL, NOW()),

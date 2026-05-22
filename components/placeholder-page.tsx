@@ -30,7 +30,7 @@ export function PlaceholderPage({ locale }: PlaceholderPageProps) {
           {content.message}
         </p>
         <Link
-          href={`/${locale}` as any}
+          href={`/${locale}`}
           className="inline-block bg-[#D9B173] text-[#071424] font-semibold px-8 py-3 rounded-md hover:bg-[#B98A4E] transition-colors"
         >
           {content.back}

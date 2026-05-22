@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useParams, usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
-import { Menu, Globe, ChevronDown } from "lucide-react";
+import { Menu, Globe, ChevronDown, LayoutDashboard, LogOut, BookOpen, Brain, Video, Users, GraduationCap, Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -14,14 +14,39 @@ import {
   SheetClose,
 } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
+import { useAuth, dashboardPath } from "@/contexts/auth-context";
 
+const publicNavLinks = [
+  { href: "/", label: "Home" },
+  { href: "/ai-trainer", label: "AI Trainer" },
+  { href: "/classes", label: "Classes" },
+  { href: "/teachers", label: "Teachers" },
+];
+
+const studentNavLinks = [
+  { href: "/student/dashboard", label: "Dashboard", icon: LayoutDashboard },
+  { href: "/rooms", label: "Learn", icon: BookOpen },
+  { href: "/ai-trainer", label: "AI Trainer", icon: Brain },
+  { href: "/student/classes", label: "My Classes", icon: Video },
+  { href: "/classes", label: "Browse Classes", icon: Video },
+  { href: "/teachers", label: "Teachers", icon: Users },
+];
+
+const teacherNavLinks = [
+  { href: "/teacher/dashboard", label: "Dashboard", icon: LayoutDashboard },
+  { href: "/teacher/classes", label: "My Classes", icon: Video },
+  { href: "/teacher/classes/new", label: "Create Class", icon: Plus },
+  { href: "/teachers", label: "Teachers", icon: GraduationCap },
+];
+
+// Keep for translation fallback
 const navLinks = [
-  { href: "/courses", key: "courses" },
-  { href: "/online-academy", key: "academy" },
-  { href: "/retreats", key: "retreats" },
-  { href: "/community", key: "community" },
+  { href: "/", key: "home" },
+  { href: "/levels", key: "levels" },
+  { href: "/rooms", key: "rooms" },
+  { href: "/ai-trainer", key: "aiTrainer" },
+  { href: "/courses", key: "pricing" },
   { href: "/about", key: "about" },
-  { href: "/magazine", key: "magazine" },
 ];
 
 const languages = [
@@ -41,6 +66,12 @@ export function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [langOpen, setLangOpen] = useState(false);
   const langRef = useRef<HTMLDivElement>(null);
+  const { user, role, loading, signOut } = useAuth();
+  const myDashboard = dashboardPath(locale, role);
+
+  const activeNavLinks = !loading && user
+    ? role === "teacher" ? teacherNavLinks : studentNavLinks
+    : publicNavLinks;
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20);
@@ -72,7 +103,7 @@ export function Navigation() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
-          <Link href={`/${locale}` as any} className="flex items-center gap-2">
+          <Link href={`/${locale}`} className="flex items-center gap-2">
             <div style={{ mixBlendMode: "screen" }} className="flex-shrink-0">
               <Image
                 src="/Images/Deurschpilot_logo.png"
@@ -94,14 +125,14 @@ export function Navigation() {
           </Link>
 
           {/* Desktop Nav */}
-          <nav className="hidden lg:flex items-center gap-8">
-            {navLinks.map((link) => (
+          <nav className="hidden lg:flex items-center gap-6">
+            {activeNavLinks.map((link) => (
               <Link
                 key={link.href}
-                href={`/${locale}${link.href}` as any}
+                href={`/${locale}${link.href}`}
                 className="text-sm font-medium text-white/70 hover:text-white transition-colors"
               >
-                {t(link.key)}
+                {link.label}
               </Link>
             ))}
           </nav>
@@ -123,7 +154,7 @@ export function Navigation() {
                   {languages.map((lang) => (
                     <Link
                       key={lang.code}
-                      href={`/${lang.code}${pathWithoutLocale}` as any}
+                      href={`/${lang.code}${pathWithoutLocale}`}
                       onClick={() => setLangOpen(false)}
                       className={cn(
                         "flex items-center px-4 py-2 text-sm transition-colors hover:bg-white/5",
@@ -137,16 +168,35 @@ export function Navigation() {
               )}
             </div>
 
-            <Link href={`/${locale}/login` as any}>
-              <Button variant="ghost" className="text-white/80 hover:text-white hover:bg-white/10">
-                {t("login")}
-              </Button>
-            </Link>
-            <Link href={`/${locale}/signup` as any}>
-              <Button className="bg-[#D9B173] text-[#071424] hover:bg-[#B98A4E] font-semibold">
-                {t("register")}
-              </Button>
-            </Link>
+            {!loading && user ? (
+              <>
+                <Link href={`/${locale}/profile`} className="text-sm text-white/60 hover:text-white transition-colors">
+                  Profile
+                </Link>
+                <Button
+                  onClick={signOut}
+                  variant="ghost"
+                  size="sm"
+                  className="text-white/60 hover:text-red-400 hover:bg-red-400/10 flex items-center gap-1.5"
+                >
+                  <LogOut className="h-3.5 w-3.5" />
+                  {locale === "de" ? "Abmelden" : "Sign out"}
+                </Button>
+              </>
+            ) : !loading ? (
+              <>
+                <Link href={`/${locale}/signin`}>
+                  <Button variant="ghost" className="text-white/80 hover:text-white hover:bg-white/10">
+                    {t("login")}
+                  </Button>
+                </Link>
+                <Link href={`/${locale}/signup`}>
+                  <Button className="bg-[#D9B173] text-[#071424] hover:bg-[#B98A4E] font-semibold">
+                    {t("register")}
+                  </Button>
+                </Link>
+              </>
+            ) : null}
           </div>
 
           {/* Mobile menu */}
@@ -158,13 +208,13 @@ export function Navigation() {
             </SheetTrigger>
             <SheetContent side="right" className="w-[300px] bg-[#071424] border-white/10">
               <div className="flex flex-col gap-6 mt-8">
-                {navLinks.map((link) => (
+                {activeNavLinks.map((link) => (
                   <SheetClose asChild key={link.href}>
                     <Link
-                      href={`/${locale}${link.href}` as any}
+                      href={`/${locale}${link.href}`}
                       className="text-lg font-medium text-white/80 hover:text-[#CEA66F] transition-colors"
                     >
-                      {t(link.key)}
+                      {link.label}
                     </Link>
                   </SheetClose>
                 ))}
@@ -176,7 +226,7 @@ export function Navigation() {
                     {languages.map((lang) => (
                       <SheetClose asChild key={lang.code}>
                         <Link
-                          href={`/${lang.code}${pathWithoutLocale}` as any}
+                          href={`/${lang.code}${pathWithoutLocale}`}
                           className={cn(
                             "text-sm px-3 py-2 rounded text-center transition-colors border",
                             lang.code === locale
@@ -192,20 +242,45 @@ export function Navigation() {
                 </div>
 
                 <div className="border-t border-white/10 pt-4 flex flex-col gap-3">
-                  <SheetClose asChild>
-                    <Link href={`/${locale}/login` as any}>
-                      <Button variant="outline" className="w-full border-white/20 text-white hover:bg-white/10">
-                        {t("login")}
-                      </Button>
-                    </Link>
-                  </SheetClose>
-                  <SheetClose asChild>
-                    <Link href={`/${locale}/signup` as any}>
-                      <Button className="w-full bg-[#D9B173] text-[#071424] hover:bg-[#B98A4E] font-semibold">
-                        {t("register")}
-                      </Button>
-                    </Link>
-                  </SheetClose>
+                  {!loading && user ? (
+                    <>
+                      <SheetClose asChild>
+                        <Link href={myDashboard}>
+                          <Button variant="outline" className="w-full border-white/20 text-white hover:bg-white/10 flex items-center gap-2">
+                            <LayoutDashboard className="h-4 w-4" />
+                            Dashboard
+                          </Button>
+                        </Link>
+                      </SheetClose>
+                      <SheetClose asChild>
+                        <Button
+                          onClick={signOut}
+                          variant="ghost"
+                          className="w-full text-white/60 hover:text-red-400 hover:bg-red-400/10 flex items-center gap-2"
+                        >
+                          <LogOut className="h-4 w-4" />
+                          {locale === "de" ? "Abmelden" : "Sign out"}
+                        </Button>
+                      </SheetClose>
+                    </>
+                  ) : !loading ? (
+                    <>
+                      <SheetClose asChild>
+                        <Link href={`/${locale}/signin`}>
+                          <Button variant="outline" className="w-full border-white/20 text-white hover:bg-white/10">
+                            {t("login")}
+                          </Button>
+                        </Link>
+                      </SheetClose>
+                      <SheetClose asChild>
+                        <Link href={`/${locale}/signup`}>
+                          <Button className="w-full bg-[#D9B173] text-[#071424] hover:bg-[#B98A4E] font-semibold">
+                            {t("register")}
+                          </Button>
+                        </Link>
+                      </SheetClose>
+                    </>
+                  ) : null}
                 </div>
               </div>
             </SheetContent>

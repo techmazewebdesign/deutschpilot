@@ -4,7 +4,7 @@ import Link from "next/link";
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
 import { createServerSupabaseClient } from "@/lib/supabaseServer";
-import { PLACEHOLDER_LOCALES } from "@/i18n";
+import { isPlaceholderLocale } from "@/i18n";
 import { BookOpen, ChevronRight, CheckCircle2, ArrowLeft, Clock } from "lucide-react";
 
 export const dynamic = "force-dynamic";
@@ -16,7 +16,7 @@ export default async function CourseDetailPage({
 }) {
   const { locale, slug } = params;
 
-  if (PLACEHOLDER_LOCALES.includes(locale as any)) {
+  if (isPlaceholderLocale(locale)) {
     notFound();
   }
 
@@ -34,9 +34,10 @@ export default async function CourseDetailPage({
 
   if (!course) notFound();
 
-  const lessons: any[] = (course.lessons ?? []).sort(
-    (a: any, b: any) => a.order_index - b.order_index
-  );
+  type LessonItem = { id: string; slug: string; title: string; order_index: number };
+  const lessons: LessonItem[] = ((course.lessons ?? []) as LessonItem[])
+    .filter((l) => l.order_index < 99)
+    .sort((a, b) => a.order_index - b.order_index);
 
   // Check if user is logged in to show progress
   const { data: { session } } = await supabase.auth.getSession();
@@ -49,7 +50,7 @@ export default async function CourseDetailPage({
       .eq("user_id", session.user.id)
       .eq("course_id", course.id)
       .eq("completed", true);
-    completedLessonIds = new Set(progress?.map((p: any) => p.lesson_id) ?? []);
+    completedLessonIds = new Set(progress?.map((p: { lesson_id: string }) => p.lesson_id) ?? []);
   }
 
   const firstLesson = lessons[0];
@@ -74,7 +75,7 @@ export default async function CourseDetailPage({
 
           {/* Back link */}
           <Link
-            href={`/${locale}/courses` as any}
+            href={`/${locale}/courses`}
             className="inline-flex items-center gap-1.5 text-sm text-white/50 hover:text-[#E0B873] transition-colors mb-8"
           >
             <ArrowLeft className="h-4 w-4" />
@@ -120,7 +121,7 @@ export default async function CourseDetailPage({
 
             {firstLesson && (
               <Link
-                href={`/${locale}/lessons/${firstLesson.slug}` as any}
+                href={`/${locale}/lessons/${firstLesson.slug}`}
                 className="inline-flex items-center gap-2 bg-[#E0B873] text-[#05101E] font-semibold px-6 py-3 rounded-md hover:bg-[#C99B50] transition-colors"
               >
                 {tLearn("startFirstLesson")}
@@ -130,7 +131,7 @@ export default async function CourseDetailPage({
 
             {!session && (
               <Link
-                href={`/${locale}/signup` as any}
+                href={`/${locale}/signup`}
                 className="ml-4 inline-flex items-center gap-2 border border-[#E0B873]/30 text-[#E0B873] font-medium px-6 py-3 rounded-md hover:bg-[#E0B873]/10 transition-colors"
               >
                 {locale === "de" ? "Kostenlos registrieren" : "Sign up for free"}
@@ -148,12 +149,12 @@ export default async function CourseDetailPage({
               <p className="px-6 py-8 text-sm text-white/40">{tLearn("noCourses")}</p>
             ) : (
               <ul>
-                {lessons.map((lesson: any, idx: number) => {
+                {lessons.map((lesson, idx) => {
                   const isDone = completedLessonIds.has(lesson.id);
                   return (
                     <li key={lesson.id} className="border-b border-white/5 last:border-0">
                       <Link
-                        href={`/${locale}/lessons/${lesson.slug}` as any}
+                        href={`/${locale}/lessons/${lesson.slug}`}
                         className="flex items-center gap-4 px-6 py-4 hover:bg-white/4 transition-colors group"
                       >
                         <div className={`flex-shrink-0 h-8 w-8 rounded-full border flex items-center justify-center text-xs font-bold

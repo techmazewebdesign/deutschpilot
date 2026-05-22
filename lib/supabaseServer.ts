@@ -13,12 +13,12 @@ export function createServerSupabaseClient() {
         },
         set(name: string, value: string, options: Record<string, unknown>) {
           try {
-            cookieStore.set({ name, value, ...options } as any);
+            cookieStore.set({ name, value, ...options });
           } catch {}
         },
         remove(name: string, options: Record<string, unknown>) {
           try {
-            cookieStore.set({ name, value: "", ...options } as any);
+            cookieStore.set({ name, value: "", ...options });
           } catch {}
         },
       },

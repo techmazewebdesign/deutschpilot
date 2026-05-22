@@ -4,12 +4,13 @@ import Link from "next/link";
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
 import { PlaceholderPage } from "@/components/placeholder-page";
-import { PLACEHOLDER_LOCALES } from "@/i18n";
+import { isPlaceholderLocale } from "@/i18n";
+import { SigninFormClient } from "@/components/auth/signin-form-client";
 
 export default async function LoginPage({ params }: { params: { locale: string } }) {
   const { locale } = params;
 
-  if (PLACEHOLDER_LOCALES.includes(locale as any)) {
+  if (isPlaceholderLocale(locale)) {
     return (
       <>
         <Navigation />
@@ -35,7 +36,7 @@ export default async function LoginPage({ params }: { params: { locale: string }
         <div className="absolute inset-0 bg-gradient-to-br from-[#071424]/90 via-[#071424]/60 to-[#071424]/30" />
 
         {/* Logo */}
-        <Link href={`/${locale}` as any} className="relative z-10 flex items-center gap-2">
+        <Link href={`/${locale}`} className="relative z-10 flex items-center gap-2">
           <div className="flex flex-col leading-none">
             <span className="text-[15px] font-bold tracking-[0.18em] text-white uppercase">DeutschPilot</span>
             <span className="text-[9px] tracking-[0.22em] text-[#CEA66F] uppercase mt-[2px]">Sprache. Zukunft. Du.</span>
@@ -57,7 +58,7 @@ export default async function LoginPage({ params }: { params: { locale: string }
       <div className="w-full lg:w-1/2 flex flex-col">
         {/* Mobile logo */}
         <div className="lg:hidden p-6 border-b border-white/5">
-          <Link href={`/${locale}` as any} className="flex items-center gap-2">
+          <Link href={`/${locale}`} className="flex items-center gap-2">
             <span className="text-[13px] font-bold tracking-[0.18em] text-white uppercase">DeutschPilot</span>
           </Link>
         </div>
@@ -68,42 +69,19 @@ export default async function LoginPage({ params }: { params: { locale: string }
               <h1 className="text-3xl font-serif font-bold text-white mb-2">{t("login")}</h1>
               <p className="text-[#C9D2DE] text-sm">
                 {t("noAccount")}{" "}
-                <Link href={`/${locale}/signup` as any} className="text-[#CEA66F] hover:underline">
+                <Link href={`/${locale}/signup`} className="text-[#CEA66F] hover:underline">
                   {t("register")}
                 </Link>
               </p>
             </div>
 
-            <form className="space-y-4">
-              <div>
-                <label className="block text-xs font-medium text-white/60 uppercase tracking-wider mb-1.5">{t("email")}</label>
-                <input
-                  type="email"
-                  autoComplete="email"
-                  className="w-full rounded-md bg-white/5 border border-white/10 text-white px-4 py-3 text-sm placeholder:text-white/20 focus:outline-none focus:border-[#CEA66F]/50 focus:bg-white/8 transition-all"
-                  placeholder="email@example.com"
-                />
-              </div>
-              <div>
-                <div className="flex justify-between mb-1.5">
-                  <label className="text-xs font-medium text-white/60 uppercase tracking-wider">{t("password")}</label>
-                  <Link href={`/${locale}/login` as any} className="text-xs text-[#CEA66F] hover:underline">{t("forgotPassword")}</Link>
-                </div>
-                <input
-                  type="password"
-                  autoComplete="current-password"
-                  className="w-full rounded-md bg-white/5 border border-white/10 text-white px-4 py-3 text-sm placeholder:text-white/20 focus:outline-none focus:border-[#CEA66F]/50 focus:bg-white/8 transition-all"
-                  placeholder="••••••••"
-                />
-              </div>
-
-              <button
-                type="submit"
-                className="w-full bg-[#D9B173] text-[#071424] font-semibold py-3 rounded-md hover:bg-[#B98A4E] transition-colors mt-2"
-              >
-                {t("login")}
-              </button>
-            </form>
+            <SigninFormClient
+              locale={locale}
+              loginLabel={t("login")}
+              emailLabel={t("email")}
+              passwordLabel={t("password")}
+              forgotPasswordLabel={t("forgotPassword")}
+            />
 
             <p className="text-center text-xs text-white/30 mt-8">
               © {new Date().getFullYear()} DeutschPilot

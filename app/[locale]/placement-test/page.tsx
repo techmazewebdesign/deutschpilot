@@ -4,7 +4,7 @@ import { Footer } from "@/components/footer";
 import { PlaceholderPage } from "@/components/placeholder-page";
 import { PlacementQuiz } from "@/components/learn/placement-quiz";
 import { createServerSupabaseClient } from "@/lib/supabaseServer";
-import { PLACEHOLDER_LOCALES } from "@/i18n";
+import { isPlaceholderLocale } from "@/i18n";
 
 export const dynamic = "force-dynamic";
 
@@ -15,7 +15,7 @@ export default async function PlacementTestPage({
 }) {
   const { locale } = params;
 
-  if (PLACEHOLDER_LOCALES.includes(locale as any)) {
+  if (isPlaceholderLocale(locale)) {
     return (
       <>
         <Navigation />
