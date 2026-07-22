@@ -35,7 +35,7 @@ export default async function StudentClassesPage({ params }: { params: { locale:
     .eq("student_id", session.user.id)
     .order("created_at", { ascending: false });
 
-  const enrollments = (data ?? []) as Array<{ id: string; status: string; class_id: string; live_classes: EnrolledClass | null }>;
+  const enrollments = (data ?? []) as unknown as Array<{ id: string; status: string; class_id: string; live_classes: EnrolledClass | null }>;
   const classes = enrollments.map((e) => ({ enrollment_status: e.status, cls: e.live_classes })).filter((e) => e.cls !== null) as Array<{ enrollment_status: string; cls: EnrolledClass }>;
 
   const userName = session.user.name || session.user.email?.split("@")[0] || "Student";

@@ -45,7 +45,7 @@ export default async function StudentDashboardPage({ params }: { params: { local
 
   const progress = progressRes.data ?? [];
   type EnrolledClass = { id: string; title: string; level: string; teacher_name: string; start_time: string; meet_url: string | null; status: string };
-  const enrollments = ((enrollmentsRes.data ?? []) as Array<{ id: string; status: string; class_id: string; live_classes: EnrolledClass | null }>);
+  const enrollments = ((enrollmentsRes.data ?? []) as unknown as Array<{ id: string; status: string; class_id: string; live_classes: EnrolledClass | null }>);
   const germanLevel = placementRes.data?.level ?? "A1";
   const streak = calcStreak(progress);
   const completedCount = progress.filter((r) => r.completed).length;
