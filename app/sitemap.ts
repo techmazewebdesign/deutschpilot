@@ -13,6 +13,8 @@ const routes = [
   "/magazine",
   "/contact",
   "/placement-test",
+  "/teachers",
+  "/classes",
   "/impressum",
   "/privacy",
   "/terms",

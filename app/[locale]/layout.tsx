@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { NextIntlClientProvider, useMessages } from "next-intl";
+import { Analytics } from "@vercel/analytics/next";
 import { AuthProvider } from "@/contexts/auth-context";
 import { locales, RTL_LOCALES, type Locale } from "@/i18n";
 import { Toaster } from "@/components/ui/toaster";
@@ -49,6 +50,7 @@ export default function RootLayout({
         <NextIntlClientProvider locale={locale} messages={messages}>
           <AuthProvider>{children}</AuthProvider>
           <Toaster />
+          <Analytics />
         </NextIntlClientProvider>
       </body>
     </html>
