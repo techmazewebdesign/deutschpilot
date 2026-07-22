@@ -60,6 +60,7 @@ const languages = [
 
 export function Navigation() {
   const t = useTranslations("nav");
+  const tFooter = useTranslations("footer");
   const params = useParams();
   const pathname = usePathname();
   const locale = (params?.locale as string) ?? "de";
@@ -119,7 +120,7 @@ export function Navigation() {
                 DeutschPilot
               </span>
               <span className="text-[8px] tracking-[0.22em] text-[#CEA66F] uppercase mt-[2px]">
-                Sprache. Zukunft. Du.
+                {tFooter("tagline")}
               </span>
             </div>
           </Link>
