@@ -2,15 +2,17 @@ import { initializeApp, getApps, getApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
-const REQUIRED_ENV_VARS = [
-  "NEXT_PUBLIC_FIREBASE_API_KEY",
-  "NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN",
-  "NEXT_PUBLIC_FIREBASE_PROJECT_ID",
-  "NEXT_PUBLIC_FIREBASE_APP_ID",
-] as const;
+// Static process.env.NEXT_PUBLIC_* references so Next.js can inline each
+// value into the client bundle at build time (dynamic process.env[key]
+// access is invisible to that inlining and always reads as undefined).
+const REQUIRED_ENV_VARS: Record<string, string | undefined> = {
+  NEXT_PUBLIC_FIREBASE_API_KEY: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+  NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+  NEXT_PUBLIC_FIREBASE_PROJECT_ID: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+  NEXT_PUBLIC_FIREBASE_APP_ID: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
+};
 
-for (const key of REQUIRED_ENV_VARS) {
-  const val = process.env[key];
+for (const [key, val] of Object.entries(REQUIRED_ENV_VARS)) {
   if (!val || val.startsWith("your_")) {
     console.error(
       `[firebase] Missing or placeholder env var: ${key}. ` +
