@@ -16,3 +16,6 @@ const nextConfig = {
 export default withNextIntl(nextConfig);
 // build-cache-bust: force a clean Vercel build after Production env var changes (Firebase config)
 // rebuild-2: Firebase env vars re-applied via `vercel env add --force` from .env.local
+// rebuild-3: added FIREBASE_ADMIN_PROJECT_ID/CLIENT_EMAIL/PRIVATE_KEY to Vercel — these were
+// never set before, causing getAdminAuth() to throw "missing env vars" on every signup,
+// masked as "Invalid or expired ID token." by app/api/auth/set-role/route.ts's catch block.
