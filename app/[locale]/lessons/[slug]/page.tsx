@@ -109,8 +109,18 @@ export default async function LessonPage({
           </div>
         </div>
 
+        {/* Audio (if available) */}
+        {lesson.video_url && /\.(mp3|wav|m4a|ogg)(\?|$)/i.test(lesson.video_url) && (
+          <div className="mb-6 rounded-2xl border border-white/8 bg-[#0A1E35]/70 p-5">
+            <p className="text-xs text-white/40 mb-3">
+              {de ? "Höre dir den Text an, bevor du die Fragen beantwortest." : "Listen to the audio before answering the questions."}
+            </p>
+            <audio controls src={lesson.video_url} className="w-full" style={{ filter: "invert(0.85)" }} />
+          </div>
+        )}
+
         {/* Video (if available) */}
-        {lesson.video_url && (
+        {lesson.video_url && !/\.(mp3|wav|m4a|ogg)(\?|$)/i.test(lesson.video_url) && (
           <div className="mb-6 rounded-2xl overflow-hidden border border-white/8 bg-black/40 aspect-video flex items-center justify-center">
             <div className="text-center text-white/40">
               <Video className="h-10 w-10 mx-auto mb-2" />
