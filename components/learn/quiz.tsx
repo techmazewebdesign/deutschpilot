@@ -1,12 +1,12 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useRef, useEffect } from "react";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { createClient } from "@/lib/supabaseClient";
 import {
   CheckCircle2, XCircle, Loader2, RotateCcw,
-  ArrowRight, Trophy, Zap, Target, Sparkles, PenLine,
+  ArrowRight, Trophy, Zap, Target, Sparkles, PenLine, Mic, Square, Play, Pause,
 } from "lucide-react";
 
 interface Exercise {
@@ -243,6 +243,164 @@ function WritingPromptExercise({
   );
 }
 
+// ── Speaking-prompt exercise ───────────────────────────────────────────────────
+// Record-and-playback for self-practice. No audio is uploaded or stored, and
+// there is no automated pronunciation scoring (that would need a separate
+// speech-analysis service) — this is deliberately a local self-check.
+function SpeakingPromptExercise({
+  prompt,
+  modelAnswer,
+  tip,
+  locale,
+  onContinue,
+}: {
+  prompt: string;
+  modelAnswer: string;
+  tip: string | null;
+  locale: string;
+  onContinue: () => void;
+}) {
+  const de = locale === "de";
+  const [permissionError, setPermissionError] = useState<string | null>(null);
+  const [recording, setRecording] = useState(false);
+  const [hasRecording, setHasRecording] = useState(false);
+  const [playing, setPlaying] = useState(false);
+  const [audioUrl, setAudioUrl] = useState<string | null>(null);
+
+  const mediaRecorderRef = useRef<MediaRecorder | null>(null);
+  const chunksRef = useRef<Blob[]>([]);
+  const streamRef = useRef<MediaStream | null>(null);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  useEffect(() => {
+    return () => {
+      streamRef.current?.getTracks().forEach((t) => t.stop());
+      if (audioUrl) URL.revokeObjectURL(audioUrl);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  async function startRecording() {
+    setPermissionError(null);
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      streamRef.current = stream;
+      chunksRef.current = [];
+      const recorder = new MediaRecorder(stream);
+      recorder.ondataavailable = (e) => {
+        if (e.data.size > 0) chunksRef.current.push(e.data);
+      };
+      recorder.onstop = () => {
+        const blob = new Blob(chunksRef.current, { type: "audio/webm" });
+        if (audioUrl) URL.revokeObjectURL(audioUrl);
+        setAudioUrl(URL.createObjectURL(blob));
+        setHasRecording(true);
+        stream.getTracks().forEach((t) => t.stop());
+      };
+      mediaRecorderRef.current = recorder;
+      recorder.start();
+      setRecording(true);
+    } catch {
+      setPermissionError(
+        de
+          ? "Kein Zugriff auf das Mikrofon. Bitte erlaube den Zugriff in deinem Browser."
+          : "Couldn't access your microphone. Please allow microphone access in your browser."
+      );
+    }
+  }
+
+  function stopRecording() {
+    mediaRecorderRef.current?.stop();
+    setRecording(false);
+  }
+
+  function togglePlayback() {
+    if (!audioRef.current) return;
+    if (playing) {
+      audioRef.current.pause();
+    } else {
+      audioRef.current.play();
+    }
+  }
+
+  return (
+    <div className="space-y-4">
+      <div className="rounded-xl border border-white/10 bg-white/3 p-4">
+        <p className="text-[10px] font-bold uppercase tracking-[0.15em] text-white/40 mb-1.5">
+          {de ? "Beispielantwort" : "Model answer"}
+        </p>
+        <p className="text-sm text-white/60 italic">{modelAnswer}</p>
+      </div>
+
+      <div className="flex items-center gap-3">
+        {!recording ? (
+          <button
+            onClick={startRecording}
+            className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#E0B873] text-[#071424] text-sm font-bold hover:bg-[#C99B50] transition-colors"
+          >
+            <Mic className="h-4 w-4" />
+            {hasRecording ? (de ? "Neu aufnehmen" : "Record again") : (de ? "Aufnehmen" : "Record")}
+          </button>
+        ) : (
+          <button
+            onClick={stopRecording}
+            className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-red-500/90 text-white text-sm font-bold hover:bg-red-500 transition-colors"
+          >
+            <Square className="h-3.5 w-3.5" />
+            {de ? "Stopp" : "Stop"}
+            <span className="h-2 w-2 rounded-full bg-white animate-pulse" />
+          </button>
+        )}
+
+        {hasRecording && audioUrl && (
+          <button
+            onClick={togglePlayback}
+            className="flex items-center gap-2 px-5 py-2.5 rounded-xl border border-[#E0B873]/30 text-[#E0B873] text-sm font-medium hover:bg-[#E0B873]/10 transition-colors"
+          >
+            {playing ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4" />}
+            {de ? "Anhören" : "Play back"}
+          </button>
+        )}
+      </div>
+
+      {audioUrl && (
+        <audio
+          ref={audioRef}
+          src={audioUrl}
+          onPlay={() => setPlaying(true)}
+          onPause={() => setPlaying(false)}
+          onEnded={() => setPlaying(false)}
+          className="hidden"
+        />
+      )}
+
+      {permissionError && (
+        <p className="text-xs text-red-300">{permissionError}</p>
+      )}
+
+      <p className="text-xs text-white/35 italic">
+        {de
+          ? "Deine Aufnahme wird nicht gespeichert oder hochgeladen — sie ist nur zur eigenen Übung."
+          : "Your recording isn't saved or uploaded — it's just for your own practice."}
+      </p>
+
+      {tip && <p className="text-xs text-white/35 italic">{tip}</p>}
+
+      {hasRecording && (
+        <div className="flex justify-end">
+          <button
+            onClick={onContinue}
+            className="flex items-center gap-2 px-6 py-2.5 rounded-xl bg-[#E0B873] text-[#071424] text-sm font-bold hover:bg-[#C99B50] transition-colors"
+          >
+            {de ? "Weiter" : "Continue"}
+            <ArrowRight className="h-4 w-4" />
+          </button>
+        </div>
+      )}
+    </div>
+  );
+}
+
 // ── Main Quiz ─────────────────────────────────────────────────────────────────
 export function Quiz({ exercises, lessonId, courseId, userId, locale, lessonSlug, courseLevel = "A1" }: Props) {
   const t = useTranslations("learn");
@@ -263,11 +421,12 @@ export function Quiz({ exercises, lessonId, courseId, userId, locale, lessonSlug
     return given.trim().toLowerCase() === expected.trim().toLowerCase();
   }, []);
 
-  // Writing prompts have no single correct answer — any submitted response
-  // counts toward completion, since the value is in the AI feedback, not a match.
+  // Writing/speaking prompts have no single correct answer — any completed
+  // attempt counts toward completion, since the value is in the practice
+  // itself (AI feedback / self-review), not an exact match.
   const isCorrectForScoring = useCallback(
     (ex: Exercise, given: string) => {
-      if (ex.type === "writing_prompt") return given.trim().length > 0;
+      if (ex.type === "writing_prompt" || ex.type === "speaking_prompt") return given.trim().length > 0;
       return checkAnswer(given, ex.correct_answer);
     },
     [checkAnswer]
@@ -393,6 +552,10 @@ export function Quiz({ exercises, lessonId, courseId, userId, locale, lessonSlug
                     </p>
                     {ex.type === "writing_prompt" ? (
                       <p className="text-xs text-white/50 mt-1 whitespace-pre-wrap">{given}</p>
+                    ) : ex.type === "speaking_prompt" ? (
+                      <p className="text-xs text-white/35 mt-1 italic">
+                        {de ? "Übung abgeschlossen" : "Practice completed"}
+                      </p>
                     ) : (
                       !correct && (
                         <div className="space-y-0.5 mt-1">
@@ -442,6 +605,7 @@ export function Quiz({ exercises, lessonId, courseId, userId, locale, lessonSlug
   const isWordOrder = current.type === "word_order";
   const isMultipleChoice = current.type === "multiple_choice" && Array.isArray(current.options);
   const isWritingPrompt = current.type === "writing_prompt";
+  const isSpeakingPrompt = current.type === "speaking_prompt";
 
   // Shuffle words for word_order type (stable per question)
   const shuffledWords = isWordOrder
@@ -505,6 +669,36 @@ export function Quiz({ exercises, lessonId, courseId, userId, locale, lessonSlug
             onContinue={(text) => {
               setAnswers((prev) => ({ ...prev, [current.id]: text }));
               next({ id: current.id, text });
+            }}
+          />
+        </div>
+      </div>
+    );
+  }
+
+  if (isSpeakingPrompt) {
+    return (
+      <div className="space-y-5">
+        {progressBar}
+        <div className="rounded-2xl border border-white/10 bg-[#0A1E35]/60 p-6">
+          <div className="flex items-center gap-2 mb-4">
+            <span className="flex items-center gap-1.5 text-[9px] font-bold uppercase tracking-[0.2em] text-[#E0B873]/50 bg-[#E0B873]/8 px-2 py-1 rounded-md">
+              <Mic className="h-3 w-3" />
+              {de ? "Sprechübung" : "Speaking prompt"}
+            </span>
+          </div>
+          <p className="text-base font-semibold text-white leading-relaxed mb-5">
+            {current.question}
+          </p>
+          <SpeakingPromptExercise
+            key={current.id}
+            prompt={current.question}
+            modelAnswer={current.correct_answer}
+            tip={current.explanation}
+            locale={locale}
+            onContinue={() => {
+              setAnswers((prev) => ({ ...prev, [current.id]: "recorded" }));
+              next({ id: current.id, text: "recorded" });
             }}
           />
         </div>
