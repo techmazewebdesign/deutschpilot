@@ -15,3 +15,4 @@ const nextConfig = {
 
 export default withNextIntl(nextConfig);
 // build-cache-bust: force a clean Vercel build after Production env var changes (Firebase config)
+// rebuild-2: Firebase env vars re-applied via `vercel env add --force` from .env.local
