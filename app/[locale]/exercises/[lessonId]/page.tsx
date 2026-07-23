@@ -26,13 +26,13 @@ export default async function ExercisesPage({
 
   const { data: lesson } = await supabase
     .from("lessons")
-    .select("id, title, slug, course_id, courses(title, slug)")
+    .select("id, title, slug, course_id, courses(title, slug, level)")
     .eq("id", lessonId)
     .single();
 
   if (!lesson) notFound();
 
-  const course = ((lesson.courses as Array<{ title: string; slug: string }> | null) ?? [])[0] ?? null;
+  const course = ((lesson.courses as Array<{ title: string; slug: string; level: string }> | null) ?? [])[0] ?? null;
 
   const { data: exercises } = await supabase
     .from("exercises")
@@ -95,6 +95,7 @@ export default async function ExercisesPage({
           userId={session.user.id}
           locale={locale}
           lessonSlug={lesson.slug}
+          courseLevel={course?.level ?? "A1"}
         />
 
         <div className="mt-8">

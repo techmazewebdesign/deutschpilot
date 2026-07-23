@@ -6,7 +6,7 @@ import Link from "next/link";
 import { createClient } from "@/lib/supabaseClient";
 import {
   CheckCircle2, XCircle, Loader2, RotateCcw,
-  ArrowRight, Trophy, Zap, Target,
+  ArrowRight, Trophy, Zap, Target, Sparkles, PenLine,
 } from "lucide-react";
 
 interface Exercise {
@@ -25,6 +25,7 @@ interface Props {
   userId: string;
   locale: string;
   lessonSlug: string;
+  courseLevel?: string;
 }
 
 type AnswerState = "idle" | "correct" | "wrong";
@@ -93,8 +94,157 @@ function WordOrderExercise({
   );
 }
 
+// ── Writing-prompt exercise ────────────────────────────────────────────────────
+function WritingPromptExercise({
+  prompt,
+  sampleAnswer,
+  tip,
+  locale,
+  courseLevel,
+  onContinue,
+}: {
+  prompt: string;
+  sampleAnswer: string;
+  tip: string | null;
+  locale: string;
+  courseLevel: string;
+  onContinue: (text: string) => void;
+}) {
+  const de = locale === "de";
+  const [text, setText] = useState("");
+  const [feedback, setFeedback] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [requested, setRequested] = useState(false);
+
+  async function getFeedback() {
+    if (!text.trim() || loading) return;
+    setLoading(true);
+    setRequested(true);
+    setFeedback("");
+
+    try {
+      const res = await fetch("/api/ai-trainer", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          messages: [
+            {
+              role: "user",
+              text: `Please act as a writing coach. The task was: "${prompt}"\n\nMy German writing:\n"""\n${text.trim()}\n"""\n\nGive me short, encouraging feedback: what's good, 1-3 corrections (grammar/vocabulary) with brief explanations, and one improved example sentence. Keep it concise.`,
+            },
+          ],
+          locale,
+          userLevel: courseLevel,
+        }),
+      });
+
+      if (res.status === 429) {
+        setFeedback(
+          de
+            ? "Du hast heute dein Tageslimit an KI-Nachrichten erreicht. Komm morgen wieder! 🌟"
+            : "You've reached your daily AI message limit. Come back tomorrow! 🌟"
+        );
+        setLoading(false);
+        return;
+      }
+      if (!res.ok || !res.body) throw new Error("API error");
+
+      const reader = res.body.getReader();
+      const decoder = new TextDecoder();
+      let accumulated = "";
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        accumulated += decoder.decode(value, { stream: true });
+        setFeedback(accumulated);
+      }
+    } catch {
+      setFeedback(
+        de
+          ? "Entschuldigung, es gab einen Fehler. Bitte versuche es erneut."
+          : "Sorry, something went wrong. Please try again."
+      );
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  return (
+    <div className="space-y-4">
+      <textarea
+        value={text}
+        onChange={(e) => setText(e.target.value)}
+        disabled={requested}
+        rows={5}
+        placeholder={de ? "Schreib deine Antwort auf Deutsch…" : "Write your response in German…"}
+        className="w-full rounded-xl bg-white/5 border border-white/10 text-white px-4 py-3 text-sm placeholder:text-white/20 focus:outline-none focus:border-[#E0B873]/50 transition-all resize-none disabled:opacity-70"
+      />
+
+      {!requested && (
+        <button
+          onClick={getFeedback}
+          disabled={!text.trim() || loading}
+          className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#E0B873] text-[#071424] text-sm font-bold hover:bg-[#C99B50] transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+        >
+          <Sparkles className="h-4 w-4" />
+          {de ? "KI-Feedback erhalten" : "Get AI feedback"}
+        </button>
+      )}
+
+      {requested && (
+        <div className="rounded-xl border border-[#E0B873]/25 bg-[#E0B873]/8 p-4">
+          <div className="flex items-center gap-2 mb-2">
+            <Sparkles className="h-3.5 w-3.5 text-[#E0B873]" />
+            <span className="text-[10px] font-bold uppercase tracking-[0.15em] text-[#E0B873]/70">
+              {de ? "KI-Feedback" : "AI Feedback"}
+            </span>
+          </div>
+          <p className="text-sm text-white/85 whitespace-pre-wrap leading-relaxed">
+            {feedback || (
+              <span className="flex gap-1 items-center h-5">
+                {[0, 1, 2].map((i) => (
+                  <span
+                    key={i}
+                    className="h-2 w-2 rounded-full bg-[#E0B873]/50 animate-bounce inline-block"
+                    style={{ animationDelay: `${i * 0.15}s` }}
+                  />
+                ))}
+              </span>
+            )}
+          </p>
+        </div>
+      )}
+
+      {requested && !loading && sampleAnswer && (
+        <div className="rounded-xl border border-white/10 bg-white/3 p-4">
+          <p className="text-[10px] font-bold uppercase tracking-[0.15em] text-white/40 mb-1.5">
+            {de ? "Beispielantwort" : "Sample answer"}
+          </p>
+          <p className="text-sm text-white/60 italic">{sampleAnswer}</p>
+        </div>
+      )}
+
+      {tip && (
+        <p className="text-xs text-white/35 italic">{tip}</p>
+      )}
+
+      {requested && !loading && (
+        <div className="flex justify-end">
+          <button
+            onClick={() => onContinue(text)}
+            className="flex items-center gap-2 px-6 py-2.5 rounded-xl bg-[#E0B873] text-[#071424] text-sm font-bold hover:bg-[#C99B50] transition-colors"
+          >
+            {de ? "Weiter" : "Continue"}
+            <ArrowRight className="h-4 w-4" />
+          </button>
+        </div>
+      )}
+    </div>
+  );
+}
+
 // ── Main Quiz ─────────────────────────────────────────────────────────────────
-export function Quiz({ exercises, lessonId, courseId, userId, locale, lessonSlug }: Props) {
+export function Quiz({ exercises, lessonId, courseId, userId, locale, lessonSlug, courseLevel = "A1" }: Props) {
   const t = useTranslations("learn");
   const de = locale === "de";
 
@@ -113,6 +263,16 @@ export function Quiz({ exercises, lessonId, courseId, userId, locale, lessonSlug
     return given.trim().toLowerCase() === expected.trim().toLowerCase();
   }, []);
 
+  // Writing prompts have no single correct answer — any submitted response
+  // counts toward completion, since the value is in the AI feedback, not a match.
+  const isCorrectForScoring = useCallback(
+    (ex: Exercise, given: string) => {
+      if (ex.type === "writing_prompt") return given.trim().length > 0;
+      return checkAnswer(given, ex.correct_answer);
+    },
+    [checkAnswer]
+  );
+
   function handleAnswer(val: string) {
     if (answerState !== "idle") return;
     setAnswers((prev) => ({ ...prev, [current.id]: val }));
@@ -124,16 +284,19 @@ export function Quiz({ exercises, lessonId, courseId, userId, locale, lessonSlug
     setAnswerState(correct ? "correct" : "wrong");
   }
 
-  async function next() {
+  async function next(pendingAnswer?: { id: string; text: string }) {
     if (currentIdx < totalQ - 1) {
       setCurrentIdx((i) => i + 1);
       setAnswerState("idle");
     } else {
-      // Final — calculate and save
+      // Final — calculate and save. Merge in pendingAnswer directly rather
+      // than reading `answers` state, since a just-set value from the same
+      // tick (e.g. a writing-prompt submit) may not have re-rendered yet.
       setSaving(true);
       let correctCount = 0;
       exercises.forEach((ex) => {
-        if (checkAnswer(answers[ex.id] ?? "", ex.correct_answer)) correctCount++;
+        const given = pendingAnswer?.id === ex.id ? pendingAnswer.text : (answers[ex.id] ?? "");
+        if (isCorrectForScoring(ex, given)) correctCount++;
       });
       const pct = totalQ > 0 ? Math.round((correctCount / totalQ) * 100) : 0;
       setScore(pct);
@@ -216,7 +379,7 @@ export function Quiz({ exercises, lessonId, courseId, userId, locale, lessonSlug
           </h3>
           {exercises.map((ex, idx) => {
             const given = answers[ex.id] ?? "";
-            const correct = checkAnswer(given, ex.correct_answer);
+            const correct = isCorrectForScoring(ex, given);
             return (
               <div key={ex.id} className={`rounded-xl border p-4 ${correct ? "border-[#E0B873]/20 bg-[#E0B873]/5" : "border-red-500/20 bg-red-500/5"}`}>
                 <div className="flex items-start gap-3">
@@ -228,17 +391,21 @@ export function Quiz({ exercises, lessonId, courseId, userId, locale, lessonSlug
                     <p className="text-sm font-medium text-white mb-1">
                       {idx + 1}. {ex.question}
                     </p>
-                    {!correct && (
-                      <div className="space-y-0.5 mt-1">
-                        <p className="text-xs text-red-300">
-                          {de ? "Deine Antwort: " : "Your answer: "}
-                          <span className="font-medium">{given || "–"}</span>
-                        </p>
-                        <p className="text-xs text-[#E0B873]">
-                          {de ? "Richtig: " : "Correct: "}
-                          <span className="font-medium">{ex.correct_answer}</span>
-                        </p>
-                      </div>
+                    {ex.type === "writing_prompt" ? (
+                      <p className="text-xs text-white/50 mt-1 whitespace-pre-wrap">{given}</p>
+                    ) : (
+                      !correct && (
+                        <div className="space-y-0.5 mt-1">
+                          <p className="text-xs text-red-300">
+                            {de ? "Deine Antwort: " : "Your answer: "}
+                            <span className="font-medium">{given || "–"}</span>
+                          </p>
+                          <p className="text-xs text-[#E0B873]">
+                            {de ? "Richtig: " : "Correct: "}
+                            <span className="font-medium">{ex.correct_answer}</span>
+                          </p>
+                        </div>
+                      )
                     )}
                     {ex.explanation && (
                       <p className="text-xs text-white/35 mt-1.5 italic">{ex.explanation}</p>
@@ -274,6 +441,7 @@ export function Quiz({ exercises, lessonId, courseId, userId, locale, lessonSlug
   const progress = ((currentIdx) / totalQ) * 100;
   const isWordOrder = current.type === "word_order";
   const isMultipleChoice = current.type === "multiple_choice" && Array.isArray(current.options);
+  const isWritingPrompt = current.type === "writing_prompt";
 
   // Shuffle words for word_order type (stable per question)
   const shuffledWords = isWordOrder
@@ -283,6 +451,66 @@ export function Quiz({ exercises, lessonId, courseId, userId, locale, lessonSlug
         return Math.sin(seed) - 0.5;
       })
     : [];
+
+  const progressBar = (
+    <div>
+      <div className="flex items-center justify-between text-xs text-white/35 mb-2">
+        <span>{de ? `Frage ${currentIdx + 1} von ${totalQ}` : `Question ${currentIdx + 1} of ${totalQ}`}</span>
+        <div className="flex gap-1">
+          {exercises.map((_, i) => {
+            const ans = answers[exercises[i].id];
+            const isDone = ans !== undefined && i < currentIdx;
+            const isRight = isDone && isCorrectForScoring(exercises[i], ans ?? "");
+            return (
+              <div key={i} className={`h-1.5 w-5 rounded-full transition-colors ${
+                i === currentIdx ? "bg-[#E0B873]" :
+                isDone && isRight ? "bg-emerald-400/70" :
+                isDone ? "bg-red-400/70" :
+                "bg-white/10"
+              }`} />
+            );
+          })}
+        </div>
+      </div>
+      <div className="h-1 bg-white/8 rounded-full overflow-hidden">
+        <div
+          className="h-full bg-gradient-to-r from-[#E0B873] to-[#C99B50] rounded-full transition-all duration-500"
+          style={{ width: `${progress}%` }}
+        />
+      </div>
+    </div>
+  );
+
+  if (isWritingPrompt) {
+    return (
+      <div className="space-y-5">
+        {progressBar}
+        <div className="rounded-2xl border border-white/10 bg-[#0A1E35]/60 p-6">
+          <div className="flex items-center gap-2 mb-4">
+            <span className="flex items-center gap-1.5 text-[9px] font-bold uppercase tracking-[0.2em] text-[#E0B873]/50 bg-[#E0B873]/8 px-2 py-1 rounded-md">
+              <PenLine className="h-3 w-3" />
+              {de ? "Schreibaufgabe" : "Writing prompt"}
+            </span>
+          </div>
+          <p className="text-base font-semibold text-white leading-relaxed mb-5">
+            {current.question}
+          </p>
+          <WritingPromptExercise
+            key={current.id}
+            prompt={current.question}
+            sampleAnswer={current.correct_answer}
+            tip={current.explanation}
+            locale={locale}
+            courseLevel={courseLevel}
+            onContinue={(text) => {
+              setAnswers((prev) => ({ ...prev, [current.id]: text }));
+              next({ id: current.id, text });
+            }}
+          />
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="space-y-5">
@@ -294,7 +522,7 @@ export function Quiz({ exercises, lessonId, courseId, userId, locale, lessonSlug
             {exercises.map((_, i) => {
               const ans = answers[exercises[i].id];
               const isDone = ans !== undefined && i < currentIdx;
-              const isRight = isDone && checkAnswer(ans, exercises[i].correct_answer);
+              const isRight = isDone && isCorrectForScoring(exercises[i], ans ?? "");
               return (
                 <div key={i} className={`h-1.5 w-5 rounded-full transition-colors ${
                   i === currentIdx ? "bg-[#E0B873]" :
@@ -420,7 +648,7 @@ export function Quiz({ exercises, lessonId, courseId, userId, locale, lessonSlug
           </button>
         ) : (
           <button
-            onClick={next}
+            onClick={() => next()}
             disabled={saving}
             className="flex items-center gap-2 px-6 py-2.5 rounded-xl bg-[#E0B873] text-[#071424] text-sm font-bold hover:bg-[#C99B50] transition-colors"
           >
