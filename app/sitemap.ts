@@ -1,11 +1,14 @@
 import { MetadataRoute } from "next";
 import { locales } from "@/i18n";
+import { articles } from "@/lib/magazine";
 
-const baseUrl = process.env.NEXTAUTH_URL || "https://deutschpilot.de";
+const baseUrl = "https://deutschpilot.de";
 
 const routes = [
   "",
   "/courses",
+  "/levels",
+  "/rooms",
   "/online-academy",
   "/retreats",
   "/community",
@@ -30,6 +33,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
         lastModified: new Date(),
         changeFrequency: route === "" ? "weekly" : "monthly",
         priority: route === "" ? 1.0 : 0.8,
+      });
+    }
+    for (const article of articles) {
+      entries.push({
+        url: `${baseUrl}/${locale}/magazine/${article.slug}`,
+        lastModified: new Date(article.date),
+        changeFrequency: "monthly",
+        priority: 0.7,
       });
     }
   }
