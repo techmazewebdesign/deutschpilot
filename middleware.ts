@@ -8,8 +8,9 @@ const PROTECTED_PATHS = [
   "/settings",
   "/lessons",
   "/exercises",
-  "/levels",
-  "/rooms",
+  // "/levels" and the "/rooms" overview are public (discovery/SEO pages);
+  // individual rooms — and their lessons/quizzes — still require sign-in.
+  "/rooms/",
   "/ai-trainer",
   "/admin",
   "/teacher",

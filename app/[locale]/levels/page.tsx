@@ -1,4 +1,3 @@
-import { redirect } from "next/navigation";
 import Link from "next/link";
 import { AppLayout } from "@/components/app/app-layout";
 import { auth } from "@/lib/auth";
@@ -67,14 +66,14 @@ export default async function LevelsPage({ params }: { params: { locale: string 
     );
   }
 
+  // Public page: guests see the roadmap with the public site shell and a
+  // sign-up CTA; logged-in users get the app shell with their progress context.
   const session = await auth();
-  if (!session?.user) redirect(`/${locale}/signin`);
+  const isGuest = !session?.user;
 
   const de = locale === "de";
-  const userName = session.user.name ?? session.user.email?.split("@")[0] ?? "Student";
 
-  return (
-    <AppLayout locale={locale} userName={userName}>
+  const content = (
       <div className="px-5 lg:px-8 py-6 lg:py-8 max-w-4xl w-full mx-auto">
 
         {/* Page header */}
@@ -202,6 +201,26 @@ export default async function LevelsPage({ params }: { params: { locale: string 
           ))}
         </div>
 
+        {/* Guest sign-up CTA */}
+        {isGuest && (
+          <div className="mt-8 p-6 rounded-2xl border border-[#E0B873]/25 bg-[#E0B873]/8 text-center">
+            <h2 className="text-lg font-serif font-bold text-white mb-1.5">
+              {de ? "Bereit anzufangen?" : "Ready to get started?"}
+            </h2>
+            <p className="text-sm text-white/50 mb-4 max-w-md mx-auto">
+              {de
+                ? "Erstelle ein kostenloses Konto, um Lektionen zu starten und deinen Fortschritt zu speichern."
+                : "Create a free account to start lessons and save your progress."}
+            </p>
+            <Link
+              href={`/${locale}/signup`}
+              className="inline-flex items-center gap-1.5 px-6 py-2.5 rounded-xl bg-[#E0B873] text-[#071424] text-sm font-bold hover:bg-[#C99B50] transition-colors"
+            >
+              {de ? "Kostenlos starten" : "Start for free"} <ChevronRight className="h-4 w-4" />
+            </Link>
+          </div>
+        )}
+
         {/* CEFR note */}
         <div className="mt-8 p-4 rounded-2xl bg-white/3 border border-white/6 text-center">
           <p className="text-xs text-white/30">
@@ -211,6 +230,22 @@ export default async function LevelsPage({ params }: { params: { locale: string 
           </p>
         </div>
       </div>
+  );
+
+  if (!session?.user) {
+    return (
+      <>
+        <Navigation />
+        <main className="bg-[#071424] min-h-screen">{content}</main>
+        <Footer />
+      </>
+    );
+  }
+
+  const userName = session.user.name ?? session.user.email?.split("@")[0] ?? "Student";
+  return (
+    <AppLayout locale={locale} userName={userName}>
+      {content}
     </AppLayout>
   );
 }

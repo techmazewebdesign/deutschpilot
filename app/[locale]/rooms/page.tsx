@@ -1,4 +1,3 @@
-import { redirect } from "next/navigation";
 import Link from "next/link";
 import { AppLayout } from "@/components/app/app-layout";
 import { auth } from "@/lib/auth";
@@ -49,19 +48,23 @@ export default async function RoomsPage({
     );
   }
 
+  // Public page: guests browse the room overview (no progress, A1 view);
+  // entering a room still requires signing in.
   const session = await auth();
-  if (!session?.user) redirect(`/${locale}/signin`);
+  const isGuest = !session?.user;
 
   const supabase = createServerSupabaseClient();
   const de = locale === "de";
-  const userName = session.user.name ?? session.user.email?.split("@")[0] ?? "Student";
 
-  // Get user's level from placement test or profile
-  const [profileRes, placementRes] = await Promise.all([
-    supabase.from("profiles").select("german_level").eq("id", session.user.id).single(),
-    supabase.from("placement_tests").select("level_result").eq("user_id", session.user.id).order("created_at", { ascending: false }).limit(1).single(),
-  ]);
-  const userLevel: Level = (placementRes.data?.level_result ?? profileRes.data?.german_level ?? "A1") as Level;
+  // Get user's level from placement test or profile (guests default to A1)
+  let userLevel: Level = "A1";
+  if (session?.user) {
+    const [profileRes, placementRes] = await Promise.all([
+      supabase.from("profiles").select("german_level").eq("id", session.user.id).single(),
+      supabase.from("placement_tests").select("level_result").eq("user_id", session.user.id).order("created_at", { ascending: false }).limit(1).single(),
+    ]);
+    userLevel = (placementRes.data?.level_result ?? profileRes.data?.german_level ?? "A1") as Level;
+  }
 
   // Active tab: from query param or user's level
   const requestedLevel = searchParams?.level as Level | undefined;
@@ -70,12 +73,14 @@ export default async function RoomsPage({
   const rooms = ROOM_META[activeLevel] ?? [];
   const slugs = rooms.map((r) => r.slug);
 
-  // Fetch courses + progress for the active level
+  // Fetch courses + progress for the active level (guests have no progress)
   const [coursesRes, progressRes] = await Promise.all([
     slugs.length > 0
       ? supabase.from("courses").select("id, slug, level").in("slug", slugs)
       : Promise.resolve({ data: [] }),
-    supabase.from("student_progress").select("lesson_id, course_id, completed, score").eq("user_id", session.user.id),
+    session?.user
+      ? supabase.from("student_progress").select("lesson_id, course_id, completed, score").eq("user_id", session.user.id)
+      : Promise.resolve({ data: [] }),
   ]);
 
   const courses = (coursesRes.data ?? []) as { id: string; slug: string; level: string }[];
@@ -137,8 +142,7 @@ export default async function RoomsPage({
   const levelIndexMap: Record<Level, number> = { A1: 0, A2: 1, B1: 2, B2: 3, C1: 4 };
   const userLevelIndex = levelIndexMap[userLevel];
 
-  return (
-    <AppLayout locale={locale} userName={userName} userLevel={userLevel}>
+  const content = (
       <div className="px-5 lg:px-8 py-6 lg:py-8 max-w-5xl w-full mx-auto">
 
         {/* Header */}
@@ -295,9 +299,45 @@ export default async function RoomsPage({
                   : "Rooms unlock sequentially. Pass the checkpoint quiz (≥70%) to open the next room."}
               </p>
             </div>
+
+            {/* Guest sign-up CTA */}
+            {isGuest && (
+              <div className="mt-6 p-6 rounded-2xl border border-[#E0B873]/25 bg-[#E0B873]/8 text-center">
+                <h2 className="text-lg font-serif font-bold text-white mb-1.5">
+                  {de ? "Starte deinen ersten Raum" : "Start your first room"}
+                </h2>
+                <p className="text-sm text-white/50 mb-4 max-w-md mx-auto">
+                  {de
+                    ? "Erstelle ein kostenloses Konto, um Räume zu betreten und deinen Fortschritt zu speichern."
+                    : "Create a free account to enter rooms and save your progress."}
+                </p>
+                <Link
+                  href={`/${locale}/signup`}
+                  className="inline-flex items-center gap-1.5 px-6 py-2.5 rounded-xl bg-[#E0B873] text-[#071424] text-sm font-bold hover:bg-[#C99B50] transition-colors"
+                >
+                  {de ? "Kostenlos starten" : "Start for free"} <ChevronRight className="h-4 w-4" />
+                </Link>
+              </div>
+            )}
           </>
         )}
       </div>
+  );
+
+  if (!session?.user) {
+    return (
+      <>
+        <Navigation />
+        <main className="bg-[#071424] min-h-screen">{content}</main>
+        <Footer />
+      </>
+    );
+  }
+
+  const userName = session.user.name ?? session.user.email?.split("@")[0] ?? "Student";
+  return (
+    <AppLayout locale={locale} userName={userName} userLevel={userLevel}>
+      {content}
     </AppLayout>
   );
 }
