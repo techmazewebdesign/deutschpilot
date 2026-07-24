@@ -1,4 +1,21 @@
 -- ============================================================================
+-- RETIRED 2026-07-24 — DO NOT RUN
+-- ============================================================================
+-- This script predates the switch to Firebase Auth and is incompatible with
+-- the live database:
+--   * tickets.user_id REFERENCES auth.users(id), but users live in Firebase —
+--     auth.users is empty, so every ticket insert would fail.
+--   * The auth.uid()-based policies never match (requests use the anon key,
+--     not Supabase Auth sessions).
+--   * The profiles policies reference a user_id column that does not exist on
+--     the live profiles table, and ALTER TABLE profiles ENABLE ROW LEVEL
+--     SECURITY would run before those policies error out — risking breakage
+--     of existing anon-key reads of profiles.
+-- No code references a tickets table. If a support-tickets feature is wanted,
+-- design it like live_classes: firebase_uid text column + inserts through a
+-- service-role API route.
+-- Kept for historical reference only.
+-- ============================================================================
 -- Supabase Database Setup for Tickets and Profile Updates
 -- ============================================================================
 -- Run this SQL in your Supabase SQL Editor to set up the necessary tables
