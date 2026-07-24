@@ -23,6 +23,18 @@ export default function VerifyEmailPage({
   const cooldownRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   useEffect(() => {
+    // Signup redirects here with ?sent=0 when its sendEmailVerification call
+    // failed — warn instead of claiming an email is on its way.
+    // (window.location instead of useSearchParams: avoids the Suspense
+    // requirement during static prerender of this client page.)
+    if (new URLSearchParams(window.location.search).get("sent") === "0") {
+      setError(
+        de
+          ? "Die E-Mail konnte nicht automatisch gesendet werden. Bitte klicke unten auf „Link erneut senden“."
+          : "We couldn't send the email automatically. Please click \"Resend link\" below."
+      );
+    }
+
     const unsubscribe = onAuthStateChanged(firebaseAuth, async (user) => {
       if (!user) {
         router.push(`/${locale}/signin`);

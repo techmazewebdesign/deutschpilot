@@ -121,13 +121,21 @@ export function SignupFormClient({ locale, registerLabel }: Props) {
       // Step 3: Force-refresh the token so custom claims are available immediately
       await user.getIdToken(true);
 
-      // Step 4: Send email verification
-      await sendEmailVerification(user, {
-        url: `${window.location.origin}/${locale}/verify-email`,
-      }).catch((e) => console.warn("[signup] sendEmailVerification failed (non-blocking):", e));
+      // Step 4: Send email verification. Non-blocking (the account already
+      // exists), but the verify-email page must know when the send failed so
+      // it doesn't claim an email is on its way — the user needs to hit Resend.
+      let sendFailed = false;
+      try {
+        await sendEmailVerification(user, {
+          url: `${window.location.origin}/${locale}/verify-email`,
+        });
+      } catch (e) {
+        sendFailed = true;
+        console.warn("[signup] sendEmailVerification failed (non-blocking):", e);
+      }
 
       console.log("[signup] ✓ Signup complete — redirecting to verify-email");
-      router.push(`/${locale}/verify-email`);
+      router.push(`/${locale}/verify-email${sendFailed ? "?sent=0" : ""}`);
     } catch (err: unknown) {
       const error = err as { code?: string; message?: string };
       console.error("[signup] Unexpected error:", error);
