@@ -4,10 +4,9 @@
 -- existing 'multiple_choice' exercise type and the audio-player
 -- rendering already added in commit 6fcab80.
 --
--- Audio is generated speech hosted on a third-party CDN
--- (Higgsfield/seed_audio), same as A1 listening practice — not
--- guaranteed permanent, consider re-hosting on Supabase Storage
--- before this is core content.
+-- Audio is generated speech (Higgsfield/seed_audio) hosted in the
+-- project's own Supabase Storage bucket "listening-audio" — see
+-- migrate-audio-to-storage.sql for the bucket setup + upload steps.
 --
 -- Does NOT modify any existing rows. Safe to re-run
 -- (uses ON CONFLICT DO NOTHING).
@@ -49,7 +48,7 @@ VALUES
 <p>Höre dir die Aufnahme an. Lies danach den Text, wenn du möchtest.</p>
 <p><em>"Entschuldigung, ich möchte gern einen Termin für nächste Woche vereinbaren. Haben Sie am Dienstag um zehn Uhr Zeit? Perfekt, dann sehen wir uns am Dienstag."</em></p>',
    1,
-   'https://d8j0ntlcm91z4.cloudfront.net/user_3EMHovGOfATcnVBYpSXoxvqUH0P/hf_20260723_130316_04b88747-8344-4061-b0b8-a4ed7ee82920.wav',
+   'https://lwptyvqxivtrysbcimkq.supabase.co/storage/v1/object/public/listening-audio/a2-einen-termin-vereinbaren.mp3',
    NOW()),
   ('00000000-0000-0000-0018-000000000002',
    '00000000-0000-0000-0000-000000000018',
@@ -59,7 +58,7 @@ VALUES
 <p>Höre dir die Aufnahme an. Lies danach den Text, wenn du möchtest.</p>
 <p><em>"Jeden Samstag gehe ich auf den Wochenmarkt in meiner Stadt. Dort kaufe ich frisches Gemüse, Obst und manchmal auch Blumen. Die Atmosphäre dort ist immer sehr lebendig und freundlich."</em></p>',
    2,
-   'https://d8j0ntlcm91z4.cloudfront.net/user_3EMHovGOfATcnVBYpSXoxvqUH0P/hf_20260723_175400_c5676faa-7558-4fb9-9aac-c0686ccf725e.wav',
+   'https://lwptyvqxivtrysbcimkq.supabase.co/storage/v1/object/public/listening-audio/a2-der-wochenmarkt.mp3',
    NOW()),
   ('00000000-0000-0000-0018-000000000003',
    '00000000-0000-0000-0000-000000000018',
@@ -69,7 +68,7 @@ VALUES
 <p>Höre dir die Aufnahme an. Lies danach den Text, wenn du möchtest.</p>
 <p><em>"Letzten Sommer bin ich nach Hamburg gefahren. Ich habe den Hafen besucht und bin mit einem Boot gefahren. Das Wetter war leider nicht so gut, aber die Stadt hat mir trotzdem sehr gut gefallen."</em></p>',
    3,
-   'https://d8j0ntlcm91z4.cloudfront.net/user_3EMHovGOfATcnVBYpSXoxvqUH0P/hf_20260723_175446_3e1dff1e-7692-4e96-9d58-31ec87cba34f.wav',
+   'https://lwptyvqxivtrysbcimkq.supabase.co/storage/v1/object/public/listening-audio/a2-eine-reise-nach-hamburg.mp3',
    NOW())
 ON CONFLICT (id) DO NOTHING;
 
@@ -86,7 +85,7 @@ VALUES
 <p>Höre dir die Aufnahme an. Lies danach den Text, wenn du möchtest.</p>
 <p><em>"Ich mag es, von zu Hause zu arbeiten, weil ich mich besser konzentrieren kann. Allerdings fehlt mir manchmal der persönliche Austausch mit dem Team. Viele Firmen bieten heute ein hybrides Modell an, und ich finde das eine gute Lösung."</em></p>',
    1,
-   'https://d8j0ntlcm91z4.cloudfront.net/user_3EMHovGOfATcnVBYpSXoxvqUH0P/hf_20260723_175531_26b1f3f0-21aa-43a7-ba1e-d07b8bec124c.wav',
+   'https://lwptyvqxivtrysbcimkq.supabase.co/storage/v1/object/public/listening-audio/b1-meinung-homeoffice.mp3',
    NOW()),
   ('00000000-0000-0000-0019-000000000002',
    '00000000-0000-0000-0000-000000000019',
@@ -96,7 +95,7 @@ VALUES
 <p>Höre dir die Aufnahme an. Lies danach den Text, wenn du möchtest.</p>
 <p><em>"Immer mehr Menschen achten auf einen nachhaltigen Lebensstil. Sie kaufen weniger Plastik und nutzen häufiger das Fahrrad. Trotzdem sagen Experten, dass noch viel mehr getan werden muss, damit sich wirklich etwas ändert."</em></p>',
    2,
-   'https://d8j0ntlcm91z4.cloudfront.net/user_3EMHovGOfATcnVBYpSXoxvqUH0P/hf_20260723_175707_c00dd744-f622-4c1e-a70e-2d038396f081.wav',
+   'https://lwptyvqxivtrysbcimkq.supabase.co/storage/v1/object/public/listening-audio/b1-nachhaltigkeit-im-alltag.mp3',
    NOW()),
   ('00000000-0000-0000-0019-000000000003',
    '00000000-0000-0000-0000-000000000019',
@@ -106,7 +105,7 @@ VALUES
 <p>Höre dir die Aufnahme an. Lies danach den Text, wenn du möchtest.</p>
 <p><em>"Letztes Jahr habe ich ein Jobangebot in einer anderen Stadt bekommen. Es war eine schwierige Entscheidung, weil ich meine Familie zurücklassen musste. Am Ende habe ich mich für den Umzug entschieden, weil es eine große Chance für meine Karriere war."</em></p>',
    3,
-   'https://d8j0ntlcm91z4.cloudfront.net/user_3EMHovGOfATcnVBYpSXoxvqUH0P/hf_20260723_175802_0c8d7b5d-e95f-430d-b280-fb9d94707dc9.wav',
+   'https://lwptyvqxivtrysbcimkq.supabase.co/storage/v1/object/public/listening-audio/b1-eine-schwierige-entscheidung.mp3',
    NOW())
 ON CONFLICT (id) DO NOTHING;
 
@@ -123,7 +122,7 @@ VALUES
 <p>Höre dir die Aufnahme an. Lies danach den Text, wenn du möchtest.</p>
 <p><em>"Künstliche Intelligenz verändert zunehmend die Arbeitswelt. Viele Unternehmen setzen KI-Systeme ein, um repetitive Aufgaben zu automatisieren. Kritiker befürchten, dass dadurch Arbeitsplätze verloren gehen könnten, während Befürworter neue Chancen sehen."</em></p>',
    1,
-   'https://d8j0ntlcm91z4.cloudfront.net/user_3EMHovGOfATcnVBYpSXoxvqUH0P/hf_20260723_175929_3144d3f9-46d1-43f9-9846-0db09cc82a44.wav',
+   'https://lwptyvqxivtrysbcimkq.supabase.co/storage/v1/object/public/listening-audio/b2-ki-arbeitsplatz.mp3',
    NOW()),
   ('00000000-0000-0000-0020-000000000002',
    '00000000-0000-0000-0000-000000000020',
@@ -133,7 +132,7 @@ VALUES
 <p>Höre dir die Aufnahme an. Lies danach den Text, wenn du möchtest.</p>
 <p><em>"Deutschland steht vor einer demografischen Herausforderung: Die Bevölkerung wird im Durchschnitt immer älter, während die Geburtenrate niedrig bleibt. Dies belastet das Rentensystem und führt zu einem Fachkräftemangel in vielen Branchen."</em></p>',
    2,
-   'https://d8j0ntlcm91z4.cloudfront.net/user_3EMHovGOfATcnVBYpSXoxvqUH0P/hf_20260723_175955_3491134a-34f0-4c67-96c3-c6463708fc86.wav',
+   'https://lwptyvqxivtrysbcimkq.supabase.co/storage/v1/object/public/listening-audio/b2-der-demografische-wandel.mp3',
    NOW()),
   ('00000000-0000-0000-0020-000000000003',
    '00000000-0000-0000-0000-000000000020',
@@ -143,7 +142,7 @@ VALUES
 <p>Höre dir die Aufnahme an. Lies danach den Text, wenn du möchtest.</p>
 <p><em>"Die Debatte darüber, ob das Leben in der Stadt oder auf dem Land vorzuziehen ist, wird seit Jahren geführt. Städte bieten bessere Infrastruktur, aber höhere Mietpreise. Das Landleben bietet Ruhe, aber die Anbindung ist oft eingeschränkt."</em></p>',
    3,
-   'https://d8j0ntlcm91z4.cloudfront.net/user_3EMHovGOfATcnVBYpSXoxvqUH0P/hf_20260723_180023_dd1ecaee-ee25-4850-9bce-3503197c4c92.wav',
+   'https://lwptyvqxivtrysbcimkq.supabase.co/storage/v1/object/public/listening-audio/b2-stadt-oder-land.mp3',
    NOW())
 ON CONFLICT (id) DO NOTHING;
 

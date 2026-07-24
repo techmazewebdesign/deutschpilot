@@ -8,10 +8,9 @@
 -- instead of just a video link; every existing lesson has
 -- video_url = NULL so this is non-breaking).
 --
--- Audio is generated speech hosted on a third-party CDN
--- (Higgsfield/seed_audio). These URLs work today but are not
--- guaranteed permanent — consider downloading and re-hosting on
--- Supabase Storage for long-term durability.
+-- Audio is generated speech (Higgsfield/seed_audio) hosted in the
+-- project's own Supabase Storage bucket "listening-audio" — see
+-- migrate-audio-to-storage.sql for the bucket setup + upload steps.
 --
 -- Does NOT modify any existing rows. Safe to re-run
 -- (uses ON CONFLICT DO NOTHING).
@@ -45,7 +44,7 @@ VALUES
 <p>Höre dir die Aufnahme an. Lies danach den Text, wenn du möchtest.</p>
 <p><em>"Hallo! Ich heiße Anna. Ich komme aus Berlin und ich bin Studentin. Ich lerne gern Deutsch."</em></p>',
    1,
-   'https://d8j0ntlcm91z4.cloudfront.net/user_3EMHovGOfATcnVBYpSXoxvqUH0P/hf_20260723_121147_f485f28c-dcb9-4ef2-a3b7-5afe1c2e3b86.wav',
+   'https://lwptyvqxivtrysbcimkq.supabase.co/storage/v1/object/public/listening-audio/a1-anna-stellt-sich-vor.mp3',
    NOW()),
 
   ('00000000-0000-0000-0011-000000000002',
@@ -56,7 +55,7 @@ VALUES
 <p>Höre dir die Aufnahme an. Lies danach den Text, wenn du möchtest.</p>
 <p><em>"Guten Tag! Ich möchte einen Kaffee bestellen, bitte. Und haben Sie auch Kuchen? Ah, sehr gut. Ein Stück Apfelkuchen, bitte. Vielen Dank!"</em></p>',
    2,
-   'https://d8j0ntlcm91z4.cloudfront.net/user_3EMHovGOfATcnVBYpSXoxvqUH0P/hf_20260723_121338_fdac422a-7768-4f41-b452-545d2b0cfaa6.wav',
+   'https://lwptyvqxivtrysbcimkq.supabase.co/storage/v1/object/public/listening-audio/a1-im-cafe-bestellen.mp3',
    NOW()),
 
   ('00000000-0000-0000-0011-000000000003',
@@ -67,7 +66,7 @@ VALUES
 <p>Höre dir die Aufnahme an. Lies danach den Text, wenn du möchtest.</p>
 <p><em>"Am Wochenende gehe ich gern spazieren. Ich stehe spät auf und frühstücke in Ruhe. Danach treffe ich meine Freunde im Park. Wir spielen manchmal Fußball oder wir sitzen einfach und reden."</em></p>',
    3,
-   'https://d8j0ntlcm91z4.cloudfront.net/user_3EMHovGOfATcnVBYpSXoxvqUH0P/hf_20260723_121349_c397e1b4-d2b7-4b74-896f-638672e4bef5.wav',
+   'https://lwptyvqxivtrysbcimkq.supabase.co/storage/v1/object/public/listening-audio/a1-mein-wochenende.mp3',
    NOW())
 ON CONFLICT (id) DO NOTHING;
 
