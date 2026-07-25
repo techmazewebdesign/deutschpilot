@@ -29,6 +29,12 @@ import { article as dative } from "./magazine-articles/german-dative-verbs";
 import { article as smallTalk } from "./magazine-articles/german-small-talk-culture";
 import { article as integration } from "./magazine-articles/integration-course-guide";
 import { article as numbersDates } from "./magazine-articles/german-numbers-dates";
+import { article as modalVerbs } from "./magazine-articles/german-modal-verbs";
+import { article as b2Exam } from "./magazine-articles/german-b2-exam-guide";
+import { article as konjunktivII } from "./magazine-articles/konjunktiv-ii-explained";
+import { article as wordOrder } from "./magazine-articles/german-word-order";
+import { article as workingInGermany } from "./magazine-articles/working-in-germany-guide";
+import { article as idioms } from "./magazine-articles/common-german-idioms";
 
 export const articles: MagazineArticle[] = [
   howLong,
@@ -43,6 +49,12 @@ export const articles: MagazineArticle[] = [
   smallTalk,
   integration,
   numbersDates,
+  modalVerbs,
+  b2Exam,
+  konjunktivII,
+  wordOrder,
+  workingInGermany,
+  idioms,
 ].sort((a, b) => (a.date < b.date ? 1 : -1));
 
 export function getArticle(slug: string): MagazineArticle | undefined {
