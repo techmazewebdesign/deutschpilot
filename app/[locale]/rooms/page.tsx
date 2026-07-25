@@ -9,6 +9,7 @@ import { Footer } from "@/components/footer";
 import {
   Lock, ChevronRight, BookOpen, Users, Globe, ShoppingBag,
   MapPin, Stethoscope, Clock, CheckCircle2, FlaskConical,
+  Briefcase, Home, PartyPopper,
 } from "lucide-react";
 
 export const dynamic = "force-dynamic";
@@ -26,7 +27,15 @@ const ROOM_META: Record<Level, { slug: string; icon: React.ElementType; titleDE:
     { slug: "city-transport", icon: MapPin, titleDE: "Stadt, Transport & Wegbeschreibung", titleEN: "City, Transport & Directions", descDE: "Sich in der Stadt zurechtfinden, öffentliche Verkehrsmittel nutzen.", descEN: "Navigate the city, use public transport, ask for directions." },
     { slug: "real-life", icon: Stethoscope, titleDE: "Arzt, Büro & Alltag", titleEN: "Doctor, Office & Real Life", descDE: "Beim Arzt, im Büro und in alltäglichen Situationen kommunizieren.", descEN: "Communicate at the doctor, office and everyday situations." },
   ],
-  A2: [], B1: [], B2: [], C1: [],
+  A2: [
+    { slug: "daily-routines-a2", icon: Clock, titleDE: "Alltag & Tagesablauf", titleEN: "Daily Life & Routines", descDE: "Reflexive und trennbare Verben, Häufigkeit und präzise Zeitangaben.", descEN: "Reflexive and separable verbs, frequency, and precise time expressions." },
+    { slug: "travel-transport-a2", icon: MapPin, titleDE: "Reisen & Verkehr", titleEN: "Travel & Transport", descDE: "Tickets kaufen, im Perfekt von Reisen erzählen, Probleme unterwegs lösen.", descEN: "Buy tickets, tell travel stories in the Perfekt, solve problems on the road." },
+    { slug: "health-body-a2", icon: Stethoscope, titleDE: "Gesundheit & Körper", titleEN: "Health & Body", descDE: "Beschwerden beschreiben, beim Arzt sprechen, Ratschläge mit dem Imperativ.", descEN: "Describe symptoms, talk at the doctor's, give advice with the imperative." },
+    { slug: "work-career-a2", icon: Briefcase, titleDE: "Arbeit & Beruf", titleEN: "Work & Career", descDE: "Über den Job sprechen, Gründe mit weil und dass, Telefon und E-Mail.", descEN: "Talk about your job, give reasons with weil and dass, phone and email." },
+    { slug: "living-together-a2", icon: Home, titleDE: "Wohnen & Zusammenleben", titleEN: "Housing & Living Together", descDE: "Wohnungssuche, Wechselpräpositionen und Vergleiche mit dem Komparativ.", descEN: "Flat hunting, two-way prepositions, and comparisons with the comparative." },
+    { slug: "celebrations-culture-a2", icon: PartyPopper, titleDE: "Feste & Kultur", titleEN: "Celebrations & Culture", descDE: "Deutsche Feste, Einladungen zu- und absagen, erzählen mit war und hatte.", descEN: "German holidays, accepting and declining invitations, stories with war and hatte." },
+  ],
+  B1: [], B2: [], C1: [],
 };
 
 export default async function RoomsPage({
