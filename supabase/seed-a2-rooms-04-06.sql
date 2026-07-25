@@ -83,7 +83,7 @@ VALUES
 <li><strong>Könnte ich bitte mit ... sprechen?</strong></li>
 <li><strong>Worum geht es?</strong> – What is it about?</li>
 <li><strong>Können Sie das bitte wiederholen?</strong></li>
-<li><strong>Ich verbinde Sie.</strong> – I'll put you through.</li>
+<li><strong>Ich verbinde Sie.</strong> – I''ll put you through.</li>
 </ul>
 <h3>3. Die kurze Arbeits-E-Mail</h3>
 <p><em>Betreff: Krankmeldung<br><br>
