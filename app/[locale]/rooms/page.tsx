@@ -12,7 +12,7 @@ import {
   MapPin, Stethoscope, Clock, CheckCircle2, FlaskConical,
   Briefcase, Home, PartyPopper, MessageSquare, Newspaper, Leaf,
   GraduationCap, Building2, Heart, Landmark, Palette, TrendingUp,
-  Languages,
+  Languages, Microscope, BookMarked, Handshake, Scale, Brain, Megaphone,
 } from "lucide-react";
 
 export const dynamic = "force-dynamic";
@@ -66,7 +66,14 @@ const ROOM_META: Record<Level, { slug: string; icon: React.ElementType; titleDE:
     { slug: "economy-consumption-b2", icon: TrendingUp, titleDE: "Wirtschaft & Konsum", titleEN: "Economy & Consumption", descDE: "Wirtschaftssprache, zweiteilige Konnektoren und die Konsumdebatte.", descEN: "Economic language, two-part connectors, and the consumption debate." },
     { slug: "language-identity-b2", icon: Languages, titleDE: "Sprache & Identität", titleEN: "Language & Identity", descDE: "Echte Redewendungen, Registerwechsel und Mehrsprachigkeit als Stärke.", descEN: "Real idioms, register switching, and multilingualism as a strength." },
   ],
-  C1: [],
+  C1: [
+    { slug: "science-research-c1", icon: Microscope, titleDE: "Wissenschaft & Forschung", titleEN: "Science & Research", descDE: "Akademischer Nominalstil, vorsichtige Formulierungen und Quellenarbeit auf hohem Niveau.", descEN: "Academic nominal style, hedged claims, and source work at an advanced level." },
+    { slug: "literature-style-analysis-c1", icon: BookMarked, titleDE: "Literatur & Stilanalyse", titleEN: "Literature & Stylistic Analysis", descDE: "Stilmittel erkennen, Erzählperspektiven analysieren und eine Textinterpretation verfassen.", descEN: "Recognize stylistic devices, analyze narrative perspective, and write a text interpretation." },
+    { slug: "business-negotiation-c1", icon: Handshake, titleDE: "Wirtschaft & Verhandlung", titleEN: "Business & Negotiation", descDE: "Verhandlungssprache, Konjunktiv I in Geschäftsberichten und diplomatischer Widerspruch.", descEN: "Negotiation language, Konjunktiv I in business reporting, and diplomatic disagreement." },
+    { slug: "law-administration-c1", icon: Scale, titleDE: "Recht & Verwaltung", titleEN: "Law & Administration", descDE: "Amtsdeutsch verstehen, Verträge lesen und formell Widerspruch einlegen.", descEN: "Understand official German, read contracts, and file a formal objection." },
+    { slug: "philosophy-abstraction-c1", icon: Brain, titleDE: "Philosophie & Abstraktion", titleEN: "Philosophy & Abstract Thought", descDE: "Abstrakte Nominalphrasen, philosophische Argumentation und präzises Vokabular.", descEN: "Abstract noun phrases, philosophical argumentation, and precise vocabulary." },
+    { slug: "rhetoric-debate-c1", icon: Megaphone, titleDE: "Rhetorik & Debattieren", titleEN: "Rhetoric & Debate", descDE: "Debattenstruktur, Gegenargumente und rhetorische Strategien meistern.", descEN: "Master debate structure, counter-arguments, and rhetorical strategies." },
+  ],
 };
 
 export default async function RoomsPage({

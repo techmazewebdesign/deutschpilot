@@ -62,7 +62,7 @@ const LEVELS: {
     key: "C1", nameDE: "Fortgeschritten", nameEN: "Advanced", rooms: 6,
     descDE: "Komplexe, anspruchsvolle Texte verstehen und flüssig sprechen.",
     descEN: "Understand complex demanding texts and speak fluently.",
-    color: "#a855f7", active: false,
+    color: "#a855f7", active: true,
   },
 ];
 
