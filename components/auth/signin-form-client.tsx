@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { firebaseAuth } from "@/lib/firebase";
+import { GoogleSigninButton } from "@/components/auth/google-signin-button";
 
 interface Props {
   locale: string;
@@ -99,6 +100,7 @@ export function SigninFormClient({
   }
 
   return (
+    <>
     <form onSubmit={handleSubmit} className="space-y-4">
       {error && (
         <p className="text-sm text-red-400 bg-red-400/10 border border-red-400/20 rounded-md px-4 py-3">
@@ -149,5 +151,12 @@ export function SigninFormClient({
         {loading ? (isDE ? "Wird angemeldet…" : "Signing in…") : loginLabel}
       </button>
     </form>
+
+    <GoogleSigninButton
+      locale={locale}
+      labelDE="Mit Google anmelden"
+      labelEN="Sign in with Google"
+    />
+    </>
   );
 }
