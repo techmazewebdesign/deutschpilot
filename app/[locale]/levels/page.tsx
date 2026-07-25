@@ -56,7 +56,7 @@ const LEVELS: {
     key: "B2", nameDE: "Gehobene Mittelstufe", nameEN: "Upper Intermediate", rooms: 6,
     descDE: "Komplexe Texte verstehen und spontan kommunizieren.",
     descEN: "Understand complex texts and communicate spontaneously.",
-    color: "#f97316", active: false,
+    color: "#f97316", active: true,
   },
   {
     key: "C1", nameDE: "Fortgeschritten", nameEN: "Advanced", rooms: 6,

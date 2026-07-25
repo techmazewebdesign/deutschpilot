@@ -15,6 +15,8 @@ paste → Run, in this order:
 | 4 | `supabase/seed-a2-rooms-04-06.sql` | A2 Rooms 4–6: Arbeit, Wohnen, Feste (lessons + checkpoint quizzes) |
 | 5 | `supabase/seed-b1-rooms-01-03.sql` | B1 Rooms 1–3: Meinungen, Medien, Umwelt (lessons + checkpoint quizzes) |
 | 6 | `supabase/seed-b1-rooms-04-06.sql` | B1 Rooms 4–6: Bildung, Behörden, Gesellschaft (lessons + checkpoint quizzes) |
+| 7 | `supabase/seed-b2-rooms-01-03.sql` | B2 Rooms 1–3: Arbeitswelt, Wissenschaft, Politik (lessons + checkpoint quizzes) |
+| 8 | `supabase/seed-b2-rooms-04-06.sql` | B2 Rooms 4–6: Kultur, Wirtschaft, Sprache (lessons + checkpoint quizzes) |
 
 Each should say "Success. No rows returned". After #3+#4, the A2 tab
 on /rooms fills with real lesson counts automatically — code is
@@ -22,8 +24,8 @@ already deployed.
 
 ## 2. Quick verification (1 min)
 
-- Open https://www.deutschpilot.de/en/rooms?level=A2 and ?level=B1 —
-  each room should show "3 lessons" instead of "—".
+- Open https://www.deutschpilot.de/en/rooms?level=A2, ?level=B1 and
+  ?level=B2 — each room should show "3 lessons" instead of "—".
 - Open any reading course, e.g. /en/courses/a1-reading-practice —
   it should now list 6 lessons.
 

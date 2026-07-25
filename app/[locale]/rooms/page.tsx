@@ -11,7 +11,8 @@ import {
   Lock, ChevronRight, BookOpen, Users, Globe, ShoppingBag,
   MapPin, Stethoscope, Clock, CheckCircle2, FlaskConical,
   Briefcase, Home, PartyPopper, MessageSquare, Newspaper, Leaf,
-  GraduationCap, Building2, Heart,
+  GraduationCap, Building2, Heart, Landmark, Palette, TrendingUp,
+  Languages,
 } from "lucide-react";
 
 export const dynamic = "force-dynamic";
@@ -57,7 +58,15 @@ const ROOM_META: Record<Level, { slug: string; icon: React.ElementType; titleDE:
     { slug: "bureaucracy-b1", icon: Building2, titleDE: "Behörden & Formalitäten", titleEN: "Bureaucracy & Formalities", descDE: "Anmeldung, Behördenbriefe verstehen und höfliche Anfragen im Konjunktiv II.", descEN: "Registration, understanding official letters, and polite requests in Konjunktiv II." },
     { slug: "society-relationships-b1", icon: Heart, titleDE: "Beziehungen & Gesellschaft", titleEN: "Relationships & Society", descDE: "Relativsätze, Small-Talk-Kultur und Gefühle differenziert ausdrücken.", descEN: "Relative clauses, small-talk culture, and expressing feelings precisely." },
   ],
-  B2: [], C1: [],
+  B2: [
+    { slug: "work-applications-b2", icon: Briefcase, titleDE: "Arbeitswelt & Bewerbung", titleEN: "Work & Applications", descDE: "Überzeugende Bewerbungen, formelle Korrespondenz und souveräne Vorstellungsgespräche.", descEN: "Convincing applications, formal correspondence, and confident job interviews." },
+    { slug: "science-technology-b2", icon: FlaskConical, titleDE: "Wissenschaft & Technik", titleEN: "Science & Technology", descDE: "Nominalstil, Passiv mit Modalverben und Prozesse präzise beschreiben.", descEN: "Nominal style, passive with modal verbs, and describing processes precisely." },
+    { slug: "politics-society-b2", icon: Landmark, titleDE: "Politik & Gesellschaft", titleEN: "Politics & Society", descDE: "Gekonnt debattieren, Konjunktiv I erkennen und das politische System verstehen.", descEN: "Debate skillfully, recognize Konjunktiv I, and understand the political system." },
+    { slug: "arts-culture-b2", icon: Palette, titleDE: "Kunst & Kultur", titleEN: "Arts & Culture", descDE: "Rezensionen schreiben, Partizipialattribute entpacken, Kulturszene entdecken.", descEN: "Write reviews, unpack participle attributes, discover the culture scene." },
+    { slug: "economy-consumption-b2", icon: TrendingUp, titleDE: "Wirtschaft & Konsum", titleEN: "Economy & Consumption", descDE: "Wirtschaftssprache, zweiteilige Konnektoren und die Konsumdebatte.", descEN: "Economic language, two-part connectors, and the consumption debate." },
+    { slug: "language-identity-b2", icon: Languages, titleDE: "Sprache & Identität", titleEN: "Language & Identity", descDE: "Echte Redewendungen, Registerwechsel und Mehrsprachigkeit als Stärke.", descEN: "Real idioms, register switching, and multilingualism as a strength." },
+  ],
+  C1: [],
 };
 
 export default async function RoomsPage({

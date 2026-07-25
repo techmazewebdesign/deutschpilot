@@ -8,7 +8,7 @@ const LEVELS = [
   { key: "A1", name: "Beginner", active: true, color: "#22c55e", rooms: 6 },
   { key: "A2", name: "Elementary", active: true, color: "#84cc16", rooms: 6 },
   { key: "B1", name: "Intermediate", active: true, color: "#E0B873", rooms: 6 },
-  { key: "B2", name: "Upper Intermediate", active: false, color: "#f97316", rooms: 6 },
+  { key: "B2", name: "Upper Intermediate", active: true, color: "#f97316", rooms: 6 },
   { key: "C1", name: "Advanced", active: false, color: "#a855f7", rooms: 6 },
 ];
 
