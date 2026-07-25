@@ -207,10 +207,30 @@ export default async function CoursesPage({
   }
 
   // Logged-out: public marketing page
+  const coursesJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    itemListElement: courseList.slice(0, 30).map((course, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      item: {
+        "@type": "Course",
+        name: course.title,
+        description: course.description ?? undefined,
+        url: `https://deutschpilot.de/${locale}/courses/${course.slug}`,
+        provider: { "@type": "Organization", name: "DeutschPilot", url: "https://deutschpilot.de" },
+      },
+    })),
+  };
+
   return (
     <>
       <Navigation />
       <main className="min-h-screen bg-[#072143]">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(coursesJsonLd) }}
+        />
         <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
           <div className="text-center mb-12">
             <p className="text-xs font-medium tracking-wider text-[#E0B873] uppercase mb-3">{t("subtitle")}</p>

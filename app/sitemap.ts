@@ -14,6 +14,7 @@ const routes = [
   "/community",
   "/about",
   "/magazine",
+  "/faq",
   "/contact",
   "/placement-test",
   "/teachers",
