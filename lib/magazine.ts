@@ -23,6 +23,12 @@ import { article as cases } from "./magazine-articles/german-cases-explained";
 import { article as a1Exam } from "./magazine-articles/german-a1-exam-guide";
 import { article as mistakes } from "./magazine-articles/common-german-mistakes";
 import { article as atHome } from "./magazine-articles/learn-german-at-home";
+import { article as b1Exam } from "./magazine-articles/german-b1-exam-guide";
+import { article as perfekt } from "./magazine-articles/perfekt-vs-praeteritum";
+import { article as dative } from "./magazine-articles/german-dative-verbs";
+import { article as smallTalk } from "./magazine-articles/german-small-talk-culture";
+import { article as integration } from "./magazine-articles/integration-course-guide";
+import { article as numbersDates } from "./magazine-articles/german-numbers-dates";
 
 export const articles: MagazineArticle[] = [
   howLong,
@@ -31,6 +37,12 @@ export const articles: MagazineArticle[] = [
   a1Exam,
   mistakes,
   atHome,
+  b1Exam,
+  perfekt,
+  dative,
+  smallTalk,
+  integration,
+  numbersDates,
 ].sort((a, b) => (a.date < b.date ? 1 : -1));
 
 export function getArticle(slug: string): MagazineArticle | undefined {
