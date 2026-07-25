@@ -1,9 +1,20 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
 import { PlaceholderPage } from "@/components/placeholder-page";
 import { isPlaceholderLocale } from "@/i18n";
 import { Video, Bot, BookOpen, Globe } from "lucide-react";
+
+export function generateMetadata({ params }: { params: { locale: string } }): Metadata {
+  const de = params.locale === "de";
+  return {
+    title: de ? "Online-Akademie | DeutschPilot" : "Online Academy | DeutschPilot",
+    description: de
+      ? "Live-Unterricht, KI-Trainer und strukturierte Übungskurse — die Online-Akademie von DeutschPilot in der Übersicht."
+      : "Live classes, an AI trainer, and structured practice courses — an overview of DeutschPilot's online academy.",
+  };
+}
 
 export default function OnlineAcademyPage({ params }: { params: { locale: string } }) {
   const { locale } = params;

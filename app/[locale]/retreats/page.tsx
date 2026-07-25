@@ -1,9 +1,20 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
 import { PlaceholderPage } from "@/components/placeholder-page";
 import { isPlaceholderLocale } from "@/i18n";
 import { MapPin, Users, Calendar, Leaf } from "lucide-react";
+
+export function generateMetadata({ params }: { params: { locale: string } }): Metadata {
+  const de = params.locale === "de";
+  return {
+    title: de ? "Sprachretreats | DeutschPilot" : "Language Retreats | DeutschPilot",
+    description: de
+      ? "Intensive Deutsch-Sprachretreats: eintauchen, üben und schneller Fortschritte machen — in kleiner Gruppe vor Ort."
+      : "Immersive German language retreats: dive in, practice, and progress faster — in a small group on location.",
+  };
+}
 
 export default function RetreatsPage({ params }: { params: { locale: string } }) {
   const { locale } = params;

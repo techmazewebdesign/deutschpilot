@@ -1,9 +1,20 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
 import { PlaceholderPage } from "@/components/placeholder-page";
 import { isPlaceholderLocale } from "@/i18n";
 import { Users, MessageSquare, Globe, CalendarDays, Mail } from "lucide-react";
+
+export function generateMetadata({ params }: { params: { locale: string } }): Metadata {
+  const de = params.locale === "de";
+  return {
+    title: de ? "Community | DeutschPilot" : "Community | DeutschPilot",
+    description: de
+      ? "Tausche dich mit anderen Deutschlernenden aus, nimm an Events teil und lerne gemeinsam in der DeutschPilot-Community."
+      : "Connect with fellow German learners, join events, and learn together in the DeutschPilot community.",
+  };
+}
 
 export default async function CommunityPage({ params }: { params: { locale: string } }) {
   const { locale } = params;

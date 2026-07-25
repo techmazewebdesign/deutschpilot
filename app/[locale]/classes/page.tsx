@@ -1,4 +1,5 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
 import { auth } from "@/lib/auth";
@@ -8,6 +9,16 @@ import { StaggerParent, StaggerChild, FadeIn } from "@/components/app/motion-car
 import { Video, CalendarDays, Clock, Users } from "lucide-react";
 
 export const dynamic = "force-dynamic";
+
+export function generateMetadata({ params }: { params: { locale: string } }): Metadata {
+  const de = params.locale === "de";
+  return {
+    title: de ? "Live-Deutschkurse | DeutschPilot" : "Live German Classes | DeutschPilot",
+    description: de
+      ? "Buche Live-Deutschkurse mit erfahrenen Lehrer:innen — nach Niveau, Termin und Thema filterbar."
+      : "Book live German classes with experienced teachers — filterable by level, date, and topic.",
+  };
+}
 
 const levelColors: Record<string, string> = {
   A1: "bg-emerald-500/15 text-emerald-300 border-emerald-500/30",

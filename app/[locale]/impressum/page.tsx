@@ -1,7 +1,12 @@
+import type { Metadata } from "next";
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
 import { PlaceholderPage } from "@/components/placeholder-page";
 import { isPlaceholderLocale } from "@/i18n";
+
+export function generateMetadata(): Metadata {
+  return { title: "Impressum | DeutschPilot", robots: { index: true, follow: true } };
+}
 
 export default function ImpressumPage({ params }: { params: { locale: string } }) {
   const { locale } = params;

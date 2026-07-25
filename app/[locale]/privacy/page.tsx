@@ -1,7 +1,13 @@
+import type { Metadata } from "next";
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
 import { PlaceholderPage } from "@/components/placeholder-page";
 import { isPlaceholderLocale } from "@/i18n";
+
+export function generateMetadata({ params }: { params: { locale: string } }): Metadata {
+  const de = params.locale === "de";
+  return { title: de ? "Datenschutz | DeutschPilot" : "Privacy Policy | DeutschPilot" };
+}
 
 export default function PrivacyPage({ params }: { params: { locale: string } }) {
   const { locale } = params;

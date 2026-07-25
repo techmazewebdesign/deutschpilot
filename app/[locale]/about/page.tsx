@@ -1,8 +1,19 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
 import { PlaceholderPage } from "@/components/placeholder-page";
 import { isPlaceholderLocale } from "@/i18n";
+
+export function generateMetadata({ params }: { params: { locale: string } }): Metadata {
+  const de = params.locale === "de";
+  return {
+    title: de ? "Über uns | DeutschPilot" : "About Us | DeutschPilot",
+    description: de
+      ? "DeutschPilot ist die Premium-Lernplattform für Deutsch: erfahrene Lehrer, KI-Unterstützung und eine lebendige Community."
+      : "DeutschPilot is the premium learning platform for German: experienced teachers, AI support, and a vibrant community.",
+  };
+}
 
 const content: Record<string, { title: string; subtitle: string; body: string; cta: string }> = {
   de: {

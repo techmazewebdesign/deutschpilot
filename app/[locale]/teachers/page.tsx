@@ -1,4 +1,5 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
 import { createServerSupabaseClient } from "@/lib/supabaseServer";
@@ -6,6 +7,16 @@ import { FadeIn, StaggerParent, StaggerChild } from "@/components/app/motion-car
 import { Users, GraduationCap, Video } from "lucide-react";
 
 export const dynamic = "force-dynamic";
+
+export function generateMetadata({ params }: { params: { locale: string } }): Metadata {
+  const de = params.locale === "de";
+  return {
+    title: de ? "Unsere Lehrer:innen | DeutschPilot" : "Our Teachers | DeutschPilot",
+    description: de
+      ? "Lerne die erfahrenen Deutschlehrer:innen von DeutschPilot kennen und buche Live-Unterricht auf deinem Niveau."
+      : "Meet DeutschPilot's experienced German teachers and book live classes at your level.",
+  };
+}
 
 type TeacherProfile = {
   user_id: string;
