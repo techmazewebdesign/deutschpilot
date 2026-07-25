@@ -50,7 +50,7 @@ const LEVELS: {
     key: "B1", nameDE: "Mittelstufe", nameEN: "Intermediate", rooms: 6,
     descDE: "Hauptpunkte zu klaren Standardthemen verstehen und ausdrücken.",
     descEN: "Understand main points on clear standard topics and express them.",
-    color: "#E0B873", active: false,
+    color: "#E0B873", active: true,
   },
   {
     key: "B2", nameDE: "Gehobene Mittelstufe", nameEN: "Upper Intermediate", rooms: 6,

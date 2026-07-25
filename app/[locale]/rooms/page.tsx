@@ -10,7 +10,8 @@ import { Footer } from "@/components/footer";
 import {
   Lock, ChevronRight, BookOpen, Users, Globe, ShoppingBag,
   MapPin, Stethoscope, Clock, CheckCircle2, FlaskConical,
-  Briefcase, Home, PartyPopper,
+  Briefcase, Home, PartyPopper, MessageSquare, Newspaper, Leaf,
+  GraduationCap, Building2, Heart,
 } from "lucide-react";
 
 export const dynamic = "force-dynamic";
@@ -48,7 +49,15 @@ const ROOM_META: Record<Level, { slug: string; icon: React.ElementType; titleDE:
     { slug: "living-together-a2", icon: Home, titleDE: "Wohnen & Zusammenleben", titleEN: "Housing & Living Together", descDE: "Wohnungssuche, Wechselpräpositionen und Vergleiche mit dem Komparativ.", descEN: "Flat hunting, two-way prepositions, and comparisons with the comparative." },
     { slug: "celebrations-culture-a2", icon: PartyPopper, titleDE: "Feste & Kultur", titleEN: "Celebrations & Culture", descDE: "Deutsche Feste, Einladungen zu- und absagen, erzählen mit war und hatte.", descEN: "German holidays, accepting and declining invitations, stories with war and hatte." },
   ],
-  B1: [], B2: [], C1: [],
+  B1: [
+    { slug: "opinions-discussions-b1", icon: MessageSquare, titleDE: "Meinungen & Diskussionen", titleEN: "Opinions & Discussions", descDE: "Meinungen äußern, höflich widersprechen und Argumente mit Konnektoren verbinden.", descEN: "State opinions, disagree politely, and connect arguments with connectors." },
+    { slug: "media-news-b1", icon: Newspaper, titleDE: "Medien & Nachrichten", titleEN: "Media & News", descDE: "Nachrichtensprache verstehen, indirekte Rede und das Passiv meistern.", descEN: "Understand news language, master reported speech and the passive voice." },
+    { slug: "environment-b1", icon: Leaf, titleDE: "Umwelt & Nachhaltigkeit", titleEN: "Environment & Sustainability", descDE: "Umweltthemen diskutieren, wenn-Sätze und Prognosen mit dem Futur.", descEN: "Discuss environmental topics, wenn-clauses, and predictions with the future tense." },
+    { slug: "education-b1", icon: GraduationCap, titleDE: "Bildung & Weiterbildung", titleEN: "Education & Training", descDE: "Der deutsche Bildungsweg, Infinitiv mit zu und Kursangebote verstehen.", descEN: "The German education path, Infinitiv mit zu, and understanding course offers." },
+    { slug: "bureaucracy-b1", icon: Building2, titleDE: "Behörden & Formalitäten", titleEN: "Bureaucracy & Formalities", descDE: "Anmeldung, Behördenbriefe verstehen und höfliche Anfragen im Konjunktiv II.", descEN: "Registration, understanding official letters, and polite requests in Konjunktiv II." },
+    { slug: "society-relationships-b1", icon: Heart, titleDE: "Beziehungen & Gesellschaft", titleEN: "Relationships & Society", descDE: "Relativsätze, Small-Talk-Kultur und Gefühle differenziert ausdrücken.", descEN: "Relative clauses, small-talk culture, and expressing feelings precisely." },
+  ],
+  B2: [], C1: [],
 };
 
 export default async function RoomsPage({
