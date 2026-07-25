@@ -48,22 +48,55 @@
       "certificate": "Certificate included"
     },
     "levels": {
-      "A1": { "name": "A1", "label": "Beginner" },
-      "A2": { "name": "A2", "label": "Elementary" },
-      "B1": { "name": "B1", "label": "Intermediate" },
-      "B2": { "name": "B2", "label": "Upper-Intermediate" },
-      "C1": { "name": "C1", "label": "Advanced" }
+      "A1": {
+        "name": "A1",
+        "label": "Beginner"
+      },
+      "A2": {
+        "name": "A2",
+        "label": "Elementary"
+      },
+      "B1": {
+        "name": "B1",
+        "label": "Intermediate"
+      },
+      "B2": {
+        "name": "B2",
+        "label": "Upper-Intermediate"
+      },
+      "C1": {
+        "name": "C1",
+        "label": "Advanced"
+      }
     }
   },
   "features": {
     "title": "Why DeutschPilot?",
     "items": {
-      "intensive": { "title": "Super-intensive courses", "desc": "Learn faster with maximum structure — online or on site." },
-      "live": { "title": "Live classes", "desc": "Interactive sessions with experienced teachers." },
-      "ai": { "title": "AI learning companion", "desc": "Your AI tutor supports you around the clock." },
-      "community": { "title": "Community", "desc": "Learn alongside motivated people worldwide." },
-      "certificate": { "title": "Certificate", "desc": "Earn a recognised certificate for your level." },
-      "retreats": { "title": "Retreats", "desc": "Immersive learning in an inspiring environment." }
+      "intensive": {
+        "title": "Super-intensive courses",
+        "desc": "Learn faster with maximum structure — online or on site."
+      },
+      "live": {
+        "title": "Live classes",
+        "desc": "Interactive sessions with experienced teachers."
+      },
+      "ai": {
+        "title": "AI learning companion",
+        "desc": "Your AI tutor supports you around the clock."
+      },
+      "community": {
+        "title": "Community",
+        "desc": "Learn alongside motivated people worldwide."
+      },
+      "certificate": {
+        "title": "Certificate",
+        "desc": "Earn a recognised certificate for your level."
+      },
+      "retreats": {
+        "title": "Retreats",
+        "desc": "Immersive learning in an inspiring environment."
+      }
     }
   },
   "testimonials": {
@@ -71,9 +104,21 @@
     "subtitle": "Real results",
     "viewAll": "View all stories",
     "items": {
-      "maria": { "name": "Maria L.", "result": "B2 in 3 months", "text": "The live sessions and the community helped me enormously. I now feel confident in everyday life and at work." },
-      "jonas": { "name": "Jonas S.", "result": "B1 in 2 months", "text": "Thanks to DeutschPilot, I reached B1 much faster than expected. The structure and the teachers are simply top-notch." },
-      "aylin": { "name": "Aylin K.", "result": "A2 in 6 weeks", "text": "The super-intensive retreat was the best decision. Learning in that environment is unbeatable." }
+      "maria": {
+        "name": "Maria L.",
+        "result": "B2 in 3 months",
+        "text": "The live sessions and the community helped me enormously. I now feel confident in everyday life and at work."
+      },
+      "jonas": {
+        "name": "Jonas S.",
+        "result": "B1 in 2 months",
+        "text": "Thanks to DeutschPilot, I reached B1 much faster than expected. The structure and the teachers are simply top-notch."
+      },
+      "aylin": {
+        "name": "Aylin K.",
+        "result": "A2 in 6 weeks",
+        "text": "The super-intensive retreat was the best decision. Learning in that environment is unbeatable."
+      }
     }
   },
   "retreats": {
@@ -91,21 +136,48 @@
     "subtitle": "HOW IT WORKS",
     "title": "Your path to success",
     "steps": {
-      "discover": { "title": "Discover", "desc": "Find the course that matches your level and goals." },
-      "reserve": { "title": "Reserve", "desc": "Secure your spot with a free reservation." },
-      "apply": { "title": "Apply", "desc": "Fill out the application form and get to know us." },
-      "start": { "title": "Start", "desc": "Begin your course and reach your goals." }
+      "discover": {
+        "title": "Discover",
+        "desc": "Find the course that matches your level and goals."
+      },
+      "reserve": {
+        "title": "Reserve",
+        "desc": "Secure your spot with a free reservation."
+      },
+      "apply": {
+        "title": "Apply",
+        "desc": "Fill out the application form and get to know us."
+      },
+      "start": {
+        "title": "Start",
+        "desc": "Begin your course and reach your goals."
+      }
     }
   },
   "studentJourney": {
     "subtitle": "YOUR JOURNEY",
     "title": "From beginner to expert",
     "steps": {
-      "discover": { "title": "Discover", "desc": "Explore our courses and find your perfect starting point." },
-      "reserve": { "title": "Reserve", "desc": "Secure your spot with an easy reservation." },
-      "apply": { "title": "Apply", "desc": "Share your goals and motivation with us." },
-      "learn": { "title": "Learn", "desc": "Dive into interactive classes and the community." },
-      "certify": { "title": "Certify", "desc": "Earn your recognised certificate." }
+      "discover": {
+        "title": "Discover",
+        "desc": "Explore our courses and find your perfect starting point."
+      },
+      "reserve": {
+        "title": "Reserve",
+        "desc": "Secure your spot with an easy reservation."
+      },
+      "apply": {
+        "title": "Apply",
+        "desc": "Share your goals and motivation with us."
+      },
+      "learn": {
+        "title": "Learn",
+        "desc": "Dive into interactive classes and the community."
+      },
+      "certify": {
+        "title": "Certify",
+        "desc": "Earn your recognised certificate."
+      }
     }
   },
   "community": {
@@ -148,7 +220,8 @@
       "privacy": "Privacy policy",
       "terms": "Terms of service",
       "imprint": "Imprint",
-      "impressum": "Imprint"
+      "impressum": "Imprint",
+      "magazine": "Magazine"
     },
     "copyright": "© {year} DeutschPilot. All rights reserved."
   },

@@ -64,7 +64,7 @@ export function Footer() {
           <div>
             <h4 className="text-sm font-semibold text-white mb-4">{t("columns.company")}</h4>
             <ul className="space-y-2">
-              {["about", "contact"].map((link) => (
+              {["about", "magazine", "contact"].map((link) => (
                 <li key={link}>
                   <Link
                     href={`/${locale}/${link}`}

@@ -48,22 +48,55 @@
       "certificate": "Zertifikat inklusive"
     },
     "levels": {
-      "A1": { "name": "A1", "label": "Anfänger:in" },
-      "A2": { "name": "A2", "label": "Grundlagen" },
-      "B1": { "name": "B1", "label": "Mittelstufe" },
-      "B2": { "name": "B2", "label": "Fortgeschritten" },
-      "C1": { "name": "C1", "label": "Kompetent" }
+      "A1": {
+        "name": "A1",
+        "label": "Anfänger:in"
+      },
+      "A2": {
+        "name": "A2",
+        "label": "Grundlagen"
+      },
+      "B1": {
+        "name": "B1",
+        "label": "Mittelstufe"
+      },
+      "B2": {
+        "name": "B2",
+        "label": "Fortgeschritten"
+      },
+      "C1": {
+        "name": "C1",
+        "label": "Kompetent"
+      }
     }
   },
   "features": {
     "title": "Warum DeutschPilot?",
     "items": {
-      "intensive": { "title": "Superintensivkurse", "desc": "Schneller lernen mit maximaler Struktur – online oder vor Ort." },
-      "live": { "title": "Live-Unterricht", "desc": "Interaktive Sessions mit erfahrenen Lehrer:innen." },
-      "ai": { "title": "KI-Lernbegleitung", "desc": "Dein KI-Tutor unterstützt dich rund um die Uhr." },
-      "community": { "title": "Community", "desc": "Lerne mit motivierten Menschen weltweit." },
-      "certificate": { "title": "Zertifikat", "desc": "Erhalte ein anerkanntes Zertifikat für dein Niveau." },
-      "retreats": { "title": "Retreats", "desc": "Intensiv lernen in inspirierender Umgebung." }
+      "intensive": {
+        "title": "Superintensivkurse",
+        "desc": "Schneller lernen mit maximaler Struktur – online oder vor Ort."
+      },
+      "live": {
+        "title": "Live-Unterricht",
+        "desc": "Interaktive Sessions mit erfahrenen Lehrer:innen."
+      },
+      "ai": {
+        "title": "KI-Lernbegleitung",
+        "desc": "Dein KI-Tutor unterstützt dich rund um die Uhr."
+      },
+      "community": {
+        "title": "Community",
+        "desc": "Lerne mit motivierten Menschen weltweit."
+      },
+      "certificate": {
+        "title": "Zertifikat",
+        "desc": "Erhalte ein anerkanntes Zertifikat für dein Niveau."
+      },
+      "retreats": {
+        "title": "Retreats",
+        "desc": "Intensiv lernen in inspirierender Umgebung."
+      }
     }
   },
   "testimonials": {
@@ -71,9 +104,21 @@
     "subtitle": "Echte Erfolge",
     "viewAll": "Alle Geschichten ansehen",
     "items": {
-      "maria": { "name": "Maria L.", "result": "B2 in 3 Monaten", "text": "Die Live-Sessions und die Community haben mir enorm geholfen. Im Alltag und im Job fühle ich mich jetzt richtig sicher." },
-      "jonas": { "name": "Jonas S.", "result": "B1 in 2 Monaten", "text": "Dank DeutschPilot habe ich mein B1-Niveau viel schneller erreicht als erwartet. Struktur und Lehrer:innen sind einfach top." },
-      "aylin": { "name": "Aylin K.", "result": "A2 in 6 Wochen", "text": "Der Superintensivkurs im Retreat war die beste Entscheidung. Lernen in dieser Umgebung ist unschlagbar." }
+      "maria": {
+        "name": "Maria L.",
+        "result": "B2 in 3 Monaten",
+        "text": "Die Live-Sessions und die Community haben mir enorm geholfen. Im Alltag und im Job fühle ich mich jetzt richtig sicher."
+      },
+      "jonas": {
+        "name": "Jonas S.",
+        "result": "B1 in 2 Monaten",
+        "text": "Dank DeutschPilot habe ich mein B1-Niveau viel schneller erreicht als erwartet. Struktur und Lehrer:innen sind einfach top."
+      },
+      "aylin": {
+        "name": "Aylin K.",
+        "result": "A2 in 6 Wochen",
+        "text": "Der Superintensivkurs im Retreat war die beste Entscheidung. Lernen in dieser Umgebung ist unschlagbar."
+      }
     }
   },
   "retreats": {
@@ -91,21 +136,48 @@
     "subtitle": "SO FUNKTIONIERT'S",
     "title": "Dein Weg zum Erfolg",
     "steps": {
-      "discover": { "title": "Entdecken", "desc": "Finde den Kurs, der zu deinem Niveau und deinen Zielen passt." },
-      "reserve": { "title": "Reservieren", "desc": "Sichere dir deinen Platz mit einer kostenlosen Reservierung." },
-      "apply": { "title": "Bewerben", "desc": "Fülle das Bewerbungsformular aus und lerne uns kennen." },
-      "start": { "title": "Starten", "desc": "Beginne deinen Kurs und erreiche deine Ziele." }
+      "discover": {
+        "title": "Entdecken",
+        "desc": "Finde den Kurs, der zu deinem Niveau und deinen Zielen passt."
+      },
+      "reserve": {
+        "title": "Reservieren",
+        "desc": "Sichere dir deinen Platz mit einer kostenlosen Reservierung."
+      },
+      "apply": {
+        "title": "Bewerben",
+        "desc": "Fülle das Bewerbungsformular aus und lerne uns kennen."
+      },
+      "start": {
+        "title": "Starten",
+        "desc": "Beginne deinen Kurs und erreiche deine Ziele."
+      }
     }
   },
   "studentJourney": {
     "subtitle": "DEINE REISE",
     "title": "Vom Anfänger zum Profi",
     "steps": {
-      "discover": { "title": "Entdecken", "desc": "Erkunde unsere Kurse und finde deinen perfekten Einstieg." },
-      "reserve": { "title": "Reservieren", "desc": "Sichere dir deinen Platz mit einer einfachen Reservierung." },
-      "apply": { "title": "Bewerben", "desc": "Teile uns deine Ziele und deine Motivation mit." },
-      "learn": { "title": "Lernen", "desc": "Tauche ein in interaktiven Unterricht und die Community." },
-      "certify": { "title": "Zertifizieren", "desc": "Erhalte dein anerkanntes Zertifikat." }
+      "discover": {
+        "title": "Entdecken",
+        "desc": "Erkunde unsere Kurse und finde deinen perfekten Einstieg."
+      },
+      "reserve": {
+        "title": "Reservieren",
+        "desc": "Sichere dir deinen Platz mit einer einfachen Reservierung."
+      },
+      "apply": {
+        "title": "Bewerben",
+        "desc": "Teile uns deine Ziele und deine Motivation mit."
+      },
+      "learn": {
+        "title": "Lernen",
+        "desc": "Tauche ein in interaktiven Unterricht und die Community."
+      },
+      "certify": {
+        "title": "Zertifizieren",
+        "desc": "Erhalte dein anerkanntes Zertifikat."
+      }
     }
   },
   "community": {
@@ -148,7 +220,8 @@
       "privacy": "Datenschutz",
       "terms": "AGB",
       "imprint": "Impressum",
-      "impressum": "Impressum"
+      "impressum": "Impressum",
+      "magazine": "Magazin"
     },
     "copyright": "© {year} DeutschPilot. Alle Rechte vorbehalten."
   },

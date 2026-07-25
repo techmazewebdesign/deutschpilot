@@ -21,6 +21,7 @@ const publicNavLinks = [
   { href: "/ai-trainer", label: "AI Trainer" },
   { href: "/classes", label: "Classes" },
   { href: "/teachers", label: "Teachers" },
+  { href: "/magazine", label: "Magazine" },
 ];
 
 const studentNavLinks = [
