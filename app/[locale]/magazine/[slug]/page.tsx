@@ -72,6 +72,22 @@ export default function MagazineArticlePage({
     mainEntityOfPage: `${BASE_URL}/${locale}/magazine/${article.slug}`,
   };
 
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: de ? "Startseite" : "Home", item: `${BASE_URL}/${locale}` },
+      { "@type": "ListItem", position: 2, name: de ? "Magazin" : "Magazine", item: `${BASE_URL}/${locale}/magazine` },
+      { "@type": "ListItem", position: 3, name: title, item: `${BASE_URL}/${locale}/magazine/${article.slug}` },
+    ],
+  };
+
+  const related = articles
+    .filter((a) => a.slug !== article.slug && a.tags.some((t) => article.tags.includes(t)))
+    .slice(0, 3);
+  const relatedFill = articles.filter((a) => a.slug !== article.slug && !related.includes(a));
+  const relatedArticles = [...related, ...relatedFill].slice(0, 3);
+
   return (
     <>
       <Navigation />
@@ -79,6 +95,10 @@ export default function MagazineArticlePage({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
         />
         <article className="py-14 lg:py-20 px-4 sm:px-6 lg:px-8 max-w-3xl mx-auto">
           <Link
@@ -126,6 +146,30 @@ export default function MagazineArticlePage({
               prose-ol:text-white/65"
             dangerouslySetInnerHTML={{ __html: body }}
           />
+
+          {relatedArticles.length > 0 && (
+            <div className="mt-14 pt-10 border-t border-white/8">
+              <h2 className="text-lg font-serif font-bold text-white mb-5">
+                {de ? "Das könnte dich auch interessieren" : "You might also like"}
+              </h2>
+              <div className="grid sm:grid-cols-3 gap-4">
+                {relatedArticles.map((a) => (
+                  <Link
+                    key={a.slug}
+                    href={`/${locale}/magazine/${a.slug}`}
+                    className="group rounded-xl border border-white/10 bg-[#0A1E35]/50 hover:border-[#E0B873]/30 p-4 transition-colors"
+                  >
+                    <p className="text-sm font-semibold text-white group-hover:text-[#E0B873] transition-colors leading-snug mb-1.5 line-clamp-2">
+                      {de ? a.title_de : a.title_en}
+                    </p>
+                    <p className="text-xs text-white/35">
+                      {a.readingMinutes} {de ? "Min. Lesezeit" : "min read"}
+                    </p>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          )}
 
           <div className="mt-14 rounded-2xl border border-[#E0B873]/25 bg-[#E0B873]/5 p-8 text-center">
             <h2 className="text-xl font-serif font-bold text-white mb-2">
