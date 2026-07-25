@@ -1,4 +1,5 @@
 import { getTranslations } from "next-intl/server";
+import type { Metadata } from "next";
 import Link from "next/link";
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
@@ -8,6 +9,18 @@ import { createServerSupabaseClient } from "@/lib/supabaseServer";
 import { isPlaceholderLocale } from "@/i18n";
 import { auth } from "@/lib/auth";
 import { BookOpen, ChevronRight, Lock } from "lucide-react";
+
+export function generateMetadata({ params }: { params: { locale: string } }): Metadata {
+  const de = params.locale === "de";
+  return {
+    title: de
+      ? "Deutschkurse A1–B2: Lesen, Hören, Schreiben, Sprechen | DeutschPilot"
+      : "German Courses A1–B2: Reading, Listening, Writing, Speaking | DeutschPilot",
+    description: de
+      ? "Kostenlose Übungskurse für alle vier Fertigkeiten — mit KI-Feedback beim Schreiben und echten Hörtexten. Finde den Kurs für dein Niveau."
+      : "Free practice courses for all four skills — with AI feedback on your writing and real listening audio. Find the course for your level.",
+  };
+}
 
 const LEVELS = ["A1", "A2", "B1", "B2", "C1"] as const;
 

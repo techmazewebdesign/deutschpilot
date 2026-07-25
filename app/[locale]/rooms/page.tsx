@@ -1,4 +1,5 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import { AppLayout } from "@/components/app/app-layout";
 import { auth } from "@/lib/auth";
 import { createServerSupabaseClient } from "@/lib/supabaseServer";
@@ -13,6 +14,18 @@ import {
 } from "lucide-react";
 
 export const dynamic = "force-dynamic";
+
+export function generateMetadata({ params }: { params: { locale: string } }): Metadata {
+  const de = params.locale === "de";
+  return {
+    title: de
+      ? "Lernräume: Deutsch lernen Thema für Thema | DeutschPilot"
+      : "Learning Rooms: Learn German Topic by Topic | DeutschPilot",
+    description: de
+      ? "Themenräume mit Lektionen, Übungen und Checkpoint-Quiz — von Begrüßungen (A1) bis Feste & Kultur (A2). Schalte Raum für Raum frei."
+      : "Themed rooms with lessons, exercises, and checkpoint quizzes — from Greetings (A1) to Celebrations & Culture (A2). Unlock room by room.",
+  };
+}
 
 const LEVELS_ORDER = ["A1", "A2", "B1", "B2", "C1"] as const;
 type Level = typeof LEVELS_ORDER[number];

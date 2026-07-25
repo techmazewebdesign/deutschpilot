@@ -1,4 +1,5 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import { AppLayout } from "@/components/app/app-layout";
 import { auth } from "@/lib/auth";
 import { isPlaceholderLocale } from "@/i18n";
@@ -8,6 +9,18 @@ import { Footer } from "@/components/footer";
 import { Lock, CheckCircle2, ChevronRight, Star, Zap, BookOpen } from "lucide-react";
 
 export const dynamic = "force-dynamic";
+
+export function generateMetadata({ params }: { params: { locale: string } }): Metadata {
+  const de = params.locale === "de";
+  return {
+    title: de
+      ? "Deutsch-Niveaus A1 bis C1: Dein Lernweg | DeutschPilot"
+      : "German Levels A1 to C1: Your Learning Path | DeutschPilot",
+    description: de
+      ? "Der klare Weg von A1 bis C1: Themenräume, Checkpoint-Quizze und Übungen für jedes Niveau. Sieh, was dich auf jeder Stufe erwartet."
+      : "The clear path from A1 to C1: themed rooms, checkpoint quizzes, and practice for every level. See what awaits you at each stage.",
+  };
+}
 
 type LevelKey = "A1" | "A2" | "B1" | "B2" | "C1";
 
