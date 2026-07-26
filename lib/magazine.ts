@@ -35,6 +35,12 @@ import { article as konjunktivII } from "./magazine-articles/konjunktiv-ii-expla
 import { article as wordOrder } from "./magazine-articles/german-word-order";
 import { article as workingInGermany } from "./magazine-articles/working-in-germany-guide";
 import { article as idioms } from "./magazine-articles/common-german-idioms";
+import { article as falseFriends } from "./magazine-articles/german-false-friends";
+import { article as compoundNouns } from "./magazine-articles/german-compound-nouns";
+import { article as pronunciation } from "./magazine-articles/german-pronunciation-guide";
+import { article as c1Exam } from "./magazine-articles/german-c1-exam-guide";
+import { article as twoWayPrepositions } from "./magazine-articles/german-two-way-prepositions";
+import { article as businessGerman } from "./magazine-articles/business-german-guide";
 
 export const articles: MagazineArticle[] = [
   howLong,
@@ -55,6 +61,12 @@ export const articles: MagazineArticle[] = [
   wordOrder,
   workingInGermany,
   idioms,
+  falseFriends,
+  compoundNouns,
+  pronunciation,
+  c1Exam,
+  twoWayPrepositions,
+  businessGerman,
 ].sort((a, b) => (a.date < b.date ? 1 : -1));
 
 export function getArticle(slug: string): MagazineArticle | undefined {
