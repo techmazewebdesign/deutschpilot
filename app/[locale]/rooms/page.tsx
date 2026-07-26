@@ -14,6 +14,8 @@ import {
   GraduationCap, Building2, Heart, Landmark, Palette, TrendingUp,
   Languages, Microscope, BookMarked, Handshake, Scale, Brain, Megaphone,
 } from "lucide-react";
+import { isPaidLevel, hasLevelAccess } from "@/lib/entitlements";
+import { UpgradeWall } from "@/components/learn/upgrade-wall";
 
 export const dynamic = "force-dynamic";
 
@@ -119,6 +121,9 @@ export default async function RoomsPage({
 
   const rooms = ROOM_META[activeLevel] ?? [];
   const slugs = rooms.map((r) => r.slug);
+
+  const levelLocked =
+    !isGuest && isPaidLevel(activeLevel) && !(await hasLevelAccess(session!.user.id, activeLevel));
 
   // Fetch courses + progress for the active level (guests have no progress)
   const [coursesRes, progressRes] = await Promise.all([
@@ -265,6 +270,12 @@ export default async function RoomsPage({
               {de ? "Zurück zu A1" : "Back to A1"}
             </Link>
           </div>
+        ) : levelLocked ? (
+          <UpgradeWall
+            locale={locale}
+            level={activeLevel as "A2" | "B1" | "B2" | "C1"}
+            backHref={`/${locale}/levels`}
+          />
         ) : (
           <>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">

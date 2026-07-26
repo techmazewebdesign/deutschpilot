@@ -8,6 +8,8 @@ import { Navigation } from "@/components/navigation";
 import { PlaceholderPage } from "@/components/placeholder-page";
 import { Footer } from "@/components/footer";
 import { RoomCheckpointQuiz } from "@/components/learn/room-quiz";
+import { hasLevelAccess } from "@/lib/entitlements";
+import { UpgradeWall } from "@/components/learn/upgrade-wall";
 import { ArrowLeft, Award } from "lucide-react";
 
 export const dynamic = "force-dynamic";
@@ -15,6 +17,7 @@ export const dynamic = "force-dynamic";
 type CourseRow = {
   id: string;
   title: string;
+  level: string;
 };
 
 type QuizLessonRow = {
@@ -56,12 +59,27 @@ export default async function RoomQuizPage({
 
   const { data: courseData } = await supabase
     .from("courses")
-    .select("id, title")
+    .select("id, title, level")
     .eq("slug", slug)
     .single();
 
   if (!courseData) notFound();
   const course = courseData as CourseRow;
+
+  const userName =
+    session.user.name ?? session.user.email?.split("@")[0] ?? "Student";
+
+  if (!(await hasLevelAccess(session.user.id, course.level))) {
+    return (
+      <AppLayout locale={locale} userName={userName}>
+        <UpgradeWall
+          locale={locale}
+          level={course.level as "A2" | "B1" | "B2" | "C1"}
+          backHref={`/${locale}/rooms/${slug}`}
+        />
+      </AppLayout>
+    );
+  }
 
   const { data: quizLessonData } = await supabase
     .from("lessons")
@@ -89,9 +107,6 @@ export default async function RoomQuizPage({
       explanation: typeof e.explanation === "string" ? e.explanation : null,
     })
   );
-
-  const userName =
-    session.user.name ?? session.user.email?.split("@")[0] ?? "Student";
 
   return (
     <AppLayout locale={locale} userName={userName}>

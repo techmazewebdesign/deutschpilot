@@ -6,6 +6,8 @@ import { Quiz } from "@/components/learn/quiz";
 import { auth } from "@/lib/auth";
 import { createServerSupabaseClient } from "@/lib/supabaseServer";
 import { isPlaceholderLocale } from "@/i18n";
+import { hasLevelAccess } from "@/lib/entitlements";
+import { UpgradeWall } from "@/components/learn/upgrade-wall";
 import { ArrowLeft, FlaskConical, ChevronRight } from "lucide-react";
 
 export const dynamic = "force-dynamic";
@@ -33,6 +35,19 @@ export default async function ExercisesPage({
   if (!lesson) notFound();
 
   const course = ((lesson.courses as Array<{ title: string; slug: string; level: string }> | null) ?? [])[0] ?? null;
+  const userName = session.user.name ?? session.user.email?.split("@")[0] ?? "Student";
+
+  if (course && !(await hasLevelAccess(session.user.id, course.level))) {
+    return (
+      <AppLayout locale={locale} userName={userName}>
+        <UpgradeWall
+          locale={locale}
+          level={course.level as "A2" | "B1" | "B2" | "C1"}
+          backHref={`/${locale}/rooms/${course.slug}`}
+        />
+      </AppLayout>
+    );
+  }
 
   const { data: exercises } = await supabase
     .from("exercises")
@@ -48,7 +63,7 @@ export default async function ExercisesPage({
   }[];
 
   return (
-    <AppLayout locale={locale} userName={session.user.name ?? session.user.email?.split("@")[0] ?? "Student"}>
+    <AppLayout locale={locale} userName={userName}>
       <div className="px-5 lg:px-10 py-6 lg:py-8 max-w-3xl w-full mx-auto">
 
         {/* Breadcrumb */}

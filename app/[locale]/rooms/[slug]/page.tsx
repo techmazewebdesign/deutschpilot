@@ -7,6 +7,8 @@ import { createServerSupabaseClient } from "@/lib/supabaseServer";
 import { Navigation } from "@/components/navigation";
 import { PlaceholderPage } from "@/components/placeholder-page";
 import { Footer } from "@/components/footer";
+import { hasLevelAccess } from "@/lib/entitlements";
+import { UpgradeWall } from "@/components/learn/upgrade-wall";
 import {
   BookOpen,
   CheckCircle2,
@@ -76,6 +78,22 @@ export default async function RoomDetailPage({
   if (!courseData) notFound();
   const course = courseData as CourseRow;
 
+  const userName =
+    session.user.name ?? session.user.email?.split("@")[0] ?? "Student";
+
+  const entitled = await hasLevelAccess(session.user.id, course.level);
+  if (!entitled) {
+    return (
+      <AppLayout locale={locale} userName={userName}>
+        <UpgradeWall
+          locale={locale}
+          level={course.level as "A2" | "B1" | "B2" | "C1"}
+          backHref={`/${locale}/rooms?level=${course.level}`}
+        />
+      </AppLayout>
+    );
+  }
+
   const { data: lessonsData } = await supabase
     .from("lessons")
     .select("id, slug, title, order_index")
@@ -111,9 +129,6 @@ export default async function RoomDetailPage({
     lessons.length > 0
       ? Math.round((completedCount / lessons.length) * 100)
       : 0;
-
-  const userName =
-    session.user.name ?? session.user.email?.split("@")[0] ?? "Student";
 
   const roomNumMatch = course.title.match(/Room\s*(\d+)/i);
   const roomNum = roomNumMatch?.[1] ?? "";
