@@ -16,6 +16,11 @@ export function generateMetadata({ params }: { params: { locale: string } }): Me
     description: de
       ? "Fundierte Artikel zu deutscher Grammatik, Prüfungen und Lernstrategien – geschrieben für echte Lernende von A1 bis B2."
       : "In-depth articles on German grammar, exams, and learning strategy — written for real learners from A1 to B2.",
+    alternates: {
+      types: {
+        "application/rss+xml": `https://deutschpilot.de/${params.locale}/rss.xml`,
+      },
+    },
   };
 }
 
