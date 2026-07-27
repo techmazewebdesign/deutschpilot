@@ -5,6 +5,7 @@ import { Footer } from "@/components/footer";
 import { PlaceholderPage } from "@/components/placeholder-page";
 import { isPlaceholderLocale } from "@/i18n";
 import { MapPin, Users, Calendar, Leaf } from "lucide-react";
+import { RetreatWaitlistForm } from "@/components/retreats/waitlist-form";
 
 export function generateMetadata({ params }: { params: { locale: string } }): Metadata {
   const de = params.locale === "de";
@@ -82,12 +83,7 @@ export default function RetreatsPage({ params }: { params: { locale: string } })
             ))}
           </div>
 
-          <a
-            href="mailto:hello@deutschpilot.com"
-            className="inline-block bg-[#E0B873] text-[#072143] font-semibold px-8 py-3 rounded-xl hover:bg-[#C99B50] transition-colors"
-          >
-            {de ? "Warteliste beitreten" : "Join the waitlist"}
-          </a>
+          <RetreatWaitlistForm locale={locale} />
         </section>
       </main>
       <Footer />

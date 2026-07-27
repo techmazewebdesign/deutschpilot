@@ -6,6 +6,7 @@ import { Footer } from "@/components/footer";
 import { isPlaceholderLocale, locales } from "@/i18n";
 import { articles, getArticle } from "@/lib/magazine";
 import { ArrowLeft, Clock } from "lucide-react";
+import { MagazineComments } from "@/components/magazine/comments";
 
 const BASE_URL = "https://www.deutschpilot.de";
 
@@ -187,6 +188,8 @@ export default function MagazineArticlePage({
               {de ? "Jetzt kostenlos üben" : "Start practicing free"}
             </Link>
           </div>
+
+          <MagazineComments slug={article.slug} locale={locale} />
         </article>
       </main>
       <Footer />

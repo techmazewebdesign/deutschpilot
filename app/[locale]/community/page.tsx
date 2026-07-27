@@ -133,8 +133,8 @@ export default async function CommunityPage({ params }: { params: { locale: stri
               </h2>
               <p className="text-white/50 text-sm mb-8 max-w-md mx-auto leading-relaxed">
                 {de
-                  ? "Wir bauen gerade die Community auf. Schreib uns eine E-Mail, um als Erster benachrichtigt zu werden und die Gemeinschaft mitzugestalten."
-                  : "We're building the community right now. Send us an email to be notified first and help shape what it becomes."}
+                  ? "Lerngruppen, Live-Events und Sprachaustausch bauen wir noch auf. Schreib uns eine E-Mail, um als Erster benachrichtigt zu werden — oder diskutiere schon jetzt mit anderen Lernenden in den Kommentaren unserer Magazin-Artikel."
+                  : "Study groups, live events, and language exchange are still being built. Send us an email to be notified first — or already join the conversation in the comments on our magazine articles."}
               </p>
               <div className="flex flex-col sm:flex-row gap-3 justify-center">
                 <a
@@ -145,10 +145,11 @@ export default async function CommunityPage({ params }: { params: { locale: stri
                   {de ? "Interesse melden" : "Express Interest"}
                 </a>
                 <Link
-                  href={`/${locale}/dashboard`}
+                  href={`/${locale}/magazine`}
                   className="inline-flex items-center justify-center gap-2 border border-white/15 text-white/70 font-medium px-7 py-3 rounded-xl hover:border-white/30 hover:text-white transition-colors text-sm"
                 >
-                  {de ? "Weiter lernen" : "Keep learning"}
+                  <MessageSquare className="h-4 w-4" />
+                  {de ? "Magazin durchstöbern" : "Browse the Magazine"}
                 </Link>
               </div>
               <p className="mt-6 text-xs text-white/25">
