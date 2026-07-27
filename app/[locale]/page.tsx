@@ -2,6 +2,7 @@ import { Navigation } from "@/components/navigation";
 import { HeroSection } from "@/components/sections/hero";
 import { LevelJourneySection } from "@/components/sections/level-journey";
 import { RoomShowcaseSection } from "@/components/sections/room-showcase";
+import { WhyDeutschPilotSection } from "@/components/sections/why-deutschpilot";
 import { AIShowcaseSection } from "@/components/sections/ai-showcase";
 import { DailyMissionSection } from "@/components/sections/daily-mission";
 import { DashboardPreviewSection } from "@/components/sections/dashboard-preview";
@@ -60,6 +61,7 @@ export default function HomePage({ params }: { params: { locale: string } }) {
       <HeroSection />
       <LevelJourneySection />
       <RoomShowcaseSection />
+      <WhyDeutschPilotSection />
       <AIShowcaseSection />
       <DailyMissionSection />
       <HowItWorksSection />
