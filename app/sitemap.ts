@@ -16,6 +16,7 @@ const routes = [
   "/magazine",
   "/rss.xml",
   "/faq",
+  "/mock-exam",
   "/contact",
   "/placement-test",
   "/teachers",

@@ -8,7 +8,7 @@ import { Navigation } from "@/components/navigation";
 import { PlaceholderPage } from "@/components/placeholder-page";
 import { Footer } from "@/components/footer";
 import {
-  Lock, ChevronRight, BookOpen, Users, Globe, ShoppingBag,
+  Lock, ChevronRight, BookOpen, Users, Globe, ShoppingBag, Award,
   MapPin, Stethoscope, Clock, CheckCircle2, FlaskConical,
   Briefcase, Home, PartyPopper, MessageSquare, Newspaper, Leaf,
   GraduationCap, Building2, Heart, Landmark, Palette, TrendingUp,
@@ -357,6 +357,24 @@ export default async function RoomsPage({
                   : "Rooms unlock sequentially. Pass the checkpoint quiz (≥70%) to open the next room."}
               </p>
             </div>
+
+            {(activeLevel === "B1" || activeLevel === "B2") && !isGuest && (
+              <Link
+                href={`/${locale}/mock-exam/${activeLevel}`}
+                className="mt-4 flex items-center gap-4 rounded-2xl border border-[#E0B873]/20 bg-[#E0B873]/5 hover:bg-[#E0B873]/10 p-5 transition-colors"
+              >
+                <Award className="h-8 w-8 text-[#E0B873] flex-shrink-0" />
+                <div className="flex-1 min-w-0">
+                  <p className="text-sm font-semibold text-white">
+                    {de ? `${activeLevel} Modellprüfung` : `${activeLevel} Mock Exam`}
+                  </p>
+                  <p className="text-xs text-white/40">
+                    {de ? "Teste dich im echten Prüfungsformat, bevor du zur echten Prüfung gehst." : "Test yourself in the real exam format before the real thing."}
+                  </p>
+                </div>
+                <ChevronRight className="h-4 w-4 text-white/25 flex-shrink-0" />
+              </Link>
+            )}
 
             {/* Guest sign-up CTA */}
             {isGuest && (
