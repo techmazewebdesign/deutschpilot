@@ -41,7 +41,7 @@ export default function PrivacyPage({ params }: { params: { locale: string } }) 
             </div>
             <div className="bg-[#0B1B33]/50 border border-white/10 rounded-xl p-6">
               <h2 className="text-white font-semibold mb-3">{isDE ? "2. Verantwortliche Stelle" : "2. Responsible Party"}</h2>
-              <p>DeutschPilot GmbH<br />info@deutschpilot.de</p>
+              <p>PLUCO GROUP SP. Z O.O.<br />Ksawerów 3, 02-656 Warsaw, Poland<br />info@deutschpilot.de</p>
             </div>
             <div className="bg-[#0B1B33]/50 border border-white/10 rounded-xl p-6">
               <h2 className="text-white font-semibold mb-3">{isDE ? "3. Ihre Rechte" : "3. Your Rights"}</h2>

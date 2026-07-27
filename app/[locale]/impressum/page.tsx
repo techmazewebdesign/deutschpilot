@@ -32,7 +32,12 @@ export default function ImpressumPage({ params }: { params: { locale: string } }
           <div className="prose prose-invert max-w-none space-y-6 text-[#C9D2DE]">
             <div className="bg-[#0B1B33]/50 border border-white/10 rounded-xl p-6">
               <h2 className="text-white font-semibold mb-3">{isDE ? "Angaben gemäß § 5 TMG" : "Information pursuant to § 5 TMG"}</h2>
-              <p>DeutschPilot GmbH<br />Musterstraße 1<br />10115 Berlin<br />Deutschland</p>
+              <p>
+                PLUCO GROUP SP. Z O.O.<br />
+                Ksawerów 3<br />
+                02-656 Warsaw, Poland<br />
+                {isDE ? "Handelsregister: KRS 0000564904" : "Commercial Register: KRS 0000564904"}
+              </p>
             </div>
             <div className="bg-[#0B1B33]/50 border border-white/10 rounded-xl p-6">
               <h2 className="text-white font-semibold mb-3">{isDE ? "Kontakt" : "Contact"}</h2>
