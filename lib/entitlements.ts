@@ -14,7 +14,14 @@ export function isPaidLevel(level: string): level is PaidLevel {
   return (PAID_LEVELS as string[]).includes(level);
 }
 
+// Kill switch: paywall gating is OFF by default (free access to everything)
+// until Stripe is genuinely configured and Rooz explicitly flips this on in
+// Vercel env (PAYWALL_ENABLED=true). Do not remove the underlying gating
+// logic below — just leave this flag unset/false until ready to go live.
+const PAYWALL_ENABLED = process.env.PAYWALL_ENABLED === "true";
+
 export async function hasLevelAccess(userId: string, level: string): Promise<boolean> {
+  if (!PAYWALL_ENABLED) return true;
   if (!isPaidLevel(level)) return true; // A1 (or anything else) — free
 
   const sb = createAdminSupabaseClient();
