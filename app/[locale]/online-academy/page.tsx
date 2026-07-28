@@ -4,7 +4,7 @@ import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
 import { PlaceholderPage } from "@/components/placeholder-page";
 import { isPlaceholderLocale } from "@/i18n";
-import { Video, Bot, BookOpen, Award, Newspaper, ChevronRight } from "lucide-react";
+import { Video, Bot, BookOpen, Award, Newspaper, ChevronRight, Car } from "lucide-react";
 
 export function generateMetadata({ params }: { params: { locale: string } }): Metadata {
   const de = params.locale === "de";
@@ -60,6 +60,12 @@ export default function OnlineAcademyPage({ params }: { params: { locale: string
       href: "/magazine",
       de: { title: "Magazin", body: "Grammatik- und Kulturguides zu jedem Thema — kostenlos, für alle Niveaus." },
       en: { title: "Magazine", body: "Grammar and culture guides on every topic — free, for every level." },
+    },
+    {
+      icon: Car,
+      href: "/driving-theory",
+      de: { title: "Führerschein Theorie", body: "Übe wichtige Verkehrsregeln für die Theorieprüfung (Klasse B) — kostenlos." },
+      en: { title: "Driving Theory", body: "Practice essential traffic rules for the theory exam (Class B) — free." },
     },
   ];
 

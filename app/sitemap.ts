@@ -17,6 +17,7 @@ const routes = [
   "/rss.xml",
   "/faq",
   "/mock-exam",
+  "/driving-theory",
   "/contact",
   "/placement-test",
   "/teachers",
