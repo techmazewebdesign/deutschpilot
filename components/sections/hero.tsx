@@ -17,7 +17,7 @@ export function HeroSection() {
       {/* Full-section background image */}
       <div className="absolute inset-0">
         <Image
-          src="/images/hero_image.jpg"
+          src="/Images/hero_image.jpg"
           alt="DeutschPilot"
           fill
           priority
