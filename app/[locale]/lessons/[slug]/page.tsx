@@ -37,7 +37,7 @@ export default async function LessonPage({
   const course = lesson.courses as { id: string; title: string; slug: string; level: string } | null;
   const userName = session.user.name ?? session.user.email?.split("@")[0] ?? "Student";
 
-  if (course && !(await hasLevelAccess(session.user.id, course.level))) {
+  if (course && !(await hasLevelAccess(session.user.id, course.level, session.user.role))) {
     return (
       <AppLayout locale={locale} userName={userName}>
         <UpgradeWall

@@ -23,6 +23,7 @@ import {
   GraduationCap,
   Shield,
   User,
+  Car,
 } from "lucide-react";
 
 interface Props {
@@ -73,9 +74,11 @@ export function AppSidebar({ locale, userName, userLevel }: Props) {
   ];
 
   const toolsNav: NavItem[] = [
-    { href: `/${locale}/vocabulary`, icon: Languages, labelDe: "Vokabular", labelEn: "Vocabulary", soon: true },
-    { href: `/${locale}/progress-overview`, icon: BarChart2, labelDe: "Fortschritt", labelEn: "Progress", soon: true },
-    { href: `/${locale}/certificates`, icon: Award, labelDe: "Zertifikate", labelEn: "Certificates", soon: true },
+    { href: `/${locale}/vocabulary`, icon: Languages, labelDe: "Vokabular", labelEn: "Vocabulary" },
+    { href: `/${locale}/progress-overview`, icon: BarChart2, labelDe: "Fortschritt", labelEn: "Progress" },
+    { href: `/${locale}/certificates`, icon: Award, labelDe: "Zertifikate", labelEn: "Certificates" },
+    { href: `/${locale}/mock-exam`, icon: GraduationCap, labelDe: "Modellprüfung", labelEn: "Mock Exam" },
+    { href: `/${locale}/driving-theory`, icon: Car, labelDe: "Führerschein Theorie", labelEn: "Driving Theory" },
   ];
 
   const mainNav =
@@ -195,16 +198,12 @@ export function AppSidebar({ locale, userName, userLevel }: Props) {
         </p>
         {mainNav.map((item) => <NavLink key={item.href} item={item} onClick={onLinkClick} />)}
 
-        {role === "student" && (
-          <>
-            <div className="pt-4 pb-1">
-              <p className="text-[9px] font-semibold text-white/25 uppercase tracking-widest px-3 mb-2">
-                {label("Werkzeuge", "Tools")}
-              </p>
-            </div>
-            {toolsNav.map((item) => <NavLink key={item.href} item={item} onClick={onLinkClick} />)}
-          </>
-        )}
+        <div className="pt-4 pb-1">
+          <p className="text-[9px] font-semibold text-white/25 uppercase tracking-widest px-3 mb-2">
+            {label("Werkzeuge", "Tools")}
+          </p>
+        </div>
+        {toolsNav.map((item) => <NavLink key={item.href} item={item} onClick={onLinkClick} />)}
       </nav>
 
       {/* Bottom */}

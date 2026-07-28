@@ -20,8 +20,9 @@ export function isPaidLevel(level: string): level is PaidLevel {
 // logic below — just leave this flag unset/false until ready to go live.
 const PAYWALL_ENABLED = process.env.PAYWALL_ENABLED === "true";
 
-export async function hasLevelAccess(userId: string, level: string): Promise<boolean> {
+export async function hasLevelAccess(userId: string, level: string, role?: string): Promise<boolean> {
   if (!PAYWALL_ENABLED) return true;
+  if (role === "admin") return true; // admins always have full access, no locked rooms
   if (!isPaidLevel(level)) return true; // A1 (or anything else) — free
 
   const sb = createAdminSupabaseClient();

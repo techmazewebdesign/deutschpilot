@@ -123,7 +123,7 @@ export default async function RoomsPage({
   const slugs = rooms.map((r) => r.slug);
 
   const levelLocked =
-    !isGuest && isPaidLevel(activeLevel) && !(await hasLevelAccess(session!.user.id, activeLevel));
+    !isGuest && isPaidLevel(activeLevel) && !(await hasLevelAccess(session!.user.id, activeLevel, session!.user.role));
 
   // Fetch courses + progress for the active level (guests have no progress)
   const [coursesRes, progressRes] = await Promise.all([

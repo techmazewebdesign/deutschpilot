@@ -50,6 +50,9 @@ const navLinks = [
   { href: "/about", key: "about" },
 ];
 
+// English-only for now — flip back to true to re-enable the language switcher.
+const SHOW_LANGUAGE_SWITCHER = false;
+
 const languages = [
   { code: "en", name: "English" },
   { code: "de", name: "Deutsch" },
@@ -142,6 +145,7 @@ export function Navigation() {
           {/* Right side */}
           <div className="hidden lg:flex items-center gap-4">
             {/* Language dropdown */}
+            {SHOW_LANGUAGE_SWITCHER && (
             <div className="relative" ref={langRef}>
               <button
                 onClick={() => setLangOpen(!langOpen)}
@@ -169,6 +173,7 @@ export function Navigation() {
                 </div>
               )}
             </div>
+            )}
 
             {!loading && user ? (
               <>
@@ -222,6 +227,7 @@ export function Navigation() {
                 ))}
 
                 {/* Language switcher in mobile */}
+                {SHOW_LANGUAGE_SWITCHER && (
                 <div className="border-t border-white/10 pt-4">
                   <p className="text-[10px] text-white/40 uppercase tracking-widest mb-3">Language</p>
                   <div className="grid grid-cols-2 gap-2">
@@ -242,6 +248,7 @@ export function Navigation() {
                     ))}
                   </div>
                 </div>
+                )}
 
                 <div className="border-t border-white/10 pt-4 flex flex-col gap-3">
                   {!loading && user ? (

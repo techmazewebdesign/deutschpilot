@@ -81,7 +81,7 @@ export default async function RoomDetailPage({
   const userName =
     session.user.name ?? session.user.email?.split("@")[0] ?? "Student";
 
-  const entitled = await hasLevelAccess(session.user.id, course.level);
+  const entitled = await hasLevelAccess(session.user.id, course.level, session.user.role);
   if (!entitled) {
     return (
       <AppLayout locale={locale} userName={userName}>
