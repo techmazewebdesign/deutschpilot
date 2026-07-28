@@ -41,6 +41,12 @@ import { article as pronunciation } from "./magazine-articles/german-pronunciati
 import { article as c1Exam } from "./magazine-articles/german-c1-exam-guide";
 import { article as twoWayPrepositions } from "./magazine-articles/german-two-way-prepositions";
 import { article as businessGerman } from "./magazine-articles/business-german-guide";
+import { article as separableVerbs } from "./magazine-articles/german-separable-verbs";
+import { article as adjectiveEndings } from "./magazine-articles/german-adjective-endings";
+import { article as passiveVoice } from "./magazine-articles/german-passive-voice";
+import { article as rentingGuide } from "./magazine-articles/renting-apartment-germany-guide";
+import { article as diminutives } from "./magazine-articles/german-diminutives-chen-lein";
+import { article as officePhrases } from "./magazine-articles/office-german-phrases";
 
 export const articles: MagazineArticle[] = [
   howLong,
@@ -67,6 +73,12 @@ export const articles: MagazineArticle[] = [
   c1Exam,
   twoWayPrepositions,
   businessGerman,
+  separableVerbs,
+  adjectiveEndings,
+  passiveVoice,
+  rentingGuide,
+  diminutives,
+  officePhrases,
 ].sort((a, b) => (a.date < b.date ? 1 : -1));
 
 export function getArticle(slug: string): MagazineArticle | undefined {

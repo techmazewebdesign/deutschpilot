@@ -17,7 +17,9 @@ export type DrivingQuestion = {
   explanation_en: string | null;
 };
 
-export function DrivingTheoryClient({ questions, locale }: { questions: DrivingQuestion[]; locale: string }) {
+export function DrivingTheoryClient({
+  questions, locale, licenseClass = "B",
+}: { questions: DrivingQuestion[]; locale: string; licenseClass?: string }) {
   const de = locale === "de";
   const [started, setStarted] = useState(false);
   const [index, setIndex] = useState(0);
@@ -74,7 +76,7 @@ export function DrivingTheoryClient({ questions, locale }: { questions: DrivingQ
             <Car className="h-6 w-6 text-[#E0B873]" />
           </div>
           <p className="text-xs font-medium tracking-wider text-[#CEA66F] uppercase mb-3">
-            {de ? "Klasse B" : "Class B"}
+            {de ? `Klasse ${licenseClass}` : `Class ${licenseClass}`}
           </p>
           <h1 className="text-4xl sm:text-5xl font-serif font-bold text-white mb-5">
             {de ? "Führerschein Theorie üben" : "Practice Driving Theory"}
