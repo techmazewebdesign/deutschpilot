@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useTranslations } from "next-intl";
@@ -18,18 +19,14 @@ export function Footer() {
           {/* Brand */}
           <div className="col-span-2 md:col-span-1">
             <Link href={`/${locale}`} className="flex items-center gap-2 mb-4">
-              <div className="flex h-8 w-8 items-center justify-center rounded bg-gold">
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  className="h-5 w-5 text-navy-900"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                >
-                  <path d="M12 2L2 7l10 5 10-5-10-5z" />
-                  <path d="M2 17l10 5 10-5" />
-                  <path d="M2 12l10 5 10-5" />
-                </svg>
+              <div style={{ mixBlendMode: "screen" }} className="flex-shrink-0">
+                <Image
+                  src="/Images/Deurschpilot_logo.png"
+                  alt=""
+                  width={44}
+                  height={44}
+                  className="h-8 w-8 object-contain"
+                />
               </div>
               <div className="flex flex-col">
                 <span className="text-sm font-bold tracking-wider text-white uppercase">

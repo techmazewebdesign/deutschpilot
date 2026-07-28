@@ -64,9 +64,12 @@ export function AppSidebar({ locale, userName, userLevel }: Props) {
   ];
 
   const adminNav: NavItem[] = [
-    { href: `/${locale}/admin`, icon: Shield, labelDe: "Admin", labelEn: "Admin" },
+    { href: `/${locale}/admin`, icon: Shield, labelDe: "Admin-Dashboard", labelEn: "Admin Dashboard" },
+    { href: `/${locale}/student/dashboard`, icon: GraduationCap, labelDe: "Benutzer-Dashboard", labelEn: "User Dashboard" },
+    { href: `/${locale}`, icon: Home, labelDe: "Hauptseite", labelEn: "Main Page" },
     { href: `/${locale}/rooms`, icon: BookMarked, labelDe: "Lernräume", labelEn: "Learning Rooms" },
     { href: `/${locale}/courses`, icon: BookOpen, labelDe: "Kurse", labelEn: "Courses" },
+    { href: `/${locale}/ai-trainer`, icon: MessageSquare, labelDe: "KI-Trainer", labelEn: "AI Trainer" },
   ];
 
   const toolsNav: NavItem[] = [
@@ -84,8 +87,8 @@ export function AppSidebar({ locale, userName, userLevel }: Props) {
     role === "admin"
       ? [
           { href: `/${locale}/admin`, icon: Shield, labelDe: "Admin", labelEn: "Admin" },
-          { href: `/${locale}/rooms`, icon: BookMarked, labelDe: "Räume", labelEn: "Rooms" },
-          { href: `/${locale}/courses`, icon: BookOpen, labelDe: "Kurse", labelEn: "Courses" },
+          { href: `/${locale}/student/dashboard`, icon: GraduationCap, labelDe: "Benutzer", labelEn: "User" },
+          { href: `/${locale}`, icon: Home, labelDe: "Hauptseite", labelEn: "Main" },
           { href: `/${locale}/ai-trainer`, icon: MessageSquare, labelDe: "Trainer", labelEn: "Trainer" },
         ]
       : role === "teacher"
@@ -150,7 +153,7 @@ export function AppSidebar({ locale, userName, userLevel }: Props) {
       <div className="px-5 py-5 border-b border-white/5">
         <Link href={`/${locale}`} className="flex items-center gap-2.5" onClick={onLinkClick}>
           <div className="flex-shrink-0 rounded-lg bg-[#E0B873]/10 p-1.5 border border-[#E0B873]/20">
-            <Image src="/Images/Logo.PNG" alt="DeutschPilot" width={24} height={24} className="h-6 w-6 object-contain" />
+            <Image src="/Images/Deurschpilot_logo.png" alt="DeutschPilot" width={24} height={24} className="h-6 w-6 object-contain" />
           </div>
           <div className="flex flex-col leading-none">
             <span className="text-[11px] font-bold tracking-[0.18em] text-white uppercase">DeutschPilot</span>
@@ -245,7 +248,7 @@ export function AppSidebar({ locale, userName, userLevel }: Props) {
       <header className="lg:hidden sticky top-0 z-40 flex items-center justify-between px-5 py-3.5 bg-[#071424]/95 backdrop-blur-md border-b border-white/5">
         <Link href={`/${locale}`} className="flex items-center gap-2">
           <div className="rounded-md bg-[#E0B873]/10 p-1 border border-[#E0B873]/20">
-            <Image src="/Images/Logo.PNG" alt="" width={20} height={20} className="h-5 w-5 object-contain" />
+            <Image src="/Images/Deurschpilot_logo.png" alt="" width={20} height={20} className="h-5 w-5 object-contain" />
           </div>
           <span className="text-[11px] font-bold tracking-[0.18em] text-white uppercase">DeutschPilot</span>
         </Link>

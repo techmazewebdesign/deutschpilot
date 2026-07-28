@@ -37,6 +37,15 @@ export default async function LoginPage({ params }: { params: { locale: string }
 
         {/* Logo */}
         <Link href={`/${locale}`} className="relative z-10 flex items-center gap-2">
+          <div style={{ mixBlendMode: "screen" }} className="flex-shrink-0">
+            <Image
+              src="/Images/Deurschpilot_logo.png"
+              alt=""
+              width={44}
+              height={44}
+              className="h-8 w-8 object-contain"
+            />
+          </div>
           <div className="flex flex-col leading-none">
             <span className="text-[15px] font-bold tracking-[0.18em] text-white uppercase">DeutschPilot</span>
             <span className="text-[9px] tracking-[0.22em] text-[#CEA66F] uppercase mt-[2px]">Sprache. Zukunft. Du.</span>
@@ -59,6 +68,15 @@ export default async function LoginPage({ params }: { params: { locale: string }
         {/* Mobile logo */}
         <div className="lg:hidden p-6 border-b border-white/5">
           <Link href={`/${locale}`} className="flex items-center gap-2">
+            <div style={{ mixBlendMode: "screen" }} className="flex-shrink-0">
+              <Image
+                src="/Images/Deurschpilot_logo.png"
+                alt=""
+                width={32}
+                height={32}
+                className="h-6 w-6 object-contain"
+              />
+            </div>
             <span className="text-[13px] font-bold tracking-[0.18em] text-white uppercase">DeutschPilot</span>
           </Link>
         </div>
