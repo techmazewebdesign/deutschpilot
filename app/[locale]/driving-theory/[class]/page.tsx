@@ -4,6 +4,7 @@ import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
 import { PlaceholderPage } from "@/components/placeholder-page";
 import { isPlaceholderLocale } from "@/i18n";
+import { auth } from "@/lib/auth";
 import { createServerSupabaseClient } from "@/lib/supabaseServer";
 import { DrivingTheoryClient, type DrivingQuestion } from "@/components/driving-theory/driving-theory-client";
 
@@ -44,6 +45,9 @@ export default async function DrivingTheoryClassPage({
   const licenseClass = params.class.toUpperCase();
   if (!CLASSES.includes(licenseClass as (typeof CLASSES)[number])) notFound();
 
+  const session = await auth();
+  const isGuest = !session?.user;
+
   const supabase = createServerSupabaseClient();
   const { data } = await supabase
     .from("driving_theory_questions")
@@ -56,7 +60,7 @@ export default async function DrivingTheoryClassPage({
   return (
     <>
       <Navigation />
-      <DrivingTheoryClient questions={questions} locale={locale} licenseClass={licenseClass} />
+      <DrivingTheoryClient questions={questions} locale={locale} licenseClass={licenseClass} isGuest={isGuest} />
       <Footer />
     </>
   );

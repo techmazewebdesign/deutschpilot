@@ -39,10 +39,10 @@ const ROOM_META: Record<Level, { slug: string; icon: React.ElementType; titleDE:
   A1: [
     { slug: "greetings", icon: Users, titleDE: "Begrüßungen & Vorstellungen", titleEN: "Greetings & Introductions", descDE: "Erste Kontakte knüpfen, sich vorstellen, grüßen.", descEN: "Make first contacts, introduce yourself, greet others." },
     { slug: "numbers-time", icon: Clock, titleDE: "Zahlen, Zeit & Datum", titleEN: "Numbers, Time & Dates", descDE: "Zahlen, Uhrzeit, Datum und Wochentage auf Deutsch.", descEN: "Numbers, clock time, dates, and days of the week." },
-    { slug: "family-life", icon: Users, titleDE: "Familie & Persönliches Leben", titleEN: "Family & Personal Life", descDE: "Familie beschreiben, Hobbys und persönliche Informationen teilen.", descEN: "Describe family, share hobbies and personal information." },
+    { slug: "a1-family-life", icon: Users, titleDE: "Familie & Persönliches Leben", titleEN: "Family & Personal Life", descDE: "Familie beschreiben, Hobbys und persönliche Informationen teilen.", descEN: "Describe family, share hobbies and personal information." },
     { slug: "shopping", icon: ShoppingBag, titleDE: "Einkaufen & Alltag", titleEN: "Shopping & Daily Needs", descDE: "Im Supermarkt, Preise verstehen, nach Produkten fragen.", descEN: "At the supermarket, understand prices, ask for products." },
-    { slug: "city-transport", icon: MapPin, titleDE: "Stadt, Transport & Wegbeschreibung", titleEN: "City, Transport & Directions", descDE: "Sich in der Stadt zurechtfinden, öffentliche Verkehrsmittel nutzen.", descEN: "Navigate the city, use public transport, ask for directions." },
-    { slug: "real-life", icon: Stethoscope, titleDE: "Arzt, Büro & Alltag", titleEN: "Doctor, Office & Real Life", descDE: "Beim Arzt, im Büro und in alltäglichen Situationen kommunizieren.", descEN: "Communicate at the doctor, office and everyday situations." },
+    { slug: "a1-food-restaurants", icon: MapPin, titleDE: "Essen & Restaurants", titleEN: "Food & Restaurants", descDE: "Mahlzeiten benennen, im Restaurant bestellen, über Vorlieben sprechen.", descEN: "Name meals, order in a restaurant, talk about food preferences." },
+    { slug: "a1-getting-around", icon: Stethoscope, titleDE: "Unterwegs in der Stadt", titleEN: "Getting Around", descDE: "Nach dem Weg fragen, öffentliche Verkehrsmittel nutzen, Reisen planen.", descEN: "Ask for directions, use public transport, and plan a trip." },
   ],
   A2: [
     { slug: "daily-routines-a2", icon: Clock, titleDE: "Alltag & Tagesablauf", titleEN: "Daily Life & Routines", descDE: "Reflexive und trennbare Verben, Häufigkeit und präzise Zeitangaben.", descEN: "Reflexive and separable verbs, frequency, and precise time expressions." },

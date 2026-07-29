@@ -1,4 +1,4 @@
-import { redirect, notFound } from "next/navigation";
+import { notFound } from "next/navigation";
 import { auth } from "@/lib/auth";
 import { createServerSupabaseClient } from "@/lib/supabaseServer";
 import { isPlaceholderLocale } from "@/i18n";
@@ -53,7 +53,7 @@ export default async function MockExamPage({
   if (!MOCK_EXAM_LEVELS.includes(level as MockExamLevel)) notFound();
 
   const session = await auth();
-  if (!session?.user) redirect(`/${locale}/signin`);
+  const isGuest = !session?.user;
 
   const supabase = createServerSupabaseClient();
   const slugPrefix = level.toLowerCase();
@@ -157,7 +157,7 @@ export default async function MockExamPage({
   return (
     <>
       <Navigation />
-      <MockExamClient data={examData} />
+      <MockExamClient data={examData} isGuest={isGuest} />
       <Footer />
     </>
   );

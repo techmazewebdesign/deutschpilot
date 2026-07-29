@@ -1,310 +1,295 @@
--- A1 Room 06 – Getting Around
+-- A1 Room 06 – Getting Around (fixed: HTML content, escaped apostrophes,
+-- corrected Lesson 4 column list — was missing slug, had spurious is_published)
 -- Course ID: a0000000-0000-0000-0000-000000000006
 
-INSERT INTO courses (id, slug, title, description, level, language, is_published, created_at)
+INSERT INTO public.courses (id, slug, title, description, level, language, is_published, created_at)
 VALUES (
   'a0000000-0000-0000-0000-000000000006',
   'a1-getting-around',
   'A1 Room 06 – Getting Around',
-  'Learn to ask for directions, use public transport, talk about places in the city, and describe locations.',
+  'Learn to name places in the city, ask for directions, use public transport, and describe locations with prepositions.',
   'A1', 'de', true, NOW()
 ) ON CONFLICT (id) DO NOTHING;
 
 -- Lesson 1: Orte in der Stadt
-INSERT INTO lessons (id, course_id, slug, title, content, order_index)
+INSERT INTO public.lessons (id, course_id, slug, title, content, order_index, created_at)
 VALUES (
   'a0000000-0000-0000-0006-000000000001',
   'a0000000-0000-0000-0000-000000000006',
   'orte-in-der-stadt',
   'Orte in der Stadt',
-  '# Orte in der Stadt
-
-## Places in the City
-
-| German | English |
-|--------|---------|
-| der Bahnhof | train station |
-| der Flughafen | airport |
-| die Bushaltestelle | bus stop |
-| das Krankenhaus | hospital |
-| die Apotheke | pharmacy |
-| der Supermarkt | supermarket |
-| die Bank | bank |
-| das Hotel | hotel |
-| die Schule | school |
-| das Rathaus | town hall |
-| der Park | park |
-| die Kirche | church |
-
-## Asking About Places
-
-- Wo ist ...? (Where is ...?)
-- Wo ist der Bahnhof? (Where is the train station?)
-- Gibt es hier eine Apotheke? (Is there a pharmacy here?)
-- Wie weit ist es bis ...? (How far is it to ...?)',
-  1
+  '<h2>Orte in der Stadt</h2>
+<h3>Places in the City</h3>
+<table>
+<thead><tr><th>German</th><th>English</th></tr></thead>
+<tbody>
+<tr><td>der Bahnhof</td><td>train station</td></tr>
+<tr><td>die Post</td><td>post office</td></tr>
+<tr><td>das Krankenhaus</td><td>hospital</td></tr>
+<tr><td>die Bank</td><td>bank</td></tr>
+<tr><td>der Supermarkt</td><td>supermarket</td></tr>
+<tr><td>die Apotheke</td><td>pharmacy</td></tr>
+<tr><td>der Park</td><td>park</td></tr>
+<tr><td>das Museum</td><td>museum</td></tr>
+</tbody>
+</table>
+<h3>Talking About Places</h3>
+<ul>
+<li>Wo ist der Bahnhof? (Where is the train station?)</li>
+<li>Es gibt hier eine Apotheke. (There is a pharmacy here.)</li>
+<li>Ich gehe zur Post. (I am going to the post office.)</li>
+</ul>',
+  1, NOW()
 ) ON CONFLICT (id) DO NOTHING;
 
-INSERT INTO exercises (id, lesson_id, type, question, options, correct_answer)
+INSERT INTO public.exercises (id, lesson_id, type, question, options, correct_answer, created_at)
 VALUES
   ('a0000000-0000-0006-0001-000000000001', 'a0000000-0000-0000-0006-000000000001', 'multiple_choice',
-   'What is "der Bahnhof"?',
-   '["train station","airport","bus stop","hospital"]', 'train station'),
+   'How do you say "train station" in German?',
+   '["der Bahnhof","die Post","der Park","das Museum"]'::jsonb, 'der Bahnhof', NOW()),
   ('a0000000-0000-0006-0001-000000000002', 'a0000000-0000-0000-0006-000000000001', 'multiple_choice',
-   'How do you ask "Where is the bank?"',
-   '["Wo ist die Bank?","Was ist die Bank?","Wo gibt es eine Bank?","Wie weit ist die Bank?"]', 'Wo ist die Bank?'),
+   'What is "die Apotheke" in English?',
+   '["pharmacy","bank","hospital","supermarket"]'::jsonb, 'pharmacy', NOW()),
   ('a0000000-0000-0006-0001-000000000003', 'a0000000-0000-0000-0006-000000000001', 'fill_blank',
-   'Translate "pharmacy" into German.',
-   null, 'die Apotheke'),
+   'Complete: Wo ist der ___? (train station)',
+   null, 'Bahnhof', NOW()),
   ('a0000000-0000-0006-0001-000000000004', 'a0000000-0000-0000-0006-000000000001', 'word_order',
-   'Arrange: "Is there a hotel here?"',
-   '["Gibt","es","hier","ein","Hotel","?"]', 'Gibt es hier ein Hotel ?')
+   'Arrange: "I am going to the post office."',
+   '["Ich","gehe","zur","Post","."]'::jsonb, 'Ich gehe zur Post .', NOW())
 ON CONFLICT (id) DO NOTHING;
 
 -- Lesson 2: Nach dem Weg fragen
-INSERT INTO lessons (id, course_id, slug, title, content, order_index)
+INSERT INTO public.lessons (id, course_id, slug, title, content, order_index, created_at)
 VALUES (
   'a0000000-0000-0000-0006-000000000002',
   'a0000000-0000-0000-0000-000000000006',
   'nach-dem-weg-fragen',
   'Nach dem Weg fragen',
-  '# Nach dem Weg fragen
-
-## Asking for Directions
-
-- Entschuldigung, wie komme ich zum Bahnhof? (Excuse me, how do I get to the train station?)
-- Können Sie mir helfen? (Can you help me?)
-- Ich suche die Apotheke. (I am looking for the pharmacy.)
-
-## Giving Directions
-
-| German | English |
-|--------|---------|
-| geradeaus | straight ahead |
-| links | left |
-| rechts | right |
-| die erste Straße links | the first street on the left |
-| die zweite Straße rechts | the second street on the right |
-| an der Ampel | at the traffic lights |
-| gegenüber | opposite |
-| neben | next to |
-
-## Examples
-
-- Gehen Sie **geradeaus**, dann **links**. (Go straight ahead, then left.)
-- Die Bank ist **gegenüber** dem Hotel. (The bank is opposite the hotel.)
-- Der Supermarkt ist **neben** der Kirche. (The supermarket is next to the church.)',
-  2
+  '<h2>Nach dem Weg fragen</h2>
+<h3>Asking for Directions</h3>
+<ul>
+<li>Entschuldigung, wo ist der Bahnhof? (Excuse me, where is the train station?)</li>
+<li>Wie komme ich zur Bank? (How do I get to the bank?)</li>
+<li>Ist das weit von hier? (Is that far from here?)</li>
+</ul>
+<h3>Giving Directions</h3>
+<ul>
+<li>Gehen Sie geradeaus. (Go straight ahead.)</li>
+<li>Biegen Sie links/rechts ab. (Turn left/right.)</li>
+<li>Es ist neben der Post. (It is next to the post office.)</li>
+<li>Es ist gegenüber vom Park. (It is across from the park.)</li>
+<li>Das ist nicht weit. (That is not far.)</li>
+</ul>
+<h3>A Short Dialogue</h3>
+<p><strong>Tourist:</strong> Entschuldigung, wie komme ich zum Museum? (Excuse me, how do I get to the museum?)<br>
+<strong>Passant:</strong> Gehen Sie geradeaus und dann links. Es ist neben der Bank. (Go straight ahead and then left. It is next to the bank.)<br>
+<strong>Tourist:</strong> Vielen Dank! (Thank you very much!)</p>',
+  2, NOW()
 ) ON CONFLICT (id) DO NOTHING;
 
-INSERT INTO exercises (id, lesson_id, type, question, options, correct_answer)
+INSERT INTO public.exercises (id, lesson_id, type, question, options, correct_answer, created_at)
 VALUES
   ('a0000000-0000-0006-0002-000000000001', 'a0000000-0000-0000-0006-000000000002', 'multiple_choice',
-   'What does "geradeaus" mean?',
-   '["straight ahead","left","right","opposite"]', 'straight ahead'),
+   'How do you ask "How do I get to the bank?"',
+   '["Wie komme ich zur Bank?","Wo wohnst du?","Was ist die Bank?","Hast du eine Bank?"]'::jsonb, 'Wie komme ich zur Bank?', NOW()),
   ('a0000000-0000-0006-0002-000000000002', 'a0000000-0000-0000-0006-000000000002', 'multiple_choice',
-   'How do you say "next to" in German?',
-   '["neben","gegenüber","links","rechts"]', 'neben'),
+   'What does "Gehen Sie geradeaus" mean?',
+   '["Go straight ahead.","Turn left.","Turn right.","Stop here."]'::jsonb, 'Go straight ahead.', NOW()),
   ('a0000000-0000-0006-0002-000000000003', 'a0000000-0000-0000-0006-000000000002', 'fill_blank',
-   'Complete: Gehen Sie ___, dann links. (straight ahead)',
-   null, 'geradeaus'),
+   'Complete: Biegen Sie ___ ab. (turn left)',
+   null, 'links', NOW()),
   ('a0000000-0000-0006-0002-000000000004', 'a0000000-0000-0000-0006-000000000002', 'word_order',
-   'Arrange: "The bank is opposite the hotel."',
-   '["Die","Bank","ist","gegenüber","dem","Hotel","."]', 'Die Bank ist gegenüber dem Hotel .')
+   'Arrange: "It is next to the post office."',
+   '["Es","ist","neben","der","Post","."]'::jsonb, 'Es ist neben der Post .', NOW())
 ON CONFLICT (id) DO NOTHING;
 
 -- Lesson 3: Öffentliche Verkehrsmittel
-INSERT INTO lessons (id, course_id, slug, title, content, order_index)
+INSERT INTO public.lessons (id, course_id, slug, title, content, order_index, created_at)
 VALUES (
   'a0000000-0000-0000-0006-000000000003',
   'a0000000-0000-0000-0000-000000000006',
   'oeffentliche-verkehrsmittel',
   'Öffentliche Verkehrsmittel',
-  '# Öffentliche Verkehrsmittel
-
-## Public Transport Vocabulary
-
-| German | English |
-|--------|---------|
-| der Bus | bus |
-| die U-Bahn | underground / subway |
-| die S-Bahn | suburban train |
-| der Zug | train |
-| die Straßenbahn | tram |
-| das Ticket / die Fahrkarte | ticket |
-| die Haltestelle | stop |
-| einsteigen | to get on |
-| aussteigen | to get off |
-| umsteigen | to change (transport) |
-
-## Buying a Ticket
-
-- Ich möchte eine Fahrkarte nach Berlin. (I would like a ticket to Berlin.)
-- Einmal hin und zurück, bitte. (One return ticket, please.)
-- Einmal einfach nach München. (One single to Munich.)
-- Welcher Zug fährt nach Hamburg? (Which train goes to Hamburg?)',
-  3
+  '<h2>Öffentliche Verkehrsmittel</h2>
+<h3>Public Transport Vocabulary</h3>
+<table>
+<thead><tr><th>German</th><th>English</th></tr></thead>
+<tbody>
+<tr><td>der Bus</td><td>bus</td></tr>
+<tr><td>die Bahn / der Zug</td><td>train</td></tr>
+<tr><td>die U-Bahn</td><td>subway / metro</td></tr>
+<tr><td>die Straßenbahn</td><td>tram</td></tr>
+<tr><td>die Haltestelle</td><td>bus/tram stop</td></tr>
+<tr><td>der Fahrschein / das Ticket</td><td>ticket</td></tr>
+</tbody>
+</table>
+<h3>Useful Phrases</h3>
+<ul>
+<li>Wo ist die nächste Haltestelle? (Where is the nearest stop?)</li>
+<li>Welcher Bus fährt zum Bahnhof? (Which bus goes to the train station?)</li>
+<li>Ich brauche ein Ticket, bitte. (I need a ticket, please.)</li>
+<li>Wann fährt der nächste Zug? (When does the next train leave?)</li>
+</ul>',
+  3, NOW()
 ) ON CONFLICT (id) DO NOTHING;
 
-INSERT INTO exercises (id, lesson_id, type, question, options, correct_answer)
+INSERT INTO public.exercises (id, lesson_id, type, question, options, correct_answer, created_at)
 VALUES
   ('a0000000-0000-0006-0003-000000000001', 'a0000000-0000-0000-0006-000000000003', 'multiple_choice',
-   'What is "die U-Bahn"?',
-   '["underground / subway","bus","tram","suburban train"]', 'underground / subway'),
+   'How do you say "subway/metro" in German?',
+   '["die U-Bahn","der Bus","die Bahn","die Straßenbahn"]'::jsonb, 'die U-Bahn', NOW()),
   ('a0000000-0000-0006-0003-000000000002', 'a0000000-0000-0000-0006-000000000003', 'multiple_choice',
-   'What does "umsteigen" mean?',
-   '["to change (transport)","to get on","to get off","to arrive"]', 'to change (transport)'),
+   'What is "die Haltestelle"?',
+   '["bus/tram stop","train station","ticket","bus"]'::jsonb, 'bus/tram stop', NOW()),
   ('a0000000-0000-0006-0003-000000000003', 'a0000000-0000-0000-0006-000000000003', 'fill_blank',
-   'Complete: Einmal ___ und zurück, bitte. (one return)',
-   null, 'hin'),
+   'Complete: Ich brauche ein ___, bitte. (ticket)',
+   null, 'Ticket', NOW()),
   ('a0000000-0000-0006-0003-000000000004', 'a0000000-0000-0000-0006-000000000003', 'word_order',
-   'Arrange: "I would like a ticket to Berlin."',
-   '["Ich","möchte","eine","Fahrkarte","nach","Berlin","."]', 'Ich möchte eine Fahrkarte nach Berlin .')
+   'Arrange: "When does the next train leave?"',
+   '["Wann","fährt","der","nächste","Zug","?"]'::jsonb, 'Wann fährt der nächste Zug ?', NOW())
 ON CONFLICT (id) DO NOTHING;
 
--- Lesson 4: Präpositionen des Ortes
-INSERT INTO lessons (id, course_id, title, content, order_index, is_published)
+-- Lesson 4: Präpositionen des Ortes (column list fixed: slug added, is_published removed)
+INSERT INTO public.lessons (id, course_id, slug, title, content, order_index, created_at)
 VALUES (
   'a0000000-0000-0000-0006-000000000004',
   'a0000000-0000-0000-0000-000000000006',
+  'praepositionen-des-ortes',
   'Präpositionen des Ortes',
-  '# Präpositionen des Ortes
-
-## Location Prepositions (with dative)
-
-| German | English | Example |
-|--------|---------|---------|
-| in | in | Das Buch ist **im** (in dem) Regal. |
-| an | at / on | Das Bild ist **an der** Wand. |
-| auf | on (top of) | Die Tasse ist **auf dem** Tisch. |
-| unter | under | Die Katze ist **unter dem** Bett. |
-| über | above | Das Licht ist **über dem** Tisch. |
-| neben | next to | Die Lampe ist **neben dem** Sofa. |
-| zwischen | between | Der Stuhl ist **zwischen** dem Tisch und der Wand. |
-| vor | in front of | Das Auto ist **vor dem** Haus. |
-| hinter | behind | Der Garten ist **hinter dem** Haus. |
-
-## Contractions
-
-- in + dem = **im**
-- an + dem = **am**
-- zu + dem = **zum**
-- zu + der = **zur**',
-  4
+  '<h2>Präpositionen des Ortes</h2>
+<h3>Prepositions of Place</h3>
+<table>
+<thead><tr><th>German</th><th>English</th></tr></thead>
+<tbody>
+<tr><td>neben</td><td>next to</td></tr>
+<tr><td>zwischen</td><td>between</td></tr>
+<tr><td>gegenüber</td><td>across from / opposite</td></tr>
+<tr><td>vor</td><td>in front of</td></tr>
+<tr><td>hinter</td><td>behind</td></tr>
+<tr><td>in</td><td>in</td></tr>
+<tr><td>auf</td><td>on</td></tr>
+</tbody>
+</table>
+<h3>Examples (Dative case for location)</h3>
+<ul>
+<li>Die Bank ist <strong>neben der</strong> Post. (The bank is next to the post office.)</li>
+<li>Der Park ist <strong>zwischen dem</strong> Museum und <strong>der</strong> Bank. (The park is between the museum and the bank.)</li>
+<li>Das Café ist <strong>gegenüber vom</strong> Bahnhof. (The café is across from the train station.)</li>
+<li>Die Haltestelle ist <strong>vor dem</strong> Supermarkt. (The stop is in front of the supermarket.)</li>
+</ul>
+<h3>Note</h3>
+<p>When describing a fixed location (not motion), these prepositions take the dative case: <em>der → dem</em>, <em>die → der</em>, <em>das → dem</em>.</p>',
+  4, NOW()
 ) ON CONFLICT (id) DO NOTHING;
 
-INSERT INTO exercises (id, lesson_id, type, question, options, correct_answer)
+INSERT INTO public.exercises (id, lesson_id, type, question, options, correct_answer, created_at)
 VALUES
   ('a0000000-0000-0006-0004-000000000001', 'a0000000-0000-0000-0006-000000000004', 'multiple_choice',
-   'What does "hinter" mean?',
-   '["behind","in front of","next to","between"]', 'behind'),
+   'How do you say "between" in German?',
+   '["zwischen","neben","hinter","vor"]'::jsonb, 'zwischen', NOW()),
   ('a0000000-0000-0006-0004-000000000002', 'a0000000-0000-0000-0006-000000000004', 'multiple_choice',
-   'Complete: Die Tasse ist ___ dem Tisch. (on the table)',
-   '["auf","unter","an","in"]', 'auf'),
+   'What does "gegenüber" mean?',
+   '["across from","behind","in front of","in"]'::jsonb, 'across from', NOW()),
   ('a0000000-0000-0006-0004-000000000003', 'a0000000-0000-0000-0006-000000000004', 'fill_blank',
-   'Complete: in + dem = ___',
-   null, 'im'),
+   'Complete: Die Bank ist ___ der Post. (next to)',
+   null, 'neben', NOW()),
   ('a0000000-0000-0006-0004-000000000004', 'a0000000-0000-0000-0006-000000000004', 'word_order',
-   'Arrange: "The cat is under the bed."',
-   '["Die","Katze","ist","unter","dem","Bett","."]', 'Die Katze ist unter dem Bett .')
+   'Arrange: "The stop is in front of the supermarket."',
+   '["Die","Haltestelle","ist","vor","dem","Supermarkt","."]'::jsonb, 'Die Haltestelle ist vor dem Supermarkt .', NOW())
 ON CONFLICT (id) DO NOTHING;
 
 -- Lesson 5: Reisen planen
-INSERT INTO lessons (id, course_id, slug, title, content, order_index)
+INSERT INTO public.lessons (id, course_id, slug, title, content, order_index, created_at)
 VALUES (
   'a0000000-0000-0000-0006-000000000005',
   'a0000000-0000-0000-0000-000000000006',
   'reisen-planen',
   'Reisen planen',
-  '# Reisen planen
-
-## Planning a Trip
-
-- Wohin möchtest du reisen? (Where would you like to travel?)
-- Ich möchte nach **Berlin** reisen. (I would like to travel to Berlin.)
-- Wann fährt der Zug ab? (When does the train leave?)
-- Der Zug fährt um **14 Uhr** ab. (The train leaves at 2 pm.)
-- Wie lange dauert die Fahrt? (How long does the journey take?)
-- Die Fahrt dauert **zwei Stunden**. (The journey takes two hours.)
-
-## Useful Vocabulary
-
-| German | English |
-|--------|---------|
-| die Reise | journey / trip |
-| der Urlaub | holiday |
-| die Unterkunft | accommodation |
-| ankommen | to arrive |
-| abfahren | to depart |
-| buchen | to book |
-| der Koffer | suitcase |
-| der Reisepass | passport |
-
-## At the Hotel
-
-- Ich habe eine Reservierung. (I have a reservation.)
-- Ein Einzelzimmer / Doppelzimmer, bitte. (A single / double room, please.)
-- Bis wann ist Check-out? (What time is check-out?)',
-  5
+  '<h2>Reisen planen</h2>
+<h3>Planning a Trip</h3>
+<ul>
+<li>Ich möchte nach Berlin fahren. (I would like to travel to Berlin.)</li>
+<li>Wann fährt der Zug ab? (When does the train depart?)</li>
+<li>Muss ich umsteigen? (Do I have to change/transfer?)</li>
+<li>Ich brauche eine Hin- und Rückfahrkarte. (I need a round-trip ticket.)</li>
+</ul>
+<h3>Vocabulary</h3>
+<table>
+<thead><tr><th>German</th><th>English</th></tr></thead>
+<tbody>
+<tr><td>die Abfahrt</td><td>departure</td></tr>
+<tr><td>die Ankunft</td><td>arrival</td></tr>
+<tr><td>umsteigen</td><td>to change/transfer</td></tr>
+<tr><td>die Hinfahrt</td><td>outbound trip</td></tr>
+<tr><td>die Rückfahrt</td><td>return trip</td></tr>
+<tr><td>der Fahrplan</td><td>timetable</td></tr>
+</tbody>
+</table>
+<h3>A Short Dialogue</h3>
+<p><strong>Reisender:</strong> Ich möchte eine Fahrkarte nach München, bitte. (I would like a ticket to Munich, please.)<br>
+<strong>Beamter:</strong> Hin- und Rückfahrt oder nur Hinfahrt? (Round trip or one-way?)<br>
+<strong>Reisender:</strong> Hin- und Rückfahrt, bitte. Muss ich umsteigen? (Round trip, please. Do I have to transfer?)<br>
+<strong>Beamter:</strong> Nein, der Zug fährt direkt. (No, the train goes direct.)</p>',
+  5, NOW()
 ) ON CONFLICT (id) DO NOTHING;
 
-INSERT INTO exercises (id, lesson_id, type, question, options, correct_answer)
+INSERT INTO public.exercises (id, lesson_id, type, question, options, correct_answer, created_at)
 VALUES
   ('a0000000-0000-0006-0005-000000000001', 'a0000000-0000-0000-0006-000000000005', 'multiple_choice',
-   'What does "abfahren" mean?',
-   '["to depart","to arrive","to book","to pack"]', 'to depart'),
+   'How do you say "departure" in German?',
+   '["die Abfahrt","die Ankunft","der Fahrplan","die Rückfahrt"]'::jsonb, 'die Abfahrt', NOW()),
   ('a0000000-0000-0006-0005-000000000002', 'a0000000-0000-0000-0006-000000000005', 'multiple_choice',
-   'How do you say "passport" in German?',
-   '["der Reisepass","der Koffer","die Reise","der Urlaub"]', 'der Reisepass'),
+   'What does "umsteigen" mean?',
+   '["to change/transfer","to depart","to arrive","to buy a ticket"]'::jsonb, 'to change/transfer', NOW()),
   ('a0000000-0000-0006-0005-000000000003', 'a0000000-0000-0000-0006-000000000005', 'fill_blank',
-   'Complete: Die Fahrt ___ zwei Stunden. (takes)',
-   null, 'dauert'),
+   'Complete: Muss ich ___? (transfer)',
+   null, 'umsteigen', NOW()),
   ('a0000000-0000-0006-0005-000000000004', 'a0000000-0000-0000-0006-000000000005', 'word_order',
-   'Arrange: "I would like to travel to Munich."',
-   '["Ich","möchte","nach","München","reisen","."]', 'Ich möchte nach München reisen .')
+   'Arrange: "I would like to travel to Berlin."',
+   '["Ich","möchte","nach","Berlin","fahren","."]'::jsonb, 'Ich möchte nach Berlin fahren .', NOW())
 ON CONFLICT (id) DO NOTHING;
 
 -- Quiz (order_index 99)
-INSERT INTO lessons (id, course_id, slug, title, content, order_index)
+INSERT INTO public.lessons (id, course_id, slug, title, content, order_index, created_at)
 VALUES (
   'a0000000-0000-0000-0006-000000000099',
   'a0000000-0000-0000-0000-000000000006',
   'room-06-quiz-getting-around',
   'Room 06 Quiz – Getting Around',
-  'Test your knowledge of city places, directions, public transport, prepositions, and travel planning.',
-  99
+  '<h2>Checkpoint Quiz</h2><p>Test your knowledge of city places, directions, public transport, prepositions, and trip planning.</p>',
+  99, NOW()
 ) ON CONFLICT (id) DO NOTHING;
 
-INSERT INTO exercises (id, lesson_id, type, question, options, correct_answer)
+INSERT INTO public.exercises (id, lesson_id, type, question, options, correct_answer, created_at)
 VALUES
   ('a0000000-0000-0006-0099-000000000001', 'a0000000-0000-0000-0006-000000000099', 'multiple_choice',
-   'What is "der Bahnhof"?',
-   '["train station","airport","bus stop","town hall"]', 'train station'),
+   'What is "der Bahnhof" in English?',
+   '["train station","bus stop","airport","museum"]'::jsonb, 'train station', NOW()),
   ('a0000000-0000-0006-0099-000000000002', 'a0000000-0000-0000-0006-000000000099', 'multiple_choice',
-   'What does "geradeaus" mean?',
-   '["straight ahead","left","right","behind"]', 'straight ahead'),
+   'How do you ask "Where is the train station?"',
+   '["Wo ist der Bahnhof?","Wie heißt du?","Was ist das?","Wann kommst du?"]'::jsonb, 'Wo ist der Bahnhof?', NOW()),
   ('a0000000-0000-0006-0099-000000000003', 'a0000000-0000-0000-0006-000000000099', 'multiple_choice',
-   'What is "die U-Bahn"?',
-   '["underground / subway","tram","bus","train"]', 'underground / subway'),
+   'What does "Gehen Sie geradeaus" mean?',
+   '["Go straight ahead.","Turn around.","Stop.","Wait here."]'::jsonb, 'Go straight ahead.', NOW()),
   ('a0000000-0000-0006-0099-000000000004', 'a0000000-0000-0000-0006-000000000099', 'multiple_choice',
-   'Complete: Die Tasse ist ___ dem Tisch. (on)',
-   '["auf","unter","neben","vor"]', 'auf'),
+   'How do you say "ticket" in German?',
+   '["das Ticket","die Haltestelle","der Fahrplan","die Abfahrt"]'::jsonb, 'das Ticket', NOW()),
   ('a0000000-0000-0006-0099-000000000005', 'a0000000-0000-0000-0006-000000000099', 'multiple_choice',
-   'What does "abfahren" mean?',
-   '["to depart","to arrive","to book","to travel"]', 'to depart'),
+   'What does "zwischen" mean?',
+   '["between","next to","behind","in front of"]'::jsonb, 'between', NOW()),
   ('a0000000-0000-0006-0099-000000000006', 'a0000000-0000-0000-0006-000000000099', 'fill_blank',
-   'Translate "pharmacy" into German.',
-   null, 'die Apotheke'),
+   'Translate "arrival" into German.',
+   null, 'die Ankunft', NOW()),
   ('a0000000-0000-0006-0099-000000000007', 'a0000000-0000-0000-0006-000000000099', 'fill_blank',
-   'Complete: in + dem = ___',
-   null, 'im'),
+   'Complete: Die Bank ist ___ der Post. (next to)',
+   null, 'neben', NOW()),
   ('a0000000-0000-0006-0099-000000000008', 'a0000000-0000-0000-0006-000000000099', 'multiple_choice',
-   'How do you say "I would like a ticket to Hamburg"?',
-   '["Ich möchte eine Fahrkarte nach Hamburg.","Ich suche Hamburg.","Wo ist Hamburg?","Ich fahre Hamburg."]', 'Ich möchte eine Fahrkarte nach Hamburg.'),
+   'What does "umsteigen" mean?',
+   '["to transfer","to buy","to travel","to wait"]'::jsonb, 'to transfer', NOW()),
   ('a0000000-0000-0006-0099-000000000009', 'a0000000-0000-0000-0006-000000000099', 'word_order',
-   'Arrange: "The bank is opposite the hotel."',
-   '["Die","Bank","ist","gegenüber","dem","Hotel","."]', 'Die Bank ist gegenüber dem Hotel .'),
+   'Arrange: "How do I get to the museum?"',
+   '["Wie","komme","ich","zum","Museum","?"]'::jsonb, 'Wie komme ich zum Museum ?', NOW()),
   ('a0000000-0000-0006-0099-000000000010', 'a0000000-0000-0000-0006-000000000099', 'multiple_choice',
-   'How do you say "How long does the journey take?"',
-   '["Wie lange dauert die Fahrt?","Wann fährt der Zug?","Wohin reist du?","Was kostet die Fahrt?"]', 'Wie lange dauert die Fahrt?')
+   'What is "die U-Bahn" in English?',
+   '["subway/metro","bus","tram","train"]'::jsonb, 'subway/metro', NOW())
 ON CONFLICT (id) DO NOTHING;

@@ -2,6 +2,7 @@
 
 import { useState, useMemo } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { Car, ChevronRight, CheckCircle2, XCircle, RotateCcw, AlertTriangle } from "lucide-react";
 
 export type DrivingQuestion = {
@@ -18,9 +19,10 @@ export type DrivingQuestion = {
 };
 
 export function DrivingTheoryClient({
-  questions, locale, licenseClass = "B",
-}: { questions: DrivingQuestion[]; locale: string; licenseClass?: string }) {
+  questions, locale, licenseClass = "B", isGuest = false,
+}: { questions: DrivingQuestion[]; locale: string; licenseClass?: string; isGuest?: boolean }) {
   const de = locale === "de";
+  const router = useRouter();
   const [started, setStarted] = useState(false);
   const [index, setIndex] = useState(0);
   const [selected, setSelected] = useState<string | null>(null);
@@ -58,6 +60,14 @@ export function DrivingTheoryClient({
     setRevealed(false);
     setResults([]);
     setStarted(true);
+  }
+
+  function handleStartClick() {
+    if (isGuest) {
+      router.push(`/${locale}/signup`);
+      return;
+    }
+    restart();
   }
 
   if (questions.length === 0) {
@@ -105,11 +115,19 @@ export function DrivingTheoryClient({
           </div>
 
           <button
-            onClick={restart}
+            onClick={handleStartClick}
             className="inline-flex items-center gap-2 bg-[#E0B873] text-[#071424] font-bold px-8 py-3.5 rounded-xl hover:bg-[#C99B50] transition-colors"
           >
-            {de ? "Übung starten" : "Start practicing"} <ChevronRight className="h-4 w-4" />
+            {isGuest
+              ? (de ? "Kostenlos registrieren & starten" : "Sign up free & start")
+              : (de ? "Übung starten" : "Start practicing")}
+            <ChevronRight className="h-4 w-4" />
           </button>
+          {isGuest && (
+            <p className="text-xs text-white/30 text-center mt-3">
+              {de ? "Kostenlos, dauert nur eine Minute." : "Free, takes only a minute."}
+            </p>
+          )}
         </div>
       </main>
     );

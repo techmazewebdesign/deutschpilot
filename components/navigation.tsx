@@ -20,6 +20,8 @@ const publicNavLinks = [
   { href: "/", label: "Home" },
   { href: "/ai-trainer", label: "AI Trainer" },
   { href: "/classes", label: "Classes" },
+  { href: "/driving-theory", label: "Driving Theory" },
+  { href: "/mock-exam", label: "Mock Exam" },
   { href: "/teachers", label: "Teachers" },
   { href: "/magazine", label: "Magazine" },
 ];

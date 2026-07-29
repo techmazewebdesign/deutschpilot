@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect, useMemo } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import {
   BookOpen, Headphones, PenTool, Mic, ChevronRight, CheckCircle2,
   XCircle, Clock, Sparkles, Play, Square, RotateCcw,
@@ -20,7 +21,7 @@ type Step = "intro" | "reading" | "listening" | "writing" | "speaking" | "report
 
 const ESTIMATED_MINUTES = { reading: 15, listening: 12, writing: 20, speaking: 5 };
 
-export function MockExamClient({ data }: { data: MockExamData }) {
+export function MockExamClient({ data, isGuest = false }: { data: MockExamData; isGuest?: boolean }) {
   const de = data.locale === "de";
   const [step, setStep] = useState<Step>("intro");
 
@@ -68,7 +69,7 @@ export function MockExamClient({ data }: { data: MockExamData }) {
           {de ? "Zurück" : "Back"}
         </Link>
 
-        {step === "intro" && <IntroScreen data={data} de={de} onStart={next} />}
+        {step === "intro" && <IntroScreen data={data} de={de} isGuest={isGuest} onStart={next} />}
         {step === "reading" && (
           <ReadingSection
             de={de}
@@ -123,8 +124,19 @@ export function MockExamClient({ data }: { data: MockExamData }) {
 }
 
 // ── Intro ────────────────────────────────────────────────────────────────────
-function IntroScreen({ data, de, onStart }: { data: MockExamData; de: boolean; onStart: () => void }) {
+function IntroScreen({
+  data, de, isGuest, onStart,
+}: { data: MockExamData; de: boolean; isGuest: boolean; onStart: () => void }) {
+  const router = useRouter();
   const totalMin = ESTIMATED_MINUTES.reading + ESTIMATED_MINUTES.listening + ESTIMATED_MINUTES.writing + ESTIMATED_MINUTES.speaking;
+
+  function handleStartClick() {
+    if (isGuest) {
+      router.push(`/${data.locale}/signup`);
+      return;
+    }
+    onStart();
+  }
   const sections = [
     { icon: BookOpen, titleDE: "Lesen", titleEN: "Reading", n: data.reading.length, minutes: ESTIMATED_MINUTES.reading },
     { icon: Headphones, titleDE: "Hören", titleEN: "Listening", n: data.listening.length, minutes: ESTIMATED_MINUTES.listening },
@@ -171,11 +183,19 @@ function IntroScreen({ data, de, onStart }: { data: MockExamData; de: boolean; o
       </p>
 
       <button
-        onClick={onStart}
+        onClick={handleStartClick}
         className="w-full flex items-center justify-center gap-2 bg-[#E0B873] text-[#071424] font-bold py-3.5 rounded-xl hover:bg-[#C99B50] transition-colors"
       >
-        {de ? "Modellprüfung starten" : "Start Mock Exam"} <ChevronRight className="h-4 w-4" />
+        {isGuest
+          ? (de ? "Kostenlos registrieren & starten" : "Sign up free & start")
+          : (de ? "Modellprüfung starten" : "Start Mock Exam")}
+        <ChevronRight className="h-4 w-4" />
       </button>
+      {isGuest && (
+        <p className="text-xs text-white/30 text-center mt-3">
+          {de ? "Kostenlos, dauert nur eine Minute." : "Free, takes only a minute."}
+        </p>
+      )}
     </div>
   );
 }
