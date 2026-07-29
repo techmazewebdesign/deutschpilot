@@ -1,0 +1,201 @@
+-- ============================================================
+-- DeutschPilot – Driving Theory (Klasse A / motorcycle) batch 2, 20 more
+-- Same rules as batch 1: original prep questions on well-established
+-- German traffic-law topics, not verbatim official content.
+-- ============================================================
+
+INSERT INTO public.driving_theory_questions
+  (license_class, category, question_de, question_en, options_de, options_en, correct_answer_de, correct_answer_en, explanation_de, explanation_en, order_index)
+VALUES
+
+-- Beifahrer & Zuladung
+('A','Beifahrer & Zuladung',
+ 'Ein Sozius (Beifahrer) auf dem Motorrad muss...',
+ 'A passenger on a motorcycle must...',
+ '["ebenfalls einen Helm tragen und auf festen Fußrasten sitzen","keinen Helm tragen, wenn er nicht selbst fährt","auf dem Tank sitzen dürfen","nur bei kurzen Strecken angeschnallt sein"]'::jsonb,
+ '["also wear a helmet and sit on proper footpegs","not need a helmet since they''re not the one riding","be allowed to sit on the tank","only be secured on short trips"]'::jsonb,
+ 'ebenfalls einen Helm tragen und auf festen Fußrasten sitzen',
+ 'also wear a helmet and sit on proper footpegs',
+ NULL, NULL, 21),
+
+('A','Beifahrer & Zuladung',
+ 'Ein Beifahrer sollte sich beim Anfahren und in Kurven...',
+ 'A passenger should, when accelerating and in curves...',
+ '["mit der Bewegung des Fahrers mitlehnen, nicht dagegen","immer aufrecht bleiben, egal was der Fahrer macht","sich in die Gegenrichtung lehnen","möglichst viel Gewicht nach hinten verlagern"]'::jsonb,
+ '["lean with the rider''s movement, not against it","always stay upright no matter what the rider does","lean in the opposite direction","shift as much weight backward as possible"]'::jsonb,
+ 'mit der Bewegung des Fahrers mitlehnen, nicht dagegen',
+ 'lean with the rider''s movement, not against it',
+ NULL, NULL, 22),
+
+('A','Beifahrer & Zuladung',
+ 'Zusätzliches Gewicht (Beifahrer, Gepäck) verändert bei einem Motorrad vor allem...',
+ 'Additional weight (passenger, luggage) on a motorcycle mainly changes...',
+ '["Bremsweg, Beschleunigung und Kurvenverhalten","nur die Optik","nur den Kraftstoffverbrauch, sonst nichts","gar nichts, solange das Gesamtgewichtslimit eingehalten wird"]'::jsonb,
+ '["braking distance, acceleration, and cornering behavior","only appearance","only fuel consumption, nothing else","nothing at all, as long as the total weight limit is respected"]'::jsonb,
+ 'Bremsweg, Beschleunigung und Kurvenverhalten',
+ 'braking distance, acceleration, and cornering behavior',
+ NULL, NULL, 23),
+
+-- Wartung & Technik
+('A','Wartung & Technik',
+ 'Die Kette eines Motorrads (bei kettengetriebenen Modellen) sollte...',
+ 'A motorcycle''s chain (on chain-driven models) should...',
+ '["regelmäßig auf Spannung und Schmierung geprüft werden","nie gewartet werden müssen","nur bei einem Defekt beachtet werden","nur bei Regen geschmiert werden"]'::jsonb,
+ '["be regularly checked for tension and lubrication","never need maintenance","only be checked after a defect occurs","only be lubricated in the rain"]'::jsonb,
+ 'regelmäßig auf Spannung und Schmierung geprüft werden',
+ 'be regularly checked for tension and lubrication',
+ NULL, NULL, 24),
+
+('A','Wartung & Technik',
+ 'Abgenutzte Bremsbeläge bei einem Motorrad...',
+ 'Worn brake pads on a motorcycle...',
+ '["verlängern den Bremsweg erheblich und sind ein Sicherheitsrisiko","haben keinen Einfluss auf den Bremsweg","betreffen nur die Hinterradbremse","sind gesetzlich irrelevant"]'::jsonb,
+ '["significantly increase braking distance and are a safety risk","have no effect on braking distance","only affect the rear brake","are legally irrelevant"]'::jsonb,
+ 'verlängern den Bremsweg erheblich und sind ein Sicherheitsrisiko',
+ 'significantly increase braking distance and are a safety risk',
+ NULL, NULL, 25),
+
+('A','Wartung & Technik',
+ 'Die Hauptuntersuchung (TÜV) ist für Motorräder...',
+ 'The main inspection (TÜV) for motorcycles is...',
+ '["genauso vorgeschrieben wie für PKW","nicht erforderlich","nur für Motorräder über 500 ccm Pflicht","freiwillig"]'::jsonb,
+ '["just as mandatory as for cars","not required","only mandatory for motorcycles over 500cc","voluntary"]'::jsonb,
+ 'genauso vorgeschrieben wie für PKW','just as mandatory as for cars',
+ NULL, NULL, 26),
+
+-- Nachtfahrt & Sicht
+('A','Nachtfahrt & Sicht',
+ 'Bei Nachtfahrten ist ein Visier oder eine Brille mit...',
+ 'For night rides, a visor or glasses with...',
+ '["klarem, nicht getöntem Glas zu verwenden, um die Sicht nicht zu beeinträchtigen","möglichst dunklem Tönungsgrad zu verwenden","Spiegelbeschichtung zu verwenden","keiner besonderen Eigenschaft nötig"]'::jsonb,
+ '["clear, untinted glass should be used, so as not to impair vision","as dark a tint as possible should be used","mirrored coating should be used","no particular property is necessary"]'::jsonb,
+ 'klarem, nicht getöntem Glas zu verwenden, um die Sicht nicht zu beeinträchtigen',
+ 'clear, untinted glass should be used, so as not to impair vision',
+ NULL, NULL, 27),
+
+('A','Nachtfahrt & Sicht',
+ 'Reflektierende Elemente an Helm und Kleidung sind bei Nachtfahrten...',
+ 'Reflective elements on the helmet and clothing during night rides are...',
+ '["besonders sinnvoll, um früher gesehen zu werden","überflüssig, da das Licht am Motorrad reicht","nur bei Regen sinnvoll","gesetzlich verboten"]'::jsonb,
+ '["especially useful for being seen earlier","unnecessary, since the motorcycle''s own light is enough","only useful in the rain","legally prohibited"]'::jsonb,
+ 'besonders sinnvoll, um früher gesehen zu werden',
+ 'especially useful for being seen earlier',
+ NULL, NULL, 28),
+
+-- Gruppenfahrt
+('A','Gruppenfahrt',
+ 'In einer Motorradgruppe fährt man häufig im "Versatz" (versetzte Formation), um...',
+ 'In a motorcycle group, riders often use a "staggered" formation in order to...',
+ '["mehr Sicherheitsabstand und bessere Sicht für alle zu ermöglichen","enger zusammenzubleiben","Kraftstoff zu sparen","schneller fahren zu können"]'::jsonb,
+ '["allow for more safety margin and better visibility for everyone","stay closer together","save fuel","be able to ride faster"]'::jsonb,
+ 'mehr Sicherheitsabstand und bessere Sicht für alle zu ermöglichen',
+ 'allow for more safety margin and better visibility for everyone',
+ NULL, NULL, 29),
+
+('A','Gruppenfahrt',
+ 'Wer in einer Motorradgruppe die Route/Tempo nicht kennt, sollte...',
+ 'A rider in a group who doesn''t know the route/pace should...',
+ '["sich nicht unter Druck setzen lassen und im eigenen Tempo fahren","sich zwingen, mit der Gruppe mitzuhalten","vorne fahren, um die Route zu lernen","die Gruppe verlassen"]'::jsonb,
+ '["not let themselves be pressured and ride at their own pace","force themselves to keep up with the group","ride at the front to learn the route","leave the group"]'::jsonb,
+ 'sich nicht unter Druck setzen lassen und im eigenen Tempo fahren',
+ 'not let themselves be pressured and ride at their own pace',
+ NULL, NULL, 30),
+
+('A','Gruppenfahrt',
+ 'Beim Überholen in einer Motorradgruppe sollte...',
+ 'When overtaking in a motorcycle group...',
+ '["jeder einzeln und mit eigenem Sicherheitsabstand überholen, nicht als geschlossener Block","die ganze Gruppe gleichzeitig überholen","nur der Erste überholen dürfen","das Überholen als Gruppe grundsätzlich vermieden werden"]'::jsonb,
+ '["each rider should overtake individually with their own safety margin, not as one solid block","the whole group should overtake at the same time","only the lead rider should be allowed to overtake","overtaking as a group should always be avoided entirely"]'::jsonb,
+ 'jeder einzeln und mit eigenem Sicherheitsabstand überholen, nicht als geschlossener Block',
+ 'each rider should overtake individually with their own safety margin, not as one solid block',
+ NULL, NULL, 31),
+
+-- Kurventechnik vertieft
+('A','Kurventechnik vertieft',
+ 'Die ideale Linienwahl in einer Kurve (außen-innen-außen) dient dazu...',
+ 'The ideal line choice in a curve (outside-inside-outside) serves to...',
+ '["den Kurvenradius zu vergrößern und mehr Sicht in die Kurve zu bekommen","die Kurve abzukürzen","möglichst nah an der Mittellinie zu bleiben","das Motorrad zu schonen"]'::jsonb,
+ '["increase the effective curve radius and get a better view through the curve","cut the curve short","stay as close to the centerline as possible","spare the motorcycle"]'::jsonb,
+ 'den Kurvenradius zu vergrößern und mehr Sicht in die Kurve zu bekommen',
+ 'increase the effective curve radius and get a better view through the curve',
+ NULL, NULL, 32),
+
+('A','Kurventechnik vertieft',
+ 'Bremsen sollte in einer Motorradkurve idealerweise...',
+ 'Braking on a motorcycle in a curve should ideally...',
+ '["vor der Kurve abgeschlossen sein, nicht mitten in der Schräglage","genau in der Schräglage stattfinden","nur mit der Hinterradbremse in der Kurve erfolgen","keine Rolle spielen"]'::jsonb,
+ '["be completed before the curve, not mid-lean","happen exactly while leaned over","only be done with the rear brake while in the curve","not matter at all"]'::jsonb,
+ 'vor der Kurve abgeschlossen sein, nicht mitten in der Schräglage',
+ 'be completed before the curve, not mid-lean',
+ 'Bremsen in Schräglage kann das Vorderrad leicht zum Wegrutschen bringen.',
+ 'Braking while leaned over can easily cause the front wheel to slide out.',
+ 33),
+
+('A','Kurventechnik vertieft',
+ 'Unebenheiten, Split oder Laub in einer Kurve...',
+ 'Bumps, gravel, or leaves in a curve...',
+ '["verringern den Grip und erfordern vorausschauendes, vorsichtiges Fahren","haben keinen Einfluss auf ein Motorrad","betreffen nur Fahrradfahrer","sind nur bei Regen relevant"]'::jsonb,
+ '["reduce grip and require anticipatory, cautious riding","have no effect on a motorcycle","only affect cyclists","are only relevant in the rain"]'::jsonb,
+ 'verringern den Grip und erfordern vorausschauendes, vorsichtiges Fahren',
+ 'reduce grip and require anticipatory, cautious riding',
+ NULL, NULL, 34),
+
+-- Wetter & Hitze
+('A','Wetter & Hitze',
+ 'Bei starker Hitze sollte ein Motorradfahrer trotz der Temperatur...',
+ 'In strong heat, a motorcyclist should, despite the temperature...',
+ '["weiterhin vollständige Schutzkleidung tragen","auf Schutzkleidung verzichten, um nicht zu überhitzen","nur einen Helm tragen und sonst nichts","kürzere Strecken ohne jede Ausrüstung fahren"]'::jsonb,
+ '["still wear full protective gear","skip protective gear to avoid overheating","only wear a helmet and nothing else","ride shorter distances with no gear at all"]'::jsonb,
+ 'weiterhin vollständige Schutzkleidung tragen',
+ 'still wear full protective gear',
+ 'Es gibt spezielle atmungsaktive/belüftete Schutzkleidung für heiße Tage — Verzicht ist keine sichere Lösung.',
+ 'There is specialized breathable/ventilated protective gear for hot days — skipping gear entirely isn''t a safe solution.',
+ 35),
+
+('A','Wetter & Hitze',
+ 'Starke Windböen (z. B. bei Gewittern) können ein Motorrad...',
+ 'Strong gusts of wind (e.g. during thunderstorms) can affect a motorcycle...',
+ '["erheblich aus der Spur drücken, besonders bei offenen Streckenabschnitten","gar nicht beeinflussen","nur bei sehr hoher Geschwindigkeit beeinflussen","nur beim Anfahren beeinflussen"]'::jsonb,
+ '["significantly push it off its line, especially in open stretches","not affect it at all","only affect it at very high speed","only affect it when pulling away"]'::jsonb,
+ 'erheblich aus der Spur drücken, besonders bei offenen Streckenabschnitten',
+ 'significantly push it off its line, especially in open stretches',
+ NULL, NULL, 36),
+
+-- Sonstiges A
+('A','Sonstiges',
+ 'Ein Kettenschutz oder Riemenantrieb bei Motorrädern dient hauptsächlich...',
+ 'A chain guard or belt drive on motorcycles mainly serves...',
+ '["dem Schutz vor Verletzungen und Verunreinigung des Antriebs","nur der Optik","der Kühlung des Motors","der Beleuchtung"]'::jsonb,
+ '["to protect against injury and keep the drivetrain clean","only appearance","engine cooling","lighting"]'::jsonb,
+ 'dem Schutz vor Verletzungen und Verunreinigung des Antriebs',
+ 'to protect against injury and keep the drivetrain clean',
+ NULL, NULL, 37),
+
+('A','Sonstiges',
+ 'Beim Bremsen auf losem Untergrund (Schotter, Split) sollte ein Motorradfahrer...',
+ 'When braking on loose surfaces (gravel, chippings), a motorcyclist should...',
+ '["besonders sanft und vorausschauend bremsen","genauso hart bremsen wie auf Asphalt","nur die Vorderradbremse benutzen","das Bremsen komplett vermeiden"]'::jsonb,
+ '["brake especially gently and with foresight","brake just as hard as on asphalt","only use the front brake","avoid braking entirely"]'::jsonb,
+ 'besonders sanft und vorausschauend bremsen',
+ 'brake especially gently and with foresight',
+ NULL, NULL, 38),
+
+('A','Sonstiges',
+ 'Motorradspezifische Parkregelungen (z. B. Motorradparkflächen) existieren, weil...',
+ 'Motorcycle-specific parking areas exist because...',
+ '["Motorräder weniger Platz benötigen und oft anders abgestellt werden als Autos","Motorräder gar nicht parken dürfen","es rechtlich keinen Unterschied zu PKW-Parkplätzen gibt","Motorräder nur auf Gehwegen parken dürfen"]'::jsonb,
+ '["motorcycles need less space and are often parked differently than cars","motorcycles aren''t allowed to park at all","there''s legally no difference from car parking spaces","motorcycles may only park on sidewalks"]'::jsonb,
+ 'Motorräder weniger Platz benötigen und oft anders abgestellt werden als Autos',
+ 'motorcycles need less space and are often parked differently than cars',
+ NULL, NULL, 39),
+
+('A','Sonstiges',
+ 'Ein Motorrad mit deutlich zu geringem Reifendruck zeigt oft...',
+ 'A motorcycle with significantly too-low tire pressure often shows...',
+ '["ein schwammiges, unpräzises Fahrverhalten, besonders in Kurven","ein präziseres Fahrverhalten","gar keine spürbaren Unterschiede","nur ein optisches Problem"]'::jsonb,
+ '["vague, imprecise handling, especially in curves","more precise handling","no noticeable difference at all","only a cosmetic problem"]'::jsonb,
+ 'ein schwammiges, unpräzises Fahrverhalten, besonders in Kurven',
+ 'vague, imprecise handling, especially in curves',
+ NULL, NULL, 40)
+
+ON CONFLICT (license_class, order_index) DO NOTHING;
