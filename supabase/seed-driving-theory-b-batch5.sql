@@ -1,0 +1,212 @@
+-- ============================================================
+-- DeutschPilot – Driving Theory (Klasse B) batch 5, 24 more questions
+-- Same rules as batches 1-4: original prep questions on well-
+-- established German traffic-law topics, not verbatim official content.
+-- ============================================================
+
+INSERT INTO public.driving_theory_questions
+  (license_class, category, question_de, question_en, options_de, options_en, correct_answer_de, correct_answer_en, explanation_de, explanation_en, order_index)
+VALUES
+
+-- Bus & Straßenbahn
+('B','Bus & Straßenbahn',
+ 'Ein Linienbus, der an einer Haltestelle blinkt und wieder anfahren will...',
+ 'A bus signaling to pull away from a stop...',
+ '["muss dir das Einfahren ermöglicht werden — du musst ihm notfalls die Vorfahrt gewähren","hat grundsätzlich keine besonderen Rechte","darf nur bei Grün losfahren","muss immer warten, bis alle vorbeigefahren sind"]'::jsonb,
+ '["must be allowed to pull in — you may need to yield to it","has no special rights at all","may only pull away on a green light","must always wait until everyone has passed"]'::jsonb,
+ 'muss dir das Einfahren ermöglicht werden — du musst ihm notfalls die Vorfahrt gewähren',
+ 'must be allowed to pull in — you may need to yield to it',
+ 'Innerorts gilt: du musst dem Bus das Wiederanfahren ermöglichen, notfalls durch Anhalten.',
+ 'Within city limits: you must let the bus pull away, stopping if necessary.',
+ 99),
+
+('B','Bus & Straßenbahn',
+ 'Fahrgäste, die an einer Haltestelle ohne Bürgersteig/Fahrbahnteiler ein- oder aussteigen...',
+ 'Passengers boarding or alighting at a stop without a sidewalk/refuge island...',
+ '["dürfen nicht gefährdet werden — im Zweifel anhalten","können ignoriert werden, wenn du Vorfahrt hast","müssen selbst auf den Verkehr achten","betreffen nur den Busfahrer"]'::jsonb,
+ '["must not be endangered — stop if in doubt","can be ignored if you have the right of way","must watch the traffic themselves","are only the bus driver''s concern"]'::jsonb,
+ 'dürfen nicht gefährdet werden — im Zweifel anhalten',
+ 'must not be endangered — stop if in doubt',
+ NULL, NULL, 100),
+
+('B','Bus & Straßenbahn',
+ 'Straßenbahnen (Trams) haben gegenüber dem Autoverkehr in der Regel...',
+ 'Trams generally have, compared to car traffic...',
+ '["Vorrang, auch von rechts oder links kommend, sofern nicht anders geregelt","keinerlei Vorrang","nur bei Rot Vorrang","Vorrang nur außerorts"]'::jsonb,
+ '["priority, even approaching from the right or left, unless otherwise regulated","no priority at all","priority only at red lights","priority only outside built-up areas"]'::jsonb,
+ 'Vorrang, auch von rechts oder links kommend, sofern nicht anders geregelt',
+ 'priority, even approaching from the right or left, unless otherwise regulated',
+ NULL, NULL, 101),
+
+-- Kreisverkehr vertieft
+('B','Kreisverkehr vertieft',
+ 'Beim Verlassen eines Kreisverkehrs solltest du...',
+ 'When exiting a roundabout, you should...',
+ '["rechtzeitig blinken (rechts), um andere über deine Absicht zu informieren","niemals blinken","links blinken","hupen statt blinken"]'::jsonb,
+ '["signal (right) in good time to inform others of your intention","never signal","signal left","honk instead of signaling"]'::jsonb,
+ 'rechtzeitig blinken (rechts), um andere über deine Absicht zu informieren',
+ 'signal (right) in good time to inform others of your intention',
+ NULL, NULL, 102),
+
+('B','Kreisverkehr vertieft',
+ 'Fußgänger und Radfahrer an den Ein-/Ausfahrten eines Kreisverkehrs...',
+ 'Pedestrians and cyclists at the entries/exits of a roundabout...',
+ '["haben oft Vorrang und müssen besonders beachtet werden","haben nie Vorrang","dürfen den Kreisverkehr nicht queren","sind für den Autofahrer irrelevant"]'::jsonb,
+ '["often have priority and must be watched carefully","never have priority","are not allowed to cross the roundabout","are irrelevant for the driver"]'::jsonb,
+ 'haben oft Vorrang und müssen besonders beachtet werden',
+ 'often have priority and must be watched carefully',
+ NULL, NULL, 103),
+
+('B','Kreisverkehr vertieft',
+ 'Ein Kreisverkehr mit Ampeln an den Zufahrten...',
+ 'A roundabout with traffic lights at the entries...',
+ '["kann die normale Kreisverkehrsregel (Vorrang für den Kreis) durch die Ampel überschreiben","ändert nie die Vorfahrtsregel","ist in Deutschland nicht erlaubt","bedeutet automatisch Vorrang für einfahrende Fahrzeuge"]'::jsonb,
+ '["can override the normal roundabout rule (priority to the circle) via the light","never changes the priority rule","isn''t allowed in Germany","automatically means entering vehicles have priority"]'::jsonb,
+ 'kann die normale Kreisverkehrsregel (Vorrang für den Kreis) durch die Ampel überschreiben',
+ 'can override the normal roundabout rule (priority to the circle) via the light',
+ NULL, NULL, 104),
+
+-- Fußgängerzonen & verkehrsberuhigte Bereiche
+('B','Fußgängerzonen',
+ 'Eine Fußgängerzone darf mit dem Auto befahren werden, wenn...',
+ 'A pedestrian zone may be driven through by car if...',
+ '["ein Zusatzschild dies ausdrücklich erlaubt (z. B. Anlieferzeiten, Anlieger frei)","man vorsichtig fährt","es dein eigenes Fahrzeug ist","es nachts ist"]'::jsonb,
+ '["an additional sign explicitly permits it (e.g. delivery hours, residents only)","you drive carefully","it''s your own vehicle","it''s nighttime"]'::jsonb,
+ 'ein Zusatzschild dies ausdrücklich erlaubt (z. B. Anlieferzeiten, Anlieger frei)',
+ 'an additional sign explicitly permits it (e.g. delivery hours, residents only)',
+ NULL, NULL, 105),
+
+('B','Fußgängerzonen',
+ 'In einem verkehrsberuhigten Bereich (Zeichen "Beginn Verkehrsberuhigter Bereich") darfst du...',
+ 'In a traffic-calmed zone (sign "start of calmed area"), you may drive...',
+ '["nur Schrittgeschwindigkeit fahren","bis 30 km/h fahren","normal bis 50 km/h fahren","gar nicht fahren"]'::jsonb,
+ '["only at walking pace","up to 30 km/h","normally up to 50 km/h","not at all"]'::jsonb,
+ 'nur Schrittgeschwindigkeit fahren','only at walking pace',
+ NULL, NULL, 106),
+
+-- Kontrolle durch die Polizei
+('B','Verkehrskontrolle',
+ 'Wirst du von der Polizei angehalten, solltest du...',
+ 'If stopped by the police, you should...',
+ '["ruhig anhalten, Fenster öffnen und die geforderten Dokumente bereithalten","sofort aussteigen und zur Polizei laufen","weiterfahren, wenn du nichts falsch gemacht hast","das Fenster geschlossen halten"]'::jsonb,
+ '["calmly stop, open the window, and have the requested documents ready","get out immediately and walk toward the police","keep driving if you haven''t done anything wrong","keep the window closed"]'::jsonb,
+ 'ruhig anhalten, Fenster öffnen und die geforderten Dokumente bereithalten',
+ 'calmly stop, open the window, and have the requested documents ready',
+ NULL, NULL, 107),
+
+('B','Verkehrskontrolle',
+ 'Ein Alkoholtest (Atemalkoholmessung) bei einer Verkehrskontrolle...',
+ 'A breathalyzer test during a traffic stop...',
+ '["kann von der Polizei bei Verdacht angeordnet werden","ist grundsätzlich freiwillig und ohne jede Konsequenz ablehnbar","darf nur mit vorheriger richterlicher Anordnung erfolgen","betrifft nur Berufskraftfahrer"]'::jsonb,
+ '["can be ordered by police when there is suspicion","is entirely voluntary and can be refused without any consequence","may only be conducted with prior judicial approval","only applies to professional drivers"]'::jsonb,
+ 'kann von der Polizei bei Verdacht angeordnet werden',
+ 'can be ordered by police when there is suspicion',
+ 'Die Verweigerung eines angeordneten Tests kann eigene rechtliche Konsequenzen haben.',
+ 'Refusing an ordered test can carry its own legal consequences.',
+ 108),
+
+-- Drogen im Straßenverkehr
+('B','Drogen im Straßenverkehr',
+ 'Das Fahren unter dem Einfluss illegaler Drogen (z. B. THC, Kokain) ist in Deutschland...',
+ 'Driving under the influence of illegal drugs (e.g. THC, cocaine) in Germany is...',
+ '["verboten, auch bei geringen nachweisbaren Mengen","nur bei sichtbaren Ausfallerscheinungen strafbar","erlaubt, solange man sich fahrtüchtig fühlt","nur bei harten Drogen relevant, nicht bei Cannabis"]'::jsonb,
+ '["prohibited, even at low detectable amounts","only punishable with visible impairment","allowed as long as you feel fit to drive","only relevant for hard drugs, not cannabis"]'::jsonb,
+ 'verboten, auch bei geringen nachweisbaren Mengen',
+ 'prohibited, even at low detectable amounts',
+ NULL, NULL, 109),
+
+('B','Drogen im Straßenverkehr',
+ 'Die Kombination von Alkohol und Medikamenten oder Drogen...',
+ 'Combining alcohol with medication or drugs...',
+ '["kann die Wirkung gegenseitig verstärken und ist besonders gefährlich","hebt sich gegenseitig auf","ist ungefährlicher als Alkohol allein","hat keine zusätzliche Wirkung"]'::jsonb,
+ '["can mutually intensify the effects and is especially dangerous","cancels itself out","is less dangerous than alcohol alone","has no additional effect"]'::jsonb,
+ 'kann die Wirkung gegenseitig verstärken und ist besonders gefährlich',
+ 'can mutually intensify the effects and is especially dangerous',
+ NULL, NULL, 110),
+
+-- Anhalten & Liegenbleiben
+('B','Anhalten & Liegenbleiben',
+ 'Auf der Autobahn ist das Halten (außer im Notfall) auf der Fahrbahn...',
+ 'On the Autobahn, stopping (except in an emergency) on the roadway is...',
+ '["grundsätzlich verboten","erlaubt bei wenig Verkehr","nur bei Nacht verboten","nur auf der linken Spur verboten"]'::jsonb,
+ '["generally prohibited","allowed when traffic is light","only prohibited at night","only prohibited in the left lane"]'::jsonb,
+ 'grundsätzlich verboten','generally prohibited',
+ NULL, NULL, 111),
+
+('B','Anhalten & Liegenbleiben',
+ 'Musst du auf der Autobahn liegenbleiben (z. B. Motorschaden), solltest du...',
+ 'If you break down on the Autobahn (e.g. engine failure), you should...',
+ '["das Fahrzeug möglichst auf den Seitenstreifen bewegen und hinter der Leitplanke warten","im Fahrzeug auf der Fahrbahn sitzen bleiben","sofort auf der Fahrbahn das Warndreieck aufstellen und daneben warten","weiterfahren, egal was passiert"]'::jsonb,
+ '["move the vehicle onto the hard shoulder if possible and wait behind the guardrail","stay seated in the vehicle on the roadway","immediately set up the warning triangle on the roadway and wait beside it","keep driving no matter what"]'::jsonb,
+ 'das Fahrzeug möglichst auf den Seitenstreifen bewegen und hinter der Leitplanke warten',
+ 'move the vehicle onto the hard shoulder if possible and wait behind the guardrail',
+ 'Warnweste anziehen, BEVOR man aussteigt, und sich hinter die Leitplanke in Sicherheit bringen.',
+ 'Put on the warning vest BEFORE getting out, and take shelter behind the guardrail.',
+ 112),
+
+('B','Anhalten & Liegenbleiben',
+ 'Auf einem Seitenstreifen der Autobahn geparkte Fahrzeuge ohne echte Panne...',
+ 'Vehicles parked on the Autobahn hard shoulder without a real breakdown...',
+ '["handeln ordnungswidrig — der Seitenstreifen ist nur für Notfälle","dürfen dort kurz pausieren","dürfen dort länger als eine Stunde stehen","sind erlaubt, wenn die Warnblinkanlage läuft"]'::jsonb,
+ '["are committing an offense — the hard shoulder is for emergencies only","may pause there briefly","may stay there for over an hour","are allowed if the hazard lights are on"]'::jsonb,
+ 'handeln ordnungswidrig — der Seitenstreifen ist nur für Notfälle',
+ 'are committing an offense — the hard shoulder is for emergencies only',
+ NULL, NULL, 113),
+
+-- Fahrbahnmarkierungen vertieft
+('B','Fahrbahnmarkierungen',
+ 'Eine unterbrochene weiße Linie zwischen Fahrstreifen bedeutet...',
+ 'A broken white line between lanes means...',
+ '["Spurwechsel ist grundsätzlich erlaubt, wenn es sicher ist","Spurwechsel ist verboten","es handelt sich um eine Fahrradspur","es handelt sich um eine Busspur"]'::jsonb,
+ '["changing lanes is generally allowed if it is safe","changing lanes is prohibited","it marks a bike lane","it marks a bus lane"]'::jsonb,
+ 'Spurwechsel ist grundsätzlich erlaubt, wenn es sicher ist',
+ 'changing lanes is generally allowed if it is safe',
+ NULL, NULL, 114),
+
+('B','Fahrbahnmarkierungen',
+ 'Eine breite durchgezogene Linie am Fahrbahnrand (Bordsteinkante) markiert oft...',
+ 'A wide solid line along the road edge often marks...',
+ '["den Bereich, in dem Halten/Parken verboten ist","eine reine Zierlinie ohne Bedeutung","eine Busspur, unabhängig von der Farbe","eine Fahrradspur"]'::jsonb,
+ '["an area where stopping/parking is prohibited","a purely decorative line with no meaning","a bus lane, regardless of color","a bike lane"]'::jsonb,
+ 'den Bereich, in dem Halten/Parken verboten ist',
+ 'an area where stopping/parking is prohibited',
+ NULL, NULL, 115),
+
+-- Sonderfahrzeuge & Sonstiges
+('B','Sonderfahrzeuge',
+ 'Fahrzeuge im Straßendienst (z. B. Schneepflüge, Kehrmaschinen) mit gelbem Rundumlicht...',
+ 'Road service vehicles (e.g. snowplows, sweepers) with a yellow rotating beacon...',
+ '["erfordern erhöhte Vorsicht und ausreichenden Abstand, haben aber kein Vorrecht wie Rettungsfahrzeuge","haben automatisch Vorfahrt wie ein Rettungswagen","dürfen ignoriert werden","sind nur nachts unterwegs"]'::jsonb,
+ '["require extra caution and adequate distance, but don''t have priority like emergency vehicles","automatically have priority like an ambulance","can be ignored","only operate at night"]'::jsonb,
+ 'erfordern erhöhte Vorsicht und ausreichenden Abstand, haben aber kein Vorrecht wie Rettungsfahrzeuge',
+ 'require extra caution and adequate distance, but don''t have priority like emergency vehicles',
+ NULL, NULL, 116),
+
+('B','Sonderfahrzeuge',
+ 'Ein Schulbus, der Kinder aussteigen lässt, sollte auch von Gegenverkehr...',
+ 'A school bus letting children off should also, from oncoming traffic, be treated with...',
+ '["mit reduziertem Tempo und erhöhter Aufmerksamkeit passiert werden","mit normalem Tempo passiert werden","möglichst schnell überholt werden","ignoriert werden, wenn man selbst keine Kinder transportiert"]'::jsonb,
+ '["reduced speed and increased attention","normal speed","being overtaken as quickly as possible","being ignored if you''re not carrying children yourself"]'::jsonb,
+ 'mit reduziertem Tempo und erhöhter Aufmerksamkeit passiert werden',
+ 'reduced speed and increased attention',
+ NULL, NULL, 117),
+
+('B','Sonderfahrzeuge',
+ 'Fahrzeuge mit Anhänger oder Wohnwagen haben oft...',
+ 'Vehicles with a trailer or caravan often have...',
+ '["ein größeres Wendekreisverhalten und einen längeren Bremsweg","einen kleineren Wendekreis","einen kürzeren Bremsweg als ohne Anhänger","keine Unterschiede im Fahrverhalten"]'::jsonb,
+ '["a wider turning radius and a longer braking distance","a smaller turning radius","a shorter braking distance than without a trailer","no differences in driving behavior"]'::jsonb,
+ 'ein größeres Wendekreisverhalten und einen längeren Bremsweg',
+ 'a wider turning radius and a longer braking distance',
+ NULL, NULL, 118),
+
+('B','Sonderfahrzeuge',
+ 'Beim Vorbeifahren an einer Fußgängerampel, die für Fußgänger Grün zeigt, während du geradeaus fährst...',
+ 'When passing a pedestrian crossing showing green for pedestrians while you drive straight through a parallel path...',
+ '["musst du den querenden Fußgängern in jedem Fall Vorrang gewähren","hast du automatisch Vorfahrt","darfst du hupen, um sie zu verscheuchen","spielt die Fußgängerampel für dich keine Rolle"]'::jsonb,
+ '["you must in every case give way to pedestrians crossing","you automatically have the right of way","you may honk to scare them off","the pedestrian signal is irrelevant to you"]'::jsonb,
+ 'musst du den querenden Fußgängern in jedem Fall Vorrang gewähren',
+ 'you must in every case give way to pedestrians crossing',
+ NULL, NULL, 119)
+
+ON CONFLICT (license_class, order_index) DO NOTHING;
