@@ -5,6 +5,8 @@ import { createServerSupabaseClient } from "@/lib/supabaseServer";
 import { AppLayout } from "@/components/app/app-layout";
 import { VocabularyClient, type VocabWord } from "@/components/vocabulary/vocabulary-client";
 
+export const dynamic = "force-dynamic";
+
 export function generateMetadata({ params }: { params: { locale: string } }): Metadata {
   const de = params.locale === "de";
   return { title: de ? "Vokabular | DeutschPilot" : "Vocabulary | DeutschPilot" };
