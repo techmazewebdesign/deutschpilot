@@ -101,6 +101,7 @@ export default async function RoomsPage({
   // entering a room still requires signing in.
   const session = await auth();
   const isGuest = !session?.user;
+  const isAdmin = session?.user?.role === "admin";
 
   const supabase = createServerSupabaseClient();
   const de = locale === "de";
@@ -183,12 +184,17 @@ export default async function RoomsPage({
     return { slug: meta.slug, courseId: cid, totalLessons, completedLessons, progressPct, quizPassed: quizProgress?.completed ?? false, quizScore: quizProgress?.score ?? null };
   });
 
-  // Unlock logic: sequential — room N unlocks when room N-1 quiz is passed
+  // Unlock logic: sequential — room N unlocks when room N-1 quiz is passed.
+  // Admins get every room open, so they can preview/QA any content freely.
   const unlockedRooms = new Set<string>();
-  if (rooms.length > 0) unlockedRooms.add(rooms[0].slug);
-  for (let i = 1; i < rooms.length; i++) {
-    if (roomData[i - 1].quizPassed) unlockedRooms.add(rooms[i].slug);
-    else break;
+  if (isAdmin) {
+    rooms.forEach((r) => unlockedRooms.add(r.slug));
+  } else {
+    if (rooms.length > 0) unlockedRooms.add(rooms[0].slug);
+    for (let i = 1; i < rooms.length; i++) {
+      if (roomData[i - 1].quizPassed) unlockedRooms.add(rooms[i].slug);
+      else break;
+    }
   }
 
   const levelIndexMap: Record<Level, number> = { A1: 0, A2: 1, B1: 2, B2: 3, C1: 4 };
@@ -220,7 +226,7 @@ export default async function RoomsPage({
           {LEVELS_ORDER.map((lvl, i) => {
             const isActive = lvl === activeLevel;
             const isUserLevel = lvl === userLevel;
-            const isAccessible = i <= userLevelIndex;
+            const isAccessible = isAdmin || i <= userLevelIndex;
             const hasRooms = ROOM_META[lvl].length > 0;
             return (
               <Link

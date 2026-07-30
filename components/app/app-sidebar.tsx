@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useTranslations } from "next-intl";
 import { cn } from "@/lib/utils";
 import { useAuth } from "@/contexts/auth-context";
@@ -25,7 +25,15 @@ import {
   Shield,
   User,
   Car,
+  Globe,
+  ChevronDown,
 } from "lucide-react";
+
+// Only locales actually wired up in i18n.ts's `locales` array belong here.
+const DASHBOARD_LANGUAGES = [
+  { code: "de", name: "Deutsch" },
+  { code: "en", name: "English" },
+];
 
 interface Props {
   locale: string;
@@ -44,8 +52,22 @@ export function AppSidebar({ locale, userName, userLevel }: Props) {
   const pathname = usePathname();
   const [loggingOut, setLoggingOut] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [langOpen, setLangOpen] = useState(false);
+  const langRef = useRef<HTMLDivElement>(null);
   const { role, signOut } = useAuth();
   const t = useTranslations("sidebar");
+  const tNav = useTranslations("nav");
+  const pathWithoutLocale = pathname.replace(`/${locale}`, "") || "/";
+
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (langRef.current && !langRef.current.contains(e.target as Node)) {
+        setLangOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   // Nav items differ by role
   const studentNav: NavItem[] = [
@@ -206,6 +228,35 @@ export function AppSidebar({ locale, userName, userLevel }: Props) {
 
       {/* Bottom */}
       <div className="px-3 py-3 border-t border-white/5 space-y-0.5">
+        {/* Language switcher */}
+        <div className="relative" ref={langRef}>
+          <button
+            onClick={() => setLangOpen(!langOpen)}
+            className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-white/40 hover:text-white hover:bg-white/5 transition-all"
+          >
+            <Globe className="h-4 w-4 flex-shrink-0" />
+            <span className="flex-1 text-left">{tNav("language")}</span>
+            <span className="uppercase text-xs">{locale}</span>
+            <ChevronDown className={cn("h-3 w-3 transition-transform duration-200", langOpen && "rotate-180")} />
+          </button>
+          {langOpen && (
+            <div className="absolute left-3 right-3 bottom-full mb-1 rounded-md bg-[#0B1B33] border border-white/10 shadow-xl overflow-hidden z-50">
+              {DASHBOARD_LANGUAGES.map((lang) => (
+                <Link
+                  key={lang.code}
+                  href={`/${lang.code}${pathWithoutLocale}`}
+                  onClick={() => setLangOpen(false)}
+                  className={cn(
+                    "flex items-center px-3 py-2 text-sm transition-colors hover:bg-white/5",
+                    lang.code === locale ? "text-[#E0B873] bg-[#E0B873]/5" : "text-white/70 hover:text-white"
+                  )}
+                >
+                  {lang.name}
+                </Link>
+              ))}
+            </div>
+          )}
+        </div>
         <Link
           href={`/${locale}/profile`}
           onClick={onLinkClick}
@@ -250,6 +301,13 @@ export function AppSidebar({ locale, userName, userLevel }: Props) {
           <span className="text-[11px] font-bold tracking-[0.18em] text-white uppercase">DeutschPilot</span>
         </Link>
         <div className="flex items-center gap-3">
+          <Link
+            href={`/${locale === "de" ? "en" : "de"}${pathWithoutLocale}`}
+            className="flex items-center gap-1 px-1.5 py-1 rounded text-[11px] font-semibold text-white/60 hover:text-white uppercase transition-colors"
+          >
+            <Globe className="h-3.5 w-3.5" />
+            {locale}
+          </Link>
           <div className="h-7 w-7 rounded-full bg-[#E0B873]/20 border border-[#E0B873]/30 flex items-center justify-center">
             <span className="text-xs font-bold text-[#E0B873]">{userName.charAt(0).toUpperCase()}</span>
           </div>
