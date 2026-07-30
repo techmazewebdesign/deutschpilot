@@ -4,6 +4,7 @@ import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import Link from "next/link";
 import { useParams } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { BookOpen, MessageSquare, Video, GraduationCap, Users, Edit2 } from "lucide-react";
 
 export function SplitCTASection() {
@@ -11,6 +12,7 @@ export function SplitCTASection() {
   const inView = useInView(ref, { once: true, margin: "-60px" });
   const params = useParams();
   const locale = (params?.locale as string) ?? "de";
+  const t = useTranslations("splitCta");
 
   return (
     <section ref={ref} className="bg-[#071424] py-20 lg:py-24 border-t border-white/[0.04]">
@@ -22,9 +24,9 @@ export function SplitCTASection() {
           transition={{ duration: 0.5 }}
         >
           <h2 className="text-3xl lg:text-4xl font-serif font-bold text-white">
-            Who are you?
+            {t("title")}
           </h2>
-          <p className="text-white/45 mt-2 text-sm">Choose your path and get started today.</p>
+          <p className="text-white/45 mt-2 text-sm">{t("subtitle")}</p>
         </motion.div>
 
         <div className="grid sm:grid-cols-2 gap-6 max-w-3xl mx-auto">
@@ -39,14 +41,14 @@ export function SplitCTASection() {
               <div className="h-10 w-10 rounded-xl bg-[#E0B873]/15 flex items-center justify-center mb-4">
                 <BookOpen className="h-5 w-5 text-[#E0B873]" />
               </div>
-              <h3 className="text-xl font-serif font-bold text-white mb-1">For Students</h3>
-              <p className="text-xs text-white/40">Everything you need to learn German.</p>
+              <h3 className="text-xl font-serif font-bold text-white mb-1">{t("student.heading")}</h3>
+              <p className="text-xs text-white/40">{t("student.subheading")}</p>
             </div>
             <ul className="space-y-2.5">
               {[
-                { icon: BookOpen, text: "Learn step by step with structured rooms" },
-                { icon: MessageSquare, text: "Practice anytime with the AI Trainer" },
-                { icon: Video, text: "Join live classes with real teachers" },
+                { icon: BookOpen, text: t("student.point1") },
+                { icon: MessageSquare, text: t("student.point2") },
+                { icon: Video, text: t("student.point3") },
               ].map((item) => (
                 <li key={item.text} className="flex items-center gap-2.5 text-sm text-white/60">
                   <item.icon className="h-3.5 w-3.5 text-[#E0B873] flex-shrink-0" />
@@ -58,7 +60,7 @@ export function SplitCTASection() {
               href={`/${locale}/signup`}
               className="mt-auto block text-center bg-[#E0B873] text-[#071424] font-bold text-sm py-3 rounded-xl hover:bg-[#C99B50] transition-colors"
             >
-              Create Student Account
+              {t("student.cta")}
             </Link>
           </motion.div>
 
@@ -73,14 +75,14 @@ export function SplitCTASection() {
               <div className="h-10 w-10 rounded-xl bg-blue-500/15 flex items-center justify-center mb-4">
                 <GraduationCap className="h-5 w-5 text-blue-300" />
               </div>
-              <h3 className="text-xl font-serif font-bold text-white mb-1">For Teachers</h3>
-              <p className="text-xs text-white/40">Manage your classes and grow your students.</p>
+              <h3 className="text-xl font-serif font-bold text-white mb-1">{t("teacher.heading")}</h3>
+              <p className="text-xs text-white/40">{t("teacher.subheading")}</p>
             </div>
             <ul className="space-y-2.5">
               {[
-                { icon: Edit2, text: "Create and publish live classes easily" },
-                { icon: Users, text: "Manage enrolled students per class" },
-                { icon: Video, text: "Add Google Meet links — students join in one click" },
+                { icon: Edit2, text: t("teacher.point1") },
+                { icon: Users, text: t("teacher.point2") },
+                { icon: Video, text: t("teacher.point3") },
               ].map((item) => (
                 <li key={item.text} className="flex items-center gap-2.5 text-sm text-white/60">
                   <item.icon className="h-3.5 w-3.5 text-blue-300 flex-shrink-0" />
@@ -92,7 +94,7 @@ export function SplitCTASection() {
               href={`/${locale}/signup?role=teacher`}
               className="mt-auto block text-center border border-white/20 text-white font-bold text-sm py-3 rounded-xl hover:border-white/40 hover:bg-white/5 transition-colors"
             >
-              Create Teacher Account
+              {t("teacher.cta")}
             </Link>
           </motion.div>
         </div>

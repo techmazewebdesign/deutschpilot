@@ -37,7 +37,24 @@
     "cta1": "Kostenlos testen",
     "cta2": "Niveau bestimmen",
     "rating": "4,9 von 5 Sternen aus 1.200+ Bewertungen",
-    "success": "Erfolgsgeschichten ansehen"
+    "success": "Erfolgsgeschichten ansehen",
+    "ctaPrimary": "Starte deine Reise",
+    "ctaSecondary": "A1-Räume entdecken",
+    "featureLevels": "A1–C1-Niveaus",
+    "featureAiCoPilot": "KI-Co-Pilot",
+    "featureCertificate": "Zertifikat",
+    "cockpitTitle": "Dein Lern-Cockpit",
+    "cockpitLive": "LIVE",
+    "cockpitCurrentLevel": "Aktuelles Niveau",
+    "cockpitCurrentRoom": "Aktueller Raum",
+    "cockpitRoomName": "Begrüßungen & Vorstellungen",
+    "cockpitProgress": "Fortschritt",
+    "cockpitNextLesson": "Nächste Lektion",
+    "cockpitNextLessonName": "Sich vorstellen",
+    "cockpitAiReady": "Bereit, dir beim Lernen zu helfen",
+    "cockpitReadyBadge": "Bereit",
+    "cockpitCertificatePath": "Zertifikatspfad",
+    "cockpitCertificateDesc": "A1–C1 abschließen, um es freizuschalten"
   },
   "stats": {
     "students": "Zufriedene Teilnehmer:innen",
@@ -1003,7 +1020,7 @@
         "description": "Grundlegende Sätze und Ausdrücke für alltägliche Situationen."
       },
       "A2": {
-        "name": "Grundkenntnisse",
+        "name": "Grundstufe",
         "description": "Einfache Kommunikation zu vertrauten Themen und Routineaufgaben."
       },
       "B1": {
@@ -1075,5 +1092,225 @@
     "unlockPremiumFull": "AI Trainer Premium freischalten",
     "inputPlaceholder": "Schreib eine Nachricht… (Enter zum Senden)",
     "disclaimer": "KI-Antworten können Fehler enthalten. Bitte überprüfe kritische Inhalte."
+  },
+  "levelJourney": {
+    "eyebrow": "Dein Lernweg",
+    "title": "Ein klarer Fahrplan von A1 bis C1",
+    "subtitle": "Strukturierte Niveaus mit Themenräumen, Checkpoint-Quiz und praxisnahen Übungen – jeder Schritt bringt dich messbar weiter.",
+    "levelNames": {
+      "A1": "Anfänger",
+      "A2": "Grundstufe",
+      "B1": "Mittelstufe",
+      "B2": "Gehobene Mittelstufe",
+      "C1": "Fortgeschritten"
+    },
+    "roomsCount": "{count} Räume mit Lektionen, Übungen & Quiz",
+    "available": "Verfügbar",
+    "comingSoon": "Bald verfügbar",
+    "exploreAll": "Alle Niveaus entdecken"
+  },
+  "roomShowcase": {
+    "levelBadge": "Niveau A1",
+    "roomsBadge": "{count} Räume",
+    "title": "Deine ersten Lernräume",
+    "subtitle": "Jeder Raum ist eine vollständige Lernumgebung mit Lektionen, interaktiven Übungen und einem Checkpoint-Quiz.",
+    "viewAll": "Alle Räume ansehen",
+    "roomNumber": "Raum {number}",
+    "lessonsCount": "{count} Lektionen",
+    "openStatus": "A1.{number} — Offen",
+    "locked": "Gesperrt",
+    "progress": "Fortschritt",
+    "enterRoom": "Raum betreten",
+    "rooms": {
+      "room1": {
+        "title": "Begrüßungen & Vorstellungen",
+        "desc": "Erste Kontakte knüpfen, dich vorstellen und andere begrüßen."
+      },
+      "room2": {
+        "title": "Zahlen, Zeit & Datum",
+        "desc": "Zahlen, Uhrzeiten, Datumsangaben und Wochentage."
+      },
+      "room3": {
+        "title": "Familie & persönliches Leben",
+        "desc": "Deine Familie beschreiben, Hobbys und persönliche Infos teilen."
+      },
+      "room4": {
+        "title": "Einkaufen & Alltag",
+        "desc": "Im Supermarkt: Preise verstehen und nach Produkten fragen."
+      },
+      "room5": {
+        "title": "Stadt, Verkehr & Wegbeschreibungen",
+        "desc": "Dich in der Stadt orientieren, Bus und Bahn nutzen, nach dem Weg fragen."
+      },
+      "room6": {
+        "title": "Arzt, Amt & Alltagssituationen",
+        "desc": "Beim Arzt, im Amt und im Alltag sicher kommunizieren."
+      }
+    }
+  },
+  "howItWorksSection": {
+    "eyebrow": "So funktioniert's",
+    "title": "In 4 Schritten loslegen",
+    "steps": {
+      "step1": {
+        "title": "Wähle dein Niveau",
+        "desc": "Mach den kurzen Einstufungstest oder wähle dein Niveau selbst. Wir haben strukturierte Räume von A1 bis C1."
+      },
+      "step2": {
+        "title": "Lerne mit KI",
+        "desc": "Übe Vokabeln, Grammatik und Konversation mit deinem persönlichen KI-Trainer – jederzeit und überall."
+      },
+      "step3": {
+        "title": "Nimm an Live-Kursen teil",
+        "desc": "Buche einen Live-Kurs mit einer echten Lehrkraft über Google Meet und beschleunige deinen Fortschritt."
+      },
+      "step4": {
+        "title": "Verfolge deinen Fortschritt",
+        "desc": "Schließe Übungen ab, verlängere deine Serie und beobachte, wie dein Niveau-Badge wächst."
+      }
+    }
+  },
+  "aiShowcase": {
+    "badge": "KI-gestützt",
+    "title": "Dein persönlicher KI-Deutschtrainer",
+    "subtitle": "24/7 verfügbar, um Gespräche zu üben, Fehler zu korrigieren und dich durch jeden Raum zu begleiten – wie ein privater Tutor in deiner Tasche.",
+    "feature": {
+      "conversation": {
+        "title": "Gespräche in Echtzeit",
+        "desc": "Übe natürliche deutsche Dialoge mit sofortigen Korrekturen und Feedback."
+      },
+      "corrections": {
+        "title": "Intelligente Korrekturen",
+        "desc": "Erhalte Grammatik-, Vokabel- und Aussprachetipps, die auf dein Niveau abgestimmt sind."
+      },
+      "adaptive": {
+        "title": "Adaptives Lernen",
+        "desc": "Die KI passt Schwierigkeit und Themen an deinen Fortschritt und deine Schwachstellen an."
+      },
+      "safe": {
+        "title": "Sichere Umgebung",
+        "desc": "Mach ruhig Fehler – keine Bewertung, nur konstruktive Hinweise."
+      }
+    },
+    "chatName": "DeutschPilot KI",
+    "online": "Online",
+    "chatUser1": "Wie sagt man 'Nice to meet you' auf Deutsch?",
+    "chatAi1": "Man sagt 'Freut mich, Sie kennenzulernen.' Oder informeller: 'Freut mich!' Möchtest du die Aussprache üben?",
+    "chatUser2": "Ja, bitte. Und wie fragt man nach dem Namen?",
+    "chatAi2": "'Wie heißen Sie?' (formell) oder 'Wie heißt du?' (informell). Soll ich ein kleines Rollenspiel starten?",
+    "typeMessage": "Nachricht eingeben...",
+    "openTrainer": "KI-Trainer öffnen"
+  },
+  "dailyMission": {
+    "badge": "Tägliche Serie",
+    "title": "Deine heutige Mission",
+    "subtitle": "Kleine, tägliche Ziele, die sich zu echter Sprachsicherheit summieren. Erfülle deine Missionen, um deine Serie am Leben zu halten und Fortschritt für dein Zertifikat zu sammeln.",
+    "streakLabel": "12-Tage-Serie",
+    "streakSub": "Bleib dran, um Bonus-Belohnungen freizuschalten",
+    "startCta": "Mission starten",
+    "cardHeader": "Tagesziele",
+    "resetsIn": "Wird in 8 Std. zurückgesetzt",
+    "progressLabel": "Missionsfortschritt",
+    "completedLabel": "{completed}/{total} abgeschlossen",
+    "mission1": "Schließe 1 Lektion im A1-Raum ab",
+    "mission2": "Übe 5 neue deutsche Redewendungen",
+    "mission3": "Wiederhole die Vokabeln von gestern",
+    "mission4": "Sprich 5 Minuten mit dem KI-Trainer"
+  },
+  "dashboardPreview": {
+    "eyebrow": "Dein Dashboard",
+    "title": "Verfolge jeden Schritt deines Fortschritts",
+    "subtitle": "Ein klarer, fokussierter Überblick über deine Lernreise – Statistiken, Serien und nächste Schritte an einem Ort.",
+    "statLessonsLabel": "Abgeschlossene Lektionen",
+    "statLessonsValue": "24",
+    "statStreakLabel": "Aktuelle Serie",
+    "statStreakValue": "12 Tage",
+    "statHoursLabel": "Gelernte Stunden",
+    "statHoursValue": "18,5",
+    "statRoomsLabel": "Abgeschlossene Räume",
+    "statRoomsValue": "1 / 6",
+    "recentActivity": "Neueste Aktivität",
+    "activity1Text": "Lektion 'Sich vorstellen' abgeschlossen",
+    "activity1Time": "vor 2 Std.",
+    "activity2Text": "A1.1-Checkpoint-Abzeichen erhalten",
+    "activity2Time": "Gestern",
+    "activity3Text": "10 Redewendungen mit dem KI-Trainer geübt",
+    "activity3Time": "Gestern",
+    "weeklyLearning": "Wöchentliches Lernen",
+    "dayMon": "Mo",
+    "dayTue": "Di",
+    "dayWed": "Mi",
+    "dayThu": "Do",
+    "dayFri": "Fr",
+    "daySat": "Sa",
+    "daySun": "So",
+    "totalThisWeek": "Gesamt diese Woche",
+    "totalHours": "18,3 Std."
+  },
+  "certificateSection": {
+    "badge": "Zertifikatspfad",
+    "title": "Erhalte ein anerkanntes Zertifikat",
+    "subtitle": "Schließe den gesamten A1–C1-Lernpfad ab und bestehe jedes Checkpoint-Quiz, um dein offizielles DeutschPilot-GER-Zertifikat freizuschalten.",
+    "cardTitle": "DeutschPilot-Zertifikat",
+    "cardSubtitle": "Anerkannter GER-Sprachnachweis",
+    "levelLabel": "Niveau",
+    "levelValue": "C1 – Fortgeschritten",
+    "statusLabel": "Status",
+    "statusLocked": "Gesperrt",
+    "progressLabel": "Fortschritt",
+    "verifiedNote": "Blockchain-verifiziert · Teilbar · Professionell",
+    "req1": "Schließe alle A1-Räume ab",
+    "req2": "Bestehe das A1-Checkpoint-Quiz (≥60%)",
+    "req3": "Schließe alle A2-Räume ab",
+    "req4": "Bestehe das A2-Checkpoint-Quiz (≥60%)",
+    "req5": "Schließe den B1–C1-Lernpfad ab",
+    "req6": "Abschlussprüfung C1"
+  },
+  "finalCta": {
+    "badge": "Starte noch heute",
+    "title": "Bereit für deine Deutsch-Reise?",
+    "subtitle": "Schließ dich Tausenden Lernenden an, die mit DeutschPilot schon heute echte Fortschritte machen. Dein erster Raum wartet auf dich.",
+    "primaryCta": "Jetzt starten",
+    "secondaryCta": "Niveau bestimmen",
+    "point1": "Kostenloser Start",
+    "point2": "Keine Kreditkarte nötig",
+    "point3": "Jederzeit kündbar"
+  },
+  "liveClassesPreview": {
+    "eyebrow": "Live-Kurse",
+    "title": "Kommende Termine",
+    "viewAll": "Alle Live-Kurse ansehen",
+    "empty": "Hier erscheinen bald unsere Live-Kurse.",
+    "by": "Von {name}",
+    "viewClass": "Live-Kurs ansehen →"
+  },
+  "teachersPreview": {
+    "eyebrow": "Unsere Lehrkräfte",
+    "title": "Lerne mit echten Lehrkräften",
+    "viewAll": "Alle Lehrkräfte",
+    "empty": "Hier werden bald unsere Lehrkräfte vorgestellt.",
+    "defaultBio": "Erfahrene Lehrkraft für Deutsch mit Live-Kursen für Einsteiger und Lernende der Mittelstufe.",
+    "activeCount": "{count} aktiv",
+    "viewClasses": "Live-Kurse ansehen →"
+  },
+  "splitCta": {
+    "title": "Wer bist du?",
+    "subtitle": "Wähle deinen Weg und starte noch heute.",
+    "student": {
+      "heading": "Für Lernende",
+      "subheading": "Alles, was du zum Deutschlernen brauchst.",
+      "point1": "Lerne Schritt für Schritt mit strukturierten Räumen",
+      "point2": "Übe jederzeit mit dem KI-Trainer",
+      "point3": "Nimm an Live-Kursen mit echten Lehrkräften teil",
+      "cta": "Konto für Lernende erstellen"
+    },
+    "teacher": {
+      "heading": "Für Lehrkräfte",
+      "subheading": "Verwalte deine Live-Kurse und fördere das Wachstum deiner Lernenden.",
+      "point1": "Erstelle und veröffentliche Live-Kurse ganz einfach",
+      "point2": "Verwalte eingeschriebene Lernende pro Live-Kurs",
+      "point3": "Füge Google-Meet-Links hinzu — Lernende treten mit einem Klick bei",
+      "cta": "Konto für Lehrkräfte erstellen"
+    }
   }
 }

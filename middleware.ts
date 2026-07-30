@@ -16,7 +16,11 @@ const PROTECTED_PATHS = [
   "/teacher",
 ];
 
-const intlMiddleware = createIntlMiddleware({ locales, defaultLocale });
+// localeDetection: false — always default to German for unprefixed visits,
+// regardless of the visitor's browser language. Without this, next-intl's
+// default Accept-Language-based detection would send English-browser
+// visitors to /en automatically, undermining "German by default."
+const intlMiddleware = createIntlMiddleware({ locales, defaultLocale, localeDetection: false });
 
 export function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;

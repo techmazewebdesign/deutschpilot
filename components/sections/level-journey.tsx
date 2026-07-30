@@ -2,17 +2,19 @@
 
 import { useParams } from "next/navigation";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { Star, Lock, CheckCircle2, ChevronRight } from "lucide-react";
 
 const LEVELS = [
-  { key: "A1", name: "Beginner", active: true, color: "#22c55e", rooms: 6 },
-  { key: "A2", name: "Elementary", active: true, color: "#84cc16", rooms: 6 },
-  { key: "B1", name: "Intermediate", active: true, color: "#E0B873", rooms: 6 },
-  { key: "B2", name: "Upper Intermediate", active: true, color: "#f97316", rooms: 6 },
-  { key: "C1", name: "Advanced", active: true, color: "#a855f7", rooms: 6 },
-];
+  { key: "A1", active: true, color: "#22c55e", rooms: 6 },
+  { key: "A2", active: true, color: "#84cc16", rooms: 6 },
+  { key: "B1", active: true, color: "#E0B873", rooms: 6 },
+  { key: "B2", active: true, color: "#f97316", rooms: 6 },
+  { key: "C1", active: true, color: "#a855f7", rooms: 6 },
+] as const;
 
 export function LevelJourneySection() {
+  const t = useTranslations("levelJourney");
   const params = useParams();
   const locale = (params?.locale as string) ?? "de";
 
@@ -22,13 +24,13 @@ export function LevelJourneySection() {
         {/* Header */}
         <div className="text-center mb-14">
           <p className="text-xs font-semibold text-[#CEA66F]/70 uppercase tracking-[0.2em] mb-3">
-            Your Learning Path
+            {t("eyebrow")}
           </p>
           <h2 className="text-3xl lg:text-4xl font-serif font-bold text-white mb-4">
-            A Clear Roadmap from A1 to C1
+            {t("title")}
           </h2>
           <p className="text-white/45 max-w-2xl mx-auto">
-            Structured levels with themed rooms, checkpoint quizzes, and real-world practice — every step is designed for measurable progress.
+            {t("subtitle")}
           </p>
         </div>
 
@@ -38,7 +40,7 @@ export function LevelJourneySection() {
           <div className="hidden lg:block absolute top-16 left-[10%] right-[10%] h-0.5 bg-white/8" />
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 lg:gap-4">
-            {LEVELS.map((level, i) => (
+            {LEVELS.map((level) => (
               <div key={level.key} className="relative flex flex-col items-center">
                 {/* Level badge */}
                 <div
@@ -74,21 +76,21 @@ export function LevelJourneySection() {
                 >
                   <div className="flex items-center gap-2 mb-2">
                     <h3 className="text-sm font-bold text-white">{level.key}</h3>
-                    <span className="text-xs text-white/50">· {level.name}</span>
+                    <span className="text-xs text-white/50">· {t(`levelNames.${level.key}`)}</span>
                   </div>
                   <p className="text-xs text-white/35 mb-3">
-                    {level.rooms} rooms with lessons, exercises &amp; quizzes
+                    {t("roomsCount", { count: level.rooms })}
                   </p>
                   <div className="flex items-center gap-1 text-[11px]">
                     {level.active ? (
                       <>
                         <CheckCircle2 className="h-3 w-3" style={{ color: level.color }} />
-                        <span style={{ color: level.color }}>Available</span>
+                        <span style={{ color: level.color }}>{t("available")}</span>
                       </>
                     ) : (
                       <>
                         <Lock className="h-3 w-3 text-white/25" />
-                        <span className="text-white/25">Coming soon</span>
+                        <span className="text-white/25">{t("comingSoon")}</span>
                       </>
                     )}
                   </div>
@@ -104,7 +106,7 @@ export function LevelJourneySection() {
             href={`/${locale}/levels`}
             className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#CEA66F] hover:text-[#D9B173] transition-colors"
           >
-            Explore all levels <ChevronRight className="h-4 w-4" />
+            {t("exploreAll")} <ChevronRight className="h-4 w-4" />
           </Link>
         </div>
       </div>

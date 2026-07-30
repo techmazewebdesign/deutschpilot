@@ -2,18 +2,21 @@
 
 import { useParams } from "next/navigation";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { Target, CheckCircle2, Clock, Flame, ArrowRight } from "lucide-react";
 
-const MISSIONS = [
-  { label: "Complete 1 A1 Room lesson", done: false },
-  { label: "Practice 5 new German phrases", done: false },
-  { label: "Review yesterday's vocabulary", done: true },
-  { label: "Speak with AI Trainer for 5 min", done: false },
+const MISSION_KEYS = [
+  { key: "mission1", done: false },
+  { key: "mission2", done: false },
+  { key: "mission3", done: true },
+  { key: "mission4", done: false },
 ];
 
 export function DailyMissionSection() {
   const params = useParams();
   const locale = (params?.locale as string) ?? "de";
+  const t = useTranslations("dailyMission");
+  const MISSIONS = MISSION_KEYS.map((m) => ({ ...m, label: t(m.key) }));
 
   const completed = MISSIONS.filter((m) => m.done).length;
   const total = MISSIONS.length;
@@ -27,13 +30,13 @@ export function DailyMissionSection() {
           <div>
             <div className="inline-flex items-center gap-2 rounded-full border border-[#CEA66F]/30 bg-[#CEA66F]/8 px-4 py-1.5 text-[11px] font-medium tracking-[0.15em] text-[#CEA66F] uppercase mb-4">
               <Flame className="h-3 w-3" />
-              Daily Streak
+              {t("badge")}
             </div>
             <h2 className="text-3xl lg:text-4xl font-serif font-bold text-white mb-4">
-              Today's Mission
+              {t("title")}
             </h2>
             <p className="text-white/45 max-w-md mb-8">
-              Small, daily goals that compound into fluency. Complete your missions to keep your streak alive and earn progress toward your certificate.
+              {t("subtitle")}
             </p>
 
             <div className="flex items-center gap-4 mb-8">
@@ -41,8 +44,8 @@ export function DailyMissionSection() {
                 <Flame className="h-5 w-5 text-[#CEA66F]" />
               </div>
               <div>
-                <p className="text-lg font-bold text-white">12 Day Streak</p>
-                <p className="text-xs text-white/40">Keep it going to unlock bonus rewards</p>
+                <p className="text-lg font-bold text-white">{t("streakLabel")}</p>
+                <p className="text-xs text-white/40">{t("streakSub")}</p>
               </div>
             </div>
 
@@ -50,7 +53,7 @@ export function DailyMissionSection() {
               href={`/${locale}/signup`}
               className="inline-flex items-center gap-2 bg-[#D9B173] text-[#071424] hover:bg-[#B98A4E] font-semibold rounded-md px-6 py-2.5 text-sm transition-colors"
             >
-              Start Mission <ArrowRight className="h-4 w-4" />
+              {t("startCta")} <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
 
@@ -63,19 +66,19 @@ export function DailyMissionSection() {
                   <div className="h-8 w-8 rounded-lg bg-[#CEA66F]/10 border border-[#CEA66F]/20 flex items-center justify-center">
                     <Target className="h-4 w-4 text-[#CEA66F]" />
                   </div>
-                  <span className="text-sm font-semibold text-white">Daily Goals</span>
+                  <span className="text-sm font-semibold text-white">{t("cardHeader")}</span>
                 </div>
                 <div className="flex items-center gap-1.5 text-[11px] text-white/40">
                   <Clock className="h-3 w-3" />
-                  <span>Resets in 8h</span>
+                  <span>{t("resetsIn")}</span>
                 </div>
               </div>
 
               {/* Progress bar */}
               <div className="mb-5">
                 <div className="flex items-center justify-between text-[11px] text-white/40 mb-1.5">
-                  <span>Mission Progress</span>
-                  <span>{completed}/{total} completed</span>
+                  <span>{t("progressLabel")}</span>
+                  <span>{t("completedLabel", { completed, total })}</span>
                 </div>
                 <div className="h-2 bg-white/6 rounded-full overflow-hidden">
                   <div

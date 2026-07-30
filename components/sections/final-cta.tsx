@@ -2,12 +2,14 @@
 
 import { useParams } from "next/navigation";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { ArrowRight, Sparkles, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export function FinalCTASection() {
   const params = useParams();
   const locale = (params?.locale as string) ?? "de";
+  const t = useTranslations("finalCta");
 
   return (
     <section className="bg-[#071424] py-20 lg:py-28 border-t border-white/[0.04]">
@@ -19,14 +21,14 @@ export function FinalCTASection() {
           <div className="relative">
             <div className="inline-flex items-center gap-2 rounded-full border border-[#CEA66F]/30 bg-[#CEA66F]/8 px-4 py-1.5 text-[11px] font-medium tracking-[0.15em] text-[#CEA66F] uppercase mb-5">
               <Sparkles className="h-3 w-3" />
-              Start Learning Today
+              {t("badge")}
             </div>
 
             <h2 className="text-3xl lg:text-5xl font-serif font-bold text-white mb-4 max-w-3xl mx-auto leading-tight">
-              Ready for Your German Journey?
+              {t("title")}
             </h2>
             <p className="text-white/45 max-w-xl mx-auto mb-8">
-              Join thousands of learners who are already making real progress with DeutschPilot. Your first room is waiting.
+              {t("subtitle")}
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-8">
@@ -35,7 +37,7 @@ export function FinalCTASection() {
                   size="lg"
                   className="bg-[#D9B173] text-[#071424] hover:bg-[#B98A4E] font-semibold rounded-md px-8"
                 >
-                  Start Your Journey <ArrowRight className="h-4 w-4 ml-1.5" />
+                  {t("primaryCta")} <ArrowRight className="h-4 w-4 ml-1.5" />
                 </Button>
               </Link>
               <Link href={`/${locale}/placement-test`}>
@@ -44,7 +46,7 @@ export function FinalCTASection() {
                   variant="outline"
                   className="border-[#C9D2DE]/30 text-[#C9D2DE] hover:bg-white/5 hover:border-[#CEA66F]/50 rounded-md px-7"
                 >
-                  Determine Your Level
+                  {t("secondaryCta")}
                 </Button>
               </Link>
             </div>
@@ -52,15 +54,15 @@ export function FinalCTASection() {
             <div className="flex flex-wrap items-center justify-center gap-4 text-[11px] text-white/30">
               <div className="flex items-center gap-1.5">
                 <CheckCircle2 className="h-3 w-3 text-[#CEA66F]" />
-                <span>Free to start</span>
+                <span>{t("point1")}</span>
               </div>
               <div className="flex items-center gap-1.5">
                 <CheckCircle2 className="h-3 w-3 text-[#CEA66F]" />
-                <span>No credit card required</span>
+                <span>{t("point2")}</span>
               </div>
               <div className="flex items-center gap-1.5">
                 <CheckCircle2 className="h-3 w-3 text-[#CEA66F]" />
-                <span>Cancel anytime</span>
+                <span>{t("point3")}</span>
               </div>
             </div>
           </div>

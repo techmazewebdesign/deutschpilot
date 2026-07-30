@@ -4,6 +4,7 @@ import { useRef, useEffect, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import Link from "next/link";
 import { useParams } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { Users, Video, ArrowRight } from "lucide-react";
 
 type TeacherCard = {
@@ -23,6 +24,7 @@ export function TeachersPreviewSection() {
   const inView = useInView(ref, { once: true, margin: "-60px" });
   const params = useParams();
   const locale = (params?.locale as string) ?? "de";
+  const t = useTranslations("teachersPreview");
   const [teachers, setTeachers] = useState<TeacherCard[]>([]);
 
   useEffect(() => {
@@ -42,11 +44,11 @@ export function TeachersPreviewSection() {
           transition={{ duration: 0.5 }}
         >
           <div>
-            <p className="text-[11px] font-semibold tracking-[0.2em] text-[#E0B873] uppercase mb-2">Our Teachers</p>
-            <h2 className="text-3xl lg:text-4xl font-serif font-bold text-white">Learn with Real Teachers</h2>
+            <p className="text-[11px] font-semibold tracking-[0.2em] text-[#E0B873] uppercase mb-2">{t("eyebrow")}</p>
+            <h2 className="text-3xl lg:text-4xl font-serif font-bold text-white">{t("title")}</h2>
           </div>
           <Link href={`/${locale}/teachers`} className="flex items-center gap-1.5 text-sm text-[#E0B873]/70 hover:text-[#E0B873] transition-colors font-medium whitespace-nowrap">
-            All teachers <ArrowRight className="h-4 w-4" />
+            {t("viewAll")} <ArrowRight className="h-4 w-4" />
           </Link>
         </motion.div>
 
@@ -58,7 +60,7 @@ export function TeachersPreviewSection() {
             transition={{ duration: 0.5, delay: 0.2 }}
           >
             <Users className="h-10 w-10 mx-auto text-white/15 mb-3" />
-            <p className="text-white/35">Our teachers will be listed here soon.</p>
+            <p className="text-white/35">{t("empty")}</p>
           </motion.div>
         ) : (
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -86,11 +88,11 @@ export function TeachersPreviewSection() {
                     </div>
                   </div>
                   <p className="text-xs text-white/45 leading-relaxed line-clamp-2 flex-1">
-                    {teacher.bio ?? "Experienced German teacher offering live sessions for beginners and intermediate learners."}
+                    {teacher.bio ?? t("defaultBio")}
                   </p>
                   <div className="flex items-center justify-between">
-                    <span className="flex items-center gap-1 text-xs text-white/30"><Video className="h-3 w-3" />{teacher.activeClasses} active</span>
-                    <Link href={`/${locale}/classes`} className="text-xs font-semibold text-[#E0B873] hover:text-[#C99B50] transition-colors">View Classes →</Link>
+                    <span className="flex items-center gap-1 text-xs text-white/30"><Video className="h-3 w-3" />{t("activeCount", { count: teacher.activeClasses })}</span>
+                    <Link href={`/${locale}/classes`} className="text-xs font-semibold text-[#E0B873] hover:text-[#C99B50] transition-colors">{t("viewClasses")}</Link>
                   </div>
                 </motion.div>
               );

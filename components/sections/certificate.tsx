@@ -1,17 +1,20 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { Award, Lock, CheckCircle2, Star, Shield } from "lucide-react";
 
-const REQUIREMENTS = [
-  { label: "Complete all A1 Rooms", done: false },
-  { label: "Pass A1 Checkpoint Quiz (≥60%)", done: false },
-  { label: "Complete all A2 Rooms", done: false },
-  { label: "Pass A2 Checkpoint Quiz (≥60%)", done: false },
-  { label: "Finish B1–C1 Learning Path", done: false },
-  { label: "Final C1 Assessment", done: false },
+const REQUIREMENT_KEYS = [
+  { key: "req1", done: false },
+  { key: "req2", done: false },
+  { key: "req3", done: false },
+  { key: "req4", done: false },
+  { key: "req5", done: false },
+  { key: "req6", done: false },
 ];
 
 export function CertificateSection() {
+  const t = useTranslations("certificateSection");
+  const REQUIREMENTS = REQUIREMENT_KEYS.map((r) => ({ ...r, label: t(r.key) }));
   const doneCount = REQUIREMENTS.filter((r) => r.done).length;
   const total = REQUIREMENTS.length;
 
@@ -32,23 +35,23 @@ export function CertificateSection() {
                 </div>
 
                 <h3 className="text-xl font-serif font-bold text-white mb-1">
-                  DeutschPilot Certificate
+                  {t("cardTitle")}
                 </h3>
-                <p className="text-xs text-white/40 mb-6">Recognized CEFR Language Proficiency</p>
+                <p className="text-xs text-white/40 mb-6">{t("cardSubtitle")}</p>
 
                 <div className="w-full bg-white/5 border border-white/8 rounded-xl p-4 mb-5">
                   <div className="flex items-center justify-between mb-3">
-                    <span className="text-xs text-white/40">Level</span>
-                    <span className="text-sm font-bold text-[#CEA66F]">C1 — Advanced</span>
+                    <span className="text-xs text-white/40">{t("levelLabel")}</span>
+                    <span className="text-sm font-bold text-[#CEA66F]">{t("levelValue")}</span>
                   </div>
                   <div className="flex items-center justify-between mb-3">
-                    <span className="text-xs text-white/40">Status</span>
+                    <span className="text-xs text-white/40">{t("statusLabel")}</span>
                     <span className="text-xs font-medium text-white/50 flex items-center gap-1">
-                      <Lock className="h-3 w-3" /> Locked
+                      <Lock className="h-3 w-3" /> {t("statusLocked")}
                     </span>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span className="text-xs text-white/40">Progress</span>
+                    <span className="text-xs text-white/40">{t("progressLabel")}</span>
                     <span className="text-xs font-bold text-[#CEA66F]">{Math.round((doneCount / total) * 100)}%</span>
                   </div>
                   <div className="h-1.5 bg-white/6 rounded-full overflow-hidden mt-2">
@@ -61,7 +64,7 @@ export function CertificateSection() {
 
                 <div className="flex items-center gap-1.5 text-[11px] text-white/30">
                   <Shield className="h-3 w-3" />
-                  <span>Blockchain-verified · Shareable · Professional</span>
+                  <span>{t("verifiedNote")}</span>
                 </div>
               </div>
             </div>
@@ -71,13 +74,13 @@ export function CertificateSection() {
           <div>
             <div className="inline-flex items-center gap-2 rounded-full border border-[#CEA66F]/30 bg-[#CEA66F]/8 px-4 py-1.5 text-[11px] font-medium tracking-[0.15em] text-[#CEA66F] uppercase mb-4">
               <Star className="h-3 w-3" />
-              Certificate Path
+              {t("badge")}
             </div>
             <h2 className="text-3xl lg:text-4xl font-serif font-bold text-white mb-4">
-              Earn a Recognized Certificate
+              {t("title")}
             </h2>
             <p className="text-white/45 max-w-md mb-8">
-              Complete the full A1–C1 learning path and pass each checkpoint quiz to unlock your official DeutschPilot CEFR certificate.
+              {t("subtitle")}
             </p>
 
             <div className="space-y-2.5">

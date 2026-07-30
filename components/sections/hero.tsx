@@ -11,6 +11,7 @@ export function HeroSection() {
   const t = useTranslations("hero");
   const params = useParams();
   const locale = (params?.locale as string) ?? "de";
+  const titleLines = t("title").split("\n");
 
   return (
     <section className="relative overflow-hidden bg-[#071424]" style={{ minHeight: "calc(100svh - 4rem)" }}>
@@ -47,9 +48,9 @@ export function HeroSection() {
 
             <h1 className="font-serif font-bold leading-[1.1] text-[#F5F1E8] mb-6"
                 style={{ fontSize: "clamp(2.4rem, 5vw, 4.5rem)" }}>
-              Learn German.
-              <span className="block text-[#CEA66F]">Your Path.</span>
-              <span className="block">Your Future.</span>
+              {titleLines[0]}
+              <span className="block text-[#CEA66F]">{titleLines[1]}</span>
+              <span className="block">{titleLines[2]}</span>
             </h1>
 
             <p className="text-[#C9D2DE] mb-8 leading-relaxed max-w-md"
@@ -63,7 +64,7 @@ export function HeroSection() {
                   size="lg"
                   className="bg-[#D9B173] text-[#071424] hover:bg-[#B98A4E] font-semibold rounded-md px-7"
                 >
-                  Start Your Journey <ArrowRight className="h-4 w-4 ml-1.5" />
+                  {t("ctaPrimary")} <ArrowRight className="h-4 w-4 ml-1.5" />
                 </Button>
               </Link>
               <Link href={`/${locale}/rooms`}>
@@ -72,7 +73,7 @@ export function HeroSection() {
                   variant="outline"
                   className="border-[#C9D2DE]/30 text-[#C9D2DE] hover:bg-white/5 hover:border-[#CEA66F]/50 rounded-md px-7"
                 >
-                  Explore A1 Rooms
+                  {t("ctaSecondary")}
                 </Button>
               </Link>
             </div>
@@ -80,15 +81,15 @@ export function HeroSection() {
             <div className="flex items-center gap-6 text-xs text-white/40">
               <div className="flex items-center gap-1.5">
                 <CheckCircle2 className="h-3.5 w-3.5 text-[#CEA66F]" />
-                <span>A1–C1 Levels</span>
+                <span>{t("featureLevels")}</span>
               </div>
               <div className="flex items-center gap-1.5">
                 <CheckCircle2 className="h-3.5 w-3.5 text-[#CEA66F]" />
-                <span>AI Co-Pilot</span>
+                <span>{t("featureAiCoPilot")}</span>
               </div>
               <div className="flex items-center gap-1.5">
                 <CheckCircle2 className="h-3.5 w-3.5 text-[#CEA66F]" />
-                <span>Certificate</span>
+                <span>{t("featureCertificate")}</span>
               </div>
             </div>
           </div>
@@ -106,23 +107,23 @@ export function HeroSection() {
                     <div className="h-8 w-8 rounded-lg bg-[#CEA66F]/15 flex items-center justify-center border border-[#CEA66F]/25">
                       <GraduationCap className="h-4 w-4 text-[#CEA66F]" />
                     </div>
-                    <span className="text-sm font-semibold text-white">Your Learning Cockpit</span>
+                    <span className="text-sm font-semibold text-white">{t("cockpitTitle")}</span>
                   </div>
-                  <span className="text-[10px] font-medium text-[#CEA66F] bg-[#CEA66F]/10 px-2 py-0.5 rounded-full border border-[#CEA66F]/20">LIVE</span>
+                  <span className="text-[10px] font-medium text-[#CEA66F] bg-[#CEA66F]/10 px-2 py-0.5 rounded-full border border-[#CEA66F]/20">{t("cockpitLive")}</span>
                 </div>
 
                 {/* Stats grid */}
                 <div className="grid grid-cols-2 gap-3 mb-5">
                   <div className="bg-white/5 border border-white/8 rounded-xl p-3">
-                    <p className="text-[10px] uppercase tracking-wider text-white/40 mb-1">Current Level</p>
+                    <p className="text-[10px] uppercase tracking-wider text-white/40 mb-1">{t("cockpitCurrentLevel")}</p>
                     <p className="text-lg font-bold text-[#CEA66F]">A1</p>
                   </div>
                   <div className="bg-white/5 border border-white/8 rounded-xl p-3">
-                    <p className="text-[10px] uppercase tracking-wider text-white/40 mb-1">Current Room</p>
-                    <p className="text-sm font-semibold text-white truncate">Greetings &amp; Introductions</p>
+                    <p className="text-[10px] uppercase tracking-wider text-white/40 mb-1">{t("cockpitCurrentRoom")}</p>
+                    <p className="text-sm font-semibold text-white truncate">{t("cockpitRoomName")}</p>
                   </div>
                   <div className="bg-white/5 border border-white/8 rounded-xl p-3">
-                    <p className="text-[10px] uppercase tracking-wider text-white/40 mb-1">Progress</p>
+                    <p className="text-[10px] uppercase tracking-wider text-white/40 mb-1">{t("cockpitProgress")}</p>
                     <div className="flex items-center gap-2">
                       <div className="flex-1 h-1.5 bg-white/10 rounded-full overflow-hidden">
                         <div className="h-full bg-[#CEA66F] rounded-full" style={{ width: "18%" }} />
@@ -131,8 +132,8 @@ export function HeroSection() {
                     </div>
                   </div>
                   <div className="bg-white/5 border border-white/8 rounded-xl p-3">
-                    <p className="text-[10px] uppercase tracking-wider text-white/40 mb-1">Next Lesson</p>
-                    <p className="text-xs text-white/70 truncate">Introducing Yourself</p>
+                    <p className="text-[10px] uppercase tracking-wider text-white/40 mb-1">{t("cockpitNextLesson")}</p>
+                    <p className="text-xs text-white/70 truncate">{t("cockpitNextLessonName")}</p>
                   </div>
                 </div>
 
@@ -142,10 +143,10 @@ export function HeroSection() {
                     <Sparkles className="h-4 w-4 text-[#CEA66F]" />
                   </div>
                   <div>
-                    <p className="text-xs font-medium text-white">AI Co-Pilot</p>
-                    <p className="text-[11px] text-white/50">Ready to assist your learning</p>
+                    <p className="text-xs font-medium text-white">{t("featureAiCoPilot")}</p>
+                    <p className="text-[11px] text-white/50">{t("cockpitAiReady")}</p>
                   </div>
-                  <span className="ml-auto text-[10px] font-semibold text-emerald-400 bg-emerald-400/10 px-2 py-0.5 rounded-full border border-emerald-400/20">Ready</span>
+                  <span className="ml-auto text-[10px] font-semibold text-emerald-400 bg-emerald-400/10 px-2 py-0.5 rounded-full border border-emerald-400/20">{t("cockpitReadyBadge")}</span>
                 </div>
 
                 {/* Certificate path */}
@@ -154,8 +155,8 @@ export function HeroSection() {
                     <BookOpen className="h-4 w-4 text-white/40" />
                   </div>
                   <div className="flex-1">
-                    <p className="text-xs font-medium text-white/60">Certificate Path</p>
-                    <p className="text-[11px] text-white/35">Complete A1–C1 to unlock</p>
+                    <p className="text-xs font-medium text-white/60">{t("cockpitCertificatePath")}</p>
+                    <p className="text-[11px] text-white/35">{t("cockpitCertificateDesc")}</p>
                   </div>
                   <Lock className="h-4 w-4 text-white/25" />
                 </div>

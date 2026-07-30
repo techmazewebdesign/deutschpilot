@@ -37,7 +37,24 @@
     "cta1": "Try for free",
     "cta2": "Find your level",
     "rating": "4.9 out of 5 from 1,200+ reviews",
-    "success": "Watch success stories"
+    "success": "Watch success stories",
+    "ctaPrimary": "Start Your Journey",
+    "ctaSecondary": "Explore A1 Rooms",
+    "featureLevels": "A1–C1 Levels",
+    "featureAiCoPilot": "AI Co-Pilot",
+    "featureCertificate": "Certificate",
+    "cockpitTitle": "Your Learning Cockpit",
+    "cockpitLive": "LIVE",
+    "cockpitCurrentLevel": "Current Level",
+    "cockpitCurrentRoom": "Current Room",
+    "cockpitRoomName": "Greetings & Introductions",
+    "cockpitProgress": "Progress",
+    "cockpitNextLesson": "Next Lesson",
+    "cockpitNextLessonName": "Introducing Yourself",
+    "cockpitAiReady": "Ready to assist your learning",
+    "cockpitReadyBadge": "Ready",
+    "cockpitCertificatePath": "Certificate Path",
+    "cockpitCertificateDesc": "Complete A1–C1 to unlock"
   },
   "stats": {
     "students": "Happy learners",
@@ -1075,5 +1092,225 @@
     "unlockPremiumFull": "Unlock AI Trainer Premium",
     "inputPlaceholder": "Type a message… (Enter to send)",
     "disclaimer": "AI responses may contain errors. Please verify critical content."
+  },
+  "levelJourney": {
+    "eyebrow": "Your Learning Path",
+    "title": "A Clear Roadmap from A1 to C1",
+    "subtitle": "Structured levels with themed rooms, checkpoint quizzes, and real-world practice — every step is designed for measurable progress.",
+    "levelNames": {
+      "A1": "Beginner",
+      "A2": "Elementary",
+      "B1": "Intermediate",
+      "B2": "Upper Intermediate",
+      "C1": "Advanced"
+    },
+    "roomsCount": "{count} rooms with lessons, exercises & quizzes",
+    "available": "Available",
+    "comingSoon": "Coming soon",
+    "exploreAll": "Explore all levels"
+  },
+  "roomShowcase": {
+    "levelBadge": "A1 Level",
+    "roomsBadge": "{count} Rooms",
+    "title": "Your First Learning Rooms",
+    "subtitle": "Each room is a complete learning environment with lessons, interactive exercises, and a checkpoint quiz.",
+    "viewAll": "View all rooms",
+    "roomNumber": "Room {number}",
+    "lessonsCount": "{count} lessons",
+    "openStatus": "A1.{number} — Open",
+    "locked": "Locked",
+    "progress": "Progress",
+    "enterRoom": "Enter Room",
+    "rooms": {
+      "room1": {
+        "title": "Greetings & Introductions",
+        "desc": "Make first contacts, introduce yourself, greet others."
+      },
+      "room2": {
+        "title": "Numbers, Time & Dates",
+        "desc": "Numbers, clock time, dates, and days of the week."
+      },
+      "room3": {
+        "title": "Family & Personal Life",
+        "desc": "Describe family, share hobbies and personal information."
+      },
+      "room4": {
+        "title": "Shopping & Daily Needs",
+        "desc": "At the supermarket, understand prices, ask for products."
+      },
+      "room5": {
+        "title": "City, Transport & Directions",
+        "desc": "Navigate the city, use public transport, ask for directions."
+      },
+      "room6": {
+        "title": "Doctor, Office & Real Life",
+        "desc": "Communicate at the doctor, office and everyday situations."
+      }
+    }
+  },
+  "howItWorksSection": {
+    "eyebrow": "How It Works",
+    "title": "Start Learning in 4 Steps",
+    "steps": {
+      "step1": {
+        "title": "Choose Your Level",
+        "desc": "Take a quick placement test or pick your level. We have structured rooms from A1 to C1."
+      },
+      "step2": {
+        "title": "Learn with AI",
+        "desc": "Practice vocabulary, grammar, and conversation with your personal AI Trainer — anytime, anywhere."
+      },
+      "step3": {
+        "title": "Join Live Classes",
+        "desc": "Book a live session with a real German teacher via Google Meet and accelerate your progress."
+      },
+      "step4": {
+        "title": "Track Progress",
+        "desc": "Complete exercises, earn streaks, and watch your level badge grow as you advance."
+      }
+    }
+  },
+  "aiShowcase": {
+    "badge": "AI-Powered",
+    "title": "Your Personal AI German Trainer",
+    "subtitle": "Available 24/7 to practice conversations, correct mistakes, and guide you through every room — like having a private tutor in your pocket.",
+    "feature": {
+      "conversation": {
+        "title": "Real-Time Conversation",
+        "desc": "Practice natural German dialogue with instant corrections and feedback."
+      },
+      "corrections": {
+        "title": "Smart Corrections",
+        "desc": "Get grammar, vocabulary, and pronunciation tips tailored to your level."
+      },
+      "adaptive": {
+        "title": "Adaptive Learning",
+        "desc": "The AI adjusts difficulty and topics based on your progress and weak spots."
+      },
+      "safe": {
+        "title": "Safe Environment",
+        "desc": "Make mistakes freely — no judgment, just constructive guidance."
+      }
+    },
+    "chatName": "DeutschPilot AI",
+    "online": "Online",
+    "chatUser1": "Wie sagt man 'Nice to meet you' auf Deutsch?",
+    "chatAi1": "Man sagt 'Freut mich, Sie kennenzulernen.' Oder informeller: 'Freut mich!' Möchtest du die Aussprache üben?",
+    "chatUser2": "Ja, bitte. Und wie fragt man nach dem Namen?",
+    "chatAi2": "'Wie heißen Sie?' (formell) oder 'Wie heißt du?' (informell). Soll ich ein kleines Rollenspiel starten?",
+    "typeMessage": "Type a message...",
+    "openTrainer": "Open AI Trainer"
+  },
+  "dailyMission": {
+    "badge": "Daily Streak",
+    "title": "Today's Mission",
+    "subtitle": "Small, daily goals that compound into fluency. Complete your missions to keep your streak alive and earn progress toward your certificate.",
+    "streakLabel": "12 Day Streak",
+    "streakSub": "Keep it going to unlock bonus rewards",
+    "startCta": "Start Mission",
+    "cardHeader": "Daily Goals",
+    "resetsIn": "Resets in 8h",
+    "progressLabel": "Mission Progress",
+    "completedLabel": "{completed}/{total} completed",
+    "mission1": "Complete 1 A1 Room lesson",
+    "mission2": "Practice 5 new German phrases",
+    "mission3": "Review yesterday's vocabulary",
+    "mission4": "Speak with AI Trainer for 5 min"
+  },
+  "dashboardPreview": {
+    "eyebrow": "Your Dashboard",
+    "title": "Track Every Step of Your Progress",
+    "subtitle": "A clean, focused overview of your learning journey — stats, streaks, and next steps all in one place.",
+    "statLessonsLabel": "Lessons Completed",
+    "statLessonsValue": "24",
+    "statStreakLabel": "Current Streak",
+    "statStreakValue": "12 days",
+    "statHoursLabel": "Hours Learned",
+    "statHoursValue": "18.5",
+    "statRoomsLabel": "Rooms Cleared",
+    "statRoomsValue": "1 / 6",
+    "recentActivity": "Recent Activity",
+    "activity1Text": "Completed 'Introducing Yourself' lesson",
+    "activity1Time": "2h ago",
+    "activity2Text": "Earned A1.1 Checkpoint badge",
+    "activity2Time": "Yesterday",
+    "activity3Text": "Practiced 10 phrases with AI Trainer",
+    "activity3Time": "Yesterday",
+    "weeklyLearning": "Weekly Learning",
+    "dayMon": "Mon",
+    "dayTue": "Tue",
+    "dayWed": "Wed",
+    "dayThu": "Thu",
+    "dayFri": "Fri",
+    "daySat": "Sat",
+    "daySun": "Sun",
+    "totalThisWeek": "Total this week",
+    "totalHours": "18.3 hrs"
+  },
+  "certificateSection": {
+    "badge": "Certificate Path",
+    "title": "Earn a Recognized Certificate",
+    "subtitle": "Complete the full A1–C1 learning path and pass each checkpoint quiz to unlock your official DeutschPilot CEFR certificate.",
+    "cardTitle": "DeutschPilot Certificate",
+    "cardSubtitle": "Recognized CEFR Language Proficiency",
+    "levelLabel": "Level",
+    "levelValue": "C1 — Advanced",
+    "statusLabel": "Status",
+    "statusLocked": "Locked",
+    "progressLabel": "Progress",
+    "verifiedNote": "Blockchain-verified · Shareable · Professional",
+    "req1": "Complete all A1 Rooms",
+    "req2": "Pass A1 Checkpoint Quiz (≥60%)",
+    "req3": "Complete all A2 Rooms",
+    "req4": "Pass A2 Checkpoint Quiz (≥60%)",
+    "req5": "Finish B1–C1 Learning Path",
+    "req6": "Final C1 Assessment"
+  },
+  "finalCta": {
+    "badge": "Start Learning Today",
+    "title": "Ready for Your German Journey?",
+    "subtitle": "Join thousands of learners who are already making real progress with DeutschPilot. Your first room is waiting.",
+    "primaryCta": "Start Your Journey",
+    "secondaryCta": "Determine Your Level",
+    "point1": "Free to start",
+    "point2": "No credit card required",
+    "point3": "Cancel anytime"
+  },
+  "liveClassesPreview": {
+    "eyebrow": "Live Classes",
+    "title": "Upcoming Sessions",
+    "viewAll": "View all classes",
+    "empty": "Live classes will appear here soon.",
+    "by": "By {name}",
+    "viewClass": "View Class →"
+  },
+  "teachersPreview": {
+    "eyebrow": "Our Teachers",
+    "title": "Learn with Real Teachers",
+    "viewAll": "All teachers",
+    "empty": "Our teachers will be listed here soon.",
+    "defaultBio": "Experienced German teacher offering live sessions for beginners and intermediate learners.",
+    "activeCount": "{count} active",
+    "viewClasses": "View Classes →"
+  },
+  "splitCta": {
+    "title": "Who are you?",
+    "subtitle": "Choose your path and get started today.",
+    "student": {
+      "heading": "For Students",
+      "subheading": "Everything you need to learn German.",
+      "point1": "Learn step by step with structured rooms",
+      "point2": "Practice anytime with the AI Trainer",
+      "point3": "Join live classes with real teachers",
+      "cta": "Create Student Account"
+    },
+    "teacher": {
+      "heading": "For Teachers",
+      "subheading": "Manage your classes and grow your students.",
+      "point1": "Create and publish live classes easily",
+      "point2": "Manage enrolled students per class",
+      "point3": "Add Google Meet links — students join in one click",
+      "cta": "Create Teacher Account"
+    }
   }
 }

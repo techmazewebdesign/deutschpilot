@@ -4,6 +4,7 @@ import { useRef, useEffect, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import Link from "next/link";
 import { useParams } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { Video, CalendarDays, Clock, ArrowRight } from "lucide-react";
 
 const levelColors: Record<string, string> = {
@@ -24,6 +25,7 @@ export function LiveClassesPreviewSection() {
   const inView = useInView(ref, { once: true, margin: "-60px" });
   const params = useParams();
   const locale = (params?.locale as string) ?? "de";
+  const t = useTranslations("liveClassesPreview");
   const [classes, setClasses] = useState<PublicClass[]>([]);
 
   useEffect(() => {
@@ -46,11 +48,11 @@ export function LiveClassesPreviewSection() {
           transition={{ duration: 0.5 }}
         >
           <div>
-            <p className="text-[11px] font-semibold tracking-[0.2em] text-[#E0B873] uppercase mb-2">Live Classes</p>
-            <h2 className="text-3xl lg:text-4xl font-serif font-bold text-white">Upcoming Sessions</h2>
+            <p className="text-[11px] font-semibold tracking-[0.2em] text-[#E0B873] uppercase mb-2">{t("eyebrow")}</p>
+            <h2 className="text-3xl lg:text-4xl font-serif font-bold text-white">{t("title")}</h2>
           </div>
           <Link href={`/${locale}/classes`} className="flex items-center gap-1.5 text-sm text-[#E0B873]/70 hover:text-[#E0B873] transition-colors font-medium whitespace-nowrap">
-            View all classes <ArrowRight className="h-4 w-4" />
+            {t("viewAll")} <ArrowRight className="h-4 w-4" />
           </Link>
         </motion.div>
 
@@ -62,7 +64,7 @@ export function LiveClassesPreviewSection() {
             transition={{ duration: 0.5, delay: 0.2 }}
           >
             <Video className="h-10 w-10 mx-auto text-white/15 mb-3" />
-            <p className="text-white/35">Live classes will appear here soon.</p>
+            <p className="text-white/35">{t("empty")}</p>
           </motion.div>
         ) : (
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -81,13 +83,13 @@ export function LiveClassesPreviewSection() {
                     <span className={`text-[10px] font-bold tracking-widest uppercase px-2 py-0.5 rounded-full border ${levelColors[cls.level] ?? levelColors.A1}`}>{cls.level}</span>
                   </div>
                   <p className="text-sm font-serif font-bold text-white group-hover:text-[#E0B873] transition-colors leading-snug">{cls.title}</p>
-                  <p className="text-xs text-white/40">By {cls.teacher_name}</p>
+                  <p className="text-xs text-white/40">{t("by", { name: cls.teacher_name })}</p>
                   <div className="text-xs text-white/40 space-y-1">
                     <div className="flex items-center gap-1.5"><CalendarDays className="h-3 w-3" />{fmtDate(cls.start_time)}</div>
                     <div className="flex items-center gap-1.5"><Clock className="h-3 w-3" />{fmtTime(cls.start_time)} · {cls.duration_minutes} min</div>
                   </div>
                   <Link href={`/${locale}/classes`} className="block text-center text-xs font-semibold text-[#E0B873] hover:text-[#C99B50] transition-colors pt-1">
-                    View Class →
+                    {t("viewClass")}
                   </Link>
                 </div>
               </motion.div>
