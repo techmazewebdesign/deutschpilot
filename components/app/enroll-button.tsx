@@ -60,6 +60,14 @@ export function EnrollButton({ classId, locale, isLoggedIn, isTeacher, isEnrolle
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error ?? "Enrollment failed");
+      const analyticsWindow = window as Window & { dataLayer?: Array<Record<string, unknown>> };
+      analyticsWindow.dataLayer = analyticsWindow.dataLayer || [];
+      analyticsWindow.dataLayer.push({
+        event: "generate_lead",
+        form_name: "class_enrollment",
+        lead_type: "class_enrollment",
+        language: locale,
+      });
       setEnrolled(true);
       router.refresh();
     } catch (e: unknown) {

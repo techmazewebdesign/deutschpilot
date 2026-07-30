@@ -9,8 +9,14 @@
  */
 import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "@/lib/session";
-import { createLevelCheckoutSession, priceIdForLevel } from "@/lib/stripe";
+import {
+  aiTrainerPriceId,
+  createAITrainerCheckoutSession,
+  createLevelCheckoutSession,
+  priceIdForLevel,
+} from "@/lib/stripe";
 import { isPaidLevel, hasLevelAccess } from "@/lib/entitlements";
+import { getAITrainerAccess } from "@/lib/aiTrainer/access";
 
 export const runtime = "nodejs";
 
@@ -34,7 +40,48 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Invalid JSON body." }, { status: 400 });
   }
 
-  const { level } = body as { level?: string };
+  const { level, product } = body as { level?: string; product?: string };
+  const configuredOrigin = process.env.NEXT_PUBLIC_APP_URL?.trim();
+  const origin = (configuredOrigin || new URL(req.url).origin).replace(/\/+$/, "");
+  const requestedLocale = req.headers.get("referer")?.match(/\/([a-z]{2})(?:\/|$)/)?.[1];
+  const locale = requestedLocale === "de" ? "de" : "en";
+
+  if (product === "ai_trainer") {
+    if (process.env.AI_TRAINER_PAID_ENABLED !== "true") {
+      return NextResponse.json(
+        { error: "AI Trainer paid access is not enabled yet." },
+        { status: 503 },
+      );
+    }
+
+    const access = await getAITrainerAccess(session.user);
+    if (access.tier === "premium" || access.tier === "admin") {
+      return NextResponse.json({ error: "You already have AI Trainer access." }, { status: 409 });
+    }
+
+    const priceId = aiTrainerPriceId();
+    if (!priceId) {
+      return NextResponse.json(
+        { error: "AI Trainer checkout is not available yet." },
+        { status: 503 },
+      );
+    }
+
+    try {
+      const checkoutSession = await createAITrainerCheckoutSession({
+        priceId,
+        userId: session.user.id,
+        successUrl: `${origin}/${locale}/ai-trainer?purchase=success`,
+        cancelUrl: `${origin}/${locale}/ai-trainer?purchase=cancelled`,
+      });
+      return NextResponse.json({ url: checkoutSession.url });
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : String(err);
+      console.error("[checkout] AI Trainer session failed:", msg);
+      return NextResponse.json({ error: "Could not start checkout." }, { status: 500 });
+    }
+  }
+
   if (!level || !isPaidLevel(level)) {
     return NextResponse.json({ error: "Invalid or missing level." }, { status: 400 });
   }
@@ -52,9 +99,6 @@ export async function POST(req: NextRequest) {
       { status: 503 }
     );
   }
-
-  const origin = req.headers.get("origin") ?? new URL(req.url).origin;
-  const locale = req.headers.get("referer")?.match(/\/([a-z]{2})\//)?.[1] ?? "en";
 
   try {
     const checkoutSession = await createLevelCheckoutSession({

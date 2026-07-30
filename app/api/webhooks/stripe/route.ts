@@ -41,6 +41,47 @@ export async function POST(req: NextRequest) {
   if (event.type === "checkout.session.completed") {
     const checkoutSession = event.data.object as Stripe.Checkout.Session;
     const userId = checkoutSession.metadata?.userId ?? checkoutSession.client_reference_id;
+    const product = checkoutSession.metadata?.product;
+
+    if (product === "ai_trainer") {
+      if (!userId) {
+        console.error(`[stripe-webhook] AI Trainer checkout missing userId — session=${checkoutSession.id}`);
+        return NextResponse.json({ received: true });
+      }
+
+      const billingMode = checkoutSession.metadata?.billingMode === "payment"
+        ? "payment"
+        : "subscription";
+      const subscriptionId = typeof checkoutSession.subscription === "string"
+        ? checkoutSession.subscription
+        : null;
+      const customerId = typeof checkoutSession.customer === "string"
+        ? checkoutSession.customer
+        : null;
+      const paymentIntentId = typeof checkoutSession.payment_intent === "string"
+        ? checkoutSession.payment_intent
+        : null;
+      const sb = createAdminSupabaseClient();
+      const { error } = await sb.from("ai_trainer_entitlements").upsert({
+        user_id: userId,
+        status: "active",
+        billing_mode: billingMode,
+        stripe_customer_id: customerId,
+        stripe_subscription_id: subscriptionId,
+        stripe_payment_intent_id: paymentIntentId,
+        stripe_checkout_session_id: checkoutSession.id,
+        current_period_end: null,
+      }, { onConflict: "user_id" });
+
+      if (error) {
+        console.error("[stripe-webhook] Failed to grant AI Trainer access:", error.message);
+        return NextResponse.json({ error: "Failed to record AI Trainer entitlement." }, { status: 500 });
+      }
+
+      console.log(`[stripe-webhook] AI Trainer entitlement recorded — session=${checkoutSession.id}`);
+      return NextResponse.json({ received: true });
+    }
+
     const level = checkoutSession.metadata?.level;
 
     if (!userId || !level || !isPaidLevel(level)) {
@@ -72,6 +113,55 @@ export async function POST(req: NextRequest) {
     }
 
     console.log(`[stripe-webhook] ✓ Purchase recorded — user=${userId} level=${level} session=${checkoutSession.id}`);
+  }
+
+  if (event.type === "customer.subscription.updated" || event.type === "customer.subscription.deleted") {
+    const subscription = event.data.object as Stripe.Subscription;
+    if (subscription.metadata?.product === "ai_trainer") {
+      const active = event.type !== "customer.subscription.deleted"
+        && (subscription.status === "active" || subscription.status === "trialing");
+      const status = active
+        ? "active"
+        : subscription.status === "past_due"
+          ? "past_due"
+          : "canceled";
+      const currentPeriodEnd = subscription.current_period_end
+        ? new Date(subscription.current_period_end * 1_000).toISOString()
+        : null;
+      const sb = createAdminSupabaseClient();
+      const { error } = await sb
+        .from("ai_trainer_entitlements")
+        .update({
+          status,
+          current_period_end: currentPeriodEnd,
+        })
+        .eq("stripe_subscription_id", subscription.id);
+
+      if (error) {
+        console.error("[stripe-webhook] Failed to update AI Trainer subscription:", error.message);
+        return NextResponse.json({ error: "Failed to update AI Trainer entitlement." }, { status: 500 });
+      }
+    }
+  }
+
+  if (event.type === "charge.refunded") {
+    const charge = event.data.object as Stripe.Charge;
+    const paymentIntentId = typeof charge.payment_intent === "string"
+      ? charge.payment_intent
+      : null;
+    if (charge.refunded && paymentIntentId) {
+      const sb = createAdminSupabaseClient();
+      const { error } = await sb
+        .from("ai_trainer_entitlements")
+        .update({ status: "refunded" })
+        .eq("billing_mode", "payment")
+        .eq("stripe_payment_intent_id", paymentIntentId);
+
+      if (error) {
+        console.error("[stripe-webhook] Failed to revoke refunded AI Trainer access:", error.message);
+        return NextResponse.json({ error: "Failed to update AI Trainer entitlement." }, { status: 500 });
+      }
+    }
   }
 
   return NextResponse.json({ received: true });

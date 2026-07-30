@@ -1,7 +1,9 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { Send, Bot, User, Loader2, RotateCcw, Sparkles } from "lucide-react";
+import { useTranslations } from "next-intl";
+import { Send, Bot, User, Loader2, RotateCcw, Sparkles, Crown } from "lucide-react";
+import type { AITrainerAccessTier } from "@/lib/aiTrainer/access";
 
 interface Message {
   id: number;
@@ -9,57 +11,35 @@ interface Message {
   text: string;
 }
 
-const QUICK_PROMPTS_DE = [
-  "Korrigiere meinen Satz",
-  "Gib mir eine A1-Übung",
-  "Erkläre die Grammatik",
-  "Übe ein Gespräch mit mir",
-  "Teste meinen Wortschatz",
-];
-
-const QUICK_PROMPTS_EN = [
-  "Correct my sentence",
-  "Give me an A1 exercise",
-  "Explain grammar",
-  "Practice conversation",
-  "Test my vocabulary",
-];
-
-const WELCOME_DE = `Hallo! Ich bin dein KI-Trainer für Deutsch 🎓
-
-Ich kann dir bei Folgendem helfen:
-• Sätze korrigieren und erklären
-• Grammatik auf einfache Weise erklären
-• Gespräche auf Deutsch üben
-• Vokabular-Tests durchführen
-• A1–C1 Übungen geben
-
-Auf was möchtest du heute konzentrieren?`;
-
-const WELCOME_EN = `Hello! I'm your AI German trainer 🎓
-
-I can help you with:
-• Correcting and explaining your sentences
-• Explaining grammar in a simple way
-• Practising conversations in German
-• Running vocabulary tests
-• Giving you A1–C1 exercises
-
-What would you like to focus on today?`;
-
 interface Props {
   locale: string;
   userName: string;
   userLevel?: string;
+  accessTier: AITrainerAccessTier;
+  dailyLimit: number;
+  paidAccessEnabled: boolean;
+  checkoutAvailable: boolean;
 }
 
-export function AITrainerClient({ locale, userName, userLevel = "A1" }: Props) {
-  const de = locale === "de";
+export function AITrainerClient({
+  locale,
+  userName,
+  userLevel = "A1",
+  accessTier,
+  dailyLimit,
+  paidAccessEnabled,
+  checkoutAvailable,
+}: Props) {
+  const t = useTranslations("aiTrainer");
+  const quickPrompts = t.raw("quickPrompts") as string[];
   const [messages, setMessages] = useState<Message[]>([
-    { id: 0, role: "assistant", text: de ? WELCOME_DE : WELCOME_EN },
+    { id: 0, role: "assistant", text: t("welcome") },
   ]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
+  const [checkoutLoading, setCheckoutLoading] = useState(false);
+  const [upgradeNeeded, setUpgradeNeeded] = useState(false);
+  const [remaining, setRemaining] = useState<number | null>(null);
   const bottomRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
 
@@ -91,15 +71,37 @@ export function AITrainerClient({ locale, userName, userLevel = "A1" }: Props) {
         }),
       });
 
-      if (res.status === 429) {
+      const remainingHeader = res.headers.get("x-ai-trainer-remaining");
+      if (remainingHeader !== null) setRemaining(Number(remainingHeader));
+
+      if (res.status === 402) {
+        const body = await res.json().catch(() => ({})) as {
+          limit?: number;
+          checkoutAvailable?: boolean;
+        };
+        setUpgradeNeeded(true);
         setMessages((prev) =>
           prev.map((m) =>
             m.id === assistantId
               ? {
                   ...m,
-                  text: de
-                    ? "Du hast heute dein Tageslimit von 20 Nachrichten erreicht. Komm morgen wieder! 🌟"
-                    : "You've reached your daily limit of 20 messages. Come back tomorrow! 🌟",
+                  text: t("upgradeNeededMessage", { limit: body.limit ?? dailyLimit }),
+                }
+              : m,
+          ),
+        );
+        setLoading(false);
+        return;
+      }
+
+      if (res.status === 429) {
+        const body = await res.json().catch(() => ({})) as { limit?: number };
+        setMessages((prev) =>
+          prev.map((m) =>
+            m.id === assistantId
+              ? {
+                  ...m,
+                  text: t("dailyLimitReached", { limit: body.limit ?? dailyLimit }),
                 }
               : m
           )
@@ -129,15 +131,40 @@ export function AITrainerClient({ locale, userName, userLevel = "A1" }: Props) {
           m.id === assistantId
             ? {
                 ...m,
-                text: de
-                  ? "Entschuldigung, es gab einen Fehler. Bitte versuche es erneut."
-                  : "Sorry, something went wrong. Please try again.",
+                text: t("errorMessage"),
               }
             : m
         )
       );
     } finally {
       setLoading(false);
+    }
+  }
+
+  async function startUpgrade() {
+    if (!checkoutAvailable || checkoutLoading) return;
+    setCheckoutLoading(true);
+    try {
+      const response = await fetch("/api/checkout/create-session", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ product: "ai_trainer" }),
+      });
+      const body = await response.json() as { url?: string; error?: string };
+      if (!response.ok || !body.url) {
+        throw new Error(body.error ?? "Checkout unavailable");
+      }
+      window.location.href = body.url;
+    } catch {
+      setMessages((prev) => [
+        ...prev,
+        {
+          id: Date.now(),
+          role: "assistant",
+          text: t("checkoutUnavailable"),
+        },
+      ]);
+      setCheckoutLoading(false);
     }
   }
 
@@ -149,7 +176,7 @@ export function AITrainerClient({ locale, userName, userLevel = "A1" }: Props) {
   }
 
   function resetChat() {
-    setMessages([{ id: 0, role: "assistant", text: de ? WELCOME_DE : WELCOME_EN }]);
+    setMessages([{ id: 0, role: "assistant", text: t("welcome") }]);
     setInput("");
   }
 
@@ -162,10 +189,12 @@ export function AITrainerClient({ locale, userName, userLevel = "A1" }: Props) {
             <Sparkles className="h-4.5 w-4.5 text-[#E0B873]" />
           </div>
           <div>
-            <h1 className="text-sm font-bold text-white">{de ? "KI-Trainer" : "AI Trainer"}</h1>
+            <h1 className="text-sm font-bold text-white">{t("title")}</h1>
             <p className="text-[10px] text-[#E0B873]/60 flex items-center gap-1">
               <span className="h-1.5 w-1.5 rounded-full bg-green-400 inline-block" />
-              {de ? "Online · Bereit zu helfen" : "Online · Ready to help"}
+              {accessTier === "preview"
+                ? t("statusPreview", { limit: dailyLimit })
+                : t("statusOnline")}
             </p>
           </div>
         </div>
@@ -174,7 +203,7 @@ export function AITrainerClient({ locale, userName, userLevel = "A1" }: Props) {
           className="flex items-center gap-1.5 text-xs text-white/35 hover:text-white/70 transition-colors px-3 py-1.5 rounded-lg border border-white/8 hover:border-white/15"
         >
           <RotateCcw className="h-3.5 w-3.5" />
-          {de ? "Neu starten" : "Reset"}
+          {t("reset")}
         </button>
       </div>
 
@@ -225,7 +254,7 @@ export function AITrainerClient({ locale, userName, userLevel = "A1" }: Props) {
       {/* Quick prompts */}
       <div className="flex-shrink-0 px-4 lg:px-8 pb-2 overflow-x-auto">
         <div className="flex gap-2 w-max">
-          {(de ? QUICK_PROMPTS_DE : QUICK_PROMPTS_EN).map((p) => (
+          {quickPrompts.map((p) => (
             <button
               key={p}
               onClick={() => sendMessage(p)}
@@ -238,6 +267,43 @@ export function AITrainerClient({ locale, userName, userLevel = "A1" }: Props) {
         </div>
       </div>
 
+      {paidAccessEnabled && accessTier === "preview" && (
+        <div className="mx-4 lg:mx-8 mt-3 rounded-xl border border-[#E0B873]/20 bg-[#E0B873]/8 px-4 py-3 flex items-center justify-between gap-3">
+          <div className="min-w-0">
+            <p className="text-xs font-semibold text-[#E0B873] flex items-center gap-1.5">
+              <Crown className="h-3.5 w-3.5" />
+              DeutschPilot AI Premium
+            </p>
+            <p className="text-[10px] text-white/45 mt-1">
+              {t("previewMessagesAvailable", { remaining: remaining ?? dailyLimit })}
+            </p>
+          </div>
+          {checkoutAvailable && (
+            <button
+              type="button"
+              onClick={startUpgrade}
+              disabled={checkoutLoading}
+              className="flex-shrink-0 rounded-lg bg-[#E0B873] px-3 py-2 text-[10px] font-bold text-[#071424] hover:bg-[#C99B50] disabled:opacity-60"
+            >
+              {checkoutLoading ? t("loading") : t("unlockPremium")}
+            </button>
+          )}
+        </div>
+      )}
+
+      {upgradeNeeded && paidAccessEnabled && checkoutAvailable && (
+        <div className="px-4 lg:px-8 pt-3">
+          <button
+            type="button"
+            onClick={startUpgrade}
+            disabled={checkoutLoading}
+            className="w-full rounded-xl bg-[#E0B873] py-2.5 text-xs font-bold text-[#071424] hover:bg-[#C99B50] disabled:opacity-60"
+          >
+            {checkoutLoading ? t("openingCheckout") : t("unlockPremiumFull")}
+          </button>
+        </div>
+      )}
+
       {/* Input */}
       <div className="flex-shrink-0 px-4 lg:px-8 py-4 border-t border-white/5">
         <div className="flex items-end gap-3 bg-[#0A1E35]/80 border border-white/10 rounded-2xl px-4 py-3 focus-within:border-[#E0B873]/30 transition-colors">
@@ -248,11 +314,7 @@ export function AITrainerClient({ locale, userName, userLevel = "A1" }: Props) {
             onKeyDown={handleKey}
             disabled={loading}
             rows={1}
-            placeholder={
-              de
-                ? "Schreib eine Nachricht… (Enter zum Senden)"
-                : "Type a message… (Enter to send)"
-            }
+            placeholder={t("inputPlaceholder")}
             className="flex-1 bg-transparent text-sm text-white placeholder:text-white/25 resize-none focus:outline-none leading-relaxed max-h-32 overflow-y-auto disabled:opacity-50"
             style={{ minHeight: "24px" }}
           />
@@ -269,9 +331,7 @@ export function AITrainerClient({ locale, userName, userLevel = "A1" }: Props) {
           </button>
         </div>
         <p className="text-[10px] text-white/20 text-center mt-2">
-          {de
-            ? "KI-Antworten können Fehler enthalten. Bitte überprüfe kritische Inhalte."
-            : "AI responses may contain errors. Please verify critical content."}
+          {t("disclaimer")}
         </p>
       </div>
     </div>

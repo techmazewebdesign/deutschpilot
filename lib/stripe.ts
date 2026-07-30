@@ -20,6 +20,16 @@ export function priceIdForLevel(level: PaidLevel): string | null {
   return LEVEL_PRICE_ENV[level] ?? null;
 }
 
+export type AITrainerBillingMode = "subscription" | "payment";
+
+export function aiTrainerBillingMode(): AITrainerBillingMode {
+  return process.env.AI_TRAINER_BILLING_MODE === "payment" ? "payment" : "subscription";
+}
+
+export function aiTrainerPriceId(): string | null {
+  return process.env.STRIPE_PRICE_AI_TRAINER ?? null;
+}
+
 export async function createLevelCheckoutSession({
   level,
   priceId,
@@ -41,5 +51,35 @@ export async function createLevelCheckoutSession({
     cancel_url: cancelUrl,
     client_reference_id: userId,
     metadata: { userId, level },
+  });
+}
+
+export async function createAITrainerCheckoutSession({
+  priceId,
+  userId,
+  successUrl,
+  cancelUrl,
+}: {
+  priceId: string;
+  userId: string;
+  successUrl: string;
+  cancelUrl: string;
+}) {
+  const mode = aiTrainerBillingMode();
+  const metadata = {
+    userId,
+    product: "ai_trainer",
+    billingMode: mode,
+  };
+
+  return stripe.checkout.sessions.create({
+    mode,
+    payment_method_types: ["card"],
+    line_items: [{ price: priceId, quantity: 1 }],
+    success_url: successUrl,
+    cancel_url: cancelUrl,
+    client_reference_id: userId,
+    metadata,
+    ...(mode === "subscription" ? { subscription_data: { metadata } } : {}),
   });
 }
