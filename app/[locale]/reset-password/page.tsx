@@ -3,17 +3,17 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
+import { useTranslations } from "next-intl";
 
 export default function ResetPasswordPage({
   params: { locale },
 }: {
   params: { locale: string };
 }) {
+  const t = useTranslations("auth");
   const router = useRouter();
   const searchParams = useSearchParams();
   const token = searchParams.get("token") ?? "";
-
-  const isDE = locale === "de";
 
   const [password, setPassword] = useState("");
   const [confirm, setConfirm] = useState("");
@@ -26,28 +26,21 @@ export default function ResetPasswordPage({
 
   useEffect(() => {
     if (!token) {
-      setError(
-        isDE
-          ? "Ungültiger oder fehlender Reset-Link."
-          : "Invalid or missing reset link."
-      );
+      setError(t("invalidResetLink"));
     }
-  }, [token, isDE]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [token]);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setError(null);
 
     if (password !== confirm) {
-      setError(isDE ? "Passwörter stimmen nicht überein." : "Passwords do not match.");
+      setError(t("passwordMismatch"));
       return;
     }
     if (password.length < 8) {
-      setError(
-        isDE
-          ? "Das Passwort muss mindestens 8 Zeichen lang sein."
-          : "Password must be at least 8 characters."
-      );
+      setError(t("passwordMinLength8"));
       return;
     }
 
@@ -65,13 +58,13 @@ export default function ResetPasswordPage({
         /* non-JSON */
       }
       if (!res.ok) {
-        setError(data.error ?? (isDE ? "Fehler. Bitte erneut versuchen." : "Error. Please try again."));
+        setError(data.error ?? t("errorTryAgain"));
         return;
       }
       setSuccess(true);
       setTimeout(() => router.push(`/${locale}/signin`), 2500);
     } catch {
-      setError(isDE ? "Etwas ist schiefgelaufen." : "Something went wrong.");
+      setError(t("somethingWentWrong"));
     } finally {
       setLoading(false);
     }
@@ -93,22 +86,20 @@ export default function ResetPasswordPage({
               <span className="text-green-400 text-2xl">✓</span>
             </div>
             <h1 className="text-2xl font-serif font-bold text-white mb-2">
-              {isDE ? "Passwort geändert!" : "Password updated!"}
+              {t("passwordUpdatedTitle")}
             </h1>
             <p className="text-[#C9D2DE] text-sm">
-              {isDE ? "Du wirst weitergeleitet…" : "Redirecting you…"}
+              {t("redirecting")}
             </p>
           </div>
         ) : (
           <>
             <div className="mb-8">
               <h1 className="text-3xl font-serif font-bold text-white mb-2">
-                {isDE ? "Neues Passwort" : "New password"}
+                {t("newPasswordTitle")}
               </h1>
               <p className="text-[#C9D2DE] text-sm">
-                {isDE
-                  ? "Gib dein neues Passwort ein."
-                  : "Enter your new password below."}
+                {t("newPasswordBody")}
               </p>
             </div>
 
@@ -121,7 +112,7 @@ export default function ResetPasswordPage({
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
                 <label className="block text-xs font-medium text-white/60 uppercase tracking-wider mb-1.5">
-                  {isDE ? "Neues Passwort" : "New password"}
+                  {t("newPasswordTitle")}
                 </label>
                 <input
                   type="password"
@@ -137,7 +128,7 @@ export default function ResetPasswordPage({
 
               <div>
                 <label className="block text-xs font-medium text-white/60 uppercase tracking-wider mb-1.5">
-                  {isDE ? "Passwort bestätigen" : "Confirm password"}
+                  {t("confirmPassword")}
                 </label>
                 <input
                   type="password"
@@ -156,15 +147,13 @@ export default function ResetPasswordPage({
                 disabled={loading || !token}
                 className="w-full bg-[#D9B173] text-[#071424] font-semibold py-3 rounded-md hover:bg-[#B98A4E] transition-colors mt-2 disabled:opacity-60 disabled:cursor-not-allowed"
               >
-                {loading
-                  ? (isDE ? "Wird gespeichert…" : "Saving…")
-                  : (isDE ? "Passwort speichern" : "Save password")}
+                {loading ? t("saving") : t("savePassword")}
               </button>
             </form>
 
             <p className="text-center text-sm text-white/40 mt-6">
               <Link href={`/${locale}/signin`} className="text-[#CEA66F] hover:underline">
-                ← {isDE ? "Zurück zur Anmeldung" : "Back to sign in"}
+                ← {t("backToSignin")}
               </Link>
             </p>
           </>

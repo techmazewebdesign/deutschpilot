@@ -40,6 +40,7 @@ function WordOrderExercise({
   answer: string;
   onAnswer: (val: string) => void;
 }) {
+  const t = useTranslations("learn");
   const [bank, setBank] = useState<{ w: string; id: number }[]>(
     words.map((w, i) => ({ w, id: i }))
   );
@@ -65,7 +66,7 @@ function WordOrderExercise({
       <div className="min-h-[52px] flex flex-wrap gap-2 p-3 rounded-xl border border-[#E0B873]/30 bg-[#E0B873]/5">
         {chosen.length === 0 && (
           <span className="text-xs text-white/20 self-center px-1">
-            {answer || "Tap words below to build the sentence…"}
+            {answer || t("wordOrderHint")}
           </span>
         )}
         {chosen.map((item) => (
@@ -110,7 +111,7 @@ function WritingPromptExercise({
   courseLevel: string;
   onContinue: (text: string) => void;
 }) {
-  const de = locale === "de";
+  const t = useTranslations("learn");
   const [text, setText] = useState("");
   const [feedback, setFeedback] = useState("");
   const [loading, setLoading] = useState(false);
@@ -139,11 +140,7 @@ function WritingPromptExercise({
       });
 
       if (res.status === 429) {
-        setFeedback(
-          de
-            ? "Du hast heute dein Tageslimit an KI-Nachrichten erreicht. Komm morgen wieder! 🌟"
-            : "You've reached your daily AI message limit. Come back tomorrow! 🌟"
-        );
+        setFeedback(t("aiDailyLimitReached"));
         setLoading(false);
         return;
       }
@@ -159,11 +156,7 @@ function WritingPromptExercise({
         setFeedback(accumulated);
       }
     } catch {
-      setFeedback(
-        de
-          ? "Entschuldigung, es gab einen Fehler. Bitte versuche es erneut."
-          : "Sorry, something went wrong. Please try again."
-      );
+      setFeedback(t("aiFeedbackError"));
     } finally {
       setLoading(false);
     }
@@ -176,7 +169,7 @@ function WritingPromptExercise({
         onChange={(e) => setText(e.target.value)}
         disabled={requested}
         rows={5}
-        placeholder={de ? "Schreib deine Antwort auf Deutsch…" : "Write your response in German…"}
+        placeholder={t("writingPlaceholder")}
         className="w-full rounded-xl bg-white/5 border border-white/10 text-white px-4 py-3 text-sm placeholder:text-white/20 focus:outline-none focus:border-[#E0B873]/50 transition-all resize-none disabled:opacity-70"
       />
 
@@ -187,7 +180,7 @@ function WritingPromptExercise({
           className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#E0B873] text-[#071424] text-sm font-bold hover:bg-[#C99B50] transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
         >
           <Sparkles className="h-4 w-4" />
-          {de ? "KI-Feedback erhalten" : "Get AI feedback"}
+          {t("getAiFeedback")}
         </button>
       )}
 
@@ -196,7 +189,7 @@ function WritingPromptExercise({
           <div className="flex items-center gap-2 mb-2">
             <Sparkles className="h-3.5 w-3.5 text-[#E0B873]" />
             <span className="text-[10px] font-bold uppercase tracking-[0.15em] text-[#E0B873]/70">
-              {de ? "KI-Feedback" : "AI Feedback"}
+              {t("aiFeedbackLabel")}
             </span>
           </div>
           <p className="text-sm text-white/85 whitespace-pre-wrap leading-relaxed">
@@ -218,7 +211,7 @@ function WritingPromptExercise({
       {requested && !loading && sampleAnswer && (
         <div className="rounded-xl border border-white/10 bg-white/3 p-4">
           <p className="text-[10px] font-bold uppercase tracking-[0.15em] text-white/40 mb-1.5">
-            {de ? "Beispielantwort" : "Sample answer"}
+            {t("sampleAnswer")}
           </p>
           <p className="text-sm text-white/60 italic">{sampleAnswer}</p>
         </div>
@@ -234,7 +227,7 @@ function WritingPromptExercise({
             onClick={() => onContinue(text)}
             className="flex items-center gap-2 px-6 py-2.5 rounded-xl bg-[#E0B873] text-[#071424] text-sm font-bold hover:bg-[#C99B50] transition-colors"
           >
-            {de ? "Weiter" : "Continue"}
+            {t("continue")}
             <ArrowRight className="h-4 w-4" />
           </button>
         </div>
@@ -260,7 +253,7 @@ function SpeakingPromptExercise({
   locale: string;
   onContinue: () => void;
 }) {
-  const de = locale === "de";
+  const t = useTranslations("learn");
   const [permissionError, setPermissionError] = useState<string | null>(null);
   const [recording, setRecording] = useState(false);
   const [hasRecording, setHasRecording] = useState(false);
@@ -301,11 +294,7 @@ function SpeakingPromptExercise({
       recorder.start();
       setRecording(true);
     } catch {
-      setPermissionError(
-        de
-          ? "Kein Zugriff auf das Mikrofon. Bitte erlaube den Zugriff in deinem Browser."
-          : "Couldn't access your microphone. Please allow microphone access in your browser."
-      );
+      setPermissionError(t("microphoneDenied"));
     }
   }
 
@@ -327,7 +316,7 @@ function SpeakingPromptExercise({
     <div className="space-y-4">
       <div className="rounded-xl border border-white/10 bg-white/3 p-4">
         <p className="text-[10px] font-bold uppercase tracking-[0.15em] text-white/40 mb-1.5">
-          {de ? "Beispielantwort" : "Model answer"}
+          {t("modelAnswer")}
         </p>
         <p className="text-sm text-white/60 italic">{modelAnswer}</p>
       </div>
@@ -339,7 +328,7 @@ function SpeakingPromptExercise({
             className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#E0B873] text-[#071424] text-sm font-bold hover:bg-[#C99B50] transition-colors"
           >
             <Mic className="h-4 w-4" />
-            {hasRecording ? (de ? "Neu aufnehmen" : "Record again") : (de ? "Aufnehmen" : "Record")}
+            {hasRecording ? t("recordAgain") : t("record")}
           </button>
         ) : (
           <button
@@ -347,7 +336,7 @@ function SpeakingPromptExercise({
             className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-red-500/90 text-white text-sm font-bold hover:bg-red-500 transition-colors"
           >
             <Square className="h-3.5 w-3.5" />
-            {de ? "Stopp" : "Stop"}
+            {t("stop")}
             <span className="h-2 w-2 rounded-full bg-white animate-pulse" />
           </button>
         )}
@@ -358,7 +347,7 @@ function SpeakingPromptExercise({
             className="flex items-center gap-2 px-5 py-2.5 rounded-xl border border-[#E0B873]/30 text-[#E0B873] text-sm font-medium hover:bg-[#E0B873]/10 transition-colors"
           >
             {playing ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4" />}
-            {de ? "Anhören" : "Play back"}
+            {t("playBack")}
           </button>
         )}
       </div>
@@ -379,9 +368,7 @@ function SpeakingPromptExercise({
       )}
 
       <p className="text-xs text-white/35 italic">
-        {de
-          ? "Deine Aufnahme wird nicht gespeichert oder hochgeladen — sie ist nur zur eigenen Übung."
-          : "Your recording isn't saved or uploaded — it's just for your own practice."}
+        {t("recordingNotSaved")}
       </p>
 
       {tip && <p className="text-xs text-white/35 italic">{tip}</p>}
@@ -392,7 +379,7 @@ function SpeakingPromptExercise({
             onClick={onContinue}
             className="flex items-center gap-2 px-6 py-2.5 rounded-xl bg-[#E0B873] text-[#071424] text-sm font-bold hover:bg-[#C99B50] transition-colors"
           >
-            {de ? "Weiter" : "Continue"}
+            {t("continue")}
             <ArrowRight className="h-4 w-4" />
           </button>
         </div>
@@ -404,7 +391,6 @@ function SpeakingPromptExercise({
 // ── Main Quiz ─────────────────────────────────────────────────────────────────
 export function Quiz({ exercises, lessonId, courseId, userId, locale, lessonSlug, courseLevel = "A1" }: Props) {
   const t = useTranslations("learn");
-  const de = locale === "de";
 
   const [currentIdx, setCurrentIdx] = useState(0);
   const [answers, setAnswers] = useState<Record<string, string>>({});
@@ -520,21 +506,21 @@ export function Quiz({ exercises, lessonId, courseId, userId, locale, lessonSlug
             {score}%
           </div>
           <p className="text-white font-semibold text-lg mb-1">
-            {correctCount} / {totalQ} {de ? "richtig" : "correct"}
+            {correctCount} / {totalQ} {t("correct")}
           </p>
           <p className={`text-sm mt-2 ${passed ? "text-[#E0B873]/80" : "text-red-300/80"}`}>
             {perfect
-              ? (de ? "Perfekt! Ausgezeichnete Arbeit! 🎉" : "Perfect score! Outstanding work! 🎉")
+              ? t("perfectScore")
               : passed
-              ? (de ? "Gut gemacht! Lektion abgeschlossen." : "Well done! Lesson completed.")
-              : (de ? "Nicht ganz – du brauchst 60% zum Bestehen. Versuch es nochmal!" : "Not quite – you need 60% to pass. Try again!")}
+              ? t("wellDone")
+              : t("notQuite")}
           </p>
         </div>
 
         {/* Per-question review */}
         <div className="space-y-3">
           <h3 className="text-sm font-semibold text-white/60 uppercase tracking-wider">
-            {de ? "Überprüfung" : "Review"}
+            {t("review")}
           </h3>
           {exercises.map((ex, idx) => {
             const given = answers[ex.id] ?? "";
@@ -554,17 +540,17 @@ export function Quiz({ exercises, lessonId, courseId, userId, locale, lessonSlug
                       <p className="text-xs text-white/50 mt-1 whitespace-pre-wrap">{given}</p>
                     ) : ex.type === "speaking_prompt" ? (
                       <p className="text-xs text-white/35 mt-1 italic">
-                        {de ? "Übung abgeschlossen" : "Practice completed"}
+                        {t("practiceCompleted")}
                       </p>
                     ) : (
                       !correct && (
                         <div className="space-y-0.5 mt-1">
                           <p className="text-xs text-red-300">
-                            {de ? "Deine Antwort: " : "Your answer: "}
+                            {t("yourAnswerLabel")}{" "}
                             <span className="font-medium">{given || "–"}</span>
                           </p>
                           <p className="text-xs text-[#E0B873]">
-                            {de ? "Richtig: " : "Correct: "}
+                            {t("correctShort")}{" "}
                             <span className="font-medium">{ex.correct_answer}</span>
                           </p>
                         </div>
@@ -619,7 +605,7 @@ export function Quiz({ exercises, lessonId, courseId, userId, locale, lessonSlug
   const progressBar = (
     <div>
       <div className="flex items-center justify-between text-xs text-white/35 mb-2">
-        <span>{de ? `Frage ${currentIdx + 1} von ${totalQ}` : `Question ${currentIdx + 1} of ${totalQ}`}</span>
+        <span>{t("questionOf", { current: currentIdx + 1, total: totalQ })}</span>
         <div className="flex gap-1">
           {exercises.map((_, i) => {
             const ans = answers[exercises[i].id];
@@ -653,7 +639,7 @@ export function Quiz({ exercises, lessonId, courseId, userId, locale, lessonSlug
           <div className="flex items-center gap-2 mb-4">
             <span className="flex items-center gap-1.5 text-[9px] font-bold uppercase tracking-[0.2em] text-[#E0B873]/50 bg-[#E0B873]/8 px-2 py-1 rounded-md">
               <PenLine className="h-3 w-3" />
-              {de ? "Schreibaufgabe" : "Writing prompt"}
+              {t("writingPromptLabel")}
             </span>
           </div>
           <p className="text-base font-semibold text-white leading-relaxed mb-5">
@@ -684,7 +670,7 @@ export function Quiz({ exercises, lessonId, courseId, userId, locale, lessonSlug
           <div className="flex items-center gap-2 mb-4">
             <span className="flex items-center gap-1.5 text-[9px] font-bold uppercase tracking-[0.2em] text-[#E0B873]/50 bg-[#E0B873]/8 px-2 py-1 rounded-md">
               <Mic className="h-3 w-3" />
-              {de ? "Sprechübung" : "Speaking prompt"}
+              {t("speakingPromptLabel")}
             </span>
           </div>
           <p className="text-base font-semibold text-white leading-relaxed mb-5">
@@ -711,7 +697,7 @@ export function Quiz({ exercises, lessonId, courseId, userId, locale, lessonSlug
       {/* Progress bar */}
       <div>
         <div className="flex items-center justify-between text-xs text-white/35 mb-2">
-          <span>{de ? `Frage ${currentIdx + 1} von ${totalQ}` : `Question ${currentIdx + 1} of ${totalQ}`}</span>
+          <span>{t("questionOf", { current: currentIdx + 1, total: totalQ })}</span>
           <div className="flex gap-1">
             {exercises.map((_, i) => {
               const ans = answers[exercises[i].id];
@@ -746,10 +732,10 @@ export function Quiz({ exercises, lessonId, courseId, userId, locale, lessonSlug
         <div className="flex items-center gap-2 mb-4">
           <span className="text-[9px] font-bold uppercase tracking-[0.2em] text-[#E0B873]/50 bg-[#E0B873]/8 px-2 py-1 rounded-md">
             {isWordOrder
-              ? (de ? "Satz bauen" : "Build the sentence")
+              ? t("buildSentence")
               : isMultipleChoice
-              ? (de ? "Wähle die Antwort" : "Choose the answer")
-              : (de ? "Lücke füllen" : "Fill in the blank")}
+              ? t("chooseAnswer")
+              : t("fillBlank")}
           </span>
         </div>
 
@@ -801,7 +787,7 @@ export function Quiz({ exercises, lessonId, courseId, userId, locale, lessonSlug
             onChange={(e) => handleAnswer(e.target.value)}
             onKeyDown={(e) => e.key === "Enter" && answerState === "idle" && currentAnswer && confirm()}
             disabled={answerState !== "idle"}
-            placeholder={de ? "Deine Antwort…" : "Your answer…"}
+            placeholder={t("answerPlaceholderEllipsis")}
             className="w-full rounded-xl bg-white/5 border border-white/10 text-white px-4 py-3 text-sm placeholder:text-white/20 focus:outline-none focus:border-[#E0B873]/50 transition-all disabled:opacity-60"
           />
         )}
@@ -818,8 +804,8 @@ export function Quiz({ exercises, lessonId, courseId, userId, locale, lessonSlug
             <div>
               <p className={`text-sm font-semibold ${answerState === "correct" ? "text-emerald-300" : "text-red-300"}`}>
                 {answerState === "correct"
-                  ? (de ? "Richtig! 🎉" : "Correct! 🎉")
-                  : (de ? `Falsch. Richtige Antwort: "${current.correct_answer}"` : `Wrong. Correct answer: "${current.correct_answer}"`)}
+                  ? t("correctExclaim")
+                  : t("wrongAnswer", { answer: current.correct_answer })}
               </p>
               {current.explanation && (
                 <p className="text-xs text-white/50 mt-1">{current.explanation}</p>
@@ -837,7 +823,7 @@ export function Quiz({ exercises, lessonId, courseId, userId, locale, lessonSlug
             disabled={!currentAnswer}
             className="flex items-center gap-2 px-6 py-2.5 rounded-xl bg-[#E0B873] text-[#071424] text-sm font-bold hover:bg-[#C99B50] transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
           >
-            {de ? "Überprüfen" : "Check"}
+            {t("check")}
             <Zap className="h-4 w-4" />
           </button>
         ) : (
@@ -848,8 +834,8 @@ export function Quiz({ exercises, lessonId, courseId, userId, locale, lessonSlug
           >
             {saving && <Loader2 className="h-4 w-4 animate-spin" />}
             {currentIdx < totalQ - 1
-              ? (de ? "Weiter" : "Next")
-              : (de ? "Ergebnis" : "Results")}
+              ? t("next")
+              : t("results")}
             {!saving && (currentIdx < totalQ - 1 ? <ArrowRight className="h-4 w-4" /> : <Trophy className="h-4 w-4" />)}
           </button>
         )}

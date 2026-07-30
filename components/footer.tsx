@@ -95,7 +95,7 @@ export function Footer() {
         <div className="border-t border-white/5 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
           <p className="text-xs text-white/30">{t("copyright", { year })}</p>
           <div className="flex items-center gap-4">
-            <span className="text-xs text-white/20">Made with care in Germany</span>
+            <span className="text-xs text-white/20">{t("madeWithCare")}</span>
           </div>
         </div>
       </div>

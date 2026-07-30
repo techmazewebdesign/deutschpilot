@@ -17,29 +17,29 @@ import { cn } from "@/lib/utils";
 import { useAuth, dashboardPath } from "@/contexts/auth-context";
 
 const publicNavLinks = [
-  { href: "/", label: "Home" },
-  { href: "/ai-trainer", label: "AI Trainer" },
-  { href: "/classes", label: "Classes" },
-  { href: "/driving-theory", label: "Driving Theory" },
-  { href: "/mock-exam", label: "Mock Exam" },
-  { href: "/teachers", label: "Teachers" },
-  { href: "/magazine", label: "Magazine" },
+  { href: "/", key: "home" },
+  { href: "/ai-trainer", key: "aiTrainer" },
+  { href: "/classes", key: "classes" },
+  { href: "/driving-theory", key: "drivingTheory" },
+  { href: "/mock-exam", key: "mockExam" },
+  { href: "/teachers", key: "teachers" },
+  { href: "/magazine", key: "magazine" },
 ];
 
 const studentNavLinks = [
-  { href: "/student/dashboard", label: "Dashboard", icon: LayoutDashboard },
-  { href: "/rooms", label: "Learn", icon: BookOpen },
-  { href: "/ai-trainer", label: "AI Trainer", icon: Brain },
-  { href: "/student/classes", label: "My Classes", icon: Video },
-  { href: "/classes", label: "Browse Classes", icon: Video },
-  { href: "/teachers", label: "Teachers", icon: Users },
+  { href: "/student/dashboard", key: "dashboard", icon: LayoutDashboard },
+  { href: "/rooms", key: "learn", icon: BookOpen },
+  { href: "/ai-trainer", key: "aiTrainer", icon: Brain },
+  { href: "/student/classes", key: "myClasses", icon: Video },
+  { href: "/classes", key: "browseClasses", icon: Video },
+  { href: "/teachers", key: "teachers", icon: Users },
 ];
 
 const teacherNavLinks = [
-  { href: "/teacher/dashboard", label: "Dashboard", icon: LayoutDashboard },
-  { href: "/teacher/classes", label: "My Classes", icon: Video },
-  { href: "/teacher/classes/new", label: "Create Class", icon: Plus },
-  { href: "/teachers", label: "Teachers", icon: GraduationCap },
+  { href: "/teacher/dashboard", key: "dashboard", icon: LayoutDashboard },
+  { href: "/teacher/classes", key: "myClasses", icon: Video },
+  { href: "/teacher/classes/new", key: "createClass", icon: Plus },
+  { href: "/teachers", key: "teachers", icon: GraduationCap },
 ];
 
 // Keep for translation fallback
@@ -52,16 +52,15 @@ const navLinks = [
   { href: "/about", key: "about" },
 ];
 
-// English-only for now — flip back to true to re-enable the language switcher.
-const SHOW_LANGUAGE_SWITCHER = false;
+const SHOW_LANGUAGE_SWITCHER = true;
 
+// Only locales actually wired up in i18n.ts's `locales` array belong here.
+// ar/fa/hi/ta are planned future languages — add them here once they're
+// added to i18n.ts (as real locales or via PLACEHOLDER_LOCALES for a
+// "coming soon" page) so they don't 404 if a user picks them.
 const languages = [
-  { code: "en", name: "English" },
   { code: "de", name: "Deutsch" },
-  { code: "ar", name: "العربية" },
-  { code: "fa", name: "فارسی" },
-  { code: "hi", name: "हिन्दी" },
-  { code: "ta", name: "தமிழ்" },
+  { code: "en", name: "English" },
 ];
 
 export function Navigation() {
@@ -139,7 +138,7 @@ export function Navigation() {
                 href={`/${locale}${link.href}`}
                 className="text-sm font-medium text-white/70 hover:text-white transition-colors"
               >
-                {link.label}
+                {t(link.key)}
               </Link>
             ))}
           </nav>
@@ -180,7 +179,7 @@ export function Navigation() {
             {!loading && user ? (
               <>
                 <Link href={`/${locale}/profile`} className="text-sm text-white/60 hover:text-white transition-colors">
-                  Profile
+                  {t("profile")}
                 </Link>
                 <Button
                   onClick={signOut}
@@ -189,7 +188,7 @@ export function Navigation() {
                   className="text-white/60 hover:text-red-400 hover:bg-red-400/10 flex items-center gap-1.5"
                 >
                   <LogOut className="h-3.5 w-3.5" />
-                  {locale === "de" ? "Abmelden" : "Sign out"}
+                  {t("logout")}
                 </Button>
               </>
             ) : !loading ? (
@@ -223,7 +222,7 @@ export function Navigation() {
                       href={`/${locale}${link.href}`}
                       className="text-lg font-medium text-white/80 hover:text-[#CEA66F] transition-colors"
                     >
-                      {link.label}
+                      {t(link.key)}
                     </Link>
                   </SheetClose>
                 ))}
@@ -231,7 +230,7 @@ export function Navigation() {
                 {/* Language switcher in mobile */}
                 {SHOW_LANGUAGE_SWITCHER && (
                 <div className="border-t border-white/10 pt-4">
-                  <p className="text-[10px] text-white/40 uppercase tracking-widest mb-3">Language</p>
+                  <p className="text-[10px] text-white/40 uppercase tracking-widest mb-3">{t("language")}</p>
                   <div className="grid grid-cols-2 gap-2">
                     {languages.map((lang) => (
                       <SheetClose asChild key={lang.code}>
@@ -259,7 +258,7 @@ export function Navigation() {
                         <Link href={myDashboard}>
                           <Button variant="outline" className="w-full border-white/20 text-white hover:bg-white/10 flex items-center gap-2">
                             <LayoutDashboard className="h-4 w-4" />
-                            Dashboard
+                            {t("dashboard")}
                           </Button>
                         </Link>
                       </SheetClose>
@@ -270,7 +269,7 @@ export function Navigation() {
                           className="w-full text-white/60 hover:text-red-400 hover:bg-red-400/10 flex items-center gap-2"
                         >
                           <LogOut className="h-4 w-4" />
-                          {locale === "de" ? "Abmelden" : "Sign out"}
+                          {t("logout")}
                         </Button>
                       </SheetClose>
                     </>

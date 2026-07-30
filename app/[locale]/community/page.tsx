@@ -1,18 +1,17 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import { getTranslations } from "next-intl/server";
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
 import { PlaceholderPage } from "@/components/placeholder-page";
 import { isPlaceholderLocale } from "@/i18n";
 import { Users, MessageSquare, Globe, CalendarDays, Mail } from "lucide-react";
 
-export function generateMetadata({ params }: { params: { locale: string } }): Metadata {
-  const de = params.locale === "de";
+export async function generateMetadata({ params }: { params: { locale: string } }): Promise<Metadata> {
+  const t = await getTranslations({ locale: params.locale, namespace: "communityPage" });
   return {
-    title: de ? "Community | DeutschPilot" : "Community | DeutschPilot",
-    description: de
-      ? "Tausche dich mit anderen Deutschlernenden aus, nimm an Events teil und lerne gemeinsam in der DeutschPilot-Community."
-      : "Connect with fellow German learners, join events, and learn together in the DeutschPilot community.",
+    title: t("metaTitle"),
+    description: t("metaDescription"),
   };
 }
 
@@ -29,38 +28,14 @@ export default async function CommunityPage({ params }: { params: { locale: stri
     );
   }
 
-  const de = locale === "de";
+  const t = await getTranslations({ locale, namespace: "communityPage" });
 
   const features = [
-    {
-      icon: MessageSquare,
-      titleDE: "Sprachaustausch",
-      titleEN: "Language Exchange",
-      descDE: "Übe Deutsch mit Muttersprachlern und helfe anderen beim Sprachenlernen.",
-      descEN: "Practice German with native speakers and help others learn their language.",
-    },
-    {
-      icon: Users,
-      titleDE: "Lerngruppen",
-      titleEN: "Study Groups",
-      descDE: "Schließ dich thematischen Gruppen an und lerne gemeinsam mit Gleichgesinnten.",
-      descEN: "Join topic-based groups and learn together with like-minded people.",
-    },
-    {
-      icon: CalendarDays,
-      titleDE: "Live-Veranstaltungen",
-      titleEN: "Live Events",
-      descDE: "Nimm an Online-Workshops, Q&A-Sessions und Sprachcafés teil.",
-      descEN: "Join online workshops, Q&A sessions, and language café events.",
-    },
-    {
-      icon: Globe,
-      titleDE: "Internationale Perspektiven",
-      titleEN: "International Perspectives",
-      descDE: "Verbinde dich mit Deutschlernenden aus verschiedenen Ländern und Kulturen.",
-      descEN: "Connect with German learners from different countries and backgrounds.",
-    },
-  ];
+    { icon: MessageSquare, key: "languageExchange" },
+    { icon: Users, key: "studyGroups" },
+    { icon: CalendarDays, key: "liveEvents" },
+    { icon: Globe, key: "internationalPerspectives" },
+  ] as const;
 
   return (
     <>
@@ -74,16 +49,14 @@ export default async function CommunityPage({ params }: { params: { locale: stri
             <div className="inline-flex items-center gap-2 mb-6 px-3 py-1.5 rounded-full border border-[#E0B873]/25 bg-[#E0B873]/8">
               <Users className="h-3.5 w-3.5 text-[#E0B873]" />
               <span className="text-xs font-semibold text-[#E0B873] uppercase tracking-widest">
-                {de ? "Community" : "Community"}
+                {t("badge")}
               </span>
             </div>
             <h1 className="text-4xl sm:text-5xl font-serif font-bold text-white mb-6 leading-tight">
-              {de ? "Gemeinsam lernen.\nGemeinsam wachsen." : "Learn together.\nGrow together."}
+              {t("heroHeading")}
             </h1>
             <p className="text-[#C9D2DE] text-lg max-w-xl mx-auto leading-relaxed">
-              {de
-                ? "Die DeutschPilot-Community verbindet Lernende weltweit — zum Üben, Austauschen und gegenseitigen Motivieren."
-                : "The DeutschPilot community connects learners worldwide — to practise, exchange ideas, and motivate each other."}
+              {t("heroDescription")}
             </p>
           </div>
         </section>
@@ -92,26 +65,26 @@ export default async function CommunityPage({ params }: { params: { locale: stri
         <section className="py-12 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
           <div className="text-center mb-12">
             <p className="text-xs font-semibold text-[#E0B873]/70 uppercase tracking-[0.2em] mb-3">
-              {de ? "Was dich erwartet" : "What to expect"}
+              {t("expectLabel")}
             </p>
             <h2 className="text-2xl sm:text-3xl font-serif font-bold text-white">
-              {de ? "Deine Lerngemeinschaft" : "Your learning community"}
+              {t("expectHeading")}
             </h2>
           </div>
           <div className="grid sm:grid-cols-2 gap-5">
             {features.map((f) => {
               const Icon = f.icon;
               return (
-                <div key={f.titleEN} className="bg-[#0A1E35]/70 border border-white/8 rounded-2xl p-6 flex gap-4">
+                <div key={f.key} className="bg-[#0A1E35]/70 border border-white/8 rounded-2xl p-6 flex gap-4">
                   <div className="h-10 w-10 rounded-xl bg-[#E0B873]/12 border border-[#E0B873]/20 flex items-center justify-center flex-shrink-0">
                     <Icon className="h-5 w-5 text-[#E0B873]" />
                   </div>
                   <div>
                     <h3 className="text-sm font-semibold text-white mb-1">
-                      {de ? f.titleDE : f.titleEN}
+                      {t(`features.${f.key}.title`)}
                     </h3>
                     <p className="text-xs text-white/45 leading-relaxed">
-                      {de ? f.descDE : f.descEN}
+                      {t(`features.${f.key}.description`)}
                     </p>
                   </div>
                 </div>
@@ -129,12 +102,10 @@ export default async function CommunityPage({ params }: { params: { locale: stri
                 <Mail className="h-6 w-6 text-[#E0B873]" />
               </div>
               <h2 className="text-2xl font-serif font-bold text-white mb-3">
-                {de ? "Community startet bald" : "Community launching soon"}
+                {t("launchingSoonHeading")}
               </h2>
               <p className="text-white/50 text-sm mb-8 max-w-md mx-auto leading-relaxed">
-                {de
-                  ? "Lerngruppen, Live-Events und Sprachaustausch bauen wir noch auf. Schreib uns eine E-Mail, um als Erster benachrichtigt zu werden — oder diskutiere schon jetzt mit anderen Lernenden in den Kommentaren unserer Magazin-Artikel."
-                  : "Study groups, live events, and language exchange are still being built. Send us an email to be notified first — or already join the conversation in the comments on our magazine articles."}
+                {t("launchingSoonBody")}
               </p>
               <div className="flex flex-col sm:flex-row gap-3 justify-center">
                 <a
@@ -142,20 +113,18 @@ export default async function CommunityPage({ params }: { params: { locale: stri
                   className="inline-flex items-center justify-center gap-2 bg-[#E0B873] text-[#071424] font-semibold px-7 py-3 rounded-xl hover:bg-[#C99B50] transition-colors text-sm"
                 >
                   <Mail className="h-4 w-4" />
-                  {de ? "Interesse melden" : "Express Interest"}
+                  {t("expressInterest")}
                 </a>
                 <Link
                   href={`/${locale}/magazine`}
                   className="inline-flex items-center justify-center gap-2 border border-white/15 text-white/70 font-medium px-7 py-3 rounded-xl hover:border-white/30 hover:text-white transition-colors text-sm"
                 >
                   <MessageSquare className="h-4 w-4" />
-                  {de ? "Magazin durchstöbern" : "Browse the Magazine"}
+                  {t("browseMagazine")}
                 </Link>
               </div>
               <p className="mt-6 text-xs text-white/25">
-                {de
-                  ? "Oder schreib uns direkt: info@deutschpilot.de"
-                  : "Or reach us directly: info@deutschpilot.de"}
+                {t("reachUsDirectly")}
               </p>
             </div>
           </div>

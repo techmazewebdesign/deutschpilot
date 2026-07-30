@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
+import { useTranslations } from "next-intl";
 import { Shield, GraduationCap, BookOpen, Ban, Trash2, RefreshCw, CheckCircle, XCircle } from "lucide-react";
 
 type UserRole = "student" | "teacher" | "admin";
@@ -34,6 +35,7 @@ interface Props {
 }
 
 export function UsersTable({ locale, currentUserId }: Props) {
+  const t = useTranslations("admin");
   const de = locale === "de";
   const [users, setUsers] = useState<FirestoreUser[]>([]);
   const [loading, setLoading] = useState(true);
@@ -106,10 +108,10 @@ export function UsersTable({ locale, currentUserId }: Props) {
       {/* Stats */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
         {[
-          { label: de ? "Gesamt" : "Total", value: stats.total, color: "text-white" },
-          { label: de ? "Lernende" : "Students", value: stats.students, color: "text-[#E0B873]" },
-          { label: de ? "Lehrer" : "Teachers", value: stats.teachers, color: "text-blue-400" },
-          { label: de ? "Admins" : "Admins", value: stats.admins, color: "text-red-400" },
+          { label: t("statTotal"), value: stats.total, color: "text-white" },
+          { label: t("statStudents"), value: stats.students, color: "text-[#E0B873]" },
+          { label: t("statTeachers"), value: stats.teachers, color: "text-blue-400" },
+          { label: t("statAdmins"), value: stats.admins, color: "text-red-400" },
         ].map((s) => (
           <div key={s.label} className="bg-[#0A1E35]/70 border border-white/8 rounded-xl p-4 text-center">
             <p className={`text-2xl font-bold ${s.color}`}>{s.value}</p>
@@ -124,7 +126,7 @@ export function UsersTable({ locale, currentUserId }: Props) {
           type="text"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          placeholder={de ? "Suche nach Name oder E-Mail…" : "Search by name or email…"}
+          placeholder={t("searchPlaceholder")}
           className="flex-1 rounded-lg bg-white/5 border border-white/10 text-white px-4 py-2.5 text-sm placeholder:text-white/30 focus:outline-none focus:border-[#CEA66F]/50"
         />
         <div className="flex gap-2">
@@ -138,13 +140,13 @@ export function UsersTable({ locale, currentUserId }: Props) {
                   : "bg-white/3 border-white/10 text-white/50 hover:border-white/20"
               }`}
             >
-              {r === "all" ? (de ? "Alle" : "All") : r === "student" ? (de ? "Lernende" : "Students") : r === "teacher" ? (de ? "Lehrer" : "Teachers") : "Admins"}
+              {r === "all" ? t("filterAll") : r === "student" ? t("statStudents") : r === "teacher" ? t("statTeachers") : t("statAdmins")}
             </button>
           ))}
           <button
             onClick={fetchUsers}
             className="px-3 py-2 rounded-lg bg-white/3 border border-white/10 text-white/50 hover:border-white/20 transition-all"
-            title={de ? "Aktualisieren" : "Refresh"}
+            title={t("refresh")}
           >
             <RefreshCw className="h-3.5 w-3.5" />
           </button>
@@ -155,23 +157,23 @@ export function UsersTable({ locale, currentUserId }: Props) {
       <div className="bg-[#0A1E35]/70 border border-white/8 rounded-xl overflow-hidden">
         {loading ? (
           <div className="py-16 text-center text-white/30 text-sm">
-            {de ? "Wird geladen…" : "Loading…"}
+            {t("loading")}
           </div>
         ) : filtered.length === 0 ? (
           <div className="py-16 text-center text-white/30 text-sm">
-            {de ? "Keine Benutzer gefunden." : "No users found."}
+            {t("noUsersFound")}
           </div>
         ) : (
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
                 <tr className="border-b border-white/5 text-left">
-                  <th className="px-5 py-3.5 text-xs font-medium text-white/40 uppercase tracking-wider">{de ? "Benutzer" : "User"}</th>
-                  <th className="px-5 py-3.5 text-xs font-medium text-white/40 uppercase tracking-wider">{de ? "Rolle" : "Role"}</th>
-                  <th className="px-5 py-3.5 text-xs font-medium text-white/40 uppercase tracking-wider hidden sm:table-cell">{de ? "Niveau" : "Level"}</th>
-                  <th className="px-5 py-3.5 text-xs font-medium text-white/40 uppercase tracking-wider hidden md:table-cell">{de ? "Status" : "Status"}</th>
-                  <th className="px-5 py-3.5 text-xs font-medium text-white/40 uppercase tracking-wider hidden lg:table-cell">{de ? "Beigetreten" : "Joined"}</th>
-                  <th className="px-5 py-3.5 text-xs font-medium text-white/40 uppercase tracking-wider text-right">{de ? "Aktionen" : "Actions"}</th>
+                  <th className="px-5 py-3.5 text-xs font-medium text-white/40 uppercase tracking-wider">{t("colUser")}</th>
+                  <th className="px-5 py-3.5 text-xs font-medium text-white/40 uppercase tracking-wider">{t("colRole")}</th>
+                  <th className="px-5 py-3.5 text-xs font-medium text-white/40 uppercase tracking-wider hidden sm:table-cell">{t("colLevel")}</th>
+                  <th className="px-5 py-3.5 text-xs font-medium text-white/40 uppercase tracking-wider hidden md:table-cell">{t("colStatus")}</th>
+                  <th className="px-5 py-3.5 text-xs font-medium text-white/40 uppercase tracking-wider hidden lg:table-cell">{t("colJoined")}</th>
+                  <th className="px-5 py-3.5 text-xs font-medium text-white/40 uppercase tracking-wider text-right">{t("colActions")}</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-white/4">
@@ -222,10 +224,10 @@ export function UsersTable({ locale, currentUserId }: Props) {
                         <div className="flex flex-col gap-1">
                           <span className={`inline-flex items-center gap-1 text-xs ${user.emailVerified ? "text-green-400" : "text-white/30"}`}>
                             {user.emailVerified ? <CheckCircle className="h-3 w-3" /> : <XCircle className="h-3 w-3" />}
-                            {de ? "E-Mail" : "Email"}
+                            {t("emailLabel")}
                           </span>
                           {user.disabled && (
-                            <span className="text-xs text-red-400">{de ? "Deaktiviert" : "Disabled"}</span>
+                            <span className="text-xs text-red-400">{t("disabledLabel")}</span>
                           )}
                         </div>
                       </td>
@@ -242,7 +244,7 @@ export function UsersTable({ locale, currentUserId }: Props) {
                             <button
                               onClick={() => updateUser(user.uid, { disabled: !user.disabled })}
                               disabled={isLoading}
-                              title={user.disabled ? (de ? "Aktivieren" : "Enable") : (de ? "Deaktivieren" : "Disable")}
+                              title={user.disabled ? t("enable") : t("disable")}
                               className="p-1.5 rounded-md text-white/30 hover:text-white/60 hover:bg-white/5 transition-all disabled:opacity-40"
                             >
                               <Ban className="h-3.5 w-3.5" />
@@ -255,20 +257,20 @@ export function UsersTable({ locale, currentUserId }: Props) {
                                   disabled={isLoading}
                                   className="text-xs text-red-400 hover:underline"
                                 >
-                                  {de ? "Bestätigen" : "Confirm"}
+                                  {t("confirm")}
                                 </button>
                                 <button
                                   onClick={() => setConfirmDelete(null)}
                                   className="text-xs text-white/30 hover:underline"
                                 >
-                                  {de ? "Abbrechen" : "Cancel"}
+                                  {t("cancel")}
                                 </button>
                               </div>
                             ) : (
                               <button
                                 onClick={() => setConfirmDelete(user.uid)}
                                 disabled={isLoading}
-                                title={de ? "Löschen" : "Delete"}
+                                title={t("delete")}
                                 className="p-1.5 rounded-md text-white/30 hover:text-red-400 hover:bg-red-400/5 transition-all disabled:opacity-40"
                               >
                                 <Trash2 className="h-3.5 w-3.5" />
@@ -277,7 +279,7 @@ export function UsersTable({ locale, currentUserId }: Props) {
                           </div>
                         )}
                         {isSelf && (
-                          <span className="text-xs text-white/20 text-right block">{de ? "(Du)" : "(You)"}</span>
+                          <span className="text-xs text-white/20 text-right block">{t("youLabel")}</span>
                         )}
                       </td>
                     </tr>

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { getTranslations } from "next-intl/server";
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
 import { isPlaceholderLocale, locales } from "@/i18n";
@@ -46,7 +47,7 @@ export function generateMetadata({
   };
 }
 
-export default function MagazineArticlePage({
+export default async function MagazineArticlePage({
   params,
 }: {
   params: { locale: string; slug: string };
@@ -57,6 +58,7 @@ export default function MagazineArticlePage({
   const article = getArticle(slug);
   if (!article) notFound();
 
+  const t = await getTranslations({ locale, namespace: "magazine" });
   const de = locale === "de";
   const title = de ? article.title_de : article.title_en;
   const body = de ? article.body_de : article.body_en;
@@ -77,8 +79,8 @@ export default function MagazineArticlePage({
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: de ? "Startseite" : "Home", item: `${BASE_URL}/${locale}` },
-      { "@type": "ListItem", position: 2, name: de ? "Magazin" : "Magazine", item: `${BASE_URL}/${locale}/magazine` },
+      { "@type": "ListItem", position: 1, name: t("breadcrumbHome"), item: `${BASE_URL}/${locale}` },
+      { "@type": "ListItem", position: 2, name: t("badge"), item: `${BASE_URL}/${locale}/magazine` },
       { "@type": "ListItem", position: 3, name: title, item: `${BASE_URL}/${locale}/magazine/${article.slug}` },
     ],
   };
@@ -107,7 +109,7 @@ export default function MagazineArticlePage({
             className="inline-flex items-center gap-1.5 text-sm text-white/35 hover:text-[#E0B873] transition-colors mb-8"
           >
             <ArrowLeft className="h-4 w-4" />
-            {de ? "Zurück zum Magazin" : "Back to magazine"}
+            {t("backToMagazine")}
           </Link>
 
           <div className="flex flex-wrap items-center gap-2 mb-5">
@@ -130,7 +132,7 @@ export default function MagazineArticlePage({
             </time>
             <span className="inline-flex items-center gap-1">
               <Clock className="h-3 w-3" />
-              {article.readingMinutes} {de ? "Min. Lesezeit" : "min read"}
+              {t("readingTime", { minutes: article.readingMinutes })}
             </span>
           </div>
 
@@ -151,7 +153,7 @@ export default function MagazineArticlePage({
           {relatedArticles.length > 0 && (
             <div className="mt-14 pt-10 border-t border-white/8">
               <h2 className="text-lg font-serif font-bold text-white mb-5">
-                {de ? "Das könnte dich auch interessieren" : "You might also like"}
+                {t("youMightAlsoLike")}
               </h2>
               <div className="grid sm:grid-cols-3 gap-4">
                 {relatedArticles.map((a) => (
@@ -164,7 +166,7 @@ export default function MagazineArticlePage({
                       {de ? a.title_de : a.title_en}
                     </p>
                     <p className="text-xs text-white/35">
-                      {a.readingMinutes} {de ? "Min. Lesezeit" : "min read"}
+                      {t("readingTime", { minutes: a.readingMinutes })}
                     </p>
                   </Link>
                 ))}
@@ -174,18 +176,16 @@ export default function MagazineArticlePage({
 
           <div className="mt-14 rounded-2xl border border-[#E0B873]/25 bg-[#E0B873]/5 p-8 text-center">
             <h2 className="text-xl font-serif font-bold text-white mb-2">
-              {de ? "Vom Lesen ins Üben" : "From reading to practicing"}
+              {t("readingToPracticingHeading")}
             </h2>
             <p className="text-sm text-white/50 mb-5 max-w-md mx-auto">
-              {de
-                ? "Lesen, Hören, Schreiben und Sprechen – kostenlose Übungskurse von A1 bis B2."
-                : "Reading, listening, writing and speaking — free practice courses from A1 to B2."}
+              {t("readingToPracticingBody")}
             </p>
             <Link
               href={`/${locale}/courses`}
               className="inline-block bg-[#E0B873] text-[#072143] font-semibold px-8 py-3 rounded-xl hover:bg-[#C99B50] transition-colors"
             >
-              {de ? "Jetzt kostenlos üben" : "Start practicing free"}
+              {t("startPracticingFree")}
             </Link>
           </div>
 

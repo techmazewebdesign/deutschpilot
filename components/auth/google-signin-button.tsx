@@ -2,12 +2,12 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { signInWithGoogle, googleAuthErrorMessage } from "@/lib/googleAuth";
 
 interface Props {
   locale: string;
-  labelDE?: string;
-  labelEN?: string;
+  variant?: "signin" | "signup";
 }
 
 function dashboardDest(locale: string, role: string): string {
@@ -16,7 +16,8 @@ function dashboardDest(locale: string, role: string): string {
   return `/${locale}/rooms`;
 }
 
-export function GoogleSigninButton({ locale, labelDE, labelEN }: Props) {
+export function GoogleSigninButton({ locale, variant = "signin" }: Props) {
+  const t = useTranslations("auth");
   const router = useRouter();
   const de = locale === "de";
   const [loading, setLoading] = useState(false);
@@ -31,11 +32,7 @@ export function GoogleSigninButton({ locale, labelDE, labelEN }: Props) {
       router.refresh();
     } catch (err: unknown) {
       const code = (err as { code?: string }).code ?? "";
-      const msg = code
-        ? googleAuthErrorMessage(code, de)
-        : de
-          ? "Anmeldung mit Google fehlgeschlagen. Bitte erneut versuchen."
-          : "Google sign-in failed. Please try again.";
+      const msg = code ? googleAuthErrorMessage(code, de) : t("googleSigninFailed");
       if (msg) setError(msg);
     } finally {
       setLoading(false);
@@ -53,7 +50,7 @@ export function GoogleSigninButton({ locale, labelDE, labelEN }: Props) {
       <div className="flex items-center gap-3 mb-4">
         <div className="h-px flex-1 bg-white/10" />
         <span className="text-xs text-white/30 uppercase tracking-wider">
-          {de ? "oder" : "or"}
+          {t("or")}
         </span>
         <div className="h-px flex-1 bg-white/10" />
       </div>
@@ -71,8 +68,10 @@ export function GoogleSigninButton({ locale, labelDE, labelEN }: Props) {
           <path fill="#EA4335" d="M9 3.58c1.32 0 2.51.45 3.44 1.35l2.59-2.59C13.46.89 11.43 0 9 0 5.48 0 2.44 2.02.96 4.94l3.01 2.34C4.68 5.16 6.66 3.58 9 3.58z" />
         </svg>
         {loading
-          ? (de ? "Wird verbunden…" : "Connecting…")
-          : (labelDE && de ? labelDE : labelEN ?? "Continue with Google")}
+          ? t("connecting")
+          : variant === "signup"
+            ? t("continueWithGoogleSignup")
+            : t("continueWithGoogleSignin")}
       </button>
     </div>
   );

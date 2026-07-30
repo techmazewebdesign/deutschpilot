@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import { getTranslations } from "next-intl/server";
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
 import { PlaceholderPage } from "@/components/placeholder-page";
@@ -7,15 +8,11 @@ import { isPlaceholderLocale } from "@/i18n";
 import { articles } from "@/lib/magazine";
 import { Clock } from "lucide-react";
 
-export function generateMetadata({ params }: { params: { locale: string } }): Metadata {
-  const de = params.locale === "de";
+export async function generateMetadata({ params }: { params: { locale: string } }): Promise<Metadata> {
+  const t = await getTranslations({ locale: params.locale, namespace: "magazine" });
   return {
-    title: de
-      ? "DeutschPilot Magazin – Artikel & Tipps zum Deutschlernen"
-      : "DeutschPilot Magazine – German Learning Articles & Tips",
-    description: de
-      ? "Fundierte Artikel zu deutscher Grammatik, Prüfungen und Lernstrategien – geschrieben für echte Lernende von A1 bis B2."
-      : "In-depth articles on German grammar, exams, and learning strategy — written for real learners from A1 to B2.",
+    title: t("metaTitle"),
+    description: t("metaDescription"),
     alternates: {
       types: {
         "application/rss+xml": `https://deutschpilot.de/${params.locale}/rss.xml`,
@@ -24,7 +21,7 @@ export function generateMetadata({ params }: { params: { locale: string } }): Me
   };
 }
 
-export default function MagazinePage({ params }: { params: { locale: string } }) {
+export default async function MagazinePage({ params }: { params: { locale: string } }) {
   const { locale } = params;
   const de = locale === "de";
 
@@ -38,6 +35,8 @@ export default function MagazinePage({ params }: { params: { locale: string } })
     );
   }
 
+  const t = await getTranslations({ locale, namespace: "magazine" });
+
   return (
     <>
       <Navigation />
@@ -45,15 +44,13 @@ export default function MagazinePage({ params }: { params: { locale: string } })
         <section className="py-16 lg:py-20 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
           <div className="text-center mb-14">
             <span className="inline-block text-xs font-semibold tracking-widest text-[#E0B873] uppercase mb-4">
-              {de ? "Magazin" : "Magazine"}
+              {t("badge")}
             </span>
             <h1 className="text-4xl sm:text-5xl font-serif font-bold text-white mb-5">
-              {de ? "DeutschPilot Magazin" : "DeutschPilot Magazine"}
+              {t("heading")}
             </h1>
             <p className="text-[#C9D2DE] max-w-xl mx-auto leading-relaxed">
-              {de
-                ? "Fundierte Artikel zu Grammatik, Prüfungen und Lernstrategien – geschrieben für echte Lernende."
-                : "In-depth articles on grammar, exams, and learning strategy — written for real learners."}
+              {t("intro")}
             </p>
           </div>
 
@@ -85,7 +82,7 @@ export default function MagazinePage({ params }: { params: { locale: string } })
                   </time>
                   <span className="inline-flex items-center gap-1">
                     <Clock className="h-3 w-3" />
-                    {a.readingMinutes} {de ? "Min. Lesezeit" : "min read"}
+                    {t("readingTime", { minutes: a.readingMinutes })}
                   </span>
                 </div>
               </Link>
@@ -94,15 +91,13 @@ export default function MagazinePage({ params }: { params: { locale: string } })
 
           <div className="mt-16 text-center">
             <p className="text-sm text-white/40 mb-4">
-              {de
-                ? "Bereit, das Gelesene zu üben?"
-                : "Ready to practice what you've read?"}
+              {t("practiceCtaText")}
             </p>
             <Link
               href={`/${locale}/courses`}
               className="inline-block bg-[#E0B873] text-[#072143] font-semibold px-8 py-3 rounded-xl hover:bg-[#C99B50] transition-colors"
             >
-              {de ? "Zu den Übungskursen" : "Go to practice courses"}
+              {t("practiceCtaButton")}
             </Link>
           </div>
         </section>

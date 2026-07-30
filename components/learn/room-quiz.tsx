@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { createClient } from "@/lib/supabaseClient";
 import {
@@ -40,7 +41,7 @@ export function RoomCheckpointQuiz({
   locale,
   roomSlug,
 }: Props) {
-  const de = locale === "de";
+  const t = useTranslations("learn");
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [submitted, setSubmitted] = useState(false);
   const [saving, setSaving] = useState(false);
@@ -89,7 +90,7 @@ export function RoomCheckpointQuiz({
   if (exercises.length === 0) {
     return (
       <div className="text-center py-12 text-white/40">
-        <p>{de ? "Keine Fragen verfügbar." : "No questions available."}</p>
+        <p>{t("noQuestionsAvailable")}</p>
       </div>
     );
   }
@@ -122,23 +123,19 @@ export function RoomCheckpointQuiz({
             {score}%
           </div>
           <p className="text-white/60 text-sm mb-1">
-            {de ? "Dein Ergebnis" : "Your Result"}
+            {t("yourResult")}
           </p>
           <p className="text-white font-semibold text-lg">
-            {correctCount} {de ? "von" : "of"} {exercises.length}{" "}
-            {de ? "richtig" : "correct"}
+            {correctCount} {t("of")} {exercises.length}{" "}
+            {t("correct")}
           </p>
           {passed ? (
             <p className="text-[#E0B873] text-sm mt-3">
-              {de
-                ? "Herzlichen Glückwunsch! Du hast den Checkpoint bestanden."
-                : "Congratulations! You passed the checkpoint."}
+              {t("checkpointPassed")}
             </p>
           ) : (
             <p className="text-red-300 text-sm mt-3">
-              {de
-                ? `Du brauchst ${PASS_PCT}% zum Bestehen. Versuche es nochmal!`
-                : `You need ${PASS_PCT}% to pass. Try again!`}
+              {t("checkpointFailed", { pct: PASS_PCT })}
             </p>
           )}
         </div>
@@ -171,11 +168,11 @@ export function RoomCheckpointQuiz({
                 {!isCorrect && (
                   <div className="ml-8 space-y-1">
                     <p className="text-xs text-red-300">
-                      {de ? "Deine Antwort:" : "Your answer:"}{" "}
+                      {t("yourAnswerColon")}{" "}
                       <span className="font-medium">{given || "–"}</span>
                     </p>
                     <p className="text-xs text-[#E0B873]">
-                      {de ? "Richtige Antwort:" : "Correct answer:"}{" "}
+                      {t("correctAnswerColon")}{" "}
                       <span className="font-medium">{ex.correct_answer}</span>
                     </p>
                   </div>
@@ -196,13 +193,13 @@ export function RoomCheckpointQuiz({
             className="flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-medium border border-white/15 text-white/60 hover:text-white hover:border-white/30 transition-colors"
           >
             <RotateCcw className="h-4 w-4" />
-            {de ? "Nochmal versuchen" : "Try again"}
+            {t("tryAgain")}
           </button>
           <Link
             href={`/${locale}/rooms/${roomSlug}`}
             className="px-5 py-2.5 rounded-xl text-sm font-medium border border-[#E0B873]/30 text-[#E0B873] hover:bg-[#E0B873]/10 transition-colors"
           >
-            {de ? "Zurück zum Raum" : "Back to Room"}
+            {t("backToRoom")}
           </Link>
         </div>
       </div>
@@ -242,7 +239,7 @@ export function RoomCheckpointQuiz({
               type="text"
               value={answers[ex.id] ?? ""}
               onChange={(e) => handleAnswer(ex.id, e.target.value)}
-              placeholder={de ? "Deine Antwort..." : "Your answer..."}
+              placeholder={t("yourAnswerPlaceholder")}
               className="w-full rounded-lg bg-white/5 border border-white/10 text-white px-4 py-2.5 text-sm placeholder:text-white/20 focus:outline-none focus:border-[#E0B873]/50 transition-all"
             />
           )}
@@ -256,7 +253,7 @@ export function RoomCheckpointQuiz({
       >
         {saving && <Loader2 className="h-4 w-4 animate-spin" />}
         <Award className="h-4 w-4" />
-        {de ? "Quiz abgeben" : "Submit Quiz"}
+        {t("submitQuiz")}
       </button>
     </div>
   );

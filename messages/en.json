@@ -18,7 +18,17 @@
     "login": "Sign in",
     "register": "Try for free",
     "logout": "Sign out",
-    "dashboard": "Dashboard"
+    "dashboard": "Dashboard",
+    "classes": "Classes",
+    "drivingTheory": "Driving Theory",
+    "mockExam": "Mock Exam",
+    "teachers": "Teachers",
+    "learn": "Learn",
+    "myClasses": "My Classes",
+    "browseClasses": "Browse Classes",
+    "createClass": "Create Class",
+    "profile": "Profile",
+    "language": "Language"
   },
   "hero": {
     "badge": "Premium German Courses & Retreats",
@@ -68,7 +78,17 @@
         "name": "C1",
         "label": "Advanced"
       }
-    }
+    },
+    "metaTitle": "German Courses A1–B2: Reading, Listening, Writing, Speaking | DeutschPilot",
+    "metaDescription": "Free practice courses for all four skills — with AI feedback on your writing and real listening audio. Find the course for your level.",
+    "doneShort": "done",
+    "start": "Start",
+    "sectionLabel": "Courses",
+    "introLoggedIn": "Pick a course and learn German step by step.",
+    "orderNote": "Courses are ordered by level. Start with A1 if you're just beginning.",
+    "introPublic": "Choose the right level for your language goals and start your path to success.",
+    "ctaStart": "Start for free",
+    "signUpFree": "Sign up for free"
   },
   "features": {
     "title": "Why DeutschPilot?",
@@ -224,7 +244,8 @@
       "magazine": "Magazine",
       "faq": "FAQ"
     },
-    "copyright": "© {year} DeutschPilot. All rights reserved."
+    "copyright": "© {year} DeutschPilot. All rights reserved.",
+    "madeWithCare": "Made with care in Germany"
   },
   "auth": {
     "login": "Sign in",
@@ -236,7 +257,87 @@
     "noAccount": "Don't have an account yet?",
     "hasAccount": "Already have an account?",
     "or": "or",
-    "continueWithGoogle": "Continue with Google"
+    "continueWithGoogle": "Continue with Google",
+    "testimonialQuote": "DeutschPilot completely changed my path to the German language.",
+    "testimonialCaption": "Maria L. — B2 in 3 months",
+    "whatsIncluded": "What's included",
+    "perkCourseLevels": "Access to all course levels A1–C1",
+    "perkLiveClasses": "Live classes with experienced teachers",
+    "perkAiCompanion": "AI learning companion 24/7",
+    "perkCertificate": "Recognized certificate included",
+    "errorInvalidCredentials": "Incorrect email or password.",
+    "errorUserNotFound": "No account found.",
+    "errorUserDisabled": "This account has been disabled.",
+    "errorTooManyRequests": "Too many attempts. Please wait.",
+    "errorInvalidEmail": "Please enter a valid email address.",
+    "sessionCreateFailed": "Session could not be created.",
+    "signingIn": "Signing in…",
+    "connecting": "Connecting…",
+    "googleSigninFailed": "Google sign-in failed. Please try again.",
+    "continueWithGoogleSignin": "Sign in with Google",
+    "continueWithGoogleSignup": "Sign up with Google",
+    "errorEmailInUse": "This email is already registered.",
+    "errorWeakPassword": "Password must be at least 6 characters.",
+    "errorInvalidCredentialsGeneric": "Invalid credentials.",
+    "errorNoAccountEmail": "No account found with this email.",
+    "errorNetworkFailed": "Network error. Please check your connection.",
+    "errorInternal": "Internal error. Please try again.",
+    "errorConfigMissing": "Firebase configuration missing.",
+    "errorWithCode": "Error: {code}",
+    "passwordMismatch": "Passwords do not match.",
+    "profileCreateFailedReload": "Could not create your profile. Please reload and try again.",
+    "profileCreationFailedFallback": "Profile creation failed.",
+    "profileCreateFailedDetail": "Profile creation failed: {msg}",
+    "iAmA": "I am a…",
+    "roleStudent": "Student",
+    "roleTeacher": "Teacher",
+    "fullNameLabel": "Full name",
+    "fullNamePlaceholder": "Your name",
+    "confirmPassword": "Confirm password",
+    "currentGermanLevel": "Current German level",
+    "creatingAccount": "Creating account…",
+    "errorTryAgain": "Error. Please try again.",
+    "accountCreateFailed": "Account could not be created.",
+    "germanLevel": "Current German level",
+    "germanLevelPlaceholder": "Select your level",
+    "learningGoal": "Learning goal",
+    "learningGoalPlaceholder": "Select your goal",
+    "goals": {
+      "exam": "Exam preparation",
+      "work": "Work",
+      "university": "University",
+      "daily": "Everyday life",
+      "visa": "Visa / immigration",
+      "conversation": "Conversation practice"
+    },
+    "emailSentTitle": "Email sent",
+    "emailSentBody": "If an account with this email exists, we've sent a reset link. Please check your inbox.",
+    "backToSignin": "Back to sign in",
+    "forgotPasswordTitle": "Forgot password?",
+    "forgotPasswordBody": "Enter your email and we'll send you a reset link.",
+    "emailAddressLabel": "Email address",
+    "sending": "Sending…",
+    "sendResetLink": "Send reset link",
+    "invalidResetLink": "Invalid or missing reset link.",
+    "passwordMinLength8": "Password must be at least 8 characters.",
+    "somethingWentWrong": "Something went wrong.",
+    "passwordUpdatedTitle": "Password updated!",
+    "redirecting": "Redirecting you…",
+    "newPasswordTitle": "New password",
+    "newPasswordBody": "Enter your new password below.",
+    "saving": "Saving…",
+    "savePassword": "Save password",
+    "resendEmailFailedNotice": "We couldn't send the email automatically. Please click \"Resend link\" below.",
+    "emailVerifiedTitle": "Email verified!",
+    "emailVerifiedRedirecting": "Taking you to your dashboard…",
+    "checkYourEmailTitle": "Check your email",
+    "verificationSentBody": "We sent a verification link to {email}. Click the link — this page will update automatically.",
+    "yourEmailFallback": "your email",
+    "waitingForVerification": "Waiting for verification…",
+    "resendIn": "Resend in {seconds}s",
+    "resendLink": "Resend link",
+    "backToSignup": "Back to sign up",
+    "couldNotSendEmail": "Could not send email."
   },
   "dashboard": {
     "welcome": "Welcome back",
@@ -261,7 +362,51 @@
     "totalUsers": "Total users",
     "activeUsers": "Active users",
     "totalRevenue": "Total revenue",
-    "newSignups": "New sign-ups"
+    "newSignups": "New sign-ups",
+    "dashboardTitle": "Admin Dashboard",
+    "dashboardSubtitle": "Complete control over users and content",
+    "backToDashboard": "Back to dashboard",
+    "platformOverview": "Platform Overview",
+    "statCourses": "Courses",
+    "statCoursesSub": "published",
+    "statLessons": "Lessons",
+    "statLessonsSub": "total",
+    "statActiveLearners": "Active Learners",
+    "statActiveLearnersSub": "1+ completion",
+    "statCompletions": "Completions",
+    "statCompletionsSub": "lessons total",
+    "statPlacements": "Placements",
+    "statPlacementsSub": "placement tests",
+    "userManagement": "User Management",
+    "notesTitle": "Notes",
+    "noteRoleChange": "Role changes are saved immediately. The user must sign in again for the new role to take effect.",
+    "noteDisabled": "Disabled users cannot sign in.",
+    "noteDeleted": "Deleted users cannot be recovered.",
+    "noteOwnAccount": "Your own account cannot be modified.",
+    "noteDataSource": "Learning progress statistics come from Supabase. User management is via Firebase Auth.",
+    "statTotal": "Total",
+    "statStudents": "Students",
+    "statTeachers": "Teachers",
+    "statAdmins": "Admins",
+    "searchPlaceholder": "Search by name or email…",
+    "filterAll": "All",
+    "refresh": "Refresh",
+    "loading": "Loading…",
+    "noUsersFound": "No users found.",
+    "colUser": "User",
+    "colRole": "Role",
+    "colLevel": "Level",
+    "colStatus": "Status",
+    "colJoined": "Joined",
+    "colActions": "Actions",
+    "emailLabel": "Email",
+    "disabledLabel": "Disabled",
+    "enable": "Enable",
+    "disable": "Disable",
+    "confirm": "Confirm",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "youLabel": "(You)"
   },
   "learn": {
     "allLevels": "All levels",
@@ -289,7 +434,50 @@
     "videoLesson": "Video lesson",
     "lessonContent": "Lesson content",
     "courseProgress": "Course progress",
-    "recommendedCourse": "Recommended for you"
+    "recommendedCourse": "Recommended for you",
+    "backToRoom": "Back to Room",
+    "checkpointPassed": "Congratulations! You passed the checkpoint.",
+    "checkpointFailed": "You need {pct}% to pass. Try again!",
+    "correctAnswerColon": "Correct answer:",
+    "noQuestionsAvailable": "No questions available.",
+    "submitQuiz": "Submit Quiz",
+    "yourAnswerColon": "Your answer:",
+    "yourAnswerPlaceholder": "Your answer...",
+    "yourResult": "Your Result",
+    "aiDailyLimitReached": "You've reached your daily AI message limit. Come back tomorrow! 🌟",
+    "aiFeedbackError": "Sorry, something went wrong. Please try again.",
+    "aiFeedbackLabel": "AI Feedback",
+    "answerPlaceholderEllipsis": "Your answer…",
+    "buildSentence": "Build the sentence",
+    "check": "Check",
+    "chooseAnswer": "Choose the answer",
+    "continue": "Continue",
+    "correctExclaim": "Correct! 🎉",
+    "correctShort": "Correct:",
+    "fillBlank": "Fill in the blank",
+    "getAiFeedback": "Get AI feedback",
+    "microphoneDenied": "Couldn't access your microphone. Please allow microphone access in your browser.",
+    "modelAnswer": "Model answer",
+    "next": "Next",
+    "notQuite": "Not quite – you need 60% to pass. Try again!",
+    "perfectScore": "Perfect score! Outstanding work! 🎉",
+    "playBack": "Play back",
+    "practiceCompleted": "Practice completed",
+    "questionOf": "Question {current} of {total}",
+    "record": "Record",
+    "recordAgain": "Record again",
+    "recordingNotSaved": "Your recording isn't saved or uploaded — it's just for your own practice.",
+    "results": "Results",
+    "review": "Review",
+    "sampleAnswer": "Sample answer",
+    "speakingPromptLabel": "Speaking prompt",
+    "stop": "Stop",
+    "wellDone": "Well done! Lesson completed.",
+    "wordOrderHint": "Tap words below to build the sentence…",
+    "writingPlaceholder": "Write your response in German…",
+    "writingPromptLabel": "Writing prompt",
+    "wrongAnswer": "Wrong. Correct answer: \"{answer}\"",
+    "yourAnswerLabel": "Your answer:"
   },
   "placementTest": {
     "title": "Placement test",
@@ -306,6 +494,586 @@
     "levelSaved": "Level saved to your profile.",
     "retake": "Take the test again",
     "goToDashboard": "Go to dashboard",
-    "loginToSave": "Sign in to save your result"
+    "loginToSave": "Sign in to save your result",
+    "metaTitle": "Free German Placement Test | DeutschPilot",
+    "metaDescription": "Find your CEFR level (A1–C1) in a few minutes and start directly in the right themed rooms."
+  },
+  "sidebar": {
+    "tagline": "Language. Future. You.",
+    "navigationHeading": "Navigation",
+    "toolsHeading": "Tools",
+    "learningHeading": "Learning",
+    "accountHeading": "Account",
+    "soonBadge": "Soon",
+    "profile": "Profile",
+    "settings": "Settings",
+    "signOut": "Sign out",
+    "roleAdmin": "Admin",
+    "roleTeacher": "Teacher",
+    "levelLabel": "Level",
+    "studentFallback": "Student",
+    "nav": {
+      "myRooms": "My Rooms",
+      "levels": "Levels",
+      "courses": "Courses",
+      "aiTrainer": "AI Trainer",
+      "teacherOverview": "Overview",
+      "learningRooms": "Learning Rooms",
+      "adminDashboard": "Admin Dashboard",
+      "userDashboard": "User Dashboard",
+      "mainPage": "Main Page",
+      "dashboardOverview": "Dashboard",
+      "myCourses": "My Courses",
+      "placementTest": "Placement Test",
+      "messages": "Messages",
+      "sessions": "Sessions"
+    },
+    "tools": {
+      "vocabulary": "Vocabulary",
+      "progress": "Progress",
+      "certificates": "Certificates",
+      "mockExam": "Mock Exam",
+      "drivingTheory": "Driving Theory"
+    },
+    "mobile": {
+      "admin": "Admin",
+      "user": "User",
+      "main": "Main",
+      "trainer": "Trainer",
+      "start": "Home",
+      "rooms": "Rooms"
+    }
+  },
+  "streakBanner": {
+    "title": "{count}-day streak reached!",
+    "dismissAriaLabel": "Dismiss",
+    "messages": {
+      "3": "3 days in a row! You're building a great habit.",
+      "7": "A full week! Your streak is impressive.",
+      "14": "14 days — two weeks of dedication. Fantastic!",
+      "30": "30 days! A full month of consistent learning.",
+      "60": "60 days! You're a true role model.",
+      "100": "100-day streak! Extraordinary. Keep going!"
+    }
+  },
+  "studentDashboard": {
+    "eyebrow": "Student Dashboard",
+    "welcomeBack": "Welcome back, {name} 👋",
+    "subtitle": "Continue learning German step by step.",
+    "levelLabel": "Level",
+    "streakLabel": "Streak",
+    "studentFallback": "Student",
+    "continueLearning": "Continue Learning",
+    "currentCourseLabel": "Current Course",
+    "exercisesDone": "{count} exercises done",
+    "noCourseText": "Pick a course and start your first lesson.",
+    "browseRooms": "Browse Rooms",
+    "aiTrainerTitle": "AI Trainer",
+    "aiTrainerDesc": "Practice German with AI. Ask questions, correct mistakes, and do exercises — any time, for free.",
+    "openAiTrainer": "Open AI Trainer",
+    "myLiveClasses": "My Live Classes",
+    "viewAll": "View all",
+    "noClassesText": "You have not joined any live class yet.",
+    "browseLiveClasses": "Browse Live Classes",
+    "at": "at",
+    "joinClass": "Join Class",
+    "meetLinkComingSoon": "Meet link coming before class",
+    "browseTeachersTitle": "Browse Teachers",
+    "browseTeachersSub": "Find your ideal German teacher.",
+    "viewTeachers": "View Teachers",
+    "liveClassesTitle": "Live Classes",
+    "liveClassesSub": "Join a live class with a real teacher.",
+    "viewClasses": "View Classes",
+    "myLevelTitle": "My Level",
+    "myLevelSub": "Current: {level}",
+    "retakeTest": "Retake Test"
+  },
+  "settings": {
+    "label": "Settings",
+    "heading": "Account Settings",
+    "displayName": "Display Name",
+    "namePlaceholder": "Your name",
+    "saving": "Saving…",
+    "save": "Save",
+    "saved": "Saved.",
+    "nameError": "Could not save name.",
+    "email": "Email",
+    "password": "Password",
+    "passwordResetDescription": "We'll email you a link to reset your password.",
+    "resetEmailSent": "Email sent — please check your inbox.",
+    "sendingReset": "Sending…",
+    "sendPasswordReset": "Send password reset"
+  },
+  "profile": {
+    "label": "Profile",
+    "heading": "Your Profile",
+    "email": "Email",
+    "germanLevel": "German Level",
+    "retest": "Retest",
+    "completedExercises": "Completed Exercises",
+    "changePasswordHint": "To change your password, use the password reset email from the login page.",
+    "goToLogin": "Go to login"
+  },
+  "upgradeWall": {
+    "back": "Back",
+    "buyLevel": "Buy {level} – €{price}",
+    "checkoutStartError": "Could not start checkout.",
+    "loading": "Loading…",
+    "networkError": "Network error. Please try again.",
+    "paidCourseNotice": "This level is part of a paid course. Pay once, keep access forever.",
+    "unlockLevel": "Unlock {level}"
+  },
+  "vocabulary": {
+    "eyebrow": "Vocabulary",
+    "title": "Vocabulary Flashcards",
+    "noWordsForLevel": "No words for this level yet.",
+    "tapToFlip": "Tap to flip"
+  },
+  "certificates": {
+    "certificateOfCompletion": "Certificate of Completion",
+    "awardedTo": "Awarded to",
+    "completingLevel": "for successfully completing level",
+    "cefrAbbreviation": "CEFR",
+    "printSavePdf": "Print / Save as PDF"
+  },
+  "drivingTheory": {
+    "noQuestionsYet": "No questions available yet.",
+    "licenseClass": "Class {licenseClass}",
+    "practiceDrivingTheory": "Practice Driving Theory",
+    "questionsIntro": "{count} questions on the most essential traffic rules — BAC limits, right-of-way, speed limits, safe following distance, and more.",
+    "officialCatalogNotice": "Note: these are original practice questions on important traffic rules — not verbatim reproductions of the official question catalog. Prepare for the real exam with an approved learning system or your driving school as well.",
+    "signUpFreeStart": "Sign up free & start",
+    "startPracticing": "Start practicing",
+    "freeTakesMinute": "Free, takes only a minute.",
+    "result": "Result",
+    "correct": "correct",
+    "practiceAgain": "Practice again",
+    "backHome": "Back home",
+    "checkAnswer": "Check answer",
+    "nextQuestion": "Next question",
+    "seeResult": "See result"
+  },
+  "mockExam": {
+    "back": "Back",
+    "finalCheck": "Final check",
+    "mockExamTitle": "{level} Mock Exam",
+    "mockExamIntro": "Simulates the real exam structure (like Goethe/telc): Reading, Listening, Writing, and Speaking. At the end you'll get an honest readiness assessment before the real exam.",
+    "reading": "Reading",
+    "listening": "Listening",
+    "writing": "Writing",
+    "speaking": "Speaking",
+    "taskCount": "{count} task(s)",
+    "totalDuration": "Total time ~{minutes} minutes",
+    "signUpFreeStart": "Sign up free & start",
+    "startMockExam": "Start Mock Exam",
+    "freeTakesMinute": "Free, takes only a minute.",
+    "feedbackLoadError": "Error loading feedback.",
+    "writingPlaceholder": "Write your response in German…",
+    "getFeedback": "Get feedback",
+    "microphoneDenied": "Couldn't access your microphone. Please allow access.",
+    "speakingNotAutoScored": "Speaking can't be auto-scored in self-study — record yourself and listen back, or share it with a teacher for real feedback.",
+    "reRecord": "Re-record",
+    "record": "Record",
+    "stop": "Stop",
+    "result": "Result",
+    "readinessReport": "Your readiness report",
+    "solidFoundation": "Solid foundation for the real exam",
+    "morePracticeRecommended": "A bit more practice recommended",
+    "readingListeningPct": "{pct}% on Reading & Listening (informal reference: real exams typically pass around 60%+).",
+    "selfAssessmentNotice": "Note: this is a self-assessment based on practice exercises, not an official exam grade. Writing and Speaking are not auto-scored.",
+    "backToRooms": "Back to rooms",
+    "tryAgain": "Try again",
+    "practicedCheck": "✓ Practiced",
+    "skipped": "Skipped",
+    "noSectionContent": "No content available for this section yet.",
+    "continue": "Continue"
+  },
+  "progressOverview": {
+    "metaTitle": "Progress | DeutschPilot",
+    "eyebrow": "Progress",
+    "title": "Your Progress",
+    "overallProgress": "Overall Progress",
+    "lessonsCompletedOf": "{completed} / {total} lessons completed",
+    "notStartedYet": "Not started yet"
+  },
+  "seo": {
+    "homeCourseName": "German courses A1 to C1 at DeutschPilot",
+    "homeCourseDescription": "Themed rooms, exercises, and checkpoint quizzes for every level from A1 to C1 — listening, reading, speaking, and writing.",
+    "layoutTitle": "DeutschPilot – German Courses, Language Travel & Retreats",
+    "layoutDescription": "Learn German through structured online courses, language travel and retreats with clear learning paths and personal support from DeutschPilot.",
+    "layoutKeywords": "learn German, online German course, German language travel, German retreat, DeutschPilot",
+    "orgDescription": "German courses, language travel and retreats for structured learning progress.",
+    "contactTitle": "Contact | DeutschPilot",
+    "contactDescription": "Questions about courses, levels, or retreats? Get in touch with the DeutschPilot team.",
+    "retreatsTitle": "Language Retreats | DeutschPilot",
+    "retreatsDescription": "Immersive German language retreats: dive in, practice, and progress faster — in a small group on location.",
+    "academyTitle": "Online Academy | DeutschPilot",
+    "academyDescription": "Everything in one place: structured A1-C1 courses, live classes, an AI trainer, mock exams, and a magazine full of language tips.",
+    "faqTitle": "Frequently Asked Questions | DeutschPilot FAQ",
+    "faqDescription": "Answers to the most common questions about levels, learning rooms, certificates, the placement test, and learning with DeutschPilot.",
+    "termsTitle": "Terms of Service | DeutschPilot",
+    "impressumTitle": "Impressum | DeutschPilot"
+  },
+  "contact": {
+    "heading": "Contact",
+    "subheading": "We'd love to hear from you",
+    "form": {
+      "nameLabel": "Name",
+      "namePlaceholder": "Your name",
+      "emailLabel": "Email",
+      "messageLabel": "Message",
+      "messagePlaceholder": "How can we help you?",
+      "sendButton": "Send",
+      "sendingButton": "Sending…",
+      "successTitle": "Thank you.",
+      "successMessage": "Your message has been sent.",
+      "errorSend": "Sorry, your message could not be sent. Please try again.",
+      "errorGeneric": "Something went wrong. Please try again."
+    }
+  },
+  "retreatsPage": {
+    "badge": "Coming Soon",
+    "heading": "German Retreats",
+    "intro": "We're planning immersive language retreat programmes. Join the waitlist and we'll let you know as soon as dates are confirmed.",
+    "features": {
+      "environment": {
+        "title": "German-speaking environment",
+        "body": "Full immersion in German in an inspiring setting."
+      },
+      "program": {
+        "title": "Structured programme",
+        "body": "Daily language sessions, excursions, and cultural experiences."
+      },
+      "groups": {
+        "title": "Small groups",
+        "body": "Individual attention and real conversation in small groups."
+      },
+      "relaxation": {
+        "title": "Relaxation included",
+        "body": "Learn and unwind at the same time — for lasting language progress."
+      }
+    },
+    "waitlist": {
+      "emailPlaceholder": "Your email",
+      "regionPlaceholder": "Preferred region (optional)",
+      "datesPlaceholder": "Preferred dates (optional)",
+      "submitButton": "Join the waitlist",
+      "submittingButton": "Submitting…",
+      "successMessage": "You're on the waitlist — we'll be in touch!",
+      "errorGeneric": "Something went wrong.",
+      "errorNetwork": "Network error. Please try again."
+    }
+  },
+  "onlineAcademy": {
+    "badge": "The Academy",
+    "heading": "Everything you need to learn German",
+    "intro": "Structured courses, live classes, an AI language companion, and real exam prep — all in one place, for every level from A1 to C1.",
+    "pillars": {
+      "courses": {
+        "title": "Structured Courses",
+        "body": "A1 to C1 — 30 themed rooms with lessons and checkpoint quizzes, built step by step."
+      },
+      "liveClasses": {
+        "title": "Live Classes",
+        "body": "Book interactive sessions with real German teachers — at times that work for you."
+      },
+      "aiCompanion": {
+        "title": "AI Language Companion",
+        "body": "Practice any time with our AI Trainer — corrections, grammar explanations, and conversation practice."
+      },
+      "mockExams": {
+        "title": "Mock Exams",
+        "body": "B1 and B2 final tests in the real exam format, before you sit the actual exam."
+      },
+      "magazine": {
+        "title": "Magazine",
+        "body": "Grammar and culture guides on every topic — free, for every level."
+      },
+      "drivingTheory": {
+        "title": "Driving Theory",
+        "body": "Practice essential traffic rules for the theory exam (Class B) — free."
+      }
+    },
+    "ctaButton": "Start for free"
+  },
+  "faq": {
+    "heading": "Frequently Asked Questions",
+    "intro": "Everything you need to know about levels, rooms, certificates, and getting started with DeutschPilot.",
+    "items": {
+      "q1": {
+        "question": "How does DeutschPilot work?",
+        "answer": "You learn in themed rooms: each room has three lessons on an everyday topic plus a checkpoint quiz. Score at least 70% on the quiz and the next room unlocks. Step by step, you build vocabulary, grammar, and a feel for the language."
+      },
+      "q2": {
+        "question": "Which levels does DeutschPilot cover?",
+        "answer": "Currently A1 through C1 on the Common European Framework of Reference (CEFR). Each level has six themed rooms plus separate practice courses for listening, reading, speaking, and writing."
+      },
+      "q3": {
+        "question": "Is DeutschPilot free?",
+        "answer": "Signing up is free, and you can start lessons and the placement test right away. Live classes with teachers and retreats have separate pricing, listed on the courses page."
+      },
+      "q4": {
+        "question": "How do I find my level?",
+        "answer": "Use our free placement test. It maps you to a CEFR level so you start directly in the right rooms, instead of beginning at A1 again if you're already further along."
+      },
+      "q5": {
+        "question": "Do I get a certificate?",
+        "answer": "Yes — after completing all rooms in a level, you receive a certificate confirming your progress up to that CEFR level."
+      },
+      "q6": {
+        "question": "Can I start with zero prior knowledge?",
+        "answer": "Absolutely. A1 is designed for absolute beginners and starts with greetings and the basics — no prior knowledge required."
+      },
+      "q7": {
+        "question": "Does DeutschPilot help with an Integrationskurs or an exam?",
+        "answer": "The themed rooms and practice courses cover the same CEFR levels as Integrationskurse and official exams (e.g. Goethe, telc, DTZ). More exam details are in the magazine."
+      },
+      "q8": {
+        "question": "What's the difference between rooms and practice courses?",
+        "answer": "Rooms teach new material around an everyday topic (e.g. housing, work). Practice courses drill one specific skill — listening, reading, speaking, or writing — with additional exercises."
+      },
+      "q9": {
+        "question": "Can I sign in with Google?",
+        "answer": "Yes, you can sign up or sign in with your Google account — an alternative to email-and-password sign-in."
+      },
+      "q10": {
+        "question": "How long does it take to learn German?",
+        "answer": "It depends on your target level and how much time you invest. A detailed breakdown by CEFR level is in the magazine article \"How long does it take to learn German?\"."
+      }
+    },
+    "stillQuestions": {
+      "heading": "Still have questions?",
+      "body": "We're happy to help you personally.",
+      "button": "Get in touch"
+    }
+  },
+  "terms": {
+    "heading": "Terms of Service",
+    "section1": {
+      "heading": "1. Scope",
+      "body": "These Terms of Service apply to all contracts between PLUCO GROUP SP. Z O.O. (operator of DeutschPilot) and its customers regarding the use of the learning platform and related services."
+    },
+    "section2": {
+      "heading": "2. Scope of Services",
+      "body": "DeutschPilot offers online language courses, retreats, and community features. The exact services are defined in the respective course offerings. Paid levels (A2–C1) are purchased as a one-time payment that unlocks permanent access to the associated learning rooms; the A1 beginner level is free."
+    },
+    "section3": {
+      "heading": "3. Right of Withdrawal",
+      "body": "Consumers generally have a 14-day right of withdrawal for digital content. Because purchasing a level grants immediate access to digital learning content, the right of withdrawal expires as soon as the purchase is completed and access is unlocked — provided the customer has expressly consented to immediate performance and acknowledged that this ends the right of withdrawal. This confirmation is obtained during checkout."
+    },
+    "section4": {
+      "heading": "4. Contact"
+    }
+  },
+  "impressum": {
+    "heading": "Imprint",
+    "section1": {
+      "heading": "Information pursuant to § 5 TMG"
+    },
+    "registryLabel": "Commercial Register: KRS 0000564904",
+    "section2": {
+      "heading": "Contact"
+    }
+  },
+  "whyDeutschPilot": {
+    "eyebrow": "What you actually get",
+    "heading": "Why DeutschPilot",
+    "facts": {
+      "rooms": {
+        "title": "30 themed rooms, A1 to C1",
+        "desc": "Six rooms per level, each with three lessons and a checkpoint quiz."
+      },
+      "skills": {
+        "title": "All four skills",
+        "desc": "Dedicated practice courses for listening, reading, writing, and speaking at every level."
+      },
+      "aiFeedback": {
+        "title": "AI feedback on your writing",
+        "desc": "Writing exercises are reviewed by our AI trainer — with concrete, level-appropriate feedback."
+      },
+      "unlock": {
+        "title": "70% to unlock the next room",
+        "desc": "Checkpoint quizzes make sure you've actually got it before you move on."
+      },
+      "guides": {
+        "title": "24 grammar & culture guides",
+        "desc": "From Konjunktiv II to German idioms — free in the Magazine."
+      },
+      "freeStart": {
+        "title": "Free to start",
+        "desc": "The entire A1 level is free. Sign up with email or Google in seconds."
+      }
+    }
+  },
+  "teachers": {
+    "metaTitle": "Our Teachers | DeutschPilot",
+    "metaDescription": "Meet DeutschPilot's experienced German teachers and book live classes at your level.",
+    "badge": "Our Teachers",
+    "heading": "Learn with Real Teachers",
+    "subheading": "Our qualified German teachers offer live classes via Google Meet. Choose a teacher and book your session.",
+    "emptyTitle": "Our teacher list will be available soon.",
+    "emptySubtitle": "Check back shortly — we are onboarding teachers right now.",
+    "experienceYears": "{years}y experience",
+    "defaultBio": "Experienced German teacher offering live online classes for beginners and intermediate learners.",
+    "activeClasses": "{count, plural, one {# active class} other {# active classes}}",
+    "viewClasses": "View Classes"
+  },
+  "about": {
+    "metaTitle": "About Us | DeutschPilot",
+    "metaDescription": "DeutschPilot is the premium learning platform for German: experienced teachers, AI support, and a vibrant community.",
+    "title": "About Us",
+    "subtitle": "We are DeutschPilot",
+    "body": "DeutschPilot was founded with a clear mission: to help people around the world learn German quickly, effectively, and with joy. Our experienced teachers, innovative AI support, and a vibrant community make DeutschPilot the premium learning platform for real results.",
+    "cta": "Start for free",
+    "stats": {
+      "experience": "Years experience",
+      "students": "Happy students",
+      "recommendation": "Recommendation rate"
+    }
+  },
+  "magazine": {
+    "metaTitle": "DeutschPilot Magazine – German Learning Articles & Tips",
+    "metaDescription": "In-depth articles on German grammar, exams, and learning strategy — written for real learners from A1 to B2.",
+    "badge": "Magazine",
+    "heading": "DeutschPilot Magazine",
+    "intro": "In-depth articles on grammar, exams, and learning strategy — written for real learners.",
+    "readingTime": "{minutes} min read",
+    "practiceCtaText": "Ready to practice what you've read?",
+    "practiceCtaButton": "Go to practice courses",
+    "breadcrumbHome": "Home",
+    "backToMagazine": "Back to magazine",
+    "youMightAlsoLike": "You might also like",
+    "readingToPracticingHeading": "From reading to practicing",
+    "readingToPracticingBody": "Reading, listening, writing and speaking — free practice courses from A1 to B2.",
+    "startPracticingFree": "Start practicing free",
+    "comments": {
+      "discussion": "Discussion",
+      "loading": "Loading…",
+      "noComments": "No comments yet. Be the first!",
+      "postError": "Could not post comment.",
+      "networkError": "Network error.",
+      "placeholder": "Write a comment…",
+      "posting": "Posting…",
+      "postComment": "Post comment",
+      "signIn": "Sign in",
+      "joinDiscussion": "to join the discussion."
+    }
+  },
+  "communityPage": {
+    "metaTitle": "Community | DeutschPilot",
+    "metaDescription": "Connect with fellow German learners, join events, and learn together in the DeutschPilot community.",
+    "badge": "Community",
+    "heroHeading": "Learn together.\nGrow together.",
+    "heroDescription": "The DeutschPilot community connects learners worldwide — to practise, exchange ideas, and motivate each other.",
+    "expectLabel": "What to expect",
+    "expectHeading": "Your learning community",
+    "features": {
+      "languageExchange": {
+        "title": "Language Exchange",
+        "description": "Practice German with native speakers and help others learn their language."
+      },
+      "studyGroups": {
+        "title": "Study Groups",
+        "description": "Join topic-based groups and learn together with like-minded people."
+      },
+      "liveEvents": {
+        "title": "Live Events",
+        "description": "Join online workshops, Q&A sessions, and language café events."
+      },
+      "internationalPerspectives": {
+        "title": "International Perspectives",
+        "description": "Connect with German learners from different countries and backgrounds."
+      }
+    },
+    "launchingSoonHeading": "Community launching soon",
+    "launchingSoonBody": "Study groups, live events, and language exchange are still being built. Send us an email to be notified first — or already join the conversation in the comments on our magazine articles.",
+    "expressInterest": "Express Interest",
+    "browseMagazine": "Browse the Magazine",
+    "reachUsDirectly": "Or reach us directly: info@deutschpilot.de"
+  },
+  "levelsPage": {
+    "metaTitle": "German Levels A1 to C1: Your Learning Path | DeutschPilot",
+    "metaDescription": "The clear path from A1 to C1: themed rooms, checkpoint quizzes, and practice for every level. See what awaits you at each stage.",
+    "eyebrow": "Your Learning Path",
+    "heading": "Language Levels",
+    "intro": "Your structured path from A1 to C1 – every step brings you closer to fluency.",
+    "levels": {
+      "A1": {
+        "name": "Beginner",
+        "description": "Basic phrases and expressions for everyday situations."
+      },
+      "A2": {
+        "name": "Elementary",
+        "description": "Simple communication on familiar topics and routine tasks."
+      },
+      "B1": {
+        "name": "Intermediate",
+        "description": "Understand main points on clear standard topics and express them."
+      },
+      "B2": {
+        "name": "Upper Intermediate",
+        "description": "Understand complex texts and communicate spontaneously."
+      },
+      "C1": {
+        "name": "Advanced",
+        "description": "Understand complex demanding texts and speak fluently."
+      }
+    },
+    "available": "Available",
+    "roomsCount": "{count} rooms",
+    "certificateIncluded": "Certificate included",
+    "explore": "Explore",
+    "comingSoon": "Coming soon",
+    "skills": {
+      "listening": "Listening",
+      "reading": "Reading",
+      "speaking": "Speaking",
+      "writing": "Writing"
+    },
+    "readyHeading": "Ready to get started?",
+    "readyBody": "Create a free account to start lessons and save your progress.",
+    "startFree": "Start for free",
+    "cefrNote": "All levels align with the Common European Framework of Reference for Languages (CEFR)."
+  },
+  "classes": {
+    "metaTitle": "Live German Classes | DeutschPilot",
+    "metaDescription": "Book live German classes with experienced teachers — filterable by level, date, and topic.",
+    "badge": "Live Classes",
+    "heading": "Join a Live German Class",
+    "subheading": "Book a live session with a real teacher via Google Meet. Learn German step by step with personal guidance.",
+    "teacherCannotEnroll": "Teachers cannot enroll in student classes.",
+    "goToDashboard": "Go to your dashboard",
+    "emptyTitle": "Live classes will appear here soon.",
+    "emptySubtitle": "Check back later or browse our teachers below.",
+    "browseTeachers": "Browse Teachers",
+    "full": "Full",
+    "spotsLeft": "{count, plural, one {# spot left} other {# spots left}}",
+    "teacherLabel": "Teacher:"
+  },
+  "aiTrainer": {
+    "defaultStudentName": "Student",
+    "title": "AI Trainer",
+    "statusPreview": "Free preview · {limit}/day",
+    "statusOnline": "Online · Ready to help",
+    "reset": "Reset",
+    "welcome": "Hello! I'm your AI German trainer 🎓\n\nI can help you with:\n• Correcting and explaining your sentences\n• Explaining grammar in a simple way\n• Practising conversations in German\n• Running vocabulary tests\n• Giving you A1–C1 exercises\n\nWhat would you like to focus on today?",
+    "quickPrompts": [
+      "Correct my sentence",
+      "Give me an A1 exercise",
+      "Explain grammar",
+      "Practice conversation",
+      "Test my vocabulary"
+    ],
+    "upgradeNeededMessage": "Your free preview includes {limit} messages per day. Upgrade to Premium to keep practising.",
+    "dailyLimitReached": "You've reached your daily limit of {limit} messages. Come back tomorrow! 🌟",
+    "errorMessage": "Sorry, something went wrong. Please try again.",
+    "checkoutUnavailable": "Premium checkout is not available yet. Your free exercises remain available.",
+    "previewMessagesAvailable": "{remaining} preview messages available.",
+    "loading": "Loading…",
+    "unlockPremium": "Unlock Premium",
+    "openingCheckout": "Opening checkout…",
+    "unlockPremiumFull": "Unlock AI Trainer Premium",
+    "inputPlaceholder": "Type a message… (Enter to send)",
+    "disclaimer": "AI responses may contain errors. Please verify critical content."
   }
 }

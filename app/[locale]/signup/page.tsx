@@ -7,11 +7,6 @@ import { Footer } from "@/components/footer";
 import { isPlaceholderLocale } from "@/i18n";
 import { SignupFormClient } from "@/components/auth/signup-form-client";
 
-const benefits = {
-  de: ["Zugang zu allen Kursniveaus A1–C1", "Live-Klassen mit erfahrenen Lehrern", "KI-Lernbegleiter rund um die Uhr", "Anerkanntes Zertifikat inklusive"],
-  en: ["Access to all course levels A1–C1", "Live classes with experienced teachers", "AI learning companion 24/7", "Recognized certificate included"],
-};
-
 export default async function SignupPage({ params }: { params: { locale: string } }) {
   const { locale } = params;
 
@@ -26,7 +21,12 @@ export default async function SignupPage({ params }: { params: { locale: string 
   }
 
   const t = await getTranslations({ locale, namespace: "auth" });
-  const perks = benefits[locale as keyof typeof benefits] ?? benefits.en;
+  const perks = [
+    t("perkCourseLevels"),
+    t("perkLiveClasses"),
+    t("perkAiCompanion"),
+    t("perkCertificate"),
+  ];
 
   return (
     <div className="min-h-screen bg-[#071424] flex">
@@ -59,7 +59,7 @@ export default async function SignupPage({ params }: { params: { locale: string 
 
         <div className="relative z-10">
           <p className="text-xs font-medium tracking-[0.2em] text-[#CEA66F] uppercase mb-5">
-            {locale === "de" ? "Was dich erwartet" : "What's included"}
+            {t("whatsIncluded")}
           </p>
           <ul className="space-y-3">
             {perks.map((perk) => (

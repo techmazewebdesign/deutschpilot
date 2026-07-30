@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { firebaseAuth } from "@/lib/firebase";
 import { GoogleSigninButton } from "@/components/auth/google-signin-button";
@@ -15,20 +16,6 @@ interface Props {
   emailLabel: string;
 }
 
-function firebaseError(code: string, de: boolean): string {
-  const map: Record<string, [string, string]> = {
-    "auth/invalid-credential": ["E-Mail oder Passwort falsch.", "Incorrect email or password."],
-    "auth/wrong-password": ["E-Mail oder Passwort falsch.", "Incorrect email or password."],
-    "auth/user-not-found": ["Kein Konto gefunden.", "No account found."],
-    "auth/user-disabled": ["Dieses Konto ist deaktiviert.", "This account has been disabled."],
-    "auth/too-many-requests": ["Zu viele Versuche. Bitte warte kurz.", "Too many attempts. Please wait."],
-    "auth/invalid-email": ["Bitte eine gültige E-Mail eingeben.", "Please enter a valid email address."],
-  };
-  const entry = map[code];
-  if (entry) return de ? entry[0] : entry[1];
-  return de ? "E-Mail oder Passwort falsch." : "Incorrect email or password.";
-}
-
 export function SigninFormClient({
   locale,
   loginLabel,
@@ -36,6 +23,7 @@ export function SigninFormClient({
   passwordLabel,
   emailLabel,
 }: Props) {
+  const t = useTranslations("auth");
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -45,7 +33,17 @@ export function SigninFormClient({
   const inputClass =
     "w-full rounded-md bg-white/5 border border-white/10 text-white px-4 py-3 text-sm placeholder:text-white/20 focus:outline-none focus:border-[#CEA66F]/50 focus:bg-white/8 transition-all";
 
-  const isDE = locale === "de";
+  function firebaseError(code: string): string {
+    const map: Record<string, string> = {
+      "auth/invalid-credential": t("errorInvalidCredentials"),
+      "auth/wrong-password": t("errorInvalidCredentials"),
+      "auth/user-not-found": t("errorUserNotFound"),
+      "auth/user-disabled": t("errorUserDisabled"),
+      "auth/too-many-requests": t("errorTooManyRequests"),
+      "auth/invalid-email": t("errorInvalidEmail"),
+    };
+    return map[code] ?? t("errorInvalidCredentials");
+  }
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -75,7 +73,7 @@ export function SigninFormClient({
       });
 
       if (!sessionRes.ok) {
-        setError(isDE ? "Sitzung konnte nicht erstellt werden." : "Session could not be created.");
+        setError(t("sessionCreateFailed"));
         return;
       }
 
@@ -93,7 +91,7 @@ export function SigninFormClient({
       router.refresh();
     } catch (err: unknown) {
       const code = (err as { code?: string }).code ?? "";
-      setError(firebaseError(code, isDE));
+      setError(firebaseError(code));
     } finally {
       setLoading(false);
     }
@@ -148,15 +146,11 @@ export function SigninFormClient({
         disabled={loading}
         className="w-full bg-[#D9B173] text-[#071424] font-semibold py-3 rounded-md hover:bg-[#B98A4E] transition-colors mt-2 disabled:opacity-60 disabled:cursor-not-allowed"
       >
-        {loading ? (isDE ? "Wird angemeldet…" : "Signing in…") : loginLabel}
+        {loading ? t("signingIn") : loginLabel}
       </button>
     </form>
 
-    <GoogleSigninButton
-      locale={locale}
-      labelDE="Mit Google anmelden"
-      labelEN="Sign in with Google"
-    />
+    <GoogleSigninButton locale={locale} variant="signin" />
     </>
   );
 }

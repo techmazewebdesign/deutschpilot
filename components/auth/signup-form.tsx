@@ -16,23 +16,20 @@ interface Props {
   locale: string;
 }
 
-function firebaseError(code: string, de: boolean): string {
-  const map: Record<string, [string, string]> = {
-    "auth/email-already-in-use": ["Diese E-Mail ist bereits registriert.", "This email is already registered."],
-    "auth/weak-password": ["Passwort muss mindestens 6 Zeichen haben.", "Password must be at least 6 characters."],
-    "auth/invalid-email": ["Bitte eine gültige E-Mail eingeben.", "Please enter a valid email address."],
-  };
-  const entry = map[code];
-  if (entry) return de ? entry[0] : entry[1];
-  return de ? "Fehler. Bitte erneut versuchen." : "Error. Please try again.";
-}
-
 const LEVELS = ["A1", "A2", "B1", "B2", "C1"] as const;
 
 export function SignupForm({ locale }: Props) {
   const t = useTranslations("auth");
   const router = useRouter();
-  const de = locale === "de";
+
+  function firebaseError(code: string): string {
+    const map: Record<string, string> = {
+      "auth/email-already-in-use": t("errorEmailInUse"),
+      "auth/weak-password": t("errorWeakPassword"),
+      "auth/invalid-email": t("errorInvalidEmail"),
+    };
+    return map[code] ?? t("errorTryAgain");
+  }
 
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
@@ -78,7 +75,7 @@ export function SignupForm({ locale }: Props) {
 
       if (!roleRes.ok) {
         await user.delete();
-        setError(de ? "Konto konnte nicht erstellt werden." : "Account could not be created.");
+        setError(t("accountCreateFailed"));
         return;
       }
 
@@ -89,7 +86,7 @@ export function SignupForm({ locale }: Props) {
       router.push(`/${locale}/verify-email`);
     } catch (err: unknown) {
       const code = (err as { code?: string }).code ?? "";
-      setError(firebaseError(code, de));
+      setError(firebaseError(code));
     } finally {
       setLoading(false);
     }
@@ -119,7 +116,7 @@ export function SignupForm({ locale }: Props) {
             required
             autoComplete="name"
             className={inputClass}
-            placeholder={de ? "Vollständiger Name" : "Full name"}
+            placeholder={t("fullNamePlaceholder")}
           />
         </div>
         <div>

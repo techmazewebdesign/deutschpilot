@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
 import {
   createUserWithEmailAndPassword,
   updateProfile,
@@ -18,26 +19,24 @@ interface Props {
 type Role = "student" | "teacher";
 const LEVELS = ["A1", "A2", "B1", "B2", "C1", "C2"] as const;
 
-function firebaseError(code: string, de: boolean): string {
-  const map: Record<string, [string, string]> = {
-    "auth/email-already-in-use": ["Diese E-Mail ist bereits registriert.", "This email is already registered."],
-    "auth/weak-password": ["Passwort muss mindestens 6 Zeichen haben.", "Password must be at least 6 characters."],
-    "auth/invalid-email": ["Bitte eine gültige E-Mail eingeben.", "Please enter a valid email address."],
-    "auth/invalid-credential": ["Ungültige Anmeldedaten.", "Invalid credentials."],
-    "auth/user-not-found": ["Kein Konto mit dieser E-Mail gefunden.", "No account found with this email."],
-    "auth/too-many-requests": ["Zu viele Versuche. Bitte warte kurz.", "Too many attempts. Please wait."],
-    "auth/network-request-failed": ["Netzwerkfehler. Bitte Verbindung prüfen.", "Network error. Please check your connection."],
-    "auth/internal-error": ["Interner Fehler. Bitte erneut versuchen.", "Internal error. Please try again."],
-    "auth/configuration-not-found": ["Firebase-Konfiguration fehlt.", "Firebase configuration missing."],
-  };
-  const entry = map[code];
-  if (entry) return de ? entry[0] : entry[1];
-  return de ? `Fehler: ${code}` : `Error: ${code}`;
-}
-
 export function SignupFormClient({ locale, registerLabel }: Props) {
+  const t = useTranslations("auth");
   const router = useRouter();
-  const de = locale === "de";
+
+  function firebaseError(code: string): string {
+    const map: Record<string, string> = {
+      "auth/email-already-in-use": t("errorEmailInUse"),
+      "auth/weak-password": t("errorWeakPassword"),
+      "auth/invalid-email": t("errorInvalidEmail"),
+      "auth/invalid-credential": t("errorInvalidCredentialsGeneric"),
+      "auth/user-not-found": t("errorNoAccountEmail"),
+      "auth/too-many-requests": t("errorTooManyRequests"),
+      "auth/network-request-failed": t("errorNetworkFailed"),
+      "auth/internal-error": t("errorInternal"),
+      "auth/configuration-not-found": t("errorConfigMissing"),
+    };
+    return map[code] ?? t("errorWithCode", { code });
+  }
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -56,11 +55,11 @@ export function SignupFormClient({ locale, registerLabel }: Props) {
     setError(null);
 
     if (password !== confirm) {
-      setError(de ? "Passwörter stimmen nicht überein." : "Passwords do not match.");
+      setError(t("passwordMismatch"));
       return;
     }
     if (password.length < 6) {
-      setError(de ? "Passwort muss mindestens 6 Zeichen haben." : "Password must be at least 6 characters.");
+      setError(t("errorWeakPassword"));
       return;
     }
 
@@ -95,11 +94,7 @@ export function SignupFormClient({ locale, registerLabel }: Props) {
         roleData = await roleRes.json();
       } catch {
         console.error("[signup] set-role response was not valid JSON. Status:", roleRes.status);
-        setError(
-          de
-            ? "Profil konnte nicht erstellt werden. Bitte Seite neu laden und erneut versuchen."
-            : "Could not create your profile. Please reload and try again."
-        );
+        setError(t("profileCreateFailedReload"));
         setLoading(false);
         return;
       }
@@ -107,12 +102,8 @@ export function SignupFormClient({ locale, registerLabel }: Props) {
       if (!roleRes.ok) {
         console.error("[signup] set-role failed:", roleData);
         // Show the specific server error so it's visible during debugging
-        const serverMsg = roleData.detail ?? roleData.error ?? "Profile creation failed.";
-        setError(
-          de
-            ? `Fehler beim Erstellen des Profils: ${serverMsg}`
-            : `Profile creation failed: ${serverMsg}`
-        );
+        const serverMsg = roleData.detail ?? roleData.error ?? t("profileCreationFailedFallback");
+        setError(t("profileCreateFailedDetail", { msg: serverMsg }));
         setLoading(false);
         return;
       }
@@ -141,7 +132,7 @@ export function SignupFormClient({ locale, registerLabel }: Props) {
       const error = err as { code?: string; message?: string };
       console.error("[signup] Unexpected error:", error);
       const code = error.code ?? "";
-      setError(firebaseError(code, de));
+      setError(firebaseError(code));
     } finally {
       setLoading(false);
     }
@@ -159,7 +150,7 @@ export function SignupFormClient({ locale, registerLabel }: Props) {
       {/* Role selection */}
       <div>
         <p className="text-xs font-medium text-white/60 uppercase tracking-wider mb-2">
-          {de ? "Ich bin…" : "I am a…"}
+          {t("iAmA")}
         </p>
         <div className="grid grid-cols-2 gap-2">
           {(["student", "teacher"] as Role[]).map((r) => (
@@ -173,9 +164,7 @@ export function SignupFormClient({ locale, registerLabel }: Props) {
                   : "bg-white/3 border-white/10 text-white/50 hover:border-white/20"
               }`}
             >
-              {r === "student"
-                ? de ? "Lernender" : "Student"
-                : de ? "Lehrer" : "Teacher"}
+              {r === "student" ? t("roleStudent") : t("roleTeacher")}
             </button>
           ))}
         </div>
@@ -183,7 +172,7 @@ export function SignupFormClient({ locale, registerLabel }: Props) {
 
       <div>
         <label className="block text-xs font-medium text-white/60 uppercase tracking-wider mb-1.5">
-          {de ? "Vollständiger Name" : "Full name"}
+          {t("fullNameLabel")}
         </label>
         <input
           type="text"
@@ -192,13 +181,13 @@ export function SignupFormClient({ locale, registerLabel }: Props) {
           value={name}
           onChange={(e) => setName(e.target.value)}
           className={inputClass}
-          placeholder={de ? "Dein Name" : "Your name"}
+          placeholder={t("fullNamePlaceholder")}
         />
       </div>
 
       <div>
         <label className="block text-xs font-medium text-white/60 uppercase tracking-wider mb-1.5">
-          {de ? "E-Mail" : "Email"}
+          {t("email")}
         </label>
         <input
           type="email"
@@ -213,7 +202,7 @@ export function SignupFormClient({ locale, registerLabel }: Props) {
 
       <div>
         <label className="block text-xs font-medium text-white/60 uppercase tracking-wider mb-1.5">
-          {de ? "Passwort" : "Password"}
+          {t("password")}
         </label>
         <input
           type="password"
@@ -229,7 +218,7 @@ export function SignupFormClient({ locale, registerLabel }: Props) {
 
       <div>
         <label className="block text-xs font-medium text-white/60 uppercase tracking-wider mb-1.5">
-          {de ? "Passwort bestätigen" : "Confirm password"}
+          {t("confirmPassword")}
         </label>
         <input
           type="password"
@@ -246,7 +235,7 @@ export function SignupFormClient({ locale, registerLabel }: Props) {
       {role === "student" && (
         <div>
           <label className="block text-xs font-medium text-white/60 uppercase tracking-wider mb-1.5">
-            {de ? "Aktuelles Deutsch-Niveau" : "Current German level"}
+            {t("currentGermanLevel")}
           </label>
           <div className="grid grid-cols-6 gap-1.5">
             {LEVELS.map((l) => (
@@ -272,17 +261,11 @@ export function SignupFormClient({ locale, registerLabel }: Props) {
         disabled={loading}
         className="w-full bg-[#D9B173] text-[#071424] font-semibold py-3 rounded-md hover:bg-[#B98A4E] transition-colors mt-2 disabled:opacity-60 disabled:cursor-not-allowed"
       >
-        {loading
-          ? (de ? "Konto wird erstellt…" : "Creating account…")
-          : registerLabel}
+        {loading ? t("creatingAccount") : registerLabel}
       </button>
     </form>
 
-    <GoogleSigninButton
-      locale={locale}
-      labelDE="Mit Google registrieren"
-      labelEN="Sign up with Google"
-    />
+    <GoogleSigninButton locale={locale} variant="signup" />
     </>
   );
 }

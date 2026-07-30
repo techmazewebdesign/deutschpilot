@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { sendPasswordResetEmail } from "firebase/auth";
 import { firebaseAuth } from "@/lib/firebase";
 
@@ -10,7 +11,7 @@ export default function ForgotPasswordPage({
 }: {
   params: { locale: string };
 }) {
-  const isDE = locale === "de";
+  const t = useTranslations("auth");
 
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
@@ -50,30 +51,26 @@ export default function ForgotPasswordPage({
               <span className="text-[#CEA66F] text-2xl">✉</span>
             </div>
             <h1 className="text-2xl font-serif font-bold text-white mb-3">
-              {isDE ? "E-Mail gesendet" : "Email sent"}
+              {t("emailSentTitle")}
             </h1>
             <p className="text-[#C9D2DE] text-sm leading-relaxed">
-              {isDE
-                ? "Falls ein Konto mit dieser E-Mail existiert, haben wir einen Zurücksetz-Link gesendet. Bitte überprüfe deinen Posteingang."
-                : "If an account with this email exists, we've sent a reset link. Please check your inbox."}
+              {t("emailSentBody")}
             </p>
             <Link
               href={`/${locale}/signin`}
               className="inline-block mt-6 text-sm text-[#CEA66F] hover:underline"
             >
-              ← {isDE ? "Zurück zur Anmeldung" : "Back to sign in"}
+              ← {t("backToSignin")}
             </Link>
           </div>
         ) : (
           <>
             <div className="mb-8">
               <h1 className="text-3xl font-serif font-bold text-white mb-2">
-                {isDE ? "Passwort vergessen?" : "Forgot password?"}
+                {t("forgotPasswordTitle")}
               </h1>
               <p className="text-[#C9D2DE] text-sm">
-                {isDE
-                  ? "Gib deine E-Mail-Adresse ein. Wir senden dir einen Link zum Zurücksetzen."
-                  : "Enter your email and we'll send you a reset link."}
+                {t("forgotPasswordBody")}
               </p>
             </div>
 
@@ -86,7 +83,7 @@ export default function ForgotPasswordPage({
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
                 <label className="block text-xs font-medium text-white/60 uppercase tracking-wider mb-1.5">
-                  {isDE ? "E-Mail-Adresse" : "Email address"}
+                  {t("emailAddressLabel")}
                 </label>
                 <input
                   type="email"
@@ -104,15 +101,13 @@ export default function ForgotPasswordPage({
                 disabled={loading}
                 className="w-full bg-[#D9B173] text-[#071424] font-semibold py-3 rounded-md hover:bg-[#B98A4E] transition-colors mt-2 disabled:opacity-60 disabled:cursor-not-allowed"
               >
-                {loading
-                  ? (isDE ? "Wird gesendet…" : "Sending…")
-                  : (isDE ? "Link senden" : "Send reset link")}
+                {loading ? t("sending") : t("sendResetLink")}
               </button>
             </form>
 
             <p className="text-center text-sm text-white/40 mt-6">
               <Link href={`/${locale}/signin`} className="text-[#CEA66F] hover:underline">
-                ← {isDE ? "Zurück zur Anmeldung" : "Back to sign in"}
+                ← {t("backToSignin")}
               </Link>
             </p>
           </>

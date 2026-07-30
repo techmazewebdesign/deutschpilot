@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { sendEmailVerification, onAuthStateChanged } from "firebase/auth";
 import { firebaseAuth } from "@/lib/firebase";
 
@@ -11,8 +12,8 @@ export default function VerifyEmailPage({
 }: {
   params: { locale: string };
 }) {
+  const t = useTranslations("auth");
   const router = useRouter();
-  const de = locale === "de";
 
   const [userEmail, setUserEmail] = useState<string | null>(null);
   const [verified, setVerified] = useState(false);
@@ -28,11 +29,7 @@ export default function VerifyEmailPage({
     // (window.location instead of useSearchParams: avoids the Suspense
     // requirement during static prerender of this client page.)
     if (new URLSearchParams(window.location.search).get("sent") === "0") {
-      setError(
-        de
-          ? "Die E-Mail konnte nicht automatisch gesendet werden. Bitte klicke unten auf „Link erneut senden“."
-          : "We couldn't send the email automatically. Please click \"Resend link\" below."
-      );
+      setError(t("resendEmailFailedNotice"));
     }
 
     const unsubscribe = onAuthStateChanged(firebaseAuth, async (user) => {
@@ -109,7 +106,7 @@ export default function VerifyEmailPage({
         });
       }, 1000);
     } catch {
-      setError(de ? "E-Mail konnte nicht gesendet werden." : "Could not send email.");
+      setError(t("couldNotSendEmail"));
     } finally {
       setResending(false);
     }
@@ -123,10 +120,10 @@ export default function VerifyEmailPage({
             <span className="text-green-400 text-3xl">✓</span>
           </div>
           <h1 className="text-2xl font-serif font-bold text-white mb-2">
-            {de ? "E-Mail bestätigt!" : "Email verified!"}
+            {t("emailVerifiedTitle")}
           </h1>
           <p className="text-[#C9D2DE] text-sm">
-            {de ? "Du wirst zu deinem Dashboard weitergeleitet…" : "Taking you to your dashboard…"}
+            {t("emailVerifiedRedirecting")}
           </p>
         </div>
       </div>
@@ -148,12 +145,10 @@ export default function VerifyEmailPage({
             <span className="text-[#CEA66F] text-2xl">✉</span>
           </div>
           <h1 className="text-2xl font-serif font-bold text-white mb-2">
-            {de ? "E-Mail bestätigen" : "Check your email"}
+            {t("checkYourEmailTitle")}
           </h1>
           <p className="text-[#C9D2DE] text-sm leading-relaxed">
-            {de
-              ? `Wir haben einen Bestätigungslink an ${userEmail ?? "deine E-Mail"} gesendet. Klicke auf den Link — diese Seite aktualisiert sich automatisch.`
-              : `We sent a verification link to ${userEmail ?? "your email"}. Click the link — this page will update automatically.`}
+            {t("verificationSentBody", { email: userEmail ?? t("yourEmailFallback") })}
           </p>
         </div>
 
@@ -166,7 +161,7 @@ export default function VerifyEmailPage({
         <div className="flex items-center gap-2 justify-center mb-2">
           <span className="inline-block h-1.5 w-1.5 rounded-full bg-[#CEA66F] animate-pulse" />
           <p className="text-xs text-white/40">
-            {de ? "Warte auf Bestätigung…" : "Waiting for verification…"}
+            {t("waitingForVerification")}
           </p>
         </div>
 
@@ -177,14 +172,14 @@ export default function VerifyEmailPage({
             className="text-sm text-[#CEA66F] hover:underline disabled:opacity-40 disabled:no-underline"
           >
             {resendCooldown > 0
-              ? (de ? `Erneut senden in ${resendCooldown}s` : `Resend in ${resendCooldown}s`)
+              ? t("resendIn", { seconds: resendCooldown })
               : resending
-              ? (de ? "Wird gesendet…" : "Sending…")
-              : (de ? "Link erneut senden" : "Resend link")}
+              ? t("sending")
+              : t("resendLink")}
           </button>
           <p className="text-xs text-white/25">
             <Link href={`/${locale}/signup`} className="hover:text-white/40 transition-colors">
-              ← {de ? "Zurück zur Registrierung" : "Back to sign up"}
+              ← {t("backToSignup")}
             </Link>
           </p>
         </div>

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import { getTranslations } from "next-intl/server";
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
 import { auth } from "@/lib/auth";
@@ -10,13 +11,11 @@ import { Video, CalendarDays, Clock, Users } from "lucide-react";
 
 export const dynamic = "force-dynamic";
 
-export function generateMetadata({ params }: { params: { locale: string } }): Metadata {
-  const de = params.locale === "de";
+export async function generateMetadata({ params }: { params: { locale: string } }): Promise<Metadata> {
+  const t = await getTranslations({ locale: params.locale, namespace: "classes" });
   return {
-    title: de ? "Live-Deutschkurse | DeutschPilot" : "Live German Classes | DeutschPilot",
-    description: de
-      ? "Buche Live-Deutschkurse mit erfahrenen Lehrer:innen — nach Niveau, Termin und Thema filterbar."
-      : "Book live German classes with experienced teachers — filterable by level, date, and topic.",
+    title: t("metaTitle"),
+    description: t("metaDescription"),
   };
 }
 
@@ -31,6 +30,7 @@ const levelColors: Record<string, string> = {
 export default async function ClassesPage({ params }: { params: { locale: string } }) {
   const { locale } = params;
   const session = await auth();
+  const t = await getTranslations({ locale, namespace: "classes" });
 
   const supabase = createServerSupabaseClient();
   const { data: classes } = await supabase
@@ -64,11 +64,11 @@ export default async function ClassesPage({ params }: { params: { locale: string
           <FadeIn>
             <div className="text-center mb-12">
               <div className="inline-flex items-center gap-2 rounded-full border border-[#E0B873]/30 bg-[#E0B873]/8 px-4 py-1.5 text-[11px] font-semibold tracking-[0.15em] text-[#E0B873] uppercase mb-4">
-                <Video className="h-3 w-3" /> Live Classes
+                <Video className="h-3 w-3" /> {t("badge")}
               </div>
-              <h1 className="text-4xl sm:text-5xl font-serif font-bold text-white mb-4">Join a Live German Class</h1>
+              <h1 className="text-4xl sm:text-5xl font-serif font-bold text-white mb-4">{t("heading")}</h1>
               <p className="text-[#C9D2DE] max-w-xl mx-auto text-sm">
-                Book a live session with a real teacher via Google Meet. Learn German step by step with personal guidance.
+                {t("subheading")}
               </p>
             </div>
           </FadeIn>
@@ -76,8 +76,8 @@ export default async function ClassesPage({ params }: { params: { locale: string
           {session?.user?.role === "teacher" && (
             <FadeIn delay={0.1}>
               <div className="mb-8 text-center p-4 rounded-2xl bg-amber-500/10 border border-amber-500/20 text-amber-300 text-sm">
-                Teachers cannot enroll in student classes.{" "}
-                <Link href={`/${locale}/teacher/dashboard`} className="underline">Go to your dashboard →</Link>
+                {t("teacherCannotEnroll")}{" "}
+                <Link href={`/${locale}/teacher/dashboard`} className="underline">{t("goToDashboard")} →</Link>
               </div>
             </FadeIn>
           )}
@@ -86,10 +86,10 @@ export default async function ClassesPage({ params }: { params: { locale: string
             <FadeIn delay={0.1}>
               <div className="text-center py-20">
                 <Video className="h-12 w-12 mx-auto text-white/15 mb-4" />
-                <p className="text-white/40 text-lg">Live classes will appear here soon.</p>
-                <p className="text-white/25 text-sm mt-1">Check back later or browse our teachers below.</p>
+                <p className="text-white/40 text-lg">{t("emptyTitle")}</p>
+                <p className="text-white/25 text-sm mt-1">{t("emptySubtitle")}</p>
                 <Link href={`/${locale}/teachers`} className="inline-block mt-6 border border-white/20 text-white/60 font-semibold px-6 py-2.5 rounded-xl hover:border-white/40 hover:text-white transition-colors text-sm">
-                  Browse Teachers
+                  {t("browseTeachers")}
                 </Link>
               </div>
             </FadeIn>
@@ -106,13 +106,13 @@ export default async function ClassesPage({ params }: { params: { locale: string
                         <div className="flex items-center justify-between">
                           <span className={`text-[10px] font-bold tracking-widest uppercase px-2 py-0.5 rounded-full border ${levelColors[cls.level] ?? levelColors.A1}`}>{cls.level}</span>
                           <span className={`text-xs font-medium ${spotsLeft <= 2 ? "text-red-400" : "text-white/40"}`}>
-                            {spotsLeft <= 0 ? "Full" : `${spotsLeft} spot${spotsLeft !== 1 ? "s" : ""} left`}
+                            {spotsLeft <= 0 ? t("full") : t("spotsLeft", { count: spotsLeft })}
                           </span>
                         </div>
                         <h2 className="text-base font-serif font-bold text-white leading-snug group-hover:text-[#E0B873] transition-colors">{cls.title}</h2>
                         {cls.description && <p className="text-xs text-white/40 leading-relaxed line-clamp-2">{cls.description}</p>}
                         <div className="space-y-1.5 text-xs text-white/50">
-                          <div className="flex items-center gap-1.5"><Users className="h-3.5 w-3.5" /><span>Teacher: <span className="text-white/70">{cls.teacher_name}</span></span></div>
+                          <div className="flex items-center gap-1.5"><Users className="h-3.5 w-3.5" /><span>{t("teacherLabel")} <span className="text-white/70">{cls.teacher_name}</span></span></div>
                           <div className="flex items-center gap-1.5"><CalendarDays className="h-3.5 w-3.5" /><span>{fmtDate(cls.start_time)}</span></div>
                           <div className="flex items-center gap-1.5"><Clock className="h-3.5 w-3.5" /><span>{fmtTime(cls.start_time)} · {cls.duration_minutes} min</span></div>
                         </div>

@@ -21,6 +21,7 @@ export default async function CourseDetailPage({
   }
 
   const tLearn = await getTranslations({ locale, namespace: "learn" });
+  const t = await getTranslations({ locale, namespace: "courses" });
 
   const supabase = createServerSupabaseClient();
 
@@ -134,7 +135,7 @@ export default async function CourseDetailPage({
                 href={`/${locale}/signup`}
                 className="ml-4 inline-flex items-center gap-2 border border-[#E0B873]/30 text-[#E0B873] font-medium px-6 py-3 rounded-md hover:bg-[#E0B873]/10 transition-colors"
               >
-                {locale === "de" ? "Kostenlos registrieren" : "Sign up for free"}
+                {t("signUpFree")}
               </Link>
             )}
           </div>

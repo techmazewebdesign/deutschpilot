@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { useTranslations } from "next-intl";
 import { cn } from "@/lib/utils";
 import { createClient } from "@/lib/supabaseClient";
 import {
@@ -26,6 +27,7 @@ interface SidebarProps {
 export function DashboardSidebar({ locale }: SidebarProps) {
   const pathname = usePathname();
   const router = useRouter();
+  const t = useTranslations("sidebar");
   const [displayName, setDisplayName] = useState("");
   const [level, setLevel] = useState("");
   const [loggingOut, setLoggingOut] = useState(false);
@@ -40,7 +42,7 @@ export function DashboardSidebar({ locale }: SidebarProps) {
         .eq("id", session.user.id)
         .single()
         .then(({ data }) => {
-          setDisplayName(data?.full_name || session.user.email?.split("@")[0] || "Student");
+          setDisplayName(data?.full_name || session.user.email?.split("@")[0] || t("studentFallback"));
           setLevel(data?.german_level || "");
         });
     });
@@ -55,20 +57,19 @@ export function DashboardSidebar({ locale }: SidebarProps) {
   }
 
   const navItems = [
-    { href: `/${locale}/dashboard`, icon: LayoutDashboard, labelDe: "Übersicht", labelEn: "Dashboard" },
-    { href: `/${locale}/courses`, icon: BookOpen, labelDe: "Meine Kurse", labelEn: "My Courses" },
-    { href: `/${locale}/placement-test`, icon: FlaskConical, labelDe: "Einstufungstest", labelEn: "Placement Test" },
-    { href: `/${locale}/dashboard/progress`, icon: BarChart2, labelDe: "Fortschritt", labelEn: "Progress" },
-    { href: `/${locale}/dashboard/messages`, icon: MessageSquare, labelDe: "Nachrichten", labelEn: "Messages" },
-    { href: `/${locale}/dashboard/sessions`, icon: CalendarDays, labelDe: "Sessions", labelEn: "Sessions" },
+    { href: `/${locale}/dashboard`, icon: LayoutDashboard, label: t("nav.dashboardOverview") },
+    { href: `/${locale}/courses`, icon: BookOpen, label: t("nav.myCourses") },
+    { href: `/${locale}/placement-test`, icon: FlaskConical, label: t("nav.placementTest") },
+    { href: `/${locale}/dashboard/progress`, icon: BarChart2, label: t("tools.progress") },
+    { href: `/${locale}/dashboard/messages`, icon: MessageSquare, label: t("nav.messages") },
+    { href: `/${locale}/dashboard/sessions`, icon: CalendarDays, label: t("nav.sessions") },
   ];
 
   const bottomItems = [
-    { href: `/${locale}/profile`, icon: User, labelDe: "Profil", labelEn: "Profile" },
-    { href: `/${locale}/settings`, icon: Settings, labelDe: "Einstellungen", labelEn: "Settings" },
+    { href: `/${locale}/profile`, icon: User, label: t("profile") },
+    { href: `/${locale}/settings`, icon: Settings, label: t("settings") },
   ];
 
-  const label = (de: string, en: string) => (locale === "de" ? de : en);
   const isActive = (href: string) => pathname === href;
 
   return (
@@ -82,7 +83,7 @@ export function DashboardSidebar({ locale }: SidebarProps) {
           <div className="flex flex-col leading-none">
             <span className="text-[12px] font-bold tracking-[0.18em] text-[#F8F5EF] uppercase">DeutschPilot</span>
             <span className="text-[8px] tracking-[0.22em] text-[#E0B873] uppercase mt-[2px]">
-              {locale === "de" ? "Sprache. Zukunft. Du." : "Language. Future. You."}
+              {t("tagline")}
             </span>
           </div>
         </Link>
@@ -97,9 +98,9 @@ export function DashboardSidebar({ locale }: SidebarProps) {
             </span>
           </div>
           <div className="min-w-0">
-            <p className="text-sm font-medium text-white truncate">{displayName || "Student"}</p>
+            <p className="text-sm font-medium text-white truncate">{displayName || t("studentFallback")}</p>
             {level && (
-              <p className="text-xs text-[#E0B873]">{locale === "de" ? "Niveau" : "Level"} {level}</p>
+              <p className="text-xs text-[#E0B873]">{t("levelLabel")} {level}</p>
             )}
           </div>
         </div>
@@ -108,7 +109,7 @@ export function DashboardSidebar({ locale }: SidebarProps) {
       {/* Main nav */}
       <nav className="flex-1 px-3 py-4 space-y-1 overflow-y-auto">
         <p className="text-[9px] font-medium text-white/30 uppercase tracking-widest px-3 mb-2">
-          {locale === "de" ? "Lernen" : "Learning"}
+          {t("learningHeading")}
         </p>
         {navItems.map((item) => {
           const Icon = item.icon;
@@ -119,13 +120,13 @@ export function DashboardSidebar({ locale }: SidebarProps) {
                 active ? "bg-[#E0B873]/12 text-[#E0B873] border border-[#E0B873]/20" : "text-white/60 hover:text-white hover:bg-white/5"
               )}>
               <Icon className={cn("h-4 w-4 flex-shrink-0", active ? "text-[#E0B873]" : "")} />
-              {label(item.labelDe, item.labelEn)}
+              {item.label}
             </Link>
           );
         })}
         <div className="pt-4">
           <p className="text-[9px] font-medium text-white/30 uppercase tracking-widest px-3 mb-2">
-            {locale === "de" ? "Konto" : "Account"}
+            {t("accountHeading")}
           </p>
           {bottomItems.map((item) => {
             const Icon = item.icon;
@@ -136,7 +137,7 @@ export function DashboardSidebar({ locale }: SidebarProps) {
                   active ? "bg-[#E0B873]/12 text-[#E0B873] border border-[#E0B873]/20" : "text-white/60 hover:text-white hover:bg-white/5"
                 )}>
                 <Icon className={cn("h-4 w-4 flex-shrink-0", active ? "text-[#E0B873]" : "")} />
-                {label(item.labelDe, item.labelEn)}
+                {item.label}
               </Link>
             );
           })}
@@ -148,7 +149,7 @@ export function DashboardSidebar({ locale }: SidebarProps) {
         <button onClick={handleLogout} disabled={loggingOut}
           className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-white/40 hover:text-white hover:bg-white/5 transition-all disabled:opacity-50">
           {loggingOut ? <Loader2 className="h-4 w-4 flex-shrink-0 animate-spin" /> : <LogOut className="h-4 w-4 flex-shrink-0" />}
-          {locale === "de" ? "Abmelden" : "Sign out"}
+          {t("signOut")}
         </button>
       </div>
     </aside>

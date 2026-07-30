@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useMemo } from "react";
+import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Car, ChevronRight, CheckCircle2, XCircle, RotateCcw, AlertTriangle } from "lucide-react";
@@ -21,6 +22,7 @@ export type DrivingQuestion = {
 export function DrivingTheoryClient({
   questions, locale, licenseClass = "B", isGuest = false,
 }: { questions: DrivingQuestion[]; locale: string; licenseClass?: string; isGuest?: boolean }) {
+  const t = useTranslations("drivingTheory");
   const de = locale === "de";
   const router = useRouter();
   const [started, setStarted] = useState(false);
@@ -73,7 +75,7 @@ export function DrivingTheoryClient({
   if (questions.length === 0) {
     return (
       <main className="min-h-screen bg-[#071424] py-20 px-4 text-center">
-        <p className="text-white/40">{de ? "Noch keine Fragen verfügbar." : "No questions available yet."}</p>
+        <p className="text-white/40">{t("noQuestionsYet")}</p>
       </main>
     );
   }
@@ -86,15 +88,13 @@ export function DrivingTheoryClient({
             <Car className="h-6 w-6 text-[#E0B873]" />
           </div>
           <p className="text-xs font-medium tracking-wider text-[#CEA66F] uppercase mb-3">
-            {de ? `Klasse ${licenseClass}` : `Class ${licenseClass}`}
+            {t("licenseClass", { licenseClass })}
           </p>
           <h1 className="text-4xl sm:text-5xl font-serif font-bold text-white mb-5">
-            {de ? "Führerschein Theorie üben" : "Practice Driving Theory"}
+            {t("practiceDrivingTheory")}
           </h1>
           <p className="text-[#C9D2DE] max-w-lg mx-auto mb-8 leading-relaxed">
-            {de
-              ? `${questions.length} Fragen zu den wichtigsten Verkehrsregeln — Promillegrenzen, Vorfahrt, Geschwindigkeit, Sicherheitsabstand und mehr.`
-              : `${questions.length} questions on the most essential traffic rules — BAC limits, right-of-way, speed limits, safe following distance, and more.`}
+            {t("questionsIntro", { count: questions.length })}
           </p>
 
           <div className="flex flex-wrap justify-center gap-2 mb-10">
@@ -108,9 +108,7 @@ export function DrivingTheoryClient({
           <div className="rounded-2xl border border-amber-500/25 bg-amber-500/8 p-5 mb-8 text-left flex gap-3">
             <AlertTriangle className="h-5 w-5 text-amber-400 flex-shrink-0 mt-0.5" />
             <p className="text-xs text-amber-200/80 leading-relaxed">
-              {de
-                ? "Hinweis: Dies sind eigene Übungsfragen zu wichtigen Verkehrsregeln — keine wortgetreue Wiedergabe des amtlichen Fragenkatalogs. Bereite dich für die echte Prüfung zusätzlich mit einem zugelassenen Lernsystem oder deiner Fahrschule vor."
-                : "Note: these are original practice questions on important traffic rules — not verbatim reproductions of the official question catalog. Prepare for the real exam with an approved learning system or your driving school as well."}
+              {t("officialCatalogNotice")}
             </p>
           </div>
 
@@ -119,13 +117,13 @@ export function DrivingTheoryClient({
             className="inline-flex items-center gap-2 bg-[#E0B873] text-[#071424] font-bold px-8 py-3.5 rounded-xl hover:bg-[#C99B50] transition-colors"
           >
             {isGuest
-              ? (de ? "Kostenlos registrieren & starten" : "Sign up free & start")
-              : (de ? "Übung starten" : "Start practicing")}
+              ? t("signUpFreeStart")
+              : t("startPracticing")}
             <ChevronRight className="h-4 w-4" />
           </button>
           {isGuest && (
             <p className="text-xs text-white/30 text-center mt-3">
-              {de ? "Kostenlos, dauert nur eine Minute." : "Free, takes only a minute."}
+              {t("freeTakesMinute")}
             </p>
           )}
         </div>
@@ -143,23 +141,23 @@ export function DrivingTheoryClient({
             {pct >= 70 ? <CheckCircle2 className="h-6 w-6 text-emerald-400" /> : <XCircle className="h-6 w-6 text-amber-400" />}
           </div>
           <h1 className="text-2xl font-serif font-bold text-white mb-2">
-            {de ? "Ergebnis" : "Result"}
+            {t("result")}
           </h1>
           <p className="text-white/50 mb-8">
-            {correctCount}/{results.length} {de ? "richtig" : "correct"} ({pct}%)
+            {correctCount}/{results.length} {t("correct")} ({pct}%)
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <button
               onClick={restart}
               className="flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-[#E0B873] text-[#071424] font-bold hover:bg-[#C99B50] transition-colors"
             >
-              <RotateCcw className="h-4 w-4" /> {de ? "Erneut üben" : "Practice again"}
+              <RotateCcw className="h-4 w-4" /> {t("practiceAgain")}
             </button>
             <Link
               href={`/${locale}`}
               className="flex items-center justify-center gap-2 px-6 py-3 rounded-xl border border-white/15 text-white/70 font-medium hover:border-white/30 hover:text-white transition-colors"
             >
-              {de ? "Zur Startseite" : "Back home"}
+              {t("backHome")}
             </Link>
           </div>
         </div>
@@ -220,14 +218,14 @@ export function DrivingTheoryClient({
             disabled={!selected}
             className="w-full bg-[#E0B873] text-[#071424] font-bold py-3 rounded-xl hover:bg-[#C99B50] transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
           >
-            {de ? "Antwort prüfen" : "Check answer"}
+            {t("checkAnswer")}
           </button>
         ) : (
           <button
             onClick={nextQuestion}
             className="w-full flex items-center justify-center gap-2 bg-[#E0B873] text-[#071424] font-bold py-3 rounded-xl hover:bg-[#C99B50] transition-colors"
           >
-            {index + 1 < questions.length ? (de ? "Nächste Frage" : "Next question") : (de ? "Ergebnis anzeigen" : "See result")}
+            {index + 1 < questions.length ? t("nextQuestion") : t("seeResult")}
             <ChevronRight className="h-4 w-4" />
           </button>
         )}

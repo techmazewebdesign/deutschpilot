@@ -1,5 +1,6 @@
 import { redirect } from "next/navigation";
 import Link from "next/link";
+import { getTranslations } from "next-intl/server";
 import { auth } from "@/lib/auth";
 import { AppLayout } from "@/components/app/app-layout";
 import { createServerSupabaseClient } from "@/lib/supabaseServer";
@@ -27,15 +28,15 @@ function calcStreak(rows: { updated_at: string; completed: boolean }[]): number 
 
 export default async function StudentDashboardPage({ params }: { params: { locale: string } }) {
   const { locale } = params;
+  const t = await getTranslations({ locale, namespace: "studentDashboard" });
   const session = await auth();
 
   if (!session?.user) redirect(`/${locale}/signin`);
   if (session.user.role === "teacher") redirect(`/${locale}/teacher/dashboard`);
-  if (session.user.role === "admin") redirect(`/${locale}/admin`);
 
   const supabase = createServerSupabaseClient();
   const userId = session.user.id;
-  const userName = session.user.name || session.user.email?.split("@")[0] || "Student";
+  const userName = session.user.name || session.user.email?.split("@")[0] || t("studentFallback");
 
   const [progressRes, enrollmentsRes, placementRes] = await Promise.all([
     supabase.from("student_progress").select("course_id, lesson_id, completed, updated_at").eq("user_id", userId).order("updated_at", { ascending: false }),
@@ -65,7 +66,11 @@ export default async function StudentDashboardPage({ params }: { params: { local
   const fmt = (iso: string, opts: Intl.DateTimeFormatOptions) => new Date(iso).toLocaleDateString("en-GB", opts);
 
   return (
-    <AppLayout locale={locale} userName={userName}>
+    <AppLayout
+      locale={locale}
+      userName={userName}
+      userLevel={session.user.role === "admin" ? "admin" : undefined}
+    >
       <div className="px-4 sm:px-6 lg:px-8 py-6 lg:py-8 max-w-5xl w-full mx-auto space-y-5">
 
         {/* Welcome */}
@@ -73,20 +78,20 @@ export default async function StudentDashboardPage({ params }: { params: { local
           <div className="rounded-2xl bg-gradient-to-br from-[#0D2040] to-[#081628] border border-[#E0B873]/20 p-6">
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
               <div>
-                <p className="text-[10px] font-bold text-[#E0B873]/60 uppercase tracking-[0.25em] mb-1">Student Dashboard</p>
+                <p className="text-[10px] font-bold text-[#E0B873]/60 uppercase tracking-[0.25em] mb-1">{t("eyebrow")}</p>
                 <h1 className="text-2xl lg:text-3xl font-serif font-bold text-white">
-                  Welcome back, {userName.split(" ")[0]} 👋
+                  {t("welcomeBack", { name: userName.split(" ")[0] })}
                 </h1>
-                <p className="text-sm text-white/45 mt-1">Continue learning German step by step.</p>
+                <p className="text-sm text-white/45 mt-1">{t("subtitle")}</p>
               </div>
               <div className="flex gap-3">
                 <div className="text-center bg-[#E0B873]/10 border border-[#E0B873]/20 rounded-xl px-4 py-3 min-w-[72px]">
-                  <p className="text-[10px] text-[#E0B873]/60 mb-0.5 uppercase tracking-wider">Level</p>
+                  <p className="text-[10px] text-[#E0B873]/60 mb-0.5 uppercase tracking-wider">{t("levelLabel")}</p>
                   <p className="text-xl font-bold text-[#E0B873]">{germanLevel}</p>
                 </div>
                 {streak > 0 && (
                   <div className="text-center bg-orange-500/10 border border-orange-500/20 rounded-xl px-4 py-3 min-w-[72px]">
-                    <p className="text-[10px] text-orange-400/70 mb-0.5 flex items-center justify-center gap-0.5"><Flame className="h-3 w-3" /> Streak</p>
+                    <p className="text-[10px] text-orange-400/70 mb-0.5 flex items-center justify-center gap-0.5"><Flame className="h-3 w-3" /> {t("streakLabel")}</p>
                     <p className="text-xl font-bold text-orange-400">{streak}d</p>
                   </div>
                 )}
@@ -104,26 +109,26 @@ export default async function StudentDashboardPage({ params }: { params: { local
                 <div className="h-8 w-8 rounded-lg bg-[#E0B873]/15 flex items-center justify-center flex-shrink-0">
                   <BookOpen className="h-4 w-4 text-[#E0B873]" />
                 </div>
-                <span className="text-sm font-semibold text-white">Continue Learning</span>
+                <span className="text-sm font-semibold text-white">{t("continueLearning")}</span>
               </div>
               {latestCourse ? (
                 <>
                   <div className="flex-1">
-                    <p className="text-xs text-white/35 mb-1">Current Course</p>
+                    <p className="text-xs text-white/35 mb-1">{t("currentCourseLabel")}</p>
                     <p className="text-base font-semibold text-white leading-snug">{latestCourse.title}</p>
                     <div className="mt-3">
-                      <AnimatedProgress value={pct} label={`${completedCount} exercises done`} />
+                      <AnimatedProgress value={pct} label={t("exercisesDone", { count: completedCount })} />
                     </div>
                   </div>
                   <Link href={`/${locale}/courses/${latestCourse.slug}`} className="flex items-center justify-center gap-2 bg-[#E0B873] text-[#071424] font-semibold text-sm py-2.5 rounded-xl hover:bg-[#C99B50] transition-colors">
-                    Continue Learning <ChevronRight className="h-4 w-4" />
+                    {t("continueLearning")} <ChevronRight className="h-4 w-4" />
                   </Link>
                 </>
               ) : (
                 <>
-                  <p className="text-sm text-white/40 flex-1">Pick a course and start your first lesson.</p>
+                  <p className="text-sm text-white/40 flex-1">{t("noCourseText")}</p>
                   <Link href={`/${locale}/rooms`} className="flex items-center justify-center gap-2 bg-[#E0B873] text-[#071424] font-semibold text-sm py-2.5 rounded-xl hover:bg-[#C99B50] transition-colors">
-                    Browse Rooms <ChevronRight className="h-4 w-4" />
+                    {t("browseRooms")} <ChevronRight className="h-4 w-4" />
                   </Link>
                 </>
               )}
@@ -137,13 +142,13 @@ export default async function StudentDashboardPage({ params }: { params: { local
                 <div className="h-8 w-8 rounded-lg bg-violet-500/15 flex items-center justify-center flex-shrink-0">
                   <MessageSquare className="h-4 w-4 text-violet-300" />
                 </div>
-                <span className="text-sm font-semibold text-white">AI Trainer</span>
+                <span className="text-sm font-semibold text-white">{t("aiTrainerTitle")}</span>
               </div>
               <p className="text-sm text-white/45 leading-relaxed flex-1">
-                Practice German with AI. Ask questions, correct mistakes, and do exercises — any time, for free.
+                {t("aiTrainerDesc")}
               </p>
               <Link href={`/${locale}/ai-trainer`} className="flex items-center justify-center gap-2 border border-violet-500/30 text-violet-300 font-semibold text-sm py-2.5 rounded-xl hover:bg-violet-500/10 transition-colors">
-                Open AI Trainer <ChevronRight className="h-4 w-4" />
+                {t("openAiTrainer")} <ChevronRight className="h-4 w-4" />
               </Link>
             </div>
           </StaggerChild>
@@ -154,19 +159,19 @@ export default async function StudentDashboardPage({ params }: { params: { local
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-2">
               <Video className="h-4 w-4 text-[#E0B873]" />
-              <h2 className="text-sm font-semibold text-white">My Live Classes</h2>
+              <h2 className="text-sm font-semibold text-white">{t("myLiveClasses")}</h2>
             </div>
             <Link href={`/${locale}/student/classes`} className="text-xs text-[#E0B873]/60 hover:text-[#E0B873] transition-colors flex items-center gap-0.5">
-              View all <ChevronRight className="h-3 w-3" />
+              {t("viewAll")} <ChevronRight className="h-3 w-3" />
             </Link>
           </div>
 
           {upcomingClasses.length === 0 ? (
             <div className="text-center py-10">
               <CalendarDays className="h-10 w-10 mx-auto text-white/15 mb-3" />
-              <p className="text-sm text-white/40 mb-4">You have not joined any live class yet.</p>
+              <p className="text-sm text-white/40 mb-4">{t("noClassesText")}</p>
               <Link href={`/${locale}/classes`} className="inline-flex items-center gap-1.5 bg-[#E0B873] text-[#071424] font-semibold text-sm px-5 py-2 rounded-xl hover:bg-[#C99B50] transition-colors">
-                Browse Live Classes
+                {t("browseLiveClasses")}
               </Link>
             </div>
           ) : (
@@ -179,15 +184,15 @@ export default async function StudentDashboardPage({ params }: { params: { local
                       <span className={`text-[10px] px-2 py-0.5 rounded-full font-medium capitalize ${cls.status === "active" ? "bg-emerald-500/15 text-emerald-300" : "bg-white/10 text-white/50"}`}>{cls.status}</span>
                     </div>
                     <p className="text-sm font-semibold text-white truncate">{cls.title}</p>
-                    <p className="text-xs text-white/40">{cls.teacher_name} · {fmt(cls.start_time, { weekday: "short", day: "numeric", month: "short" })} at {new Date(cls.start_time).toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit" })}</p>
+                    <p className="text-xs text-white/40">{cls.teacher_name} · {fmt(cls.start_time, { weekday: "short", day: "numeric", month: "short" })} {t("at")} {new Date(cls.start_time).toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit" })}</p>
                   </div>
                   {cls.meet_url ? (
                     <a href={cls.meet_url} target="_blank" rel="noopener noreferrer" className="flex-shrink-0 flex items-center gap-1.5 bg-emerald-600 text-white font-semibold text-xs px-4 py-2 rounded-lg hover:bg-emerald-500 transition-colors">
-                      <ExternalLink className="h-3 w-3" /> Join Class
+                      <ExternalLink className="h-3 w-3" /> {t("joinClass")}
                     </a>
                   ) : (
                     <span className="flex-shrink-0 text-xs text-white/25 italic max-w-[160px] text-right">
-                      Meet link coming before class
+                      {t("meetLinkComingSoon")}
                     </span>
                   )}
                 </div>
@@ -199,9 +204,9 @@ export default async function StudentDashboardPage({ params }: { params: { local
         {/* Bottom cards */}
         <StaggerParent className="grid sm:grid-cols-3 gap-4">
           {[
-            { href: `/${locale}/teachers`, icon: Users, color: "bg-blue-500/15 text-blue-300", title: "Browse Teachers", sub: "Find your ideal German teacher.", cta: "View Teachers" },
-            { href: `/${locale}/classes`, icon: Video, color: "bg-emerald-500/15 text-emerald-300", title: "Live Classes", sub: "Join a live class with a real teacher.", cta: "View Classes" },
-            { href: `/${locale}/placement-test`, icon: GraduationCap, color: "bg-amber-500/15 text-amber-300", title: "My Level", sub: `Current: ${germanLevel}`, cta: "Retake Test" },
+            { href: `/${locale}/teachers`, icon: Users, color: "bg-blue-500/15 text-blue-300", title: t("browseTeachersTitle"), sub: t("browseTeachersSub"), cta: t("viewTeachers") },
+            { href: `/${locale}/classes`, icon: Video, color: "bg-emerald-500/15 text-emerald-300", title: t("liveClassesTitle"), sub: t("liveClassesSub"), cta: t("viewClasses") },
+            { href: `/${locale}/placement-test`, icon: GraduationCap, color: "bg-amber-500/15 text-amber-300", title: t("myLevelTitle"), sub: t("myLevelSub", { level: germanLevel }), cta: t("retakeTest") },
           ].map((card) => (
             <StaggerChild key={card.href}>
               <Link href={card.href} className="group block rounded-2xl border border-white/10 bg-[#0A1E35]/70 hover:border-[#E0B873]/25 p-5 flex flex-col gap-3 h-full transition-colors">

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect, useMemo } from "react";
+import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import {
@@ -22,7 +23,7 @@ type Step = "intro" | "reading" | "listening" | "writing" | "speaking" | "report
 const ESTIMATED_MINUTES = { reading: 15, listening: 12, writing: 20, speaking: 5 };
 
 export function MockExamClient({ data, isGuest = false }: { data: MockExamData; isGuest?: boolean }) {
-  const de = data.locale === "de";
+  const t = useTranslations("mockExam");
   const [step, setStep] = useState<Step>("intro");
 
   const [readingAnswers, setReadingAnswers] = useState<Record<number, string>>({});
@@ -66,13 +67,12 @@ export function MockExamClient({ data, isGuest = false }: { data: MockExamData; 
           href={backHref}
           className="inline-flex items-center gap-1.5 text-xs text-white/35 hover:text-[#E0B873] transition-colors mb-6"
         >
-          {de ? "Zurück" : "Back"}
+          {t("back")}
         </Link>
 
-        {step === "intro" && <IntroScreen data={data} de={de} isGuest={isGuest} onStart={next} />}
+        {step === "intro" && <IntroScreen data={data} isGuest={isGuest} onStart={next} />}
         {step === "reading" && (
           <ReadingSection
-            de={de}
             groups={readingByPassage}
             answers={readingAnswers}
             onAnswer={(i, v) => setReadingAnswers((prev) => ({ ...prev, [i]: v }))}
@@ -81,7 +81,6 @@ export function MockExamClient({ data, isGuest = false }: { data: MockExamData; 
         )}
         {step === "listening" && (
           <ListeningSection
-            de={de}
             items={data.listening}
             answers={listeningAnswers}
             onAnswer={(i, v) => setListeningAnswers((prev) => ({ ...prev, [i]: v }))}
@@ -90,7 +89,6 @@ export function MockExamClient({ data, isGuest = false }: { data: MockExamData; 
         )}
         {step === "writing" && (
           <WritingSection
-            de={de}
             writing={data.writing}
             locale={data.locale}
             level={data.level}
@@ -99,14 +97,12 @@ export function MockExamClient({ data, isGuest = false }: { data: MockExamData; 
         )}
         {step === "speaking" && (
           <SpeakingSection
-            de={de}
             speaking={data.speaking}
             onDone={() => { setSpeakingCompleted(true); next(); }}
           />
         )}
         {step === "report" && (
           <ReportScreen
-            de={de}
             level={data.level}
             locale={data.locale}
             readingScore={readingScore}
@@ -125,8 +121,9 @@ export function MockExamClient({ data, isGuest = false }: { data: MockExamData; 
 
 // ── Intro ────────────────────────────────────────────────────────────────────
 function IntroScreen({
-  data, de, isGuest, onStart,
-}: { data: MockExamData; de: boolean; isGuest: boolean; onStart: () => void }) {
+  data, isGuest, onStart,
+}: { data: MockExamData; isGuest: boolean; onStart: () => void }) {
+  const t = useTranslations("mockExam");
   const router = useRouter();
   const totalMin = ESTIMATED_MINUTES.reading + ESTIMATED_MINUTES.listening + ESTIMATED_MINUTES.writing + ESTIMATED_MINUTES.speaking;
 
@@ -138,37 +135,35 @@ function IntroScreen({
     onStart();
   }
   const sections = [
-    { icon: BookOpen, titleDE: "Lesen", titleEN: "Reading", n: data.reading.length, minutes: ESTIMATED_MINUTES.reading },
-    { icon: Headphones, titleDE: "Hören", titleEN: "Listening", n: data.listening.length, minutes: ESTIMATED_MINUTES.listening },
-    { icon: PenTool, titleDE: "Schreiben", titleEN: "Writing", n: data.writing ? 1 : 0, minutes: ESTIMATED_MINUTES.writing },
-    { icon: Mic, titleDE: "Sprechen", titleEN: "Speaking", n: data.speaking ? 1 : 0, minutes: ESTIMATED_MINUTES.speaking },
+    { icon: BookOpen, titleKey: "reading" as const, n: data.reading.length, minutes: ESTIMATED_MINUTES.reading },
+    { icon: Headphones, titleKey: "listening" as const, n: data.listening.length, minutes: ESTIMATED_MINUTES.listening },
+    { icon: PenTool, titleKey: "writing" as const, n: data.writing ? 1 : 0, minutes: ESTIMATED_MINUTES.writing },
+    { icon: Mic, titleKey: "speaking" as const, n: data.speaking ? 1 : 0, minutes: ESTIMATED_MINUTES.speaking },
   ];
 
   return (
     <div>
       <p className="text-xs font-medium tracking-wider text-[#CEA66F] uppercase mb-3">
-        {de ? "Abschlusstest" : "Final check"}
+        {t("finalCheck")}
       </p>
       <h1 className="text-3xl font-serif font-bold text-white mb-3">
-        {de ? `${data.level} Modellprüfung` : `${data.level} Mock Exam`}
+        {t("mockExamTitle", { level: data.level })}
       </h1>
       <p className="text-sm text-white/50 mb-8 leading-relaxed">
-        {de
-          ? "Simuliert die echte Prüfungsstruktur (wie Goethe/telc): Lesen, Hören, Schreiben und Sprechen. Am Ende bekommst du eine ehrliche Einschätzung, ob du bereit für die echte Prüfung bist."
-          : "Simulates the real exam structure (like Goethe/telc): Reading, Listening, Writing, and Speaking. At the end you'll get an honest readiness assessment before the real exam."}
+        {t("mockExamIntro")}
       </p>
 
       <div className="space-y-3 mb-8">
         {sections.map((s) => {
           const Icon = s.icon;
           return (
-            <div key={s.titleEN} className="flex items-center gap-4 rounded-xl border border-white/8 bg-[#0A1E35]/50 p-4">
+            <div key={s.titleKey} className="flex items-center gap-4 rounded-xl border border-white/8 bg-[#0A1E35]/50 p-4">
               <div className="h-10 w-10 rounded-xl bg-[#CEA66F]/12 border border-[#CEA66F]/25 flex items-center justify-center flex-shrink-0">
                 <Icon className="h-4.5 w-4.5 text-[#CEA66F]" />
               </div>
               <div className="flex-1">
-                <p className="text-sm font-semibold text-white">{de ? s.titleDE : s.titleEN}</p>
-                <p className="text-xs text-white/35">{s.n} {de ? "Aufgabe(n)" : "task(s)"}</p>
+                <p className="text-sm font-semibold text-white">{t(s.titleKey)}</p>
+                <p className="text-xs text-white/35">{t("taskCount", { count: s.n })}</p>
               </div>
               <span className="text-xs text-white/30 flex items-center gap-1">
                 <Clock className="h-3 w-3" /> ~{s.minutes} min
@@ -179,7 +174,7 @@ function IntroScreen({
       </div>
 
       <p className="text-xs text-white/30 mb-6 flex items-center gap-1.5">
-        <Clock className="h-3.5 w-3.5" /> {de ? `Gesamtdauer ca. ${totalMin} Minuten` : `Total time ~${totalMin} minutes`}
+        <Clock className="h-3.5 w-3.5" /> {t("totalDuration", { minutes: totalMin })}
       </p>
 
       <button
@@ -187,13 +182,13 @@ function IntroScreen({
         className="w-full flex items-center justify-center gap-2 bg-[#E0B873] text-[#071424] font-bold py-3.5 rounded-xl hover:bg-[#C99B50] transition-colors"
       >
         {isGuest
-          ? (de ? "Kostenlos registrieren & starten" : "Sign up free & start")
-          : (de ? "Modellprüfung starten" : "Start Mock Exam")}
+          ? t("signUpFreeStart")
+          : t("startMockExam")}
         <ChevronRight className="h-4 w-4" />
       </button>
       {isGuest && (
         <p className="text-xs text-white/30 text-center mt-3">
-          {de ? "Kostenlos, dauert nur eine Minute." : "Free, takes only a minute."}
+          {t("freeTakesMinute")}
         </p>
       )}
     </div>
@@ -202,9 +197,8 @@ function IntroScreen({
 
 // ── Reading ──────────────────────────────────────────────────────────────────
 function ReadingSection({
-  de, groups, answers, onAnswer, onNext,
+  groups, answers, onAnswer, onNext,
 }: {
-  de: boolean;
   groups: { passageTitle: string; passageText: string; items: { q: MockExamData["reading"][number]; index: number }[] }[];
   answers: Record<number, string>;
   onAnswer: (i: number, v: string) => void;
@@ -213,9 +207,9 @@ function ReadingSection({
   const allAnswered = groups.every((g) => g.items.every((it) => answers[it.index]));
 
   return (
-    <SectionShell icon={BookOpen} titleDE="Lesen" titleEN="Reading" de={de}>
+    <SectionShell icon={BookOpen} titleKey="reading">
       {groups.length === 0 ? (
-        <EmptyNotice de={de} />
+        <EmptyNotice />
       ) : (
         <div className="space-y-8">
           {groups.map((g) => (
@@ -238,16 +232,15 @@ function ReadingSection({
           ))}
         </div>
       )}
-      <NextButton de={de} disabled={!allAnswered} onClick={onNext} />
+      <NextButton disabled={!allAnswered} onClick={onNext} />
     </SectionShell>
   );
 }
 
 // ── Listening ────────────────────────────────────────────────────────────────
 function ListeningSection({
-  de, items, answers, onAnswer, onNext,
+  items, answers, onAnswer, onNext,
 }: {
-  de: boolean;
   items: MockExamData["listening"];
   answers: Record<number, string>;
   onAnswer: (i: number, v: string) => void;
@@ -256,9 +249,9 @@ function ListeningSection({
   const allAnswered = items.every((_, i) => answers[i]);
 
   return (
-    <SectionShell icon={Headphones} titleDE="Hören" titleEN="Listening" de={de}>
+    <SectionShell icon={Headphones} titleKey="listening">
       {items.length === 0 ? (
-        <EmptyNotice de={de} />
+        <EmptyNotice />
       ) : (
         <div className="space-y-6">
           {items.map((item, index) => (
@@ -275,21 +268,21 @@ function ListeningSection({
           ))}
         </div>
       )}
-      <NextButton de={de} disabled={!allAnswered} onClick={onNext} />
+      <NextButton disabled={!allAnswered} onClick={onNext} />
     </SectionShell>
   );
 }
 
 // ── Writing ──────────────────────────────────────────────────────────────────
 function WritingSection({
-  de, writing, locale, level, onDone,
+  writing, locale, level, onDone,
 }: {
-  de: boolean;
   writing: MockExamData["writing"];
   locale: string;
   level: string;
   onDone: () => void;
 }) {
+  const t = useTranslations("mockExam");
   const [text, setText] = useState("");
   const [feedback, setFeedback] = useState("");
   const [loading, setLoading] = useState(false);
@@ -324,16 +317,16 @@ function WritingSection({
         setFeedback(accumulated);
       }
     } catch {
-      setFeedback(de ? "Fehler beim Laden des Feedbacks." : "Error loading feedback.");
+      setFeedback(t("feedbackLoadError"));
     } finally {
       setLoading(false);
     }
   }
 
   return (
-    <SectionShell icon={PenTool} titleDE="Schreiben" titleEN="Writing" de={de}>
+    <SectionShell icon={PenTool} titleKey="writing">
       {!writing ? (
-        <EmptyNotice de={de} />
+        <EmptyNotice />
       ) : (
         <>
           <div className="rounded-xl border border-white/8 bg-[#0A1E35]/40 p-5 mb-4">
@@ -344,7 +337,7 @@ function WritingSection({
             onChange={(e) => setText(e.target.value)}
             disabled={requested}
             rows={8}
-            placeholder={de ? "Schreib deine Antwort auf Deutsch…" : "Write your response in German…"}
+            placeholder={t("writingPlaceholder")}
             className="w-full rounded-xl bg-white/5 border border-white/10 text-white px-4 py-3 text-sm placeholder:text-white/20 focus:outline-none focus:border-[#E0B873]/50 transition-all resize-none disabled:opacity-70 mb-4"
           />
           {!requested && (
@@ -354,7 +347,7 @@ function WritingSection({
               className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#E0B873] text-[#071424] text-sm font-bold hover:bg-[#C99B50] transition-colors disabled:opacity-40 disabled:cursor-not-allowed mb-4"
             >
               <Sparkles className="h-4 w-4" />
-              {de ? "Feedback anfordern" : "Get feedback"}
+              {t("getFeedback")}
             </button>
           )}
           {feedback && (
@@ -364,13 +357,14 @@ function WritingSection({
           )}
         </>
       )}
-      <NextButton de={de} disabled={!!writing && !feedback} onClick={onDone} />
+      <NextButton disabled={!!writing && !feedback} onClick={onDone} />
     </SectionShell>
   );
 }
 
 // ── Speaking ─────────────────────────────────────────────────────────────────
-function SpeakingSection({ de, speaking, onDone }: { de: boolean; speaking: MockExamData["speaking"]; onDone: () => void }) {
+function SpeakingSection({ speaking, onDone }: { speaking: MockExamData["speaking"]; onDone: () => void }) {
+  const t = useTranslations("mockExam");
   const [permissionError, setPermissionError] = useState<string | null>(null);
   const [recording, setRecording] = useState(false);
   const [hasRecording, setHasRecording] = useState(false);
@@ -406,9 +400,7 @@ function SpeakingSection({ de, speaking, onDone }: { de: boolean; speaking: Mock
       recorder.start();
       setRecording(true);
     } catch {
-      setPermissionError(
-        de ? "Kein Zugriff auf das Mikrofon. Bitte erlaube den Zugriff." : "Couldn't access your microphone. Please allow access."
-      );
+      setPermissionError(t("microphoneDenied"));
     }
   }
 
@@ -418,9 +410,9 @@ function SpeakingSection({ de, speaking, onDone }: { de: boolean; speaking: Mock
   }
 
   return (
-    <SectionShell icon={Mic} titleDE="Sprechen" titleEN="Speaking" de={de}>
+    <SectionShell icon={Mic} titleKey="speaking">
       {!speaking ? (
-        <EmptyNotice de={de} />
+        <EmptyNotice />
       ) : (
         <>
           <div className="rounded-xl border border-white/8 bg-[#0A1E35]/40 p-5 mb-5">
@@ -428,9 +420,7 @@ function SpeakingSection({ de, speaking, onDone }: { de: boolean; speaking: Mock
           </div>
 
           <p className="text-xs text-white/35 mb-4">
-            {de
-              ? "Sprechen ist im Selbststudium nicht automatisch bewertbar — nimm dich auf und höre dir die Aufnahme an, oder teile sie mit einer Lehrkraft für echtes Feedback."
-              : "Speaking can't be auto-scored in self-study — record yourself and listen back, or share it with a teacher for real feedback."}
+            {t("speakingNotAutoScored")}
           </p>
 
           {permissionError && (
@@ -443,14 +433,14 @@ function SpeakingSection({ de, speaking, onDone }: { de: boolean; speaking: Mock
                 onClick={startRecording}
                 className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#E0B873] text-[#071424] text-sm font-bold hover:bg-[#C99B50] transition-colors"
               >
-                <Mic className="h-4 w-4" /> {hasRecording ? (de ? "Erneut aufnehmen" : "Re-record") : (de ? "Aufnehmen" : "Record")}
+                <Mic className="h-4 w-4" /> {hasRecording ? t("reRecord") : t("record")}
               </button>
             ) : (
               <button
                 onClick={stopRecording}
                 className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-red-500/15 border border-red-500/30 text-red-300 text-sm font-bold"
               >
-                <Square className="h-4 w-4" /> {de ? "Stopp" : "Stop"}
+                <Square className="h-4 w-4" /> {t("stop")}
               </button>
             )}
           </div>
@@ -458,30 +448,31 @@ function SpeakingSection({ de, speaking, onDone }: { de: boolean; speaking: Mock
           {audioUrl && <audio controls src={audioUrl} className="w-full mb-4" />}
         </>
       )}
-      <NextButton de={de} disabled={!!speaking && !hasRecording} onClick={onDone} />
+      <NextButton disabled={!!speaking && !hasRecording} onClick={onDone} />
     </SectionShell>
   );
 }
 
 // ── Report ───────────────────────────────────────────────────────────────────
 function ReportScreen({
-  de, level, locale, readingScore, readingTotal, listeningScore, listeningTotal, objectivePct, writingCompleted, speakingCompleted,
+  level, locale, readingScore, readingTotal, listeningScore, listeningTotal, objectivePct, writingCompleted, speakingCompleted,
 }: {
-  de: boolean; level: string; locale: string;
+  level: string; locale: string;
   readingScore: number; readingTotal: number;
   listeningScore: number; listeningTotal: number;
   objectivePct: number; writingCompleted: boolean; speakingCompleted: boolean;
 }) {
+  const t = useTranslations("mockExam");
   // Goethe/telc-style pass mark is ~60% overall — used here only as an informal heuristic, not an official grading claim.
   const likelyReady = objectivePct >= 60;
 
   return (
     <div>
       <p className="text-xs font-medium tracking-wider text-[#CEA66F] uppercase mb-3">
-        {de ? "Ergebnis" : "Result"}
+        {t("result")}
       </p>
       <h1 className="text-3xl font-serif font-bold text-white mb-6">
-        {de ? "Deine Einschätzung" : "Your readiness report"}
+        {t("readinessReport")}
       </h1>
 
       <div className={`rounded-2xl border p-6 mb-6 text-center ${
@@ -494,27 +485,23 @@ function ReportScreen({
         )}
         <p className="text-lg font-serif font-bold text-white mb-1">
           {likelyReady
-            ? (de ? "Solide Grundlage für die echte Prüfung" : "Solid foundation for the real exam")
-            : (de ? "Noch etwas Übung empfohlen" : "A bit more practice recommended")}
+            ? t("solidFoundation")
+            : t("morePracticeRecommended")}
         </p>
         <p className="text-sm text-white/50">
-          {de
-            ? `${objectivePct}% in Lesen & Hören (Richtwert: ab 60% gilt in echten Prüfungen meist als bestanden).`
-            : `${objectivePct}% on Reading & Listening (informal reference: real exams typically pass around 60%+).`}
+          {t("readingListeningPct", { pct: objectivePct })}
         </p>
       </div>
 
       <div className="space-y-3 mb-8">
-        <ScoreRow icon={BookOpen} label={de ? "Lesen" : "Reading"} score={readingScore} total={readingTotal} />
-        <ScoreRow icon={Headphones} label={de ? "Hören" : "Listening"} score={listeningScore} total={listeningTotal} />
-        <CompletedRow icon={PenTool} label={de ? "Schreiben" : "Writing"} completed={writingCompleted} de={de} />
-        <CompletedRow icon={Mic} label={de ? "Sprechen" : "Speaking"} completed={speakingCompleted} de={de} />
+        <ScoreRow icon={BookOpen} label={t("reading")} score={readingScore} total={readingTotal} />
+        <ScoreRow icon={Headphones} label={t("listening")} score={listeningScore} total={listeningTotal} />
+        <CompletedRow icon={PenTool} label={t("writing")} completed={writingCompleted} />
+        <CompletedRow icon={Mic} label={t("speaking")} completed={speakingCompleted} />
       </div>
 
       <p className="text-xs text-white/30 mb-6 leading-relaxed">
-        {de
-          ? "Hinweis: Dies ist eine Selbsteinschätzung auf Basis von Übungsaufgaben, keine offizielle Prüfungsbewertung. Schreiben und Sprechen werden nicht automatisch benotet."
-          : "Note: this is a self-assessment based on practice exercises, not an official exam grade. Writing and Speaking are not auto-scored."}
+        {t("selfAssessmentNotice")}
       </p>
 
       <div className="flex flex-col sm:flex-row gap-3">
@@ -522,13 +509,13 @@ function ReportScreen({
           href={`/${locale}/rooms?level=${level}`}
           className="flex-1 text-center px-6 py-3 rounded-xl border border-white/15 text-white/70 font-medium hover:border-white/30 hover:text-white transition-colors"
         >
-          {de ? "Zurück zu den Räumen" : "Back to rooms"}
+          {t("backToRooms")}
         </Link>
         <Link
           href={`/${locale}/mock-exam/${level}`}
           className="flex-1 flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-[#E0B873] text-[#071424] font-bold hover:bg-[#C99B50] transition-colors"
         >
-          <RotateCcw className="h-4 w-4" /> {de ? "Erneut versuchen" : "Try again"}
+          <RotateCcw className="h-4 w-4" /> {t("tryAgain")}
         </Link>
       </div>
     </div>
@@ -537,13 +524,14 @@ function ReportScreen({
 
 // ── Shared bits ──────────────────────────────────────────────────────────────
 function SectionShell({
-  icon: Icon, titleDE, titleEN, de, children,
-}: { icon: typeof BookOpen; titleDE: string; titleEN: string; de: boolean; children: React.ReactNode }) {
+  icon: Icon, titleKey, children,
+}: { icon: typeof BookOpen; titleKey: "reading" | "listening" | "writing" | "speaking"; children: React.ReactNode }) {
+  const t = useTranslations("mockExam");
   return (
     <div>
       <div className="flex items-center gap-2 mb-6">
         <Icon className="h-4 w-4 text-[#CEA66F]" />
-        <h2 className="text-xs font-semibold text-white/70 uppercase tracking-wider">{de ? titleDE : titleEN}</h2>
+        <h2 className="text-xs font-semibold text-white/70 uppercase tracking-wider">{t(titleKey)}</h2>
       </div>
       {children}
     </div>
@@ -586,32 +574,35 @@ function ScoreRow({ icon: Icon, label, score, total }: { icon: typeof BookOpen; 
   );
 }
 
-function CompletedRow({ icon: Icon, label, completed, de }: { icon: typeof BookOpen; label: string; completed: boolean; de: boolean }) {
+function CompletedRow({ icon: Icon, label, completed }: { icon: typeof BookOpen; label: string; completed: boolean }) {
+  const t = useTranslations("mockExam");
   return (
     <div className="flex items-center gap-4 rounded-xl border border-white/8 bg-[#0A1E35]/50 p-4">
       <Icon className="h-4 w-4 text-[#CEA66F] flex-shrink-0" />
       <span className="text-sm text-white flex-1">{label}</span>
-      <span className="text-xs text-white/40">{completed ? (de ? "✓ Geübt" : "✓ Practiced") : (de ? "Übersprungen" : "Skipped")}</span>
+      <span className="text-xs text-white/40">{completed ? t("practicedCheck") : t("skipped")}</span>
     </div>
   );
 }
 
-function EmptyNotice({ de }: { de: boolean }) {
+function EmptyNotice() {
+  const t = useTranslations("mockExam");
   return (
     <p className="text-sm text-white/40 mb-6">
-      {de ? "Für diesen Abschnitt sind noch keine Inhalte verfügbar." : "No content available for this section yet."}
+      {t("noSectionContent")}
     </p>
   );
 }
 
-function NextButton({ de, disabled, onClick }: { de: boolean; disabled: boolean; onClick: () => void }) {
+function NextButton({ disabled, onClick }: { disabled: boolean; onClick: () => void }) {
+  const t = useTranslations("mockExam");
   return (
     <button
       onClick={onClick}
       disabled={disabled}
       className="w-full flex items-center justify-center gap-2 bg-[#E0B873] text-[#071424] font-bold py-3.5 rounded-xl hover:bg-[#C99B50] transition-colors disabled:opacity-40 disabled:cursor-not-allowed mt-2"
     >
-      {de ? "Weiter" : "Continue"} <ChevronRight className="h-4 w-4" />
+      {t("continue")} <ChevronRight className="h-4 w-4" />
     </button>
   );
 }

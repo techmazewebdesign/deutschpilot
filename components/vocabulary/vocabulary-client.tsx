@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useMemo } from "react";
+import { useTranslations } from "next-intl";
 import { Languages, ChevronLeft, ChevronRight, RotateCw, Shuffle } from "lucide-react";
 
 export type VocabWord = {
@@ -16,6 +17,7 @@ export type VocabWord = {
 const LEVELS = ["A1", "A2", "B1", "B2"] as const;
 
 export function VocabularyClient({ words, locale }: { words: VocabWord[]; locale: string }) {
+  const t = useTranslations("vocabulary");
   const de = locale === "de";
   const [level, setLevel] = useState<string>("A1");
   const [index, setIndex] = useState(0);
@@ -51,11 +53,11 @@ export function VocabularyClient({ words, locale }: { words: VocabWord[]; locale
         <div className="flex items-center gap-2 mb-2">
           <Languages className="h-4 w-4 text-[#E0B873]" />
           <span className="text-xs font-semibold text-[#E0B873]/70 uppercase tracking-[0.2em]">
-            {de ? "Vokabular" : "Vocabulary"}
+            {t("eyebrow")}
           </span>
         </div>
         <h1 className="text-3xl font-serif font-bold text-white">
-          {de ? "Vokabel-Karteikarten" : "Vocabulary Flashcards"}
+          {t("title")}
         </h1>
       </div>
 
@@ -76,7 +78,7 @@ export function VocabularyClient({ words, locale }: { words: VocabWord[]; locale
       </div>
 
       {!card ? (
-        <p className="text-sm text-white/40">{de ? "Keine Vokabeln für dieses Niveau." : "No words for this level yet."}</p>
+        <p className="text-sm text-white/40">{t("noWordsForLevel")}</p>
       ) : (
         <>
           <p className="text-xs text-white/30 mb-3">
@@ -96,7 +98,7 @@ export function VocabularyClient({ words, locale }: { words: VocabWord[]; locale
               </div>
             )}
             <p className="text-[10px] text-white/25 uppercase tracking-widest mt-6 flex items-center gap-1.5">
-              <RotateCw className="h-3 w-3" /> {de ? "Zum Umdrehen tippen" : "Tap to flip"}
+              <RotateCw className="h-3 w-3" /> {t("tapToFlip")}
             </p>
           </button>
 

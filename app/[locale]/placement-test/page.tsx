@@ -9,13 +9,11 @@ import { isPlaceholderLocale } from "@/i18n";
 
 export const dynamic = "force-dynamic";
 
-export function generateMetadata({ params }: { params: { locale: string } }): Metadata {
-  const de = params.locale === "de";
+export async function generateMetadata({ params }: { params: { locale: string } }): Promise<Metadata> {
+  const t = await getTranslations({ locale: params.locale, namespace: "placementTest" });
   return {
-    title: de ? "Kostenloser Einstufungstest | DeutschPilot" : "Free German Placement Test | DeutschPilot",
-    description: de
-      ? "Finde in wenigen Minuten dein GER-Niveau (A1–C1) und starte direkt in den passenden Themenräumen."
-      : "Find your CEFR level (A1–C1) in a few minutes and start directly in the right themed rooms.",
+    title: t("metaTitle"),
+    description: t("metaDescription"),
   };
 }
 

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { Lock, ArrowLeft } from "lucide-react";
 import type { PaidLevel } from "@/lib/entitlements";
@@ -19,7 +20,7 @@ const LEVEL_PRICE_EUR: Record<PaidLevel, number> = {
 };
 
 export function UpgradeWall({ locale, level, backHref }: Props) {
-  const de = locale === "de";
+  const t = useTranslations("upgradeWall");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -34,16 +35,13 @@ export function UpgradeWall({ locale, level, backHref }: Props) {
       });
       const data = (await res.json()) as { url?: string; error?: string };
       if (!res.ok || !data.url) {
-        setError(
-          data.error ??
-            (de ? "Checkout konnte nicht gestartet werden." : "Could not start checkout.")
-        );
+        setError(data.error ?? t("checkoutStartError"));
         setLoading(false);
         return;
       }
       window.location.href = data.url;
     } catch {
-      setError(de ? "Netzwerkfehler. Bitte erneut versuchen." : "Network error. Please try again.");
+      setError(t("networkError"));
       setLoading(false);
     }
   }
@@ -55,7 +53,7 @@ export function UpgradeWall({ locale, level, backHref }: Props) {
         className="inline-flex items-center gap-1.5 text-xs text-white/35 hover:text-[#E0B873] transition-colors mb-6"
       >
         <ArrowLeft className="h-3.5 w-3.5" />
-        {de ? "Zurück" : "Back"}
+        {t("back")}
       </Link>
 
       <div className="rounded-2xl border border-[#E0B873]/25 bg-[#0A1E35]/70 p-8 text-center">
@@ -63,12 +61,10 @@ export function UpgradeWall({ locale, level, backHref }: Props) {
           <Lock className="h-6 w-6 text-[#E0B873]" />
         </div>
         <h1 className="text-2xl font-serif font-bold text-white mb-2">
-          {de ? `${level} freischalten` : `Unlock ${level}`}
+          {t("unlockLevel", { level })}
         </h1>
         <p className="text-sm text-white/50 mb-6 max-w-sm mx-auto">
-          {de
-            ? "Dieses Niveau ist Teil eines kostenpflichtigen Kurses. Einmalig zahlen, für immer Zugriff."
-            : "This level is part of a paid course. Pay once, keep access forever."}
+          {t("paidCourseNotice")}
         </p>
 
         {error && (
@@ -84,10 +80,8 @@ export function UpgradeWall({ locale, level, backHref }: Props) {
           className="inline-flex items-center gap-2 bg-[#E0B873] text-[#071424] font-bold px-8 py-3 rounded-xl hover:bg-[#C99B50] transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
         >
           {loading
-            ? (de ? "Wird geladen…" : "Loading…")
-            : de
-              ? `${level} kaufen – ${LEVEL_PRICE_EUR[level]} €`
-              : `Buy ${level} – €${LEVEL_PRICE_EUR[level]}`}
+            ? t("loading")
+            : t("buyLevel", { level, price: LEVEL_PRICE_EUR[level] })}
         </button>
       </div>
     </div>

@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 import { cn } from "@/lib/utils";
 import { useAuth } from "@/contexts/auth-context";
 import {
@@ -35,8 +36,7 @@ interface Props {
 interface NavItem {
   href: string;
   icon: React.ElementType;
-  labelDe: string;
-  labelEn: string;
+  label: string;
   soon?: boolean;
 }
 
@@ -44,41 +44,39 @@ export function AppSidebar({ locale, userName, userLevel }: Props) {
   const pathname = usePathname();
   const [loggingOut, setLoggingOut] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const isDE = locale === "de";
   const { role, signOut } = useAuth();
-
-  const label = (de: string, en: string) => (isDE ? de : en);
+  const t = useTranslations("sidebar");
 
   // Nav items differ by role
   const studentNav: NavItem[] = [
-    { href: `/${locale}/rooms`, icon: BookMarked, labelDe: "Meine Räume", labelEn: "My Rooms" },
-    { href: `/${locale}/levels`, icon: TrendingUp, labelDe: "Niveaus", labelEn: "Levels" },
-    { href: `/${locale}/courses`, icon: BookOpen, labelDe: "Kurse", labelEn: "Courses" },
-    { href: `/${locale}/ai-trainer`, icon: MessageSquare, labelDe: "KI-Trainer", labelEn: "AI Trainer" },
+    { href: `/${locale}/rooms`, icon: BookMarked, label: t("nav.myRooms") },
+    { href: `/${locale}/levels`, icon: TrendingUp, label: t("nav.levels") },
+    { href: `/${locale}/courses`, icon: BookOpen, label: t("nav.courses") },
+    { href: `/${locale}/ai-trainer`, icon: MessageSquare, label: t("nav.aiTrainer") },
   ];
 
   const teacherNav: NavItem[] = [
-    { href: `/${locale}/teacher`, icon: GraduationCap, labelDe: "Übersicht", labelEn: "Overview" },
-    { href: `/${locale}/rooms`, icon: BookMarked, labelDe: "Lernräume", labelEn: "Learning Rooms" },
-    { href: `/${locale}/courses`, icon: BookOpen, labelDe: "Kurse", labelEn: "Courses" },
-    { href: `/${locale}/ai-trainer`, icon: MessageSquare, labelDe: "KI-Trainer", labelEn: "AI Trainer" },
+    { href: `/${locale}/teacher`, icon: GraduationCap, label: t("nav.teacherOverview") },
+    { href: `/${locale}/rooms`, icon: BookMarked, label: t("nav.learningRooms") },
+    { href: `/${locale}/courses`, icon: BookOpen, label: t("nav.courses") },
+    { href: `/${locale}/ai-trainer`, icon: MessageSquare, label: t("nav.aiTrainer") },
   ];
 
   const adminNav: NavItem[] = [
-    { href: `/${locale}/admin`, icon: Shield, labelDe: "Admin-Dashboard", labelEn: "Admin Dashboard" },
-    { href: `/${locale}/student/dashboard`, icon: GraduationCap, labelDe: "Benutzer-Dashboard", labelEn: "User Dashboard" },
-    { href: `/${locale}`, icon: Home, labelDe: "Hauptseite", labelEn: "Main Page" },
-    { href: `/${locale}/rooms`, icon: BookMarked, labelDe: "Lernräume", labelEn: "Learning Rooms" },
-    { href: `/${locale}/courses`, icon: BookOpen, labelDe: "Kurse", labelEn: "Courses" },
-    { href: `/${locale}/ai-trainer`, icon: MessageSquare, labelDe: "KI-Trainer", labelEn: "AI Trainer" },
+    { href: `/${locale}/admin`, icon: Shield, label: t("nav.adminDashboard") },
+    { href: `/${locale}/student/dashboard`, icon: GraduationCap, label: t("nav.userDashboard") },
+    { href: `/${locale}`, icon: Home, label: t("nav.mainPage") },
+    { href: `/${locale}/rooms`, icon: BookMarked, label: t("nav.learningRooms") },
+    { href: `/${locale}/courses`, icon: BookOpen, label: t("nav.courses") },
+    { href: `/${locale}/ai-trainer`, icon: MessageSquare, label: t("nav.aiTrainer") },
   ];
 
   const toolsNav: NavItem[] = [
-    { href: `/${locale}/vocabulary`, icon: Languages, labelDe: "Vokabular", labelEn: "Vocabulary" },
-    { href: `/${locale}/progress-overview`, icon: BarChart2, labelDe: "Fortschritt", labelEn: "Progress" },
-    { href: `/${locale}/certificates`, icon: Award, labelDe: "Zertifikate", labelEn: "Certificates" },
-    { href: `/${locale}/mock-exam`, icon: GraduationCap, labelDe: "Modellprüfung", labelEn: "Mock Exam" },
-    { href: `/${locale}/driving-theory`, icon: Car, labelDe: "Führerschein Theorie", labelEn: "Driving Theory" },
+    { href: `/${locale}/vocabulary`, icon: Languages, label: t("tools.vocabulary") },
+    { href: `/${locale}/progress-overview`, icon: BarChart2, label: t("tools.progress") },
+    { href: `/${locale}/certificates`, icon: Award, label: t("tools.certificates") },
+    { href: `/${locale}/mock-exam`, icon: GraduationCap, label: t("tools.mockExam") },
+    { href: `/${locale}/driving-theory`, icon: Car, label: t("tools.drivingTheory") },
   ];
 
   const mainNav =
@@ -89,23 +87,23 @@ export function AppSidebar({ locale, userName, userLevel }: Props) {
   const mobileBottomNav: NavItem[] =
     role === "admin"
       ? [
-          { href: `/${locale}/admin`, icon: Shield, labelDe: "Admin", labelEn: "Admin" },
-          { href: `/${locale}/student/dashboard`, icon: GraduationCap, labelDe: "Benutzer", labelEn: "User" },
-          { href: `/${locale}`, icon: Home, labelDe: "Hauptseite", labelEn: "Main" },
-          { href: `/${locale}/ai-trainer`, icon: MessageSquare, labelDe: "Trainer", labelEn: "Trainer" },
+          { href: `/${locale}/admin`, icon: Shield, label: t("mobile.admin") },
+          { href: `/${locale}/student/dashboard`, icon: GraduationCap, label: t("mobile.user") },
+          { href: `/${locale}`, icon: Home, label: t("mobile.main") },
+          { href: `/${locale}/ai-trainer`, icon: MessageSquare, label: t("mobile.trainer") },
         ]
       : role === "teacher"
       ? [
-          { href: `/${locale}/teacher`, icon: GraduationCap, labelDe: "Start", labelEn: "Home" },
-          { href: `/${locale}/rooms`, icon: BookMarked, labelDe: "Räume", labelEn: "Rooms" },
-          { href: `/${locale}/courses`, icon: BookOpen, labelDe: "Kurse", labelEn: "Courses" },
-          { href: `/${locale}/ai-trainer`, icon: MessageSquare, labelDe: "Trainer", labelEn: "Trainer" },
+          { href: `/${locale}/teacher`, icon: GraduationCap, label: t("mobile.start") },
+          { href: `/${locale}/rooms`, icon: BookMarked, label: t("mobile.rooms") },
+          { href: `/${locale}/courses`, icon: BookOpen, label: t("nav.courses") },
+          { href: `/${locale}/ai-trainer`, icon: MessageSquare, label: t("mobile.trainer") },
         ]
       : [
-          { href: `/${locale}/rooms`, icon: Home, labelDe: "Start", labelEn: "Home" },
-          { href: `/${locale}/rooms`, icon: BookMarked, labelDe: "Räume", labelEn: "Rooms" },
-          { href: `/${locale}/ai-trainer`, icon: MessageSquare, labelDe: "Trainer", labelEn: "Trainer" },
-          { href: `/${locale}/levels`, icon: TrendingUp, labelDe: "Niveaus", labelEn: "Levels" },
+          { href: `/${locale}/rooms`, icon: Home, label: t("mobile.start") },
+          { href: `/${locale}/rooms`, icon: BookMarked, label: t("mobile.rooms") },
+          { href: `/${locale}/ai-trainer`, icon: MessageSquare, label: t("mobile.trainer") },
+          { href: `/${locale}/levels`, icon: TrendingUp, label: t("nav.levels") },
         ];
 
   async function handleLogout() {
@@ -135,10 +133,10 @@ export function AppSidebar({ locale, userName, userLevel }: Props) {
           <span className="absolute left-0 top-1/2 -translate-y-1/2 w-[3px] h-5 bg-[#E0B873] rounded-full" />
         )}
         <Icon className={cn("h-4 w-4 flex-shrink-0", active ? "text-[#E0B873]" : "")} />
-        <span className="flex-1 truncate">{label(item.labelDe, item.labelEn)}</span>
+        <span className="flex-1 truncate">{item.label}</span>
         {item.soon && (
           <span className="text-[9px] font-semibold text-white/20 border border-white/10 rounded px-1 py-0.5 uppercase tracking-wide">
-            {isDE ? "Bald" : "Soon"}
+            {t("soonBadge")}
           </span>
         )}
       </Link>
@@ -146,8 +144,8 @@ export function AppSidebar({ locale, userName, userLevel }: Props) {
   }
 
   const roleLabel =
-    role === "admin" ? (isDE ? "Administrator" : "Admin") :
-    role === "teacher" ? (isDE ? "Lehrer" : "Teacher") :
+    role === "admin" ? t("roleAdmin") :
+    role === "teacher" ? t("roleTeacher") :
     null;
 
   const SidebarContent = ({ onLinkClick }: { onLinkClick?: () => void }) => (
@@ -161,7 +159,7 @@ export function AppSidebar({ locale, userName, userLevel }: Props) {
           <div className="flex flex-col leading-none">
             <span className="text-[11px] font-bold tracking-[0.18em] text-white uppercase">DeutschPilot</span>
             <span className="text-[8px] tracking-[0.22em] text-[#E0B873]/60 uppercase mt-[2px]">
-              {label("Sprache. Zukunft. Du.", "Language. Future. You.")}
+              {t("tagline")}
             </span>
           </div>
         </Link>
@@ -194,13 +192,13 @@ export function AppSidebar({ locale, userName, userLevel }: Props) {
       {/* Navigation */}
       <nav className="flex-1 px-3 py-4 space-y-0.5 overflow-y-auto">
         <p className="text-[9px] font-semibold text-white/25 uppercase tracking-widest px-3 mb-2">
-          {label("Navigation", "Navigation")}
+          {t("navigationHeading")}
         </p>
         {mainNav.map((item) => <NavLink key={item.href} item={item} onClick={onLinkClick} />)}
 
         <div className="pt-4 pb-1">
           <p className="text-[9px] font-semibold text-white/25 uppercase tracking-widest px-3 mb-2">
-            {label("Werkzeuge", "Tools")}
+            {t("toolsHeading")}
           </p>
         </div>
         {toolsNav.map((item) => <NavLink key={item.href} item={item} onClick={onLinkClick} />)}
@@ -214,7 +212,7 @@ export function AppSidebar({ locale, userName, userLevel }: Props) {
           className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-white/40 hover:text-white hover:bg-white/5 transition-all"
         >
           <User className="h-4 w-4 flex-shrink-0" />
-          {label("Profil", "Profile")}
+          {t("profile")}
         </Link>
         <Link
           href={`/${locale}/settings`}
@@ -222,7 +220,7 @@ export function AppSidebar({ locale, userName, userLevel }: Props) {
           className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-white/40 hover:text-white hover:bg-white/5 transition-all"
         >
           <Settings className="h-4 w-4 flex-shrink-0" />
-          {label("Einstellungen", "Settings")}
+          {t("settings")}
         </Link>
         <button
           onClick={handleLogout}
@@ -230,7 +228,7 @@ export function AppSidebar({ locale, userName, userLevel }: Props) {
           className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-white/40 hover:text-red-400 hover:bg-red-400/5 transition-all disabled:opacity-50"
         >
           {loggingOut ? <Loader2 className="h-4 w-4 flex-shrink-0 animate-spin" /> : <LogOut className="h-4 w-4 flex-shrink-0" />}
-          {label("Abmelden", "Sign out")}
+          {t("signOut")}
         </button>
       </div>
     </div>
@@ -289,7 +287,7 @@ export function AppSidebar({ locale, userName, userLevel }: Props) {
               )}
             >
               <Icon className={cn("h-5 w-5", active ? "text-[#E0B873]" : "")} />
-              <span>{label(item.labelDe, item.labelEn)}</span>
+              <span>{item.label}</span>
             </Link>
           );
         })}

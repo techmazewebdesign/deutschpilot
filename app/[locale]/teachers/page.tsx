@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import { getTranslations } from "next-intl/server";
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
 import { createServerSupabaseClient } from "@/lib/supabaseServer";
@@ -8,13 +9,11 @@ import { Users, GraduationCap, Video } from "lucide-react";
 
 export const dynamic = "force-dynamic";
 
-export function generateMetadata({ params }: { params: { locale: string } }): Metadata {
-  const de = params.locale === "de";
+export async function generateMetadata({ params }: { params: { locale: string } }): Promise<Metadata> {
+  const t = await getTranslations({ locale: params.locale, namespace: "teachers" });
   return {
-    title: de ? "Unsere Lehrer:innen | DeutschPilot" : "Our Teachers | DeutschPilot",
-    description: de
-      ? "Lerne die erfahrenen Deutschlehrer:innen von DeutschPilot kennen und buche Live-Unterricht auf deinem Niveau."
-      : "Meet DeutschPilot's experienced German teachers and book live classes at your level.",
+    title: t("metaTitle"),
+    description: t("metaDescription"),
   };
 }
 
@@ -29,6 +28,7 @@ type TeacherProfile = {
 
 export default async function TeachersPage({ params }: { params: { locale: string } }) {
   const { locale } = params;
+  const t = await getTranslations({ locale, namespace: "teachers" });
   const supabase = createServerSupabaseClient();
 
   // Fetch teacher profiles
@@ -69,11 +69,11 @@ export default async function TeachersPage({ params }: { params: { locale: strin
           <FadeIn>
             <div className="text-center mb-12">
               <div className="inline-flex items-center gap-2 rounded-full border border-[#E0B873]/30 bg-[#E0B873]/8 px-4 py-1.5 text-[11px] font-semibold tracking-[0.15em] text-[#E0B873] uppercase mb-4">
-                <Users className="h-3 w-3" /> Our Teachers
+                <Users className="h-3 w-3" /> {t("badge")}
               </div>
-              <h1 className="text-4xl sm:text-5xl font-serif font-bold text-white mb-4">Learn with Real Teachers</h1>
+              <h1 className="text-4xl sm:text-5xl font-serif font-bold text-white mb-4">{t("heading")}</h1>
               <p className="text-[#C9D2DE] max-w-xl mx-auto text-sm">
-                Our qualified German teachers offer live classes via Google Meet. Choose a teacher and book your session.
+                {t("subheading")}
               </p>
             </div>
           </FadeIn>
@@ -82,8 +82,8 @@ export default async function TeachersPage({ params }: { params: { locale: strin
             <FadeIn delay={0.1}>
               <div className="text-center py-20">
                 <GraduationCap className="h-12 w-12 mx-auto text-white/15 mb-4" />
-                <p className="text-white/40 text-lg">Our teacher list will be available soon.</p>
-                <p className="text-white/25 text-sm mt-1">Check back shortly — we are onboarding teachers right now.</p>
+                <p className="text-white/40 text-lg">{t("emptyTitle")}</p>
+                <p className="text-white/25 text-sm mt-1">{t("emptySubtitle")}</p>
               </div>
             </FadeIn>
           ) : (
@@ -108,7 +108,7 @@ export default async function TeachersPage({ params }: { params: { locale: strin
                           <div>
                             <p className="font-semibold text-white group-hover:text-[#E0B873] transition-colors">{teacher.full_name}</p>
                             {teacher.experience_years && teacher.experience_years > 0 && (
-                              <p className="text-xs text-white/40">{teacher.experience_years}y experience</p>
+                              <p className="text-xs text-white/40">{t("experienceYears", { years: teacher.experience_years })}</p>
                             )}
                           </div>
                         </div>
@@ -120,19 +120,19 @@ export default async function TeachersPage({ params }: { params: { locale: strin
                         </div>
 
                         <p className="text-xs text-white/45 leading-relaxed flex-1 line-clamp-3">
-                          {teacher.bio ?? "Experienced German teacher offering live online classes for beginners and intermediate learners."}
+                          {teacher.bio ?? t("defaultBio")}
                         </p>
 
                         <div className="flex items-center justify-between">
                           <span className="flex items-center gap-1 text-xs text-white/35">
                             <Video className="h-3 w-3" />
-                            {activeClasses} active class{activeClasses !== 1 ? "es" : ""}
+                            {t("activeClasses", { count: activeClasses })}
                           </span>
                           <Link
                             href={`/${locale}/classes`}
                             className="flex items-center gap-1 text-xs font-semibold text-[#E0B873] hover:text-[#C99B50] transition-colors"
                           >
-                            View Classes →
+                            {t("viewClasses")} →
                           </Link>
                         </div>
                       </div>

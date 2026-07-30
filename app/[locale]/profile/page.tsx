@@ -1,4 +1,5 @@
 import { redirect } from "next/navigation";
+import { getTranslations } from "next-intl/server";
 import { auth } from "@/lib/auth";
 import { AppLayout } from "@/components/app/app-layout";
 import { createServerSupabaseClient } from "@/lib/supabaseServer";
@@ -6,7 +7,7 @@ import { User, Mail, GraduationCap, Lock, BookOpen } from "lucide-react";
 
 export default async function ProfilePage({ params }: { params: { locale: string } }) {
   const { locale } = params;
-  const de = locale === "de";
+  const t = await getTranslations({ locale, namespace: "profile" });
 
   const session = await auth();
   if (!session?.user) {
@@ -47,11 +48,11 @@ export default async function ProfilePage({ params }: { params: { locale: string
           <div className="flex items-center gap-2 mb-2">
             <User className="h-4 w-4 text-[#E0B873]" />
             <span className="text-xs font-semibold text-[#E0B873]/70 uppercase tracking-[0.2em]">
-              {de ? "Profil" : "Profile"}
+              {t("label")}
             </span>
           </div>
           <h1 className="text-3xl font-serif font-bold text-white">
-            {de ? "Dein Profil" : "Your Profile"}
+            {t("heading")}
           </h1>
         </div>
 
@@ -74,7 +75,7 @@ export default async function ProfilePage({ params }: { params: { locale: string
             <Mail className="h-4 w-4 text-[#E0B873] flex-shrink-0" />
             <div>
               <p className="text-[10px] text-white/35 uppercase tracking-widest mb-0.5">
-                {de ? "E-Mail" : "Email"}
+                {t("email")}
               </p>
               <p className="text-sm text-white">{email}</p>
             </div>
@@ -84,17 +85,17 @@ export default async function ProfilePage({ params }: { params: { locale: string
             <GraduationCap className="h-4 w-4 text-[#E0B873] flex-shrink-0" />
             <div className="flex-1">
               <p className="text-[10px] text-white/35 uppercase tracking-widest mb-1">
-                {de ? "Deutschniveau" : "German Level"}
+                {t("germanLevel")}
               </p>
               <span className={`text-[10px] font-bold tracking-widest uppercase px-2 py-0.5 rounded-full border ${levelColors[level] ?? levelColors.A1}`}>
                 {level}
               </span>
             </div>
             <a
-              href={`/${locale}/placement`}
+              href={`/${locale}/placement-test`}
               className="text-xs text-[#E0B873]/60 hover:text-[#E0B873] transition-colors"
             >
-              {de ? "Neu testen" : "Retest"}
+              {t("retest")}
             </a>
           </div>
 
@@ -102,7 +103,7 @@ export default async function ProfilePage({ params }: { params: { locale: string
             <BookOpen className="h-4 w-4 text-[#E0B873] flex-shrink-0" />
             <div>
               <p className="text-[10px] text-white/35 uppercase tracking-widest mb-0.5">
-                {de ? "Abgeschlossene Übungen" : "Completed Exercises"}
+                {t("completedExercises")}
               </p>
               <p className="text-sm text-white font-semibold">{totalCompleted}</p>
             </div>
@@ -114,16 +115,14 @@ export default async function ProfilePage({ params }: { params: { locale: string
           <Lock className="h-4 w-4 text-white/30 flex-shrink-0" />
           <div className="flex-1">
             <p className="text-xs text-white/50">
-              {de
-                ? "Passwort ändern: Nutze die Firebase-E-Mail zum Zurücksetzen."
-                : "To change your password, use the password reset email from the login page."}
+              {t("changePasswordHint")}
             </p>
           </div>
           <a
             href={`/${locale}/login`}
             className="text-xs text-[#E0B873]/70 hover:text-[#E0B873] transition-colors whitespace-nowrap flex-shrink-0"
           >
-            {de ? "Zum Login" : "Go to login"}
+            {t("goToLogin")}
           </a>
         </div>
       </div>

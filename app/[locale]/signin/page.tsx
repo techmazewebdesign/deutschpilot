@@ -53,11 +53,9 @@ export default async function SigninPage({ params }: { params: { locale: string 
 
         <div className="relative z-10">
           <blockquote className="text-lg font-serif text-white/90 leading-relaxed mb-4">
-            &ldquo;{locale === "de"
-              ? "DeutschPilot hat meinen Weg zur deutschen Sprache komplett verändert."
-              : "DeutschPilot completely changed my path to the German language."}&rdquo;
+            &ldquo;{t("testimonialQuote")}&rdquo;
           </blockquote>
-          <p className="text-sm text-[#CEA66F]">Maria L. — B2 {locale === "de" ? "in 3 Monaten" : "in 3 months"}</p>
+          <p className="text-sm text-[#CEA66F]">{t("testimonialCaption")}</p>
         </div>
       </div>
 

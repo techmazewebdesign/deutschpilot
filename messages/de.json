@@ -18,7 +18,17 @@
     "login": "Anmelden",
     "register": "Kostenlos testen",
     "logout": "Abmelden",
-    "dashboard": "Dashboard"
+    "dashboard": "Dashboard",
+    "classes": "Live-Kurse",
+    "drivingTheory": "Führerschein Theorie",
+    "mockExam": "Modellprüfung",
+    "teachers": "Lehrkräfte",
+    "learn": "Lernen",
+    "myClasses": "Meine Live-Kurse",
+    "browseClasses": "Live-Kurse durchsuchen",
+    "createClass": "Kurs erstellen",
+    "profile": "Profil",
+    "language": "Sprache"
   },
   "hero": {
     "badge": "Premium-Deutschkurse & Retreats",
@@ -68,7 +78,17 @@
         "name": "C1",
         "label": "Kompetent"
       }
-    }
+    },
+    "metaTitle": "Deutschkurse A1–B2: Lesen, Hören, Schreiben, Sprechen | DeutschPilot",
+    "metaDescription": "Kostenlose Übungskurse für alle vier Fertigkeiten — mit KI-Feedback beim Schreiben und echten Hörtexten. Finde den Kurs für dein Niveau.",
+    "doneShort": "abgeschl.",
+    "start": "Starten",
+    "sectionLabel": "Kurse",
+    "introLoggedIn": "Wähle einen Kurs und lerne Deutsch Schritt für Schritt.",
+    "orderNote": "Kurse sind nach Niveau geordnet. Starte mit A1, wenn du neu anfängst.",
+    "introPublic": "Wähle das richtige Niveau für deine Sprachziele und starte deinen Weg zum Erfolg.",
+    "ctaStart": "Kostenlos starten",
+    "signUpFree": "Kostenlos registrieren"
   },
   "features": {
     "title": "Warum DeutschPilot?",
@@ -224,7 +244,8 @@
       "magazine": "Magazin",
       "faq": "FAQ"
     },
-    "copyright": "© {year} DeutschPilot. Alle Rechte vorbehalten."
+    "copyright": "© {year} DeutschPilot. Alle Rechte vorbehalten.",
+    "madeWithCare": "Mit Sorgfalt in Deutschland gemacht"
   },
   "auth": {
     "login": "Anmelden",
@@ -236,7 +257,87 @@
     "noAccount": "Noch kein Konto?",
     "hasAccount": "Bereits registriert?",
     "or": "oder",
-    "continueWithGoogle": "Mit Google fortfahren"
+    "continueWithGoogle": "Mit Google fortfahren",
+    "testimonialQuote": "DeutschPilot hat meinen Weg zur deutschen Sprache komplett verändert.",
+    "testimonialCaption": "Maria L. — B2 in 3 Monaten",
+    "whatsIncluded": "Was dich erwartet",
+    "perkCourseLevels": "Zugang zu allen Kursniveaus A1–C1",
+    "perkLiveClasses": "Live-Kurse mit erfahrenen Lehrkräften",
+    "perkAiCompanion": "KI-Lernbegleiter rund um die Uhr",
+    "perkCertificate": "Anerkanntes Zertifikat inklusive",
+    "errorInvalidCredentials": "E-Mail-Adresse oder Passwort ist falsch.",
+    "errorUserNotFound": "Kein Konto gefunden.",
+    "errorUserDisabled": "Dieses Konto ist deaktiviert.",
+    "errorTooManyRequests": "Zu viele Versuche. Bitte warte kurz.",
+    "errorInvalidEmail": "Bitte eine gültige E-Mail eingeben.",
+    "sessionCreateFailed": "Sitzung konnte nicht erstellt werden.",
+    "signingIn": "Wird angemeldet…",
+    "connecting": "Wird verbunden…",
+    "googleSigninFailed": "Anmeldung mit Google fehlgeschlagen. Bitte erneut versuchen.",
+    "continueWithGoogleSignin": "Mit Google anmelden",
+    "continueWithGoogleSignup": "Mit Google registrieren",
+    "errorEmailInUse": "Diese E-Mail ist bereits registriert.",
+    "errorWeakPassword": "Das Passwort muss mindestens 6 Zeichen lang sein.",
+    "errorInvalidCredentialsGeneric": "Ungültige Anmeldedaten.",
+    "errorNoAccountEmail": "Kein Konto mit dieser E-Mail gefunden.",
+    "errorNetworkFailed": "Netzwerkfehler. Bitte Verbindung prüfen.",
+    "errorInternal": "Interner Fehler. Bitte erneut versuchen.",
+    "errorConfigMissing": "Firebase-Konfiguration fehlt.",
+    "errorWithCode": "Fehler: {code}",
+    "passwordMismatch": "Passwörter stimmen nicht überein.",
+    "profileCreateFailedReload": "Profil konnte nicht erstellt werden. Bitte Seite neu laden und erneut versuchen.",
+    "profileCreationFailedFallback": "Profilerstellung fehlgeschlagen.",
+    "profileCreateFailedDetail": "Profilerstellung fehlgeschlagen: {msg}",
+    "iAmA": "Ich bin…",
+    "roleStudent": "Lernender",
+    "roleTeacher": "Lehrkraft",
+    "fullNameLabel": "Vollständiger Name",
+    "fullNamePlaceholder": "Dein Name",
+    "confirmPassword": "Passwort bestätigen",
+    "currentGermanLevel": "Aktuelles Deutschniveau",
+    "creatingAccount": "Konto wird erstellt…",
+    "errorTryAgain": "Fehler. Bitte erneut versuchen.",
+    "accountCreateFailed": "Konto konnte nicht erstellt werden.",
+    "germanLevel": "Aktuelles Deutschniveau",
+    "germanLevelPlaceholder": "Niveau auswählen",
+    "learningGoal": "Lernziel",
+    "learningGoalPlaceholder": "Ziel auswählen",
+    "goals": {
+      "exam": "Prüfungsvorbereitung",
+      "work": "Beruf",
+      "university": "Studium",
+      "daily": "Alltag",
+      "visa": "Visum / Einwanderung",
+      "conversation": "Konversationsübung"
+    },
+    "emailSentTitle": "E-Mail gesendet",
+    "emailSentBody": "Falls ein Konto mit dieser E-Mail existiert, haben wir dir einen Link zum Zurücksetzen gesendet. Bitte überprüfe deinen Posteingang.",
+    "backToSignin": "Zurück zur Anmeldung",
+    "forgotPasswordTitle": "Passwort vergessen?",
+    "forgotPasswordBody": "Gib deine E-Mail-Adresse ein. Wir senden dir einen Link zum Zurücksetzen.",
+    "emailAddressLabel": "E-Mail-Adresse",
+    "sending": "Wird gesendet…",
+    "sendResetLink": "Reset-Link senden",
+    "invalidResetLink": "Ungültiger oder fehlender Link zum Zurücksetzen.",
+    "passwordMinLength8": "Das Passwort muss mindestens 8 Zeichen lang sein.",
+    "somethingWentWrong": "Etwas ist schiefgelaufen.",
+    "passwordUpdatedTitle": "Passwort geändert!",
+    "redirecting": "Du wirst weitergeleitet…",
+    "newPasswordTitle": "Neues Passwort",
+    "newPasswordBody": "Gib dein neues Passwort ein.",
+    "saving": "Wird gespeichert…",
+    "savePassword": "Passwort speichern",
+    "resendEmailFailedNotice": "Die E-Mail konnte nicht automatisch gesendet werden. Bitte klicke unten auf „Link erneut senden“.",
+    "emailVerifiedTitle": "E-Mail bestätigt!",
+    "emailVerifiedRedirecting": "Du wirst zu deinem Dashboard weitergeleitet…",
+    "checkYourEmailTitle": "Schau in dein Postfach",
+    "verificationSentBody": "Wir haben einen Bestätigungslink an {email} gesendet. Klicke auf den Link — diese Seite aktualisiert sich automatisch.",
+    "yourEmailFallback": "deine E-Mail",
+    "waitingForVerification": "Warte auf Bestätigung…",
+    "resendIn": "Erneut senden in {seconds}s",
+    "resendLink": "Link erneut senden",
+    "backToSignup": "Zurück zur Registrierung",
+    "couldNotSendEmail": "E-Mail konnte nicht gesendet werden."
   },
   "dashboard": {
     "welcome": "Willkommen zurück",
@@ -261,7 +362,51 @@
     "totalUsers": "Benutzer:innen gesamt",
     "activeUsers": "Aktive Benutzer:innen",
     "totalRevenue": "Gesamtumsatz",
-    "newSignups": "Neuanmeldungen"
+    "newSignups": "Neuanmeldungen",
+    "dashboardTitle": "Admin-Dashboard",
+    "dashboardSubtitle": "Vollständige Kontrolle über Benutzer und Inhalte",
+    "backToDashboard": "Zurück zum Dashboard",
+    "platformOverview": "Plattform-Übersicht",
+    "statCourses": "Kurse",
+    "statCoursesSub": "veröffentlicht",
+    "statLessons": "Lektionen",
+    "statLessonsSub": "insgesamt",
+    "statActiveLearners": "Aktive Lernende",
+    "statActiveLearnersSub": "mind. 1 Abschluss",
+    "statCompletions": "Abschlüsse",
+    "statCompletionsSub": "Lektionen gesamt",
+    "statPlacements": "Tests",
+    "statPlacementsSub": "Einstufungstests",
+    "userManagement": "Benutzerverwaltung",
+    "notesTitle": "Hinweise",
+    "noteRoleChange": "Rollenänderungen werden sofort gespeichert. Der Benutzer muss sich erneut anmelden, damit die neue Rolle wirksam wird.",
+    "noteDisabled": "Deaktivierte Benutzer können sich nicht mehr anmelden.",
+    "noteDeleted": "Gelöschte Benutzer können nicht wiederhergestellt werden.",
+    "noteOwnAccount": "Dein eigenes Konto kann nicht geändert werden.",
+    "noteDataSource": "Lernfortschritt-Statistiken stammen aus Supabase. Benutzerverwaltung erfolgt über Firebase Auth.",
+    "statTotal": "Gesamt",
+    "statStudents": "Lernende",
+    "statTeachers": "Lehrkräfte",
+    "statAdmins": "Admins",
+    "searchPlaceholder": "Suche nach Name oder E-Mail…",
+    "filterAll": "Alle",
+    "refresh": "Aktualisieren",
+    "loading": "Wird geladen…",
+    "noUsersFound": "Keine Benutzer gefunden.",
+    "colUser": "Benutzer",
+    "colRole": "Rolle",
+    "colLevel": "Niveau",
+    "colStatus": "Status",
+    "colJoined": "Beigetreten",
+    "colActions": "Aktionen",
+    "emailLabel": "E-Mail",
+    "disabledLabel": "Deaktiviert",
+    "enable": "Aktivieren",
+    "disable": "Deaktivieren",
+    "confirm": "Bestätigen",
+    "cancel": "Abbrechen",
+    "delete": "Löschen",
+    "youLabel": "(Du)"
   },
   "learn": {
     "allLevels": "Alle Niveaus",
@@ -289,7 +434,50 @@
     "videoLesson": "Videolektion",
     "lessonContent": "Lektionsinhalt",
     "courseProgress": "Kursfortschritt",
-    "recommendedCourse": "Für dich empfohlen"
+    "recommendedCourse": "Für dich empfohlen",
+    "backToRoom": "Zurück zum Raum",
+    "checkpointPassed": "Herzlichen Glückwunsch! Du hast den Checkpoint bestanden.",
+    "checkpointFailed": "Du brauchst {pct}% zum Bestehen. Versuch es nochmal!",
+    "correctAnswerColon": "Richtige Antwort:",
+    "noQuestionsAvailable": "Keine Fragen verfügbar.",
+    "submitQuiz": "Quiz abgeben",
+    "yourAnswerColon": "Deine Antwort:",
+    "yourAnswerPlaceholder": "Deine Antwort...",
+    "yourResult": "Dein Ergebnis",
+    "aiDailyLimitReached": "Du hast heute dein Tageslimit an KI-Nachrichten erreicht. Komm morgen wieder! 🌟",
+    "aiFeedbackError": "Entschuldigung, etwas ist schiefgelaufen. Bitte erneut versuchen.",
+    "aiFeedbackLabel": "KI-Feedback",
+    "answerPlaceholderEllipsis": "Deine Antwort…",
+    "buildSentence": "Satz bauen",
+    "check": "Überprüfen",
+    "chooseAnswer": "Wähle die Antwort",
+    "continue": "Weiter",
+    "correctExclaim": "Richtig! 🎉",
+    "correctShort": "Richtig:",
+    "fillBlank": "Lücke füllen",
+    "getAiFeedback": "KI-Feedback erhalten",
+    "microphoneDenied": "Kein Zugriff auf das Mikrofon. Bitte erlaube den Zugriff in deinem Browser.",
+    "modelAnswer": "Beispielantwort",
+    "next": "Weiter",
+    "notQuite": "Nicht ganz – du brauchst 60% zum Bestehen. Versuch es nochmal!",
+    "perfectScore": "Perfekt! Ausgezeichnete Arbeit! 🎉",
+    "playBack": "Anhören",
+    "practiceCompleted": "Übung abgeschlossen",
+    "questionOf": "Frage {current} von {total}",
+    "record": "Aufnehmen",
+    "recordAgain": "Erneut aufnehmen",
+    "recordingNotSaved": "Deine Aufnahme wird nicht gespeichert oder hochgeladen — sie ist nur zur eigenen Übung.",
+    "results": "Ergebnis",
+    "review": "Wiederholung",
+    "sampleAnswer": "Beispielantwort",
+    "speakingPromptLabel": "Sprechaufgabe",
+    "stop": "Stopp",
+    "wellDone": "Gut gemacht! Lektion abgeschlossen.",
+    "wordOrderHint": "Tippe unten auf die Wörter, um den Satz zu bilden…",
+    "writingPlaceholder": "Schreib deine Antwort auf Deutsch…",
+    "writingPromptLabel": "Schreibaufgabe",
+    "wrongAnswer": "Falsch. Richtige Antwort: \"{answer}\"",
+    "yourAnswerLabel": "Deine Antwort:"
   },
   "placementTest": {
     "title": "Einstufungstest",
@@ -306,6 +494,586 @@
     "levelSaved": "Niveau wurde in deinem Profil gespeichert.",
     "retake": "Test wiederholen",
     "goToDashboard": "Zum Dashboard",
-    "loginToSave": "Anmelden, um dein Ergebnis zu speichern"
+    "loginToSave": "Anmelden, um dein Ergebnis zu speichern",
+    "metaTitle": "Kostenloser Einstufungstest | DeutschPilot",
+    "metaDescription": "Finde in wenigen Minuten dein GER-Niveau (A1–C1) und starte direkt in den passenden Themenräumen."
+  },
+  "sidebar": {
+    "tagline": "Sprache. Zukunft. Du.",
+    "navigationHeading": "Navigation",
+    "toolsHeading": "Werkzeuge",
+    "learningHeading": "Lernen",
+    "accountHeading": "Konto",
+    "soonBadge": "Bald",
+    "profile": "Profil",
+    "settings": "Einstellungen",
+    "signOut": "Abmelden",
+    "roleAdmin": "Administrator",
+    "roleTeacher": "Lehrkraft",
+    "levelLabel": "Niveau",
+    "studentFallback": "Lernender",
+    "nav": {
+      "myRooms": "Meine Räume",
+      "levels": "Niveaus",
+      "courses": "Kurse",
+      "aiTrainer": "KI-Trainer",
+      "teacherOverview": "Übersicht",
+      "learningRooms": "Lernräume",
+      "adminDashboard": "Admin-Dashboard",
+      "userDashboard": "Benutzer-Dashboard",
+      "mainPage": "Hauptseite",
+      "dashboardOverview": "Dashboard",
+      "myCourses": "Meine Kurse",
+      "placementTest": "Einstufungstest",
+      "messages": "Nachrichten",
+      "sessions": "Sitzungen"
+    },
+    "tools": {
+      "vocabulary": "Vokabular",
+      "progress": "Fortschritt",
+      "certificates": "Zertifikate",
+      "mockExam": "Modellprüfung",
+      "drivingTheory": "Führerschein Theorie"
+    },
+    "mobile": {
+      "admin": "Admin",
+      "user": "Benutzer",
+      "main": "Hauptseite",
+      "trainer": "Trainer",
+      "start": "Start",
+      "rooms": "Räume"
+    }
+  },
+  "streakBanner": {
+    "title": "{count}-Tage-Streak erreicht!",
+    "dismissAriaLabel": "Schließen",
+    "messages": {
+      "3": "3 Tage in Folge! Du bist auf einem guten Weg.",
+      "7": "Eine ganze Woche! Dein Streak ist beeindruckend.",
+      "14": "14 Tage — zwei Wochen Disziplin. Fantastisch!",
+      "30": "30 Tage! Ein ganzer Monat konsequentes Lernen.",
+      "60": "60 Tage! Du bist ein echtes Vorbild.",
+      "100": "100 Tage Streak! Außergewöhnlich. Weiter so!"
+    }
+  },
+  "studentDashboard": {
+    "eyebrow": "Lernenden-Dashboard",
+    "welcomeBack": "Willkommen zurück, {name} 👋",
+    "subtitle": "Lerne Schritt für Schritt weiter Deutsch.",
+    "levelLabel": "Niveau",
+    "streakLabel": "Streak",
+    "studentFallback": "Lernender",
+    "continueLearning": "Weiterlernen",
+    "currentCourseLabel": "Aktueller Kurs",
+    "exercisesDone": "{count} Übungen erledigt",
+    "noCourseText": "Wähle einen Kurs und starte deine erste Lektion.",
+    "browseRooms": "Räume durchsuchen",
+    "aiTrainerTitle": "KI-Trainer",
+    "aiTrainerDesc": "Übe Deutsch mit KI. Stelle Fragen, korrigiere Fehler und mache Übungen — jederzeit und kostenlos.",
+    "openAiTrainer": "KI-Trainer öffnen",
+    "myLiveClasses": "Meine Live-Kurse",
+    "viewAll": "Alle anzeigen",
+    "noClassesText": "Du hast noch an keinem Live-Kurs teilgenommen.",
+    "browseLiveClasses": "Live-Kurse durchsuchen",
+    "at": "um",
+    "joinClass": "Kurs beitreten",
+    "meetLinkComingSoon": "Meeting-Link folgt vor dem Kurs",
+    "browseTeachersTitle": "Lehrkräfte entdecken",
+    "browseTeachersSub": "Finde deine ideale Lehrkraft.",
+    "viewTeachers": "Lehrkräfte ansehen",
+    "liveClassesTitle": "Live-Kurse",
+    "liveClassesSub": "Nimm an einem Live-Kurs mit einem echten Lehrer teil.",
+    "viewClasses": "Kurse ansehen",
+    "myLevelTitle": "Mein Niveau",
+    "myLevelSub": "Aktuell: {level}",
+    "retakeTest": "Test wiederholen"
+  },
+  "settings": {
+    "label": "Einstellungen",
+    "heading": "Kontoeinstellungen",
+    "displayName": "Anzeigename",
+    "namePlaceholder": "Dein Name",
+    "saving": "Wird gespeichert…",
+    "save": "Speichern",
+    "saved": "Gespeichert.",
+    "nameError": "Name konnte nicht gespeichert werden.",
+    "email": "E-Mail",
+    "password": "Passwort",
+    "passwordResetDescription": "Wir senden dir einen Link zum Zurücksetzen deines Passworts per E-Mail.",
+    "resetEmailSent": "E-Mail gesendet — bitte Posteingang prüfen.",
+    "sendingReset": "Wird gesendet…",
+    "sendPasswordReset": "Passwort-Reset senden"
+  },
+  "profile": {
+    "label": "Profil",
+    "heading": "Dein Profil",
+    "email": "E-Mail",
+    "germanLevel": "Deutschniveau",
+    "retest": "Neu testen",
+    "completedExercises": "Abgeschlossene Übungen",
+    "changePasswordHint": "Um dein Passwort zu ändern, nutze den Link zum Zurücksetzen des Passworts von der Anmeldeseite.",
+    "goToLogin": "Zur Anmeldung"
+  },
+  "upgradeWall": {
+    "back": "Zurück",
+    "buyLevel": "{level} kaufen – {price} €",
+    "checkoutStartError": "Checkout konnte nicht gestartet werden.",
+    "loading": "Wird geladen…",
+    "networkError": "Netzwerkfehler. Bitte erneut versuchen.",
+    "paidCourseNotice": "Dieses Niveau ist Teil eines kostenpflichtigen Kurses. Einmalig zahlen, für immer Zugriff.",
+    "unlockLevel": "{level} freischalten"
+  },
+  "vocabulary": {
+    "eyebrow": "Vokabular",
+    "title": "Vokabel-Karteikarten",
+    "noWordsForLevel": "Keine Vokabeln für dieses Niveau.",
+    "tapToFlip": "Zum Umdrehen tippen"
+  },
+  "certificates": {
+    "certificateOfCompletion": "Abschlusszertifikat",
+    "awardedTo": "Verliehen an",
+    "completingLevel": "für den erfolgreichen Abschluss des Niveaus",
+    "cefrAbbreviation": "GER",
+    "printSavePdf": "Drucken / Als PDF speichern"
+  },
+  "drivingTheory": {
+    "noQuestionsYet": "Noch keine Fragen verfügbar.",
+    "licenseClass": "Klasse {licenseClass}",
+    "practiceDrivingTheory": "Führerschein Theorie üben",
+    "questionsIntro": "{count} Fragen zu den wichtigsten Verkehrsregeln — Promillegrenzen, Vorfahrt, Geschwindigkeit, Sicherheitsabstand und mehr.",
+    "officialCatalogNotice": "Hinweis: Dies sind eigene Übungsfragen zu wichtigen Verkehrsregeln — keine wortgetreue Wiedergabe des amtlichen Fragenkatalogs. Bereite dich für die echte Prüfung zusätzlich mit einem zugelassenen Lernsystem oder deiner Fahrschule vor.",
+    "signUpFreeStart": "Kostenlos registrieren & starten",
+    "startPracticing": "Übung starten",
+    "freeTakesMinute": "Kostenlos, dauert nur eine Minute.",
+    "result": "Ergebnis",
+    "correct": "richtig",
+    "practiceAgain": "Erneut üben",
+    "backHome": "Zur Startseite",
+    "checkAnswer": "Antwort prüfen",
+    "nextQuestion": "Nächste Frage",
+    "seeResult": "Ergebnis anzeigen"
+  },
+  "mockExam": {
+    "back": "Zurück",
+    "finalCheck": "Abschlusstest",
+    "mockExamTitle": "{level} Modellprüfung",
+    "mockExamIntro": "Simuliert die echte Prüfungsstruktur (wie Goethe/telc): Lesen, Hören, Schreiben und Sprechen. Am Ende bekommst du eine ehrliche Einschätzung, ob du bereit für die echte Prüfung bist.",
+    "reading": "Lesen",
+    "listening": "Hören",
+    "writing": "Schreiben",
+    "speaking": "Sprechen",
+    "taskCount": "{count} Aufgabe(n)",
+    "totalDuration": "Gesamtdauer ca. {minutes} Minuten",
+    "signUpFreeStart": "Kostenlos registrieren & starten",
+    "startMockExam": "Modellprüfung starten",
+    "freeTakesMinute": "Kostenlos, dauert nur eine Minute.",
+    "feedbackLoadError": "Fehler beim Laden des Feedbacks.",
+    "writingPlaceholder": "Schreib deine Antwort auf Deutsch…",
+    "getFeedback": "Feedback anfordern",
+    "microphoneDenied": "Kein Zugriff auf das Mikrofon. Bitte erlaube den Zugriff.",
+    "speakingNotAutoScored": "Sprechen ist im Selbststudium nicht automatisch bewertbar — nimm dich auf und höre dir die Aufnahme an, oder teile sie mit einer Lehrkraft für echtes Feedback.",
+    "reRecord": "Erneut aufnehmen",
+    "record": "Aufnehmen",
+    "stop": "Stopp",
+    "result": "Ergebnis",
+    "readinessReport": "Deine Einschätzung",
+    "solidFoundation": "Solide Grundlage für die echte Prüfung",
+    "morePracticeRecommended": "Noch etwas Übung empfohlen",
+    "readingListeningPct": "{pct}% in Lesen & Hören (Richtwert: ab 60% gilt in echten Prüfungen meist als bestanden).",
+    "selfAssessmentNotice": "Hinweis: Dies ist eine Selbsteinschätzung auf Basis von Übungsaufgaben, keine offizielle Prüfungsbewertung. Schreiben und Sprechen werden nicht automatisch benotet.",
+    "backToRooms": "Zurück zu den Räumen",
+    "tryAgain": "Erneut versuchen",
+    "practicedCheck": "✓ Geübt",
+    "skipped": "Übersprungen",
+    "noSectionContent": "Für diesen Abschnitt sind noch keine Inhalte verfügbar.",
+    "continue": "Weiter"
+  },
+  "progressOverview": {
+    "metaTitle": "Fortschritt | DeutschPilot",
+    "eyebrow": "Fortschritt",
+    "title": "Dein Fortschritt",
+    "overallProgress": "Gesamtfortschritt",
+    "lessonsCompletedOf": "{completed} / {total} Lektionen abgeschlossen",
+    "notStartedYet": "Noch nicht begonnen"
+  },
+  "seo": {
+    "homeCourseName": "Deutschkurse A1 bis C1 bei DeutschPilot",
+    "homeCourseDescription": "Themenräume, Übungen und Checkpoint-Quiz für alle Niveaus von A1 bis C1 — Hören, Lesen, Sprechen und Schreiben.",
+    "layoutTitle": "DeutschPilot – Deutschkurse, Sprachreisen & Retreats",
+    "layoutDescription": "Deutsch lernen mit strukturierten Onlinekursen, Sprachreisen und Retreats. DeutschPilot begleitet Lernende mit klaren Lernwegen und persönlicher Unterstützung.",
+    "layoutKeywords": "Deutsch lernen, Deutschkurs online, Sprachreise Deutsch, Deutsch Retreat, DeutschPilot",
+    "orgDescription": "Deutschkurse, Sprachreisen und Retreats für strukturierte Lernfortschritte.",
+    "contactTitle": "Kontakt | DeutschPilot",
+    "contactDescription": "Fragen zu Kursen, Niveaus oder Retreats? Kontaktiere das DeutschPilot-Team.",
+    "retreatsTitle": "Sprachretreats | DeutschPilot",
+    "retreatsDescription": "Intensive Deutsch-Sprachretreats: eintauchen, üben und schneller Fortschritte machen — in kleiner Gruppe vor Ort.",
+    "academyTitle": "Online-Akademie | DeutschPilot",
+    "academyDescription": "Alles an einem Ort: strukturierte Kurse von A1 bis C1, Live-Unterricht, KI-Trainer, Modellprüfungen und ein Magazin voller Sprachtipps.",
+    "faqTitle": "Häufige Fragen zu DeutschPilot | FAQ",
+    "faqDescription": "Antworten auf die häufigsten Fragen zu Niveaus, Themenräumen, Zertifikaten, dem Einstufungstest und dem Lernen mit DeutschPilot.",
+    "termsTitle": "AGB | DeutschPilot",
+    "impressumTitle": "Impressum | DeutschPilot"
+  },
+  "contact": {
+    "heading": "Kontakt",
+    "subheading": "Wir freuen uns von dir zu hören",
+    "form": {
+      "nameLabel": "Name",
+      "namePlaceholder": "Dein Name",
+      "emailLabel": "E-Mail",
+      "messageLabel": "Nachricht",
+      "messagePlaceholder": "Wie können wir dir helfen?",
+      "sendButton": "Senden",
+      "sendingButton": "Wird gesendet…",
+      "successTitle": "Vielen Dank!",
+      "successMessage": "Deine Nachricht wurde gesendet.",
+      "errorSend": "Nachricht konnte nicht gesendet werden. Bitte erneut versuchen.",
+      "errorGeneric": "Etwas ist schiefgelaufen. Bitte erneut versuchen."
+    }
+  },
+  "retreatsPage": {
+    "badge": "Demnächst",
+    "heading": "Deutsch-Retreats",
+    "intro": "Wir planen intensive Sprachretreat-Programme. Trag dich in die Warteliste ein und wir informieren dich, sobald Termine feststehen.",
+    "features": {
+      "environment": {
+        "title": "Deutschsprachige Umgebung",
+        "body": "Vollständig in Deutsch eintauchen – in einem inspirierenden Umfeld."
+      },
+      "program": {
+        "title": "Strukturiertes Programm",
+        "body": "Tägliche Sprachstunden, Ausflüge und kulturelle Erlebnisse."
+      },
+      "groups": {
+        "title": "Kleine Gruppen",
+        "body": "Individuelle Betreuung und echte Gespräche in kleinen Gruppen."
+      },
+      "relaxation": {
+        "title": "Erholung inklusive",
+        "body": "Lerne und entspanne gleichzeitig – für nachhaltige Sprachfortschritte."
+      }
+    },
+    "waitlist": {
+      "emailPlaceholder": "Deine E-Mail",
+      "regionPlaceholder": "Wunschregion (optional)",
+      "datesPlaceholder": "Wunschtermin (optional)",
+      "submitButton": "Warteliste beitreten",
+      "submittingButton": "Wird gesendet…",
+      "successMessage": "Du stehst auf der Warteliste — wir melden uns!",
+      "errorGeneric": "Etwas ist schiefgelaufen.",
+      "errorNetwork": "Netzwerkfehler. Bitte erneut versuchen."
+    }
+  },
+  "onlineAcademy": {
+    "badge": "Die Akademie",
+    "heading": "Alles, was du zum Deutschlernen brauchst",
+    "intro": "Strukturierte Kurse, Live-Unterricht, ein KI-Sprachbegleiter und echte Prüfungsvorbereitung — an einem Ort, für jedes Niveau von A1 bis C1.",
+    "pillars": {
+      "courses": {
+        "title": "Strukturierte Kurse",
+        "body": "Von A1 bis C1 — 30 Themenräume mit Lektionen und Checkpoint-Quiz, Schritt für Schritt aufgebaut."
+      },
+      "liveClasses": {
+        "title": "Live-Kurse",
+        "body": "Buche interaktive Sessions mit echten Deutschlehrkräften — zu Zeiten, die zu dir passen."
+      },
+      "aiCompanion": {
+        "title": "KI-Sprachbegleiter",
+        "body": "Übe jederzeit mit unserem KI-Trainer — Korrekturen, Grammatik-Erklärungen und Gesprächsübung."
+      },
+      "mockExams": {
+        "title": "Modellprüfungen",
+        "body": "B1- und B2-Abschlusstests im echten Prüfungsformat, bevor du zur echten Prüfung gehst."
+      },
+      "magazine": {
+        "title": "Magazin",
+        "body": "Grammatik- und Kulturguides zu jedem Thema — kostenlos, für alle Niveaus."
+      },
+      "drivingTheory": {
+        "title": "Führerschein Theorie",
+        "body": "Übe wichtige Verkehrsregeln für die Theorieprüfung (Klasse B) — kostenlos."
+      }
+    },
+    "ctaButton": "Kostenlos starten"
+  },
+  "faq": {
+    "heading": "Häufige Fragen",
+    "intro": "Alles, was du über Niveaus, Räume, Zertifikate und den Einstieg bei DeutschPilot wissen musst.",
+    "items": {
+      "q1": {
+        "question": "Wie funktioniert DeutschPilot?",
+        "answer": "Du lernst in Themenräumen: jeder Raum hat drei Lektionen zu einem Alltagsthema plus ein Checkpoint-Quiz. Bestehst du das Quiz mit mindestens 70%, schaltest du den nächsten Raum frei. So baust du Schritt für Schritt Wortschatz, Grammatik und Sprachgefühl auf."
+      },
+      "q2": {
+        "question": "Welche Niveaus deckt DeutschPilot ab?",
+        "answer": "Aktuell A1 bis C1 nach dem Gemeinsamen Europäischen Referenzrahmen (GER). Jedes Niveau hat sechs Themenräume sowie separate Übungskurse für Hören, Lesen, Sprechen und Schreiben."
+      },
+      "q3": {
+        "question": "Ist DeutschPilot kostenlos?",
+        "answer": "Die Registrierung ist kostenlos und du kannst direkt mit Lektionen und dem Einstufungstest starten. Für Live-Unterricht mit Lehrer:innen und Retreats gelten separate Preise, die du auf der Kurs-Seite findest."
+      },
+      "q4": {
+        "question": "Wie finde ich mein Niveau?",
+        "answer": "Nutze unseren kostenlosen Einstufungstest. Er ordnet dich einem GER-Niveau zu, sodass du direkt in den passenden Themenräumen startest, statt bei A1 von vorn zu beginnen, wenn du schon weiter bist."
+      },
+      "q5": {
+        "question": "Bekomme ich ein Zertifikat?",
+        "answer": "Ja — nach Abschluss aller Räume eines Niveaus erhältst du ein Zertifikat, das deinen Fortschritt bis zu diesem GER-Niveau bestätigt."
+      },
+      "q6": {
+        "question": "Kann ich auch ohne Vorkenntnisse anfangen?",
+        "answer": "Absolut. A1 ist für absolute Anfänger:innen konzipiert und beginnt bei Begrüßungen und den Grundlagen — keine Vorkenntnisse nötig."
+      },
+      "q7": {
+        "question": "Hilft DeutschPilot bei einem Integrationskurs oder einer Prüfung?",
+        "answer": "Die Themenräume und Übungskurse decken die gleichen GER-Niveaus wie Integrationskurse und offizielle Prüfungen (z. B. Goethe, telc, DTZ) ab. Mehr Prüfungsdetails findest du im Magazin."
+      },
+      "q8": {
+        "question": "Was ist der Unterschied zwischen Räumen und Übungskursen?",
+        "answer": "Räume vermitteln neuen Stoff zu einem Alltagsthema (z. B. Wohnen, Arbeit). Übungskurse trainieren gezielt eine Fertigkeit — Hören, Lesen, Sprechen oder Schreiben — mit zusätzlichen Aufgaben."
+      },
+      "q9": {
+        "question": "Kann ich mit Google anmelden?",
+        "answer": "Ja, du kannst dich mit deinem Google-Konto registrieren oder anmelden — eine Alternative zur E-Mail-und-Passwort-Anmeldung."
+      },
+      "q10": {
+        "question": "Wie lange dauert es, Deutsch zu lernen?",
+        "answer": "Das hängt von deinem Ziel-Niveau und deiner Lernzeit ab. Eine ausführliche Einschätzung je GER-Niveau findest du im Magazin-Artikel „Wie lange dauert es, Deutsch zu lernen?“."
+      }
+    },
+    "stillQuestions": {
+      "heading": "Noch Fragen?",
+      "body": "Wir helfen dir gerne persönlich weiter.",
+      "button": "Kontakt aufnehmen"
+    }
+  },
+  "terms": {
+    "heading": "Allgemeine Geschäftsbedingungen",
+    "section1": {
+      "heading": "1. Geltungsbereich",
+      "body": "Diese AGB gelten für alle Verträge zwischen der PLUCO GROUP SP. Z O.O. (Betreiberin von DeutschPilot) und ihren Kunden über die Nutzung der Lernplattform und zugehöriger Dienstleistungen."
+    },
+    "section2": {
+      "heading": "2. Leistungsumfang",
+      "body": "DeutschPilot bietet Online-Sprachkurse, Retreats und Community-Funktionen an. Die genauen Leistungen ergeben sich aus dem jeweiligen Kursangebot. Kostenpflichtige Niveaustufen (A2–C1) werden einmalig bezahlt und schalten den dauerhaften Zugriff auf die zugehörigen Lernräume frei; das Einsteigerniveau A1 ist kostenlos."
+    },
+    "section3": {
+      "heading": "3. Widerrufsrecht",
+      "body": "Verbraucher:innen haben grundsätzlich ein 14-tägiges Widerrufsrecht bei digitalen Inhalten. Da mit dem Kauf einer Niveaustufe sofort auf digitale Lerninhalte zugegriffen werden kann, erlischt das Widerrufsrecht vorzeitig, sobald der Kauf abgeschlossen und der Zugriff freigeschaltet wurde — vorausgesetzt, der/die Kund:in hat der sofortigen Ausführung ausdrücklich zugestimmt und bestätigt, dass dadurch das Widerrufsrecht erlischt. Diese Bestätigung erfolgt im Bestellprozess."
+    },
+    "section4": {
+      "heading": "4. Kontakt"
+    }
+  },
+  "impressum": {
+    "heading": "Impressum",
+    "section1": {
+      "heading": "Angaben gemäß § 5 TMG"
+    },
+    "registryLabel": "Handelsregister: KRS 0000564904",
+    "section2": {
+      "heading": "Kontakt"
+    }
+  },
+  "whyDeutschPilot": {
+    "eyebrow": "Was du wirklich bekommst",
+    "heading": "Warum DeutschPilot",
+    "facts": {
+      "rooms": {
+        "title": "30 Themenräume, A1 bis C1",
+        "desc": "Sechs Räume pro Niveau, jeder mit drei Lektionen und einem Checkpoint-Quiz."
+      },
+      "skills": {
+        "title": "Alle vier Fertigkeiten",
+        "desc": "Eigene Übungskurse für Hören, Lesen, Schreiben und Sprechen auf jedem Niveau."
+      },
+      "aiFeedback": {
+        "title": "KI-Feedback beim Schreiben",
+        "desc": "Schreibaufgaben werden von unserem KI-Trainer bewertet — mit konkretem, niveaugerechtem Feedback."
+      },
+      "unlock": {
+        "title": "70% zum Freischalten",
+        "desc": "Checkpoint-Quizze stellen sicher, dass du den Stoff wirklich beherrschst, bevor es weitergeht."
+      },
+      "guides": {
+        "title": "24 Grammatik- & Kulturguides",
+        "desc": "Vom Konjunktiv II bis zu deutschen Redewendungen — im kostenlosen Magazin."
+      },
+      "freeStart": {
+        "title": "Kostenloser Start",
+        "desc": "Das komplette A1-Niveau ist kostenlos. Registrieren mit E-Mail oder Google in Sekunden."
+      }
+    }
+  },
+  "teachers": {
+    "metaTitle": "Unsere Lehrkräfte | DeutschPilot",
+    "metaDescription": "Lerne die erfahrenen Deutschlehrkräfte von DeutschPilot kennen und buche Live-Unterricht auf deinem Niveau.",
+    "badge": "Unsere Lehrkräfte",
+    "heading": "Lerne mit echten Lehrkräften",
+    "subheading": "Unsere qualifizierten Deutschlehrkräfte bieten Live-Unterricht per Google Meet an. Wähle eine Lehrkraft und buche deine Stunde.",
+    "emptyTitle": "Unsere Lehrkräfte-Liste ist bald verfügbar.",
+    "emptySubtitle": "Schau bald wieder vorbei — wir nehmen gerade neue Lehrkräfte auf.",
+    "experienceYears": "{years} Jahre Erfahrung",
+    "defaultBio": "Erfahrene Deutschlehrkraft mit Live-Online-Unterricht für Anfänger:innen und Fortgeschrittene.",
+    "activeClasses": "{count, plural, one {# aktiver Live-Kurs} other {# aktive Live-Kurse}}",
+    "viewClasses": "Live-Kurse ansehen"
+  },
+  "about": {
+    "metaTitle": "Über uns | DeutschPilot",
+    "metaDescription": "DeutschPilot ist die Premium-Lernplattform für Deutsch: erfahrene Lehrer, KI-Unterstützung und eine lebendige Community.",
+    "title": "Über uns",
+    "subtitle": "Wir sind DeutschPilot",
+    "body": "DeutschPilot wurde mit einer klaren Mission gegründet: Menschen auf der ganzen Welt dabei zu helfen, Deutsch schnell, effektiv und mit Freude zu lernen. Unsere erfahrenen Lehrer, innovative KI-Unterstützung und eine lebendige Community machen DeutschPilot zur Premium-Lernplattform für echte Ergebnisse.",
+    "cta": "Kostenlos starten",
+    "stats": {
+      "experience": "Jahre Erfahrung",
+      "students": "Zufriedene Teilnehmer",
+      "recommendation": "Empfehlungsrate"
+    }
+  },
+  "magazine": {
+    "metaTitle": "DeutschPilot Magazin – Artikel & Tipps zum Deutschlernen",
+    "metaDescription": "Fundierte Artikel zu deutscher Grammatik, Prüfungen und Lernstrategien – geschrieben für echte Lernende von A1 bis B2.",
+    "badge": "Magazin",
+    "heading": "DeutschPilot Magazin",
+    "intro": "Fundierte Artikel zu Grammatik, Prüfungen und Lernstrategien – geschrieben für echte Lernende.",
+    "readingTime": "{minutes} Min. Lesezeit",
+    "practiceCtaText": "Bereit, das Gelesene zu üben?",
+    "practiceCtaButton": "Zu den Übungskursen",
+    "breadcrumbHome": "Startseite",
+    "backToMagazine": "Zurück zum Magazin",
+    "youMightAlsoLike": "Das könnte dich auch interessieren",
+    "readingToPracticingHeading": "Vom Lesen ins Üben",
+    "readingToPracticingBody": "Lesen, Hören, Schreiben und Sprechen – kostenlose Übungskurse von A1 bis B2.",
+    "startPracticingFree": "Jetzt kostenlos üben",
+    "comments": {
+      "discussion": "Diskussion",
+      "loading": "Wird geladen…",
+      "noComments": "Noch keine Kommentare. Sei der/die Erste!",
+      "postError": "Kommentar konnte nicht gesendet werden.",
+      "networkError": "Netzwerkfehler.",
+      "placeholder": "Schreib einen Kommentar…",
+      "posting": "Wird gesendet…",
+      "postComment": "Kommentieren",
+      "signIn": "Melde dich an",
+      "joinDiscussion": "um mitzudiskutieren."
+    }
+  },
+  "communityPage": {
+    "metaTitle": "Community | DeutschPilot",
+    "metaDescription": "Tausche dich mit anderen Deutschlernenden aus, nimm an Events teil und lerne gemeinsam in der DeutschPilot-Community.",
+    "badge": "Community",
+    "heroHeading": "Gemeinsam lernen.\nGemeinsam wachsen.",
+    "heroDescription": "Die DeutschPilot-Community verbindet Lernende weltweit — zum Üben, Austauschen und gegenseitigen Motivieren.",
+    "expectLabel": "Was dich erwartet",
+    "expectHeading": "Deine Lerngemeinschaft",
+    "features": {
+      "languageExchange": {
+        "title": "Sprachaustausch",
+        "description": "Übe Deutsch mit Muttersprachlern und helfe anderen beim Sprachenlernen."
+      },
+      "studyGroups": {
+        "title": "Lerngruppen",
+        "description": "Schließ dich thematischen Gruppen an und lerne gemeinsam mit Gleichgesinnten."
+      },
+      "liveEvents": {
+        "title": "Live-Veranstaltungen",
+        "description": "Nimm an Online-Workshops, Q&A-Sessions und Sprachcafés teil."
+      },
+      "internationalPerspectives": {
+        "title": "Internationale Perspektiven",
+        "description": "Verbinde dich mit Deutschlernenden aus verschiedenen Ländern und Kulturen."
+      }
+    },
+    "launchingSoonHeading": "Community startet bald",
+    "launchingSoonBody": "Lerngruppen, Live-Events und Sprachaustausch bauen wir noch auf. Schreib uns eine E-Mail, um als Erster benachrichtigt zu werden — oder diskutiere schon jetzt mit anderen Lernenden in den Kommentaren unserer Magazin-Artikel.",
+    "expressInterest": "Interesse melden",
+    "browseMagazine": "Magazin durchstöbern",
+    "reachUsDirectly": "Oder schreib uns direkt: info@deutschpilot.de"
+  },
+  "levelsPage": {
+    "metaTitle": "Deutsch-Niveaus A1 bis C1: Dein Lernweg | DeutschPilot",
+    "metaDescription": "Der klare Weg von A1 bis C1: Themenräume, Checkpoint-Quizze und Übungen für jedes Niveau. Sieh, was dich auf jeder Stufe erwartet.",
+    "eyebrow": "Dein Lernweg",
+    "heading": "Sprachniveaus",
+    "intro": "Dein strukturierter Weg von A1 bis C1 – jeder Schritt bringt dich dem fließenden Sprechen näher.",
+    "levels": {
+      "A1": {
+        "name": "Anfänger",
+        "description": "Grundlegende Sätze und Ausdrücke für alltägliche Situationen."
+      },
+      "A2": {
+        "name": "Grundkenntnisse",
+        "description": "Einfache Kommunikation zu vertrauten Themen und Routineaufgaben."
+      },
+      "B1": {
+        "name": "Mittelstufe",
+        "description": "Hauptpunkte zu klaren Standardthemen verstehen und ausdrücken."
+      },
+      "B2": {
+        "name": "Gehobene Mittelstufe",
+        "description": "Komplexe Texte verstehen und spontan kommunizieren."
+      },
+      "C1": {
+        "name": "Fortgeschritten",
+        "description": "Komplexe, anspruchsvolle Texte verstehen und flüssig sprechen."
+      }
+    },
+    "available": "Verfügbar",
+    "roomsCount": "{count} Räume",
+    "certificateIncluded": "Zertifikat inklusive",
+    "explore": "Erkunden",
+    "comingSoon": "Bald verfügbar",
+    "skills": {
+      "listening": "Hören",
+      "reading": "Lesen",
+      "speaking": "Sprechen",
+      "writing": "Schreiben"
+    },
+    "readyHeading": "Bereit anzufangen?",
+    "readyBody": "Erstelle ein kostenloses Konto, um Lektionen zu starten und deinen Fortschritt zu speichern.",
+    "startFree": "Kostenlos starten",
+    "cefrNote": "Alle Niveaus entsprechen dem Gemeinsamen Europäischen Referenzrahmen (GER / CEFR)."
+  },
+  "classes": {
+    "metaTitle": "Live-Deutschkurse | DeutschPilot",
+    "metaDescription": "Buche Live-Deutschkurse mit erfahrenen Lehrer:innen — nach Niveau, Termin und Thema filterbar.",
+    "badge": "Live-Kurse",
+    "heading": "Nimm an einem Live-Deutschkurs teil",
+    "subheading": "Buche einen Live-Kurs mit einer echten Lehrkraft per Google Meet. Lerne Deutsch Schritt für Schritt mit persönlicher Anleitung.",
+    "teacherCannotEnroll": "Lehrkräfte können sich nicht für Live-Kurse als Lernende anmelden.",
+    "goToDashboard": "Zu deinem Dashboard",
+    "emptyTitle": "Live-Unterricht erscheint hier bald.",
+    "emptySubtitle": "Schau später wieder vorbei oder durchstöbere unsere Lehrkräfte unten.",
+    "browseTeachers": "Lehrkräfte durchstöbern",
+    "full": "Ausgebucht",
+    "spotsLeft": "{count, plural, one {# Platz frei} other {# Plätze frei}}",
+    "teacherLabel": "Lehrkraft:"
+  },
+  "aiTrainer": {
+    "defaultStudentName": "Lernender",
+    "title": "KI-Trainer",
+    "statusPreview": "Kostenlose Vorschau · {limit}/Tag",
+    "statusOnline": "Online · Bereit zu helfen",
+    "reset": "Neu starten",
+    "welcome": "Hallo! Ich bin dein KI-Trainer für Deutsch 🎓\n\nIch kann dir bei Folgendem helfen:\n• Sätze korrigieren und erklären\n• Grammatik auf einfache Weise erklären\n• Gespräche auf Deutsch üben\n• Vokabular-Tests durchführen\n• A1–C1 Übungen geben\n\nAuf was möchtest du heute konzentrieren?",
+    "quickPrompts": [
+      "Korrigiere meinen Satz",
+      "Gib mir eine A1-Übung",
+      "Erkläre die Grammatik",
+      "Übe ein Gespräch mit mir",
+      "Teste meinen Wortschatz"
+    ],
+    "upgradeNeededMessage": "Deine kostenlose Vorschau umfasst {limit} Nachrichten pro Tag. Mit Premium kannst du weiterüben.",
+    "dailyLimitReached": "Du hast heute dein Tageslimit von {limit} Nachrichten erreicht. Komm morgen wieder! 🌟",
+    "errorMessage": "Entschuldigung, etwas ist schiefgelaufen. Bitte erneut versuchen.",
+    "checkoutUnavailable": "Der Premium-Checkout ist noch nicht verfügbar. Deine kostenlosen Übungen bleiben aktiv.",
+    "previewMessagesAvailable": "{remaining} Vorschau-Nachrichten verfügbar.",
+    "loading": "Wird geladen…",
+    "unlockPremium": "Premium freischalten",
+    "openingCheckout": "Checkout wird geöffnet…",
+    "unlockPremiumFull": "AI Trainer Premium freischalten",
+    "inputPlaceholder": "Schreib eine Nachricht… (Enter zum Senden)",
+    "disclaimer": "KI-Antworten können Fehler enthalten. Bitte überprüfe kritische Inhalte."
   }
 }

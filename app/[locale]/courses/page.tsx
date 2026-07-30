@@ -10,15 +10,11 @@ import { isPlaceholderLocale } from "@/i18n";
 import { auth } from "@/lib/auth";
 import { BookOpen, ChevronRight, Lock } from "lucide-react";
 
-export function generateMetadata({ params }: { params: { locale: string } }): Metadata {
-  const de = params.locale === "de";
+export async function generateMetadata({ params }: { params: { locale: string } }): Promise<Metadata> {
+  const t = await getTranslations({ locale: params.locale, namespace: "courses" });
   return {
-    title: de
-      ? "Deutschkurse A1–B2: Lesen, Hören, Schreiben, Sprechen | DeutschPilot"
-      : "German Courses A1–B2: Reading, Listening, Writing, Speaking | DeutschPilot",
-    description: de
-      ? "Kostenlose Übungskurse für alle vier Fertigkeiten — mit KI-Feedback beim Schreiben und echten Hörtexten. Finde den Kurs für dein Niveau."
-      : "Free practice courses for all four skills — with AI feedback on your writing and real listening audio. Find the course for your level.",
+    title: t("metaTitle"),
+    description: t("metaDescription"),
   };
 }
 
@@ -58,7 +54,6 @@ export default async function CoursesPage({
     auth(),
   ]);
 
-  const de = locale === "de";
   const supabase = createServerSupabaseClient();
 
   let query = supabase.from("courses").select("*").eq("is_published", true);
@@ -147,7 +142,7 @@ export default async function CoursesPage({
                     </span>
                     {isStarted && session?.user && (
                       <span className="text-[10px] text-[#E0B873]/70 font-medium">
-                        {done} {de ? "abgeschl." : "done"}
+                        {done} {t("doneShort")}
                       </span>
                     )}
                   </div>
@@ -159,7 +154,7 @@ export default async function CoursesPage({
                   </p>
                   <div className="flex items-center gap-1.5 text-[#E0B873] text-xs font-semibold">
                     {session?.user
-                      ? (isStarted ? (de ? "Weiter" : "Continue") : (de ? "Starten" : "Start"))
+                      ? (isStarted ? tLearn("continueCourse") : t("start"))
                       : tLearn("startCourse")}
                     <ChevronRight className="h-3.5 w-3.5" />
                   </div>
@@ -181,14 +176,12 @@ export default async function CoursesPage({
             <div className="flex items-center gap-2 mb-2">
               <BookOpen className="h-4 w-4 text-[#E0B873]" />
               <span className="text-xs font-semibold text-[#E0B873]/70 uppercase tracking-[0.2em]">
-                {de ? "Kurse" : "Courses"}
+                {t("sectionLabel")}
               </span>
             </div>
             <h1 className="text-3xl font-serif font-bold text-white mb-2">{t("title")}</h1>
             <p className="text-sm text-white/45 max-w-xl">
-              {de
-                ? "Wähle einen Kurs und lerne Deutsch Schritt für Schritt."
-                : "Pick a course and learn German step by step."}
+              {t("introLoggedIn")}
             </p>
           </div>
           {filterBar}
@@ -196,9 +189,7 @@ export default async function CoursesPage({
           <div className="mt-8 p-4 rounded-2xl bg-white/3 border border-white/6 flex items-start gap-3">
             <Lock className="h-4 w-4 text-white/30 flex-shrink-0 mt-0.5" />
             <p className="text-xs text-white/35">
-              {de
-                ? "Kurse sind nach Niveau geordnet. Starte mit A1, wenn du neu anfängst."
-                : "Courses are ordered by level. Start with A1 if you're just beginning."}
+              {t("orderNote")}
             </p>
           </div>
         </div>
@@ -236,9 +227,7 @@ export default async function CoursesPage({
             <p className="text-xs font-medium tracking-wider text-[#E0B873] uppercase mb-3">{t("subtitle")}</p>
             <h1 className="text-4xl sm:text-5xl font-serif font-bold text-white mb-4">{t("title")}</h1>
             <p className="text-[#C9D2DE] max-w-xl mx-auto">
-              {de
-                ? "Wähle das richtige Niveau für deine Sprachziele und starte deinen Weg zum Erfolg."
-                : "Choose the right level for your language goals and start your path to success."}
+              {t("introPublic")}
             </p>
           </div>
           {filterBar}
@@ -248,7 +237,7 @@ export default async function CoursesPage({
               href={`/${locale}/signup`}
               className="inline-block bg-[#E0B873] text-[#072143] font-semibold px-8 py-3 rounded-xl hover:bg-[#C99B50] transition-colors"
             >
-              {de ? "Jetzt kostenlos starten" : "Start for free"}
+              {t("ctaStart")}
             </Link>
           </div>
         </section>

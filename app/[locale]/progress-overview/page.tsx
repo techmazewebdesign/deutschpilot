@@ -1,20 +1,21 @@
 import { redirect } from "next/navigation";
 import type { Metadata } from "next";
+import { getTranslations } from "next-intl/server";
 import { auth } from "@/lib/auth";
 import { createServerSupabaseClient } from "@/lib/supabaseServer";
 import { AppLayout } from "@/components/app/app-layout";
 import { BarChart2, CheckCircle2, BookOpen } from "lucide-react";
 
-export function generateMetadata({ params }: { params: { locale: string } }): Metadata {
-  const de = params.locale === "de";
-  return { title: de ? "Fortschritt | DeutschPilot" : "Progress | DeutschPilot" };
+export async function generateMetadata({ params }: { params: { locale: string } }): Promise<Metadata> {
+  const t = await getTranslations({ locale: params.locale, namespace: "progressOverview" });
+  return { title: t("metaTitle") };
 }
 
 const LEVELS = ["A1", "A2", "B1", "B2", "C1"] as const;
 
 export default async function ProgressOverviewPage({ params }: { params: { locale: string } }) {
   const { locale } = params;
-  const de = locale === "de";
+  const t = await getTranslations({ locale, namespace: "progressOverview" });
 
   const session = await auth();
   if (!session?.user) redirect(`/${locale}/signin`);
@@ -65,25 +66,25 @@ export default async function ProgressOverviewPage({ params }: { params: { local
           <div className="flex items-center gap-2 mb-2">
             <BarChart2 className="h-4 w-4 text-[#E0B873]" />
             <span className="text-xs font-semibold text-[#E0B873]/70 uppercase tracking-[0.2em]">
-              {de ? "Fortschritt" : "Progress"}
+              {t("eyebrow")}
             </span>
           </div>
           <h1 className="text-3xl font-serif font-bold text-white">
-            {de ? "Dein Fortschritt" : "Your Progress"}
+            {t("title")}
           </h1>
         </div>
 
         {/* Overall */}
         <div className="rounded-2xl border border-[#E0B873]/20 bg-[#E0B873]/5 p-6 mb-6">
           <div className="flex items-center justify-between mb-3">
-            <span className="text-sm font-semibold text-white">{de ? "Gesamtfortschritt" : "Overall Progress"}</span>
+            <span className="text-sm font-semibold text-white">{t("overallProgress")}</span>
             <span className="text-lg font-bold text-[#E0B873] tabular-nums">{overallPct}%</span>
           </div>
           <div className="h-2.5 bg-white/8 rounded-full overflow-hidden mb-2">
             <div className="h-full bg-gradient-to-r from-[#E0B873] to-[#C99B50] rounded-full transition-all" style={{ width: `${overallPct}%` }} />
           </div>
           <p className="text-xs text-white/40">
-            {totalCompleted} / {totalLessons} {de ? "Lektionen abgeschlossen" : "lessons completed"}
+            {t("lessonsCompletedOf", { completed: totalCompleted, total: totalLessons })}
           </p>
         </div>
 
@@ -115,7 +116,7 @@ export default async function ProgressOverviewPage({ params }: { params: { local
                   </div>
                 ) : (
                   <p className="text-xs text-white/25 flex items-center gap-1.5">
-                    <BookOpen className="h-3 w-3" /> {de ? "Noch nicht begonnen" : "Not started yet"}
+                    <BookOpen className="h-3 w-3" /> {t("notStartedYet")}
                   </p>
                 )}
               </div>

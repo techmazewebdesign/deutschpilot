@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { redirect } from "next/navigation";
 import { updateProfile, sendPasswordResetEmail } from "firebase/auth";
+import { useTranslations } from "next-intl";
 import { firebaseAuth } from "@/lib/firebase";
 import { useAuth } from "@/contexts/auth-context";
 import { AppLayout } from "@/components/app/app-layout";
@@ -10,7 +11,8 @@ import { Settings as SettingsIcon, User, Lock, LogOut, CheckCircle2 } from "luci
 
 export default function SettingsPage({ params }: { params: { locale: string } }) {
   const { locale } = params;
-  const de = locale === "de";
+  const t = useTranslations("settings");
+  const tNav = useTranslations("nav");
   const { user, profile, loading, signOut } = useAuth();
 
   const [name, setName] = useState("");
@@ -48,7 +50,7 @@ export default function SettingsPage({ params }: { params: { locale: string } })
       }
       setNameSaved(true);
     } catch {
-      setNameError(de ? "Name konnte nicht gespeichert werden." : "Could not save name.");
+      setNameError(t("nameError"));
     } finally {
       setSavingName(false);
     }
@@ -76,11 +78,11 @@ export default function SettingsPage({ params }: { params: { locale: string } })
           <div className="flex items-center gap-2 mb-2">
             <SettingsIcon className="h-4 w-4 text-[#E0B873]" />
             <span className="text-xs font-semibold text-[#E0B873]/70 uppercase tracking-[0.2em]">
-              {de ? "Einstellungen" : "Settings"}
+              {t("label")}
             </span>
           </div>
           <h1 className="text-3xl font-serif font-bold text-white">
-            {de ? "Kontoeinstellungen" : "Account Settings"}
+            {t("heading")}
           </h1>
         </div>
 
@@ -88,7 +90,7 @@ export default function SettingsPage({ params }: { params: { locale: string } })
         <form onSubmit={handleSaveName} className="p-5 rounded-2xl bg-[#0A1E35]/70 border border-white/10 mb-4">
           <div className="flex items-center gap-2 mb-3">
             <User className="h-4 w-4 text-[#E0B873]" />
-            <h2 className="text-sm font-semibold text-white">{de ? "Anzeigename" : "Display Name"}</h2>
+            <h2 className="text-sm font-semibold text-white">{t("displayName")}</h2>
           </div>
           {nameError && (
             <p className="text-sm text-red-400 bg-red-400/10 border border-red-400/20 rounded-md px-4 py-3 mb-3">{nameError}</p>
@@ -98,7 +100,7 @@ export default function SettingsPage({ params }: { params: { locale: string } })
               type="text"
               value={name}
               onChange={(e) => { setName(e.target.value); setNameSaved(false); }}
-              placeholder={de ? "Dein Name" : "Your name"}
+              placeholder={t("namePlaceholder")}
               maxLength={100}
               className="flex-1 rounded-md bg-white/5 border border-white/10 text-white px-4 py-2.5 text-sm placeholder:text-white/20 focus:outline-none focus:border-[#E0B873]/50 transition-all"
             />
@@ -107,12 +109,12 @@ export default function SettingsPage({ params }: { params: { locale: string } })
               disabled={savingName || !name.trim()}
               className="px-5 py-2.5 rounded-xl bg-[#E0B873] text-[#071424] text-sm font-bold hover:bg-[#C99B50] transition-colors disabled:opacity-40 disabled:cursor-not-allowed whitespace-nowrap"
             >
-              {savingName ? (de ? "Speichert…" : "Saving…") : (de ? "Speichern" : "Save")}
+              {savingName ? t("saving") : t("save")}
             </button>
           </div>
           {nameSaved && (
             <p className="flex items-center gap-1.5 text-xs text-emerald-300 mt-2.5">
-              <CheckCircle2 className="h-3.5 w-3.5" /> {de ? "Gespeichert." : "Saved."}
+              <CheckCircle2 className="h-3.5 w-3.5" /> {t("saved")}
             </p>
           )}
         </form>
@@ -120,7 +122,7 @@ export default function SettingsPage({ params }: { params: { locale: string } })
         {/* Email (read-only) */}
         <div className="p-5 rounded-2xl bg-[#0A1E35]/70 border border-white/10 mb-4">
           <div className="flex items-center gap-2 mb-1.5">
-            <span className="text-sm font-semibold text-white">{de ? "E-Mail" : "Email"}</span>
+            <span className="text-sm font-semibold text-white">{t("email")}</span>
           </div>
           <p className="text-sm text-white/50">{user?.email}</p>
         </div>
@@ -129,17 +131,15 @@ export default function SettingsPage({ params }: { params: { locale: string } })
         <div className="p-5 rounded-2xl bg-[#0A1E35]/70 border border-white/10 mb-4">
           <div className="flex items-center gap-2 mb-2">
             <Lock className="h-4 w-4 text-[#E0B873]" />
-            <h2 className="text-sm font-semibold text-white">{de ? "Passwort" : "Password"}</h2>
+            <h2 className="text-sm font-semibold text-white">{t("password")}</h2>
           </div>
           <p className="text-xs text-white/45 mb-3">
-            {de
-              ? "Wir senden dir einen Link zum Zurücksetzen deines Passworts per E-Mail."
-              : "We'll email you a link to reset your password."}
+            {t("passwordResetDescription")}
           </p>
           {resetSent ? (
             <p className="flex items-center gap-1.5 text-xs text-emerald-300">
               <CheckCircle2 className="h-3.5 w-3.5" />
-              {de ? "E-Mail gesendet — bitte Posteingang prüfen." : "Email sent — please check your inbox."}
+              {t("resetEmailSent")}
             </p>
           ) : (
             <button
@@ -147,9 +147,7 @@ export default function SettingsPage({ params }: { params: { locale: string } })
               disabled={resetLoading}
               className="px-5 py-2.5 rounded-xl border border-white/15 text-white/70 text-sm font-medium hover:border-white/30 hover:text-white transition-colors disabled:opacity-40"
             >
-              {resetLoading
-                ? (de ? "Wird gesendet…" : "Sending…")
-                : (de ? "Passwort-Reset senden" : "Send password reset")}
+              {resetLoading ? t("sendingReset") : t("sendPasswordReset")}
             </button>
           )}
         </div>
@@ -159,7 +157,7 @@ export default function SettingsPage({ params }: { params: { locale: string } })
           onClick={signOut}
           className="w-full flex items-center justify-center gap-2 px-5 py-3 rounded-xl border border-red-500/20 text-red-400/80 text-sm font-medium hover:bg-red-500/5 hover:text-red-400 transition-colors"
         >
-          <LogOut className="h-4 w-4" /> {de ? "Abmelden" : "Sign out"}
+          <LogOut className="h-4 w-4" /> {tNav("logout")}
         </button>
       </div>
     </AppLayout>

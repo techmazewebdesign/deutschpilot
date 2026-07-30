@@ -12,24 +12,21 @@ interface Props {
   locale: string;
 }
 
-function firebaseError(code: string, de: boolean): string {
-  const map: Record<string, [string, string]> = {
-    "auth/invalid-credential": ["E-Mail oder Passwort falsch.", "Incorrect email or password."],
-    "auth/wrong-password": ["E-Mail oder Passwort falsch.", "Incorrect email or password."],
-    "auth/user-not-found": ["Kein Konto gefunden.", "No account found."],
-    "auth/user-disabled": ["Dieses Konto ist deaktiviert.", "This account has been disabled."],
-    "auth/too-many-requests": ["Zu viele Versuche. Bitte warte kurz.", "Too many attempts. Please wait."],
-    "auth/invalid-email": ["Bitte eine gültige E-Mail eingeben.", "Please enter a valid email address."],
-  };
-  const entry = map[code];
-  if (entry) return de ? entry[0] : entry[1];
-  return de ? "E-Mail oder Passwort falsch." : "Incorrect email or password.";
-}
-
 export function LoginForm({ locale }: Props) {
   const t = useTranslations("auth");
   const router = useRouter();
-  const de = locale === "de";
+
+  function firebaseError(code: string): string {
+    const map: Record<string, string> = {
+      "auth/invalid-credential": t("errorInvalidCredentials"),
+      "auth/wrong-password": t("errorInvalidCredentials"),
+      "auth/user-not-found": t("errorUserNotFound"),
+      "auth/user-disabled": t("errorUserDisabled"),
+      "auth/too-many-requests": t("errorTooManyRequests"),
+      "auth/invalid-email": t("errorInvalidEmail"),
+    };
+    return map[code] ?? t("errorInvalidCredentials");
+  }
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -61,7 +58,7 @@ export function LoginForm({ locale }: Props) {
       });
 
       if (!sessionRes.ok) {
-        setError(de ? "Sitzung konnte nicht erstellt werden." : "Session could not be created.");
+        setError(t("sessionCreateFailed"));
         return;
       }
 
@@ -69,7 +66,7 @@ export function LoginForm({ locale }: Props) {
       router.refresh();
     } catch (err: unknown) {
       const code = (err as { code?: string }).code ?? "";
-      setError(firebaseError(code, de));
+      setError(firebaseError(code));
     } finally {
       setLoading(false);
     }
