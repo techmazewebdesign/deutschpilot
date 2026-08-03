@@ -2,7 +2,9 @@ import { NextResponse } from "next/server";
 import { isPlaceholderLocale } from "@/i18n";
 import { articles } from "@/lib/magazine";
 
-const BASE_URL = "https://deutschpilot.de";
+import { SITE_URL } from "@/lib/seo";
+
+const BASE_URL = SITE_URL;
 
 function escapeXml(s: string): string {
   return s

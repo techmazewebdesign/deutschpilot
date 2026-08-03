@@ -5,10 +5,12 @@ import { Footer } from "@/components/footer";
 import { PlaceholderPage } from "@/components/placeholder-page";
 import { ContactFormClient } from "@/components/contact/contact-form-client";
 import { isPlaceholderLocale } from "@/i18n";
+import { pageAlternates } from "@/lib/seo";
 
 export async function generateMetadata({ params }: { params: { locale: string } }): Promise<Metadata> {
   const t = await getTranslations({ locale: params.locale, namespace: "seo" });
   return {
+    alternates: pageAlternates(params.locale, "/contact"),
     title: t("contactTitle"),
     description: t("contactDescription"),
   };

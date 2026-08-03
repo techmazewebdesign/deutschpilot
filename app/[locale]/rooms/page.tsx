@@ -16,12 +16,14 @@ import {
 } from "lucide-react";
 import { isPaidLevel, hasLevelAccess } from "@/lib/entitlements";
 import { UpgradeWall } from "@/components/learn/upgrade-wall";
+import { pageAlternates } from "@/lib/seo";
 
 export const dynamic = "force-dynamic";
 
 export function generateMetadata({ params }: { params: { locale: string } }): Metadata {
   const de = params.locale === "de";
   return {
+    alternates: pageAlternates(params.locale, "/rooms"),
     title: de
       ? "Lernräume: Deutsch lernen Thema für Thema | DeutschPilot"
       : "Learning Rooms: Learn German Topic by Topic | DeutschPilot",

@@ -6,6 +6,7 @@ import { Footer } from "@/components/footer";
 import { PlaceholderPage } from "@/components/placeholder-page";
 import { isPlaceholderLocale } from "@/i18n";
 import { articles } from "@/lib/magazine";
+import { SITE_URL, pageAlternates } from "@/lib/seo";
 import { Clock } from "lucide-react";
 
 export async function generateMetadata({ params }: { params: { locale: string } }): Promise<Metadata> {
@@ -14,8 +15,9 @@ export async function generateMetadata({ params }: { params: { locale: string } 
     title: t("metaTitle"),
     description: t("metaDescription"),
     alternates: {
+      ...pageAlternates(params.locale, "/magazine"),
       types: {
-        "application/rss+xml": `https://deutschpilot.de/${params.locale}/rss.xml`,
+        "application/rss+xml": `${SITE_URL}/${params.locale}/rss.xml`,
       },
     },
   };

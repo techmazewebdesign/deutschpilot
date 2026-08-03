@@ -6,10 +6,12 @@ import { Footer } from "@/components/footer";
 import { PlaceholderPage } from "@/components/placeholder-page";
 import { isPlaceholderLocale } from "@/i18n";
 import { Users, MessageSquare, Globe, CalendarDays, Mail } from "lucide-react";
+import { pageAlternates } from "@/lib/seo";
 
 export async function generateMetadata({ params }: { params: { locale: string } }): Promise<Metadata> {
   const t = await getTranslations({ locale: params.locale, namespace: "communityPage" });
   return {
+    alternates: pageAlternates(params.locale, "/community"),
     title: t("metaTitle"),
     description: t("metaDescription"),
   };

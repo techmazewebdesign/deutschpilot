@@ -8,12 +8,14 @@ import { createServerSupabaseClient } from "@/lib/supabaseServer";
 import { EnrollButton } from "@/components/app/enroll-button";
 import { StaggerParent, StaggerChild, FadeIn } from "@/components/app/motion-card";
 import { Video, CalendarDays, Clock, Users } from "lucide-react";
+import { pageAlternates } from "@/lib/seo";
 
 export const dynamic = "force-dynamic";
 
 export async function generateMetadata({ params }: { params: { locale: string } }): Promise<Metadata> {
   const t = await getTranslations({ locale: params.locale, namespace: "classes" });
   return {
+    alternates: pageAlternates(params.locale, "/classes"),
     title: t("metaTitle"),
     description: t("metaDescription"),
   };

@@ -6,10 +6,12 @@ import { PlaceholderPage } from "@/components/placeholder-page";
 import { isPlaceholderLocale } from "@/i18n";
 import { MapPin, Users, Calendar, Leaf } from "lucide-react";
 import { RetreatWaitlistForm } from "@/components/retreats/waitlist-form";
+import { pageAlternates } from "@/lib/seo";
 
 export async function generateMetadata({ params }: { params: { locale: string } }): Promise<Metadata> {
   const t = await getTranslations({ locale: params.locale, namespace: "seo" });
   return {
+    alternates: pageAlternates(params.locale, "/retreats"),
     title: t("retreatsTitle"),
     description: t("retreatsDescription"),
   };

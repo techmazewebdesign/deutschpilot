@@ -1,8 +1,9 @@
 import { MetadataRoute } from "next";
 import { locales } from "@/i18n";
 import { articles } from "@/lib/magazine";
+import { SITE_URL } from "@/lib/seo";
 
-const baseUrl = "https://deutschpilot.de";
+const baseUrl = SITE_URL;
 
 const routes = [
   "",
@@ -14,7 +15,6 @@ const routes = [
   "/community",
   "/about",
   "/magazine",
-  "/rss.xml",
   "/faq",
   "/mock-exam",
   "/driving-theory",
@@ -27,6 +27,16 @@ const routes = [
   "/terms",
 ];
 
+function languageAlternates(path: string) {
+  return {
+    languages: {
+      de: `${baseUrl}/de${path}`,
+      en: `${baseUrl}/en${path}`,
+      "x-default": `${baseUrl}/de${path}`,
+    },
+  };
+}
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const entries: MetadataRoute.Sitemap = [];
 
@@ -37,14 +47,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
         lastModified: new Date(),
         changeFrequency: route === "" ? "weekly" : "monthly",
         priority: route === "" ? 1.0 : 0.8,
+        alternates: languageAlternates(route),
       });
     }
     for (const article of articles) {
+      const path = `/magazine/${article.slug}`;
       entries.push({
-        url: `${baseUrl}/${locale}/magazine/${article.slug}`,
+        url: `${baseUrl}/${locale}${path}`,
         lastModified: new Date(article.date),
         changeFrequency: "monthly",
         priority: 0.7,
+        alternates: languageAlternates(path),
       });
     }
   }

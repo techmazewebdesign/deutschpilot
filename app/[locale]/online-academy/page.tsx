@@ -6,10 +6,12 @@ import { Footer } from "@/components/footer";
 import { PlaceholderPage } from "@/components/placeholder-page";
 import { isPlaceholderLocale } from "@/i18n";
 import { Video, Bot, BookOpen, Award, Newspaper, ChevronRight, Car } from "lucide-react";
+import { pageAlternates } from "@/lib/seo";
 
 export async function generateMetadata({ params }: { params: { locale: string } }): Promise<Metadata> {
   const t = await getTranslations({ locale: params.locale, namespace: "seo" });
   return {
+    alternates: pageAlternates(params.locale, "/online-academy"),
     title: t("academyTitle"),
     description: t("academyDescription"),
   };

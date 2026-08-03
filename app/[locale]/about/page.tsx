@@ -5,10 +5,12 @@ import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
 import { PlaceholderPage } from "@/components/placeholder-page";
 import { isPlaceholderLocale } from "@/i18n";
+import { pageAlternates } from "@/lib/seo";
 
 export async function generateMetadata({ params }: { params: { locale: string } }): Promise<Metadata> {
   const t = await getTranslations({ locale: params.locale, namespace: "about" });
   return {
+    alternates: pageAlternates(params.locale, "/about"),
     title: t("metaTitle"),
     description: t("metaDescription"),
   };

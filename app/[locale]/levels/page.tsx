@@ -8,12 +8,14 @@ import { Navigation } from "@/components/navigation";
 import { PlaceholderPage } from "@/components/placeholder-page";
 import { Footer } from "@/components/footer";
 import { Lock, CheckCircle2, ChevronRight, Star, Zap, BookOpen } from "lucide-react";
+import { pageAlternates } from "@/lib/seo";
 
 export const dynamic = "force-dynamic";
 
 export async function generateMetadata({ params }: { params: { locale: string } }): Promise<Metadata> {
   const t = await getTranslations({ locale: params.locale, namespace: "levelsPage" });
   return {
+    alternates: pageAlternates(params.locale, "/levels"),
     title: t("metaTitle"),
     description: t("metaDescription"),
   };

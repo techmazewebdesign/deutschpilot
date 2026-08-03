@@ -1,6 +1,27 @@
 import { MetadataRoute } from "next";
+import { SITE_URL } from "@/lib/seo";
 
-const baseUrl = "https://deutschpilot.de";
+// Routes are locale-prefixed (/de/..., /en/...), so private areas need
+// wildcard patterns — a bare "/dashboard/" would never match "/de/dashboard".
+const disallow = [
+  "/api/",
+  "/*/dashboard",
+  "/*/admin",
+  "/*/teacher",
+  "/*/student",
+  "/*/settings",
+  "/*/profile",
+  "/*/login",
+  "/*/signin",
+  "/*/signup",
+  "/*/forgot-password",
+  "/*/reset-password",
+  "/*/verify-email",
+  "/*/exercises/",
+  "/*/certificates",
+  "/*/progress-overview",
+  "/*/ai-trainer",
+];
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -8,14 +29,14 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "OAI-SearchBot",
         allow: "/",
-        disallow: ["/api/", "/dashboard/", "/admin/"],
+        disallow,
       },
       {
         userAgent: "*",
         allow: "/",
-        disallow: ["/api/", "/dashboard/", "/admin/"],
+        disallow,
       },
     ],
-    sitemap: `${baseUrl}/sitemap.xml`,
+    sitemap: `${SITE_URL}/sitemap.xml`,
   };
 }

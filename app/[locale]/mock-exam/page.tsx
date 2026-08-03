@@ -5,10 +5,12 @@ import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
 import { PlaceholderPage } from "@/components/placeholder-page";
 import { isPlaceholderLocale } from "@/i18n";
+import { pageAlternates } from "@/lib/seo";
 
 export function generateMetadata({ params }: { params: { locale: string } }): Metadata {
   const de = params.locale === "de";
   return {
+    alternates: pageAlternates(params.locale, "/mock-exam"),
     title: de
       ? "B1 & B2 Modellprüfung: Teste dich vor der echten Prüfung | DeutschPilot"
       : "B1 & B2 Mock Exam: Test yourself before the real exam | DeutschPilot",

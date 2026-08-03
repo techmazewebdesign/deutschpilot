@@ -4,10 +4,11 @@ import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
 import { PlaceholderPage } from "@/components/placeholder-page";
 import { isPlaceholderLocale } from "@/i18n";
+import { pageAlternates } from "@/lib/seo";
 
 export async function generateMetadata({ params }: { params: { locale: string } }): Promise<Metadata> {
   const t = await getTranslations({ locale: params.locale, namespace: "seo" });
-  return { title: t("termsTitle") };
+  return { alternates: pageAlternates(params.locale, "/terms"), title: t("termsTitle") };
 }
 
 export default async function TermsPage({ params }: { params: { locale: string } }) {

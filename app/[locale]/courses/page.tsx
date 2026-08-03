@@ -9,10 +9,12 @@ import { createServerSupabaseClient } from "@/lib/supabaseServer";
 import { isPlaceholderLocale } from "@/i18n";
 import { auth } from "@/lib/auth";
 import { BookOpen, ChevronRight, Lock } from "lucide-react";
+import { SITE_URL, pageAlternates } from "@/lib/seo";
 
 export async function generateMetadata({ params }: { params: { locale: string } }): Promise<Metadata> {
   const t = await getTranslations({ locale: params.locale, namespace: "courses" });
   return {
+    alternates: pageAlternates(params.locale, "/courses"),
     title: t("metaTitle"),
     description: t("metaDescription"),
   };
@@ -208,8 +210,8 @@ export default async function CoursesPage({
         "@type": "Course",
         name: course.title,
         description: course.description ?? undefined,
-        url: `https://deutschpilot.de/${locale}/courses/${course.slug}`,
-        provider: { "@type": "Organization", name: "DeutschPilot", url: "https://deutschpilot.de" },
+        url: `${SITE_URL}/${locale}/courses/${course.slug}`,
+        provider: { "@type": "Organization", name: "DeutschPilot", url: SITE_URL },
       },
     })),
   };

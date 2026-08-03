@@ -6,12 +6,14 @@ import { PlaceholderPage } from "@/components/placeholder-page";
 import { PlacementQuiz } from "@/components/learn/placement-quiz";
 import { createServerSupabaseClient } from "@/lib/supabaseServer";
 import { isPlaceholderLocale } from "@/i18n";
+import { pageAlternates } from "@/lib/seo";
 
 export const dynamic = "force-dynamic";
 
 export async function generateMetadata({ params }: { params: { locale: string } }): Promise<Metadata> {
   const t = await getTranslations({ locale: params.locale, namespace: "placementTest" });
   return {
+    alternates: pageAlternates(params.locale, "/placement-test"),
     title: t("metaTitle"),
     description: t("metaDescription"),
   };

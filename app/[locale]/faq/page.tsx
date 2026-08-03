@@ -6,12 +6,14 @@ import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
 import { PlaceholderPage } from "@/components/placeholder-page";
 import { isPlaceholderLocale } from "@/i18n";
+import { SITE_URL, pageAlternates } from "@/lib/seo";
 
-const BASE_URL = "https://deutschpilot.de";
+const BASE_URL = SITE_URL;
 
 export async function generateMetadata({ params }: { params: { locale: string } }): Promise<Metadata> {
   const t = await getTranslations({ locale: params.locale, namespace: "seo" });
   return {
+    alternates: pageAlternates(params.locale, "/faq"),
     title: t("faqTitle"),
     description: t("faqDescription"),
   };

@@ -6,12 +6,14 @@ import { Footer } from "@/components/footer";
 import { createServerSupabaseClient } from "@/lib/supabaseServer";
 import { FadeIn, StaggerParent, StaggerChild } from "@/components/app/motion-card";
 import { Users, GraduationCap, Video } from "lucide-react";
+import { pageAlternates } from "@/lib/seo";
 
 export const dynamic = "force-dynamic";
 
 export async function generateMetadata({ params }: { params: { locale: string } }): Promise<Metadata> {
   const t = await getTranslations({ locale: params.locale, namespace: "teachers" });
   return {
+    alternates: pageAlternates(params.locale, "/teachers"),
     title: t("metaTitle"),
     description: t("metaDescription"),
   };

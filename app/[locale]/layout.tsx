@@ -12,7 +12,9 @@ import "./globals.css";
 
 const GOOGLE_TAG_MANAGER_ID = "GTM-KBNSN7ST";
 
-const siteUrl = "https://www.deutschpilot.de";
+import { SITE_URL, OG_IMAGE, pageAlternates } from "@/lib/seo";
+
+const siteUrl = SITE_URL;
 
 export async function generateMetadata({ params: { locale } }: { params: { locale: string } }): Promise<Metadata> {
   const isGerman = locale === "de";
@@ -25,14 +27,7 @@ export async function generateMetadata({ params: { locale } }: { params: { local
     title,
     description,
     keywords: t("layoutKeywords").split(",").map((k) => k.trim()),
-    alternates: {
-      canonical: `${siteUrl}/${locale}`,
-      languages: {
-        de: `${siteUrl}/de`,
-        en: `${siteUrl}/en`,
-        "x-default": `${siteUrl}/de`,
-      },
-    },
+    alternates: pageAlternates(locale),
     openGraph: {
       type: "website",
       locale: isGerman ? "de_DE" : "en_GB",
@@ -40,11 +35,13 @@ export async function generateMetadata({ params: { locale } }: { params: { local
       siteName: "DeutschPilot",
       title,
       description,
+      images: [OG_IMAGE],
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
+      images: [OG_IMAGE.url],
     },
   };
 }
@@ -77,6 +74,8 @@ export default async function RootLayout({
         "@id": `${siteUrl}/#organization`,
         name: "DeutschPilot",
         url: siteUrl,
+        logo: `${siteUrl}/Images/Deurschpilot_logo.png`,
+        email: "info@deutschpilot.de",
         description: t("orgDescription"),
       },
       {

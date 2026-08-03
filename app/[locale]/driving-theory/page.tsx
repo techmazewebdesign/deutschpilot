@@ -5,10 +5,12 @@ import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
 import { PlaceholderPage } from "@/components/placeholder-page";
 import { isPlaceholderLocale } from "@/i18n";
+import { pageAlternates } from "@/lib/seo";
 
 export function generateMetadata({ params }: { params: { locale: string } }): Metadata {
   const de = params.locale === "de";
   return {
+    alternates: pageAlternates(params.locale, "/driving-theory"),
     title: de
       ? "Führerschein Theorie üben | DeutschPilot"
       : "Practice German Driving Theory | DeutschPilot",

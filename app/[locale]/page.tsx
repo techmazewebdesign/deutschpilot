@@ -14,10 +14,11 @@ import { LiveClassesPreviewSection } from "@/components/sections/live-classes-pr
 import { TeachersPreviewSection } from "@/components/sections/teachers-preview";
 import { SplitCTASection } from "@/components/sections/split-cta";
 import { Footer } from "@/components/footer";
+import { SITE_URL } from "@/lib/seo";
 
 export const dynamic = "force-dynamic";
 
-const BASE_URL = "https://deutschpilot.de";
+const BASE_URL = SITE_URL;
 
 export default async function HomePage({ params }: { params: { locale: string } }) {
   const { locale } = params;
