@@ -38,8 +38,8 @@ function formatTime(seconds: number) {
 }
 
 export function SalesTrainingHub({ locale, mode = "dashboard" }: { locale: string; mode?: "dashboard" | "library" }) {
-  const de = locale === "de";
   const pathname = usePathname();
+  const de = pathname.split("/")[1] === "de" || locale === "de";
   const isDashboard = pathname.endsWith("/admin") || pathname.endsWith("/student/dashboard") || pathname.endsWith("/teacher/dashboard");
   const [data, setData] = useState<TrainingResponse>(emptyResponse);
   const [loading, setLoading] = useState(true);
