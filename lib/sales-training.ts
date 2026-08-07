@@ -82,6 +82,8 @@ export function isConfiguredSalesEmail(email: string): boolean {
 }
 
 export async function isSalesTeamMember(user: SessionUser): Promise<boolean> {
+  // Administrators need oversight access to review the same assigned materials.
+  if (user.role === "admin") return true;
   if (isConfiguredSalesEmail(user.email)) return true;
   const userDoc = await getAdminDb().doc(`users/${user.id}`).get();
   return userDoc.exists && userDoc.data()?.salesTeam === true;
