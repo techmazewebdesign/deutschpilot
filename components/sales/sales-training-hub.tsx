@@ -39,7 +39,7 @@ function formatTime(seconds: number) {
 
 export function SalesTrainingHub({ locale, mode = "dashboard" }: { locale: string; mode?: "dashboard" | "library" }) {
   const pathname = usePathname();
-  const de = pathname.split("/")[1] === "de" || locale === "de";
+  const [de, setDe] = useState(locale === "de");
   const isDashboard = pathname.endsWith("/admin") || pathname.endsWith("/student/dashboard") || pathname.endsWith("/teacher/dashboard");
   const [data, setData] = useState<TrainingResponse>(emptyResponse);
   const [loading, setLoading] = useState(true);
@@ -47,6 +47,10 @@ export function SalesTrainingHub({ locale, mode = "dashboard" }: { locale: strin
   const [startAt, setStartAt] = useState(0);
   const videoRef = useRef<HTMLVideoElement>(null);
   const lastSynced = useRef(0);
+
+  useEffect(() => {
+    setDe(window.location.pathname === "/de" || window.location.pathname.startsWith("/de/"));
+  }, [locale]);
 
   useEffect(() => {
     let cancelled = false;
