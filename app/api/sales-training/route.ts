@@ -1,6 +1,5 @@
-import { FieldValue } from "firebase-admin/firestore";
 import { NextRequest, NextResponse } from "next/server";
-import { getAdminDb } from "@/lib/firebase-admin";
+import { createAdminSupabaseClient } from "@/lib/supabaseAdmin";
 import { getServerSession } from "@/lib/session";
 import {
   SALES_TRAINING_VIDEOS,
@@ -35,22 +34,34 @@ export async function PATCH(req: NextRequest) {
   const positionSeconds = Math.max(0, Math.min(video.durationSeconds, Number.isFinite(requestedPosition) ? requestedPosition : 0));
   const percent = Math.max(0, Math.min(100, Math.round((positionSeconds / video.durationSeconds) * 100)));
   const completed = body.event === "completed" || percent >= 95;
-  const ref = getAdminDb().doc(`salesTrainingProgress/${session.user.id}_${video.id}`);
-  const existing = await ref.get();
-  const data: Record<string, unknown> = {
-    userId: session.user.id,
-    userEmail: session.user.email,
-    videoId: video.id,
-    positionSeconds,
+  const now = new Date().toISOString();
+  const supabase = createAdminSupabaseClient();
+  const { data: existing, error: existingError } = await supabase
+    .from("sales_training_progress")
+    .select("opened_at, dismissed_at, completed_at")
+    .eq("firebase_uid", session.user.id)
+    .eq("video_id", video.id)
+    .maybeSingle();
+  if (existingError) return NextResponse.json({ error: "Progress lookup failed" }, { status: 500 });
+
+  const record = {
+    firebase_uid: session.user.id,
+    user_email: session.user.email,
+    video_id: video.id,
+    position_seconds: positionSeconds,
     percent: completed ? 100 : percent,
     status: completed ? "completed" : positionSeconds > 0 ? "in_progress" : "assigned",
-    lastViewedAt: FieldValue.serverTimestamp(),
-    updatedAt: FieldValue.serverTimestamp(),
+    opened_at: existing?.opened_at ?? now,
+    last_viewed_at: now,
+    dismissed_at: body.event === "dismissed" ? now : existing?.dismissed_at ?? null,
+    completed_at: completed ? now : existing?.completed_at ?? null,
+    updated_at: now,
   };
-  if (!existing.exists) data.openedAt = FieldValue.serverTimestamp();
-  if (body.event === "dismissed") data.dismissedAt = FieldValue.serverTimestamp();
-  if (completed) data.completedAt = FieldValue.serverTimestamp();
-  await ref.set(data, { merge: true });
+  const { error } = await supabase.from("sales_training_progress").upsert(record, { onConflict: "firebase_uid,video_id" });
+  if (error) {
+    console.error("[sales-training PATCH]", error.message);
+    return NextResponse.json({ error: "Progress update failed" }, { status: 500 });
+  }
 
-  return NextResponse.json({ ok: true, positionSeconds, percent: completed ? 100 : percent, status: data.status });
+  return NextResponse.json({ ok: true, positionSeconds, percent: completed ? 100 : percent, status: record.status });
 }

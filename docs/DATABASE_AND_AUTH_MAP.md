@@ -46,8 +46,6 @@ DeutschPilot uses **Firebase Authentication** as the single source of truth for 
 - User records (`users/{uid}` collection)
 - Admin user management (list, update role, disable, delete)
 - Role mirroring alongside Firebase custom claims
-- Sales-team assignment (`users/{uid}.salesTeam`) without changing authentication roles
-- Per-user presentation-video progress (`salesTrainingProgress/{uid}_{videoId}`)
 
 **User document shape (`users/{uid}`):**
 ```
@@ -56,26 +54,12 @@ email: string
 name: string
 role: "student" | "teacher" | "admin"
 disabled: boolean
-salesTeam: boolean
 level: string | null
 goal: string | null
 emailVerified: boolean
 createdAt: Timestamp
 ```
 
-**Sales training progress document shape (`salesTrainingProgress/{uid}_{videoId}`):**
-```
-userId: string
-userEmail: string
-videoId: string
-positionSeconds: number
-percent: number
-status: "assigned" | "in_progress" | "completed"
-openedAt: Timestamp
-lastViewedAt: Timestamp
-dismissedAt: Timestamp | null
-completedAt: Timestamp | null
-```
 
 ---
 
@@ -95,6 +79,8 @@ completedAt: Timestamp | null
 - Learning Rooms (room metadata, tasks)
 - Placement tests
 - Student task progress (`student_task_progress` table — upsert on completion)
+- Sales-team assignment (`profiles.sales_team`) without changing authentication roles
+- Per-user presentation-video progress (`sales_training_progress` table)
 - All public-facing learning content
 
 **Key tables (inferred from query patterns):**
@@ -105,6 +91,7 @@ completedAt: Timestamp | null
 - `room_tasks`
 - `placement_test_questions`
 - `student_task_progress`
+- `sales_training_progress`
 
 ---
 

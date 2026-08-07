@@ -1,4 +1,4 @@
-import { getAdminDb } from "@/lib/firebase-admin";
+import { createAdminSupabaseClient } from "@/lib/supabaseAdmin";
 import type { SessionUser } from "@/lib/session";
 
 export type SalesTrainingChapter = {
@@ -85,30 +85,34 @@ export async function isSalesTeamMember(user: SessionUser): Promise<boolean> {
   // Administrators need oversight access to review the same assigned materials.
   if (user.role === "admin") return true;
   if (isConfiguredSalesEmail(user.email)) return true;
-  const userDoc = await getAdminDb().doc(`users/${user.id}`).get();
-  return userDoc.exists && userDoc.data()?.salesTeam === true;
+  const supabase = createAdminSupabaseClient();
+  const { data, error } = await supabase
+    .from("profiles")
+    .select("sales_team")
+    .or(`firebase_uid.eq.${user.id},email.eq.${user.email}`)
+    .maybeSingle();
+  if (error) throw new Error(`Sales-team lookup failed: ${error.message}`);
+  return data?.sales_team === true;
 }
 
 export async function getSalesTrainingProgress(userId: string): Promise<Record<string, SalesTrainingProgress>> {
-  const snapshot = await getAdminDb().collection("salesTrainingProgress").where("userId", "==", userId).get();
+  const supabase = createAdminSupabaseClient();
+  const { data, error } = await supabase
+    .from("sales_training_progress")
+    .select("video_id, position_seconds, percent, status, opened_at, last_viewed_at, completed_at, dismissed_at")
+    .eq("firebase_uid", userId);
+  if (error) throw new Error(`Sales-training progress lookup failed: ${error.message}`);
   const progress: Record<string, SalesTrainingProgress> = {};
-  for (const doc of snapshot.docs) {
-    const data = doc.data();
-    const iso = (value: unknown) => {
-      if (value && typeof value === "object" && "toDate" in value && typeof value.toDate === "function") {
-        return value.toDate().toISOString();
-      }
-      return null;
-    };
-    progress[data.videoId] = {
-      videoId: data.videoId,
-      positionSeconds: Number(data.positionSeconds ?? 0),
-      percent: Number(data.percent ?? 0),
-      status: data.status === "completed" ? "completed" : data.status === "in_progress" ? "in_progress" : "assigned",
-      openedAt: iso(data.openedAt),
-      lastViewedAt: iso(data.lastViewedAt),
-      completedAt: iso(data.completedAt),
-      dismissedAt: iso(data.dismissedAt),
+  for (const row of data ?? []) {
+    progress[row.video_id] = {
+      videoId: row.video_id,
+      positionSeconds: Number(row.position_seconds ?? 0),
+      percent: Number(row.percent ?? 0),
+      status: row.status === "completed" ? "completed" : row.status === "in_progress" ? "in_progress" : "assigned",
+      openedAt: row.opened_at ?? null,
+      lastViewedAt: row.last_viewed_at ?? null,
+      completedAt: row.completed_at ?? null,
+      dismissedAt: row.dismissed_at ?? null,
     };
   }
   return progress;
