@@ -27,6 +27,7 @@ import {
   Car,
   Globe,
   ChevronDown,
+  Film,
 } from "lucide-react";
 
 // Only locales actually wired up in i18n.ts's `locales` array belong here.
@@ -53,6 +54,7 @@ export function AppSidebar({ locale, userName, userLevel }: Props) {
   const [loggingOut, setLoggingOut] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [langOpen, setLangOpen] = useState(false);
+  const [salesTeam, setSalesTeam] = useState(false);
   const langRef = useRef<HTMLDivElement>(null);
   const { role, signOut } = useAuth();
   const t = useTranslations("sidebar");
@@ -67,6 +69,15 @@ export function AppSidebar({ locale, userName, userLevel }: Props) {
     };
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  useEffect(() => {
+    let cancelled = false;
+    fetch("/api/sales-training", { cache: "no-store" })
+      .then((response) => response.json())
+      .then((result) => { if (!cancelled) setSalesTeam(result.salesTeam === true); })
+      .catch(() => undefined);
+    return () => { cancelled = true; };
   }, []);
 
   // Nav items differ by role
@@ -217,6 +228,12 @@ export function AppSidebar({ locale, userName, userLevel }: Props) {
           {t("navigationHeading")}
         </p>
         {mainNav.map((item) => <NavLink key={item.href} item={item} onClick={onLinkClick} />)}
+        {salesTeam && (
+          <NavLink
+            item={{ href: `/${locale}/sales/presentations`, icon: Film, label: locale === "de" ? "Präsentationsvideos" : "Presentation videos" }}
+            onClick={onLinkClick}
+          />
+        )}
 
         <div className="pt-4 pb-1">
           <p className="text-[9px] font-semibold text-white/25 uppercase tracking-widest px-3 mb-2">

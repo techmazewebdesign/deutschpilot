@@ -46,6 +46,8 @@ DeutschPilot uses **Firebase Authentication** as the single source of truth for 
 - User records (`users/{uid}` collection)
 - Admin user management (list, update role, disable, delete)
 - Role mirroring alongside Firebase custom claims
+- Sales-team assignment (`users/{uid}.salesTeam`) without changing authentication roles
+- Per-user presentation-video progress (`salesTrainingProgress/{uid}_{videoId}`)
 
 **User document shape (`users/{uid}`):**
 ```
@@ -54,10 +56,25 @@ email: string
 name: string
 role: "student" | "teacher" | "admin"
 disabled: boolean
+salesTeam: boolean
 level: string | null
 goal: string | null
 emailVerified: boolean
 createdAt: Timestamp
+```
+
+**Sales training progress document shape (`salesTrainingProgress/{uid}_{videoId}`):**
+```
+userId: string
+userEmail: string
+videoId: string
+positionSeconds: number
+percent: number
+status: "assigned" | "in_progress" | "completed"
+openedAt: Timestamp
+lastViewedAt: Timestamp
+dismissedAt: Timestamp | null
+completedAt: Timestamp | null
 ```
 
 ---
@@ -162,6 +179,9 @@ createdAt: Timestamp
 | `app/api/admin/users/route.ts` | GET/PATCH/DELETE users — reads/writes Firestore + Firebase Auth custom claims |
 | `app/[locale]/admin/page.tsx` | Admin dashboard — counts users from Firestore |
 | `components/admin/users-table.tsx` | Admin UI — displays user list from Firestore |
+| `app/api/sales-training/route.ts` | Authenticated sales-video catalog and per-user progress writes |
+| `lib/sales-training.ts` | Server-side sales assignment rules and approved video catalog |
+| `app/[locale]/sales/presentations/page.tsx` | Assigned presentation-video library |
 
 ### Learning Content (Supabase)
 
@@ -250,7 +270,10 @@ STRIPE_PUBLISHABLE_KEY
 
 ```
 NEXT_PUBLIC_APP_URL
+SALES_TEAM_EMAILS
 ```
+
+`SALES_TEAM_EMAILS` is an optional comma-separated server-side bootstrap list. Ongoing team membership should be managed with the `salesTeam` field from the admin user table. Never expose this variable to the browser.
 
 ### NextAuth (currently unused — do not add values)
 

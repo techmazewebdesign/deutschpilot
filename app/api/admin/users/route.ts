@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getAdminAuth, getAdminDb } from "@/lib/firebase-admin";
 import { getServerSession } from "@/lib/session";
+import { isConfiguredSalesEmail } from "@/lib/sales-training";
 
 export async function GET() {
   const session = await getServerSession();
@@ -10,11 +11,15 @@ export async function GET() {
 
   try {
     const snapshot = await getAdminDb().collection("users").orderBy("createdAt", "desc").get();
-    const users = snapshot.docs.map((doc) => ({
-      uid: doc.id,
-      ...doc.data(),
-      createdAt: doc.data().createdAt?.toDate?.()?.toISOString() ?? null,
-    }));
+    const users = snapshot.docs.map((doc) => {
+      const data = doc.data();
+      return {
+        uid: doc.id,
+        ...data,
+        salesTeam: data.salesTeam === true || isConfiguredSalesEmail(String(data.email ?? "")),
+        createdAt: data.createdAt?.toDate?.()?.toISOString() ?? null,
+      };
+    });
     return NextResponse.json({ users });
   } catch (err) {
     console.error("[admin/users GET]", err);
@@ -29,7 +34,7 @@ export async function PATCH(req: NextRequest) {
   }
 
   try {
-    const { uid, role, disabled } = await req.json();
+    const { uid, role, disabled, salesTeam } = await req.json();
     if (!uid) return NextResponse.json({ error: "Missing uid." }, { status: 400 });
 
     if (role !== undefined) {
@@ -39,6 +44,12 @@ export async function PATCH(req: NextRequest) {
     if (disabled !== undefined) {
       await getAdminAuth().updateUser(uid, { disabled });
       await getAdminDb().doc(`users/${uid}`).update({ disabled });
+    }
+    if (salesTeam !== undefined) {
+      if (typeof salesTeam !== "boolean") {
+        return NextResponse.json({ error: "salesTeam must be a boolean." }, { status: 400 });
+      }
+      await getAdminDb().doc(`users/${uid}`).set({ salesTeam }, { merge: true });
     }
 
     return NextResponse.json({ ok: true });

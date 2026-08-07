@@ -14,6 +14,7 @@ const PROTECTED_PATHS = [
   "/ai-trainer",
   "/admin",
   "/teacher",
+  "/sales",
 ];
 
 // localeDetection: false — always default to German for unprefixed visits,

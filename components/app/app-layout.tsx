@@ -1,4 +1,5 @@
 import { AppSidebar } from "./app-sidebar";
+import { SalesTrainingHub } from "@/components/sales/sales-training-hub";
 
 interface Props {
   locale: string;
@@ -13,7 +14,10 @@ export function AppLayout({ locale, userName, userLevel, children }: Props) {
       <AppSidebar locale={locale} userName={userName} userLevel={userLevel} />
       {/* Content: offset by sidebar width on desktop, padded for mobile bottom nav */}
       <div className="lg:pl-64 flex flex-col min-h-screen">
-        <main className="flex-1 pb-20 lg:pb-0">{children}</main>
+        <main className="flex-1 pb-20 lg:pb-0">
+          <SalesTrainingHub locale={locale} />
+          {children}
+        </main>
       </div>
     </div>
   );

@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { useTranslations } from "next-intl";
-import { Shield, GraduationCap, BookOpen, Ban, Trash2, RefreshCw, CheckCircle, XCircle } from "lucide-react";
+import { Shield, GraduationCap, BookOpen, BriefcaseBusiness, Ban, Trash2, RefreshCw, CheckCircle, XCircle } from "lucide-react";
 
 type UserRole = "student" | "teacher" | "admin";
 
@@ -15,6 +15,7 @@ interface FirestoreUser {
   createdAt?: string | null;
   emailVerified: boolean;
   disabled: boolean;
+  salesTeam?: boolean;
 }
 
 const ROLE_ICONS: Record<UserRole, React.ReactNode> = {
@@ -59,7 +60,7 @@ export function UsersTable({ locale, currentUserId }: Props) {
 
   useEffect(() => { fetchUsers(); }, [fetchUsers]);
 
-  async function updateUser(uid: string, payload: { role?: UserRole; disabled?: boolean }) {
+  async function updateUser(uid: string, payload: { role?: UserRole; disabled?: boolean; salesTeam?: boolean }) {
     setActionLoading(uid);
     try {
       await fetch("/api/admin/users", {
@@ -101,17 +102,19 @@ export function UsersTable({ locale, currentUserId }: Props) {
     students: users.filter((u) => u.role === "student").length,
     teachers: users.filter((u) => u.role === "teacher").length,
     admins: users.filter((u) => u.role === "admin").length,
+    sales: users.filter((u) => u.salesTeam).length,
   };
 
   return (
     <div className="space-y-6">
       {/* Stats */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 sm:grid-cols-5 gap-4">
         {[
           { label: t("statTotal"), value: stats.total, color: "text-white" },
           { label: t("statStudents"), value: stats.students, color: "text-[#E0B873]" },
           { label: t("statTeachers"), value: stats.teachers, color: "text-blue-400" },
           { label: t("statAdmins"), value: stats.admins, color: "text-red-400" },
+          { label: de ? "Sales Team" : "Sales team", value: stats.sales, color: "text-cyan-300" },
         ].map((s) => (
           <div key={s.label} className="bg-[#0A1E35]/70 border border-white/8 rounded-xl p-4 text-center">
             <p className={`text-2xl font-bold ${s.color}`}>{s.value}</p>
@@ -171,6 +174,7 @@ export function UsersTable({ locale, currentUserId }: Props) {
                   <th className="px-5 py-3.5 text-xs font-medium text-white/40 uppercase tracking-wider">{t("colUser")}</th>
                   <th className="px-5 py-3.5 text-xs font-medium text-white/40 uppercase tracking-wider">{t("colRole")}</th>
                   <th className="px-5 py-3.5 text-xs font-medium text-white/40 uppercase tracking-wider hidden sm:table-cell">{t("colLevel")}</th>
+                  <th className="px-5 py-3.5 text-xs font-medium text-white/40 uppercase tracking-wider">Sales</th>
                   <th className="px-5 py-3.5 text-xs font-medium text-white/40 uppercase tracking-wider hidden md:table-cell">{t("colStatus")}</th>
                   <th className="px-5 py-3.5 text-xs font-medium text-white/40 uppercase tracking-wider hidden lg:table-cell">{t("colJoined")}</th>
                   <th className="px-5 py-3.5 text-xs font-medium text-white/40 uppercase tracking-wider text-right">{t("colActions")}</th>
@@ -218,6 +222,20 @@ export function UsersTable({ locale, currentUserId }: Props) {
 
                       <td className="px-5 py-4 hidden sm:table-cell">
                         <span className="text-xs text-white/50">{user.level ?? "—"}</span>
+                      </td>
+
+                      <td className="px-5 py-4">
+                        <button
+                          type="button"
+                          onClick={() => updateUser(user.uid, { salesTeam: !user.salesTeam })}
+                          disabled={isLoading}
+                          aria-pressed={user.salesTeam === true}
+                          title={de ? "Sales-Zugang ändern" : "Change sales access"}
+                          className={`inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-xs font-medium transition-colors disabled:opacity-40 ${user.salesTeam ? "border-cyan-300/30 bg-cyan-300/10 text-cyan-300" : "border-white/10 text-white/30 hover:text-white/60"}`}
+                        >
+                          <BriefcaseBusiness className="h-3.5 w-3.5" />
+                          {user.salesTeam ? (de ? "Aktiv" : "Active") : (de ? "Aus" : "Off")}
+                        </button>
                       </td>
 
                       <td className="px-5 py-4 hidden md:table-cell">
