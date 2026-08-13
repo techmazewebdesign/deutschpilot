@@ -2,7 +2,7 @@ import { MetadataRoute } from "next";
 import { locales } from "@/i18n";
 import { articles } from "@/lib/magazine";
 
-const baseUrl = "https://deutschpilot.de";
+const SITE_URL = "https://www.deutschpilot.de";
 
 const routes = [
   "",
@@ -20,7 +20,6 @@ const routes = [
   "/driving-theory",
   "/contact",
   "/placement-test",
-  "/teachers",
   "/classes",
   "/impressum",
   "/privacy",
@@ -33,7 +32,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   for (const locale of locales) {
     for (const route of routes) {
       entries.push({
-        url: `${baseUrl}/${locale}${route}`,
+        url: `${SITE_URL}/${locale}${route}`,
         lastModified: new Date(),
         changeFrequency: route === "" ? "weekly" : "monthly",
         priority: route === "" ? 1.0 : 0.8,
@@ -41,7 +40,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }
     for (const article of articles) {
       entries.push({
-        url: `${baseUrl}/${locale}/magazine/${article.slug}`,
+        url: `${SITE_URL}/${locale}/magazine/${article.slug}`,
         lastModified: new Date(article.date),
         changeFrequency: "monthly",
         priority: 0.7,
