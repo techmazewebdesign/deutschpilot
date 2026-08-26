@@ -209,7 +209,7 @@ export default async function CoursesPage({
         name: course.title,
         description: course.description ?? undefined,
         url: `https://deutschpilot.de/${locale}/courses/${course.slug}`,
-        provider: { "@type": "Organization", name: "DeutschPilot", url: "https://deutschpilot.de" },
+        provider: { "@id": "https://www.deutschpilot.de/#organization" },
       },
     })),
   };

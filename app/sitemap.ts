@@ -14,7 +14,6 @@ const routes = [
   "/community",
   "/about",
   "/magazine",
-  "/rss.xml",
   "/faq",
   "/mock-exam",
   "/driving-theory",

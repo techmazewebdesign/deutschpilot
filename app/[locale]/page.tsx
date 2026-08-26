@@ -17,7 +17,7 @@ import { Footer } from "@/components/footer";
 
 export const dynamic = "force-dynamic";
 
-const BASE_URL = "https://deutschpilot.de";
+const BASE_URL = "https://www.deutschpilot.de";
 
 export default async function HomePage({ params }: { params: { locale: string } }) {
   const { locale } = params;
@@ -26,21 +26,6 @@ export default async function HomePage({ params }: { params: { locale: string } 
   const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [
-      {
-        "@type": "Organization",
-        "@id": `${BASE_URL}/#organization`,
-        name: "DeutschPilot",
-        url: BASE_URL,
-        logo: `${BASE_URL}/Images/Deurschpilot_logo.png`,
-      },
-      {
-        "@type": "WebSite",
-        "@id": `${BASE_URL}/#website`,
-        name: "DeutschPilot",
-        url: BASE_URL,
-        publisher: { "@id": `${BASE_URL}/#organization` },
-        inLanguage: locale,
-      },
       {
         "@type": "Course",
         name: t("homeCourseName"),

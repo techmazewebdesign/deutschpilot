@@ -10,12 +10,19 @@ import { Clock } from "lucide-react";
 
 export async function generateMetadata({ params }: { params: { locale: string } }): Promise<Metadata> {
   const t = await getTranslations({ locale: params.locale, namespace: "magazine" });
+  const canonical = `https://www.deutschpilot.de/${params.locale}/magazine`;
   return {
     title: t("metaTitle"),
     description: t("metaDescription"),
     alternates: {
+      canonical,
+      languages: {
+        de: "https://www.deutschpilot.de/de/magazine",
+        en: "https://www.deutschpilot.de/en/magazine",
+        "x-default": "https://www.deutschpilot.de/de/magazine",
+      },
       types: {
-        "application/rss+xml": `https://deutschpilot.de/${params.locale}/rss.xml`,
+        "application/rss+xml": `https://www.deutschpilot.de/${params.locale}/rss.xml`,
       },
     },
   };
