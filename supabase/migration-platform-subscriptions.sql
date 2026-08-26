@@ -95,7 +95,9 @@ REVOKE ALL ON FUNCTION public.claim_stripe_webhook_event(text, text) FROM PUBLIC
 GRANT EXECUTE ON FUNCTION public.claim_stripe_webhook_event(text, text) TO service_role;
 
 CREATE OR REPLACE FUNCTION public.set_platform_subscription_updated_at()
-RETURNS trigger LANGUAGE plpgsql AS $$
+RETURNS trigger LANGUAGE plpgsql
+SET search_path = public
+AS $$
 BEGIN NEW.updated_at = now(); RETURN NEW; END;
 $$;
 
