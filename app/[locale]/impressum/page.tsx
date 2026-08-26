@@ -36,10 +36,14 @@ export default async function ImpressumPage({ params }: { params: { locale: stri
               <h2 className="text-white font-semibold mb-3">{t("section1.heading")}</h2>
               <p>
                 PLUCO GROUP SP. Z O.O.<br />
-                {locale === "de" ? "Betreiberin von DeutschPilot · gestaltet von Desivo Group" : "Operator of DeutschPilot · designed by Desivo Group"}<br />
-                Ksawerów 3<br />
-                02-656 Warsaw, Poland<br />
-                {t("registryLabel")}
+                {locale === "de" ? "Betreiberin von DeutschPilot · gestaltet von Desivo, einer Marke der Pluco Group" : "Operator of DeutschPilot · designed by Desivo, a Pluco Group brand"}<br />
+                ul. Ksawerów 3<br />
+                02-656 Warszawa, Polen<br /><br />
+                {t("registryLabel")}<br />
+                NIP: 5272739549<br />
+                REGON: 361874067<br />
+                {locale === "de" ? "Stammkapital: 100.000 PLN" : "Share capital: PLN 100,000"}<br />
+                {locale === "de" ? "Geschäftsführung: Hamidreza Ostadmohammadi" : "Management board: Hamidreza Ostadmohammadi"}
               </p>
             </div>
             <div className="bg-[#0B1B33]/50 border border-white/10 rounded-xl p-6">
