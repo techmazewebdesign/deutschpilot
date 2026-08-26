@@ -4,6 +4,8 @@ import { auth } from "@/lib/auth";
 import { createServerSupabaseClient } from "@/lib/supabaseServer";
 import { AppLayout } from "@/components/app/app-layout";
 import { VocabularyClient, type VocabWord } from "@/components/vocabulary/vocabulary-client";
+import { hasPlatformSubscription } from "@/lib/entitlements";
+import { UpgradeWall } from "@/components/learn/upgrade-wall";
 
 export const dynamic = "force-dynamic";
 
@@ -20,6 +22,9 @@ export default async function VocabularyPage({ params }: { params: { locale: str
 
   const supabase = createServerSupabaseClient();
   const userName = session.user.name ?? session.user.email?.split("@")[0] ?? "Student";
+  if (!(await hasPlatformSubscription(session.user.id, session.user.role))) {
+    return <AppLayout locale={locale} userName={userName}><UpgradeWall locale={locale} level="A2" backHref={`/${locale}/rooms`} /></AppLayout>;
+  }
 
   const { data } = await supabase
     .from("vocabulary_words")

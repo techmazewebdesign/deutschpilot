@@ -1,4 +1,4 @@
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { auth } from "@/lib/auth";
 import { createServerSupabaseClient } from "@/lib/supabaseServer";
 import { isPlaceholderLocale } from "@/i18n";
@@ -6,6 +6,9 @@ import { Navigation } from "@/components/navigation";
 import { PlaceholderPage } from "@/components/placeholder-page";
 import { Footer } from "@/components/footer";
 import { MockExamClient, type MockExamData } from "@/components/mock-exam/mock-exam-client";
+import { hasPlatformSubscription } from "@/lib/entitlements";
+import { AppLayout } from "@/components/app/app-layout";
+import { UpgradeWall } from "@/components/learn/upgrade-wall";
 
 export const dynamic = "force-dynamic";
 
@@ -53,7 +56,11 @@ export default async function MockExamPage({
   if (!MOCK_EXAM_LEVELS.includes(level as MockExamLevel)) notFound();
 
   const session = await auth();
-  const isGuest = !session?.user;
+  if (!session?.user) redirect(`/${locale}/signin`);
+  const userName = session.user.name ?? session.user.email?.split("@")[0] ?? "Student";
+  if (!(await hasPlatformSubscription(session.user.id, session.user.role))) {
+    return <AppLayout locale={locale} userName={userName}><UpgradeWall locale={locale} level={level as "B1" | "B2"} backHref={`/${locale}/mock-exam`} /></AppLayout>;
+  }
 
   const supabase = createServerSupabaseClient();
   const slugPrefix = level.toLowerCase();
@@ -157,7 +164,7 @@ export default async function MockExamPage({
   return (
     <>
       <Navigation />
-      <MockExamClient data={examData} isGuest={isGuest} />
+      <MockExamClient data={examData} isGuest={false} />
       <Footer />
     </>
   );

@@ -88,6 +88,11 @@ export function Footer() {
                   </Link>
                 </li>
               ))}
+              <li>
+                <Link href={`/${locale}/cancel-subscription`} className="text-sm text-white/45 hover:text-[#E0B873] transition-colors">
+                  {locale === "de" ? "Verträge hier kündigen" : "Cancel subscription"}
+                </Link>
+              </li>
             </ul>
           </div>
         </div>

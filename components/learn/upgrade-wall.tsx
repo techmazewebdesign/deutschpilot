@@ -12,17 +12,11 @@ interface Props {
   backHref: string;
 }
 
-const LEVEL_PRICE_EUR: Record<PaidLevel, number> = {
-  A2: 349,
-  B1: 399,
-  B2: 449,
-  C1: 499,
-};
-
 export function UpgradeWall({ locale, level, backHref }: Props) {
   const t = useTranslations("upgradeWall");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [consent, setConsent] = useState(false);
 
   async function handleBuy() {
     setError(null);
@@ -31,7 +25,7 @@ export function UpgradeWall({ locale, level, backHref }: Props) {
       const res = await fetch("/api/checkout/create-session", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ level }),
+        body: JSON.stringify({ level, withdrawalConsent: consent }),
       });
       const data = (await res.json()) as { url?: string; error?: string };
       if (!res.ok || !data.url) {
@@ -73,16 +67,28 @@ export function UpgradeWall({ locale, level, backHref }: Props) {
           </p>
         )}
 
+        <label className="mb-4 flex items-start gap-3 text-left text-xs text-white/55">
+          <input type="checkbox" checked={consent} onChange={(event) => setConsent(event.target.checked)} className="mt-0.5" />
+          <span>
+            {locale === "de"
+              ? "Ich verlange, dass der digitale Zugang sofort beginnt, und habe AGB, Widerrufsbelehrung und Datenschutz gelesen."
+              : "I request immediate digital access and have read the terms, withdrawal notice and privacy policy."}
+          </span>
+        </label>
+
         <button
           type="button"
           onClick={handleBuy}
-          disabled={loading}
+          disabled={loading || !consent}
           className="inline-flex items-center gap-2 bg-[#E0B873] text-[#071424] font-bold px-8 py-3 rounded-xl hover:bg-[#C99B50] transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
         >
           {loading
             ? t("loading")
-            : t("buyLevel", { level, price: LEVEL_PRICE_EUR[level] })}
+            : locale === "de" ? "Alle Niveaus freischalten – 15 € / Monat" : "Unlock every level – €15 / month"}
         </button>
+        <p className="mt-3 text-[11px] text-white/35">
+          {locale === "de" ? "Monatlich kündbar. Zugang bis zum Ende des bezahlten Abrechnungszeitraums." : "Cancel monthly. Access continues through the paid billing period."}
+        </p>
       </div>
     </div>
   );

@@ -144,28 +144,7 @@ export function AITrainerClient({
   async function startUpgrade() {
     if (!checkoutAvailable || checkoutLoading) return;
     setCheckoutLoading(true);
-    try {
-      const response = await fetch("/api/checkout/create-session", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ product: "ai_trainer" }),
-      });
-      const body = await response.json() as { url?: string; error?: string };
-      if (!response.ok || !body.url) {
-        throw new Error(body.error ?? "Checkout unavailable");
-      }
-      window.location.href = body.url;
-    } catch {
-      setMessages((prev) => [
-        ...prev,
-        {
-          id: Date.now(),
-          role: "assistant",
-          text: t("checkoutUnavailable"),
-        },
-      ]);
-      setCheckoutLoading(false);
-    }
+    window.location.href = `/${locale}/profile`;
   }
 
   function handleKey(e: React.KeyboardEvent<HTMLTextAreaElement>) {

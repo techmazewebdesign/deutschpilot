@@ -2,7 +2,7 @@ import nodemailer from "nodemailer";
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
-type EmailResult = { ok: boolean; error?: string };
+export type EmailResult = { ok: boolean; error?: string; providerMessageId?: string };
 
 // ── SMTP transport ────────────────────────────────────────────────────────────
 
@@ -43,7 +43,7 @@ async function sendEmail(opts: {
     return { ok: false, error: "Email service is not configured." };
   }
   try {
-    await transporter.sendMail({
+    const info = await transporter.sendMail({
       from: getFrom(),
       to: opts.to,
       subject: opts.subject,
@@ -51,7 +51,7 @@ async function sendEmail(opts: {
       html: opts.html,
       ...(opts.replyTo ? { replyTo: opts.replyTo } : {}),
     });
-    return { ok: true };
+    return { ok: true, providerMessageId: info.messageId };
   } catch (err) {
     if (process.env.NODE_ENV !== "production") {
       console.error("[email] SMTP error:", err instanceof Error ? err.message : err);
@@ -185,6 +185,67 @@ export async function sendWelcomeEmail({
         ) +
         cta(`${appUrl}/de/dashboard`, "Jetzt Deutsch lernen") +
         muted("Fragen? Schreib uns: info@deutschpilot.de")
+    ),
+  });
+}
+
+export type SubscriptionEmailKind =
+  | "payment_succeeded"
+  | "payment_failed"
+  | "cancellation_scheduled"
+  | "subscription_canceled";
+
+export async function sendSubscriptionLifecycleEmail({
+  to,
+  kind,
+  amount,
+  currency,
+  invoiceUrl,
+  accessUntil,
+}: {
+  to: string;
+  kind: SubscriptionEmailKind;
+  amount?: number | null;
+  currency?: string | null;
+  invoiceUrl?: string | null;
+  accessUntil?: Date | null;
+}): Promise<EmailResult> {
+  const money = typeof amount === "number"
+    ? new Intl.NumberFormat("de-DE", { style: "currency", currency: (currency ?? "eur").toUpperCase() }).format(amount / 100)
+    : null;
+  const date = accessUntil?.toLocaleDateString("de-DE", { timeZone: "Europe/Berlin" }) ?? null;
+  const content = {
+    payment_succeeded: {
+      subject: "DeutschPilot – Zahlung und Rechnung bestätigt",
+      title: "Zahlung erfolgreich",
+      body: `Dein All-Access-Abonnement ist aktiv${money ? ` (${money})` : ""}. Alle DeutschPilot-Niveaus und Lernmaterialien sind freigeschaltet.`,
+    },
+    payment_failed: {
+      subject: "DeutschPilot – Zahlung fehlgeschlagen",
+      title: "Zahlung konnte nicht verarbeitet werden",
+      body: "Bitte aktualisiere deine Zahlungsmethode im Abrechnungsportal. Premium-Zugang bleibt gesperrt, bis Stripe eine erfolgreiche Zahlung bestätigt.",
+    },
+    cancellation_scheduled: {
+      subject: "DeutschPilot – Kündigung bestätigt",
+      title: "Kündigung vorgemerkt",
+      body: `Dein Abonnement verlängert sich nicht mehr${date ? `. Dein Zugang bleibt bis ${date} aktiv` : ""}.`,
+    },
+    subscription_canceled: {
+      subject: "DeutschPilot – Abonnement beendet",
+      title: "Abonnement beendet",
+      body: "Dein kostenpflichtiger Zugang wurde beendet. Dein Konto und gesetzlich aufzubewahrende Abrechnungsdaten bleiben gemäß Datenschutzerklärung bestehen.",
+    },
+  }[kind];
+
+  return sendEmail({
+    to,
+    subject: content.subject,
+    text: `${content.title}\n\n${content.body}${invoiceUrl ? `\n\nRechnung: ${invoiceUrl}` : ""}\n\nDeutschPilot – ein Angebot der PLUCO GROUP SP. Z O.O., gestaltet von Desivo Group`,
+    html: emailWrap(
+      heading(content.title) +
+      para(content.body) +
+      (invoiceUrl ? cta(invoiceUrl, "Rechnung öffnen") : "") +
+      muted("DeutschPilot ist ein Angebot der PLUCO GROUP SP. Z O.O. und wurde von Desivo Group gestaltet.")
     ),
   });
 }

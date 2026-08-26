@@ -13,6 +13,7 @@
     "db:studio": "prisma studio",
     "db:seed": "tsx prisma/seed.ts",
     "test:ai-trainer": "tsx --test lib/aiTrainer/provider.test.ts",
+    "test:subscription": "tsx --test lib/subscription-state.test.ts lib/subscription-webhook.test.ts lib/stripe-subscription.test.ts",
     "postinstall": "prisma generate",
     "prepare": "husky || true"
   },
@@ -57,7 +58,7 @@
     "react-dom": "^18.3.1",
     "react-hook-form": "^7.51.4",
     "resend": "^3.2.0",
-    "stripe": "^15.6.0",
+    "stripe": "22.4.0",
     "tailwind-merge": "^2.3.0",
     "tailwindcss-animate": "^1.0.7",
     "uploadthing": "^6.10.0",

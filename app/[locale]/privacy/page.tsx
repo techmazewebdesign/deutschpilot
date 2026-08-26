@@ -51,6 +51,30 @@ export default function PrivacyPage({ params }: { params: { locale: string } }) 
                   : "You have the right to access, correct, delete, and restrict the processing of your personal data."}
               </p>
             </div>
+            <div className="bg-[#0B1B33]/50 border border-white/10 rounded-xl p-6">
+              <h2 className="text-white font-semibold mb-3">{isDE ? "4. Konto, Lernen und Abonnement" : "4. Account, learning and subscription"}</h2>
+              <p className="leading-relaxed">{isDE
+                ? "Wir verarbeiten Konto- und Anmeldedaten, Lernfortschritt, gewählte Inhalte sowie Abonnementstatus zur Vertragserfüllung (Art. 6 Abs. 1 lit. b DSGVO). Firebase verarbeitet die Identität; Supabase speichert Lern- und serverseitig bestätigte Berechtigungsdaten. Clientseitige Angaben allein schalten keinen kostenpflichtigen Zugang frei."
+                : "We process account and sign-in data, learning progress, selected content and subscription status to perform the contract (GDPR Art. 6(1)(b)). Firebase handles identity; Supabase stores learning data and server-confirmed entitlements. Client-side claims alone never unlock paid access."}</p>
+            </div>
+            <div className="bg-[#0B1B33]/50 border border-white/10 rounded-xl p-6">
+              <h2 className="text-white font-semibold mb-3">{isDE ? "5. Zahlung und Rechnungen" : "5. Payments and invoices"}</h2>
+              <p className="leading-relaxed">{isDE
+                ? "Zahlungen, wiederkehrende Abrechnung, Rechnungen und das Abrechnungsportal werden durch Stripe verarbeitet. Wir erhalten insbesondere Kunden-, Abonnement-, Zahlungsstatus-, Rechnungs- und Steuerdaten, jedoch keine vollständigen Kartendaten. Rechtsgrundlagen sind Vertragserfüllung sowie handels- und steuerrechtliche Pflichten (Art. 6 Abs. 1 lit. b und c DSGVO)."
+                : "Stripe processes payments, recurring billing, invoices and the billing portal. We receive customer, subscription, payment-status, invoice and tax data, but not full card details. Legal bases are contract performance and accounting/tax obligations (GDPR Art. 6(1)(b) and (c))."}</p>
+            </div>
+            <div className="bg-[#0B1B33]/50 border border-white/10 rounded-xl p-6">
+              <h2 className="text-white font-semibold mb-3">{isDE ? "6. Hosting, E-Mail und Übermittlungen" : "6. Hosting, email and transfers"}</h2>
+              <p className="leading-relaxed">{isDE
+                ? "Vercel stellt die Webanwendung bereit; der konfigurierte E-Mail-Anbieter versendet Vertrags-, Zahlungs- und Sicherheitsnachrichten. Soweit Anbieter Daten außerhalb des EWR verarbeiten, werden die nach DSGVO erforderlichen Übermittlungsmechanismen eingesetzt. Technische Protokolle werden zur Sicherheit und Fehleranalyse auf Grundlage berechtigter Interessen verarbeitet (Art. 6 Abs. 1 lit. f DSGVO)."
+                : "Vercel hosts the web application; the configured email provider sends contractual, payment and security messages. Where providers process data outside the EEA, required GDPR transfer mechanisms are used. Technical logs are processed for security and troubleshooting based on legitimate interests (GDPR Art. 6(1)(f))."}</p>
+            </div>
+            <div className="bg-[#0B1B33]/50 border border-white/10 rounded-xl p-6">
+              <h2 className="text-white font-semibold mb-3">{isDE ? "7. Speicherdauer und Kontakt" : "7. Retention and contact"}</h2>
+              <p className="leading-relaxed">{isDE
+                ? "Kontodaten werden grundsätzlich bis zur Löschung des Kontos oder Wegfall des Zwecks gespeichert. Vertrags-, Rechnungs- und Zahlungsnachweise werden für die gesetzlichen handels- und steuerrechtlichen Fristen aufbewahrt; Sicherheits- und Zustellnachweise nur so lange wie erforderlich. Anfragen zu Betroffenenrechten: info@deutschpilot.de. Es besteht ein Beschwerderecht bei der zuständigen Datenschutzaufsicht, insbesondere der polnischen UODO."
+                : "Account data is generally retained until account deletion or the purpose ends. Contract, invoice and payment evidence is retained for statutory accounting and tax periods; security and delivery evidence only as long as necessary. Data-subject requests: info@deutschpilot.de. You may complain to the competent supervisory authority, including Poland's UODO."}</p>
+            </div>
           </div>
         </section>
       </main>

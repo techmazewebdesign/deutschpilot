@@ -9,14 +9,8 @@
  */
 import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "@/lib/session";
-import {
-  aiTrainerPriceId,
-  createAITrainerCheckoutSession,
-  createLevelCheckoutSession,
-  priceIdForLevel,
-} from "@/lib/stripe";
-import { isPaidLevel, hasLevelAccess } from "@/lib/entitlements";
-import { getAITrainerAccess } from "@/lib/aiTrainer/access";
+import { createPlatformSubscriptionCheckout, platformSubscriptionPriceId } from "@/lib/stripe";
+import { isPaidLevel, hasActivePlatformSubscription } from "@/lib/entitlements";
 
 export const runtime = "nodejs";
 
@@ -40,73 +34,46 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Invalid JSON body." }, { status: 400 });
   }
 
-  const { level, product } = body as { level?: string; product?: string };
+  const { level, product, withdrawalConsent } = body as { level?: string; product?: string; withdrawalConsent?: boolean };
   const configuredOrigin = process.env.NEXT_PUBLIC_APP_URL?.trim();
+  if (process.env.NODE_ENV === "production" && !configuredOrigin) {
+    return NextResponse.json({ error: "Application URL is not configured." }, { status: 503 });
+  }
   const origin = (configuredOrigin || new URL(req.url).origin).replace(/\/+$/, "");
   const requestedLocale = req.headers.get("referer")?.match(/\/([a-z]{2})(?:\/|$)/)?.[1];
   const locale = requestedLocale === "de" ? "de" : "en";
 
-  if (product === "ai_trainer") {
-    if (process.env.AI_TRAINER_PAID_ENABLED !== "true") {
-      return NextResponse.json(
-        { error: "AI Trainer paid access is not enabled yet." },
-        { status: 503 },
-      );
-    }
-
-    const access = await getAITrainerAccess(session.user);
-    if (access.tier === "premium" || access.tier === "admin") {
-      return NextResponse.json({ error: "You already have AI Trainer access." }, { status: 409 });
-    }
-
-    const priceId = aiTrainerPriceId();
-    if (!priceId) {
-      return NextResponse.json(
-        { error: "AI Trainer checkout is not available yet." },
-        { status: 503 },
-      );
-    }
-
-    try {
-      const checkoutSession = await createAITrainerCheckoutSession({
-        priceId,
-        userId: session.user.id,
-        successUrl: `${origin}/${locale}/ai-trainer?purchase=success`,
-        cancelUrl: `${origin}/${locale}/ai-trainer?purchase=cancelled`,
-      });
-      return NextResponse.json({ url: checkoutSession.url });
-    } catch (err) {
-      const msg = err instanceof Error ? err.message : String(err);
-      console.error("[checkout] AI Trainer session failed:", msg);
-      return NextResponse.json({ error: "Could not start checkout." }, { status: 500 });
-    }
-  }
-
-  if (!level || !isPaidLevel(level)) {
+  if (product !== "ai_trainer" && (!level || !isPaidLevel(level))) {
     return NextResponse.json({ error: "Invalid or missing level." }, { status: 400 });
   }
 
-  const alreadyOwned = await hasLevelAccess(session.user.id, level);
-  if (alreadyOwned) {
-    return NextResponse.json({ error: "You already own this level." }, { status: 409 });
+  if (!session.user.emailVerified || !session.user.email) {
+    return NextResponse.json({ error: "Verify your email before subscribing." }, { status: 403 });
+  }
+  if (withdrawalConsent !== true) {
+    return NextResponse.json({ error: "Immediate-access consent is required." }, { status: 400 });
   }
 
-  const priceId = priceIdForLevel(level);
-  if (!priceId) {
-    console.error(`[checkout] No Stripe price configured for level ${level}`);
+  const alreadyOwned = await hasActivePlatformSubscription(session.user.id);
+  if (alreadyOwned) {
+    return NextResponse.json({ error: "You already have an active subscription." }, { status: 409 });
+  }
+
+  if (!platformSubscriptionPriceId()) {
+    console.error("[checkout] No platform subscription price configured");
     return NextResponse.json(
-      { error: `Checkout for ${level} is not available yet.` },
+      { error: "Subscriptions are not available yet." },
       { status: 503 }
     );
   }
 
   try {
-    const checkoutSession = await createLevelCheckoutSession({
-      level,
-      priceId,
+    const checkoutSession = await createPlatformSubscriptionCheckout({
       userId: session.user.id,
-      successUrl: `${origin}/${locale}/levels?purchase=success&level=${level}`,
-      cancelUrl: `${origin}/${locale}/levels?purchase=cancelled`,
+      email: session.user.email,
+      locale,
+      successUrl: `${origin}/${locale}/profile?subscription=success&session_id={CHECKOUT_SESSION_ID}`,
+      cancelUrl: `${origin}/${locale}/levels?subscription=cancelled`,
     });
 
     return NextResponse.json({ url: checkoutSession.url });

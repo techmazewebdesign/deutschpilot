@@ -1,5 +1,6 @@
 import type { SessionUser } from "@/lib/session";
 import { createAdminSupabaseClient } from "@/lib/supabaseAdmin";
+import { hasPlatformSubscription } from "@/lib/entitlements";
 
 export type AITrainerAccessTier = "admin" | "launch_free" | "preview" | "premium";
 
@@ -23,7 +24,7 @@ export function trainerAccessConfig() {
     paidAccessEnabled,
     checkoutAvailable: paidAccessEnabled
       && Boolean(process.env.STRIPE_SECRET_KEY)
-      && Boolean(process.env.STRIPE_PRICE_AI_TRAINER),
+      && Boolean(process.env.STRIPE_PRICE_SUBSCRIPTION),
     previewDailyLimit: boundedPositiveInt(process.env.AI_TRAINER_PREVIEW_DAILY_LIMIT, 5, 100),
     premiumDailyLimit: boundedPositiveInt(process.env.AI_TRAINER_PREMIUM_DAILY_LIMIT, 30, 500),
     launchDailyLimit: boundedPositiveInt(process.env.AI_TRAINER_LAUNCH_DAILY_LIMIT, 20, 100),
@@ -51,6 +52,16 @@ export async function getAITrainerAccess(user: SessionUser): Promise<AITrainerAc
       dailyLimit: config.launchDailyLimit,
       paidAccessEnabled: false,
       checkoutAvailable: false,
+      premium: true,
+    };
+  }
+
+  if (await hasPlatformSubscription(user.id, user.role)) {
+    return {
+      tier: "premium",
+      dailyLimit: config.premiumDailyLimit,
+      paidAccessEnabled: true,
+      checkoutAvailable: config.checkoutAvailable,
       premium: true,
     };
   }

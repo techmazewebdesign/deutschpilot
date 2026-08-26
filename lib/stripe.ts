@@ -2,9 +2,69 @@ import Stripe from "stripe";
 import type { PaidLevel } from "./entitlements";
 
 export const stripe = new Stripe(process.env.STRIPE_SECRET_KEY ?? "", {
-  apiVersion: "2024-04-10",
+  apiVersion: "2026-07-29.dahlia",
   typescript: true,
 });
+
+export function platformSubscriptionPriceId(): string | null {
+  return process.env.STRIPE_PRICE_SUBSCRIPTION ?? null;
+}
+
+export function buildPlatformSubscriptionCheckoutParams({
+  priceId, userId, email, locale, successUrl, cancelUrl, automaticTax,
+}: {
+  priceId: string;
+  userId: string;
+  email: string;
+  locale: "de" | "en";
+  successUrl: string;
+  cancelUrl: string;
+  automaticTax: boolean;
+}): Stripe.Checkout.SessionCreateParams {
+  const metadata = { userId, product: "deutschpilot_all_access", withdrawalConsent: "immediate_access_requested" };
+  return {
+    mode: "subscription",
+    integration_identifier: "deutschpilot_web_qtzmxkpa",
+    line_items: [{ price: priceId, quantity: 1 }],
+    customer_email: email,
+    client_reference_id: userId,
+    metadata,
+    subscription_data: { metadata },
+    billing_address_collection: "required",
+    automatic_tax: { enabled: automaticTax },
+    allow_promotion_codes: true,
+    locale,
+    success_url: successUrl,
+    cancel_url: cancelUrl,
+    consent_collection: { terms_of_service: "required" },
+    custom_text: {
+      submit: {
+        message: locale === "de"
+          ? "Mit der Zahlung verlangst du den sofortigen Beginn des digitalen Zugangs. Gesetzliche Widerrufsrechte bleiben nach Maßgabe der Widerrufsbelehrung bestehen."
+          : "By paying, you request immediate digital access. Statutory withdrawal rights remain as described in the withdrawal notice.",
+      },
+    },
+  };
+}
+
+export async function createPlatformSubscriptionCheckout({ userId, email, locale, successUrl, cancelUrl }: {
+  userId: string;
+  email: string;
+  locale: "de" | "en";
+  successUrl: string;
+  cancelUrl: string;
+}) {
+  const priceId = platformSubscriptionPriceId();
+  if (!priceId) throw new Error("STRIPE_PRICE_SUBSCRIPTION is not configured.");
+  return stripe.checkout.sessions.create(buildPlatformSubscriptionCheckoutParams({
+    priceId, userId, email, locale, successUrl, cancelUrl,
+    automaticTax: process.env.STRIPE_TAX_ENABLED === "true",
+  }));
+}
+
+export async function createCustomerPortalSession(customerId: string, returnUrl: string) {
+  return stripe.billingPortal.sessions.create({ customer: customerId, return_url: returnUrl });
+}
 
 // Static process.env.X reads (not a dynamic map) so each var name is
 // greppable and each is genuinely optional until Rooz creates the
@@ -45,7 +105,6 @@ export async function createLevelCheckoutSession({
 }) {
   return stripe.checkout.sessions.create({
     mode: "payment",
-    payment_method_types: ["card"],
     line_items: [{ price: priceId, quantity: 1 }],
     success_url: successUrl,
     cancel_url: cancelUrl,
@@ -74,7 +133,6 @@ export async function createAITrainerCheckoutSession({
 
   return stripe.checkout.sessions.create({
     mode,
-    payment_method_types: ["card"],
     line_items: [{ price: priceId, quantity: 1 }],
     success_url: successUrl,
     cancel_url: cancelUrl,

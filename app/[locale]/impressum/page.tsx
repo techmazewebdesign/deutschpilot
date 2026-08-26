@@ -36,6 +36,7 @@ export default async function ImpressumPage({ params }: { params: { locale: stri
               <h2 className="text-white font-semibold mb-3">{t("section1.heading")}</h2>
               <p>
                 PLUCO GROUP SP. Z O.O.<br />
+                {locale === "de" ? "Betreiberin von DeutschPilot · gestaltet von Desivo Group" : "Operator of DeutschPilot · designed by Desivo Group"}<br />
                 Ksawerów 3<br />
                 02-656 Warsaw, Poland<br />
                 {t("registryLabel")}

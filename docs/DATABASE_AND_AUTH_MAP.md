@@ -79,6 +79,9 @@ createdAt: Timestamp
 - Placement tests
 - Student task progress (`student_task_progress` table — upsert on completion)
 - All public-facing learning content
+- Server-owned platform subscription entitlements (`platform_subscriptions`)
+- Stripe webhook idempotency and delivery evidence (`stripe_webhook_events`, `subscription_notifications`)
+- Public cancellation receipts (`subscription_cancellation_requests`)
 
 **Key tables (inferred from query patterns):**
 - `courses`
@@ -238,13 +241,25 @@ MAIL_FROM
 CONTACT_RECEIVER
 ```
 
-### Stripe (not yet active)
+### Stripe subscriptions (launch-gated)
 
 ```
 STRIPE_SECRET_KEY
 STRIPE_WEBHOOK_SECRET
 STRIPE_PUBLISHABLE_KEY
+STRIPE_PRICE_SUBSCRIPTION
+STRIPE_TAX_ENABLED
+PAYWALL_ENABLED
 ```
+
+The paywall now fails closed by default. `PAYWALL_ENABLED=false` is an explicit
+emergency rollback that temporarily restores free access. Do not deploy the
+subscription release until the migration is applied, the verified PLUCO Stripe
+account has the €15 recurring price and customer portal, the signed webhook
+endpoint is healthy, tax configuration is reviewed, and end-to-end sandbox
+tests pass. Firebase UID metadata is written server-side into Checkout and
+Subscription objects; current Stripe webhook state, never a browser success
+URL, grants or removes access.
 
 ### App
 

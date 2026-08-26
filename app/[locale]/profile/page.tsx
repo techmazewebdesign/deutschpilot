@@ -3,6 +3,8 @@ import { getTranslations } from "next-intl/server";
 import { auth } from "@/lib/auth";
 import { AppLayout } from "@/components/app/app-layout";
 import { createServerSupabaseClient } from "@/lib/supabaseServer";
+import { createAdminSupabaseClient } from "@/lib/supabaseAdmin";
+import { SubscriptionCard } from "@/components/subscription/subscription-card";
 import { User, Mail, GraduationCap, Lock, BookOpen } from "lucide-react";
 
 export default async function ProfilePage({ params }: { params: { locale: string } }) {
@@ -16,6 +18,10 @@ export default async function ProfilePage({ params }: { params: { locale: string
 
   const supabase = createServerSupabaseClient();
   const userId = session.user.id;
+  const subscriptionRes = await createAdminSupabaseClient().from("platform_subscriptions")
+    .select("status,cancel_at_period_end,current_period_end")
+    .eq("user_id", userId).maybeSingle();
+  const subscription = subscriptionRes.data;
 
   // Fetch profile data
   const [profileRes, placementRes, progressRes] = await Promise.all([
@@ -68,6 +74,13 @@ export default async function ProfilePage({ params }: { params: { locale: string
             <p className="text-sm text-white/45">{email}</p>
           </div>
         </div>
+
+        <SubscriptionCard
+          locale={locale}
+          status={subscription?.status ?? null}
+          cancelAtPeriodEnd={Boolean(subscription?.cancel_at_period_end)}
+          currentPeriodEnd={subscription?.current_period_end ?? null}
+        />
 
         {/* Info cards */}
         <div className="space-y-3 mb-8">
