@@ -21,9 +21,10 @@ export function isPlaceholderLocale(locale: string): boolean {
   return PLACEHOLDER_LOCALES.includes(locale);
 }
 
-export default getRequestConfig(async ({ locale }) => {
+export default getRequestConfig(async ({ requestLocale }) => {
+  const locale = await requestLocale;
   if (!locales.includes(locale as Locale)) notFound();
 
   const localeMessages = (await import(`./messages/${locale}.json`)).default;
-  return { messages: localeMessages };
+  return { locale, messages: localeMessages };
 });
