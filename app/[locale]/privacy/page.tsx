@@ -47,8 +47,8 @@ export default function PrivacyPage({ params }: { params: { locale: string } }) 
               <h2 className="text-white font-semibold mb-3">{isDE ? "3. Ihre Rechte" : "3. Your Rights"}</h2>
               <p className="leading-relaxed">
                 {isDE
-                  ? "Sie haben das Recht auf Auskunft, Berichtigung, Löschung und Einschränkung der Verarbeitung Ihrer personenbezogenen Daten."
-                  : "You have the right to access, correct, delete, and restrict the processing of your personal data."}
+                  ? "Sie haben – soweit anwendbar – das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung, Datenübertragbarkeit und Widerspruch. Eine Einwilligung können Sie jederzeit mit Wirkung für die Zukunft widerrufen. Zur Ausübung Ihrer Rechte schreiben Sie an info@deutschpilot.de. Außerdem können Sie sich bei einer zuständigen Aufsichtsbehörde beschweren."
+                  : "Where applicable, you have the right to access, correct, delete, restrict, port, and object to the processing of your personal data. You may withdraw consent at any time for the future. To exercise a right, email info@deutschpilot.de. You may also complain to a competent supervisory authority."}
               </p>
             </div>
             <div className="bg-[#0B1B33]/50 border border-white/10 rounded-xl p-6">
@@ -74,6 +74,18 @@ export default function PrivacyPage({ params }: { params: { locale: string } }) 
               <p className="leading-relaxed">{isDE
                 ? "Kontodaten werden grundsätzlich bis zur Löschung des Kontos oder Wegfall des Zwecks gespeichert. Vertrags-, Rechnungs- und Zahlungsnachweise werden für die gesetzlichen handels- und steuerrechtlichen Fristen aufbewahrt; Sicherheits- und Zustellnachweise nur so lange wie erforderlich. Anfragen zu Betroffenenrechten: info@deutschpilot.de. Es besteht ein Beschwerderecht bei der zuständigen Datenschutzaufsicht, insbesondere der polnischen UODO."
                 : "Account data is generally retained until account deletion or the purpose ends. Contract, invoice and payment evidence is retained for statutory accounting and tax periods; security and delivery evidence only as long as necessary. Data-subject requests: info@deutschpilot.de. You may complain to the competent supervisory authority, including Poland's UODO."}</p>
+            </div>
+            <div className="bg-[#0B1B33]/50 border border-white/10 rounded-xl p-6">
+              <h2 className="text-white font-semibold mb-3">{isDE ? "8. Cookies, lokale Speicherung und Analyse" : "8. Cookies, local storage and analytics"}</h2>
+              <p className="leading-relaxed">{isDE
+                ? "Wir verwenden notwendige Sitzungs- und Sicherheitsspeicher für Anmeldung, Sprache, Lernfortschritt und Berechtigungen. Optionale Analyse- oder Marketingtechnologien dürfen nur nach einer entsprechenden Einwilligung aktiviert werden. Soweit in der laufenden Version kein Einwilligungsdialog für eine optionale Kategorie angezeigt wird, wird diese Kategorie nicht als aktiviert beschrieben. Browserdaten können in den Browsereinstellungen gelöscht werden; eine erteilte Einwilligung kann jederzeit für die Zukunft widerrufen werden."
+                : "We use necessary session and security storage for sign-in, language, learning progress, and entitlements. Optional analytics or marketing technologies may be enabled only after the corresponding consent. If the current release does not present a consent control for an optional category, this notice does not claim that category is active. Browser data can be cleared in browser settings, and consent can be withdrawn for the future at any time."}</p>
+            </div>
+            <div className="bg-[#0B1B33]/50 border border-white/10 rounded-xl p-6">
+              <h2 className="text-white font-semibold mb-3">{isDE ? "9. Sicherheit und Datenmanagement" : "9. Security and data management"}</h2>
+              <p className="leading-relaxed">{isDE
+                ? "Wir setzen angemessene technische und organisatorische Maßnahmen ein, darunter verschlüsselte Übertragung, Anbieter-gestützte Kontosicherheit, serverseitige Prüfung bezahlter Berechtigungen sowie rollenbezogene Zugriffe. Kein System ist absolut sicher. Verwenden Sie ein starkes, nur hier eingesetztes Passwort und übermitteln Sie keine besonderen Kategorien personenbezogener Daten, wenn eine Funktion dies nicht ausdrücklich vorsieht."
+                : "We use reasonable technical and organisational measures, including encrypted transport, provider-managed account security, server-side verification of paid entitlements, and role-based access. No system is absolutely secure. Use a strong, unique password and do not submit special-category personal data unless a feature expressly calls for it."}</p>
             </div>
           </div>
         </section>
