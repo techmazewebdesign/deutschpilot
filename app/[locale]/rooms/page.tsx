@@ -1,3 +1,4 @@
+import { pageAlternates } from "@/lib/page-alternates";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { AppLayout } from "@/components/app/app-layout";
@@ -21,7 +22,7 @@ export const dynamic = "force-dynamic";
 
 export function generateMetadata({ params }: { params: { locale: string } }): Metadata {
   const de = params.locale === "de";
-  return {
+  return { alternates: pageAlternates(params.locale, "/rooms"),
     title: de
       ? "Lernräume: Deutsch lernen Thema für Thema | DeutschPilot"
       : "Learning Rooms: Learn German Topic by Topic | DeutschPilot",

@@ -1,3 +1,4 @@
+import { pageAlternates } from "@/lib/page-alternates";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { BookOpen, ChevronRight, Clock } from "lucide-react";
@@ -8,7 +9,7 @@ import { isPlaceholderLocale } from "@/i18n";
 
 export function generateMetadata({ params }: { params: { locale: string } }): Metadata {
   const de = params.locale === "de";
-  return {
+  return { alternates: pageAlternates(params.locale, "/mock-exam"),
     title: de
       ? "B1 & B2 Modellprüfung: Teste dich vor der echten Prüfung | DeutschPilot"
       : "B1 & B2 Mock Exam: Test yourself before the real exam | DeutschPilot",

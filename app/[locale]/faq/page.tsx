@@ -1,3 +1,4 @@
+import { pageAlternates } from "@/lib/page-alternates";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
@@ -11,7 +12,7 @@ const BASE_URL = "https://deutschpilot.de";
 
 export async function generateMetadata({ params }: { params: { locale: string } }): Promise<Metadata> {
   const t = await getTranslations({ locale: params.locale, namespace: "seo" });
-  return {
+  return { alternates: pageAlternates(params.locale, "/faq"),
     title: t("faqTitle"),
     description: t("faqDescription"),
   };

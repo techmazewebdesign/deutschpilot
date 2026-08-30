@@ -1,3 +1,4 @@
+import { pageAlternates } from "@/lib/page-alternates";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
@@ -13,7 +14,7 @@ export const dynamic = "force-dynamic";
 
 export async function generateMetadata({ params }: { params: { locale: string } }): Promise<Metadata> {
   const t = await getTranslations({ locale: params.locale, namespace: "levelsPage" });
-  return {
+  return { alternates: pageAlternates(params.locale, "/levels"),
     title: t("metaTitle"),
     description: t("metaDescription"),
   };

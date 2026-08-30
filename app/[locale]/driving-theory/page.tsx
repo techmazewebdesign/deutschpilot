@@ -1,3 +1,4 @@
+import { pageAlternates } from "@/lib/page-alternates";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Car, Bike, ChevronRight, AlertTriangle } from "lucide-react";
@@ -8,7 +9,7 @@ import { isPlaceholderLocale } from "@/i18n";
 
 export function generateMetadata({ params }: { params: { locale: string } }): Metadata {
   const de = params.locale === "de";
-  return {
+  return { alternates: pageAlternates(params.locale, "/driving-theory"),
     title: de
       ? "Führerschein Theorie üben | DeutschPilot"
       : "Practice German Driving Theory | DeutschPilot",

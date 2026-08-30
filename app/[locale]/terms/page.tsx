@@ -1,3 +1,4 @@
+import { pageAlternates } from "@/lib/page-alternates";
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { Navigation } from "@/components/navigation";
@@ -7,7 +8,7 @@ import { isPlaceholderLocale } from "@/i18n";
 
 export async function generateMetadata({ params }: { params: { locale: string } }): Promise<Metadata> {
   const t = await getTranslations({ locale: params.locale, namespace: "seo" });
-  return { title: t("termsTitle") };
+  return { alternates: pageAlternates(params.locale, "/terms"), title: t("termsTitle") };
 }
 
 export default async function TermsPage({ params }: { params: { locale: string } }) {

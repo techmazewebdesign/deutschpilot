@@ -1,3 +1,4 @@
+import { pageAlternates } from "@/lib/page-alternates";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
@@ -9,7 +10,7 @@ import { Users, MessageSquare, Globe, CalendarDays, Mail } from "lucide-react";
 
 export async function generateMetadata({ params }: { params: { locale: string } }): Promise<Metadata> {
   const t = await getTranslations({ locale: params.locale, namespace: "communityPage" });
-  return {
+  return { alternates: pageAlternates(params.locale, "/community"),
     title: t("metaTitle"),
     description: t("metaDescription"),
   };
