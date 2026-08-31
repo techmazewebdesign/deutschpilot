@@ -8,7 +8,15 @@ import { isPlaceholderLocale } from "@/i18n";
 
 export async function generateMetadata({ params }: { params: { locale: string } }): Promise<Metadata> {
   const t = await getTranslations({ locale: params.locale, namespace: "seo" });
-  return { alternates: pageAlternates(params.locale, "/impressum"), title: t("impressumTitle"), robots: { index: true, follow: true } };
+  const isGerman = params.locale === "de";
+  return {
+    alternates: pageAlternates(params.locale, "/impressum"),
+    title: isGerman ? t("impressumTitle") : "Legal Notice | DeutschPilot",
+    description: isGerman
+      ? "Impressum und Anbieterkennzeichnung von DeutschPilot mit Angaben zur verantwortlichen PLUCO GROUP SP. Z O.O."
+      : "Legal notice and provider details for DeutschPilot, including the responsible operator PLUCO GROUP SP. Z O.O.",
+    robots: { index: true, follow: true },
+  };
 }
 
 export default async function ImpressumPage({ params }: { params: { locale: string } }) {

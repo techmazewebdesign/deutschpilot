@@ -11,7 +11,7 @@ import { Users, MessageSquare, Globe, CalendarDays, Mail } from "lucide-react";
 export async function generateMetadata({ params }: { params: { locale: string } }): Promise<Metadata> {
   const t = await getTranslations({ locale: params.locale, namespace: "communityPage" });
   return { alternates: pageAlternates(params.locale, "/community"),
-    title: t("metaTitle"),
+    title: params.locale === "de" ? "Deutsch-Lerncommunity | DeutschPilot" : "German Learning Community | DeutschPilot",
     description: t("metaDescription"),
   };
 }

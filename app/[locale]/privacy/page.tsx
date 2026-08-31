@@ -7,7 +7,13 @@ import { isPlaceholderLocale } from "@/i18n";
 
 export function generateMetadata({ params }: { params: { locale: string } }): Metadata {
   const de = params.locale === "de";
-  return { alternates: pageAlternates(params.locale, "/privacy"), title: de ? "Datenschutz | DeutschPilot" : "Privacy Policy | DeutschPilot" };
+  return {
+    alternates: pageAlternates(params.locale, "/privacy"),
+    title: de ? "Datenschutz | DeutschPilot" : "Privacy Policy | DeutschPilot",
+    description: de
+      ? "Datenschutzhinweise von DeutschPilot zu Konten, Lernfortschritt, Zahlungen, Hosting, Speicherdauer und Betroffenenrechten."
+      : "DeutschPilot privacy information covering accounts, learning progress, payments, hosting, retention, and data-subject rights.",
+  };
 }
 
 export default function PrivacyPage({ params }: { params: { locale: string } }) {

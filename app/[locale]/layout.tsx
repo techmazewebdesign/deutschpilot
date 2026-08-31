@@ -40,11 +40,22 @@ export async function generateMetadata({ params: { locale } }: { params: { local
       siteName: "DeutschPilot",
       title,
       description,
+      images: [
+        {
+          url: "/Images/mainpagephto.JPG",
+          width: 1535,
+          height: 1024,
+          alt: isGerman
+            ? "Deutsch lernen mit DeutschPilot"
+            : "Learn German with DeutschPilot",
+        },
+      ],
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
+      images: ["/Images/mainpagephto.JPG"],
     },
   };
 }

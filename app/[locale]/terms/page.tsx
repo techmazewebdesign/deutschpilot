@@ -8,7 +8,13 @@ import { isPlaceholderLocale } from "@/i18n";
 
 export async function generateMetadata({ params }: { params: { locale: string } }): Promise<Metadata> {
   const t = await getTranslations({ locale: params.locale, namespace: "seo" });
-  return { alternates: pageAlternates(params.locale, "/terms"), title: t("termsTitle") };
+  return {
+    alternates: pageAlternates(params.locale, "/terms"),
+    title: t("termsTitle"),
+    description: params.locale === "de"
+      ? "Allgemeine Geschäftsbedingungen für DeutschPilot-Abonnements, digitale Inhalte, Widerruf, Kündigung und Haftung."
+      : "Terms for DeutschPilot subscriptions and digital content, including withdrawal, cancellation, and liability information.",
+  };
 }
 
 export default async function TermsPage({ params }: { params: { locale: string } }) {
