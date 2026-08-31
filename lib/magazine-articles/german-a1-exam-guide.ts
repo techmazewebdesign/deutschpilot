@@ -11,7 +11,7 @@ export const article: MagazineArticle = {
     "Structure, timing, and pass thresholds of the Goethe A1 exam (Start Deutsch 1) — plus a 4-week preparation plan across all four skills.",
   description_de:
     "Aufbau, Zeiten und Bestehensgrenzen der Goethe-A1-Prüfung (Start Deutsch 1) — plus ein 4-Wochen-Vorbereitungsplan für alle vier Fertigkeiten.",
-  body_en: `<p>The A1 certificate — most commonly the Goethe-Institut's <strong>"Start Deutsch 1"</strong> — is the entry ticket for many visa categories (including spousal reunification for Germany) and the first official milestone for every learner. Here's exactly what the exam looks like and how to prepare without panic.</p>
+  body_en: `<p>The Goethe-Institut's <strong>"Start Deutsch 1"</strong> assesses basic German at level A1. This guide introduces its format and offers practice ideas. The exercise above is our own learning material, not an official exam or a certificate.</p>
 
 <h2>The four exam parts</h2>
 <table>
@@ -23,13 +23,14 @@ export const article: MagazineArticle = {
     <tr><td><strong>Sprechen</strong> (Speaking)</td><td>~15 min, in a group</td><td>Introduce yourself, ask/answer simple questions with cue cards, make simple requests.</td></tr>
   </tbody>
 </table>
-<p>You need <strong>60% overall</strong> to pass — there is no minimum per section, so a strong listening score can rescue a weaker writing one.</p>
+<p>Passing requires <strong>at least 60 out of 100 points</strong> and completion of every exam section. Follow the provider's current rules rather than treating any section as optional.</p>
+<p>Exam facts checked on 31 August 2026: <a href="https://www.goethe.de/ins/be/de/spr/prf/gzsd1/inf.html">Goethe-Institut exam format and timings</a> and <a href="https://www.goethe.de/en/spr/prf/pes/pas1.html">official result rules</a>. Check the current provider information before booking.</p>
 
 <h2>What trips people up (and how to avoid it)</h2>
 <ul>
-  <li><strong>The writing message.</strong> The task always gives three bullet points. Cover all three — missing one costs disproportionate points. Learn a reusable frame: greeting → point 1 → point 2 → point 3 → closing ("Viele Grüße, …").</li>
+  <li><strong>The writing message.</strong> Read the task carefully and cover every requested point. Practise a reusable frame: greeting → requested information → closing ("Viele Grüße, …").</li>
   <li><strong>Numbers under time pressure.</strong> Phone numbers, prices, and times are listening-part staples. Drill 0–100 until instant.</li>
-  <li><strong>Freezing in the speaking part.</strong> The self-introduction is 100% predictable: Name, Alter, Land, Wohnort, Sprachen, Beruf, Hobby. Script it, rehearse it aloud, record yourself.</li>
+  <li><strong>Freezing in the speaking part.</strong> Practise a short introduction using topics such as your name, home and languages. Rehearse aloud, then vary the details and practise follow-up questions rather than relying only on a memorised script.</li>
 </ul>
 
 <h2>A 4-week preparation plan (1 hour/day)</h2>
@@ -41,9 +42,9 @@ export const article: MagazineArticle = {
 </ol>
 
 <h2>The mindset</h2>
-<p>A1 examiners are not hunting for perfect grammar — they check whether you can <strong>survive simple everyday situations</strong>. Wrong articles and simple sentences are fine. Silence is the only real enemy.</p>
+<p>Practise <strong>simple, understandable communication in everyday situations</strong>. Start with short sentences and work on recurring mistakes. The provider's assessment criteria, not this practice score, determine the exam result. The four-week plan is a study suggestion, not a guarantee that four weeks will be enough.</p>
 <p>All four skills in this plan map directly to our <a href="/en/courses">A1 practice courses</a> — reading, listening, writing (with AI feedback), and speaking practice included.</p>`,
-  body_de: `<p>Das A1-Zertifikat — meist die Goethe-Prüfung <strong>„Start Deutsch 1"</strong> — ist die Eintrittskarte für viele Visa-Kategorien (u. a. Ehegattennachzug nach Deutschland) und der erste offizielle Meilenstein für alle Lernenden. Hier ist genau, wie die Prüfung aussieht und wie du dich ohne Panik vorbereitest.</p>
+  body_de: `<p>Die Goethe-Prüfung <strong>„Start Deutsch 1"</strong> prüft einfache Deutschkenntnisse auf dem Niveau A1. Dieser Ratgeber erklärt den Aufbau und gibt Übungsideen. Die Übung oben ist eigenes Lernmaterial von DeutschPilot, keine offizielle Prüfung und kein Zertifikat.</p>
 
 <h2>Die vier Prüfungsteile</h2>
 <table>
@@ -55,13 +56,14 @@ export const article: MagazineArticle = {
     <tr><td><strong>Sprechen</strong></td><td>ca. 15 Min., in der Gruppe</td><td>Sich vorstellen, einfache Fragen mit Kärtchen stellen/beantworten, einfache Bitten formulieren.</td></tr>
   </tbody>
 </table>
-<p>Zum Bestehen brauchst du <strong>insgesamt 60 %</strong> — es gibt keine Mindestpunktzahl pro Teil, ein starkes Hörverstehen kann also ein schwächeres Schreiben ausgleichen.</p>
+<p>Zum Bestehen brauchst du <strong>mindestens 60 von 100 Punkten</strong> und musst alle Prüfungsteile ablegen. Beachte die aktuellen Regeln des Anbieters; kein Prüfungsteil ist optional.</p>
+<p>Prüfungsangaben geprüft am 31. August 2026: <a href="https://www.goethe.de/ins/be/de/spr/prf/gzsd1/inf.html">Goethe-Institut: Aufbau und Zeiten</a> und <a href="https://www.goethe.de/de/m/spr/prf/pes/pas1.html">offizielle Ergebnisregeln</a>. Prüfe vor der Anmeldung die aktuellen Informationen des Anbieters.</p>
 
 <h2>Woran die meisten scheitern (und wie du es vermeidest)</h2>
 <ul>
-  <li><strong>Die schriftliche Mitteilung.</strong> Die Aufgabe nennt immer drei Punkte. Behandle alle drei — ein vergessener Punkt kostet überproportional. Lerne ein wiederverwendbares Gerüst: Anrede → Punkt 1 → Punkt 2 → Punkt 3 → Gruß („Viele Grüße, …").</li>
+  <li><strong>Die schriftliche Mitteilung.</strong> Lies die Aufgabe genau und behandle alle verlangten Punkte. Übe ein wiederverwendbares Gerüst: Anrede → verlangte Informationen → Gruß („Viele Grüße, …").</li>
   <li><strong>Zahlen unter Zeitdruck.</strong> Telefonnummern, Preise und Uhrzeiten sind Klassiker im Hörteil. Übe 0–100 bis zur Automatik.</li>
-  <li><strong>Blockade beim Sprechen.</strong> Die Selbstvorstellung ist 100 % vorhersehbar: Name, Alter, Land, Wohnort, Sprachen, Beruf, Hobby. Schreib sie auf, übe sie laut, nimm dich auf.</li>
+  <li><strong>Blockade beim Sprechen.</strong> Übe eine kurze Vorstellung, etwa zu Name, Wohnort und Sprachen. Sprich laut, variiere danach die Angaben und übe Rückfragen, statt dich nur auf einen auswendig gelernten Text zu verlassen.</li>
 </ul>
 
 <h2>Ein 4-Wochen-Plan (1 Stunde/Tag)</h2>
@@ -73,6 +75,6 @@ export const article: MagazineArticle = {
 </ol>
 
 <h2>Die richtige Haltung</h2>
-<p>A1-Prüfer*innen suchen keine perfekte Grammatik — sie prüfen, ob du <strong>einfache Alltagssituationen bewältigen</strong> kannst. Falsche Artikel und einfache Sätze sind in Ordnung. Der einzige echte Feind ist Schweigen.</p>
+<p>Übe, dich in <strong>einfachen Alltagssituationen verständlich auszudrücken</strong>. Beginne mit kurzen Sätzen und arbeite an wiederkehrenden Fehlern. Für das Prüfungsergebnis gelten die Bewertungskriterien des Anbieters, nicht dieser Übungspunktestand. Der Vier-Wochen-Plan ist ein Lernvorschlag und keine Zusage, dass vier Wochen ausreichen.</p>
 <p>Alle vier Fertigkeiten dieses Plans findest du direkt in unseren <a href="/de/courses">A1-Übungskursen</a> — Lesen, Hören, Schreiben (mit KI-Feedback) und Sprechen inklusive.</p>`,
 };

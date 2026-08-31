@@ -67,3 +67,13 @@ test("integration stays scoped to the existing A1 article", () => {
   assert.match(page, /slug === "german-a1-exam-guide" &&/);
   assert.match(page, /<A1IntroductionPractice key=\{locale\} locale=\{de \? "de" : "en"\}/);
 });
+
+test("A1 guide cites current provider rules without exam or visa guarantees", () => {
+  const article = readFileSync("lib/magazine-articles/german-a1-exam-guide.ts", "utf8");
+  assert.match(article, /60 out of 100 points/);
+  assert.match(article, /60 von 100 Punkten/);
+  assert.match(article, /completion of every exam section/);
+  assert.match(article, /alle Prüfungsteile ablegen/);
+  assert.match(article, /https:\/\/www.goethe.de\/en\/spr\/prf\/pes\/pas1.html/);
+  assert.doesNotMatch(article, /100% predictable|100 % vorhersehbar|entry ticket|Eintrittskarte|only real enemy|einzige echte Feind/);
+});
