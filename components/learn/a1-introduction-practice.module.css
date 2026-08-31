@@ -1,0 +1,30 @@
+.practice { margin: 0 0 3rem; padding: clamp(1.1rem, 4vw, 2rem); border: 1px solid #e0b87366; border-radius: 1.25rem; background: #0a1e35; color: #edf2f8; scroll-margin-top: 7rem; line-height: 1.65; }
+.practice h2 { font-family: var(--font-heading), Georgia, serif; font-size: clamp(1.8rem, 4vw, 2.4rem); font-weight: 700; line-height: 1.2; margin: .5rem 0 1rem; }
+.practice h3 { font-size: 1.1rem; font-weight: 700; margin: 1.8rem 0 .75rem; }
+.practice p { margin: .65rem 0; }
+.practice .badge { color: #e0b873; font-size: .75rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+.practice .notice { color: #b5c3d3; font-size: .85rem; }
+.practice blockquote { margin: 1rem 0 1.5rem; padding: 1rem 1.2rem; border-left: 3px solid #e0b873; background: #071424; border-radius: 0 .5rem .5rem 0; }
+.practice fieldset { min-width: 0; margin: 1.3rem 0; padding: 0; border: 0; }
+.practice legend { font-weight: 600; padding: 0; margin-bottom: .6rem; }
+.options { display: grid; gap: .5rem; }
+.options label { display: flex; align-items: center; gap: .7rem; padding: .7rem .85rem; border: 1px solid #758499; border-radius: .6rem; cursor: pointer; min-height: 44px; }
+.options label:has(input:checked) { border-color: #e0b873; background: #e0b87312; }
+.options input { flex-shrink: 0; width: 1.1rem; height: 1.1rem; accent-color: #e0b873; }
+.options label:hover { border-color: #e0b873; }
+.practice :focus-visible { outline: 3px solid #f6d89f; outline-offset: 4px; }
+.practice fieldset:disabled { opacity: .7; }
+.actions, .links { display: flex; flex-wrap: wrap; align-items: center; gap: .75rem 1.25rem; margin: 1.3rem 0 0; }
+.actions button { padding: .75rem 1rem; background: #e0b873; color: #071424; font-weight: 700; border-radius: .6rem; min-height: 44px; }
+.actions button:disabled { opacity: .5; cursor: not-allowed; }
+.actions .secondary { background: transparent; color: #edf2f8; border: 1px solid #758499; }
+.practice .correct { color: #a3e8bd; }
+.practice .wrong { color: #ffd197; }
+.result { margin-top: 1.5rem; padding: 1rem; border: 1px solid #e0b873; border-radius: .7rem; }
+.result h3 { margin: 0; scroll-margin-top: 7rem; }
+.solutions { border-block: 1px solid #758499; margin-top: 1.5rem; padding: .75rem 0; }
+.solutions summary { cursor: pointer; font-weight: 600; padding: .4rem; }
+.solutions ol { list-style: decimal; padding-left: 1.5rem; }
+.solutions li { margin: 1rem 0; }
+.links a { color: #e0b873; text-decoration: underline; text-underline-offset: .2em; padding-block: .5rem; }
+@media (min-width: 640px) { .options { grid-template-columns: repeat(3, minmax(0, 1fr)); } }

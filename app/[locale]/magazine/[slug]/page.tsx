@@ -8,6 +8,7 @@ import { isPlaceholderLocale, locales } from "@/i18n";
 import { articles, getArticle } from "@/lib/magazine";
 import { ArrowLeft, Clock } from "lucide-react";
 import { MagazineComments } from "@/components/magazine/comments";
+import { A1IntroductionPractice } from "@/components/learn/a1-introduction-practice";
 
 const BASE_URL = "https://www.deutschpilot.de";
 
@@ -135,6 +136,10 @@ export default async function MagazineArticlePage({
               {t("readingTime", { minutes: article.readingMinutes })}
             </span>
           </div>
+
+          {slug === "german-a1-exam-guide" && (
+            <A1IntroductionPractice key={locale} locale={de ? "de" : "en"} />
+          )}
 
           <div
             className="prose prose-invert prose-sm sm:prose-base max-w-none
