@@ -38,6 +38,12 @@ export function Footer() {
               </div>
             </Link>
             <p className="text-sm text-white/40 max-w-xs">{t("description")}</p>
+            <a
+              href="mailto:info@deutschpilot.de"
+              className="mt-3 inline-block text-sm text-gold/80 hover:text-gold transition-colors"
+            >
+              info@deutschpilot.de
+            </a>
           </div>
 
           {/* Courses */}
