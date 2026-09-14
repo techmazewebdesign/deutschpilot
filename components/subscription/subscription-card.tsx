@@ -21,7 +21,7 @@ export function SubscriptionCard({ locale, status, cancelAtPeriodEnd, currentPer
     setBusy(true); setMessage(null);
     const response = await fetch("/api/checkout/create-session", {
       method: "POST", headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ level: "A2", withdrawalConsent: consent }),
+      body: JSON.stringify({ level: "A2", locale, withdrawalConsent: consent }),
     });
     const body = await response.json() as { url?: string; error?: string };
     if (response.ok && body.url) window.location.href = body.url;
@@ -70,11 +70,12 @@ export function SubscriptionCard({ locale, status, cancelAtPeriodEnd, currentPer
       ) : (
         <>
           <p className="mb-4 text-sm text-white/55">{de ? "Alle Niveaus A1–C1, Übungen, Prüfungsvorbereitung und KI-Trainer für 15 € pro Monat." : "All A1–C1 levels, exercises, exam preparation and AI trainer for €15 per month."}</p>
+          {de && <p className="mb-4 rounded-lg border border-amber-400/25 bg-amber-400/10 px-3 py-2 text-xs leading-relaxed text-amber-200">Der kostenpflichtige Zugang für Anmeldungen aus Deutschland ist derzeit pausiert. Wir prüfen die erforderliche Zulassung nach dem Fernunterrichtsschutzgesetz. Kostenlose Übungen und bestehende Zugänge bleiben verfügbar. Fragen: info@deutschpilot.de</p>}
           <label className="mb-4 flex items-start gap-3 text-xs text-white/55">
             <input type="checkbox" checked={consent} onChange={(event) => setConsent(event.target.checked)} className="mt-0.5" />
             <span>{de ? "Ich verlange sofortigen digitalen Zugang und akzeptiere AGB, Widerrufsbelehrung und Datenschutz." : "I request immediate digital access and accept the terms, withdrawal notice and privacy policy."}</span>
           </label>
-          <button type="button" onClick={subscribe} disabled={busy || !consent} className="rounded-lg bg-[#E0B873] px-5 py-2.5 text-sm font-bold text-[#071424] disabled:opacity-50">
+          <button type="button" onClick={subscribe} disabled={busy || !consent || de} className="rounded-lg bg-[#E0B873] px-5 py-2.5 text-sm font-bold text-[#071424] disabled:opacity-50">
             {de ? "Für 15 € / Monat abonnieren" : "Subscribe for €15 / month"}
           </button>
         </>

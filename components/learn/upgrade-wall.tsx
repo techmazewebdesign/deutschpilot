@@ -25,7 +25,7 @@ export function UpgradeWall({ locale, level, backHref }: Props) {
       const res = await fetch("/api/checkout/create-session", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ level, withdrawalConsent: consent }),
+        body: JSON.stringify({ level, locale, withdrawalConsent: consent }),
       });
       const data = (await res.json()) as { url?: string; error?: string };
       if (!res.ok || !data.url) {
@@ -60,6 +60,7 @@ export function UpgradeWall({ locale, level, backHref }: Props) {
         <p className="text-sm text-white/50 mb-6 max-w-sm mx-auto">
           {t("paidCourseNotice")}
         </p>
+        {locale === "de" && <p className="text-xs leading-relaxed text-amber-200 bg-amber-400/10 border border-amber-400/25 rounded-md px-4 py-3 mb-4">Der kostenpflichtige Zugang für Anmeldungen aus Deutschland ist derzeit pausiert. Wir prüfen die erforderliche Zulassung nach dem Fernunterrichtsschutzgesetz. Kostenlose Übungen und bestehende Zugänge bleiben verfügbar. Fragen: info@deutschpilot.de</p>}
 
         {error && (
           <p className="text-sm text-red-400 bg-red-400/10 border border-red-400/20 rounded-md px-4 py-3 mb-4">
@@ -79,7 +80,7 @@ export function UpgradeWall({ locale, level, backHref }: Props) {
         <button
           type="button"
           onClick={handleBuy}
-          disabled={loading || !consent}
+          disabled={loading || !consent || locale === "de"}
           className="inline-flex items-center gap-2 bg-[#E0B873] text-[#071424] font-bold px-8 py-3 rounded-xl hover:bg-[#C99B50] transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
         >
           {loading

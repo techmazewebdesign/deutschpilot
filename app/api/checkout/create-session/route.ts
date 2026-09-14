@@ -11,6 +11,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "@/lib/session";
 import { createPlatformSubscriptionCheckout, platformSubscriptionPriceId } from "@/lib/stripe";
 import { isPaidLevel, hasActivePlatformSubscription } from "@/lib/entitlements";
+import { GERMAN_PAID_ENROLLMENT_NOTICE, GERMAN_PAID_ENROLLMENT_NOTICE_EN, isGermanPaidEnrollmentBlocked, isGermanPaidEnrollmentRequest, localeFromReferer, normalizeCheckoutLocale } from "@/lib/fernusg";
 
 export const runtime = "nodejs";
 
@@ -22,11 +23,6 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  const session = await getServerSession();
-  if (!session?.user) {
-    return NextResponse.json({ error: "Not authenticated." }, { status: 401 });
-  }
-
   let body: Record<string, unknown>;
   try {
     body = await req.json();
@@ -34,14 +30,22 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Invalid JSON body." }, { status: 400 });
   }
 
-  const { level, product, withdrawalConsent } = body as { level?: string; product?: string; withdrawalConsent?: boolean };
+  const { level, product, withdrawalConsent, locale: bodyLocale } = body as { level?: string; product?: string; withdrawalConsent?: boolean; locale?: string };
   const configuredOrigin = process.env.NEXT_PUBLIC_APP_URL?.trim();
   if (process.env.NODE_ENV === "production" && !configuredOrigin) {
     return NextResponse.json({ error: "Application URL is not configured." }, { status: 503 });
   }
   const origin = (configuredOrigin || new URL(req.url).origin).replace(/\/+$/, "");
-  const requestedLocale = req.headers.get("referer")?.match(/\/([a-z]{2})(?:\/|$)/)?.[1];
-  const locale = requestedLocale === "de" ? "de" : "en";
+  const locale = normalizeCheckoutLocale(bodyLocale) ?? localeFromReferer(req.headers.get("referer"));
+  if (!locale) return NextResponse.json({ error: "Checkout language is required." }, { status: 400 });
+  if (isGermanPaidEnrollmentBlocked() && isGermanPaidEnrollmentRequest(locale, req.headers.get("x-vercel-ip-country"))) {
+    return NextResponse.json({ error: locale === "de" ? GERMAN_PAID_ENROLLMENT_NOTICE : GERMAN_PAID_ENROLLMENT_NOTICE_EN, code: "german_paid_enrollment_paused" }, { status: 451 });
+  }
+
+  const session = await getServerSession();
+  if (!session?.user) {
+    return NextResponse.json({ error: "Not authenticated." }, { status: 401 });
+  }
 
   if (product !== "ai_trainer" && (!level || !isPaidLevel(level))) {
     return NextResponse.json({ error: "Invalid or missing level." }, { status: 400 });
@@ -80,6 +84,6 @@ export async function POST(req: NextRequest) {
   } catch (err) {
     const msg = err instanceof Error ? err.message : String(err);
     console.error("[checkout] create-session failed:", msg);
-    return NextResponse.json({ error: "Could not start checkout." }, { status: 500 });
+    return NextResponse.json({ error: locale === "de" ? GERMAN_PAID_ENROLLMENT_NOTICE : GERMAN_PAID_ENROLLMENT_NOTICE_EN }, { status: 500 });
   }
 }

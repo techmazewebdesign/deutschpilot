@@ -66,6 +66,7 @@ const languages = [
 export function Navigation() {
   const t = useTranslations("nav");
   const tFooter = useTranslations("footer");
+  const tCompliance = useTranslations("compliance");
   const params = useParams();
   const pathname = usePathname();
   const locale = (params?.locale as string) ?? "de";
@@ -297,6 +298,11 @@ export function Navigation() {
           </Sheet>
         </div>
       </div>
+      {locale === "de" && (
+        <div className="border-t border-amber-300/15 bg-amber-300/10 px-4 py-2 text-center text-xs leading-relaxed text-amber-100">
+          {tCompliance("germanEnrollmentPaused")}
+        </div>
+      )}
     </header>
   );
 }

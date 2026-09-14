@@ -376,7 +376,7 @@ export default async function RoomsPage({
                     {de ? `${activeLevel} Modellprüfung` : `${activeLevel} Mock Exam`}
                   </p>
                   <p className="text-xs text-white/40">
-                    {de ? "Teste dich im echten Prüfungsformat, bevor du zur echten Prüfung gehst." : "Test yourself in the real exam format before the real thing."}
+                    {de ? "Teste dich mit einer Übungsprüfung zur Vorbereitung — keine offizielle Prüfung oder Prüfungsbewertung." : "Use a practice exam for preparation — not an official examination or official assessment."}
                   </p>
                 </div>
                 <ChevronRight className="h-4 w-4 text-white/25 flex-shrink-0" />

@@ -1,7 +1,7 @@
 {
   "metadata": {
     "title": "DeutschPilot – Premium German Courses & Retreats",
-    "description": "DeutschPilot is the premium learning platform for fast progress, real results, and new opportunities."
+    "description": "DeutschPilot offers digital learning materials, practice rooms, live offerings, and AI-supported learning assistance for German."
   },
   "nav": {
     "home": "Home",
@@ -33,7 +33,7 @@
   "hero": {
     "badge": "Premium German Courses & Retreats",
     "title": "Learn German.\nYour way.\nYour future.",
-    "subtitle": "DeutschPilot is more than a course — it's your personal compass for fast progress and real goals.",
+    "subtitle": "DeutschPilot brings together learning materials, practice rooms, live offerings, and AI-supported learning assistance for your individual learning path.",
     "cta1": "Try for free",
     "cta2": "Find your level",
     "rating": "4.9 out of 5 from 1,200+ reviews",
@@ -128,7 +128,7 @@
       },
       "certificate": {
         "title": "Certificate",
-        "desc": "Earn a recognised certificate for your level."
+        "desc": "Receive a platform record of your learning progress."
       },
       "retreats": {
         "title": "Retreats",
@@ -138,23 +138,23 @@
   },
   "testimonials": {
     "title": "Success stories",
-    "subtitle": "Real results",
+    "subtitle": "Learner experiences",
     "viewAll": "View all stories",
     "items": {
       "maria": {
         "name": "Maria L.",
-        "result": "B2 in 3 months",
+        "result": "Learner experience",
         "text": "The live sessions and the community helped me enormously. I now feel confident in everyday life and at work."
       },
       "jonas": {
         "name": "Jonas S.",
-        "result": "B1 in 2 months",
-        "text": "Thanks to DeutschPilot, I reached B1 much faster than expected. The structure and the teachers are simply top-notch."
+        "result": "Learner experience",
+        "text": "The structure and teachers supported my independent learning."
       },
       "aylin": {
         "name": "Aylin K.",
-        "result": "A2 in 6 weeks",
-        "text": "The super-intensive retreat was the best decision. Learning in that environment is unbeatable."
+        "result": "Learner experience",
+        "text": "The intensive learning at the retreat suited my personal learning routine."
       }
     }
   },
@@ -213,7 +213,7 @@
       },
       "certify": {
         "title": "Certify",
-        "desc": "Earn your recognised certificate."
+        "desc": "Receive your platform completion record."
       }
     }
   },
@@ -238,7 +238,7 @@
   },
   "footer": {
     "tagline": "Language. Future. You.",
-    "description": "Your personal compass for fast progress in German.",
+    "description": "Learning materials, practice rooms, and AI-supported assistance for German.",
     "columns": {
       "courses": "Courses",
       "company": "Company",
@@ -276,12 +276,12 @@
     "or": "or",
     "continueWithGoogle": "Continue with Google",
     "testimonialQuote": "DeutschPilot completely changed my path to the German language.",
-    "testimonialCaption": "Maria L. — B2 in 3 months",
+    "testimonialCaption": "Maria L. — personal learning experience",
     "whatsIncluded": "What's included",
     "perkCourseLevels": "Access to all course levels A1–C1",
     "perkLiveClasses": "Live classes with experienced teachers",
     "perkAiCompanion": "AI learning companion 24/7",
-    "perkCertificate": "Recognized certificate included",
+    "perkCertificate": "Platform record of completed learning content",
     "errorInvalidCredentials": "Incorrect email or password.",
     "errorUserNotFound": "No account found.",
     "errorUserDisabled": "This account has been disabled.",
@@ -800,7 +800,7 @@
       },
       "mockExams": {
         "title": "Mock Exams",
-        "body": "B1 and B2 final tests in the real exam format, before you sit the actual exam."
+        "body": "B1 and B2 practice tests for exam preparation — not official exams or official results."
       },
       "magazine": {
         "title": "Magazine",
@@ -835,7 +835,7 @@
       },
       "q5": {
         "question": "Do I get a certificate?",
-        "answer": "Yes — after completing all rooms in a level, you receive a certificate confirming your progress up to that CEFR level."
+        "answer": "Yes — after completing all rooms in a level, you receive a DeutschPilot participation and completion record. It documents platform progress; it is not a state-recognised language certificate or an official CEFR exam result."
       },
       "q6": {
         "question": "Can I start with zero prior knowledge?",
@@ -843,7 +843,7 @@
       },
       "q7": {
         "question": "Does DeutschPilot help with an Integrationskurs or an exam?",
-        "answer": "The themed rooms and practice courses cover the same CEFR levels as Integrationskurse and official exams (e.g. Goethe, telc, DTZ). More exam details are in the magazine."
+        "answer": "The themed rooms and practice courses are aligned with CEFR levels and can support exam preparation. They do not replace an Integrationskurs or an official Goethe, telc or DTZ examination."
       },
       "q8": {
         "question": "What's the difference between rooms and practice courses?",
@@ -940,7 +940,7 @@
     "metaDescription": "DeutschPilot is the premium learning platform for German: experienced teachers, AI support, and a vibrant community.",
     "title": "About Us",
     "subtitle": "We are DeutschPilot",
-    "body": "DeutschPilot was founded with a clear mission: to help people around the world learn German quickly, effectively, and with joy. Our experienced teachers, innovative AI support, and a vibrant community make DeutschPilot the premium learning platform for real results.",
+    "body": "DeutschPilot was founded to give people around the world access to digital learning materials, practice rooms, live offerings, and AI-supported learning assistance for German. Learning outcomes depend on individual circumstances, time invested, and practice.",
     "cta": "Start for free",
     "stats": {
       "experience": "Years experience",
@@ -1038,7 +1038,7 @@
     },
     "available": "Available",
     "roomsCount": "{count} rooms",
-    "certificateIncluded": "Certificate included",
+    "certificateIncluded": "Platform record available",
     "explore": "Explore",
     "comingSoon": "Coming soon",
     "skills": {
@@ -1249,16 +1249,16 @@
   },
   "certificateSection": {
     "badge": "Certificate Path",
-    "title": "Earn a Recognized Certificate",
-    "subtitle": "Complete the full A1–C1 learning path and pass each checkpoint quiz to unlock your official DeutschPilot CEFR certificate.",
+    "title": "Earn a Platform Completion Record",
+    "subtitle": "Complete the A1–C1 learning path and checkpoint quizzes to unlock a DeutschPilot participation and completion record. It is not a state-recognised language certificate or an official CEFR exam result.",
     "cardTitle": "DeutschPilot Certificate",
-    "cardSubtitle": "Recognized CEFR Language Proficiency",
+    "cardSubtitle": "Platform participation and completion record",
     "levelLabel": "Level",
     "levelValue": "C1 — Advanced",
     "statusLabel": "Status",
     "statusLocked": "Locked",
     "progressLabel": "Progress",
-    "verifiedNote": "Blockchain-verified · Shareable · Professional",
+    "verifiedNote": "Platform document · Shareable · Not an official language certificate",
     "req1": "Complete all A1 Rooms",
     "req2": "Pass A1 Checkpoint Quiz (≥60%)",
     "req3": "Complete all A2 Rooms",
@@ -1269,7 +1269,7 @@
   "finalCta": {
     "badge": "Start Learning Today",
     "title": "Ready for Your German Journey?",
-    "subtitle": "Join thousands of learners who are already making real progress with DeutschPilot. Your first room is waiting.",
+    "subtitle": "Start with free practice and explore the learning rooms. Progress depends on individual circumstances and time spent learning.",
     "primaryCta": "Start Your Journey",
     "secondaryCta": "Determine Your Level",
     "point1": "Free to start",
@@ -1292,6 +1292,9 @@
     "defaultBio": "Experienced German teacher offering live sessions for beginners and intermediate learners.",
     "activeCount": "{count} active",
     "viewClasses": "View Classes →"
+  },
+  "compliance": {
+    "germanEnrollmentPaused": "Paid enrollment from Germany is paused during the FernUSG/ZFU review. Free practice and existing access remain available."
   },
   "splitCta": {
     "title": "Who are you?",

@@ -1,7 +1,7 @@
 {
   "metadata": {
     "title": "DeutschPilot – Premium-Deutschkurse & Retreats",
-    "description": "DeutschPilot ist die Premium-Lernplattform für schnelle Fortschritte, echte Ergebnisse und neue Möglichkeiten."
+    "description": "DeutschPilot bietet digitale Lernmaterialien, Übungsräume, Live-Angebote und KI-gestützte Lernunterstützung für Deutsch."
   },
   "nav": {
     "home": "Startseite",
@@ -33,7 +33,7 @@
   "hero": {
     "badge": "Premium-Deutschkurse & Retreats",
     "title": "Deutsch lernen.\nDein Weg.\nDeine Zukunft.",
-    "subtitle": "DeutschPilot ist mehr als ein Kurs – es ist dein persönlicher Kompass für schnelle Fortschritte und echte Ziele.",
+    "subtitle": "DeutschPilot bündelt Lernmaterialien, Übungsräume, Live-Angebote und KI-gestützte Lernunterstützung für deinen individuellen Lernweg.",
     "cta1": "Kostenlos testen",
     "cta2": "Niveau bestimmen",
     "rating": "4,9 von 5 Sternen aus 1.200+ Bewertungen",
@@ -128,7 +128,7 @@
       },
       "certificate": {
         "title": "Zertifikat",
-        "desc": "Erhalte ein anerkanntes Zertifikat für dein Niveau."
+        "desc": "Erhalte eine Plattformbescheinigung über deinen Lernfortschritt."
       },
       "retreats": {
         "title": "Retreats",
@@ -138,23 +138,23 @@
   },
   "testimonials": {
     "title": "Erfolgsgeschichten",
-    "subtitle": "Echte Erfolge",
+    "subtitle": "Erfahrungen von Lernenden",
     "viewAll": "Alle Geschichten ansehen",
     "items": {
       "maria": {
         "name": "Maria L.",
-        "result": "B2 in 3 Monaten",
+        "result": "Erfahrung einer Lernenden",
         "text": "Die Live-Sessions und die Community haben mir enorm geholfen. Im Alltag und im Job fühle ich mich jetzt richtig sicher."
       },
       "jonas": {
         "name": "Jonas S.",
-        "result": "B1 in 2 Monaten",
-        "text": "Dank DeutschPilot habe ich mein B1-Niveau viel schneller erreicht als erwartet. Struktur und Lehrer:innen sind einfach top."
+        "result": "Erfahrung eines Lernenden",
+        "text": "Die Struktur und die Lehrkräfte haben mich beim selbstständigen Lernen unterstützt."
       },
       "aylin": {
         "name": "Aylin K.",
-        "result": "A2 in 6 Wochen",
-        "text": "Der Superintensivkurs im Retreat war die beste Entscheidung. Lernen in dieser Umgebung ist unschlagbar."
+        "result": "Erfahrung einer Lernenden",
+        "text": "Das intensive Lernen im Retreat hat gut zu meinem persönlichen Lernalltag gepasst."
       }
     }
   },
@@ -213,7 +213,7 @@
       },
       "certify": {
         "title": "Zertifizieren",
-        "desc": "Erhalte dein anerkanntes Zertifikat."
+        "desc": "Erhalte deine Plattformbescheinigung."
       }
     }
   },
@@ -238,7 +238,7 @@
   },
   "footer": {
     "tagline": "Sprache. Zukunft. Du.",
-    "description": "Dein persönlicher Kompass für schnelle Fortschritte im Deutschen.",
+    "description": "Lernmaterialien, Übungsräume und KI-gestützte Unterstützung für Deutsch.",
     "columns": {
       "courses": "Kurse",
       "company": "Unternehmen",
@@ -276,12 +276,12 @@
     "or": "oder",
     "continueWithGoogle": "Mit Google fortfahren",
     "testimonialQuote": "DeutschPilot hat meinen Weg zur deutschen Sprache komplett verändert.",
-    "testimonialCaption": "Maria L. — B2 in 3 Monaten",
+    "testimonialCaption": "Maria L. — persönliche Lernerfahrung",
     "whatsIncluded": "Was dich erwartet",
     "perkCourseLevels": "Zugang zu allen Kursniveaus A1–C1",
     "perkLiveClasses": "Live-Kurse mit erfahrenen Lehrkräften",
     "perkAiCompanion": "KI-Lernbegleiter rund um die Uhr",
-    "perkCertificate": "Anerkanntes Zertifikat inklusive",
+    "perkCertificate": "Plattformbescheinigung über abgeschlossene Lerninhalte",
     "errorInvalidCredentials": "E-Mail-Adresse oder Passwort ist falsch.",
     "errorUserNotFound": "Kein Konto gefunden.",
     "errorUserDisabled": "Dieses Konto ist deaktiviert.",
@@ -800,7 +800,7 @@
       },
       "mockExams": {
         "title": "Modellprüfungen",
-        "body": "B1- und B2-Abschlusstests im echten Prüfungsformat, bevor du zur echten Prüfung gehst."
+        "body": "B1- und B2-Übungstests zur Prüfungsvorbereitung — keine offiziellen Prüfungen oder Prüfungsergebnisse."
       },
       "magazine": {
         "title": "Magazin",
@@ -835,7 +835,7 @@
       },
       "q5": {
         "question": "Bekomme ich ein Zertifikat?",
-        "answer": "Ja — nach Abschluss aller Räume eines Niveaus erhältst du ein Zertifikat, das deinen Fortschritt bis zu diesem GER-Niveau bestätigt."
+        "answer": "Ja — nach Abschluss aller Räume eines Niveaus erhältst du eine DeutschPilot-Teilnahme- und Abschlussbescheinigung. Sie dokumentiert Plattformfortschritt und ist kein staatlich anerkannter Sprachnachweis oder offizielles GER-Prüfungsergebnis."
       },
       "q6": {
         "question": "Kann ich auch ohne Vorkenntnisse anfangen?",
@@ -843,7 +843,7 @@
       },
       "q7": {
         "question": "Hilft DeutschPilot bei einem Integrationskurs oder einer Prüfung?",
-        "answer": "Die Themenräume und Übungskurse decken die gleichen GER-Niveaus wie Integrationskurse und offizielle Prüfungen (z. B. Goethe, telc, DTZ) ab. Mehr Prüfungsdetails findest du im Magazin."
+        "answer": "Die Themenräume und Übungskurse orientieren sich an GER-Niveaus und können zur Prüfungsvorbereitung genutzt werden. Sie ersetzen keinen Integrationskurs und keine offizielle Prüfung von Goethe, telc oder DTZ."
       },
       "q8": {
         "question": "Was ist der Unterschied zwischen Räumen und Übungskursen?",
@@ -940,7 +940,7 @@
     "metaDescription": "DeutschPilot ist die Premium-Lernplattform für Deutsch: erfahrene Lehrer, KI-Unterstützung und eine lebendige Community.",
     "title": "Über uns",
     "subtitle": "Wir sind DeutschPilot",
-    "body": "DeutschPilot wurde mit einer klaren Mission gegründet: Menschen auf der ganzen Welt dabei zu helfen, Deutsch schnell, effektiv und mit Freude zu lernen. Unsere erfahrenen Lehrer, innovative KI-Unterstützung und eine lebendige Community machen DeutschPilot zur Premium-Lernplattform für echte Ergebnisse.",
+    "body": "DeutschPilot wurde mit der Mission gegründet, Menschen auf der ganzen Welt Zugang zu digitalen Lernmaterialien, Übungsräumen, Live-Angeboten und KI-gestützter Lernunterstützung für Deutsch zu geben. Lernergebnisse hängen von individuellen Voraussetzungen, Zeitaufwand und Lernpraxis ab.",
     "cta": "Kostenlos starten",
     "stats": {
       "experience": "Jahre Erfahrung",
@@ -1038,7 +1038,7 @@
     },
     "available": "Verfügbar",
     "roomsCount": "{count} Räume",
-    "certificateIncluded": "Zertifikat inklusive",
+    "certificateIncluded": "Plattformbescheinigung möglich",
     "explore": "Erkunden",
     "comingSoon": "Bald verfügbar",
     "skills": {
@@ -1249,16 +1249,16 @@
   },
   "certificateSection": {
     "badge": "Zertifikatspfad",
-    "title": "Erhalte ein anerkanntes Zertifikat",
-    "subtitle": "Schließe den gesamten A1–C1-Lernpfad ab und bestehe jedes Checkpoint-Quiz, um dein offizielles DeutschPilot-GER-Zertifikat freizuschalten.",
+    "title": "Erhalte eine Plattformbescheinigung",
+    "subtitle": "Schließe den gesamten A1–C1-Lernpfad ab und bestehe die Checkpoint-Quiz, um eine DeutschPilot-Teilnahme- und Abschlussbescheinigung freizuschalten. Sie ist kein staatlich anerkannter Sprachnachweis und kein offizielles GER-Prüfungsergebnis.",
     "cardTitle": "DeutschPilot-Zertifikat",
-    "cardSubtitle": "Anerkannter GER-Sprachnachweis",
+    "cardSubtitle": "Teilnahme- und Abschlussbescheinigung der Plattform",
     "levelLabel": "Niveau",
     "levelValue": "C1 – Fortgeschritten",
     "statusLabel": "Status",
     "statusLocked": "Gesperrt",
     "progressLabel": "Fortschritt",
-    "verifiedNote": "Blockchain-verifiziert · Teilbar · Professionell",
+    "verifiedNote": "Plattformdokument · Teilbar · Kein amtlicher Sprachnachweis",
     "req1": "Schließe alle A1-Räume ab",
     "req2": "Bestehe das A1-Checkpoint-Quiz (≥60%)",
     "req3": "Schließe alle A2-Räume ab",
@@ -1269,7 +1269,7 @@
   "finalCta": {
     "badge": "Starte noch heute",
     "title": "Bereit für deine Deutsch-Reise?",
-    "subtitle": "Schließ dich Tausenden Lernenden an, die mit DeutschPilot schon heute echte Fortschritte machen. Dein erster Raum wartet auf dich.",
+    "subtitle": "Starte mit kostenlosen Übungen und erkunde die Lernräume. Lernfortschritt hängt von individuellen Voraussetzungen und Lernzeit ab.",
     "primaryCta": "Jetzt starten",
     "secondaryCta": "Niveau bestimmen",
     "point1": "Kostenloser Start",
@@ -1292,6 +1292,9 @@
     "defaultBio": "Erfahrene Lehrkraft für Deutsch mit Live-Kursen für Einsteiger und Lernende der Mittelstufe.",
     "activeCount": "{count} aktiv",
     "viewClasses": "Live-Kurse ansehen →"
+  },
+  "compliance": {
+    "germanEnrollmentPaused": "Kostenpflichtige Anmeldungen aus Deutschland sind während der FernUSG/ZFU-Prüfung pausiert. Kostenlose Übungen und bestehende Zugänge bleiben verfügbar."
   },
   "splitCta": {
     "title": "Wer bist du?",
