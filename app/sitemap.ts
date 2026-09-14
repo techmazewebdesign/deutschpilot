@@ -18,6 +18,7 @@ const routes = [
   "/mock-exam",
   "/driving-theory",
   "/contact",
+  "/schools",
   "/placement-test",
   "/classes",
   "/impressum",
