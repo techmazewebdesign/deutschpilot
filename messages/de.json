@@ -36,15 +36,15 @@
     "subtitle": "DeutschPilot ist mehr als ein Kurs – es ist dein persönlicher Kompass für schnelle Fortschritte und echte Ziele.",
     "cta1": "Kostenlos testen",
     "cta2": "Niveau bestimmen",
-    "rating": "4,9 von 5 Sternen aus 1.200+ Bewertungen",
+    "rating": "Deutsch üben im eigenen Tempo",
     "success": "Erfolgsgeschichten ansehen",
     "ctaPrimary": "Starte deine Reise",
     "ctaSecondary": "A1-Räume entdecken",
     "featureLevels": "A1–C1-Niveaus",
     "featureAiCoPilot": "KI-Co-Pilot",
-    "featureCertificate": "Zertifikat",
+    "featureCertificate": "Selbsttests",
     "cockpitTitle": "Dein Lern-Cockpit",
-    "cockpitLive": "LIVE",
+    "cockpitLive": "BEISPIEL",
     "cockpitCurrentLevel": "Aktuelles Niveau",
     "cockpitCurrentRoom": "Aktueller Raum",
     "cockpitRoomName": "Begrüßungen & Vorstellungen",
@@ -53,8 +53,8 @@
     "cockpitNextLessonName": "Sich vorstellen",
     "cockpitAiReady": "Bereit, dir beim Lernen zu helfen",
     "cockpitReadyBadge": "Bereit",
-    "cockpitCertificatePath": "Zertifikatspfad",
-    "cockpitCertificateDesc": "A1–C1 abschließen, um es freizuschalten"
+    "cockpitCertificatePath": "Dein Lernpfad",
+    "cockpitCertificateDesc": "Übe Schritt für Schritt von A1 bis C1"
   },
   "stats": {
     "students": "Zufriedene Teilnehmer:innen",
@@ -72,7 +72,7 @@
     "popular": "BELIEBTESTER KURS",
     "features": {
       "online": "Online & Retreat",
-      "certificate": "Zertifikat inklusive"
+      "certificate": "Übungen und Selbsttests"
     },
     "levels": {
       "A1": {
@@ -212,8 +212,8 @@
         "desc": "Tauche ein in interaktiven Unterricht und die Community."
       },
       "certify": {
-        "title": "Zertifizieren",
-        "desc": "Behalte deine abgeschlossenen Übungen im Blick."
+        "title": "Fortschritte festhalten",
+        "desc": "Sieh, welche Übungen du abgeschlossen hast."
       }
     }
   },
@@ -281,7 +281,7 @@
     "perkCourseLevels": "Zugang zu allen Kursniveaus A1–C1",
     "perkLiveClasses": "Live-Kurse mit erfahrenen Lehrkräften",
     "perkAiCompanion": "KI-Lernbegleiter rund um die Uhr",
-    "perkCertificate": "Anerkanntes Zertifikat inklusive",
+    "perkCertificate": "Übungen und Selbsttests",
     "errorInvalidCredentials": "Anmeldung nicht möglich. Wenn du noch kein registriertes Konto hast, registriere dich bitte zuerst.",
     "errorUserNotFound": "Kein Konto gefunden.",
     "errorUserDisabled": "Dieses Konto ist deaktiviert.",
@@ -1045,7 +1045,7 @@
     },
     "available": "Verfügbar",
     "roomsCount": "{count} Räume",
-    "certificateIncluded": "Zertifikat inklusive",
+    "certificateIncluded": "Übungen und Selbsttests",
     "explore": "Erkunden",
     "comingSoon": "Bald verfügbar",
     "skills": {

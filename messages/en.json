@@ -36,15 +36,15 @@
     "subtitle": "DeutschPilot is more than a course — it's your personal compass for fast progress and real goals.",
     "cta1": "Try for free",
     "cta2": "Find your level",
-    "rating": "4.9 out of 5 from 1,200+ reviews",
+    "rating": "Practice German at your own pace",
     "success": "Watch success stories",
     "ctaPrimary": "Start Your Journey",
     "ctaSecondary": "Explore A1 Rooms",
     "featureLevels": "A1–C1 Levels",
     "featureAiCoPilot": "AI Co-Pilot",
-    "featureCertificate": "Certificate",
+    "featureCertificate": "Self-assessments",
     "cockpitTitle": "Your Learning Cockpit",
-    "cockpitLive": "LIVE",
+    "cockpitLive": "EXAMPLE",
     "cockpitCurrentLevel": "Current Level",
     "cockpitCurrentRoom": "Current Room",
     "cockpitRoomName": "Greetings & Introductions",
@@ -53,8 +53,8 @@
     "cockpitNextLessonName": "Introducing Yourself",
     "cockpitAiReady": "Ready to assist your learning",
     "cockpitReadyBadge": "Ready",
-    "cockpitCertificatePath": "Certificate Path",
-    "cockpitCertificateDesc": "Complete A1–C1 to unlock"
+    "cockpitCertificatePath": "Your learning path",
+    "cockpitCertificateDesc": "Practice step by step from A1 to C1"
   },
   "stats": {
     "students": "Happy learners",
@@ -72,7 +72,7 @@
     "popular": "MOST POPULAR COURSE",
     "features": {
       "online": "Online & Retreat",
-      "certificate": "Certificate included"
+      "certificate": "Exercises and self-assessments"
     },
     "levels": {
       "A1": {
@@ -212,8 +212,8 @@
         "desc": "Dive into interactive classes and the community."
       },
       "certify": {
-        "title": "Certify",
-        "desc": "Earn your recognised certificate."
+        "title": "Track progress",
+        "desc": "See which exercises you have completed."
       }
     }
   },
@@ -281,7 +281,7 @@
     "perkCourseLevels": "Access to all course levels A1–C1",
     "perkLiveClasses": "Live classes with experienced teachers",
     "perkAiCompanion": "AI learning companion 24/7",
-    "perkCertificate": "Recognized certificate included",
+    "perkCertificate": "Exercises and self-assessments",
     "errorInvalidCredentials": "We couldn’t sign you in. If you don’t have a registered account, please sign up first.",
     "errorUserNotFound": "No account found.",
     "errorUserDisabled": "This account has been disabled.",
@@ -1045,7 +1045,7 @@
     },
     "available": "Available",
     "roomsCount": "{count} rooms",
-    "certificateIncluded": "Certificate included",
+    "certificateIncluded": "Exercises and self-assessments",
     "explore": "Explore",
     "comingSoon": "Coming soon",
     "skills": {
