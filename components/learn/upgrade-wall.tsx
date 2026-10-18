@@ -1,10 +1,10 @@
 "use client";
 
-import { useState } from "react";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { Lock, ArrowLeft } from "lucide-react";
 import type { PaidLevel } from "@/lib/entitlements";
+import { useNativePlatform } from "@/hooks/use-native-platform";
 
 interface Props {
   locale: string;
@@ -12,39 +12,10 @@ interface Props {
   backHref: string;
 }
 
-const LEVEL_PRICE_EUR: Record<PaidLevel, number> = {
-  A2: 349,
-  B1: 399,
-  B2: 449,
-  C1: 499,
-};
-
 export function UpgradeWall({ locale, level, backHref }: Props) {
   const t = useTranslations("upgradeWall");
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-
-  async function handleBuy() {
-    setError(null);
-    setLoading(true);
-    try {
-      const res = await fetch("/api/checkout/create-session", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ level }),
-      });
-      const data = (await res.json()) as { url?: string; error?: string };
-      if (!res.ok || !data.url) {
-        setError(data.error ?? t("checkoutStartError"));
-        setLoading(false);
-        return;
-      }
-      window.location.href = data.url;
-    } catch {
-      setError(t("networkError"));
-      setLoading(false);
-    }
-  }
+  const platform = useNativePlatform();
+  const isIos = platform === "ios";
 
   return (
     <div className="px-5 lg:px-8 py-6 lg:py-8 max-w-2xl w-full mx-auto">
@@ -67,22 +38,10 @@ export function UpgradeWall({ locale, level, backHref }: Props) {
           {t("paidCourseNotice")}
         </p>
 
-        {error && (
-          <p className="text-sm text-red-400 bg-red-400/10 border border-red-400/20 rounded-md px-4 py-3 mb-4">
-            {error}
-          </p>
-        )}
+        {isIos ? (
+          <p className="rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white/55">{t("iosPurchaseUnavailable")}</p>
+        ) : platform !== null ? <><p className="mb-5 text-sm leading-relaxed text-white/60">{locale === "de" ? "Der aktuelle Testzugang ist kostenlos. Es werden keine Zahlungsdaten erfasst. Prüfe deine verfügbaren Zugänge im Konto." : "The current tester pilot is free. No payment details are collected. Check the access options available for your account."}</p><Link href={`/${locale}/subscription`} className="inline-flex min-h-11 items-center justify-center rounded-xl bg-[#E0B873] px-6 py-3 font-semibold text-[#071424]">{locale === "de" ? "Zugänge ansehen" : "View access options"}</Link></> : null}
 
-        <button
-          type="button"
-          onClick={handleBuy}
-          disabled={loading}
-          className="inline-flex items-center gap-2 bg-[#E0B873] text-[#071424] font-bold px-8 py-3 rounded-xl hover:bg-[#C99B50] transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
-        >
-          {loading
-            ? t("loading")
-            : t("buyLevel", { level, price: LEVEL_PRICE_EUR[level] })}
-        </button>
       </div>
     </div>
   );

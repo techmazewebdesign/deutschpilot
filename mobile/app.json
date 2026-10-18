@@ -1,0 +1,36 @@
+{
+  "expo": {
+    "name": "DeutschPilot",
+    "slug": "deutschpilot",
+    "scheme": "deutschpilot",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "automatic",
+    "icon": "./assets/logo.png",
+    "ios": {
+      "supportsTablet": true,
+      "appleTeamId": "HYBTH9WZQ6",
+      "buildNumber": "4",
+      "bundleIdentifier": "de.deutschpilot.app",
+      "googleServicesFile": "./ios/DeutschPilot/GoogleService-Info.plist"
+    },
+    "android": {
+      "package": "de.deutschpilot.app",
+      "predictiveBackGestureEnabled": true
+    },
+    "plugins": [
+      [
+        "@react-native-google-signin/google-signin",
+        {
+          "iosUrlScheme": "com.googleusercontent.apps.771631677984-aib6g6jmhdn1vf8cn8cnr3aa4b3ko5ha"
+        }
+      ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "e0a04b84-7aee-4be8-8c49-4fff33bbb0e8"
+      }
+    },
+    "owner": "roozos"
+  }
+}

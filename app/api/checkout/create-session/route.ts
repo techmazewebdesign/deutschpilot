@@ -13,14 +13,29 @@ import {
   aiTrainerPriceId,
   createAITrainerCheckoutSession,
   createLevelCheckoutSession,
+  createFullAccessCheckoutSession,
   priceIdForLevel,
 } from "@/lib/stripe";
-import { isPaidLevel, hasLevelAccess } from "@/lib/entitlements";
+import { isPaidLevel, hasFullAccess, hasLevelAccess } from "@/lib/entitlements";
 import { getAITrainerAccess } from "@/lib/aiTrainer/access";
+import { FREE_PILOT_MODE } from "@/lib/pilot";
+import { GERMAN_PAID_ENROLLMENT_NOTICE, GERMAN_PAID_ENROLLMENT_NOTICE_EN, isGermanPaidEnrollmentBlocked, isGermanPaidEnrollmentRequest, localeFromReferer } from "@/lib/fernusg";
 
 export const runtime = "nodejs";
 
 export async function POST(req: NextRequest) {
+  if (FREE_PILOT_MODE) {
+    return NextResponse.json(
+      { error: "Paid access is disabled during the free pilot." },
+      { status: 410 },
+    );
+  }
+
+  const requestLocale = localeFromReferer(req.headers.get("referer")) ?? "en";
+  if (isGermanPaidEnrollmentBlocked() && isGermanPaidEnrollmentRequest(requestLocale, req.headers.get("x-vercel-ip-country"))) {
+    return NextResponse.json({ error: requestLocale === "de" ? GERMAN_PAID_ENROLLMENT_NOTICE : GERMAN_PAID_ENROLLMENT_NOTICE_EN }, { status: 451 });
+  }
+
   if (!process.env.STRIPE_SECRET_KEY) {
     return NextResponse.json(
       { error: "Payments are not configured yet." },
@@ -40,11 +55,42 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Invalid JSON body." }, { status: 400 });
   }
 
-  const { level, product } = body as { level?: string; product?: string };
+  const { level, product, plan, promotionCode } = body as {
+    level?: string;
+    product?: string;
+    plan?: string;
+    promotionCode?: string;
+  };
   const configuredOrigin = process.env.NEXT_PUBLIC_APP_URL?.trim();
   const origin = (configuredOrigin || new URL(req.url).origin).replace(/\/+$/, "");
   const requestedLocale = req.headers.get("referer")?.match(/\/([a-z]{2})(?:\/|$)/)?.[1];
   const locale = requestedLocale === "de" ? "de" : "en";
+
+  if (product === "full_access") {
+    if (plan !== "tester_trial" && plan !== "promotion") {
+      return NextResponse.json({ error: "Choose a valid full-access plan." }, { status: 400 });
+    }
+    if (plan === "tester_trial" && promotionCode) {
+      return NextResponse.json({ error: "A tester trial does not use a promotion code." }, { status: 400 });
+    }
+    if (await hasFullAccess(session.user.id)) {
+      return NextResponse.json({ error: "You already have full access." }, { status: 409 });
+    }
+    try {
+      const checkoutSession = await createFullAccessCheckoutSession({
+        userId: session.user.id,
+        trial: plan === "tester_trial",
+        promotionCode: plan === "promotion" ? promotionCode : undefined,
+        successUrl: `${origin}/${locale}/subscription?purchase=success`,
+        cancelUrl: `${origin}/${locale}/subscription?purchase=cancelled`,
+      });
+      return NextResponse.json({ url: checkoutSession.url });
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : String(err);
+      console.error("[checkout] full-access session failed:", msg);
+      return NextResponse.json({ error: msg }, { status: 400 });
+    }
+  }
 
   if (product === "ai_trainer") {
     if (process.env.AI_TRAINER_PAID_ENABLED !== "true") {

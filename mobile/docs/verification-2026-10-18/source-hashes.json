@@ -1,0 +1,19 @@
+{
+  "App.tsx": "ee1e975218fb4f2ea0bbe9078c2922c74bcfa8cbacf56aebe178ee9c5c2de3b3",
+  "src/LearningScreens.tsx": "2c5e95be712698154842ecdcc865050b87c32ccd1b07635702a99bd1f3e0809b",
+  "src/progress.ts": "90a0b05e94d7874ebb9b7f647cd6fc7cb2a2d6a771f8d91ec9ec2497e24430a8",
+  "src/models.ts": "3c0a3bfb5e9d4e03392fbc7c346e84e8be78303763172832598d2f0c4ed8dafa",
+  "src/content.ts": "61c89f28747d580f8a07e1b93a757f649eb685aab735daf24616c2adefb45fc9",
+  "src/theme.tsx": "7632c7f7cb088d61d07c6df7a2ff9e9a8c3ff1e8a4924794785f5e5fe74dbb19",
+  "src/auth.ts": "6274e91fcd827742ba6421f209d5c8e8f7bc2a471fd75e87ce3d6390d592ed02",
+  "src/social.ts": "3e767a4efe60c22cb89c2885f5c9432d4d59843d042dbfd8ebed23152be70c6e",
+  "src/data/web-lessons.json": "9537a356f80927f6e4ad378553b6a8c99284f41925cfa9f2d51fa3f57a6676f4",
+  "src/data/web-vocabulary.json": "f6438c4764fad8e4afb948fb519ee28fbc17582eb9aa0f817246a7f325735eef",
+  "src/data/content-sources.json": "9c44df6c205eff4a96df8c7138ad2a90556077586b02c4888092078446e076b3",
+  "package.json": "d91f6141cc9f822eada63867ec2e670f9251650757571a2ef2c4329c45d8e516",
+  "package-lock.json": "1a2eb5287ad60796d70990ec4820f74c69ed1e1447efe4f4c5baaa5be10a2a8b",
+  "app.json": "6cb392ff364492a8eda949b92f7aa3cdc455a52d8bd863feb077a6e4fd428d75",
+  "ios/DeutschPilot/Info.plist": "8cd22627c09b2aa0ea68383b11b6fc0f9b597529203bc8dd11fd7e51ea028c8b",
+  "ios/DeutschPilot.xcodeproj/project.pbxproj": "247c6d41bda1ed41b7d4f60b4cfe3d5784110e722f3a563c648f8991e9489321",
+  "ios/Podfile.lock": "88acfc2b17e18533e765e7e47dd7f440898818107aaf330854da7958ce73a229"
+}

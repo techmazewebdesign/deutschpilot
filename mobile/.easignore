@@ -1,0 +1,11 @@
+# Repository metadata and local build products must not be uploaded.
+.git
+.expo
+dist
+dist-*
+android/.gradle
+android/build
+ios/App/build-device
+ios/Pods
+node_modules
+*.log

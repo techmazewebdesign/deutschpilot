@@ -1,0 +1,26 @@
+[
+  {
+    "route": "privacy",
+    "status": 200,
+    "url": "https://www.deutschpilot.de/de/privacy",
+    "title": "Datenschutz | DeutschPilot"
+  },
+  {
+    "route": "terms",
+    "status": 200,
+    "url": "https://www.deutschpilot.de/de/terms",
+    "title": "AGB | DeutschPilot"
+  },
+  {
+    "route": "contact",
+    "status": 200,
+    "url": "https://www.deutschpilot.de/de/contact",
+    "title": "Kontakt | DeutschPilot"
+  },
+  {
+    "route": "impressum",
+    "status": 200,
+    "url": "https://www.deutschpilot.de/de/impressum",
+    "title": "Impressum | DeutschPilot"
+  }
+]

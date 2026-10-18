@@ -1,0 +1,11 @@
+{
+  "productionDeployment": "dpl_9ewxAryZDu6UwssR69pLjx5GeWJu",
+  "productionUrl": "deutschpilot-ixmsuk9p1-techmazewebdesigns-projects.vercel.app",
+  "baseCommit": "d16ff4eedf7ea242f6dd6f31b7f301cab1ee1bea",
+  "productionWasDirty": true,
+  "comparedApplicationSourceFiles": 295,
+  "matchingFiles": 294,
+  "onlyDifferentFile": "docs/APP_STORE_RELEASE_STANDARD.md",
+  "nativeUpgradeSource": "/Users/rooz/Desktop/websites/deutschpilot/mobile",
+  "deploymentIntent": "preview; payments remain disabled; no App Store review submission"
+}

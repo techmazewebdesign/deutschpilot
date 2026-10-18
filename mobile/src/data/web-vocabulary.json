@@ -1,0 +1,6068 @@
+[
+  {
+    "id": "web-a1-1",
+    "level": "A1",
+    "category": "Alltag",
+    "de": "die Wohnung",
+    "en": "the apartment",
+    "example": "Meine Wohnung ist klein aber gemütlich.",
+    "exampleEn": "My apartment is small but cozy."
+  },
+  {
+    "id": "web-a1-2",
+    "level": "A1",
+    "category": "Alltag",
+    "de": "der Freund / die Freundin",
+    "en": "the friend",
+    "example": "Mein Freund kommt heute zu Besuch.",
+    "exampleEn": "My friend is coming to visit today."
+  },
+  {
+    "id": "web-a1-3",
+    "level": "A1",
+    "category": "Alltag",
+    "de": "das Wasser",
+    "en": "the water",
+    "example": "Ich trinke gern Wasser.",
+    "exampleEn": "I like to drink water."
+  },
+  {
+    "id": "web-a1-4",
+    "level": "A1",
+    "category": "Alltag",
+    "de": "arbeiten",
+    "en": "to work",
+    "example": "Ich arbeite von Montag bis Freitag.",
+    "exampleEn": "I work Monday to Friday."
+  },
+  {
+    "id": "web-a1-5",
+    "level": "A1",
+    "category": "Alltag",
+    "de": "die Zeit",
+    "en": "the time",
+    "example": "Ich habe heute keine Zeit.",
+    "exampleEn": "I don't have time today."
+  },
+  {
+    "id": "web-a1-6",
+    "level": "A1",
+    "category": "Alltag",
+    "de": "das Geld",
+    "en": "the money",
+    "example": "Ich brauche mehr Geld.",
+    "exampleEn": "I need more money."
+  },
+  {
+    "id": "web-a1-7",
+    "level": "A1",
+    "category": "Alltag",
+    "de": "sprechen",
+    "en": "to speak",
+    "example": "Ich spreche ein bisschen Deutsch.",
+    "exampleEn": "I speak a little German."
+  },
+  {
+    "id": "web-a1-8",
+    "level": "A1",
+    "category": "Alltag",
+    "de": "der Tag",
+    "en": "the day",
+    "example": "Heute ist ein guter Tag.",
+    "exampleEn": "Today is a good day."
+  },
+  {
+    "id": "web-a1-9",
+    "level": "A1",
+    "category": "Alltag",
+    "de": "essen",
+    "en": "to eat",
+    "example": "Wir essen um sechs Uhr.",
+    "exampleEn": "We eat at six o'clock."
+  },
+  {
+    "id": "web-a1-10",
+    "level": "A1",
+    "category": "Alltag",
+    "de": "die Familie",
+    "en": "the family",
+    "example": "Meine Familie wohnt in Berlin.",
+    "exampleEn": "My family lives in Berlin."
+  },
+  {
+    "id": "web-a2-1",
+    "level": "A2",
+    "category": "Alltag",
+    "de": "die Erfahrung",
+    "en": "the experience",
+    "example": "Ich habe viel Erfahrung im Büro.",
+    "exampleEn": "I have a lot of office experience."
+  },
+  {
+    "id": "web-a2-2",
+    "level": "A2",
+    "category": "Alltag",
+    "de": "sich freuen",
+    "en": "to be happy/glad",
+    "example": "Ich freue mich auf das Wochenende.",
+    "exampleEn": "I'm looking forward to the weekend."
+  },
+  {
+    "id": "web-a2-3",
+    "level": "A2",
+    "category": "Alltag",
+    "de": "die Nachricht",
+    "en": "the message / the news",
+    "example": "Ich habe eine Nachricht bekommen.",
+    "exampleEn": "I received a message."
+  },
+  {
+    "id": "web-a2-4",
+    "level": "A2",
+    "category": "Alltag",
+    "de": "erklären",
+    "en": "to explain",
+    "example": "Kannst du mir das erklären?",
+    "exampleEn": "Can you explain that to me?"
+  },
+  {
+    "id": "web-a2-5",
+    "level": "A2",
+    "category": "Alltag",
+    "de": "die Gelegenheit",
+    "en": "the opportunity",
+    "example": "Das ist eine gute Gelegenheit.",
+    "exampleEn": "That's a good opportunity."
+  },
+  {
+    "id": "web-a2-6",
+    "level": "A2",
+    "category": "Alltag",
+    "de": "sich beeilen",
+    "en": "to hurry",
+    "example": "Wir müssen uns beeilen!",
+    "exampleEn": "We have to hurry!"
+  },
+  {
+    "id": "web-a2-7",
+    "level": "A2",
+    "category": "Alltag",
+    "de": "die Verspätung",
+    "en": "the delay",
+    "example": "Der Zug hat 20 Minuten Verspätung.",
+    "exampleEn": "The train is 20 minutes late."
+  },
+  {
+    "id": "web-a2-8",
+    "level": "A2",
+    "category": "Alltag",
+    "de": "vermissen",
+    "en": "to miss (someone/something)",
+    "example": "Ich vermisse meine Familie.",
+    "exampleEn": "I miss my family."
+  },
+  {
+    "id": "web-a2-9",
+    "level": "A2",
+    "category": "Alltag",
+    "de": "die Entscheidung",
+    "en": "the decision",
+    "example": "Das war eine schwierige Entscheidung.",
+    "exampleEn": "That was a difficult decision."
+  },
+  {
+    "id": "web-a2-10",
+    "level": "A2",
+    "category": "Alltag",
+    "de": "sich vorstellen",
+    "en": "to imagine / to introduce oneself",
+    "example": "Ich kann mir das gut vorstellen.",
+    "exampleEn": "I can easily imagine that."
+  },
+  {
+    "id": "web-b1-1",
+    "level": "B1",
+    "category": "Meinung & Diskussion",
+    "de": "die Meinung",
+    "en": "the opinion",
+    "example": "Meiner Meinung nach ist das richtig.",
+    "exampleEn": "In my opinion, that is correct."
+  },
+  {
+    "id": "web-b1-2",
+    "level": "B1",
+    "category": "Meinung & Diskussion",
+    "de": "widersprechen",
+    "en": "to contradict/disagree",
+    "example": "Ich möchte dir nicht widersprechen, aber...",
+    "exampleEn": "I don't want to contradict you, but..."
+  },
+  {
+    "id": "web-b1-3",
+    "level": "B1",
+    "category": "Meinung & Diskussion",
+    "de": "die Auswirkung",
+    "en": "the effect/impact",
+    "example": "Das hat große Auswirkungen auf die Umwelt.",
+    "exampleEn": "This has a big impact on the environment."
+  },
+  {
+    "id": "web-b1-4",
+    "level": "B1",
+    "category": "Meinung & Diskussion",
+    "de": "berücksichtigen",
+    "en": "to take into account",
+    "example": "Wir müssen alle Faktoren berücksichtigen.",
+    "exampleEn": "We need to take all factors into account."
+  },
+  {
+    "id": "web-b1-5",
+    "level": "B1",
+    "category": "Meinung & Diskussion",
+    "de": "die Verantwortung",
+    "en": "the responsibility",
+    "example": "Er trägt die Verantwortung für das Projekt.",
+    "exampleEn": "He bears responsibility for the project."
+  },
+  {
+    "id": "web-b1-6",
+    "level": "B1",
+    "category": "Meinung & Diskussion",
+    "de": "vermeiden",
+    "en": "to avoid",
+    "example": "Wir sollten Konflikte vermeiden.",
+    "exampleEn": "We should avoid conflicts."
+  },
+  {
+    "id": "web-b1-7",
+    "level": "B1",
+    "category": "Meinung & Diskussion",
+    "de": "die Voraussetzung",
+    "en": "the prerequisite/condition",
+    "example": "Deutschkenntnisse sind eine Voraussetzung.",
+    "exampleEn": "German skills are a prerequisite."
+  },
+  {
+    "id": "web-b1-8",
+    "level": "B1",
+    "category": "Meinung & Diskussion",
+    "de": "sich einigen",
+    "en": "to come to an agreement",
+    "example": "Wir haben uns auf einen Termin geeinigt.",
+    "exampleEn": "We agreed on a date."
+  },
+  {
+    "id": "web-b1-9",
+    "level": "B1",
+    "category": "Meinung & Diskussion",
+    "de": "betonen",
+    "en": "to emphasize",
+    "example": "Sie betonte, wie wichtig das ist.",
+    "exampleEn": "She emphasized how important that is."
+  },
+  {
+    "id": "web-b1-10",
+    "level": "B1",
+    "category": "Meinung & Diskussion",
+    "de": "der Vorteil / der Nachteil",
+    "en": "the advantage / disadvantage",
+    "example": "Jede Lösung hat Vor- und Nachteile.",
+    "exampleEn": "Every solution has advantages and disadvantages."
+  },
+  {
+    "id": "web-b2-1",
+    "level": "B2",
+    "category": "Abstrakt & Formell",
+    "de": "die Auseinandersetzung",
+    "en": "the debate/confrontation",
+    "example": "Es kam zu einer heftigen Auseinandersetzung.",
+    "exampleEn": "A heated debate broke out."
+  },
+  {
+    "id": "web-b2-2",
+    "level": "B2",
+    "category": "Abstrakt & Formell",
+    "de": "gewährleisten",
+    "en": "to ensure/guarantee",
+    "example": "Der Vertrag gewährleistet den Schutz beider Seiten.",
+    "exampleEn": "The contract ensures protection for both sides."
+  },
+  {
+    "id": "web-b2-3",
+    "level": "B2",
+    "category": "Abstrakt & Formell",
+    "de": "die Voraussicht",
+    "en": "foresight",
+    "example": "Mit etwas Voraussicht hätte man das vermeiden können.",
+    "exampleEn": "With some foresight, that could have been avoided."
+  },
+  {
+    "id": "web-b2-4",
+    "level": "B2",
+    "category": "Abstrakt & Formell",
+    "de": "sich auszeichnen",
+    "en": "to stand out/excel",
+    "example": "Sie zeichnet sich durch Genauigkeit aus.",
+    "exampleEn": "She stands out for her precision."
+  },
+  {
+    "id": "web-b2-5",
+    "level": "B2",
+    "category": "Abstrakt & Formell",
+    "de": "die Komplexität",
+    "en": "the complexity",
+    "example": "Die Komplexität des Themas wird oft unterschätzt.",
+    "exampleEn": "The complexity of the topic is often underestimated."
+  },
+  {
+    "id": "web-b2-6",
+    "level": "B2",
+    "category": "Abstrakt & Formell",
+    "de": "zurückführen auf",
+    "en": "to attribute to/trace back to",
+    "example": "Der Erfolg lässt sich auf gute Planung zurückführen.",
+    "exampleEn": "The success can be attributed to good planning."
+  },
+  {
+    "id": "web-b2-7",
+    "level": "B2",
+    "category": "Abstrakt & Formell",
+    "de": "die Beeinträchtigung",
+    "en": "the impairment/hindrance",
+    "example": "Lärm kann eine Beeinträchtigung der Konzentration sein.",
+    "exampleEn": "Noise can be an impairment to concentration."
+  },
+  {
+    "id": "web-b2-8",
+    "level": "B2",
+    "category": "Abstrakt & Formell",
+    "de": "ausschlaggebend",
+    "en": "decisive",
+    "example": "Das war der ausschlaggebende Faktor.",
+    "exampleEn": "That was the decisive factor."
+  },
+  {
+    "id": "web-b2-9",
+    "level": "B2",
+    "category": "Abstrakt & Formell",
+    "de": "die Zurückhaltung",
+    "en": "restraint/reticence",
+    "example": "Er reagierte mit auffallender Zurückhaltung.",
+    "exampleEn": "He reacted with noticeable restraint."
+  },
+  {
+    "id": "web-b2-10",
+    "level": "B2",
+    "category": "Abstrakt & Formell",
+    "de": "sich abzeichnen",
+    "en": "to become apparent/take shape",
+    "example": "Ein neuer Trend zeichnet sich ab.",
+    "exampleEn": "A new trend is becoming apparent."
+  },
+  {
+    "id": "web-a1-11",
+    "level": "A1",
+    "category": "Begrüßung & Höflichkeit",
+    "de": "Hallo",
+    "en": "hello",
+    "example": "Hallo, wie geht es dir?",
+    "exampleEn": "Hello, how are you?"
+  },
+  {
+    "id": "web-a1-12",
+    "level": "A1",
+    "category": "Begrüßung & Höflichkeit",
+    "de": "Guten Morgen",
+    "en": "good morning",
+    "example": "Guten Morgen! Hast du gut geschlafen?",
+    "exampleEn": "Good morning! Did you sleep well?"
+  },
+  {
+    "id": "web-a1-13",
+    "level": "A1",
+    "category": "Begrüßung & Höflichkeit",
+    "de": "Guten Tag",
+    "en": "good day / hello",
+    "example": "Guten Tag, mein Name ist Anna.",
+    "exampleEn": "Good day, my name is Anna."
+  },
+  {
+    "id": "web-a1-14",
+    "level": "A1",
+    "category": "Begrüßung & Höflichkeit",
+    "de": "Guten Abend",
+    "en": "good evening",
+    "example": "Guten Abend, herzlich willkommen im Restaurant.",
+    "exampleEn": "Good evening, welcome to the restaurant."
+  },
+  {
+    "id": "web-a1-15",
+    "level": "A1",
+    "category": "Begrüßung & Höflichkeit",
+    "de": "Gute Nacht",
+    "en": "good night",
+    "example": "Gute Nacht, bis morgen!",
+    "exampleEn": "Good night, see you tomorrow!"
+  },
+  {
+    "id": "web-a1-16",
+    "level": "A1",
+    "category": "Begrüßung & Höflichkeit",
+    "de": "Tschüss",
+    "en": "bye",
+    "example": "Tschüss, wir sehen uns später.",
+    "exampleEn": "Bye, see you later."
+  },
+  {
+    "id": "web-a1-17",
+    "level": "A1",
+    "category": "Begrüßung & Höflichkeit",
+    "de": "Auf Wiedersehen",
+    "en": "goodbye",
+    "example": "Auf Wiedersehen und einen schönen Abend noch.",
+    "exampleEn": "Goodbye and have a nice evening."
+  },
+  {
+    "id": "web-a1-18",
+    "level": "A1",
+    "category": "Begrüßung & Höflichkeit",
+    "de": "bitte",
+    "en": "please / you're welcome",
+    "example": "Kannst du mir bitte helfen?",
+    "exampleEn": "Can you please help me?"
+  },
+  {
+    "id": "web-a1-19",
+    "level": "A1",
+    "category": "Begrüßung & Höflichkeit",
+    "de": "danke",
+    "en": "thanks",
+    "example": "Danke für das schöne Geschenk!",
+    "exampleEn": "Thanks for the lovely gift!"
+  },
+  {
+    "id": "web-a1-20",
+    "level": "A1",
+    "category": "Begrüßung & Höflichkeit",
+    "de": "Entschuldigung",
+    "en": "excuse me / sorry",
+    "example": "Entschuldigung, wo ist der Bahnhof?",
+    "exampleEn": "Excuse me, where is the train station?"
+  },
+  {
+    "id": "web-a1-21",
+    "level": "A1",
+    "category": "Begrüßung & Höflichkeit",
+    "de": "ja",
+    "en": "yes",
+    "example": "Ja, das stimmt genau.",
+    "exampleEn": "Yes, that's exactly right."
+  },
+  {
+    "id": "web-a1-22",
+    "level": "A1",
+    "category": "Begrüßung & Höflichkeit",
+    "de": "nein",
+    "en": "no",
+    "example": "Nein, das ist nicht meine Tasche.",
+    "exampleEn": "No, that's not my bag."
+  },
+  {
+    "id": "web-a1-23",
+    "level": "A1",
+    "category": "Begrüßung & Höflichkeit",
+    "de": "vielleicht",
+    "en": "maybe",
+    "example": "Vielleicht komme ich am Wochenende vorbei.",
+    "exampleEn": "Maybe I'll stop by on the weekend."
+  },
+  {
+    "id": "web-a1-24",
+    "level": "A1",
+    "category": "Familie & Menschen",
+    "de": "der Vater",
+    "en": "father",
+    "example": "Mein Vater kocht sehr gern.",
+    "exampleEn": "My father loves to cook."
+  },
+  {
+    "id": "web-a1-25",
+    "level": "A1",
+    "category": "Familie & Menschen",
+    "de": "die Mutter",
+    "en": "mother",
+    "example": "Meine Mutter fährt jeden Tag mit dem Rad.",
+    "exampleEn": "My mother rides her bike every day."
+  },
+  {
+    "id": "web-a1-26",
+    "level": "A1",
+    "category": "Familie & Menschen",
+    "de": "der Bruder",
+    "en": "brother",
+    "example": "Mein Bruder ist zwei Jahre älter als ich.",
+    "exampleEn": "My brother is two years older than me."
+  },
+  {
+    "id": "web-a1-27",
+    "level": "A1",
+    "category": "Familie & Menschen",
+    "de": "die Schwester",
+    "en": "sister",
+    "example": "Ich habe eine kleine Schwester.",
+    "exampleEn": "I have a little sister."
+  },
+  {
+    "id": "web-a1-28",
+    "level": "A1",
+    "category": "Familie & Menschen",
+    "de": "das Kind",
+    "en": "child",
+    "example": "Das Kind spielt im Garten.",
+    "exampleEn": "The child is playing in the garden."
+  },
+  {
+    "id": "web-a1-29",
+    "level": "A1",
+    "category": "Familie & Menschen",
+    "de": "der Sohn",
+    "en": "son",
+    "example": "Ihr Sohn geht noch in die Schule.",
+    "exampleEn": "Her son still goes to school."
+  },
+  {
+    "id": "web-a1-30",
+    "level": "A1",
+    "category": "Familie & Menschen",
+    "de": "die Tochter",
+    "en": "daughter",
+    "example": "Seine Tochter lernt gerade Deutsch.",
+    "exampleEn": "His daughter is currently learning German."
+  },
+  {
+    "id": "web-a1-31",
+    "level": "A1",
+    "category": "Familie & Menschen",
+    "de": "der Opa",
+    "en": "grandpa",
+    "example": "Mein Opa erzählt gerne Geschichten.",
+    "exampleEn": "My grandpa likes to tell stories."
+  },
+  {
+    "id": "web-a1-32",
+    "level": "A1",
+    "category": "Familie & Menschen",
+    "de": "die Oma",
+    "en": "grandma",
+    "example": "Wir besuchen am Sonntag die Oma.",
+    "exampleEn": "We're visiting grandma on Sunday."
+  },
+  {
+    "id": "web-a1-33",
+    "level": "A1",
+    "category": "Familie & Menschen",
+    "de": "der Mann",
+    "en": "man / husband",
+    "example": "Der Mann dort trägt einen blauen Mantel.",
+    "exampleEn": "The man over there is wearing a blue coat."
+  },
+  {
+    "id": "web-a1-34",
+    "level": "A1",
+    "category": "Familie & Menschen",
+    "de": "die Frau",
+    "en": "woman / wife",
+    "example": "Die Frau neben mir heißt Petra.",
+    "exampleEn": "The woman next to me is called Petra."
+  },
+  {
+    "id": "web-a1-35",
+    "level": "A1",
+    "category": "Familie & Menschen",
+    "de": "das Baby",
+    "en": "baby",
+    "example": "Das Baby schläft schon seit zwei Stunden.",
+    "exampleEn": "The baby has been sleeping for two hours already."
+  },
+  {
+    "id": "web-a1-36",
+    "level": "A1",
+    "category": "Zahlen",
+    "de": "eins",
+    "en": "one",
+    "example": "Ich hätte gern eins von diesen Brötchen.",
+    "exampleEn": "I'd like one of these rolls."
+  },
+  {
+    "id": "web-a1-37",
+    "level": "A1",
+    "category": "Zahlen",
+    "de": "zwei",
+    "en": "two",
+    "example": "Wir brauchen zwei Karten für den Zug.",
+    "exampleEn": "We need two tickets for the train."
+  },
+  {
+    "id": "web-a1-38",
+    "level": "A1",
+    "category": "Zahlen",
+    "de": "drei",
+    "en": "three",
+    "example": "Das Café schließt um drei Uhr.",
+    "exampleEn": "The café closes at three o'clock."
+  },
+  {
+    "id": "web-a1-39",
+    "level": "A1",
+    "category": "Zahlen",
+    "de": "vier",
+    "en": "four",
+    "example": "In unserer Familie sind wir vier Personen.",
+    "exampleEn": "There are four of us in our family."
+  },
+  {
+    "id": "web-a1-40",
+    "level": "A1",
+    "category": "Zahlen",
+    "de": "fünf",
+    "en": "five",
+    "example": "Er kommt in fünf Minuten an.",
+    "exampleEn": "He'll arrive in five minutes."
+  },
+  {
+    "id": "web-a1-41",
+    "level": "A1",
+    "category": "Zahlen",
+    "de": "sechs",
+    "en": "six",
+    "example": "Das Kind ist erst sechs Jahre alt.",
+    "exampleEn": "The child is only six years old."
+  },
+  {
+    "id": "web-a1-42",
+    "level": "A1",
+    "category": "Zahlen",
+    "de": "sieben",
+    "en": "seven",
+    "example": "Die Woche hat sieben Tage.",
+    "exampleEn": "The week has seven days."
+  },
+  {
+    "id": "web-a1-43",
+    "level": "A1",
+    "category": "Zahlen",
+    "de": "acht",
+    "en": "eight",
+    "example": "Der Unterricht beginnt um acht Uhr.",
+    "exampleEn": "Class starts at eight o'clock."
+  },
+  {
+    "id": "web-a1-44",
+    "level": "A1",
+    "category": "Zahlen",
+    "de": "neun",
+    "en": "nine",
+    "example": "Der Bus fährt um neun Uhr ab.",
+    "exampleEn": "The bus leaves at nine o'clock."
+  },
+  {
+    "id": "web-a1-45",
+    "level": "A1",
+    "category": "Zahlen",
+    "de": "zehn",
+    "en": "ten",
+    "example": "Ich zähle laut bis zehn.",
+    "exampleEn": "I'm counting out loud to ten."
+  },
+  {
+    "id": "web-a1-46",
+    "level": "A1",
+    "category": "Zahlen",
+    "de": "hundert",
+    "en": "hundred",
+    "example": "Das Kleid kostet hundert Euro.",
+    "exampleEn": "The dress costs a hundred euros."
+  },
+  {
+    "id": "web-a1-47",
+    "level": "A1",
+    "category": "Zahlen",
+    "de": "tausend",
+    "en": "thousand",
+    "example": "In der Stadt leben über tausend Menschen.",
+    "exampleEn": "More than a thousand people live in the city."
+  },
+  {
+    "id": "web-a1-48",
+    "level": "A1",
+    "category": "Farben",
+    "de": "rot",
+    "en": "red",
+    "example": "Die Rose ist wunderschön rot.",
+    "exampleEn": "The rose is a beautiful red."
+  },
+  {
+    "id": "web-a1-49",
+    "level": "A1",
+    "category": "Farben",
+    "de": "blau",
+    "en": "blue",
+    "example": "Der Himmel ist heute sehr blau.",
+    "exampleEn": "The sky is very blue today."
+  },
+  {
+    "id": "web-a1-50",
+    "level": "A1",
+    "category": "Farben",
+    "de": "gelb",
+    "en": "yellow",
+    "example": "Die Banane ist noch nicht ganz gelb.",
+    "exampleEn": "The banana isn't quite yellow yet."
+  },
+  {
+    "id": "web-a1-51",
+    "level": "A1",
+    "category": "Farben",
+    "de": "grün",
+    "en": "green",
+    "example": "Sie trägt heute ein grünes Kleid.",
+    "exampleEn": "She's wearing a green dress today."
+  },
+  {
+    "id": "web-a1-52",
+    "level": "A1",
+    "category": "Farben",
+    "de": "schwarz",
+    "en": "black",
+    "example": "Der Hund hat schönes schwarzes Fell.",
+    "exampleEn": "The dog has beautiful black fur."
+  },
+  {
+    "id": "web-a1-53",
+    "level": "A1",
+    "category": "Farben",
+    "de": "weiß",
+    "en": "white",
+    "example": "Die Wand im Zimmer ist weiß.",
+    "exampleEn": "The wall in the room is white."
+  },
+  {
+    "id": "web-a1-54",
+    "level": "A1",
+    "category": "Farben",
+    "de": "braun",
+    "en": "brown",
+    "example": "Meine neuen Schuhe sind braun.",
+    "exampleEn": "My new shoes are brown."
+  },
+  {
+    "id": "web-a1-55",
+    "level": "A1",
+    "category": "Farben",
+    "de": "orange",
+    "en": "orange",
+    "example": "Seine Jacke ist auffällig orange.",
+    "exampleEn": "His jacket is a striking orange."
+  },
+  {
+    "id": "web-a1-56",
+    "level": "A1",
+    "category": "Farben",
+    "de": "grau",
+    "en": "gray",
+    "example": "Der Himmel ist heute grau und wolkig.",
+    "exampleEn": "The sky is gray and cloudy today."
+  },
+  {
+    "id": "web-a1-57",
+    "level": "A1",
+    "category": "Essen & Trinken",
+    "de": "das Brot",
+    "en": "bread",
+    "example": "Zum Frühstück esse ich Brot mit Käse.",
+    "exampleEn": "For breakfast I eat bread with cheese."
+  },
+  {
+    "id": "web-a1-58",
+    "level": "A1",
+    "category": "Essen & Trinken",
+    "de": "die Milch",
+    "en": "milk",
+    "example": "Trinkst du deinen Kaffee mit Milch?",
+    "exampleEn": "Do you drink your coffee with milk?"
+  },
+  {
+    "id": "web-a1-59",
+    "level": "A1",
+    "category": "Essen & Trinken",
+    "de": "der Kaffee",
+    "en": "coffee",
+    "example": "Am Morgen trinke ich immer einen Kaffee.",
+    "exampleEn": "In the morning I always drink a coffee."
+  },
+  {
+    "id": "web-a1-60",
+    "level": "A1",
+    "category": "Essen & Trinken",
+    "de": "der Tee",
+    "en": "tea",
+    "example": "Möchtest du eine Tasse Tee?",
+    "exampleEn": "Would you like a cup of tea?"
+  },
+  {
+    "id": "web-a1-61",
+    "level": "A1",
+    "category": "Essen & Trinken",
+    "de": "der Apfel",
+    "en": "apple",
+    "example": "Der Apfel schmeckt sehr süß.",
+    "exampleEn": "The apple tastes very sweet."
+  },
+  {
+    "id": "web-a1-62",
+    "level": "A1",
+    "category": "Essen & Trinken",
+    "de": "die Banane",
+    "en": "banana",
+    "example": "Die Banane schmeckt süß und ist sehr gesund.",
+    "exampleEn": "The banana tastes sweet and is very healthy."
+  },
+  {
+    "id": "web-a1-63",
+    "level": "A1",
+    "category": "Essen & Trinken",
+    "de": "das Ei",
+    "en": "egg",
+    "example": "Zum Frühstück gibt es heute ein Ei.",
+    "exampleEn": "There's an egg for breakfast today."
+  },
+  {
+    "id": "web-a1-64",
+    "level": "A1",
+    "category": "Essen & Trinken",
+    "de": "der Käse",
+    "en": "cheese",
+    "example": "Dieser Käse kommt aus der Schweiz.",
+    "exampleEn": "This cheese is from Switzerland."
+  },
+  {
+    "id": "web-a1-65",
+    "level": "A1",
+    "category": "Essen & Trinken",
+    "de": "das Fleisch",
+    "en": "meat",
+    "example": "Er isst schon lange kein Fleisch mehr.",
+    "exampleEn": "He hasn't eaten meat in a long time."
+  },
+  {
+    "id": "web-a1-66",
+    "level": "A1",
+    "category": "Essen & Trinken",
+    "de": "der Reis",
+    "en": "rice",
+    "example": "Zum Mittagessen kochen wir Reis mit Gemüse.",
+    "exampleEn": "For lunch we're cooking rice with vegetables."
+  },
+  {
+    "id": "web-a1-67",
+    "level": "A1",
+    "category": "Essen & Trinken",
+    "de": "die Suppe",
+    "en": "soup",
+    "example": "Die Suppe ist heute besonders lecker.",
+    "exampleEn": "The soup is especially delicious today."
+  },
+  {
+    "id": "web-a1-68",
+    "level": "A1",
+    "category": "Essen & Trinken",
+    "de": "der Saft",
+    "en": "juice",
+    "example": "Die Kinder trinken gerne Orangensaft.",
+    "exampleEn": "The children like drinking orange juice."
+  },
+  {
+    "id": "web-a1-69",
+    "level": "A1",
+    "category": "Essen & Trinken",
+    "de": "der Zucker",
+    "en": "sugar",
+    "example": "Nimmst du Zucker in deinen Tee?",
+    "exampleEn": "Do you take sugar in your tea?"
+  },
+  {
+    "id": "web-a1-70",
+    "level": "A1",
+    "category": "Essen & Trinken",
+    "de": "das Salz",
+    "en": "salt",
+    "example": "Kannst du mir bitte das Salz reichen?",
+    "exampleEn": "Can you pass me the salt, please?"
+  },
+  {
+    "id": "web-a1-71",
+    "level": "A1",
+    "category": "Essen & Trinken",
+    "de": "der Kuchen",
+    "en": "cake",
+    "example": "Zum Geburtstag gibt es einen Kuchen.",
+    "exampleEn": "There's a cake for the birthday."
+  },
+  {
+    "id": "web-a1-72",
+    "level": "A1",
+    "category": "Essen & Trinken",
+    "de": "die Kartoffel",
+    "en": "potato",
+    "example": "Wir essen heute Kartoffeln mit Soße.",
+    "exampleEn": "We're eating potatoes with gravy today."
+  },
+  {
+    "id": "web-a1-73",
+    "level": "A1",
+    "category": "Zuhause",
+    "de": "das Haus",
+    "en": "house",
+    "example": "Sie wohnen in einem kleinen Haus am Fluss.",
+    "exampleEn": "They live in a small house by the river."
+  },
+  {
+    "id": "web-a1-74",
+    "level": "A1",
+    "category": "Zuhause",
+    "de": "das Zimmer",
+    "en": "room",
+    "example": "Mein Zimmer ist ziemlich klein, aber hell.",
+    "exampleEn": "My room is quite small, but bright."
+  },
+  {
+    "id": "web-a1-75",
+    "level": "A1",
+    "category": "Zuhause",
+    "de": "die Küche",
+    "en": "kitchen",
+    "example": "Wir kochen jeden Abend zusammen in der Küche.",
+    "exampleEn": "We cook together in the kitchen every evening."
+  },
+  {
+    "id": "web-a1-76",
+    "level": "A1",
+    "category": "Zuhause",
+    "de": "das Bad",
+    "en": "bathroom",
+    "example": "Das Bad ist am Ende des Flurs.",
+    "exampleEn": "The bathroom is at the end of the hallway."
+  },
+  {
+    "id": "web-a1-77",
+    "level": "A1",
+    "category": "Zuhause",
+    "de": "das Bett",
+    "en": "bed",
+    "example": "Das Bett steht direkt am Fenster.",
+    "exampleEn": "The bed is right by the window."
+  },
+  {
+    "id": "web-a1-78",
+    "level": "A1",
+    "category": "Zuhause",
+    "de": "der Tisch",
+    "en": "table",
+    "example": "Stell die Teller bitte auf den Tisch.",
+    "exampleEn": "Please put the plates on the table."
+  },
+  {
+    "id": "web-a1-79",
+    "level": "A1",
+    "category": "Zuhause",
+    "de": "der Stuhl",
+    "en": "chair",
+    "example": "Dieser Stuhl ist wirklich sehr bequem.",
+    "exampleEn": "This chair is really very comfortable."
+  },
+  {
+    "id": "web-a1-80",
+    "level": "A1",
+    "category": "Zuhause",
+    "de": "die Tür",
+    "en": "door",
+    "example": "Mach bitte die Tür zu, es zieht.",
+    "exampleEn": "Please close the door, there's a draft."
+  },
+  {
+    "id": "web-a1-81",
+    "level": "A1",
+    "category": "Zuhause",
+    "de": "das Fenster",
+    "en": "window",
+    "example": "Mach bitte kurz das Fenster auf.",
+    "exampleEn": "Please open the window for a moment."
+  },
+  {
+    "id": "web-a1-82",
+    "level": "A1",
+    "category": "Zuhause",
+    "de": "der Schrank",
+    "en": "cupboard / closet",
+    "example": "Die Teller stehen im Schrank.",
+    "exampleEn": "The plates are in the cupboard."
+  },
+  {
+    "id": "web-a1-83",
+    "level": "A1",
+    "category": "Zuhause",
+    "de": "die Lampe",
+    "en": "lamp",
+    "example": "Die Lampe im Wohnzimmer ist leider kaputt.",
+    "exampleEn": "The lamp in the living room is unfortunately broken."
+  },
+  {
+    "id": "web-a1-84",
+    "level": "A1",
+    "category": "Zuhause",
+    "de": "die Wand",
+    "en": "wall",
+    "example": "An der Wand hängt ein altes Foto.",
+    "exampleEn": "There's an old photo hanging on the wall."
+  },
+  {
+    "id": "web-a1-85",
+    "level": "A1",
+    "category": "Körper",
+    "de": "der Kopf",
+    "en": "head",
+    "example": "Mir tut seit heute Morgen der Kopf weh.",
+    "exampleEn": "My head has been hurting since this morning."
+  },
+  {
+    "id": "web-a1-86",
+    "level": "A1",
+    "category": "Körper",
+    "de": "die Hand",
+    "en": "hand",
+    "example": "Gib mir bitte deine Hand.",
+    "exampleEn": "Please give me your hand."
+  },
+  {
+    "id": "web-a1-87",
+    "level": "A1",
+    "category": "Körper",
+    "de": "der Fuß",
+    "en": "foot",
+    "example": "Er hat sich beim Sport am Fuß verletzt.",
+    "exampleEn": "He hurt his foot playing sports."
+  },
+  {
+    "id": "web-a1-88",
+    "level": "A1",
+    "category": "Körper",
+    "de": "das Auge",
+    "en": "eye",
+    "example": "Sie hat wunderschöne braune Augen.",
+    "exampleEn": "She has beautiful brown eyes."
+  },
+  {
+    "id": "web-a1-89",
+    "level": "A1",
+    "category": "Körper",
+    "de": "der Mund",
+    "en": "mouth",
+    "example": "Ich öffne beim Arzt den Mund.",
+    "exampleEn": "I open my mouth at the doctor's."
+  },
+  {
+    "id": "web-a1-90",
+    "level": "A1",
+    "category": "Körper",
+    "de": "das Haar",
+    "en": "hair",
+    "example": "Ihr Haar ist lang und dunkel.",
+    "exampleEn": "Her hair is long and dark."
+  },
+  {
+    "id": "web-a1-91",
+    "level": "A1",
+    "category": "Körper",
+    "de": "das Ohr",
+    "en": "ear",
+    "example": "Er hört auf dem linken Ohr nicht so gut.",
+    "exampleEn": "He doesn't hear very well in his left ear."
+  },
+  {
+    "id": "web-a1-92",
+    "level": "A1",
+    "category": "Körper",
+    "de": "die Nase",
+    "en": "nose",
+    "example": "Seine Nase ist ganz rot vor Kälte.",
+    "exampleEn": "His nose is completely red from the cold."
+  },
+  {
+    "id": "web-a1-93",
+    "level": "A1",
+    "category": "Kleidung",
+    "de": "die Hose",
+    "en": "pants",
+    "example": "Die Hose ist mir leider zu groß.",
+    "exampleEn": "The pants are unfortunately too big for me."
+  },
+  {
+    "id": "web-a1-94",
+    "level": "A1",
+    "category": "Kleidung",
+    "de": "das Hemd",
+    "en": "shirt",
+    "example": "Er trägt ein weißes Hemd zur Arbeit.",
+    "exampleEn": "He wears a white shirt to work."
+  },
+  {
+    "id": "web-a1-95",
+    "level": "A1",
+    "category": "Kleidung",
+    "de": "der Schuh",
+    "en": "shoe",
+    "example": "Dieser Schuh drückt mich ein bisschen.",
+    "exampleEn": "This shoe pinches me a little."
+  },
+  {
+    "id": "web-a1-96",
+    "level": "A1",
+    "category": "Kleidung",
+    "de": "die Jacke",
+    "en": "jacket",
+    "example": "Zieh deine Jacke an, es ist kalt draußen.",
+    "exampleEn": "Put on your jacket, it's cold outside."
+  },
+  {
+    "id": "web-a1-97",
+    "level": "A1",
+    "category": "Kleidung",
+    "de": "das Kleid",
+    "en": "dress",
+    "example": "Das rote Kleid steht ihr sehr gut.",
+    "exampleEn": "The red dress suits her very well."
+  },
+  {
+    "id": "web-a1-98",
+    "level": "A1",
+    "category": "Kleidung",
+    "de": "die Mütze",
+    "en": "cap / hat",
+    "example": "Im Winter trage ich immer eine Mütze.",
+    "exampleEn": "In winter I always wear a hat."
+  },
+  {
+    "id": "web-a1-99",
+    "level": "A1",
+    "category": "Kleidung",
+    "de": "der Rock",
+    "en": "skirt",
+    "example": "Sie kauft einen neuen Rock für die Feier.",
+    "exampleEn": "She's buying a new skirt for the party."
+  },
+  {
+    "id": "web-a1-100",
+    "level": "A1",
+    "category": "Kleidung",
+    "de": "die Socke",
+    "en": "sock",
+    "example": "Eine Socke ist unter dem Bett verschwunden.",
+    "exampleEn": "One sock has disappeared under the bed."
+  },
+  {
+    "id": "web-a1-101",
+    "level": "A1",
+    "category": "Verben des Alltags",
+    "de": "haben",
+    "en": "to have",
+    "example": "Wir haben zu Hause zwei Katzen.",
+    "exampleEn": "We have two cats at home."
+  },
+  {
+    "id": "web-a1-102",
+    "level": "A1",
+    "category": "Verben des Alltags",
+    "de": "sein",
+    "en": "to be",
+    "example": "Er ist immer sehr freundlich zu allen.",
+    "exampleEn": "He is always very friendly to everyone."
+  },
+  {
+    "id": "web-a1-103",
+    "level": "A1",
+    "category": "Verben des Alltags",
+    "de": "gehen",
+    "en": "to go",
+    "example": "Gehst du heute Abend ins Kino?",
+    "exampleEn": "Are you going to the cinema tonight?"
+  },
+  {
+    "id": "web-a1-104",
+    "level": "A1",
+    "category": "Verben des Alltags",
+    "de": "machen",
+    "en": "to do / to make",
+    "example": "Was machst du am Wochenende?",
+    "exampleEn": "What are you doing this weekend?"
+  },
+  {
+    "id": "web-a1-105",
+    "level": "A1",
+    "category": "Verben des Alltags",
+    "de": "kommen",
+    "en": "to come",
+    "example": "Kommst du mit ins Café?",
+    "exampleEn": "Are you coming along to the café?"
+  },
+  {
+    "id": "web-a1-106",
+    "level": "A1",
+    "category": "Verben des Alltags",
+    "de": "wohnen",
+    "en": "to live / to reside",
+    "example": "Ich wohne seit drei Jahren in Berlin.",
+    "exampleEn": "I've been living in Berlin for three years."
+  },
+  {
+    "id": "web-a1-107",
+    "level": "A1",
+    "category": "Verben des Alltags",
+    "de": "kaufen",
+    "en": "to buy",
+    "example": "Wir kaufen frisches Brot beim Bäcker.",
+    "exampleEn": "We buy fresh bread at the bakery."
+  },
+  {
+    "id": "web-a1-108",
+    "level": "A1",
+    "category": "Verben des Alltags",
+    "de": "kosten",
+    "en": "to cost",
+    "example": "Wie viel kostet dieses Buch?",
+    "exampleEn": "How much does this book cost?"
+  },
+  {
+    "id": "web-a1-109",
+    "level": "A1",
+    "category": "Verben des Alltags",
+    "de": "lesen",
+    "en": "to read",
+    "example": "Sie liest jeden Abend ein Kapitel.",
+    "exampleEn": "She reads a chapter every evening."
+  },
+  {
+    "id": "web-a1-110",
+    "level": "A1",
+    "category": "Verben des Alltags",
+    "de": "schreiben",
+    "en": "to write",
+    "example": "Ich schreibe meiner Oma eine Karte.",
+    "exampleEn": "I'm writing a card to my grandma."
+  },
+  {
+    "id": "web-a1-111",
+    "level": "A1",
+    "category": "Verben des Alltags",
+    "de": "hören",
+    "en": "to hear / to listen",
+    "example": "Wir hören im Auto gerne Musik.",
+    "exampleEn": "We like listening to music in the car."
+  },
+  {
+    "id": "web-a1-112",
+    "level": "A1",
+    "category": "Verben des Alltags",
+    "de": "sehen",
+    "en": "to see",
+    "example": "Kannst du das Schild von hier sehen?",
+    "exampleEn": "Can you see the sign from here?"
+  },
+  {
+    "id": "web-a1-113",
+    "level": "A1",
+    "category": "Verben des Alltags",
+    "de": "spielen",
+    "en": "to play",
+    "example": "Die Kinder spielen im Park Fußball.",
+    "exampleEn": "The children are playing soccer in the park."
+  },
+  {
+    "id": "web-a1-114",
+    "level": "A1",
+    "category": "Verben des Alltags",
+    "de": "lernen",
+    "en": "to learn",
+    "example": "Er lernt seit einem Jahr Deutsch.",
+    "exampleEn": "He has been learning German for a year."
+  },
+  {
+    "id": "web-a1-115",
+    "level": "A1",
+    "category": "Verben des Alltags",
+    "de": "schlafen",
+    "en": "to sleep",
+    "example": "Das Baby schläft schon ganz fest.",
+    "exampleEn": "The baby is already sound asleep."
+  },
+  {
+    "id": "web-a1-116",
+    "level": "A1",
+    "category": "Verben des Alltags",
+    "de": "kochen",
+    "en": "to cook",
+    "example": "Meine Mutter kocht sonntags immer etwas Besonderes.",
+    "exampleEn": "My mother always cooks something special on Sundays."
+  },
+  {
+    "id": "web-a1-117",
+    "level": "A1",
+    "category": "Verben des Alltags",
+    "de": "trinken",
+    "en": "to drink",
+    "example": "Möchtest du etwas trinken?",
+    "exampleEn": "Would you like something to drink?"
+  },
+  {
+    "id": "web-a1-118",
+    "level": "A1",
+    "category": "Verben des Alltags",
+    "de": "helfen",
+    "en": "to help",
+    "example": "Kannst du mir helfen, die Kisten zu tragen?",
+    "exampleEn": "Can you help me carry the boxes?"
+  },
+  {
+    "id": "web-a1-119",
+    "level": "A1",
+    "category": "Verben des Alltags",
+    "de": "brauchen",
+    "en": "to need",
+    "example": "Ich brauche noch Milch und Eier.",
+    "exampleEn": "I still need milk and eggs."
+  },
+  {
+    "id": "web-a1-120",
+    "level": "A1",
+    "category": "Verben des Alltags",
+    "de": "mögen",
+    "en": "to like",
+    "example": "Ich mag klassische Musik sehr.",
+    "exampleEn": "I like classical music a lot."
+  },
+  {
+    "id": "web-a1-121",
+    "level": "A1",
+    "category": "Kommunikation",
+    "de": "sagen",
+    "en": "to say",
+    "example": "Was hat er dir dazu gesagt?",
+    "exampleEn": "What did he say to you about that?"
+  },
+  {
+    "id": "web-a1-122",
+    "level": "A1",
+    "category": "Kommunikation",
+    "de": "fragen",
+    "en": "to ask",
+    "example": "Darf ich dich kurz etwas fragen?",
+    "exampleEn": "May I ask you something quickly?"
+  },
+  {
+    "id": "web-a1-123",
+    "level": "A1",
+    "category": "Kommunikation",
+    "de": "antworten",
+    "en": "to answer",
+    "example": "Sie hat mir noch nicht geantwortet.",
+    "exampleEn": "She hasn't answered me yet."
+  },
+  {
+    "id": "web-a1-124",
+    "level": "A1",
+    "category": "Kommunikation",
+    "de": "rufen",
+    "en": "to call / to shout",
+    "example": "Er ruft laut nach seinem Hund.",
+    "exampleEn": "He calls loudly for his dog."
+  },
+  {
+    "id": "web-a1-125",
+    "level": "A1",
+    "category": "Kommunikation",
+    "de": "erzählen",
+    "en": "to tell",
+    "example": "Opa erzählt gern Geschichten aus seiner Jugend.",
+    "exampleEn": "Grandpa likes to tell stories from his youth."
+  },
+  {
+    "id": "web-a1-126",
+    "level": "A1",
+    "category": "Tage & Zeit",
+    "de": "der Montag",
+    "en": "Monday",
+    "example": "Am Montag beginnt die Schule wieder.",
+    "exampleEn": "School starts again on Monday."
+  },
+  {
+    "id": "web-a1-127",
+    "level": "A1",
+    "category": "Tage & Zeit",
+    "de": "der Dienstag",
+    "en": "Tuesday",
+    "example": "Wir treffen uns am Dienstag um vier Uhr.",
+    "exampleEn": "We're meeting on Tuesday at four o'clock."
+  },
+  {
+    "id": "web-a1-128",
+    "level": "A1",
+    "category": "Tage & Zeit",
+    "de": "der Mittwoch",
+    "en": "Wednesday",
+    "example": "Mittwochs habe ich immer frei.",
+    "exampleEn": "I always have Wednesdays off."
+  },
+  {
+    "id": "web-a1-129",
+    "level": "A1",
+    "category": "Tage & Zeit",
+    "de": "der Donnerstag",
+    "en": "Thursday",
+    "example": "Am Donnerstag fliegen wir nach Spanien.",
+    "exampleEn": "We're flying to Spain on Thursday."
+  },
+  {
+    "id": "web-a1-130",
+    "level": "A1",
+    "category": "Tage & Zeit",
+    "de": "der Freitag",
+    "en": "Friday",
+    "example": "Freitags gehen wir oft ins Kino.",
+    "exampleEn": "We often go to the cinema on Fridays."
+  },
+  {
+    "id": "web-a1-131",
+    "level": "A1",
+    "category": "Tage & Zeit",
+    "de": "der Samstag",
+    "en": "Saturday",
+    "example": "Am Samstag kaufen wir auf dem Markt ein.",
+    "exampleEn": "We shop at the market on Saturdays."
+  },
+  {
+    "id": "web-a1-132",
+    "level": "A1",
+    "category": "Tage & Zeit",
+    "de": "der Sonntag",
+    "en": "Sunday",
+    "example": "Sonntags schlafen wir gerne etwas länger.",
+    "exampleEn": "We like to sleep in a bit on Sundays."
+  },
+  {
+    "id": "web-a1-133",
+    "level": "A1",
+    "category": "Tage & Zeit",
+    "de": "heute",
+    "en": "today",
+    "example": "Heute scheint endlich die Sonne.",
+    "exampleEn": "Today the sun is finally shining."
+  },
+  {
+    "id": "web-a1-134",
+    "level": "A1",
+    "category": "Tage & Zeit",
+    "de": "morgen",
+    "en": "tomorrow",
+    "example": "Morgen fahren wir zu meinen Eltern.",
+    "exampleEn": "Tomorrow we're driving to my parents'."
+  },
+  {
+    "id": "web-a1-135",
+    "level": "A1",
+    "category": "Tage & Zeit",
+    "de": "die Woche",
+    "en": "week",
+    "example": "Nächste Woche habe ich endlich Urlaub.",
+    "exampleEn": "Next week I finally have vacation."
+  },
+  {
+    "id": "web-a1-136",
+    "level": "A1",
+    "category": "Tage & Zeit",
+    "de": "der Monat",
+    "en": "month",
+    "example": "Im nächsten Monat ziehen wir um.",
+    "exampleEn": "Next month we're moving."
+  },
+  {
+    "id": "web-a1-137",
+    "level": "A1",
+    "category": "Tage & Zeit",
+    "de": "das Jahr",
+    "en": "year",
+    "example": "Dieses Jahr war für uns sehr schön.",
+    "exampleEn": "This year was very nice for us."
+  },
+  {
+    "id": "web-a1-138",
+    "level": "A1",
+    "category": "Tage & Zeit",
+    "de": "die Uhr",
+    "en": "clock / o'clock",
+    "example": "Es ist schon sechs Uhr.",
+    "exampleEn": "It's already six o'clock."
+  },
+  {
+    "id": "web-a1-139",
+    "level": "A1",
+    "category": "Tage & Zeit",
+    "de": "die Stunde",
+    "en": "hour",
+    "example": "Der Film dauert fast zwei Stunden.",
+    "exampleEn": "The movie lasts almost two hours."
+  },
+  {
+    "id": "web-a1-140",
+    "level": "A1",
+    "category": "Tage & Zeit",
+    "de": "früh",
+    "en": "early",
+    "example": "Er steht immer sehr früh auf.",
+    "exampleEn": "He always gets up very early."
+  },
+  {
+    "id": "web-a1-141",
+    "level": "A1",
+    "category": "Tage & Zeit",
+    "de": "spät",
+    "en": "late",
+    "example": "Es ist schon spät, wir sollten los.",
+    "exampleEn": "It's already late, we should get going."
+  },
+  {
+    "id": "web-a1-142",
+    "level": "A1",
+    "category": "Wetter",
+    "de": "die Sonne",
+    "en": "sun",
+    "example": "Die Sonne wärmt uns im Sommer sehr angenehm.",
+    "exampleEn": "The sun warms us very pleasantly in summer."
+  },
+  {
+    "id": "web-a1-143",
+    "level": "A1",
+    "category": "Wetter",
+    "de": "der Regen",
+    "en": "rain",
+    "example": "Bei Regen bleiben wir lieber zu Hause.",
+    "exampleEn": "In the rain we prefer to stay home."
+  },
+  {
+    "id": "web-a1-144",
+    "level": "A1",
+    "category": "Wetter",
+    "de": "der Schnee",
+    "en": "snow",
+    "example": "Im Winter liegt hier oft viel Schnee.",
+    "exampleEn": "In winter there's often a lot of snow here."
+  },
+  {
+    "id": "web-a1-145",
+    "level": "A1",
+    "category": "Wetter",
+    "de": "der Wind",
+    "en": "wind",
+    "example": "Der Wind ist heute besonders stark.",
+    "exampleEn": "The wind is especially strong today."
+  },
+  {
+    "id": "web-a1-146",
+    "level": "A1",
+    "category": "Wetter",
+    "de": "warm",
+    "en": "warm",
+    "example": "Im Sommer ist es hier sehr warm.",
+    "exampleEn": "In summer it's very warm here."
+  },
+  {
+    "id": "web-a1-147",
+    "level": "A1",
+    "category": "Wetter",
+    "de": "kalt",
+    "en": "cold",
+    "example": "Zieh dich warm an, es ist kalt draußen.",
+    "exampleEn": "Dress warmly, it's cold outside."
+  },
+  {
+    "id": "web-a1-148",
+    "level": "A1",
+    "category": "Wetter",
+    "de": "das Wetter",
+    "en": "weather",
+    "example": "Wie wird das Wetter morgen?",
+    "exampleEn": "What will the weather be like tomorrow?"
+  },
+  {
+    "id": "web-a1-149",
+    "level": "A1",
+    "category": "Reisen & Verkehr",
+    "de": "der Bus",
+    "en": "bus",
+    "example": "Der Bus kommt in zehn Minuten.",
+    "exampleEn": "The bus arrives in ten minutes."
+  },
+  {
+    "id": "web-a1-150",
+    "level": "A1",
+    "category": "Reisen & Verkehr",
+    "de": "der Zug",
+    "en": "train",
+    "example": "Unser Zug fährt pünktlich um acht Uhr ab.",
+    "exampleEn": "Our train departs punctually at eight o'clock."
+  },
+  {
+    "id": "web-a1-151",
+    "level": "A1",
+    "category": "Reisen & Verkehr",
+    "de": "das Auto",
+    "en": "car",
+    "example": "Wir fahren mit dem Auto in den Urlaub.",
+    "exampleEn": "We're driving to our vacation by car."
+  },
+  {
+    "id": "web-a1-152",
+    "level": "A1",
+    "category": "Reisen & Verkehr",
+    "de": "das Fahrrad",
+    "en": "bicycle",
+    "example": "Ich fahre jeden Tag mit dem Fahrrad zur Arbeit.",
+    "exampleEn": "I ride my bike to work every day."
+  },
+  {
+    "id": "web-a1-153",
+    "level": "A1",
+    "category": "Reisen & Verkehr",
+    "de": "das Flugzeug",
+    "en": "airplane",
+    "example": "Das Flugzeug landet in wenigen Minuten.",
+    "exampleEn": "The airplane lands in a few minutes."
+  },
+  {
+    "id": "web-a1-154",
+    "level": "A1",
+    "category": "Reisen & Verkehr",
+    "de": "der Bahnhof",
+    "en": "train station",
+    "example": "Der Bahnhof liegt direkt im Stadtzentrum.",
+    "exampleEn": "The train station is right in the city center."
+  },
+  {
+    "id": "web-a1-155",
+    "level": "A1",
+    "category": "Reisen & Verkehr",
+    "de": "die Fahrkarte",
+    "en": "ticket",
+    "example": "Hast du schon eine Fahrkarte gekauft?",
+    "exampleEn": "Have you already bought a ticket?"
+  },
+  {
+    "id": "web-a1-156",
+    "level": "A1",
+    "category": "Reisen & Verkehr",
+    "de": "fahren",
+    "en": "to drive / to ride",
+    "example": "Er fährt jeden Morgen mit dem Bus.",
+    "exampleEn": "He rides the bus every morning."
+  },
+  {
+    "id": "web-a1-157",
+    "level": "A1",
+    "category": "Reisen & Verkehr",
+    "de": "fliegen",
+    "en": "to fly",
+    "example": "Wir fliegen im Sommer nach Italien.",
+    "exampleEn": "We're flying to Italy in the summer."
+  },
+  {
+    "id": "web-a1-158",
+    "level": "A1",
+    "category": "Schule",
+    "de": "die Schule",
+    "en": "school",
+    "example": "Die Schule beginnt bei uns um acht Uhr.",
+    "exampleEn": "School starts at eight o'clock for us."
+  },
+  {
+    "id": "web-a1-159",
+    "level": "A1",
+    "category": "Schule",
+    "de": "der Lehrer / die Lehrerin",
+    "en": "teacher",
+    "example": "Unsere Lehrerin erklärt die Grammatik sehr gut.",
+    "exampleEn": "Our teacher explains the grammar very well."
+  },
+  {
+    "id": "web-a1-160",
+    "level": "A1",
+    "category": "Schule",
+    "de": "der Schüler / die Schülerin",
+    "en": "student / pupil",
+    "example": "Die Schülerin meldet sich oft im Unterricht.",
+    "exampleEn": "The student often raises her hand in class."
+  },
+  {
+    "id": "web-a1-161",
+    "level": "A1",
+    "category": "Schule",
+    "de": "das Buch",
+    "en": "book",
+    "example": "Ich lese gerade ein sehr spannendes Buch.",
+    "exampleEn": "I'm currently reading a very exciting book."
+  },
+  {
+    "id": "web-a1-162",
+    "level": "A1",
+    "category": "Schule",
+    "de": "der Stift",
+    "en": "pen / pencil",
+    "example": "Hast du zufällig einen Stift für mich?",
+    "exampleEn": "Do you happen to have a pen for me?"
+  },
+  {
+    "id": "web-a1-163",
+    "level": "A1",
+    "category": "Schule",
+    "de": "das Heft",
+    "en": "notebook",
+    "example": "Schreib die neuen Wörter in dein Heft.",
+    "exampleEn": "Write the new words in your notebook."
+  },
+  {
+    "id": "web-a1-164",
+    "level": "A1",
+    "category": "Orte in der Stadt",
+    "de": "die Stadt",
+    "en": "city / town",
+    "example": "Die Stadt ist am Wochenende sehr voll.",
+    "exampleEn": "The city is very crowded on weekends."
+  },
+  {
+    "id": "web-a1-165",
+    "level": "A1",
+    "category": "Orte in der Stadt",
+    "de": "der Supermarkt",
+    "en": "supermarket",
+    "example": "Ich kaufe im Supermarkt Obst und Gemüse.",
+    "exampleEn": "I buy fruit and vegetables at the supermarket."
+  },
+  {
+    "id": "web-a1-166",
+    "level": "A1",
+    "category": "Orte in der Stadt",
+    "de": "das Geschäft",
+    "en": "store / shop",
+    "example": "Das Geschäft schließt um achtzehn Uhr.",
+    "exampleEn": "The store closes at six p.m."
+  },
+  {
+    "id": "web-a1-167",
+    "level": "A1",
+    "category": "Orte in der Stadt",
+    "de": "die Straße",
+    "en": "street",
+    "example": "Unsere Straße ist zum Glück sehr ruhig.",
+    "exampleEn": "Luckily, our street is very quiet."
+  },
+  {
+    "id": "web-a1-168",
+    "level": "A1",
+    "category": "Orte in der Stadt",
+    "de": "der Park",
+    "en": "park",
+    "example": "Wir gehen sonntags gerne in den Park.",
+    "exampleEn": "We like going to the park on Sundays."
+  },
+  {
+    "id": "web-a1-169",
+    "level": "A1",
+    "category": "Orte in der Stadt",
+    "de": "das Restaurant",
+    "en": "restaurant",
+    "example": "Das Restaurant serviert leckere italienische Küche.",
+    "exampleEn": "The restaurant serves delicious Italian food."
+  },
+  {
+    "id": "web-a1-170",
+    "level": "A1",
+    "category": "Orte in der Stadt",
+    "de": "das Café",
+    "en": "café",
+    "example": "Wir treffen uns im Café um die Ecke.",
+    "exampleEn": "We're meeting at the café around the corner."
+  },
+  {
+    "id": "web-a1-171",
+    "level": "A1",
+    "category": "Orte in der Stadt",
+    "de": "die Bank",
+    "en": "bank",
+    "example": "Ich muss noch schnell zur Bank gehen.",
+    "exampleEn": "I still need to quickly go to the bank."
+  },
+  {
+    "id": "web-a1-172",
+    "level": "A1",
+    "category": "Orte in der Stadt",
+    "de": "die Post",
+    "en": "post office",
+    "example": "Ich gehe zur Post, um ein Paket abzuschicken.",
+    "exampleEn": "I'm going to the post office to send a package."
+  },
+  {
+    "id": "web-a1-173",
+    "level": "A1",
+    "category": "Orte in der Stadt",
+    "de": "das Krankenhaus",
+    "en": "hospital",
+    "example": "Er arbeitet als Arzt im Krankenhaus.",
+    "exampleEn": "He works as a doctor at the hospital."
+  },
+  {
+    "id": "web-a1-174",
+    "level": "A1",
+    "category": "Orte in der Stadt",
+    "de": "die Apotheke",
+    "en": "pharmacy",
+    "example": "Die Apotheke hat auch sonntags geöffnet.",
+    "exampleEn": "The pharmacy is open on Sundays too."
+  },
+  {
+    "id": "web-a1-175",
+    "level": "A1",
+    "category": "Gefühle & Adjektive",
+    "de": "müde",
+    "en": "tired",
+    "example": "Nach der Arbeit bin ich immer sehr müde.",
+    "exampleEn": "After work I'm always very tired."
+  },
+  {
+    "id": "web-a1-176",
+    "level": "A1",
+    "category": "Gefühle & Adjektive",
+    "de": "glücklich",
+    "en": "happy",
+    "example": "Sie ist sehr glücklich über das Geschenk.",
+    "exampleEn": "She is very happy about the gift."
+  },
+  {
+    "id": "web-a1-177",
+    "level": "A1",
+    "category": "Gefühle & Adjektive",
+    "de": "traurig",
+    "en": "sad",
+    "example": "Er war traurig, weil sein Zug schon weg war.",
+    "exampleEn": "He was sad because his train had already left."
+  },
+  {
+    "id": "web-a1-178",
+    "level": "A1",
+    "category": "Gefühle & Adjektive",
+    "de": "gut",
+    "en": "good",
+    "example": "Das Essen hier schmeckt richtig gut.",
+    "exampleEn": "The food here tastes really good."
+  },
+  {
+    "id": "web-a1-179",
+    "level": "A1",
+    "category": "Gefühle & Adjektive",
+    "de": "schlecht",
+    "en": "bad",
+    "example": "Mir geht es heute leider etwas schlecht.",
+    "exampleEn": "Unfortunately I'm feeling a bit bad today."
+  },
+  {
+    "id": "web-a1-180",
+    "level": "A1",
+    "category": "Gefühle & Adjektive",
+    "de": "groß",
+    "en": "big",
+    "example": "Das Haus meiner Großeltern ist sehr groß.",
+    "exampleEn": "My grandparents' house is very big."
+  },
+  {
+    "id": "web-a1-181",
+    "level": "A1",
+    "category": "Gefühle & Adjektive",
+    "de": "klein",
+    "en": "small",
+    "example": "Das Kind hat noch ganz kleine Hände.",
+    "exampleEn": "The child still has very small hands."
+  },
+  {
+    "id": "web-a1-182",
+    "level": "A1",
+    "category": "Gefühle & Adjektive",
+    "de": "neu",
+    "en": "new",
+    "example": "Ich brauche unbedingt neue Schuhe für den Winter.",
+    "exampleEn": "I really need new shoes for winter."
+  },
+  {
+    "id": "web-a1-183",
+    "level": "A1",
+    "category": "Gefühle & Adjektive",
+    "de": "alt",
+    "en": "old",
+    "example": "Der alte Mann sitzt jeden Tag auf dieser Bank.",
+    "exampleEn": "The old man sits on this bench every day."
+  },
+  {
+    "id": "web-a1-184",
+    "level": "A1",
+    "category": "Gefühle & Adjektive",
+    "de": "schön",
+    "en": "beautiful / nice",
+    "example": "Das Wetter heute ist wirklich schön.",
+    "exampleEn": "The weather today is really beautiful."
+  },
+  {
+    "id": "web-a1-185",
+    "level": "A1",
+    "category": "Gefühle & Adjektive",
+    "de": "hungrig",
+    "en": "hungry",
+    "example": "Die Kinder sind nach der Schule immer hungrig.",
+    "exampleEn": "The children are always hungry after school."
+  },
+  {
+    "id": "web-a1-186",
+    "level": "A1",
+    "category": "Gefühle & Adjektive",
+    "de": "durstig",
+    "en": "thirsty",
+    "example": "Nach dem Sport bin ich immer sehr durstig.",
+    "exampleEn": "After exercising I'm always very thirsty."
+  },
+  {
+    "id": "web-a1-187",
+    "level": "A1",
+    "category": "Tiere",
+    "de": "der Hund",
+    "en": "dog",
+    "example": "Unser Hund liebt lange Spaziergänge.",
+    "exampleEn": "Our dog loves long walks."
+  },
+  {
+    "id": "web-a1-188",
+    "level": "A1",
+    "category": "Tiere",
+    "de": "die Katze",
+    "en": "cat",
+    "example": "Die Katze schläft am liebsten den ganzen Nachmittag.",
+    "exampleEn": "The cat prefers to sleep the whole afternoon."
+  },
+  {
+    "id": "web-a1-189",
+    "level": "A1",
+    "category": "Tiere",
+    "de": "der Vogel",
+    "en": "bird",
+    "example": "Ein kleiner Vogel sitzt auf dem Fenstersims.",
+    "exampleEn": "A little bird is sitting on the windowsill."
+  },
+  {
+    "id": "web-a1-190",
+    "level": "A1",
+    "category": "Tiere",
+    "de": "das Pferd",
+    "en": "horse",
+    "example": "Sie reitet jedes Wochenende auf einem Pferd.",
+    "exampleEn": "She rides a horse every weekend."
+  },
+  {
+    "id": "web-a1-191",
+    "level": "A1",
+    "category": "Tiere",
+    "de": "die Kuh",
+    "en": "cow",
+    "example": "Auf dem Bauernhof gibt es viele Kühe.",
+    "exampleEn": "There are many cows on the farm."
+  },
+  {
+    "id": "web-a2-11",
+    "level": "A2",
+    "category": "Alltag & Tagesablauf",
+    "de": "aufstehen",
+    "en": "to get up",
+    "example": "Ich stehe jeden Morgen um sieben Uhr auf.",
+    "exampleEn": "I get up every morning at seven o'clock."
+  },
+  {
+    "id": "web-a2-12",
+    "level": "A2",
+    "category": "Alltag & Tagesablauf",
+    "de": "sich duschen",
+    "en": "to shower",
+    "example": "Nach dem Sport dusche ich mich sofort.",
+    "exampleEn": "After sports I shower right away."
+  },
+  {
+    "id": "web-a2-13",
+    "level": "A2",
+    "category": "Alltag & Tagesablauf",
+    "de": "sich anziehen",
+    "en": "to get dressed",
+    "example": "Zieh dich schnell an, wir müssen los!",
+    "exampleEn": "Get dressed quickly, we have to go!"
+  },
+  {
+    "id": "web-a2-14",
+    "level": "A2",
+    "category": "Alltag & Tagesablauf",
+    "de": "sich ausziehen",
+    "en": "to get undressed",
+    "example": "Er zieht sich aus und geht ins Bett.",
+    "exampleEn": "He gets undressed and goes to bed."
+  },
+  {
+    "id": "web-a2-15",
+    "level": "A2",
+    "category": "Alltag & Tagesablauf",
+    "de": "frühstücken",
+    "en": "to have breakfast",
+    "example": "Wir frühstücken meistens zusammen in der Küche.",
+    "exampleEn": "We usually have breakfast together in the kitchen."
+  },
+  {
+    "id": "web-a2-16",
+    "level": "A2",
+    "category": "Alltag & Tagesablauf",
+    "de": "der Wecker",
+    "en": "alarm clock",
+    "example": "Mein Wecker klingelt jeden Tag um sechs Uhr.",
+    "exampleEn": "My alarm clock rings every day at six o'clock."
+  },
+  {
+    "id": "web-a2-17",
+    "level": "A2",
+    "category": "Alltag & Tagesablauf",
+    "de": "aufwachen",
+    "en": "to wake up",
+    "example": "Ich bin heute schon vor dem Wecker aufgewacht.",
+    "exampleEn": "Today I woke up before the alarm clock."
+  },
+  {
+    "id": "web-a2-18",
+    "level": "A2",
+    "category": "Alltag & Tagesablauf",
+    "de": "sich waschen",
+    "en": "to wash oneself",
+    "example": "Die Kinder waschen sich vor dem Essen die Hände.",
+    "exampleEn": "The children wash their hands before eating."
+  },
+  {
+    "id": "web-a2-19",
+    "level": "A2",
+    "category": "Alltag & Tagesablauf",
+    "de": "die Zahnbürste",
+    "en": "toothbrush",
+    "example": "Meine Zahnbürste liegt neben dem Waschbecken.",
+    "exampleEn": "My toothbrush is next to the sink."
+  },
+  {
+    "id": "web-a2-20",
+    "level": "A2",
+    "category": "Alltag & Tagesablauf",
+    "de": "sich kämmen",
+    "en": "to comb one's hair",
+    "example": "Sie kämmt sich vor dem Spiegel die Haare.",
+    "exampleEn": "She combs her hair in front of the mirror."
+  },
+  {
+    "id": "web-a2-21",
+    "level": "A2",
+    "category": "Alltag & Tagesablauf",
+    "de": "das Bett machen",
+    "en": "to make the bed",
+    "example": "Ich mache immer zuerst das Bett, bevor ich frühstücke.",
+    "exampleEn": "I always make the bed first, before having breakfast."
+  },
+  {
+    "id": "web-a2-22",
+    "level": "A2",
+    "category": "Alltag & Tagesablauf",
+    "de": "ins Bett gehen",
+    "en": "to go to bed",
+    "example": "An Wochentagen gehe ich um elf Uhr ins Bett.",
+    "exampleEn": "On weekdays I go to bed at eleven o'clock."
+  },
+  {
+    "id": "web-a2-23",
+    "level": "A2",
+    "category": "Alltag & Tagesablauf",
+    "de": "sich ausruhen",
+    "en": "to rest",
+    "example": "Am Wochenende möchte ich mich einfach ausruhen.",
+    "exampleEn": "On the weekend I just want to rest."
+  },
+  {
+    "id": "web-a2-24",
+    "level": "A2",
+    "category": "Alltag & Tagesablauf",
+    "de": "der Alltag",
+    "en": "everyday life",
+    "example": "Nach dem Urlaub beginnt wieder der Alltag.",
+    "exampleEn": "After the vacation, everyday life starts again."
+  },
+  {
+    "id": "web-a2-25",
+    "level": "A2",
+    "category": "Einkaufen",
+    "de": "einkaufen gehen",
+    "en": "to go shopping",
+    "example": "Samstags gehen wir immer zusammen einkaufen.",
+    "exampleEn": "On Saturdays we always go shopping together."
+  },
+  {
+    "id": "web-a2-26",
+    "level": "A2",
+    "category": "Einkaufen",
+    "de": "die Kasse",
+    "en": "checkout, cash register",
+    "example": "An der Kasse war eine lange Schlange.",
+    "exampleEn": "There was a long line at the checkout."
+  },
+  {
+    "id": "web-a2-27",
+    "level": "A2",
+    "category": "Einkaufen",
+    "de": "bezahlen",
+    "en": "to pay",
+    "example": "Können wir mit Karte bezahlen?",
+    "exampleEn": "Can we pay by card?"
+  },
+  {
+    "id": "web-a2-28",
+    "level": "A2",
+    "category": "Einkaufen",
+    "de": "das Kleingeld",
+    "en": "small change",
+    "example": "Ich habe leider kein Kleingeld dabei.",
+    "exampleEn": "Unfortunately I don't have any small change with me."
+  },
+  {
+    "id": "web-a2-29",
+    "level": "A2",
+    "category": "Einkaufen",
+    "de": "die Quittung",
+    "en": "receipt",
+    "example": "Bitte geben Sie mir die Quittung für die Firma.",
+    "exampleEn": "Please give me the receipt for the company."
+  },
+  {
+    "id": "web-a2-30",
+    "level": "A2",
+    "category": "Einkaufen",
+    "de": "anprobieren",
+    "en": "to try on",
+    "example": "Darf ich die Jacke kurz anprobieren?",
+    "exampleEn": "May I try on the jacket for a moment?"
+  },
+  {
+    "id": "web-a2-31",
+    "level": "A2",
+    "category": "Einkaufen",
+    "de": "der Preis",
+    "en": "price",
+    "example": "Der Preis für die Schuhe ist wirklich hoch.",
+    "exampleEn": "The price of the shoes is really high."
+  },
+  {
+    "id": "web-a2-32",
+    "level": "A2",
+    "category": "Einkaufen",
+    "de": "billig",
+    "en": "cheap",
+    "example": "Dieses Café ist billig, aber das Essen schmeckt gut.",
+    "exampleEn": "This café is cheap, but the food tastes good."
+  },
+  {
+    "id": "web-a2-33",
+    "level": "A2",
+    "category": "Einkaufen",
+    "de": "teuer",
+    "en": "expensive",
+    "example": "Das neue Handy ist mir zu teuer.",
+    "exampleEn": "The new phone is too expensive for me."
+  },
+  {
+    "id": "web-a2-34",
+    "level": "A2",
+    "category": "Einkaufen",
+    "de": "das Sonderangebot",
+    "en": "special offer",
+    "example": "Der Käse ist diese Woche im Sonderangebot.",
+    "exampleEn": "The cheese is on special offer this week."
+  },
+  {
+    "id": "web-a2-35",
+    "level": "A2",
+    "category": "Einkaufen",
+    "de": "die Tüte",
+    "en": "bag",
+    "example": "Brauchen Sie noch eine Tüte für die Sachen?",
+    "exampleEn": "Do you need another bag for the items?"
+  },
+  {
+    "id": "web-a2-36",
+    "level": "A2",
+    "category": "Einkaufen",
+    "de": "der Einkaufswagen",
+    "en": "shopping cart",
+    "example": "Der Einkaufswagen war schon ganz voll.",
+    "exampleEn": "The shopping cart was already completely full."
+  },
+  {
+    "id": "web-a2-37",
+    "level": "A2",
+    "category": "Essen & Trinken",
+    "de": "die Mahlzeit",
+    "en": "meal",
+    "example": "Das Mittagessen ist meine wichtigste Mahlzeit.",
+    "exampleEn": "Lunch is my most important meal."
+  },
+  {
+    "id": "web-a2-38",
+    "level": "A2",
+    "category": "Essen & Trinken",
+    "de": "bestellen",
+    "en": "to order",
+    "example": "Was möchten Sie bestellen?",
+    "exampleEn": "What would you like to order?"
+  },
+  {
+    "id": "web-a2-39",
+    "level": "A2",
+    "category": "Essen & Trinken",
+    "de": "die Speisekarte",
+    "en": "menu",
+    "example": "Können wir bitte die Speisekarte haben?",
+    "exampleEn": "Could we please have the menu?"
+  },
+  {
+    "id": "web-a2-40",
+    "level": "A2",
+    "category": "Essen & Trinken",
+    "de": "das Gericht",
+    "en": "dish",
+    "example": "Das vegetarische Gericht war wirklich lecker.",
+    "exampleEn": "The vegetarian dish was really delicious."
+  },
+  {
+    "id": "web-a2-41",
+    "level": "A2",
+    "category": "Essen & Trinken",
+    "de": "schmecken",
+    "en": "to taste",
+    "example": "Die Suppe schmeckt heute etwas zu salzig.",
+    "exampleEn": "The soup tastes a bit too salty today."
+  },
+  {
+    "id": "web-a2-42",
+    "level": "A2",
+    "category": "Essen & Trinken",
+    "de": "der Nachtisch",
+    "en": "dessert",
+    "example": "Zum Nachtisch nehme ich das Eis.",
+    "exampleEn": "For dessert I'll have the ice cream."
+  },
+  {
+    "id": "web-a2-43",
+    "level": "A2",
+    "category": "Essen & Trinken",
+    "de": "die Rechnung",
+    "en": "bill",
+    "example": "Die Rechnung, bitte!",
+    "exampleEn": "The bill, please!"
+  },
+  {
+    "id": "web-a2-44",
+    "level": "A2",
+    "category": "Essen & Trinken",
+    "de": "das Getränk",
+    "en": "drink",
+    "example": "Welches Getränk möchtest du zum Essen?",
+    "exampleEn": "Which drink would you like with the meal?"
+  },
+  {
+    "id": "web-a2-45",
+    "level": "A2",
+    "category": "Essen & Trinken",
+    "de": "braten",
+    "en": "to fry, to roast",
+    "example": "Er brät das Fleisch in der Pfanne.",
+    "exampleEn": "He fries the meat in the pan."
+  },
+  {
+    "id": "web-a2-46",
+    "level": "A2",
+    "category": "Essen & Trinken",
+    "de": "der Kühlschrank",
+    "en": "refrigerator",
+    "example": "Im Kühlschrank ist keine Milch mehr.",
+    "exampleEn": "There's no more milk in the fridge."
+  },
+  {
+    "id": "web-a2-47",
+    "level": "A2",
+    "category": "Essen & Trinken",
+    "de": "die Zutat",
+    "en": "ingredient",
+    "example": "Für den Kuchen brauchen wir noch eine Zutat.",
+    "exampleEn": "For the cake we still need one ingredient."
+  },
+  {
+    "id": "web-a2-48",
+    "level": "A2",
+    "category": "Essen & Trinken",
+    "de": "süß",
+    "en": "sweet",
+    "example": "Der Kuchen ist mir viel zu süß.",
+    "exampleEn": "The cake is far too sweet for me."
+  },
+  {
+    "id": "web-a2-49",
+    "level": "A2",
+    "category": "Essen & Trinken",
+    "de": "sauer",
+    "en": "sour",
+    "example": "Die Zitrone schmeckt sehr sauer.",
+    "exampleEn": "The lemon tastes very sour."
+  },
+  {
+    "id": "web-a2-50",
+    "level": "A2",
+    "category": "Reisen",
+    "de": "der Flughafen",
+    "en": "airport",
+    "example": "Wir fahren um sechs Uhr zum Flughafen.",
+    "exampleEn": "We're driving to the airport at six o'clock."
+  },
+  {
+    "id": "web-a2-51",
+    "level": "A2",
+    "category": "Reisen",
+    "de": "umsteigen",
+    "en": "to change (trains/buses)",
+    "example": "In Frankfurt müssen wir in einen anderen Zug umsteigen.",
+    "exampleEn": "In Frankfurt we have to change to another train."
+  },
+  {
+    "id": "web-a2-52",
+    "level": "A2",
+    "category": "Reisen",
+    "de": "ankommen",
+    "en": "to arrive",
+    "example": "Der Zug kommt um halb neun in München an.",
+    "exampleEn": "The train arrives in Munich at half past eight."
+  },
+  {
+    "id": "web-a2-53",
+    "level": "A2",
+    "category": "Reisen",
+    "de": "abfahren",
+    "en": "to depart",
+    "example": "Der Bus fährt in fünf Minuten ab.",
+    "exampleEn": "The bus departs in five minutes."
+  },
+  {
+    "id": "web-a2-54",
+    "level": "A2",
+    "category": "Reisen",
+    "de": "das Gepäck",
+    "en": "luggage",
+    "example": "Wir haben viel Gepäck für nur zwei Tage.",
+    "exampleEn": "We have a lot of luggage for just two days."
+  },
+  {
+    "id": "web-a2-55",
+    "level": "A2",
+    "category": "Reisen",
+    "de": "buchen",
+    "en": "to book",
+    "example": "Ich habe das Hotel schon im Internet gebucht.",
+    "exampleEn": "I already booked the hotel online."
+  },
+  {
+    "id": "web-a2-56",
+    "level": "A2",
+    "category": "Reisen",
+    "de": "die Reise",
+    "en": "trip, journey",
+    "example": "Die Reise nach Italien war wunderschön.",
+    "exampleEn": "The trip to Italy was beautiful."
+  },
+  {
+    "id": "web-a2-57",
+    "level": "A2",
+    "category": "Reisen",
+    "de": "übernachten",
+    "en": "to stay overnight",
+    "example": "Wir übernachten eine Nacht bei meinen Großeltern.",
+    "exampleEn": "We're staying one night at my grandparents' place."
+  },
+  {
+    "id": "web-a2-58",
+    "level": "A2",
+    "category": "Reisen",
+    "de": "das Hotelzimmer",
+    "en": "hotel room",
+    "example": "Das Hotelzimmer hatte einen schönen Blick auf das Meer.",
+    "exampleEn": "The hotel room had a beautiful view of the sea."
+  },
+  {
+    "id": "web-a2-59",
+    "level": "A2",
+    "category": "Reisen",
+    "de": "der Reisepass",
+    "en": "passport",
+    "example": "Vergiss deinen Reisepass nicht am Flughafen!",
+    "exampleEn": "Don't forget your passport at the airport!"
+  },
+  {
+    "id": "web-a2-60",
+    "level": "A2",
+    "category": "Reisen",
+    "de": "der Koffer",
+    "en": "suitcase",
+    "example": "Mein Koffer ist viel zu schwer.",
+    "exampleEn": "My suitcase is far too heavy."
+  },
+  {
+    "id": "web-a2-61",
+    "level": "A2",
+    "category": "Reisen",
+    "de": "die Grenze",
+    "en": "border",
+    "example": "Wir haben die Grenze ohne Kontrolle passiert.",
+    "exampleEn": "We crossed the border without any checks."
+  },
+  {
+    "id": "web-a2-62",
+    "level": "A2",
+    "category": "Gesundheit & Körper",
+    "de": "der Arzt / die Ärztin",
+    "en": "doctor",
+    "example": "Ich habe morgen einen Termin beim Arzt.",
+    "exampleEn": "I have a doctor's appointment tomorrow."
+  },
+  {
+    "id": "web-a2-63",
+    "level": "A2",
+    "category": "Gesundheit & Körper",
+    "de": "krank sein",
+    "en": "to be sick",
+    "example": "Mein Sohn ist seit zwei Tagen krank.",
+    "exampleEn": "My son has been sick for two days."
+  },
+  {
+    "id": "web-a2-64",
+    "level": "A2",
+    "category": "Gesundheit & Körper",
+    "de": "sich fühlen",
+    "en": "to feel",
+    "example": "Ich fühle mich heute nicht so gut.",
+    "exampleEn": "I don't feel so well today."
+  },
+  {
+    "id": "web-a2-65",
+    "level": "A2",
+    "category": "Gesundheit & Körper",
+    "de": "die Schmerzen",
+    "en": "pain",
+    "example": "Sie hat starke Schmerzen im Bein.",
+    "exampleEn": "She has severe pain in her leg."
+  },
+  {
+    "id": "web-a2-66",
+    "level": "A2",
+    "category": "Gesundheit & Körper",
+    "de": "der Termin",
+    "en": "appointment",
+    "example": "Können wir den Termin auf Montag verschieben?",
+    "exampleEn": "Can we move the appointment to Monday?"
+  },
+  {
+    "id": "web-a2-67",
+    "level": "A2",
+    "category": "Gesundheit & Körper",
+    "de": "das Medikament",
+    "en": "medication",
+    "example": "Nimm das Medikament dreimal am Tag.",
+    "exampleEn": "Take the medication three times a day."
+  },
+  {
+    "id": "web-a2-68",
+    "level": "A2",
+    "category": "Gesundheit & Körper",
+    "de": "gesund",
+    "en": "healthy",
+    "example": "Obst und Gemüse sind sehr gesund.",
+    "exampleEn": "Fruit and vegetables are very healthy."
+  },
+  {
+    "id": "web-a2-69",
+    "level": "A2",
+    "category": "Gesundheit & Körper",
+    "de": "erkältet sein",
+    "en": "to have a cold",
+    "example": "Ich bin erkältet und bleibe heute zu Hause.",
+    "exampleEn": "I have a cold and I'm staying home today."
+  },
+  {
+    "id": "web-a2-70",
+    "level": "A2",
+    "category": "Gesundheit & Körper",
+    "de": "der Husten",
+    "en": "cough",
+    "example": "Der Husten wird langsam besser.",
+    "exampleEn": "The cough is slowly getting better."
+  },
+  {
+    "id": "web-a2-71",
+    "level": "A2",
+    "category": "Gesundheit & Körper",
+    "de": "das Fieber",
+    "en": "fever",
+    "example": "Das Kind hat 39 Grad Fieber.",
+    "exampleEn": "The child has a fever of 39 degrees."
+  },
+  {
+    "id": "web-a2-72",
+    "level": "A2",
+    "category": "Gesundheit & Körper",
+    "de": "sich erholen",
+    "en": "to recover",
+    "example": "Nach der Grippe muss er sich noch erholen.",
+    "exampleEn": "After the flu, he still needs to recover."
+  },
+  {
+    "id": "web-a2-73",
+    "level": "A2",
+    "category": "Gesundheit & Körper",
+    "de": "der Rücken",
+    "en": "back",
+    "example": "Vom vielen Sitzen tut mir der Rücken weh.",
+    "exampleEn": "My back hurts from sitting so much."
+  },
+  {
+    "id": "web-a2-74",
+    "level": "A2",
+    "category": "Gesundheit & Körper",
+    "de": "der Bauch",
+    "en": "stomach, belly",
+    "example": "Nach dem Essen tut mir der Bauch weh.",
+    "exampleEn": "My stomach hurts after eating."
+  },
+  {
+    "id": "web-a2-75",
+    "level": "A2",
+    "category": "Gesundheit & Körper",
+    "de": "weh tun",
+    "en": "to hurt",
+    "example": "Seit heute Morgen tut mir der Kopf weh.",
+    "exampleEn": "My head has been hurting since this morning."
+  },
+  {
+    "id": "web-a2-76",
+    "level": "A2",
+    "category": "Arbeit",
+    "de": "der Kollege / die Kollegin",
+    "en": "colleague",
+    "example": "Meine Kollegin hilft mir oft bei schwierigen Aufgaben.",
+    "exampleEn": "My colleague often helps me with difficult tasks."
+  },
+  {
+    "id": "web-a2-77",
+    "level": "A2",
+    "category": "Arbeit",
+    "de": "das Büro",
+    "en": "office",
+    "example": "Ich arbeite drei Tage die Woche im Büro.",
+    "exampleEn": "I work in the office three days a week."
+  },
+  {
+    "id": "web-a2-78",
+    "level": "A2",
+    "category": "Arbeit",
+    "de": "die Besprechung",
+    "en": "meeting",
+    "example": "Die Besprechung dauert heute nur eine halbe Stunde.",
+    "exampleEn": "The meeting only lasts half an hour today."
+  },
+  {
+    "id": "web-a2-79",
+    "level": "A2",
+    "category": "Arbeit",
+    "de": "der Chef / die Chefin",
+    "en": "boss",
+    "example": "Mein Chef ist mit der Arbeit sehr zufrieden.",
+    "exampleEn": "My boss is very satisfied with the work."
+  },
+  {
+    "id": "web-a2-80",
+    "level": "A2",
+    "category": "Arbeit",
+    "de": "das Gehalt",
+    "en": "salary",
+    "example": "Die Firma zahlt das Gehalt immer am Monatsende.",
+    "exampleEn": "The company always pays the salary at the end of the month."
+  },
+  {
+    "id": "web-a2-81",
+    "level": "A2",
+    "category": "Arbeit",
+    "de": "der Urlaub",
+    "en": "vacation, leave",
+    "example": "Ich nehme im August drei Wochen Urlaub.",
+    "exampleEn": "I'm taking three weeks of vacation in August."
+  },
+  {
+    "id": "web-a2-82",
+    "level": "A2",
+    "category": "Arbeit",
+    "de": "die Firma",
+    "en": "company",
+    "example": "Er arbeitet seit fünf Jahren bei dieser Firma.",
+    "exampleEn": "He has worked at this company for five years."
+  },
+  {
+    "id": "web-a2-83",
+    "level": "A2",
+    "category": "Arbeit",
+    "de": "die Bewerbung",
+    "en": "job application",
+    "example": "Ich habe meine Bewerbung gestern abgeschickt.",
+    "exampleEn": "I sent my job application yesterday."
+  },
+  {
+    "id": "web-a2-84",
+    "level": "A2",
+    "category": "Arbeit",
+    "de": "der Vertrag",
+    "en": "contract",
+    "example": "Bitte lesen Sie den Vertrag genau durch.",
+    "exampleEn": "Please read the contract carefully."
+  },
+  {
+    "id": "web-a2-85",
+    "level": "A2",
+    "category": "Arbeit",
+    "de": "der Feierabend",
+    "en": "end of the workday",
+    "example": "Endlich Feierabend, ich gehe jetzt nach Hause!",
+    "exampleEn": "Finally the workday is over, I'm going home now!"
+  },
+  {
+    "id": "web-a2-86",
+    "level": "A2",
+    "category": "Arbeit",
+    "de": "die Teilzeit",
+    "en": "part-time",
+    "example": "Nach der Geburt arbeitet sie nur noch in Teilzeit.",
+    "exampleEn": "After the birth, she only works part-time now."
+  },
+  {
+    "id": "web-a2-87",
+    "level": "A2",
+    "category": "Arbeit",
+    "de": "die Vollzeit",
+    "en": "full-time",
+    "example": "Er sucht eine Stelle in Vollzeit.",
+    "exampleEn": "He's looking for a full-time job."
+  },
+  {
+    "id": "web-a2-88",
+    "level": "A2",
+    "category": "Arbeit",
+    "de": "die Schicht",
+    "en": "shift",
+    "example": "Meine Schicht beginnt heute schon um sechs Uhr.",
+    "exampleEn": "My shift starts as early as six o'clock today."
+  },
+  {
+    "id": "web-a2-89",
+    "level": "A2",
+    "category": "Arbeit",
+    "de": "der Arbeitsplatz",
+    "en": "workplace",
+    "example": "Mein Arbeitsplatz ist nur zehn Minuten von zu Hause entfernt.",
+    "exampleEn": "My workplace is only ten minutes from home."
+  },
+  {
+    "id": "web-a2-90",
+    "level": "A2",
+    "category": "Wetter",
+    "de": "scheinen",
+    "en": "to shine",
+    "example": "Die Sonne scheint schon seit dem Morgen.",
+    "exampleEn": "The sun has been shining since morning."
+  },
+  {
+    "id": "web-a2-91",
+    "level": "A2",
+    "category": "Wetter",
+    "de": "regnen",
+    "en": "to rain",
+    "example": "Draußen regnet es schon seit Stunden.",
+    "exampleEn": "It has been raining outside for hours."
+  },
+  {
+    "id": "web-a2-92",
+    "level": "A2",
+    "category": "Wetter",
+    "de": "schneien",
+    "en": "to snow",
+    "example": "Es hat die ganze Nacht geschneit.",
+    "exampleEn": "It snowed all night."
+  },
+  {
+    "id": "web-a2-93",
+    "level": "A2",
+    "category": "Wetter",
+    "de": "windig",
+    "en": "windy",
+    "example": "Heute ist es sehr windig am Strand.",
+    "exampleEn": "It's very windy at the beach today."
+  },
+  {
+    "id": "web-a2-94",
+    "level": "A2",
+    "category": "Wetter",
+    "de": "wolkig",
+    "en": "cloudy",
+    "example": "Morgen wird es wolkig, aber trocken.",
+    "exampleEn": "Tomorrow it will be cloudy but dry."
+  },
+  {
+    "id": "web-a2-95",
+    "level": "A2",
+    "category": "Wetter",
+    "de": "die Temperatur",
+    "en": "temperature",
+    "example": "Die Temperatur liegt heute bei zwanzig Grad.",
+    "exampleEn": "The temperature is twenty degrees today."
+  },
+  {
+    "id": "web-a2-96",
+    "level": "A2",
+    "category": "Wetter",
+    "de": "der Sturm",
+    "en": "storm",
+    "example": "Der Sturm hat gestern viele Bäume umgeworfen.",
+    "exampleEn": "The storm knocked down many trees yesterday."
+  },
+  {
+    "id": "web-a2-97",
+    "level": "A2",
+    "category": "Wetter",
+    "de": "das Gewitter",
+    "en": "thunderstorm",
+    "example": "Bei Gewitter bleiben wir lieber zu Hause.",
+    "exampleEn": "During a thunderstorm we prefer to stay home."
+  },
+  {
+    "id": "web-a2-98",
+    "level": "A2",
+    "category": "Wetter",
+    "de": "kühl",
+    "en": "cool",
+    "example": "Am Abend wird es hier immer kühl.",
+    "exampleEn": "It always gets cool here in the evening."
+  },
+  {
+    "id": "web-a2-99",
+    "level": "A2",
+    "category": "Hobbys & Freizeit",
+    "de": "malen",
+    "en": "to paint",
+    "example": "Meine Tochter malt jeden Nachmittag ein Bild.",
+    "exampleEn": "My daughter paints a picture every afternoon."
+  },
+  {
+    "id": "web-a2-100",
+    "level": "A2",
+    "category": "Hobbys & Freizeit",
+    "de": "fotografieren",
+    "en": "to photograph",
+    "example": "Er fotografiert gern alte Gebäude in der Stadt.",
+    "exampleEn": "He likes to photograph old buildings in the city."
+  },
+  {
+    "id": "web-a2-101",
+    "level": "A2",
+    "category": "Hobbys & Freizeit",
+    "de": "angeln",
+    "en": "to fish",
+    "example": "Mein Vater geht am Wochenende oft angeln.",
+    "exampleEn": "My father often goes fishing on the weekend."
+  },
+  {
+    "id": "web-a2-102",
+    "level": "A2",
+    "category": "Hobbys & Freizeit",
+    "de": "wandern",
+    "en": "to hike",
+    "example": "Im Sommer wandern wir gern in den Bergen.",
+    "exampleEn": "In summer we like to hike in the mountains."
+  },
+  {
+    "id": "web-a2-103",
+    "level": "A2",
+    "category": "Hobbys & Freizeit",
+    "de": "die Mannschaft",
+    "en": "team",
+    "example": "Unsere Mannschaft hat das Spiel am Sonntag gewonnen.",
+    "exampleEn": "Our team won the game on Sunday."
+  },
+  {
+    "id": "web-a2-104",
+    "level": "A2",
+    "category": "Hobbys & Freizeit",
+    "de": "das Spiel",
+    "en": "game",
+    "example": "Das Spiel gestern war wirklich spannend.",
+    "exampleEn": "Yesterday's game was really exciting."
+  },
+  {
+    "id": "web-a2-105",
+    "level": "A2",
+    "category": "Hobbys & Freizeit",
+    "de": "der Verein",
+    "en": "club",
+    "example": "Seit letztem Jahr bin ich Mitglied in einem Verein.",
+    "exampleEn": "I've been a member of a club since last year."
+  },
+  {
+    "id": "web-a2-106",
+    "level": "A2",
+    "category": "Hobbys & Freizeit",
+    "de": "basteln",
+    "en": "to do crafts",
+    "example": "Die Kinder basteln gerade eine Karte für Oma.",
+    "exampleEn": "The children are making a card for grandma right now."
+  },
+  {
+    "id": "web-a2-107",
+    "level": "A2",
+    "category": "Hobbys & Freizeit",
+    "de": "das Instrument",
+    "en": "instrument",
+    "example": "Welches Instrument spielst du?",
+    "exampleEn": "Which instrument do you play?"
+  },
+  {
+    "id": "web-a2-108",
+    "level": "A2",
+    "category": "Hobbys & Freizeit",
+    "de": "singen",
+    "en": "to sing",
+    "example": "Sie singt jeden Mittwoch in einem Chor.",
+    "exampleEn": "She sings in a choir every Wednesday."
+  },
+  {
+    "id": "web-a2-109",
+    "level": "A2",
+    "category": "Hobbys & Freizeit",
+    "de": "tanzen",
+    "en": "to dance",
+    "example": "Wir haben die ganze Nacht getanzt.",
+    "exampleEn": "We danced the whole night."
+  },
+  {
+    "id": "web-a2-110",
+    "level": "A2",
+    "category": "Hobbys & Freizeit",
+    "de": "sammeln",
+    "en": "to collect",
+    "example": "Als Kind habe ich Briefmarken gesammelt.",
+    "exampleEn": "As a child I collected stamps."
+  },
+  {
+    "id": "web-a2-111",
+    "level": "A2",
+    "category": "Hobbys & Freizeit",
+    "de": "Fahrrad fahren",
+    "en": "to ride a bicycle",
+    "example": "Am Wochenende fahren wir gern am Fluss Fahrrad.",
+    "exampleEn": "On weekends we like to ride our bikes along the river."
+  },
+  {
+    "id": "web-a2-112",
+    "level": "A2",
+    "category": "Wohnen & Nachbarschaft",
+    "de": "der Nachbar / die Nachbarin",
+    "en": "neighbor",
+    "example": "Unsere Nachbarin hilft uns oft mit dem Garten.",
+    "exampleEn": "Our neighbor often helps us with the garden."
+  },
+  {
+    "id": "web-a2-113",
+    "level": "A2",
+    "category": "Wohnen & Nachbarschaft",
+    "de": "die Miete",
+    "en": "rent",
+    "example": "Die Miete für die Wohnung ist im letzten Jahr gestiegen.",
+    "exampleEn": "The rent for the apartment went up last year."
+  },
+  {
+    "id": "web-a2-114",
+    "level": "A2",
+    "category": "Wohnen & Nachbarschaft",
+    "de": "umziehen",
+    "en": "to move (house)",
+    "example": "Wir ziehen nächsten Monat in eine größere Wohnung um.",
+    "exampleEn": "We're moving to a bigger apartment next month."
+  },
+  {
+    "id": "web-a2-115",
+    "level": "A2",
+    "category": "Wohnen & Nachbarschaft",
+    "de": "die Wohnung",
+    "en": "apartment",
+    "example": "Unsere Wohnung hat zwei Zimmer und eine kleine Küche.",
+    "exampleEn": "Our apartment has two rooms and a small kitchen."
+  },
+  {
+    "id": "web-a2-116",
+    "level": "A2",
+    "category": "Wohnen & Nachbarschaft",
+    "de": "der Vermieter / die Vermieterin",
+    "en": "landlord, landlady",
+    "example": "Ich muss dem Vermieter noch wegen der Heizung schreiben.",
+    "exampleEn": "I still need to write to the landlord about the heating."
+  },
+  {
+    "id": "web-a2-117",
+    "level": "A2",
+    "category": "Wohnen & Nachbarschaft",
+    "de": "das Stockwerk",
+    "en": "floor, story",
+    "example": "Wir wohnen im dritten Stockwerk.",
+    "exampleEn": "We live on the third floor."
+  },
+  {
+    "id": "web-a2-118",
+    "level": "A2",
+    "category": "Wohnen & Nachbarschaft",
+    "de": "der Aufzug",
+    "en": "elevator",
+    "example": "Der Aufzug ist heute leider kaputt.",
+    "exampleEn": "The elevator is unfortunately broken today."
+  },
+  {
+    "id": "web-a2-119",
+    "level": "A2",
+    "category": "Wohnen & Nachbarschaft",
+    "de": "der Keller",
+    "en": "basement",
+    "example": "Die alten Möbel stehen im Keller.",
+    "exampleEn": "The old furniture is in the basement."
+  },
+  {
+    "id": "web-a2-120",
+    "level": "A2",
+    "category": "Wohnen & Nachbarschaft",
+    "de": "die Garage",
+    "en": "garage",
+    "example": "Das Auto steht nachts immer in der Garage.",
+    "exampleEn": "The car is always in the garage at night."
+  },
+  {
+    "id": "web-a2-121",
+    "level": "A2",
+    "category": "Wohnen & Nachbarschaft",
+    "de": "renovieren",
+    "en": "to renovate",
+    "example": "Wir renovieren gerade das Badezimmer.",
+    "exampleEn": "We're currently renovating the bathroom."
+  },
+  {
+    "id": "web-a2-122",
+    "level": "A2",
+    "category": "Wohnen & Nachbarschaft",
+    "de": "der Müll",
+    "en": "trash, garbage",
+    "example": "Kannst du bitte den Müll rausbringen?",
+    "exampleEn": "Can you please take out the trash?"
+  },
+  {
+    "id": "web-a2-123",
+    "level": "A2",
+    "category": "Wohnen & Nachbarschaft",
+    "de": "der Balkon",
+    "en": "balcony",
+    "example": "Im Sommer frühstücken wir oft auf dem Balkon.",
+    "exampleEn": "In summer we often have breakfast on the balcony."
+  },
+  {
+    "id": "web-a2-124",
+    "level": "A2",
+    "category": "Wohnen & Nachbarschaft",
+    "de": "der Hausmeister / die Hausmeisterin",
+    "en": "caretaker, janitor",
+    "example": "Der Hausmeister repariert die Klingel im Hausflur.",
+    "exampleEn": "The caretaker is fixing the doorbell in the hallway."
+  },
+  {
+    "id": "web-a2-125",
+    "level": "A2",
+    "category": "Wohnen & Nachbarschaft",
+    "de": "die Nachbarschaft",
+    "en": "neighborhood",
+    "example": "Die Nachbarschaft hier ist sehr ruhig und freundlich.",
+    "exampleEn": "The neighborhood here is very quiet and friendly."
+  },
+  {
+    "id": "web-a2-126",
+    "level": "A2",
+    "category": "Gefühle",
+    "de": "wütend",
+    "en": "angry",
+    "example": "Er war wütend, weil der Zug schon abgefahren ist.",
+    "exampleEn": "He was angry because the train had already left."
+  },
+  {
+    "id": "web-a2-127",
+    "level": "A2",
+    "category": "Gefühle",
+    "de": "nervös",
+    "en": "nervous",
+    "example": "Vor der Prüfung bin ich immer sehr nervös.",
+    "exampleEn": "I'm always very nervous before an exam."
+  },
+  {
+    "id": "web-a2-128",
+    "level": "A2",
+    "category": "Gefühle",
+    "de": "überrascht",
+    "en": "surprised",
+    "example": "Ich war überrascht, dass er zur Party gekommen ist.",
+    "exampleEn": "I was surprised that he came to the party."
+  },
+  {
+    "id": "web-a2-129",
+    "level": "A2",
+    "category": "Gefühle",
+    "de": "enttäuscht",
+    "en": "disappointed",
+    "example": "Die Kinder waren enttäuscht, weil das Wetter so schlecht war.",
+    "exampleEn": "The children were disappointed because the weather was so bad."
+  },
+  {
+    "id": "web-a2-130",
+    "level": "A2",
+    "category": "Gefühle",
+    "de": "stolz",
+    "en": "proud",
+    "example": "Die Eltern sind sehr stolz auf ihre Tochter.",
+    "exampleEn": "The parents are very proud of their daughter."
+  },
+  {
+    "id": "web-a2-131",
+    "level": "A2",
+    "category": "Gefühle",
+    "de": "gelangweilt",
+    "en": "bored",
+    "example": "Am Sonntagnachmittag war ich total gelangweilt.",
+    "exampleEn": "On Sunday afternoon I was completely bored."
+  },
+  {
+    "id": "web-a2-132",
+    "level": "A2",
+    "category": "Gefühle",
+    "de": "zufrieden",
+    "en": "satisfied, content",
+    "example": "Ich bin mit meiner neuen Arbeit sehr zufrieden.",
+    "exampleEn": "I'm very satisfied with my new job."
+  },
+  {
+    "id": "web-a2-133",
+    "level": "A2",
+    "category": "Gefühle",
+    "de": "ängstlich",
+    "en": "fearful, anxious",
+    "example": "Der Hund ist bei lauten Geräuschen sehr ängstlich.",
+    "exampleEn": "The dog is very fearful with loud noises."
+  },
+  {
+    "id": "web-a2-134",
+    "level": "A2",
+    "category": "Gefühle",
+    "de": "einsam",
+    "en": "lonely",
+    "example": "Seit dem Umzug fühlt sie sich manchmal einsam.",
+    "exampleEn": "Since the move, she sometimes feels lonely."
+  },
+  {
+    "id": "web-a2-135",
+    "level": "A2",
+    "category": "Gefühle",
+    "de": "aufgeregt",
+    "en": "excited, nervous",
+    "example": "Vor dem ersten Arbeitstag war er ziemlich aufgeregt.",
+    "exampleEn": "He was quite excited before his first day at work."
+  },
+  {
+    "id": "web-a2-136",
+    "level": "A2",
+    "category": "Gefühle",
+    "de": "entspannt",
+    "en": "relaxed",
+    "example": "Nach dem Urlaub fühle ich mich richtig entspannt.",
+    "exampleEn": "After the vacation I feel really relaxed."
+  },
+  {
+    "id": "web-a2-137",
+    "level": "A2",
+    "category": "Verbindungswörter & Zeitausdrücke",
+    "de": "weil",
+    "en": "because",
+    "example": "Ich bleibe zu Hause, weil ich erkältet bin.",
+    "exampleEn": "I'm staying home because I have a cold."
+  },
+  {
+    "id": "web-a2-138",
+    "level": "A2",
+    "category": "Verbindungswörter & Zeitausdrücke",
+    "de": "deshalb",
+    "en": "therefore, that's why",
+    "example": "Es regnet, deshalb nehmen wir den Bus.",
+    "exampleEn": "It's raining, so we're taking the bus."
+  },
+  {
+    "id": "web-a2-139",
+    "level": "A2",
+    "category": "Verbindungswörter & Zeitausdrücke",
+    "de": "außerdem",
+    "en": "besides, moreover",
+    "example": "Die Wohnung ist klein, außerdem ist sie sehr teuer.",
+    "exampleEn": "The apartment is small, and besides, it's very expensive."
+  },
+  {
+    "id": "web-a2-140",
+    "level": "A2",
+    "category": "Verbindungswörter & Zeitausdrücke",
+    "de": "trotzdem",
+    "en": "nevertheless",
+    "example": "Es war kalt, trotzdem sind wir spazieren gegangen.",
+    "exampleEn": "It was cold, but we went for a walk anyway."
+  },
+  {
+    "id": "web-a2-141",
+    "level": "A2",
+    "category": "Verbindungswörter & Zeitausdrücke",
+    "de": "obwohl",
+    "en": "although",
+    "example": "Obwohl er müde war, ist er noch joggen gegangen.",
+    "exampleEn": "Although he was tired, he still went jogging."
+  },
+  {
+    "id": "web-a2-142",
+    "level": "A2",
+    "category": "Verbindungswörter & Zeitausdrücke",
+    "de": "danach",
+    "en": "afterward",
+    "example": "Wir essen zuerst, danach räumen wir die Küche auf.",
+    "exampleEn": "We'll eat first, and clean up the kitchen afterward."
+  },
+  {
+    "id": "web-a2-143",
+    "level": "A2",
+    "category": "Verbindungswörter & Zeitausdrücke",
+    "de": "zuerst",
+    "en": "first",
+    "example": "Zuerst müssen wir einkaufen, dann können wir kochen.",
+    "exampleEn": "First we need to go shopping, then we can cook."
+  },
+  {
+    "id": "web-a2-144",
+    "level": "A2",
+    "category": "Verbindungswörter & Zeitausdrücke",
+    "de": "schließlich",
+    "en": "finally",
+    "example": "Nach langer Suche hat er schließlich einen Job gefunden.",
+    "exampleEn": "After a long search, he finally found a job."
+  },
+  {
+    "id": "web-a2-145",
+    "level": "A2",
+    "category": "Verbindungswörter & Zeitausdrücke",
+    "de": "manchmal",
+    "en": "sometimes",
+    "example": "Manchmal fahre ich mit dem Fahrrad zur Arbeit.",
+    "exampleEn": "Sometimes I ride my bike to work."
+  },
+  {
+    "id": "web-a2-146",
+    "level": "A2",
+    "category": "Verbindungswörter & Zeitausdrücke",
+    "de": "meistens",
+    "en": "mostly, usually",
+    "example": "Ich trinke meistens Tee zum Frühstück.",
+    "exampleEn": "I mostly drink tea for breakfast."
+  },
+  {
+    "id": "web-a2-147",
+    "level": "A2",
+    "category": "Verbindungswörter & Zeitausdrücke",
+    "de": "selten",
+    "en": "rarely",
+    "example": "Wir essen selten im Restaurant.",
+    "exampleEn": "We rarely eat at a restaurant."
+  },
+  {
+    "id": "web-a2-148",
+    "level": "A2",
+    "category": "Verbindungswörter & Zeitausdrücke",
+    "de": "sofort",
+    "en": "immediately",
+    "example": "Ruf mich bitte sofort an, wenn du ankommst.",
+    "exampleEn": "Please call me immediately when you arrive."
+  },
+  {
+    "id": "web-a2-149",
+    "level": "A2",
+    "category": "Verbindungswörter & Zeitausdrücke",
+    "de": "plötzlich",
+    "en": "suddenly",
+    "example": "Plötzlich hat es angefangen zu regnen.",
+    "exampleEn": "Suddenly it started to rain."
+  },
+  {
+    "id": "web-a2-150",
+    "level": "A2",
+    "category": "Haushalt",
+    "de": "der Staubsauger",
+    "en": "vacuum cleaner",
+    "example": "Der Staubsauger ist leider kaputtgegangen.",
+    "exampleEn": "The vacuum cleaner unfortunately broke."
+  },
+  {
+    "id": "web-a2-151",
+    "level": "A2",
+    "category": "Haushalt",
+    "de": "staubsaugen",
+    "en": "to vacuum",
+    "example": "Ich staubsauge das Wohnzimmer jeden Samstag.",
+    "exampleEn": "I vacuum the living room every Saturday."
+  },
+  {
+    "id": "web-a2-152",
+    "level": "A2",
+    "category": "Haushalt",
+    "de": "die Waschmaschine",
+    "en": "washing machine",
+    "example": "Die Waschmaschine läuft schon seit einer Stunde.",
+    "exampleEn": "The washing machine has been running for an hour already."
+  },
+  {
+    "id": "web-a2-153",
+    "level": "A2",
+    "category": "Haushalt",
+    "de": "Wäsche waschen",
+    "en": "to do laundry",
+    "example": "Am Sonntag wasche ich immer die Wäsche.",
+    "exampleEn": "On Sunday I always do the laundry."
+  },
+  {
+    "id": "web-a2-154",
+    "level": "A2",
+    "category": "Haushalt",
+    "de": "bügeln",
+    "en": "to iron",
+    "example": "Kannst du mir bitte das Hemd bügeln?",
+    "exampleEn": "Can you please iron the shirt for me?"
+  },
+  {
+    "id": "web-a2-155",
+    "level": "A2",
+    "category": "Haushalt",
+    "de": "abwaschen",
+    "en": "to wash the dishes",
+    "example": "Nach dem Essen wasche ich immer ab.",
+    "exampleEn": "I always wash the dishes after dinner."
+  },
+  {
+    "id": "web-a2-156",
+    "level": "A2",
+    "category": "Haushalt",
+    "de": "der Besen",
+    "en": "broom",
+    "example": "Der Besen steht hinter der Tür.",
+    "exampleEn": "The broom is behind the door."
+  },
+  {
+    "id": "web-a2-157",
+    "level": "A2",
+    "category": "Haushalt",
+    "de": "fegen",
+    "en": "to sweep",
+    "example": "Er fegt jeden Abend die Küche.",
+    "exampleEn": "He sweeps the kitchen every evening."
+  },
+  {
+    "id": "web-a2-158",
+    "level": "A2",
+    "category": "Haushalt",
+    "de": "putzen",
+    "en": "to clean",
+    "example": "Am Wochenende putzen wir die ganze Wohnung.",
+    "exampleEn": "On the weekend we clean the whole apartment."
+  },
+  {
+    "id": "web-a2-159",
+    "level": "A2",
+    "category": "Haushalt",
+    "de": "aufräumen",
+    "en": "to tidy up",
+    "example": "Räum bitte dein Zimmer auf, bevor du spielst.",
+    "exampleEn": "Please tidy up your room before you play."
+  },
+  {
+    "id": "web-a2-160",
+    "level": "A2",
+    "category": "Haushalt",
+    "de": "die Mülltonne",
+    "en": "trash can (outdoor bin)",
+    "example": "Die Mülltonne steht vor dem Haus.",
+    "exampleEn": "The trash can is in front of the house."
+  },
+  {
+    "id": "web-a2-161",
+    "level": "A2",
+    "category": "Haushalt",
+    "de": "der Mülleimer",
+    "en": "wastebasket",
+    "example": "Der Mülleimer in der Küche ist schon wieder voll.",
+    "exampleEn": "The wastebasket in the kitchen is full again."
+  },
+  {
+    "id": "web-a2-162",
+    "level": "A2",
+    "category": "Alltägliche Verben",
+    "de": "verlieren",
+    "en": "to lose",
+    "example": "Ich habe schon wieder meine Schlüssel verloren.",
+    "exampleEn": "I've lost my keys again."
+  },
+  {
+    "id": "web-a2-163",
+    "level": "A2",
+    "category": "Alltägliche Verben",
+    "de": "finden",
+    "en": "to find",
+    "example": "Zum Glück habe ich meine Schlüssel im Auto gefunden.",
+    "exampleEn": "Luckily I found my keys in the car."
+  },
+  {
+    "id": "web-a2-164",
+    "level": "A2",
+    "category": "Alltägliche Verben",
+    "de": "vergessen",
+    "en": "to forget",
+    "example": "Ich habe leider unseren Termin vergessen.",
+    "exampleEn": "Unfortunately I forgot our appointment."
+  },
+  {
+    "id": "web-a2-165",
+    "level": "A2",
+    "category": "Alltägliche Verben",
+    "de": "sich erinnern",
+    "en": "to remember",
+    "example": "Ich kann mich gut an unseren letzten Urlaub erinnern.",
+    "exampleEn": "I remember our last vacation well."
+  },
+  {
+    "id": "web-a2-166",
+    "level": "A2",
+    "category": "Alltägliche Verben",
+    "de": "leihen",
+    "en": "to lend, to borrow",
+    "example": "Kannst du mir zwanzig Euro leihen?",
+    "exampleEn": "Can you lend me twenty euros?"
+  },
+  {
+    "id": "web-a2-167",
+    "level": "A2",
+    "category": "Alltägliche Verben",
+    "de": "reparieren",
+    "en": "to repair",
+    "example": "Mein Vater kann das Fahrrad selbst reparieren.",
+    "exampleEn": "My father can repair the bike himself."
+  },
+  {
+    "id": "web-a2-168",
+    "level": "A2",
+    "category": "Alltägliche Verben",
+    "de": "kaputtgehen",
+    "en": "to break (down)",
+    "example": "Der Drucker ist letzte Woche kaputtgegangen.",
+    "exampleEn": "The printer broke down last week."
+  },
+  {
+    "id": "web-a2-169",
+    "level": "A2",
+    "category": "Alltägliche Verben",
+    "de": "gewinnen",
+    "en": "to win",
+    "example": "Er hat beim Wettbewerb den ersten Preis gewonnen.",
+    "exampleEn": "He won first prize in the competition."
+  },
+  {
+    "id": "web-a2-170",
+    "level": "A2",
+    "category": "Alltägliche Verben",
+    "de": "planen",
+    "en": "to plan",
+    "example": "Wir planen gerade unseren nächsten Urlaub.",
+    "exampleEn": "We're currently planning our next vacation."
+  },
+  {
+    "id": "web-a2-171",
+    "level": "A2",
+    "category": "Alltägliche Verben",
+    "de": "sich entscheiden",
+    "en": "to decide",
+    "example": "Ich kann mich nicht entscheiden, welches Kleid ich kaufe.",
+    "exampleEn": "I can't decide which dress to buy."
+  },
+  {
+    "id": "web-a2-172",
+    "level": "A2",
+    "category": "Alltägliche Verben",
+    "de": "sich verabreden",
+    "en": "to arrange to meet",
+    "example": "Wir haben uns für Freitagabend verabredet.",
+    "exampleEn": "We arranged to meet on Friday evening."
+  },
+  {
+    "id": "web-a2-173",
+    "level": "A2",
+    "category": "Alltägliche Verben",
+    "de": "sich verspäten",
+    "en": "to be late",
+    "example": "Der Bus hat sich heute um zehn Minuten verspätet.",
+    "exampleEn": "The bus was ten minutes late today."
+  },
+  {
+    "id": "web-a2-174",
+    "level": "A2",
+    "category": "Alltägliche Verben",
+    "de": "klingeln",
+    "en": "to ring",
+    "example": "Es hat gerade an der Tür geklingelt.",
+    "exampleEn": "The doorbell just rang."
+  },
+  {
+    "id": "web-b1-11",
+    "level": "B1",
+    "category": "Meinung & Diskussion",
+    "de": "die Ansicht",
+    "en": "view / opinion",
+    "example": "Meiner Ansicht nach sollte man mehr in Bildung investieren.",
+    "exampleEn": "In my view, one should invest more in education."
+  },
+  {
+    "id": "web-b1-12",
+    "level": "B1",
+    "category": "Meinung & Diskussion",
+    "de": "der Standpunkt",
+    "en": "standpoint / point of view",
+    "example": "Er vertritt einen klaren Standpunkt in dieser Frage.",
+    "exampleEn": "He takes a clear standpoint on this issue."
+  },
+  {
+    "id": "web-b1-13",
+    "level": "B1",
+    "category": "Meinung & Diskussion",
+    "de": "die Debatte",
+    "en": "debate",
+    "example": "Die Debatte über die Mietpreise wird immer hitziger.",
+    "exampleEn": "The debate about rent prices is getting more heated."
+  },
+  {
+    "id": "web-b1-14",
+    "level": "B1",
+    "category": "Meinung & Diskussion",
+    "de": "diskutieren",
+    "en": "to discuss",
+    "example": "Wir haben lange über das neue Gesetz diskutiert.",
+    "exampleEn": "We discussed the new law for a long time."
+  },
+  {
+    "id": "web-b1-15",
+    "level": "B1",
+    "category": "Meinung & Diskussion",
+    "de": "die Behauptung",
+    "en": "claim / assertion",
+    "example": "Seine Behauptung konnte er nicht beweisen.",
+    "exampleEn": "He couldn't prove his claim."
+  },
+  {
+    "id": "web-b1-16",
+    "level": "B1",
+    "category": "Meinung & Diskussion",
+    "de": "behaupten",
+    "en": "to claim / assert",
+    "example": "Sie behauptet, dass sie recht hat.",
+    "exampleEn": "She claims that she is right."
+  },
+  {
+    "id": "web-b1-17",
+    "level": "B1",
+    "category": "Meinung & Diskussion",
+    "de": "der Streitpunkt",
+    "en": "point of contention",
+    "example": "Der Streitpunkt zwischen ihnen ist die Erziehung der Kinder.",
+    "exampleEn": "The point of contention between them is raising the children."
+  },
+  {
+    "id": "web-b1-18",
+    "level": "B1",
+    "category": "Meinung & Diskussion",
+    "de": "zustimmen",
+    "en": "to agree",
+    "example": "Ich stimme deinem Vorschlag zu.",
+    "exampleEn": "I agree with your suggestion."
+  },
+  {
+    "id": "web-b1-19",
+    "level": "B1",
+    "category": "Meinung & Diskussion",
+    "de": "ablehnen",
+    "en": "to reject",
+    "example": "Der Antrag wurde vom Ausschuss abgelehnt.",
+    "exampleEn": "The application was rejected by the committee."
+  },
+  {
+    "id": "web-b1-20",
+    "level": "B1",
+    "category": "Meinung & Diskussion",
+    "de": "überzeugen",
+    "en": "to convince",
+    "example": "Sie konnte ihn mit guten Argumenten überzeugen.",
+    "exampleEn": "She managed to convince him with good arguments."
+  },
+  {
+    "id": "web-b1-21",
+    "level": "B1",
+    "category": "Meinung & Diskussion",
+    "de": "das Argument",
+    "en": "argument",
+    "example": "Das Argument klingt logisch, aber es fehlen Beweise.",
+    "exampleEn": "The argument sounds logical, but evidence is missing."
+  },
+  {
+    "id": "web-b1-22",
+    "level": "B1",
+    "category": "Meinung & Diskussion",
+    "de": "der Kompromiss",
+    "en": "compromise",
+    "example": "Am Ende haben beide Seiten einen Kompromiss gefunden.",
+    "exampleEn": "In the end both sides found a compromise."
+  },
+  {
+    "id": "web-b1-23",
+    "level": "B1",
+    "category": "Medien & Nachrichten",
+    "de": "die Quelle",
+    "en": "source",
+    "example": "Journalisten müssen ihre Quellen überprüfen.",
+    "exampleEn": "Journalists have to check their sources."
+  },
+  {
+    "id": "web-b1-24",
+    "level": "B1",
+    "category": "Medien & Nachrichten",
+    "de": "berichten",
+    "en": "to report",
+    "example": "Die Zeitung berichtet täglich über lokale Ereignisse.",
+    "exampleEn": "The newspaper reports daily on local events."
+  },
+  {
+    "id": "web-b1-25",
+    "level": "B1",
+    "category": "Medien & Nachrichten",
+    "de": "die Schlagzeile",
+    "en": "headline",
+    "example": "Die Schlagzeile war reißerischer als der eigentliche Artikel.",
+    "exampleEn": "The headline was more sensational than the actual article."
+  },
+  {
+    "id": "web-b1-26",
+    "level": "B1",
+    "category": "Medien & Nachrichten",
+    "de": "veröffentlichen",
+    "en": "to publish",
+    "example": "Der Artikel wurde gestern im Internet veröffentlicht.",
+    "exampleEn": "The article was published online yesterday."
+  },
+  {
+    "id": "web-b1-27",
+    "level": "B1",
+    "category": "Medien & Nachrichten",
+    "de": "die Öffentlichkeit",
+    "en": "the public",
+    "example": "Die Öffentlichkeit reagierte schockiert auf die Nachricht.",
+    "exampleEn": "The public reacted with shock to the news."
+  },
+  {
+    "id": "web-b1-28",
+    "level": "B1",
+    "category": "Medien & Nachrichten",
+    "de": "das Ereignis",
+    "en": "event",
+    "example": "Das Ereignis wurde in allen Medien diskutiert.",
+    "exampleEn": "The event was discussed in all media."
+  },
+  {
+    "id": "web-b1-29",
+    "level": "B1",
+    "category": "Medien & Nachrichten",
+    "de": "die Werbung",
+    "en": "advertising",
+    "example": "Zu viel Werbung stört viele Zuschauer.",
+    "exampleEn": "Too much advertising bothers many viewers."
+  },
+  {
+    "id": "web-b1-30",
+    "level": "B1",
+    "category": "Medien & Nachrichten",
+    "de": "der Beitrag",
+    "en": "segment / piece (media)",
+    "example": "Der Beitrag im Radio dauerte nur fünf Minuten.",
+    "exampleEn": "The radio segment lasted only five minutes."
+  },
+  {
+    "id": "web-b1-31",
+    "level": "B1",
+    "category": "Medien & Nachrichten",
+    "de": "glaubwürdig",
+    "en": "credible",
+    "example": "Nicht jede Information im Internet ist glaubwürdig.",
+    "exampleEn": "Not every piece of information online is credible."
+  },
+  {
+    "id": "web-b1-32",
+    "level": "B1",
+    "category": "Medien & Nachrichten",
+    "de": "die Meldung",
+    "en": "news item / report",
+    "example": "Eine kurze Meldung informierte über den Unfall.",
+    "exampleEn": "A short news item reported on the accident."
+  },
+  {
+    "id": "web-b1-33",
+    "level": "B1",
+    "category": "Medien & Nachrichten",
+    "de": "sich informieren",
+    "en": "to inform oneself",
+    "example": "Er informiert sich jeden Morgen über die aktuelle Lage.",
+    "exampleEn": "He informs himself about the current situation every morning."
+  },
+  {
+    "id": "web-b1-34",
+    "level": "B1",
+    "category": "Medien & Nachrichten",
+    "de": "übertreiben",
+    "en": "to exaggerate",
+    "example": "Manche Boulevardzeitungen übertreiben gerne.",
+    "exampleEn": "Some tabloids like to exaggerate."
+  },
+  {
+    "id": "web-b1-35",
+    "level": "B1",
+    "category": "Umwelt & Natur",
+    "de": "der Klimawandel",
+    "en": "climate change",
+    "example": "Der Klimawandel betrifft alle Regionen der Welt.",
+    "exampleEn": "Climate change affects all regions of the world."
+  },
+  {
+    "id": "web-b1-36",
+    "level": "B1",
+    "category": "Umwelt & Natur",
+    "de": "die Umweltverschmutzung",
+    "en": "pollution",
+    "example": "Die Umweltverschmutzung in Großstädten nimmt zu.",
+    "exampleEn": "Pollution in big cities is increasing."
+  },
+  {
+    "id": "web-b1-37",
+    "level": "B1",
+    "category": "Umwelt & Natur",
+    "de": "nachhaltig",
+    "en": "sustainable",
+    "example": "Wir versuchen, nachhaltig zu leben und weniger zu konsumieren.",
+    "exampleEn": "We try to live sustainably and consume less."
+  },
+  {
+    "id": "web-b1-38",
+    "level": "B1",
+    "category": "Umwelt & Natur",
+    "de": "recyceln",
+    "en": "to recycle",
+    "example": "Wir recyceln fast alles, was wir zu Hause verbrauchen.",
+    "exampleEn": "We recycle almost everything we use at home."
+  },
+  {
+    "id": "web-b1-39",
+    "level": "B1",
+    "category": "Umwelt & Natur",
+    "de": "die Ressource",
+    "en": "resource",
+    "example": "Wasser ist eine wertvolle Ressource, die wir schützen müssen.",
+    "exampleEn": "Water is a valuable resource that we need to protect."
+  },
+  {
+    "id": "web-b1-40",
+    "level": "B1",
+    "category": "Umwelt & Natur",
+    "de": "erneuerbar",
+    "en": "renewable",
+    "example": "Erneuerbare Energien wie Wind und Sonne werden immer wichtiger.",
+    "exampleEn": "Renewable energies like wind and sun are becoming more important."
+  },
+  {
+    "id": "web-b1-41",
+    "level": "B1",
+    "category": "Umwelt & Natur",
+    "de": "die Energiequelle",
+    "en": "energy source",
+    "example": "Solarenergie ist eine saubere Energiequelle.",
+    "exampleEn": "Solar power is a clean energy source."
+  },
+  {
+    "id": "web-b1-42",
+    "level": "B1",
+    "category": "Umwelt & Natur",
+    "de": "schützen",
+    "en": "to protect",
+    "example": "Wir müssen die Wälder vor der Abholzung schützen.",
+    "exampleEn": "We need to protect the forests from deforestation."
+  },
+  {
+    "id": "web-b1-43",
+    "level": "B1",
+    "category": "Umwelt & Natur",
+    "de": "die Naturkatastrophe",
+    "en": "natural disaster",
+    "example": "Naturkatastrophen wie Überschwemmungen nehmen weltweit zu.",
+    "exampleEn": "Natural disasters like floods are increasing worldwide."
+  },
+  {
+    "id": "web-b1-44",
+    "level": "B1",
+    "category": "Umwelt & Natur",
+    "de": "der Verbrauch",
+    "en": "consumption",
+    "example": "Der Verbrauch an Plastik sollte deutlich reduziert werden.",
+    "exampleEn": "Plastic consumption should be significantly reduced."
+  },
+  {
+    "id": "web-b1-45",
+    "level": "B1",
+    "category": "Umwelt & Natur",
+    "de": "verschwenden",
+    "en": "to waste",
+    "example": "Man sollte keine Lebensmittel verschwenden.",
+    "exampleEn": "One shouldn't waste food."
+  },
+  {
+    "id": "web-b1-46",
+    "level": "B1",
+    "category": "Bildung & Ausbildung",
+    "de": "die Ausbildung",
+    "en": "vocational training",
+    "example": "Nach der Schule beginnt er eine Ausbildung als Elektriker.",
+    "exampleEn": "After school he's starting an apprenticeship as an electrician."
+  },
+  {
+    "id": "web-b1-47",
+    "level": "B1",
+    "category": "Bildung & Ausbildung",
+    "de": "das Studium",
+    "en": "(university) studies",
+    "example": "Ihr Studium dauert insgesamt vier Jahre.",
+    "exampleEn": "Her studies take a total of four years."
+  },
+  {
+    "id": "web-b1-48",
+    "level": "B1",
+    "category": "Bildung & Ausbildung",
+    "de": "die Prüfung",
+    "en": "exam",
+    "example": "Er hat sich intensiv auf die Prüfung vorbereitet.",
+    "exampleEn": "He prepared intensively for the exam."
+  },
+  {
+    "id": "web-b1-49",
+    "level": "B1",
+    "category": "Bildung & Ausbildung",
+    "de": "bestehen",
+    "en": "to pass (an exam)",
+    "example": "Zum Glück hat sie die Prüfung beim ersten Versuch bestanden.",
+    "exampleEn": "Luckily, she passed the exam on the first attempt."
+  },
+  {
+    "id": "web-b1-50",
+    "level": "B1",
+    "category": "Bildung & Ausbildung",
+    "de": "durchfallen",
+    "en": "to fail (an exam)",
+    "example": "Wenn man nicht lernt, fällt man leicht durch.",
+    "exampleEn": "If you don't study, you easily fail."
+  },
+  {
+    "id": "web-b1-51",
+    "level": "B1",
+    "category": "Bildung & Ausbildung",
+    "de": "der Abschluss",
+    "en": "degree / qualification",
+    "example": "Mit diesem Abschluss hat man gute Chancen auf dem Arbeitsmarkt.",
+    "exampleEn": "With this degree you have good chances on the job market."
+  },
+  {
+    "id": "web-b1-52",
+    "level": "B1",
+    "category": "Bildung & Ausbildung",
+    "de": "das Stipendium",
+    "en": "scholarship",
+    "example": "Sie bekommt ein Stipendium, weil ihre Noten so gut sind.",
+    "exampleEn": "She gets a scholarship because her grades are so good."
+  },
+  {
+    "id": "web-b1-53",
+    "level": "B1",
+    "category": "Bildung & Ausbildung",
+    "de": "die Fähigkeit",
+    "en": "skill / ability",
+    "example": "Kommunikation ist eine wichtige Fähigkeit im Berufsleben.",
+    "exampleEn": "Communication is an important skill in professional life."
+  },
+  {
+    "id": "web-b1-54",
+    "level": "B1",
+    "category": "Bildung & Ausbildung",
+    "de": "sich weiterbilden",
+    "en": "to further one's education",
+    "example": "Viele Angestellte bilden sich neben der Arbeit weiter.",
+    "exampleEn": "Many employees continue their education alongside work."
+  },
+  {
+    "id": "web-b1-55",
+    "level": "B1",
+    "category": "Bildung & Ausbildung",
+    "de": "die Erfahrung",
+    "en": "experience",
+    "example": "Erfahrung im Ausland hilft bei der Jobsuche.",
+    "exampleEn": "Experience abroad helps with the job search."
+  },
+  {
+    "id": "web-b1-56",
+    "level": "B1",
+    "category": "Bildung & Ausbildung",
+    "de": "das lebenslange Lernen",
+    "en": "lifelong learning",
+    "example": "Lebenslanges Lernen wird in der modernen Arbeitswelt immer wichtiger.",
+    "exampleEn": "Lifelong learning is becoming more important in the modern working world."
+  },
+  {
+    "id": "web-b1-57",
+    "level": "B1",
+    "category": "Bildung & Ausbildung",
+    "de": "der Lehrplan",
+    "en": "curriculum",
+    "example": "Der Lehrplan wurde in den letzten Jahren mehrmals verändert.",
+    "exampleEn": "The curriculum has been changed several times in recent years."
+  },
+  {
+    "id": "web-b1-58",
+    "level": "B1",
+    "category": "Bürokratie & Amt",
+    "de": "das Amt",
+    "en": "(government) office",
+    "example": "Für die neue Adresse muss man zum Amt gehen.",
+    "exampleEn": "For the new address you have to go to the registration office."
+  },
+  {
+    "id": "web-b1-59",
+    "level": "B1",
+    "category": "Bürokratie & Amt",
+    "de": "die Behörde",
+    "en": "authority / agency",
+    "example": "Die zuständige Behörde bearbeitet den Antrag innerhalb weniger Wochen.",
+    "exampleEn": "The responsible authority processes the application within a few weeks."
+  },
+  {
+    "id": "web-b1-60",
+    "level": "B1",
+    "category": "Bürokratie & Amt",
+    "de": "der Antrag",
+    "en": "application / request",
+    "example": "Sie hat einen Antrag auf Kindergeld gestellt.",
+    "exampleEn": "She submitted an application for child benefit."
+  },
+  {
+    "id": "web-b1-61",
+    "level": "B1",
+    "category": "Bürokratie & Amt",
+    "de": "beantragen",
+    "en": "to apply for",
+    "example": "Er möchte ein neues Visum beantragen.",
+    "exampleEn": "He wants to apply for a new visa."
+  },
+  {
+    "id": "web-b1-62",
+    "level": "B1",
+    "category": "Bürokratie & Amt",
+    "de": "die Bescheinigung",
+    "en": "certificate / confirmation",
+    "example": "Für den neuen Job braucht sie eine Bescheinigung der Universität.",
+    "exampleEn": "For the new job she needs a certificate from the university."
+  },
+  {
+    "id": "web-b1-63",
+    "level": "B1",
+    "category": "Bürokratie & Amt",
+    "de": "die Frist",
+    "en": "deadline",
+    "example": "Die Frist für die Anmeldung endet am Freitag.",
+    "exampleEn": "The deadline for registration ends on Friday."
+  },
+  {
+    "id": "web-b1-64",
+    "level": "B1",
+    "category": "Bürokratie & Amt",
+    "de": "die Unterlagen",
+    "en": "documents",
+    "example": "Bitte bringen Sie alle nötigen Unterlagen mit.",
+    "exampleEn": "Please bring all the necessary documents."
+  },
+  {
+    "id": "web-b1-65",
+    "level": "B1",
+    "category": "Bürokratie & Amt",
+    "de": "ausfüllen",
+    "en": "to fill out (a form)",
+    "example": "Sie müssen dieses Formular vollständig ausfüllen.",
+    "exampleEn": "You have to fill out this form completely."
+  },
+  {
+    "id": "web-b1-66",
+    "level": "B1",
+    "category": "Bürokratie & Amt",
+    "de": "gültig",
+    "en": "valid",
+    "example": "Der Pass ist nur noch drei Monate gültig.",
+    "exampleEn": "The passport is only valid for three more months."
+  },
+  {
+    "id": "web-b1-67",
+    "level": "B1",
+    "category": "Bürokratie & Amt",
+    "de": "die Genehmigung",
+    "en": "approval / permit",
+    "example": "Für den Umbau braucht man eine Genehmigung vom Amt.",
+    "exampleEn": "For the renovation you need a permit from the authority."
+  },
+  {
+    "id": "web-b1-68",
+    "level": "B1",
+    "category": "Bürokratie & Amt",
+    "de": "vorlegen",
+    "en": "to submit / present",
+    "example": "Er musste seinen Ausweis vorlegen.",
+    "exampleEn": "He had to present his ID."
+  },
+  {
+    "id": "web-b1-69",
+    "level": "B1",
+    "category": "Bürokratie & Amt",
+    "de": "zuständig",
+    "en": "responsible / in charge",
+    "example": "Wer ist für diese Angelegenheit zuständig?",
+    "exampleEn": "Who is responsible for this matter?"
+  },
+  {
+    "id": "web-b1-70",
+    "level": "B1",
+    "category": "Bürokratie & Amt",
+    "de": "die Pflicht",
+    "en": "duty / obligation",
+    "example": "Steuern zu zahlen ist eine Pflicht für alle Bürger.",
+    "exampleEn": "Paying taxes is a duty for all citizens."
+  },
+  {
+    "id": "web-b1-71",
+    "level": "B1",
+    "category": "Beziehungen & Gesellschaft",
+    "de": "die Gesellschaft",
+    "en": "society",
+    "example": "Eine offene Gesellschaft respektiert unterschiedliche Meinungen.",
+    "exampleEn": "An open society respects different opinions."
+  },
+  {
+    "id": "web-b1-72",
+    "level": "B1",
+    "category": "Beziehungen & Gesellschaft",
+    "de": "die Generation",
+    "en": "generation",
+    "example": "Jede Generation hat ihre eigenen Werte.",
+    "exampleEn": "Every generation has its own values."
+  },
+  {
+    "id": "web-b1-73",
+    "level": "B1",
+    "category": "Beziehungen & Gesellschaft",
+    "de": "die Toleranz",
+    "en": "tolerance",
+    "example": "Toleranz gegenüber anderen Kulturen ist sehr wichtig.",
+    "exampleEn": "Tolerance towards other cultures is very important."
+  },
+  {
+    "id": "web-b1-74",
+    "level": "B1",
+    "category": "Beziehungen & Gesellschaft",
+    "de": "das Vorurteil",
+    "en": "prejudice",
+    "example": "Man sollte Menschen nicht nach Vorurteilen beurteilen.",
+    "exampleEn": "One shouldn't judge people based on prejudices."
+  },
+  {
+    "id": "web-b1-75",
+    "level": "B1",
+    "category": "Beziehungen & Gesellschaft",
+    "de": "die Gleichberechtigung",
+    "en": "equality",
+    "example": "Die Gleichberechtigung von Mann und Frau ist im Gesetz verankert.",
+    "exampleEn": "The equality of men and women is enshrined in law."
+  },
+  {
+    "id": "web-b1-76",
+    "level": "B1",
+    "category": "Beziehungen & Gesellschaft",
+    "de": "integrieren",
+    "en": "to integrate",
+    "example": "Die Stadt hilft Flüchtlingen, sich zu integrieren.",
+    "exampleEn": "The city helps refugees to integrate."
+  },
+  {
+    "id": "web-b1-77",
+    "level": "B1",
+    "category": "Beziehungen & Gesellschaft",
+    "de": "die Gemeinschaft",
+    "en": "community",
+    "example": "Im Dorf gibt es eine starke Gemeinschaft.",
+    "exampleEn": "There is a strong community in the village."
+  },
+  {
+    "id": "web-b1-78",
+    "level": "B1",
+    "category": "Beziehungen & Gesellschaft",
+    "de": "zusammenleben",
+    "en": "to live together",
+    "example": "In der Großstadt leben viele Kulturen zusammen.",
+    "exampleEn": "Many cultures live together in the big city."
+  },
+  {
+    "id": "web-b1-79",
+    "level": "B1",
+    "category": "Beziehungen & Gesellschaft",
+    "de": "die Bindung",
+    "en": "bond / attachment",
+    "example": "Zwischen den Geschwistern besteht eine enge Bindung.",
+    "exampleEn": "There is a close bond between the siblings."
+  },
+  {
+    "id": "web-b1-80",
+    "level": "B1",
+    "category": "Beziehungen & Gesellschaft",
+    "de": "der Konflikt",
+    "en": "conflict",
+    "example": "Der Konflikt zwischen den Nachbarn dauert schon Monate.",
+    "exampleEn": "The conflict between the neighbors has been going on for months."
+  },
+  {
+    "id": "web-b1-81",
+    "level": "B1",
+    "category": "Beziehungen & Gesellschaft",
+    "de": "streiten",
+    "en": "to argue / quarrel",
+    "example": "Die beiden streiten sich fast jeden Tag.",
+    "exampleEn": "The two of them argue almost every day."
+  },
+  {
+    "id": "web-b1-82",
+    "level": "B1",
+    "category": "Beziehungen & Gesellschaft",
+    "de": "sich versöhnen",
+    "en": "to reconcile",
+    "example": "Nach dem Streit haben sie sich schnell versöhnt.",
+    "exampleEn": "After the argument they reconciled quickly."
+  },
+  {
+    "id": "web-b1-83",
+    "level": "B1",
+    "category": "Beziehungen & Gesellschaft",
+    "de": "die Rücksicht",
+    "en": "consideration",
+    "example": "Man sollte im Straßenverkehr Rücksicht auf andere nehmen.",
+    "exampleEn": "One should show consideration for others in traffic."
+  },
+  {
+    "id": "web-b1-84",
+    "level": "B1",
+    "category": "Beziehungen & Gesellschaft",
+    "de": "die Beziehung",
+    "en": "relationship",
+    "example": "Sie führen seit fünf Jahren eine glückliche Beziehung.",
+    "exampleEn": "They've been in a happy relationship for five years."
+  },
+  {
+    "id": "web-b1-85",
+    "level": "B1",
+    "category": "Gefühle & Charakter",
+    "de": "die Gelassenheit",
+    "en": "calmness / composure",
+    "example": "Sie reagiert auch in stressigen Situationen mit Gelassenheit.",
+    "exampleEn": "She reacts with calmness even in stressful situations."
+  },
+  {
+    "id": "web-b1-86",
+    "level": "B1",
+    "category": "Gefühle & Charakter",
+    "de": "die Neugier",
+    "en": "curiosity",
+    "example": "Kinder haben eine natürliche Neugier auf die Welt.",
+    "exampleEn": "Children have a natural curiosity about the world."
+  },
+  {
+    "id": "web-b1-87",
+    "level": "B1",
+    "category": "Gefühle & Charakter",
+    "de": "ehrgeizig",
+    "en": "ambitious",
+    "example": "Er ist sehr ehrgeizig und will unbedingt Karriere machen.",
+    "exampleEn": "He is very ambitious and really wants to build a career."
+  },
+  {
+    "id": "web-b1-88",
+    "level": "B1",
+    "category": "Gefühle & Charakter",
+    "de": "großzügig",
+    "en": "generous",
+    "example": "Trotz seines kleinen Gehalts ist er sehr großzügig.",
+    "exampleEn": "Despite his small salary, he is very generous."
+  },
+  {
+    "id": "web-b1-89",
+    "level": "B1",
+    "category": "Gefühle & Charakter",
+    "de": "eifersüchtig",
+    "en": "jealous",
+    "example": "Er wird schnell eifersüchtig, wenn seine Freundin mit anderen redet.",
+    "exampleEn": "He gets jealous quickly when his girlfriend talks to others."
+  },
+  {
+    "id": "web-b1-90",
+    "level": "B1",
+    "category": "Gefühle & Charakter",
+    "de": "die Enttäuschung",
+    "en": "disappointment",
+    "example": "Nach der Absage war die Enttäuschung groß.",
+    "exampleEn": "After the rejection, the disappointment was great."
+  },
+  {
+    "id": "web-b1-91",
+    "level": "B1",
+    "category": "Gefühle & Charakter",
+    "de": "die Erleichterung",
+    "en": "relief",
+    "example": "Nach der guten Nachricht spürte sie eine große Erleichterung.",
+    "exampleEn": "After the good news she felt great relief."
+  },
+  {
+    "id": "web-b1-92",
+    "level": "B1",
+    "category": "Gefühle & Charakter",
+    "de": "gelassen",
+    "en": "calm / relaxed",
+    "example": "Bleib gelassen, das Problem lässt sich sicher lösen.",
+    "exampleEn": "Stay calm, the problem can surely be solved."
+  },
+  {
+    "id": "web-b1-93",
+    "level": "B1",
+    "category": "Gefühle & Charakter",
+    "de": "die Verzweiflung",
+    "en": "despair",
+    "example": "Aus Verzweiflung rief er seine Familie an.",
+    "exampleEn": "Out of despair he called his family."
+  },
+  {
+    "id": "web-b1-94",
+    "level": "B1",
+    "category": "Gefühle & Charakter",
+    "de": "zuversichtlich",
+    "en": "confident / optimistic",
+    "example": "Trotz der Schwierigkeiten bleibt sie zuversichtlich.",
+    "exampleEn": "Despite the difficulties, she remains confident."
+  },
+  {
+    "id": "web-b1-95",
+    "level": "B1",
+    "category": "Gefühle & Charakter",
+    "de": "sensibel",
+    "en": "sensitive",
+    "example": "Er reagiert sehr sensibel auf Kritik.",
+    "exampleEn": "He reacts very sensitively to criticism."
+  },
+  {
+    "id": "web-b1-96",
+    "level": "B1",
+    "category": "Arbeit & Beruf",
+    "de": "sich bewerben",
+    "en": "to apply (for a job)",
+    "example": "Er bewirbt sich um eine Stelle als Ingenieur.",
+    "exampleEn": "He is applying for a position as an engineer."
+  },
+  {
+    "id": "web-b1-97",
+    "level": "B1",
+    "category": "Arbeit & Beruf",
+    "de": "die Stelle",
+    "en": "position / job",
+    "example": "Die Stelle wurde schon vor einer Woche besetzt.",
+    "exampleEn": "The position was already filled a week ago."
+  },
+  {
+    "id": "web-b1-98",
+    "level": "B1",
+    "category": "Arbeit & Beruf",
+    "de": "kündigen",
+    "en": "to quit / give notice",
+    "example": "Sie hat ihren Job gekündigt, um im Ausland zu arbeiten.",
+    "exampleEn": "She quit her job to work abroad."
+  },
+  {
+    "id": "web-b1-99",
+    "level": "B1",
+    "category": "Arbeit & Beruf",
+    "de": "entlassen",
+    "en": "to dismiss / lay off",
+    "example": "Wegen der Krise wurden viele Mitarbeiter entlassen.",
+    "exampleEn": "Because of the crisis, many employees were laid off."
+  },
+  {
+    "id": "web-b1-100",
+    "level": "B1",
+    "category": "Arbeit & Beruf",
+    "de": "die Karriere",
+    "en": "career",
+    "example": "Er hat schnell Karriere in der Firma gemacht.",
+    "exampleEn": "He quickly built a career at the company."
+  },
+  {
+    "id": "web-b1-101",
+    "level": "B1",
+    "category": "Arbeit & Beruf",
+    "de": "die Gehaltserhöhung",
+    "en": "pay raise",
+    "example": "Nach zwei Jahren bat sie um eine Gehaltserhöhung.",
+    "exampleEn": "After two years she asked for a pay raise."
+  },
+  {
+    "id": "web-b1-102",
+    "level": "B1",
+    "category": "Arbeit & Beruf",
+    "de": "der Arbeitgeber",
+    "en": "employer",
+    "example": "Der Arbeitgeber bietet flexible Arbeitszeiten an.",
+    "exampleEn": "The employer offers flexible working hours."
+  },
+  {
+    "id": "web-b1-103",
+    "level": "B1",
+    "category": "Arbeit & Beruf",
+    "de": "der Arbeitnehmer",
+    "en": "employee",
+    "example": "Arbeitnehmer haben Anspruch auf bezahlten Urlaub.",
+    "exampleEn": "Employees are entitled to paid leave."
+  },
+  {
+    "id": "web-b1-104",
+    "level": "B1",
+    "category": "Arbeit & Beruf",
+    "de": "die Teamfähigkeit",
+    "en": "ability to work in a team",
+    "example": "Teamfähigkeit wird in fast jeder Stellenanzeige verlangt.",
+    "exampleEn": "Teamwork ability is required in almost every job posting."
+  },
+  {
+    "id": "web-b1-105",
+    "level": "B1",
+    "category": "Arbeit & Beruf",
+    "de": "belasten",
+    "en": "to burden / strain",
+    "example": "Zu viele Überstunden belasten die Gesundheit.",
+    "exampleEn": "Too much overtime strains one's health."
+  },
+  {
+    "id": "web-b1-106",
+    "level": "B1",
+    "category": "Politik & Staat",
+    "de": "die Wahl",
+    "en": "election",
+    "example": "Die nächste Wahl findet im Herbst statt.",
+    "exampleEn": "The next election takes place in autumn."
+  },
+  {
+    "id": "web-b1-107",
+    "level": "B1",
+    "category": "Politik & Staat",
+    "de": "wählen",
+    "en": "to vote / elect",
+    "example": "In Deutschland darf man ab 18 wählen.",
+    "exampleEn": "In Germany you're allowed to vote from age 18."
+  },
+  {
+    "id": "web-b1-108",
+    "level": "B1",
+    "category": "Politik & Staat",
+    "de": "die Partei",
+    "en": "(political) party",
+    "example": "Er ist seit Jahren Mitglied einer politischen Partei.",
+    "exampleEn": "He has been a member of a political party for years."
+  },
+  {
+    "id": "web-b1-109",
+    "level": "B1",
+    "category": "Politik & Staat",
+    "de": "das Gesetz",
+    "en": "law",
+    "example": "Das neue Gesetz tritt nächsten Monat in Kraft.",
+    "exampleEn": "The new law comes into force next month."
+  },
+  {
+    "id": "web-b1-110",
+    "level": "B1",
+    "category": "Politik & Staat",
+    "de": "die Regierung",
+    "en": "government",
+    "example": "Die Regierung plant eine Steuerreform.",
+    "exampleEn": "The government is planning a tax reform."
+  },
+  {
+    "id": "web-b1-111",
+    "level": "B1",
+    "category": "Politik & Staat",
+    "de": "die Demokratie",
+    "en": "democracy",
+    "example": "In einer Demokratie hat jede Stimme das gleiche Gewicht.",
+    "exampleEn": "In a democracy, every vote carries the same weight."
+  },
+  {
+    "id": "web-b1-112",
+    "level": "B1",
+    "category": "Politik & Staat",
+    "de": "die Verfassung",
+    "en": "constitution",
+    "example": "Die Grundrechte stehen in der Verfassung.",
+    "exampleEn": "The basic rights are stated in the constitution."
+  },
+  {
+    "id": "web-b1-113",
+    "level": "B1",
+    "category": "Politik & Staat",
+    "de": "protestieren",
+    "en": "to protest",
+    "example": "Hunderte Menschen protestierten gegen die neuen Regeln.",
+    "exampleEn": "Hundreds of people protested against the new rules."
+  },
+  {
+    "id": "web-b1-114",
+    "level": "B1",
+    "category": "Politik & Staat",
+    "de": "der Bürger",
+    "en": "citizen",
+    "example": "Jeder Bürger hat das Recht auf freie Meinungsäußerung.",
+    "exampleEn": "Every citizen has the right to freedom of expression."
+  },
+  {
+    "id": "web-b1-115",
+    "level": "B1",
+    "category": "Politik & Staat",
+    "de": "die Abstimmung",
+    "en": "vote / ballot",
+    "example": "Die Abstimmung im Parlament endete knapp.",
+    "exampleEn": "The vote in parliament ended narrowly."
+  },
+  {
+    "id": "web-b1-116",
+    "level": "B1",
+    "category": "Gesundheit & Körper",
+    "de": "die Beschwerden",
+    "en": "complaints / symptoms",
+    "example": "Bei anhaltenden Beschwerden sollte man zum Arzt gehen.",
+    "exampleEn": "In case of persistent symptoms, one should see a doctor."
+  },
+  {
+    "id": "web-b1-117",
+    "level": "B1",
+    "category": "Gesundheit & Körper",
+    "de": "die Behandlung",
+    "en": "treatment",
+    "example": "Die Behandlung dauert mehrere Wochen.",
+    "exampleEn": "The treatment takes several weeks."
+  },
+  {
+    "id": "web-b1-118",
+    "level": "B1",
+    "category": "Gesundheit & Körper",
+    "de": "der Arzttermin",
+    "en": "doctor's appointment",
+    "example": "Ich habe morgen früh einen Arzttermin.",
+    "exampleEn": "I have a doctor's appointment tomorrow morning."
+  },
+  {
+    "id": "web-b1-119",
+    "level": "B1",
+    "category": "Gesundheit & Körper",
+    "de": "die Ernährung",
+    "en": "nutrition / diet",
+    "example": "Eine gesunde Ernährung stärkt das Immunsystem.",
+    "exampleEn": "A healthy diet strengthens the immune system."
+  },
+  {
+    "id": "web-b1-120",
+    "level": "B1",
+    "category": "Gesundheit & Körper",
+    "de": "der Stress",
+    "en": "stress",
+    "example": "Zu viel Stress im Job kann krank machen.",
+    "exampleEn": "Too much stress at work can make you ill."
+  },
+  {
+    "id": "web-b1-121",
+    "level": "B1",
+    "category": "Gesundheit & Körper",
+    "de": "die Vorsorge",
+    "en": "preventive care / precaution",
+    "example": "Viele Krankenkassen übernehmen die Kosten für die Vorsorge.",
+    "exampleEn": "Many health insurers cover the costs of preventive care."
+  },
+  {
+    "id": "web-b1-122",
+    "level": "B1",
+    "category": "Gesundheit & Körper",
+    "de": "vorbeugen",
+    "en": "to prevent",
+    "example": "Mit Sport kann man vielen Krankheiten vorbeugen.",
+    "exampleEn": "With exercise you can prevent many illnesses."
+  },
+  {
+    "id": "web-b1-123",
+    "level": "B1",
+    "category": "Gesundheit & Körper",
+    "de": "die Impfung",
+    "en": "vaccination",
+    "example": "Die Impfung schützt vor schweren Krankheitsverläufen.",
+    "exampleEn": "The vaccination protects against severe disease progression."
+  },
+  {
+    "id": "web-b1-124",
+    "level": "B1",
+    "category": "Gesundheit & Körper",
+    "de": "der Notfall",
+    "en": "emergency",
+    "example": "Im Notfall sollte man sofort die 112 anrufen.",
+    "exampleEn": "In an emergency you should immediately call 112."
+  },
+  {
+    "id": "web-b1-125",
+    "level": "B1",
+    "category": "Wirtschaft & Konsum",
+    "de": "die Wirtschaft",
+    "en": "economy",
+    "example": "Die Wirtschaft wächst langsamer als erwartet.",
+    "exampleEn": "The economy is growing more slowly than expected."
+  },
+  {
+    "id": "web-b1-126",
+    "level": "B1",
+    "category": "Wirtschaft & Konsum",
+    "de": "der Konsum",
+    "en": "consumption",
+    "example": "Der Konsum von Fast Food hat in den letzten Jahren zugenommen.",
+    "exampleEn": "The consumption of fast food has increased in recent years."
+  },
+  {
+    "id": "web-b1-127",
+    "level": "B1",
+    "category": "Wirtschaft & Konsum",
+    "de": "die Nachfrage",
+    "en": "demand",
+    "example": "Die Nachfrage nach Elektroautos steigt stetig.",
+    "exampleEn": "The demand for electric cars is steadily rising."
+  },
+  {
+    "id": "web-b1-128",
+    "level": "B1",
+    "category": "Wirtschaft & Konsum",
+    "de": "das Angebot",
+    "en": "supply / offer",
+    "example": "Das Angebot an Wohnungen ist in der Stadt sehr begrenzt.",
+    "exampleEn": "The supply of apartments in the city is very limited."
+  },
+  {
+    "id": "web-b1-129",
+    "level": "B1",
+    "category": "Wirtschaft & Konsum",
+    "de": "sich leisten",
+    "en": "to afford",
+    "example": "Viele Familien können sich keinen Urlaub mehr leisten.",
+    "exampleEn": "Many families can no longer afford a vacation."
+  },
+  {
+    "id": "web-b1-130",
+    "level": "B1",
+    "category": "Wirtschaft & Konsum",
+    "de": "die Inflation",
+    "en": "inflation",
+    "example": "Die Inflation beeinflusst die Kaufkraft der Menschen.",
+    "exampleEn": "Inflation affects people's purchasing power."
+  },
+  {
+    "id": "web-b1-131",
+    "level": "B1",
+    "category": "Wirtschaft & Konsum",
+    "de": "der Verbraucher",
+    "en": "consumer",
+    "example": "Verbraucher achten heute mehr auf nachhaltige Produkte.",
+    "exampleEn": "Consumers pay more attention to sustainable products today."
+  },
+  {
+    "id": "web-b1-132",
+    "level": "B1",
+    "category": "Wirtschaft & Konsum",
+    "de": "investieren",
+    "en": "to invest",
+    "example": "Die Firma investiert viel Geld in neue Technologien.",
+    "exampleEn": "The company invests a lot of money in new technologies."
+  },
+  {
+    "id": "web-b1-133",
+    "level": "B1",
+    "category": "Wirtschaft & Konsum",
+    "de": "die Schulden",
+    "en": "debts",
+    "example": "Er hat Schulden, weil er zu viel ausgegeben hat.",
+    "exampleEn": "He has debts because he spent too much."
+  },
+  {
+    "id": "web-b1-134",
+    "level": "B1",
+    "category": "Modalausdrücke & Redemittel",
+    "de": "es kommt darauf an",
+    "en": "it depends",
+    "example": "Ob wir spazieren gehen, kommt darauf an, ob es regnet.",
+    "exampleEn": "Whether we go for a walk depends on whether it rains."
+  },
+  {
+    "id": "web-b1-135",
+    "level": "B1",
+    "category": "Modalausdrücke & Redemittel",
+    "de": "meiner Erfahrung nach",
+    "en": "in my experience",
+    "example": "Meiner Erfahrung nach hilft frühes Lernen am besten.",
+    "exampleEn": "In my experience, studying early helps the most."
+  },
+  {
+    "id": "web-b1-136",
+    "level": "B1",
+    "category": "Modalausdrücke & Redemittel",
+    "de": "es ist wichtig, dass",
+    "en": "it is important that",
+    "example": "Es ist wichtig, dass man pünktlich zum Termin erscheint.",
+    "exampleEn": "It's important that you arrive on time for the appointment."
+  },
+  {
+    "id": "web-b1-137",
+    "level": "B1",
+    "category": "Modalausdrücke & Redemittel",
+    "de": "im Gegensatz zu",
+    "en": "in contrast to",
+    "example": "Im Gegensatz zu ihrem Bruder ist sie sehr schüchtern.",
+    "exampleEn": "In contrast to her brother, she is very shy."
+  },
+  {
+    "id": "web-b1-138",
+    "level": "B1",
+    "category": "Modalausdrücke & Redemittel",
+    "de": "angeblich",
+    "en": "allegedly / supposedly",
+    "example": "Er hat angeblich schon eine neue Stelle gefunden.",
+    "exampleEn": "He has allegedly already found a new job."
+  },
+  {
+    "id": "web-b1-139",
+    "level": "B1",
+    "category": "Modalausdrücke & Redemittel",
+    "de": "vermutlich",
+    "en": "presumably / probably",
+    "example": "Der Zug wird vermutlich Verspätung haben.",
+    "exampleEn": "The train will presumably be delayed."
+  },
+  {
+    "id": "web-b1-140",
+    "level": "B1",
+    "category": "Modalausdrücke & Redemittel",
+    "de": "es hängt davon ab",
+    "en": "it depends on",
+    "example": "Der Erfolg hängt davon ab, wie viel man übt.",
+    "exampleEn": "Success depends on how much one practices."
+  },
+  {
+    "id": "web-b1-141",
+    "level": "B1",
+    "category": "Modalausdrücke & Redemittel",
+    "de": "im Grunde genommen",
+    "en": "basically",
+    "example": "Im Grunde genommen hat er recht, auch wenn ich es anders sehe.",
+    "exampleEn": "Basically he's right, even though I see it differently."
+  },
+  {
+    "id": "web-b1-142",
+    "level": "B1",
+    "category": "Modalausdrücke & Redemittel",
+    "de": "offensichtlich",
+    "en": "obviously",
+    "example": "Offensichtlich hat sie das Missverständnis nicht bemerkt.",
+    "exampleEn": "Obviously she didn't notice the misunderstanding."
+  },
+  {
+    "id": "web-b1-143",
+    "level": "B1",
+    "category": "Modalausdrücke & Redemittel",
+    "de": "davon ausgehen",
+    "en": "to assume",
+    "example": "Ich gehe davon aus, dass das Meeting pünktlich beginnt.",
+    "exampleEn": "I assume that the meeting will start on time."
+  },
+  {
+    "id": "web-b1-144",
+    "level": "B1",
+    "category": "Technologie & Digitales",
+    "de": "die Anwendung / die App",
+    "en": "application / app",
+    "example": "Diese Anwendung erleichtert die Buchhaltung enorm.",
+    "exampleEn": "This application makes bookkeeping much easier."
+  },
+  {
+    "id": "web-b1-145",
+    "level": "B1",
+    "category": "Technologie & Digitales",
+    "de": "herunterladen",
+    "en": "to download",
+    "example": "Du kannst die Datei kostenlos herunterladen.",
+    "exampleEn": "You can download the file for free."
+  },
+  {
+    "id": "web-b1-146",
+    "level": "B1",
+    "category": "Technologie & Digitales",
+    "de": "speichern",
+    "en": "to save (data)",
+    "example": "Vergiss nicht, das Dokument regelmäßig zu speichern.",
+    "exampleEn": "Don't forget to save the document regularly."
+  },
+  {
+    "id": "web-b1-147",
+    "level": "B1",
+    "category": "Technologie & Digitales",
+    "de": "der Datenschutz",
+    "en": "data protection",
+    "example": "Der Datenschutz spielt bei sozialen Netzwerken eine große Rolle.",
+    "exampleEn": "Data protection plays a big role in social networks."
+  },
+  {
+    "id": "web-b1-148",
+    "level": "B1",
+    "category": "Technologie & Digitales",
+    "de": "vernetzt",
+    "en": "networked / connected",
+    "example": "Wir leben in einer digital vernetzten Welt.",
+    "exampleEn": "We live in a digitally connected world."
+  },
+  {
+    "id": "web-b1-149",
+    "level": "B1",
+    "category": "Technologie & Digitales",
+    "de": "die Sicherheitslücke",
+    "en": "security vulnerability",
+    "example": "Die Firma musste eine Sicherheitslücke in ihrer Software schließen.",
+    "exampleEn": "The company had to close a security vulnerability in its software."
+  },
+  {
+    "id": "web-b1-150",
+    "level": "B1",
+    "category": "Technologie & Digitales",
+    "de": "aktualisieren",
+    "en": "to update",
+    "example": "Man sollte die Software regelmäßig aktualisieren.",
+    "exampleEn": "One should update the software regularly."
+  },
+  {
+    "id": "web-b1-151",
+    "level": "B1",
+    "category": "Technologie & Digitales",
+    "de": "digital",
+    "en": "digital",
+    "example": "Viele Behördengänge kann man inzwischen digital erledigen.",
+    "exampleEn": "Many official errands can now be done digitally."
+  },
+  {
+    "id": "web-b1-152",
+    "level": "B1",
+    "category": "Technologie & Digitales",
+    "de": "die künstliche Intelligenz",
+    "en": "artificial intelligence",
+    "example": "Künstliche Intelligenz verändert viele Berufe grundlegend.",
+    "exampleEn": "Artificial intelligence is fundamentally changing many professions."
+  },
+  {
+    "id": "web-b1-153",
+    "level": "B1",
+    "category": "Technologie & Digitales",
+    "de": "die Plattform",
+    "en": "platform",
+    "example": "Die Plattform wird von Millionen Nutzern täglich besucht.",
+    "exampleEn": "The platform is visited by millions of users daily."
+  },
+  {
+    "id": "web-b1-154",
+    "level": "B1",
+    "category": "Technologie & Digitales",
+    "de": "der Nutzer / die Nutzerin",
+    "en": "user",
+    "example": "Jeder Nutzer muss vor der Anmeldung die Datenschutzbestimmungen akzeptieren.",
+    "exampleEn": "Every user has to accept the privacy policy before signing up."
+  },
+  {
+    "id": "web-b1-155",
+    "level": "B1",
+    "category": "Reisen & Verkehr",
+    "de": "die Verspätung",
+    "en": "delay",
+    "example": "Wegen eines technischen Problems gab es eine Verspätung.",
+    "exampleEn": "There was a delay due to a technical problem."
+  },
+  {
+    "id": "web-b1-156",
+    "level": "B1",
+    "category": "Reisen & Verkehr",
+    "de": "der Stau",
+    "en": "traffic jam",
+    "example": "Auf der Autobahn stand ich eine Stunde im Stau.",
+    "exampleEn": "I was stuck in a traffic jam on the highway for an hour."
+  },
+  {
+    "id": "web-b1-157",
+    "level": "B1",
+    "category": "Reisen & Verkehr",
+    "de": "die Verbindung",
+    "en": "connection",
+    "example": "Die Zugverbindung nach Berlin ist sehr gut.",
+    "exampleEn": "The train connection to Berlin is very good."
+  },
+  {
+    "id": "web-b1-158",
+    "level": "B1",
+    "category": "Reisen & Verkehr",
+    "de": "die Unterkunft",
+    "en": "accommodation",
+    "example": "Wir haben eine günstige Unterkunft in der Altstadt gefunden.",
+    "exampleEn": "We found affordable accommodation in the old town."
+  },
+  {
+    "id": "web-b1-159",
+    "level": "B1",
+    "category": "Reisen & Verkehr",
+    "de": "der Aufenthalt",
+    "en": "stay",
+    "example": "Ihr Aufenthalt in Wien dauerte nur drei Tage.",
+    "exampleEn": "Her stay in Vienna only lasted three days."
+  },
+  {
+    "id": "web-b1-160",
+    "level": "B1",
+    "category": "Reisen & Verkehr",
+    "de": "die Sehenswürdigkeit",
+    "en": "sight / tourist attraction",
+    "example": "Der Kölner Dom ist eine bekannte Sehenswürdigkeit.",
+    "exampleEn": "Cologne Cathedral is a well-known tourist attraction."
+  },
+  {
+    "id": "web-b1-161",
+    "level": "B1",
+    "category": "Alltag & Verwaltung",
+    "de": "der Mietvertrag",
+    "en": "lease / rental agreement",
+    "example": "Der Mietvertrag läuft nächsten Monat aus.",
+    "exampleEn": "The lease expires next month."
+  },
+  {
+    "id": "web-b1-162",
+    "level": "B1",
+    "category": "Alltag & Verwaltung",
+    "de": "die Kaution",
+    "en": "deposit",
+    "example": "Die Kaution beträgt drei Monatsmieten.",
+    "exampleEn": "The deposit amounts to three months' rent."
+  },
+  {
+    "id": "web-b1-163",
+    "level": "B1",
+    "category": "Alltag & Verwaltung",
+    "de": "der Vermieter",
+    "en": "landlord",
+    "example": "Der Vermieter hat die Miete leicht erhöht.",
+    "exampleEn": "The landlord raised the rent slightly."
+  },
+  {
+    "id": "web-b1-164",
+    "level": "B1",
+    "category": "Alltag & Verwaltung",
+    "de": "der Mieter",
+    "en": "tenant",
+    "example": "Als Mieter hat man bestimmte Rechte und Pflichten.",
+    "exampleEn": "As a tenant you have certain rights and obligations."
+  },
+  {
+    "id": "web-b1-165",
+    "level": "B1",
+    "category": "Alltag & Verwaltung",
+    "de": "die Versicherung",
+    "en": "insurance",
+    "example": "Ohne Versicherung trägt man das Risiko selbst.",
+    "exampleEn": "Without insurance, you bear the risk yourself."
+  },
+  {
+    "id": "web-b1-166",
+    "level": "B1",
+    "category": "Alltag & Verwaltung",
+    "de": "überweisen",
+    "en": "to transfer (money)",
+    "example": "Ich habe das Geld gestern auf sein Konto überwiesen.",
+    "exampleEn": "I transferred the money to his account yesterday."
+  },
+  {
+    "id": "web-b1-167",
+    "level": "B1",
+    "category": "Alltag & Verwaltung",
+    "de": "der Nachweis",
+    "en": "proof / verification",
+    "example": "Für den Antrag braucht man einen Nachweis über das Einkommen.",
+    "exampleEn": "For the application you need proof of income."
+  },
+  {
+    "id": "web-b1-168",
+    "level": "B1",
+    "category": "Alltag & Verwaltung",
+    "de": "erledigen",
+    "en": "to take care of / handle",
+    "example": "Diese Behördengänge kann ich leider nur unter der Woche erledigen.",
+    "exampleEn": "Unfortunately I can only take care of these official errands during the week."
+  },
+  {
+    "id": "web-b1-169",
+    "level": "B1",
+    "category": "Alltag & Verwaltung",
+    "de": "die Angelegenheit",
+    "en": "matter / issue",
+    "example": "Das ist eine private Angelegenheit, über die ich nicht sprechen möchte.",
+    "exampleEn": "That's a private matter I don't want to talk about."
+  },
+  {
+    "id": "web-b2-11",
+    "level": "B2",
+    "category": "Beruf & Bewerbung",
+    "de": "der Lebenslauf",
+    "en": "CV / resume",
+    "example": "Bitte schicken Sie Ihren Lebenslauf und ein Anschreiben bis Freitag.",
+    "exampleEn": "Please send your CV and a cover letter by Friday."
+  },
+  {
+    "id": "web-b2-12",
+    "level": "B2",
+    "category": "Beruf & Bewerbung",
+    "de": "die Qualifikation",
+    "en": "qualification",
+    "example": "Für die Stelle wird mehrjährige Berufserfahrung als Qualifikation vorausgesetzt.",
+    "exampleEn": "Several years of professional experience are required as a qualification for the position."
+  },
+  {
+    "id": "web-b2-13",
+    "level": "B2",
+    "category": "Beruf & Bewerbung",
+    "de": "das Vorstellungsgespräch",
+    "en": "job interview",
+    "example": "Das Vorstellungsgespräch dauerte fast eine Stunde.",
+    "exampleEn": "The job interview lasted almost an hour."
+  },
+  {
+    "id": "web-b2-14",
+    "level": "B2",
+    "category": "Beruf & Bewerbung",
+    "de": "die Kündigung",
+    "en": "dismissal / notice of termination",
+    "example": "Die Kündigung kam für die Mitarbeiter völlig überraschend.",
+    "exampleEn": "The dismissal came as a complete surprise to the employees."
+  },
+  {
+    "id": "web-b2-15",
+    "level": "B2",
+    "category": "Beruf & Bewerbung",
+    "de": "befördern",
+    "en": "to promote",
+    "example": "Nach zwei erfolgreichen Jahren wurde sie zur Abteilungsleiterin befördert.",
+    "exampleEn": "After two successful years, she was promoted to department head."
+  },
+  {
+    "id": "web-b2-16",
+    "level": "B2",
+    "category": "Beruf & Bewerbung",
+    "de": "die Beförderung",
+    "en": "promotion",
+    "example": "Die Beförderung ist mit mehr Verantwortung verbunden.",
+    "exampleEn": "The promotion comes with more responsibility."
+  },
+  {
+    "id": "web-b2-17",
+    "level": "B2",
+    "category": "Beruf & Bewerbung",
+    "de": "die Fachkraft",
+    "en": "skilled worker / specialist",
+    "example": "In der Pflegebranche fehlen qualifizierte Fachkräfte.",
+    "exampleEn": "There is a shortage of qualified specialists in the care sector."
+  },
+  {
+    "id": "web-b2-18",
+    "level": "B2",
+    "category": "Beruf & Bewerbung",
+    "de": "verhandeln",
+    "en": "to negotiate",
+    "example": "Die Gewerkschaft verhandelt derzeit über höhere Löhne.",
+    "exampleEn": "The union is currently negotiating for higher wages."
+  },
+  {
+    "id": "web-b2-19",
+    "level": "B2",
+    "category": "Beruf & Bewerbung",
+    "de": "die Verhandlung",
+    "en": "negotiation",
+    "example": "Nach langen Verhandlungen einigten sich beide Seiten auf einen Kompromiss.",
+    "exampleEn": "After long negotiations, both sides agreed on a compromise."
+  },
+  {
+    "id": "web-b2-20",
+    "level": "B2",
+    "category": "Wissenschaft & Technologie",
+    "de": "die Forschung",
+    "en": "research",
+    "example": "Die Forschung im Bereich erneuerbarer Energien schreitet rasch voran.",
+    "exampleEn": "Research in the field of renewable energy is progressing rapidly."
+  },
+  {
+    "id": "web-b2-21",
+    "level": "B2",
+    "category": "Wissenschaft & Technologie",
+    "de": "forschen",
+    "en": "to do research",
+    "example": "Das Team forscht seit Jahren an einem Impfstoff gegen die Krankheit.",
+    "exampleEn": "The team has been researching a vaccine against the disease for years."
+  },
+  {
+    "id": "web-b2-22",
+    "level": "B2",
+    "category": "Wissenschaft & Technologie",
+    "de": "die Erkenntnis",
+    "en": "insight / finding",
+    "example": "Neue Erkenntnisse zwingen die Wissenschaftler, ihre Theorie zu überdenken.",
+    "exampleEn": "New findings are forcing scientists to reconsider their theory."
+  },
+  {
+    "id": "web-b2-23",
+    "level": "B2",
+    "category": "Wissenschaft & Technologie",
+    "de": "das Experiment",
+    "en": "experiment",
+    "example": "Das Experiment lieferte ein überraschendes Ergebnis.",
+    "exampleEn": "The experiment produced a surprising result."
+  },
+  {
+    "id": "web-b2-24",
+    "level": "B2",
+    "category": "Wissenschaft & Technologie",
+    "de": "die Hypothese",
+    "en": "hypothesis",
+    "example": "Die Forscher wollen ihre Hypothese mit weiteren Daten überprüfen.",
+    "exampleEn": "The researchers want to test their hypothesis with further data."
+  },
+  {
+    "id": "web-b2-25",
+    "level": "B2",
+    "category": "Wissenschaft & Technologie",
+    "de": "nachweisen",
+    "en": "to prove / demonstrate",
+    "example": "Die Studie konnte den Zusammenhang zwischen Ernährung und Krankheit nachweisen.",
+    "exampleEn": "The study was able to demonstrate the connection between diet and disease."
+  },
+  {
+    "id": "web-b2-26",
+    "level": "B2",
+    "category": "Wissenschaft & Technologie",
+    "de": "die Entwicklung",
+    "en": "development",
+    "example": "Die technische Entwicklung verläuft schneller, als viele erwartet hatten.",
+    "exampleEn": "Technical development is proceeding faster than many expected."
+  },
+  {
+    "id": "web-b2-27",
+    "level": "B2",
+    "category": "Wissenschaft & Technologie",
+    "de": "entwickeln",
+    "en": "to develop",
+    "example": "Das Unternehmen entwickelt eine neue Software zur Datenanalyse.",
+    "exampleEn": "The company is developing new software for data analysis."
+  },
+  {
+    "id": "web-b2-28",
+    "level": "B2",
+    "category": "Wissenschaft & Technologie",
+    "de": "die Innovation",
+    "en": "innovation",
+    "example": "Ohne Innovation verliert ein Unternehmen langfristig seine Wettbewerbsfähigkeit.",
+    "exampleEn": "Without innovation, a company loses its competitiveness in the long run."
+  },
+  {
+    "id": "web-b2-29",
+    "level": "B2",
+    "category": "Wissenschaft & Technologie",
+    "de": "digitalisieren",
+    "en": "to digitize",
+    "example": "Viele Behörden digitalisieren gerade ihre Verwaltungsprozesse.",
+    "exampleEn": "Many public authorities are currently digitizing their administrative processes."
+  },
+  {
+    "id": "web-b2-30",
+    "level": "B2",
+    "category": "Wissenschaft & Technologie",
+    "de": "die Digitalisierung",
+    "en": "digitization",
+    "example": "Die Digitalisierung verändert nahezu jeden Wirtschaftszweig.",
+    "exampleEn": "Digitization is changing almost every sector of the economy."
+  },
+  {
+    "id": "web-b2-31",
+    "level": "B2",
+    "category": "Wissenschaft & Technologie",
+    "de": "der Algorithmus",
+    "en": "algorithm",
+    "example": "Ein Algorithmus entscheidet, welche Werbung dem Nutzer angezeigt wird.",
+    "exampleEn": "An algorithm decides which advertisement is shown to the user."
+  },
+  {
+    "id": "web-b2-32",
+    "level": "B2",
+    "category": "Politik & Gesellschaft",
+    "de": "die Gesetzgebung",
+    "en": "legislation",
+    "example": "Die Gesetzgebung zum Datenschutz wurde in den letzten Jahren deutlich verschärft.",
+    "exampleEn": "Data protection legislation has been significantly tightened in recent years."
+  },
+  {
+    "id": "web-b2-33",
+    "level": "B2",
+    "category": "Politik & Gesellschaft",
+    "de": "der Gesetzentwurf",
+    "en": "draft bill",
+    "example": "Der Gesetzentwurf wird nächste Woche im Parlament diskutiert.",
+    "exampleEn": "The draft bill will be discussed in parliament next week."
+  },
+  {
+    "id": "web-b2-34",
+    "level": "B2",
+    "category": "Politik & Gesellschaft",
+    "de": "abstimmen",
+    "en": "to vote",
+    "example": "Die Abgeordneten stimmen morgen über den Haushalt ab.",
+    "exampleEn": "The members of parliament will vote on the budget tomorrow."
+  },
+  {
+    "id": "web-b2-35",
+    "level": "B2",
+    "category": "Politik & Gesellschaft",
+    "de": "die Koalition",
+    "en": "coalition",
+    "example": "Die Koalition konnte sich bislang nicht auf eine gemeinsame Linie einigen.",
+    "exampleEn": "The coalition has so far been unable to agree on a common line."
+  },
+  {
+    "id": "web-b2-36",
+    "level": "B2",
+    "category": "Politik & Gesellschaft",
+    "de": "die Opposition",
+    "en": "opposition",
+    "example": "Die Opposition kritisiert den Gesetzentwurf scharf.",
+    "exampleEn": "The opposition sharply criticizes the draft bill."
+  },
+  {
+    "id": "web-b2-37",
+    "level": "B2",
+    "category": "Politik & Gesellschaft",
+    "de": "der Wahlkampf",
+    "en": "election campaign",
+    "example": "Im Wahlkampf versprechen die Parteien niedrigere Steuern.",
+    "exampleEn": "During the election campaign, the parties promise lower taxes."
+  },
+  {
+    "id": "web-b2-38",
+    "level": "B2",
+    "category": "Politik & Gesellschaft",
+    "de": "die Reform",
+    "en": "reform",
+    "example": "Die Reform des Bildungssystems steht seit Jahren aus.",
+    "exampleEn": "The reform of the education system has been overdue for years."
+  },
+  {
+    "id": "web-b2-39",
+    "level": "B2",
+    "category": "Politik & Gesellschaft",
+    "de": "reformieren",
+    "en": "to reform",
+    "example": "Die Regierung will das Gesundheitssystem grundlegend reformieren.",
+    "exampleEn": "The government wants to fundamentally reform the healthcare system."
+  },
+  {
+    "id": "web-b2-40",
+    "level": "B2",
+    "category": "Politik & Gesellschaft",
+    "de": "die Bürgerbeteiligung",
+    "en": "civic/public participation",
+    "example": "Bei der Stadtplanung setzt die Kommune verstärkt auf Bürgerbeteiligung.",
+    "exampleEn": "The municipality increasingly relies on public participation in urban planning."
+  },
+  {
+    "id": "web-b2-41",
+    "level": "B2",
+    "category": "Politik & Gesellschaft",
+    "de": "der Konsens",
+    "en": "consensus",
+    "example": "Ein politischer Konsens über die Klimapolitik ist derzeit nicht in Sicht.",
+    "exampleEn": "A political consensus on climate policy is currently not in sight."
+  },
+  {
+    "id": "web-b2-42",
+    "level": "B2",
+    "category": "Politik & Gesellschaft",
+    "de": "die Ungleichheit",
+    "en": "inequality",
+    "example": "Die soziale Ungleichheit hat sich in den letzten Jahrzehnten verschärft.",
+    "exampleEn": "Social inequality has worsened in recent decades."
+  },
+  {
+    "id": "web-b2-43",
+    "level": "B2",
+    "category": "Politik & Gesellschaft",
+    "de": "die Integration",
+    "en": "integration",
+    "example": "Sprachkurse spielen eine zentrale Rolle bei der Integration von Migranten.",
+    "exampleEn": "Language courses play a central role in the integration of migrants."
+  },
+  {
+    "id": "web-b2-44",
+    "level": "B2",
+    "category": "Kunst & Kultur",
+    "de": "das Kunstwerk",
+    "en": "artwork",
+    "example": "Das Kunstwerk wurde für mehrere Millionen Euro versteigert.",
+    "exampleEn": "The artwork was auctioned off for several million euros."
+  },
+  {
+    "id": "web-b2-45",
+    "level": "B2",
+    "category": "Kunst & Kultur",
+    "de": "die Ausstellung",
+    "en": "exhibition",
+    "example": "Die Ausstellung zeigt Werke junger Fotografen aus ganz Europa.",
+    "exampleEn": "The exhibition shows works by young photographers from all over Europe."
+  },
+  {
+    "id": "web-b2-46",
+    "level": "B2",
+    "category": "Kunst & Kultur",
+    "de": "der Regisseur",
+    "en": "director",
+    "example": "Der Regisseur wollte mit dem Film ein gesellschaftliches Tabu brechen.",
+    "exampleEn": "The director wanted to break a social taboo with the film."
+  },
+  {
+    "id": "web-b2-47",
+    "level": "B2",
+    "category": "Kunst & Kultur",
+    "de": "die Inszenierung",
+    "en": "staging / production",
+    "example": "Die Inszenierung des Stücks wurde von der Presse gefeiert.",
+    "exampleEn": "The staging of the play was praised by the press."
+  },
+  {
+    "id": "web-b2-48",
+    "level": "B2",
+    "category": "Kunst & Kultur",
+    "de": "inszenieren",
+    "en": "to stage",
+    "example": "Die Regisseurin inszeniert das Drama als modernes Kammerspiel.",
+    "exampleEn": "The director stages the drama as a modern chamber play."
+  },
+  {
+    "id": "web-b2-49",
+    "level": "B2",
+    "category": "Kunst & Kultur",
+    "de": "das Meisterwerk",
+    "en": "masterpiece",
+    "example": "Viele Kritiker halten den Roman für sein Meisterwerk.",
+    "exampleEn": "Many critics consider the novel to be his masterpiece."
+  },
+  {
+    "id": "web-b2-50",
+    "level": "B2",
+    "category": "Kunst & Kultur",
+    "de": "die Rezension",
+    "en": "review",
+    "example": "Die Rezension in der Zeitung fiel überraschend positiv aus.",
+    "exampleEn": "The review in the newspaper turned out surprisingly positive."
+  },
+  {
+    "id": "web-b2-51",
+    "level": "B2",
+    "category": "Kunst & Kultur",
+    "de": "rezensieren",
+    "en": "to review",
+    "example": "Ein bekannter Kritiker hat den neuen Roman rezensiert.",
+    "exampleEn": "A well-known critic reviewed the new novel."
+  },
+  {
+    "id": "web-b2-52",
+    "level": "B2",
+    "category": "Kunst & Kultur",
+    "de": "das Repertoire",
+    "en": "repertoire",
+    "example": "Das Orchester erweitert ständig sein Repertoire.",
+    "exampleEn": "The orchestra is constantly expanding its repertoire."
+  },
+  {
+    "id": "web-b2-53",
+    "level": "B2",
+    "category": "Kunst & Kultur",
+    "de": "die Uraufführung",
+    "en": "premiere",
+    "example": "Die Uraufführung des Stücks fand vor ausverkauftem Haus statt.",
+    "exampleEn": "The premiere of the play took place before a sold-out house."
+  },
+  {
+    "id": "web-b2-54",
+    "level": "B2",
+    "category": "Kunst & Kultur",
+    "de": "der Kulturkreis",
+    "en": "cultural sphere",
+    "example": "Bestimmte Gesten werden in anderen Kulturkreisen völlig anders gedeutet.",
+    "exampleEn": "Certain gestures are interpreted completely differently in other cultural spheres."
+  },
+  {
+    "id": "web-b2-55",
+    "level": "B2",
+    "category": "Kunst & Kultur",
+    "de": "die Darbietung",
+    "en": "performance",
+    "example": "Die Darbietung der Tänzerin wurde mit stehenden Ovationen belohnt.",
+    "exampleEn": "The dancer's performance was rewarded with a standing ovation."
+  },
+  {
+    "id": "web-b2-56",
+    "level": "B2",
+    "category": "Wirtschaft & Konsum",
+    "de": "konsumieren",
+    "en": "to consume",
+    "example": "Viele Jugendliche konsumieren Nachrichten fast ausschließlich über soziale Medien.",
+    "exampleEn": "Many young people consume news almost exclusively via social media."
+  },
+  {
+    "id": "web-b2-57",
+    "level": "B2",
+    "category": "Wirtschaft & Konsum",
+    "de": "der Wettbewerb",
+    "en": "competition",
+    "example": "Der internationale Wettbewerb zwingt Unternehmen zu ständiger Innovation.",
+    "exampleEn": "International competition forces companies to innovate constantly."
+  },
+  {
+    "id": "web-b2-58",
+    "level": "B2",
+    "category": "Wirtschaft & Konsum",
+    "de": "die Konkurrenz",
+    "en": "competition / rivals",
+    "example": "Die Konkurrenz schläft nicht, deshalb müssen wir unsere Preise überdenken.",
+    "exampleEn": "The competition never sleeps, so we need to reconsider our prices."
+  },
+  {
+    "id": "web-b2-59",
+    "level": "B2",
+    "category": "Wirtschaft & Konsum",
+    "de": "der Umsatz",
+    "en": "turnover / revenue",
+    "example": "Das Unternehmen konnte seinen Umsatz im vergangenen Jahr verdoppeln.",
+    "exampleEn": "The company was able to double its revenue last year."
+  },
+  {
+    "id": "web-b2-60",
+    "level": "B2",
+    "category": "Wirtschaft & Konsum",
+    "de": "der Gewinn",
+    "en": "profit",
+    "example": "Trotz sinkender Umsätze meldete die Firma einen soliden Gewinn.",
+    "exampleEn": "Despite falling sales, the company reported a solid profit."
+  },
+  {
+    "id": "web-b2-61",
+    "level": "B2",
+    "category": "Wirtschaft & Konsum",
+    "de": "die Rendite",
+    "en": "return (on investment)",
+    "example": "Die Rendite dieser Anlage liegt deutlich über dem Marktdurchschnitt.",
+    "exampleEn": "The return on this investment is significantly above the market average."
+  },
+  {
+    "id": "web-b2-62",
+    "level": "B2",
+    "category": "Wirtschaft & Konsum",
+    "de": "die Investition",
+    "en": "investment",
+    "example": "Eine Investition in Bildung zahlt sich langfristig immer aus.",
+    "exampleEn": "An investment in education always pays off in the long run."
+  },
+  {
+    "id": "web-b2-63",
+    "level": "B2",
+    "category": "Wirtschaft & Konsum",
+    "de": "die Nachhaltigkeit",
+    "en": "sustainability",
+    "example": "Nachhaltigkeit spielt bei jüngeren Konsumenten eine immer größere Rolle.",
+    "exampleEn": "Sustainability plays an increasingly important role for younger consumers."
+  },
+  {
+    "id": "web-b2-64",
+    "level": "B2",
+    "category": "Sprache & Identität",
+    "de": "die Muttersprache",
+    "en": "mother tongue",
+    "example": "In der Familie wurde neben Deutsch auch die Muttersprache der Großeltern gepflegt.",
+    "exampleEn": "In the family, the grandparents' mother tongue was cultivated alongside German."
+  },
+  {
+    "id": "web-b2-65",
+    "level": "B2",
+    "category": "Sprache & Identität",
+    "de": "die Mehrsprachigkeit",
+    "en": "multilingualism",
+    "example": "Mehrsprachigkeit gilt heute als klarer Vorteil auf dem Arbeitsmarkt.",
+    "exampleEn": "Multilingualism is now considered a clear advantage in the job market."
+  },
+  {
+    "id": "web-b2-66",
+    "level": "B2",
+    "category": "Sprache & Identität",
+    "de": "der Akzent",
+    "en": "accent",
+    "example": "Man hörte sofort an ihrem Akzent, dass sie aus Norddeutschland stammte.",
+    "exampleEn": "You could immediately tell from her accent that she was from northern Germany."
+  },
+  {
+    "id": "web-b2-67",
+    "level": "B2",
+    "category": "Sprache & Identität",
+    "de": "die Zugehörigkeit",
+    "en": "belonging / affiliation",
+    "example": "Das Gefühl der Zugehörigkeit ist für die Integration entscheidend.",
+    "exampleEn": "The feeling of belonging is crucial for integration."
+  },
+  {
+    "id": "web-b2-68",
+    "level": "B2",
+    "category": "Sprache & Identität",
+    "de": "die Identität",
+    "en": "identity",
+    "example": "Die kulturelle Identität vieler Jugendlicher ist heute geprägt von mehreren Einflüssen.",
+    "exampleEn": "The cultural identity of many young people today is shaped by multiple influences."
+  },
+  {
+    "id": "web-b2-69",
+    "level": "B2",
+    "category": "Sprache & Identität",
+    "de": "sich identifizieren mit",
+    "en": "to identify with",
+    "example": "Viele Fans identifizieren sich stark mit ihrem Verein.",
+    "exampleEn": "Many fans identify strongly with their club."
+  },
+  {
+    "id": "web-b2-70",
+    "level": "B2",
+    "category": "Sprache & Identität",
+    "de": "die Herkunft",
+    "en": "origin / background",
+    "example": "Seine Herkunft spielte bei der Einstellung keine Rolle.",
+    "exampleEn": "His background played no role in the hiring decision."
+  },
+  {
+    "id": "web-b2-71",
+    "level": "B2",
+    "category": "Sprache & Identität",
+    "de": "die Prägung",
+    "en": "formative influence",
+    "example": "Die Prägung durch das Elternhaus wirkt oft bis ins Erwachsenenalter.",
+    "exampleEn": "The formative influence of one's upbringing often continues into adulthood."
+  },
+  {
+    "id": "web-b2-72",
+    "level": "B2",
+    "category": "Sprache & Identität",
+    "de": "prägen",
+    "en": "to shape / mark",
+    "example": "Die Nachkriegszeit hat die Generation seiner Großeltern stark geprägt.",
+    "exampleEn": "The postwar period strongly shaped his grandparents' generation."
+  },
+  {
+    "id": "web-b2-73",
+    "level": "B2",
+    "category": "Sprache & Identität",
+    "de": "die Wahrnehmung",
+    "en": "perception",
+    "example": "Die öffentliche Wahrnehmung des Themas hat sich in den letzten Jahren gewandelt.",
+    "exampleEn": "Public perception of the issue has changed in recent years."
+  },
+  {
+    "id": "web-b2-74",
+    "level": "B2",
+    "category": "Sprache & Identität",
+    "de": "wahrnehmen",
+    "en": "to perceive",
+    "example": "Viele Menschen nehmen Risiken unterschiedlich wahr, je nach eigener Erfahrung.",
+    "exampleEn": "Many people perceive risks differently, depending on their own experience."
+  },
+  {
+    "id": "web-b2-75",
+    "level": "B2",
+    "category": "Umwelt & Nachhaltigkeit",
+    "de": "die Emission",
+    "en": "emission",
+    "example": "Die Emissionen des Verkehrssektors sollen bis 2030 deutlich sinken.",
+    "exampleEn": "Emissions from the transport sector are supposed to fall significantly by 2030."
+  },
+  {
+    "id": "web-b2-76",
+    "level": "B2",
+    "category": "Umwelt & Nachhaltigkeit",
+    "de": "der Ausstoß",
+    "en": "output / emission",
+    "example": "Der CO2-Ausstoß der Industrie ist in diesem Jahr leicht gesunken.",
+    "exampleEn": "The industry's CO2 output has fallen slightly this year."
+  },
+  {
+    "id": "web-b2-77",
+    "level": "B2",
+    "category": "Umwelt & Nachhaltigkeit",
+    "de": "reduzieren",
+    "en": "to reduce",
+    "example": "Das Unternehmen will seinen Wasserverbrauch um zwanzig Prozent reduzieren.",
+    "exampleEn": "The company wants to reduce its water consumption by twenty percent."
+  },
+  {
+    "id": "web-b2-78",
+    "level": "B2",
+    "category": "Umwelt & Nachhaltigkeit",
+    "de": "die Reduzierung",
+    "en": "reduction",
+    "example": "Die Reduzierung des Plastikmülls ist ein erklärtes Ziel der Stadt.",
+    "exampleEn": "The reduction of plastic waste is a declared goal of the city."
+  },
+  {
+    "id": "web-b2-79",
+    "level": "B2",
+    "category": "Umwelt & Nachhaltigkeit",
+    "de": "schonen",
+    "en": "to conserve / protect",
+    "example": "Mit dieser Anbaumethode lassen sich Böden und Grundwasser schonen.",
+    "exampleEn": "This cultivation method helps conserve soil and groundwater."
+  },
+  {
+    "id": "web-b2-80",
+    "level": "B2",
+    "category": "Umwelt & Nachhaltigkeit",
+    "de": "der Eingriff",
+    "en": "intervention / interference",
+    "example": "Der geplante Eingriff in das Ökosystem stößt auf heftigen Widerstand.",
+    "exampleEn": "The planned intervention in the ecosystem is meeting fierce resistance."
+  },
+  {
+    "id": "web-b2-81",
+    "level": "B2",
+    "category": "Umwelt & Nachhaltigkeit",
+    "de": "die Belastung",
+    "en": "burden / strain",
+    "example": "Die Belastung der Flüsse durch Chemikalien hat in den letzten Jahren zugenommen.",
+    "exampleEn": "The strain on rivers from chemicals has increased in recent years."
+  },
+  {
+    "id": "web-b2-82",
+    "level": "B2",
+    "category": "Umwelt & Nachhaltigkeit",
+    "de": "das Bewusstsein",
+    "en": "awareness",
+    "example": "Das Bewusstsein für Umweltschutz ist bei jungen Menschen stark gewachsen.",
+    "exampleEn": "Awareness of environmental protection has grown strongly among young people."
+  },
+  {
+    "id": "web-b2-83",
+    "level": "B2",
+    "category": "Umwelt & Nachhaltigkeit",
+    "de": "umweltbewusst",
+    "en": "environmentally conscious",
+    "example": "Immer mehr Verbraucher entscheiden sich umweltbewusst für regionale Produkte.",
+    "exampleEn": "More and more consumers are choosing regional products in an environmentally conscious way."
+  },
+  {
+    "id": "web-b2-84",
+    "level": "B2",
+    "category": "Medien & Kommunikation",
+    "de": "die Berichterstattung",
+    "en": "media coverage",
+    "example": "Die Berichterstattung über den Skandal nahm kein Ende.",
+    "exampleEn": "Media coverage of the scandal never seemed to end."
+  },
+  {
+    "id": "web-b2-85",
+    "level": "B2",
+    "category": "Medien & Kommunikation",
+    "de": "berichten über",
+    "en": "to report on",
+    "example": "Mehrere Zeitungen berichteten ausführlich über den Prozess.",
+    "exampleEn": "Several newspapers reported extensively on the trial."
+  },
+  {
+    "id": "web-b2-86",
+    "level": "B2",
+    "category": "Medien & Kommunikation",
+    "de": "die Glaubwürdigkeit",
+    "en": "credibility",
+    "example": "Die Glaubwürdigkeit des Senders litt stark unter dem Vorfall.",
+    "exampleEn": "The broadcaster's credibility suffered greatly from the incident."
+  },
+  {
+    "id": "web-b2-87",
+    "level": "B2",
+    "category": "Medien & Kommunikation",
+    "de": "manipulieren",
+    "en": "to manipulate",
+    "example": "Mit gefälschten Bildern versuchte man, die öffentliche Meinung zu manipulieren.",
+    "exampleEn": "They tried to manipulate public opinion with fake images."
+  },
+  {
+    "id": "web-b2-88",
+    "level": "B2",
+    "category": "Medien & Kommunikation",
+    "de": "die Manipulation",
+    "en": "manipulation",
+    "example": "Die Manipulation von Wahlen zählt zu den größten Bedrohungen für die Demokratie.",
+    "exampleEn": "Election manipulation is one of the greatest threats to democracy."
+  },
+  {
+    "id": "web-b2-89",
+    "level": "B2",
+    "category": "Medien & Kommunikation",
+    "de": "die Meinungsfreiheit",
+    "en": "freedom of speech",
+    "example": "Die Meinungsfreiheit ist ein Grundpfeiler jeder Demokratie.",
+    "exampleEn": "Freedom of speech is a cornerstone of every democracy."
+  },
+  {
+    "id": "web-b2-90",
+    "level": "B2",
+    "category": "Medien & Kommunikation",
+    "de": "die Zensur",
+    "en": "censorship",
+    "example": "In dem Land unterliegen Zeitungen strenger Zensur.",
+    "exampleEn": "In that country, newspapers are subject to strict censorship."
+  },
+  {
+    "id": "web-b2-91",
+    "level": "B2",
+    "category": "Medien & Kommunikation",
+    "de": "verbreiten",
+    "en": "to spread / disseminate",
+    "example": "Falschmeldungen verbreiten sich in sozialen Netzwerken erschreckend schnell.",
+    "exampleEn": "False reports spread frighteningly fast on social networks."
+  },
+  {
+    "id": "web-b2-92",
+    "level": "B2",
+    "category": "Medien & Kommunikation",
+    "de": "die Verbreitung",
+    "en": "dissemination",
+    "example": "Die Verbreitung von Falschinformationen soll durch neue Gesetze eingedämmt werden.",
+    "exampleEn": "New laws are meant to curb the dissemination of misinformation."
+  },
+  {
+    "id": "web-b2-93",
+    "level": "B2",
+    "category": "Bildung & Wissen",
+    "de": "vermitteln",
+    "en": "to convey / impart",
+    "example": "Guter Unterricht vermittelt nicht nur Wissen, sondern auch Neugier.",
+    "exampleEn": "Good teaching conveys not only knowledge but also curiosity."
+  },
+  {
+    "id": "web-b2-94",
+    "level": "B2",
+    "category": "Bildung & Wissen",
+    "de": "die Vermittlung",
+    "en": "imparting / mediation",
+    "example": "Die Vermittlung praktischer Fähigkeiten kommt in der Schule oft zu kurz.",
+    "exampleEn": "The imparting of practical skills is often neglected in school."
+  },
+  {
+    "id": "web-b2-95",
+    "level": "B2",
+    "category": "Bildung & Wissen",
+    "de": "die Kompetenz",
+    "en": "competence / skill",
+    "example": "Soziale Kompetenz wird auf dem Arbeitsmarkt immer wichtiger.",
+    "exampleEn": "Social competence is becoming increasingly important in the job market."
+  },
+  {
+    "id": "web-b2-96",
+    "level": "B2",
+    "category": "Bildung & Wissen",
+    "de": "sich aneignen",
+    "en": "to acquire (skills/knowledge)",
+    "example": "Innerhalb weniger Monate eignete sie sich die neue Sprache erstaunlich gut an.",
+    "exampleEn": "Within a few months, she acquired the new language remarkably well."
+  },
+  {
+    "id": "web-b2-97",
+    "level": "B2",
+    "category": "Bildung & Wissen",
+    "de": "die Aneignung",
+    "en": "acquisition (of knowledge/skills)",
+    "example": "Die Aneignung neuer Technologien fällt jüngeren Mitarbeitern oft leichter.",
+    "exampleEn": "The acquisition of new technologies is often easier for younger employees."
+  },
+  {
+    "id": "web-b2-98",
+    "level": "B2",
+    "category": "Bildung & Wissen",
+    "de": "das Fachwissen",
+    "en": "expertise / specialized knowledge",
+    "example": "Für diese Position ist umfangreiches technisches Fachwissen erforderlich.",
+    "exampleEn": "Extensive technical expertise is required for this position."
+  },
+  {
+    "id": "web-b2-99",
+    "level": "B2",
+    "category": "Bildung & Wissen",
+    "de": "der Bildungsweg",
+    "en": "educational path",
+    "example": "Sein Bildungsweg führte ihn vom Handwerk direkt an die Universität.",
+    "exampleEn": "His educational path led him from a trade directly to university."
+  },
+  {
+    "id": "web-b2-100",
+    "level": "B2",
+    "category": "Bildung & Wissen",
+    "de": "die Weiterbildung",
+    "en": "further education / training",
+    "example": "Das Unternehmen bietet seinen Angestellten regelmäßige Weiterbildungen an.",
+    "exampleEn": "The company offers its employees regular further training."
+  },
+  {
+    "id": "web-b2-101",
+    "level": "B2",
+    "category": "Bildung & Wissen",
+    "de": "sich fortbilden",
+    "en": "to further one's education",
+    "example": "Viele Lehrer bilden sich in den Ferien freiwillig fort.",
+    "exampleEn": "Many teachers voluntarily further their education during the holidays."
+  },
+  {
+    "id": "web-b2-102",
+    "level": "B2",
+    "category": "Bildung & Wissen",
+    "de": "die Chancengleichheit",
+    "en": "equal opportunity",
+    "example": "Kostenlose Bildung soll die Chancengleichheit zwischen den sozialen Schichten fördern.",
+    "exampleEn": "Free education is meant to promote equal opportunity between social classes."
+  },
+  {
+    "id": "web-b2-103",
+    "level": "B2",
+    "category": "Bildung & Wissen",
+    "de": "der Wissensstand",
+    "en": "level of knowledge",
+    "example": "Anhand des Tests lässt sich der aktuelle Wissensstand der Schüler ermitteln.",
+    "exampleEn": "The test is meant to determine the students' current level of knowledge."
+  },
+  {
+    "id": "web-b2-104",
+    "level": "B2",
+    "category": "Recht & Verwaltung",
+    "de": "genehmigen",
+    "en": "to approve",
+    "example": "Die Stadt hat den Bauantrag nach langer Prüfung genehmigt.",
+    "exampleEn": "The city approved the building application after a long review."
+  },
+  {
+    "id": "web-b2-105",
+    "level": "B2",
+    "category": "Recht & Verwaltung",
+    "de": "die Vorschrift",
+    "en": "regulation",
+    "example": "Alle Mitarbeiter müssen sich an die Sicherheitsvorschriften halten.",
+    "exampleEn": "All employees must comply with the safety regulations."
+  },
+  {
+    "id": "web-b2-106",
+    "level": "B2",
+    "category": "Recht & Verwaltung",
+    "de": "vorschreiben",
+    "en": "to prescribe / stipulate",
+    "example": "Das Gesetz schreibt vor, dass Bewerber gleich behandelt werden müssen.",
+    "exampleEn": "The law stipulates that applicants must be treated equally."
+  },
+  {
+    "id": "web-b2-107",
+    "level": "B2",
+    "category": "Recht & Verwaltung",
+    "de": "verpflichten",
+    "en": "to obligate",
+    "example": "Der Vertrag verpflichtet beide Seiten zur Einhaltung der Fristen.",
+    "exampleEn": "The contract obligates both parties to meet the deadlines."
+  },
+  {
+    "id": "web-b2-108",
+    "level": "B2",
+    "category": "Recht & Verwaltung",
+    "de": "die Verpflichtung",
+    "en": "obligation",
+    "example": "Mit der Unterschrift geht er eine rechtliche Verpflichtung ein.",
+    "exampleEn": "With his signature, he enters into a legal obligation."
+  },
+  {
+    "id": "web-b2-109",
+    "level": "B2",
+    "category": "Recht & Verwaltung",
+    "de": "die Zuständigkeit",
+    "en": "jurisdiction / responsibility",
+    "example": "Für diesen Fall liegt die Zuständigkeit bei einer anderen Behörde.",
+    "exampleEn": "Jurisdiction for this case lies with a different authority."
+  },
+  {
+    "id": "web-b2-110",
+    "level": "B2",
+    "category": "Recht & Verwaltung",
+    "de": "die Haftung",
+    "en": "liability",
+    "example": "Bei grober Fahrlässigkeit übernimmt die Versicherung keine Haftung.",
+    "exampleEn": "In cases of gross negligence, the insurance assumes no liability."
+  },
+  {
+    "id": "web-b2-111",
+    "level": "B2",
+    "category": "Psychologie & Verhalten",
+    "de": "das Verhalten",
+    "en": "behavior",
+    "example": "Das Verhalten der Kinder veränderte sich deutlich, nachdem die Familie umgezogen war.",
+    "exampleEn": "The children's behavior changed noticeably after the family moved."
+  },
+  {
+    "id": "web-b2-112",
+    "level": "B2",
+    "category": "Psychologie & Verhalten",
+    "de": "sich verhalten",
+    "en": "to behave",
+    "example": "In der Krise verhielt sich das Team erstaunlich ruhig.",
+    "exampleEn": "During the crisis, the team behaved surprisingly calmly."
+  },
+  {
+    "id": "web-b2-113",
+    "level": "B2",
+    "category": "Psychologie & Verhalten",
+    "de": "die Motivation",
+    "en": "motivation",
+    "example": "Ohne klare Ziele lässt die Motivation der Mitarbeiter schnell nach.",
+    "exampleEn": "Without clear goals, employees' motivation quickly declines."
+  },
+  {
+    "id": "web-b2-114",
+    "level": "B2",
+    "category": "Psychologie & Verhalten",
+    "de": "motivieren",
+    "en": "to motivate",
+    "example": "Ein gutes Gehalt allein motiviert die wenigsten Angestellten langfristig.",
+    "exampleEn": "A good salary alone rarely motivates employees in the long term."
+  },
+  {
+    "id": "web-b2-115",
+    "level": "B2",
+    "category": "Psychologie & Verhalten",
+    "de": "die Belastbarkeit",
+    "en": "resilience / stress tolerance",
+    "example": "Für den Job wird eine hohe psychische Belastbarkeit vorausgesetzt.",
+    "exampleEn": "High psychological resilience is required for the job."
+  },
+  {
+    "id": "web-b2-116",
+    "level": "B2",
+    "category": "Psychologie & Verhalten",
+    "de": "die Selbstverwirklichung",
+    "en": "self-fulfillment",
+    "example": "Für viele junge Menschen ist Selbstverwirklichung im Beruf wichtiger als Sicherheit.",
+    "exampleEn": "For many young people, self-fulfillment at work is more important than security."
+  },
+  {
+    "id": "web-b2-117",
+    "level": "B2",
+    "category": "Psychologie & Verhalten",
+    "de": "die Frustration",
+    "en": "frustration",
+    "example": "Die ständigen Verzögerungen führten zu spürbarer Frustration im Team.",
+    "exampleEn": "The constant delays led to noticeable frustration within the team."
+  },
+  {
+    "id": "web-b2-118",
+    "level": "B2",
+    "category": "Psychologie & Verhalten",
+    "de": "frustrieren",
+    "en": "to frustrate",
+    "example": "Es frustriert ihn, dass seine Vorschläge nie umgesetzt werden.",
+    "exampleEn": "It frustrates him that his suggestions are never implemented."
+  },
+  {
+    "id": "web-b2-119",
+    "level": "B2",
+    "category": "Psychologie & Verhalten",
+    "de": "der Antrieb",
+    "en": "drive / motivation",
+    "example": "Ihr Antrieb, sich ständig weiterzuentwickeln, beeindruckt ihre Kollegen.",
+    "exampleEn": "Her drive to constantly develop herself impresses her colleagues."
+  },
+  {
+    "id": "web-b2-120",
+    "level": "B2",
+    "category": "Psychologie & Verhalten",
+    "de": "die Überforderung",
+    "en": "being overwhelmed",
+    "example": "Viele Eltern berichten von einer zunehmenden Überforderung im Alltag.",
+    "exampleEn": "Many parents report an increasing sense of being overwhelmed in everyday life."
+  },
+  {
+    "id": "web-b2-121",
+    "level": "B2",
+    "category": "Gesundheit & Medizin",
+    "de": "die Diagnose",
+    "en": "diagnosis",
+    "example": "Die endgültige Diagnose stand erst nach mehreren Untersuchungen fest.",
+    "exampleEn": "The final diagnosis was only confirmed after several examinations."
+  },
+  {
+    "id": "web-b2-122",
+    "level": "B2",
+    "category": "Gesundheit & Medizin",
+    "de": "diagnostizieren",
+    "en": "to diagnose",
+    "example": "Die Ärztin diagnostizierte eine leichte Form der Krankheit.",
+    "exampleEn": "The doctor diagnosed a mild form of the disease."
+  },
+  {
+    "id": "web-b2-123",
+    "level": "B2",
+    "category": "Gesundheit & Medizin",
+    "de": "behandeln",
+    "en": "to treat",
+    "example": "Der Patient wird derzeit in einer spezialisierten Klinik behandelt.",
+    "exampleEn": "The patient is currently being treated at a specialized clinic."
+  },
+  {
+    "id": "web-b2-124",
+    "level": "B2",
+    "category": "Gesundheit & Medizin",
+    "de": "die Vorbeugung",
+    "en": "prevention",
+    "example": "Zur Vorbeugung von Rückenschmerzen empfiehlt der Arzt regelmäßige Bewegung.",
+    "exampleEn": "For the prevention of back pain, the doctor recommends regular exercise."
+  },
+  {
+    "id": "web-b2-125",
+    "level": "B2",
+    "category": "Gesundheit & Medizin",
+    "de": "der Erreger",
+    "en": "pathogen",
+    "example": "Der Erreger verbreitet sich vor allem über Tröpfchen in der Luft.",
+    "exampleEn": "The pathogen spreads mainly through airborne droplets."
+  },
+  {
+    "id": "web-b2-126",
+    "level": "B2",
+    "category": "Gesundheit & Medizin",
+    "de": "die Ansteckung",
+    "en": "infection / contagion",
+    "example": "Um eine Ansteckung zu vermeiden, sollte man sich regelmäßig die Hände waschen.",
+    "exampleEn": "To avoid infection, one should wash one's hands regularly."
+  },
+  {
+    "id": "web-b2-127",
+    "level": "B2",
+    "category": "Gesundheit & Medizin",
+    "de": "ansteckend",
+    "en": "contagious",
+    "example": "Die Krankheit ist in den ersten Tagen besonders ansteckend.",
+    "exampleEn": "The disease is especially contagious in the first few days."
+  },
+  {
+    "id": "web-b2-128",
+    "level": "B2",
+    "category": "Gesundheit & Medizin",
+    "de": "die Genesung",
+    "en": "recovery",
+    "example": "Wir wünschen dir eine schnelle und vollständige Genesung.",
+    "exampleEn": "We wish you a quick and full recovery."
+  },
+  {
+    "id": "web-b2-129",
+    "level": "B2",
+    "category": "Gesundheit & Medizin",
+    "de": "genesen",
+    "en": "to recover",
+    "example": "Nach der Operation genas er erstaunlich schnell.",
+    "exampleEn": "He recovered remarkably quickly after the operation."
+  },
+  {
+    "id": "web-b2-130",
+    "level": "B2",
+    "category": "Globalisierung & internationale Beziehungen",
+    "de": "die Globalisierung",
+    "en": "globalization",
+    "example": "Die Globalisierung hat den weltweiten Handel in den letzten Jahrzehnten enorm beschleunigt.",
+    "exampleEn": "Globalization has enormously accelerated global trade in recent decades."
+  },
+  {
+    "id": "web-b2-131",
+    "level": "B2",
+    "category": "Globalisierung & internationale Beziehungen",
+    "de": "der Handelspartner",
+    "en": "trade partner",
+    "example": "Deutschland zählt zu den wichtigsten Handelspartnern des Landes.",
+    "exampleEn": "Germany is one of the country's most important trade partners."
+  },
+  {
+    "id": "web-b2-132",
+    "level": "B2",
+    "category": "Globalisierung & internationale Beziehungen",
+    "de": "das Abkommen",
+    "en": "agreement / treaty",
+    "example": "Beide Länder unterzeichneten ein Abkommen über engere wirtschaftliche Zusammenarbeit.",
+    "exampleEn": "Both countries signed an agreement on closer economic cooperation."
+  },
+  {
+    "id": "web-b2-133",
+    "level": "B2",
+    "category": "Globalisierung & internationale Beziehungen",
+    "de": "abschließen",
+    "en": "to conclude (an agreement)",
+    "example": "Die Verhandlungspartner konnten den Vertrag noch am selben Abend abschließen.",
+    "exampleEn": "The negotiating parties were able to conclude the contract that very evening."
+  },
+  {
+    "id": "web-b2-134",
+    "level": "B2",
+    "category": "Globalisierung & internationale Beziehungen",
+    "de": "die Zusammenarbeit",
+    "en": "cooperation",
+    "example": "Die Zusammenarbeit zwischen den beiden Ministerien wurde deutlich verbessert.",
+    "exampleEn": "Cooperation between the two ministries has improved significantly."
+  },
+  {
+    "id": "web-b2-135",
+    "level": "B2",
+    "category": "Globalisierung & internationale Beziehungen",
+    "de": "zusammenarbeiten",
+    "en": "to cooperate",
+    "example": "Die Forscher arbeiten seit Jahren eng mit internationalen Kollegen zusammen.",
+    "exampleEn": "The researchers have been closely cooperating with international colleagues for years."
+  },
+  {
+    "id": "web-b2-136",
+    "level": "B2",
+    "category": "Globalisierung & internationale Beziehungen",
+    "de": "die Diplomatie",
+    "en": "diplomacy",
+    "example": "Nur durch geschickte Diplomatie konnte eine Eskalation verhindert werden.",
+    "exampleEn": "Only through skillful diplomacy could an escalation be prevented."
+  },
+  {
+    "id": "web-b2-137",
+    "level": "B2",
+    "category": "Globalisierung & internationale Beziehungen",
+    "de": "diplomatisch",
+    "en": "diplomatic",
+    "example": "Der Botschafter reagierte auf die Provokation sehr diplomatisch.",
+    "exampleEn": "The ambassador reacted to the provocation very diplomatically."
+  },
+  {
+    "id": "web-b2-138",
+    "level": "B2",
+    "category": "Globalisierung & internationale Beziehungen",
+    "de": "die Souveränität",
+    "en": "sovereignty",
+    "example": "Das Land pocht in den Verhandlungen auf seine Souveränität.",
+    "exampleEn": "The country insists on its sovereignty in the negotiations."
+  },
+  {
+    "id": "web-b2-139",
+    "level": "B2",
+    "category": "Globalisierung & internationale Beziehungen",
+    "de": "der Einfluss",
+    "en": "influence",
+    "example": "Der wirtschaftliche Einfluss des Landes in der Region wächst stetig.",
+    "exampleEn": "The country's economic influence in the region is steadily growing."
+  },
+  {
+    "id": "web-b2-140",
+    "level": "B2",
+    "category": "Globalisierung & internationale Beziehungen",
+    "de": "die Annäherung",
+    "en": "rapprochement",
+    "example": "Die diplomatische Annäherung zwischen den beiden Staaten galt lange als unmöglich.",
+    "exampleEn": "The diplomatic rapprochement between the two states was long considered impossible."
+  }
+]

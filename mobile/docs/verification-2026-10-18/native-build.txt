@@ -1,0 +1,9 @@
+Local iOS Release simulator build: BUILD SUCCEEDED
+SDK: iphonesimulator
+Device runtime: iOS 26.5
+Bundle identifier: de.deutschpilot.app
+Candidate build number: 4
+Code signing: disabled for simulator
+Derived data: /tmp/deutschpilot-release-audit (temporary)
+Retained app: mobile/dist-ios-candidate/DeutschPilot.app
+Not a distribution-signed archive, TestFlight processing result or App Store approval.

@@ -1,0 +1,87 @@
+{
+  "note": "Project-owned seed snapshot, not proof of live database state or language accuracy. No third-party course material imported.",
+  "vocabularySources": [
+    "supabase/seed-vocabulary-a1-b2.sql",
+    "supabase/seed-vocabulary-expansion.sql"
+  ],
+  "lessonSources": [
+    {
+      "file": "supabase/seed-a1-room01.sql",
+      "lessons": 5,
+      "selfTests": 17
+    },
+    {
+      "file": "supabase/seed-a1-room02.sql",
+      "lessons": 5,
+      "selfTests": 14
+    },
+    {
+      "file": "supabase/seed-a1-room04.sql",
+      "lessons": 5,
+      "selfTests": 17
+    },
+    {
+      "file": "supabase/seed-a1-room05.sql",
+      "lessons": 5,
+      "selfTests": 17
+    },
+    {
+      "file": "supabase/seed-a1-room06.sql",
+      "lessons": 5,
+      "selfTests": 17
+    },
+    {
+      "file": "supabase/seed-a2-rooms-01-03.sql",
+      "lessons": 9,
+      "selfTests": 39
+    },
+    {
+      "file": "supabase/seed-a2-rooms-04-06.sql",
+      "lessons": 9,
+      "selfTests": 39
+    },
+    {
+      "file": "supabase/seed-b1-rooms-01-03.sql",
+      "lessons": 9,
+      "selfTests": 38
+    },
+    {
+      "file": "supabase/seed-b1-rooms-04-06.sql",
+      "lessons": 9,
+      "selfTests": 39
+    },
+    {
+      "file": "supabase/seed-b2-rooms-01-03.sql",
+      "lessons": 9,
+      "selfTests": 39
+    },
+    {
+      "file": "supabase/seed-b2-rooms-04-06.sql",
+      "lessons": 9,
+      "selfTests": 39
+    },
+    {
+      "file": "supabase/seed-c1-rooms-01-03.sql",
+      "lessons": 9,
+      "selfTests": 42
+    },
+    {
+      "file": "supabase/seed-c1-rooms-04-06.sql",
+      "lessons": 9,
+      "selfTests": 42
+    }
+  ],
+  "rejectedExercises": [
+    {
+      "file": "seed-b1-rooms-01-03.sql",
+      "id": "b1000000-0000-0001-0099-000000000003",
+      "reason": "Correct answer does not exactly match a choice"
+    }
+  ],
+  "excluded": [
+    {
+      "file": "supabase/seed-a1-room03.sql",
+      "reason": "Legacy Markdown and inconsistent exercise column counts; excluded until source repair and review."
+    }
+  ]
+}

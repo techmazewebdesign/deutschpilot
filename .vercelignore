@@ -1,0 +1,14 @@
+.git
+.next
+node_modules
+mobile
+android
+ios
+capacitor-shell
+*.zip
+*.log
+.claude
+.agents
+backups
+.env
+.env.*

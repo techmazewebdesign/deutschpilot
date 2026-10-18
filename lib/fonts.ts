@@ -1,20 +1,8 @@
-import { Cormorant_Garamond, Inter, JetBrains_Mono } from "next/font/google";
+// Keep the production build self-contained. Remote Google-font downloads make
+// Vercel builds dependent on an external fetch and can fail before deployment.
+// Tailwind falls back to the system serif/sans/monospace stacks below.
+const localFontVariable = (variable: string) => ({ variable });
 
-export const headingFont = Cormorant_Garamond({
-  subsets: ["latin"],
-  weight: ["400", "600", "700"],
-  variable: "--font-heading",
-  display: "swap",
-});
-
-export const bodyFont = Inter({
-  subsets: ["latin"],
-  variable: "--font-body",
-  display: "swap",
-});
-
-export const monoFont = JetBrains_Mono({
-  subsets: ["latin"],
-  variable: "--font-mono",
-  display: "swap",
-});
+export const headingFont = localFontVariable("--font-heading");
+export const bodyFont = localFontVariable("--font-body");
+export const monoFont = localFontVariable("--font-mono");

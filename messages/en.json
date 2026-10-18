@@ -282,7 +282,7 @@
     "perkLiveClasses": "Live classes with experienced teachers",
     "perkAiCompanion": "AI learning companion 24/7",
     "perkCertificate": "Recognized certificate included",
-    "errorInvalidCredentials": "Incorrect email or password.",
+    "errorInvalidCredentials": "We couldn’t sign you in. If you don’t have a registered account, please sign up first.",
     "errorUserNotFound": "No account found.",
     "errorUserDisabled": "This account has been disabled.",
     "errorTooManyRequests": "Too many attempts. Please wait.",
@@ -629,7 +629,13 @@
     "retest": "Retest",
     "completedExercises": "Completed Exercises",
     "changePasswordHint": "To change your password, use the password reset email from the login page.",
-    "goToLogin": "Go to login"
+    "goToLogin": "Go to login",
+    "deleteTitle": "Delete account",
+    "deleteDescription": "Permanently deletes your profile, learning progress, comments, usage records and sign-in. Any active web subscription will be cancelled first. This cannot be undone.",
+    "deletePhraseLabel": "Type DELETE MY DEUTSCHPILOT ACCOUNT",
+    "deleteButton": "Delete permanently",
+    "deleting": "Deleting…",
+    "deleteError": "The account could not be deleted. Nothing was removed from your sign-in unless every required deletion completed."
   },
   "upgradeWall": {
     "back": "Back",
@@ -638,7 +644,8 @@
     "loading": "Loading…",
     "networkError": "Network error. Please try again.",
     "paidCourseNotice": "This level is part of a paid course. Pay once, keep access forever.",
-    "unlockLevel": "Unlock {level}"
+    "unlockLevel": "Unlock {level}",
+    "iosPurchaseUnavailable": "Purchasing digital course access is not available in this iOS build. Existing access remains available after sign-in."
   },
   "vocabulary": {
     "eyebrow": "Vocabulary",
@@ -1085,6 +1092,7 @@
     "dailyLimitReached": "You've reached your daily limit of {limit} messages. Come back tomorrow! 🌟",
     "errorMessage": "Sorry, something went wrong. Please try again.",
     "checkoutUnavailable": "Premium checkout is not available yet. Your free exercises remain available.",
+    "iosPurchaseUnavailable": "Premium purchasing is not available in this iOS build. Existing access remains available after sign-in.",
     "previewMessagesAvailable": "{remaining} preview messages available.",
     "loading": "Loading…",
     "unlockPremium": "Unlock Premium",

@@ -17,6 +17,7 @@ interface Props {
 }
 
 type Role = "student" | "teacher";
+type SignupPlan = "standard" | "tester_trial";
 const LEVELS = ["A1", "A2", "B1", "B2", "C1", "C2"] as const;
 
 export function SignupFormClient({ locale, registerLabel }: Props) {
@@ -44,6 +45,7 @@ export function SignupFormClient({ locale, registerLabel }: Props) {
   const [confirm, setConfirm] = useState("");
   const [role, setRole] = useState<Role>("student");
   const [level, setLevel] = useState("A1");
+  const [plan, setPlan] = useState<SignupPlan>("standard");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -127,7 +129,11 @@ export function SignupFormClient({ locale, registerLabel }: Props) {
       }
 
       console.log("[signup] ✓ Signup complete — redirecting to verify-email");
-      router.push(`/${locale}/verify-email${sendFailed ? "?sent=0" : ""}`);
+      const params = new URLSearchParams();
+      if (sendFailed) params.set("sent", "0");
+      if (plan === "tester_trial") params.set("plan", "tester_trial");
+      const query = params.toString();
+      router.push(`/${locale}/verify-email${query ? `?${query}` : ""}`);
     } catch (err: unknown) {
       const error = err as { code?: string; message?: string };
       console.error("[signup] Unexpected error:", error);
@@ -253,6 +259,30 @@ export function SignupFormClient({ locale, registerLabel }: Props) {
               </button>
             ))}
           </div>
+        </div>
+      )}
+
+      {role === "student" && (
+        <div className="space-y-2">
+          <p className="text-xs font-medium text-white/60 uppercase tracking-wider">
+            Access plan
+          </p>
+          <button
+            type="button"
+            onClick={() => setPlan("standard")}
+            className={`w-full rounded-md border px-4 py-3 text-left transition-all ${plan === "standard" ? "border-[#CEA66F]/60 bg-[#CEA66F]/10" : "border-white/10 bg-white/3"}`}
+          >
+            <span className="block text-sm font-semibold text-white">Standard access — free</span>
+            <span className="block text-xs text-white/45 mt-1">Limited access. No bank card required.</span>
+          </button>
+          <button
+            type="button"
+            onClick={() => setPlan("tester_trial")}
+            className={`w-full rounded-md border px-4 py-3 text-left transition-all ${plan === "tester_trial" ? "border-[#CEA66F]/60 bg-[#CEA66F]/10" : "border-white/10 bg-white/3"}`}
+          >
+            <span className="block text-sm font-semibold text-white">Tester access — 3 months full access</span>
+            <span className="block text-xs text-white/45 mt-1">After email confirmation, full access is activated automatically for 90 days. No card, charge, or subscription during the pilot.</span>
+          </button>
         </div>
       )}
 

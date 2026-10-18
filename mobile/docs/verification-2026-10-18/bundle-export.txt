@@ -1,0 +1,26 @@
+Starting Metro Bundler
+
+| (node:8602) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+| (Use `node --trace-warnings ...` to show where the warning was created)
+Web Bundled 26283ms index.ts (327 modules)
+iOS Bundled 57886ms index.ts (652 modules)
+Android Bundled 68655ms index.ts (650 modules)
+
+› Assets (2):
+assets/logo.6cbd35e345ea589f7bb5747342025e42.png (923KB)
+assets/logo.png (923KB)
+
+› web bundles (1):
+_expo/static/js/web/index-c673c40baf16749571fe8c9e2b573bd4.js (1.3MB)
+
+› ios bundles (1):
+_expo/static/js/ios/index-3c6500d140f4490151d879e58c9fc6b5.hbc (2.3MB)
+
+› android bundles (1):
+_expo/static/js/android/index-3b29b297d1d484e53d1f5537ab9803bd.hbc (2.3MB)
+
+› Files (2):
+index.html (1.2KB)
+metadata.json (368B)
+
+Exported: dist-audit-final

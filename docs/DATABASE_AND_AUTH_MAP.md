@@ -341,3 +341,23 @@ GOOGLE_CLIENT_SECRET
 | `Account`, `Session`, `VerificationToken` Prisma models exist for disabled NextAuth | Low | Safe to remove after NextAuth removal confirmed |
 | `mongoose` installed with no usage | Low | Safe to remove from package.json |
 | Firebase credentials are placeholders in `.env.local` | Critical | Must be filled before any Firebase flow works locally |
+
+---
+
+## 9. App deletion and native storefront rules (2026-09-02)
+
+### Account deletion order
+
+The authenticated deletion route must derive the Firebase UID from the verified `__session` cookie. It must never accept a browser-supplied UID or email as authority. Delete dependent Supabase rows first, then the Firestore `users/{uid}` record, and delete the Firebase Authentication identity last. If a required deletion fails, stop before removing the identity. An active Stripe subscription must be cancelled before its account data is removed.
+
+Current account-owned tables to cover are `profiles`, `student_room_progress`, `student_task_progress`, `student_progress`, `placement_tests`, `purchases`, `ai_trainer_entitlements`, `ai_trainer_usage`, `sales_training_progress`, `teacher_profiles`, `magazine_comments`, and the applicable profile-key variant of `class_enrollments`.
+
+### Native iOS rules
+
+- Do not expose Google sign-in in the native iOS build until Sign in with Apple is fully configured and tested as an equivalent option.
+- Do not open Stripe Checkout from the native iOS build for digital course or AI access. Use Apple in-app purchase or keep purchasing unavailable in that build.
+- Existing paid access may remain usable after sign-in.
+
+### New feature checklist
+
+Before releasing a new account-backed feature, add its collection/table, owner key, retention rule, export behavior, and deletion behavior to this document. Update the authenticated deletion route and test both a populated and an empty account. A feature is not complete if a user cannot delete the data it creates.

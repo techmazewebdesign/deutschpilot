@@ -13,10 +13,21 @@
     "db:studio": "prisma studio",
     "db:seed": "tsx prisma/seed.ts",
     "test:ai-trainer": "tsx --test lib/aiTrainer/provider.test.ts",
+    "backup:subscriptions": "node scripts/backup-subscription-data.mjs",
+    "check:app-store": "node scripts/check-app-store-readiness.mjs",
+    "mobile:check": "npm --prefix mobile run check",
+    "mobile:start": "npm --prefix mobile run start",
+    "mobile:export": "npm --prefix mobile exec expo export -- --platform ios --platform android --output-dir dist-native",
     "postinstall": "prisma generate",
-    "prepare": "husky || true"
+    "prepare": "husky || true",
+    "test:fernusg": "tsx --test lib/fernusg.test.ts",
+    "test:release": "node --test scripts/release-regression.test.cjs"
   },
   "dependencies": {
+    "@capacitor/android": "^8.5.0",
+    "@capacitor/cli": "^8.5.0",
+    "@capacitor/core": "^8.5.0",
+    "@capacitor/ios": "^8.5.0",
     "@hookform/resolvers": "^3.3.4",
     "@prisma/client": "^5.13.0",
     "@radix-ui/react-accordion": "^1.1.2",
@@ -65,6 +76,7 @@
     "zustand": "^4.5.2"
   },
   "devDependencies": {
+    "@capacitor/assets": "^3.0.5",
     "@types/bcryptjs": "^2.4.6",
     "@types/node": "^20.12.12",
     "@types/react": "^18.3.2",

@@ -4,6 +4,7 @@ import { auth } from "@/lib/auth";
 import { AppLayout } from "@/components/app/app-layout";
 import { createServerSupabaseClient } from "@/lib/supabaseServer";
 import { User, Mail, GraduationCap, Lock, BookOpen } from "lucide-react";
+import { DeleteAccountCard } from "@/components/account/delete-account-card";
 
 export default async function ProfilePage({ params }: { params: { locale: string } }) {
   const { locale } = params;
@@ -125,6 +126,7 @@ export default async function ProfilePage({ params }: { params: { locale: string
             {t("goToLogin")}
           </a>
         </div>
+        <DeleteAccountCard locale={locale} />
       </div>
     </AppLayout>
   );

@@ -282,7 +282,7 @@
     "perkLiveClasses": "Live-Kurse mit erfahrenen Lehrkräften",
     "perkAiCompanion": "KI-Lernbegleiter rund um die Uhr",
     "perkCertificate": "Anerkanntes Zertifikat inklusive",
-    "errorInvalidCredentials": "E-Mail-Adresse oder Passwort ist falsch.",
+    "errorInvalidCredentials": "Anmeldung nicht möglich. Wenn du noch kein registriertes Konto hast, registriere dich bitte zuerst.",
     "errorUserNotFound": "Kein Konto gefunden.",
     "errorUserDisabled": "Dieses Konto ist deaktiviert.",
     "errorTooManyRequests": "Zu viele Versuche. Bitte warte kurz.",
@@ -629,7 +629,13 @@
     "retest": "Neu testen",
     "completedExercises": "Abgeschlossene Übungen",
     "changePasswordHint": "Um dein Passwort zu ändern, nutze den Link zum Zurücksetzen des Passworts von der Anmeldeseite.",
-    "goToLogin": "Zur Anmeldung"
+    "goToLogin": "Zur Anmeldung",
+    "deleteTitle": "Konto löschen",
+    "deleteDescription": "Löscht dein Profil, deinen Lernfortschritt, Kommentare, Nutzungsdaten und die Anmeldung dauerhaft. Ein aktives Web-Abonnement wird vorher gekündigt. Dies kann nicht rückgängig gemacht werden.",
+    "deletePhraseLabel": "Gib DELETE MY DEUTSCHPILOT ACCOUNT ein",
+    "deleteButton": "Dauerhaft löschen",
+    "deleting": "Wird gelöscht…",
+    "deleteError": "Das Konto konnte nicht gelöscht werden. Deine Anmeldung wurde nur entfernt, wenn alle erforderlichen Löschschritte erfolgreich waren."
   },
   "upgradeWall": {
     "back": "Zurück",
@@ -638,7 +644,8 @@
     "loading": "Wird geladen…",
     "networkError": "Netzwerkfehler. Bitte erneut versuchen.",
     "paidCourseNotice": "Dieses Niveau ist Teil eines kostenpflichtigen Kurses. Einmalig zahlen, für immer Zugriff.",
-    "unlockLevel": "{level} freischalten"
+    "unlockLevel": "{level} freischalten",
+    "iosPurchaseUnavailable": "Der Kauf digitaler Kursinhalte ist in dieser iOS-Version nicht verfügbar. Bereits vorhandener Zugriff bleibt nach der Anmeldung verfügbar."
   },
   "vocabulary": {
     "eyebrow": "Vokabular",
@@ -1085,6 +1092,7 @@
     "dailyLimitReached": "Du hast heute dein Tageslimit von {limit} Nachrichten erreicht. Komm morgen wieder! 🌟",
     "errorMessage": "Entschuldigung, etwas ist schiefgelaufen. Bitte erneut versuchen.",
     "checkoutUnavailable": "Der Premium-Checkout ist noch nicht verfügbar. Deine kostenlosen Übungen bleiben aktiv.",
+    "iosPurchaseUnavailable": "Premium-Käufe sind in dieser iOS-Version nicht verfügbar. Bereits vorhandener Zugriff bleibt nach der Anmeldung verfügbar.",
     "previewMessagesAvailable": "{remaining} Vorschau-Nachrichten verfügbar.",
     "loading": "Wird geladen…",
     "unlockPremium": "Premium freischalten",

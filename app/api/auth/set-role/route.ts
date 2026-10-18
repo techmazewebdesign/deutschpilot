@@ -49,7 +49,7 @@ export async function POST(req: NextRequest) {
   if (!idToken)   return NextResponse.json({ error: "Missing idToken."  }, { status: 400 });
   if (!fullName)  return NextResponse.json({ error: "Missing fullName." }, { status: 400 });
 
-  const safeRole: SignupRole = ALLOWED_ROLES.includes(role as SignupRole)
+  let safeRole: SignupRole | 'admin' = ALLOWED_ROLES.includes(role as SignupRole)
     ? (role as SignupRole)
     : "student";
 
@@ -59,7 +59,7 @@ export async function POST(req: NextRequest) {
   try {
     const decoded = await getAdminAuth().verifyIdToken(idToken);
     firebaseUid = decoded.uid;
-    userEmail = email ?? decoded.email ?? "";
+    userEmail = decoded.email ?? "";
     console.log(`[set-role] ✓ Token verified  firebase_uid=${firebaseUid}  email=${userEmail}  role=${safeRole}`);
   } catch (err) {
     const msg = err instanceof Error ? err.message : String(err);
@@ -72,7 +72,12 @@ export async function POST(req: NextRequest) {
 
   // ── 3. Set Firebase custom claims (non-blocking) ──────────────────────────
   try {
-    await getAdminAuth().setCustomUserClaims(firebaseUid, { role: safeRole });
+    const existing = await getAdminAuth().getUser(firebaseUid);
+    const currentRole = existing.customClaims?.role;
+    if (currentRole === 'admin' || currentRole === 'teacher' || currentRole === 'student') safeRole = currentRole;
+    if (!existing.customClaims?.role) {
+      await getAdminAuth().setCustomUserClaims(firebaseUid, { ...existing.customClaims, role: safeRole });
+    }
     console.log(`[set-role] ✓ Firebase custom claims set  role=${safeRole}`);
   } catch (err) {
     console.warn("[set-role] ⚠ setCustomUserClaims failed (non-blocking):", err);

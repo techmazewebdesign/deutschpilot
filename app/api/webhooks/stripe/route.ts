@@ -13,6 +13,7 @@ import Stripe from "stripe";
 import { stripe } from "@/lib/stripe";
 import { createAdminSupabaseClient } from "@/lib/supabaseAdmin";
 import { isPaidLevel } from "@/lib/entitlements";
+import { fullAccessEndsAt, isActiveSubscriptionStatus } from "@/lib/subscriptions";
 
 export const runtime = "nodejs";
 
@@ -42,6 +43,40 @@ export async function POST(req: NextRequest) {
     const checkoutSession = event.data.object as Stripe.Checkout.Session;
     const userId = checkoutSession.metadata?.userId ?? checkoutSession.client_reference_id;
     const product = checkoutSession.metadata?.product;
+
+    if (product === "full_access") {
+      if (!userId) {
+        console.error(`[stripe-webhook] Full-access checkout missing userId — session=${checkoutSession.id}`);
+        return NextResponse.json({ received: true });
+      }
+
+      const subscriptionId = typeof checkoutSession.subscription === "string"
+        ? checkoutSession.subscription
+        : null;
+      const customerId = typeof checkoutSession.customer === "string"
+        ? checkoutSession.customer
+        : null;
+      const subscription = subscriptionId
+        ? await stripe.subscriptions.retrieve(subscriptionId)
+        : null;
+      const sb = createAdminSupabaseClient();
+      const { error } = await sb.from("access_grants").upsert({
+        user_id: userId,
+        access_tier: "full",
+        access_source: checkoutSession.metadata?.accessSource === "tester_trial" ? "tester_trial" : "promotion",
+        status: subscription && isActiveSubscriptionStatus(subscription.status) ? "active" : "pending",
+        ends_at: subscription ? fullAccessEndsAt(subscription) : null,
+        stripe_customer_id: customerId,
+        stripe_subscription_id: subscriptionId,
+        stripe_checkout_session_id: checkoutSession.id,
+      }, { onConflict: "stripe_checkout_session_id" });
+
+      if (error) {
+        console.error("[stripe-webhook] Failed to grant full access:", error.message);
+        return NextResponse.json({ error: "Failed to record full-access entitlement." }, { status: 500 });
+      }
+      return NextResponse.json({ received: true });
+    }
 
     if (product === "ai_trainer") {
       if (!userId) {
@@ -117,6 +152,19 @@ export async function POST(req: NextRequest) {
 
   if (event.type === "customer.subscription.updated" || event.type === "customer.subscription.deleted") {
     const subscription = event.data.object as Stripe.Subscription;
+    if (subscription.metadata?.product === "full_access") {
+      const active = event.type !== "customer.subscription.deleted" && isActiveSubscriptionStatus(subscription.status);
+      const sb = createAdminSupabaseClient();
+      const { error } = await sb.from("access_grants").update({
+        status: active ? "active" : subscription.status === "past_due" ? "past_due" : "canceled",
+        ends_at: fullAccessEndsAt(subscription),
+      }).eq("stripe_subscription_id", subscription.id);
+      if (error) {
+        console.error("[stripe-webhook] Failed to update full-access entitlement:", error.message);
+        return NextResponse.json({ error: "Failed to update full-access entitlement." }, { status: 500 });
+      }
+      return NextResponse.json({ received: true });
+    }
     if (subscription.metadata?.product === "ai_trainer") {
       const active = event.type !== "customer.subscription.deleted"
         && (subscription.status === "active" || subscription.status === "trialing");

@@ -14,16 +14,34 @@ export function isPaidLevel(level: string): level is PaidLevel {
   return (PAID_LEVELS as string[]).includes(level);
 }
 
-// Kill switch: paywall gating is OFF by default (free access to everything)
-// until Stripe is genuinely configured and Rooz explicitly flips this on in
-// Vercel env (PAYWALL_ENABLED=true). Do not remove the underlying gating
-// logic below — just leave this flag unset/false until ready to go live.
-const PAYWALL_ENABLED = process.env.PAYWALL_ENABLED === "true";
+// Standard accounts are intentionally limited to A1. Set PAYWALL_ENABLED=false
+// only for a controlled preview where all levels must remain open.
+const PAYWALL_ENABLED = process.env.PAYWALL_ENABLED !== "false";
+
+export async function hasFullAccess(userId: string): Promise<boolean> {
+  const sb = createAdminSupabaseClient();
+  const { data, error } = await sb
+    .from("access_grants")
+    .select("id")
+    .eq("user_id", userId)
+    .eq("access_tier", "full")
+    .eq("status", "active")
+    .gt("ends_at", new Date().toISOString())
+    .maybeSingle();
+
+  if (error) {
+    console.error("[entitlements] full-access lookup error:", error.message);
+    return false;
+  }
+  return !!data;
+}
 
 export async function hasLevelAccess(userId: string, level: string, role?: string): Promise<boolean> {
   if (!PAYWALL_ENABLED) return true;
   if (role === "admin") return true; // admins always have full access, no locked rooms
   if (!isPaidLevel(level)) return true; // A1 (or anything else) — free
+
+  if (await hasFullAccess(userId)) return true;
 
   const sb = createAdminSupabaseClient();
   const { data, error } = await sb

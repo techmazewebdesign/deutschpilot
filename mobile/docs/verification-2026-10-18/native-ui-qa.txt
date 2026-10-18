@@ -1,0 +1,6 @@
+Final build 4 relaunched successfully on iOS 26.5 simulator.
+Observed final status text: DEIN DEUTSCH. DEIN TEMPO.
+Observed retained state: A1, 1/28 A1 lessons, 20 XP, 2/5 daily activities, dark mode.
+Earlier manual checks on this candidate implementation: wrong-answer feedback, retry, lesson completion/next lesson, vocabulary reveal/rating/advance, optional login sheet with no Google button on iOS.
+Screenshot native-today.png is internal QA evidence; simulator window retains its pre-existing Polish School Beta Check name. This is not an App Store screenshot asset.
+Physical-device, live auth/deletion, exhaustive accessibility and offline-network-loss QA remain pending.

@@ -81,10 +81,21 @@ export default function VerifyEmailPage({
       body: JSON.stringify({ idToken }),
     });
 
+    const testerPlan = new URLSearchParams(window.location.search).get("plan") === "tester_trial";
+    if (testerPlan) {
+      const grantResponse = await fetch("/api/access/tester-grant", { method: "POST" });
+      if (grantResponse.ok) {
+        setTimeout(() => router.push(`/${locale}/rooms`), 1800);
+        return;
+      }
+    }
+
     const dest =
       role === "admin" ? `/${locale}/admin` :
       role === "teacher" ? `/${locale}/teacher` :
-      `/${locale}/rooms`;
+      testerPlan
+        ? `/${locale}/subscription?plan=tester_trial`
+        : `/${locale}/rooms`;
 
     setTimeout(() => router.push(dest), 1800);
   }

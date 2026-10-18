@@ -1,0 +1,53 @@
+{
+  "note": "Local preparation only. No submission or publication authorized. Each gate needs current, inspectable evidence for the exact candidate build.",
+  "gates": {
+    "legal_operator_and_territories": {
+      "status": "pending",
+      "evidence": ""
+    },
+    "germany_fernusg_assessment": {
+      "status": "pending",
+      "evidence": ""
+    },
+    "content_language_and_rights_review": {
+      "status": "pending",
+      "evidence": ""
+    },
+    "account_signup_recovery_deletion_device_test": {
+      "status": "pending",
+      "evidence": ""
+    },
+    "privacy_policy_labels_sdk_manifest": {
+      "status": "pending",
+      "evidence": ""
+    },
+    "billing_path_and_territories": {
+      "status": "pending",
+      "evidence": ""
+    },
+    "iphone_ipad_accessibility_offline_qa": {
+      "status": "pending",
+      "evidence": ""
+    },
+    "signed_archive_validation": {
+      "status": "pending",
+      "evidence": ""
+    },
+    "apple_membership_agreements_bundle_record": {
+      "status": "pending",
+      "evidence": ""
+    },
+    "screenshots_age_rating_support_metadata": {
+      "status": "pending",
+      "evidence": ""
+    },
+    "reviewer_access": {
+      "status": "pending",
+      "evidence": ""
+    },
+    "dependency_security_review": {
+      "status": "pending",
+      "evidence": ""
+    }
+  }
+}

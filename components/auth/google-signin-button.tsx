@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { signInWithGoogle, googleAuthErrorMessage } from "@/lib/googleAuth";
+import { useNativePlatform } from "@/hooks/use-native-platform";
 
 interface Props {
   locale: string;
@@ -19,9 +20,14 @@ function dashboardDest(locale: string, role: string): string {
 export function GoogleSigninButton({ locale, variant = "signin" }: Props) {
   const t = useTranslations("auth");
   const router = useRouter();
+  const platform = useNativePlatform();
   const de = locale === "de";
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  // Keep third-party login out of iOS until Sign in with Apple is configured
+  // and tested as an equivalent privacy-preserving option.
+  if (platform === null || platform === "ios") return null;
 
   async function handleClick() {
     setError(null);

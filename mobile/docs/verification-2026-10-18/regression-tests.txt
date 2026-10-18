@@ -1,0 +1,28 @@
+
+> deutschpilot-mobile@1.0.0 test
+> node --test scripts/regression.test.cjs
+
+✔ email validation accepts ordinary and tagged addresses, rejects malformed inputs (41.089209ms)
+✔ every shipped lesson has a unique id, correct answer and usable content (35.169167ms)
+✔ offline progress: clean start, completion, no duplicate XP, persistence, reset (25.132667ms)
+✔ signup sends verification to the canonical login continuation (14.950875ms)
+✔ signup does not claim email was sent when delivery request failed (12.872125ms)
+✔ existing short passwords are passed unchanged to Firebase (9.817458ms)
+✔ password reset uses the same canonical continuation (11.344875ms)
+✔ resend reloads state and avoids a new email for a verified account (11.520166ms)
+✔ auth errors are translated without exposing credentials (12.556375ms)
+✔ bundled branding is byte-identical to the original website assets (3.357875ms)
+✔ authentication boots without the missing website configuration route and retries a failed initialization (13.5955ms)
+✔ migrates old progress without erasing achievements and sanitizes malformed storage (17.899959ms)
+✔ local calendar streaks survive midnight and DST; replay maintains activity without duplicate XP (11.075375ms)
+✔ review schedules wrong answers sooner, grows correct intervals, and prioritizes due words (9.646166ms)
+✔ failed device writes are surfaced instead of reporting a saved completion (9.685ms)
+✔ imported lesson sections render as text and all self-test answers belong to their choices (2.115333ms)
+ℹ tests 16
+ℹ suites 0
+ℹ pass 16
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 676.985291

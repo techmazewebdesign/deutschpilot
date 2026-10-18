@@ -4,6 +4,7 @@ import { useState, useRef, useEffect } from "react";
 import { useTranslations } from "next-intl";
 import { Send, Bot, User, Loader2, RotateCcw, Sparkles, Crown } from "lucide-react";
 import type { AITrainerAccessTier } from "@/lib/aiTrainer/access";
+import { useNativePlatform } from "@/hooks/use-native-platform";
 
 interface Message {
   id: number;
@@ -31,6 +32,8 @@ export function AITrainerClient({
   checkoutAvailable,
 }: Props) {
   const t = useTranslations("aiTrainer");
+  const platform = useNativePlatform();
+  const checkoutAllowed = checkoutAvailable && platform !== "ios";
   const quickPrompts = t.raw("quickPrompts") as string[];
   const [messages, setMessages] = useState<Message[]>([
     { id: 0, role: "assistant", text: t("welcome") },
@@ -142,7 +145,7 @@ export function AITrainerClient({
   }
 
   async function startUpgrade() {
-    if (!checkoutAvailable || checkoutLoading) return;
+    if (!checkoutAllowed || checkoutLoading) return;
     setCheckoutLoading(true);
     try {
       const response = await fetch("/api/checkout/create-session", {
@@ -278,7 +281,7 @@ export function AITrainerClient({
               {t("previewMessagesAvailable", { remaining: remaining ?? dailyLimit })}
             </p>
           </div>
-          {checkoutAvailable && (
+          {checkoutAllowed && (
             <button
               type="button"
               onClick={startUpgrade}
@@ -291,7 +294,13 @@ export function AITrainerClient({
         </div>
       )}
 
-      {upgradeNeeded && paidAccessEnabled && checkoutAvailable && (
+      {paidAccessEnabled && accessTier === "preview" && platform === "ios" && (
+        <p className="mx-4 lg:mx-8 mt-2 text-[10px] text-center text-white/40">
+          {t("iosPurchaseUnavailable")}
+        </p>
+      )}
+
+      {upgradeNeeded && paidAccessEnabled && checkoutAllowed && (
         <div className="px-4 lg:px-8 pt-3">
           <button
             type="button"

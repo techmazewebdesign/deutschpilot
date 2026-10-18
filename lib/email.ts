@@ -66,12 +66,14 @@ async function sendEmail(opts: {
 // ── HTML template helpers ─────────────────────────────────────────────────────
 
 function emailWrap(inner: string): string {
+  const logoUrl = process.env.MAIL_LOGO_URL ?? "https://deutschpilot.de/Images/Deurschpilot_logo.png";
   return `<!DOCTYPE html><html lang="de"><head><meta charset="UTF-8"/></head>
 <body style="margin:0;padding:0;background:#071424;font-family:Helvetica,Arial,sans-serif">
 <table width="100%" cellpadding="0" cellspacing="0" style="background:#071424;padding:40px 16px">
 <tr><td align="center">
 <table width="100%" style="max-width:520px;background:#0A1E35;border:1px solid rgba(224,184,115,0.2);border-radius:12px;overflow:hidden">
 <tr><td style="background:linear-gradient(135deg,#0E2845,#071424);padding:24px 32px;border-bottom:1px solid rgba(224,184,115,0.1)">
+  <img src="${logoUrl}" alt="DeutschPilot" width="52" height="52" style="display:block;width:52px;height:52px;object-fit:contain;margin:0 0 12px" />
   <p style="margin:0;font-size:14px;font-weight:700;letter-spacing:0.2em;color:#fff;text-transform:uppercase">DeutschPilot</p>
   <p style="margin:3px 0 0;font-size:9px;letter-spacing:0.22em;color:#E0B873;text-transform:uppercase">Sprache. Zukunft. Du.</p>
 </td></tr>

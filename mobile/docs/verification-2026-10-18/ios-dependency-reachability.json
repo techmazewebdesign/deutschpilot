@@ -1,0 +1,25 @@
+{
+  "scope": "Metro iOS source-map dependency inventory for this local candidate; not a complete native SDK or exploitability audit",
+  "sourceMaps": [
+    "dist-dependency-audit/_expo/static/js/ios/index-3c6500d140f4490151d879e58c9fc6b5.hbc.map"
+  ],
+  "sourcesCount": 643,
+  "advisoryFamilies": [
+    {
+      "name": "braces",
+      "matchingSources": []
+    },
+    {
+      "name": "node-forge",
+      "matchingSources": []
+    },
+    {
+      "name": "uuid",
+      "matchingSources": []
+    },
+    {
+      "name": "@grpc/grpc-js",
+      "matchingSources": []
+    }
+  ]
+}

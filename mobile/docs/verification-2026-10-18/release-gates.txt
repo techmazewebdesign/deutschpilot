@@ -1,0 +1,22 @@
+Code/evidence checks passed: 8
+  PASS Stable iOS bundle identifier
+  PASS Native pronunciation
+  PASS Native haptic feedback
+  PASS Offline progress storage
+  PASS In-app account deletion path exists (end-to-end verification is separate)
+  PASS Unverified social sign-in hidden on iOS
+  PASS No legacy remote WebView release configuration
+  PASS Expo and native iOS build numbers match
+RELEASE BLOCKED: 12
+  BLOCKED legal_operator_and_territories: current evidence required
+  BLOCKED germany_fernusg_assessment: current evidence required
+  BLOCKED content_language_and_rights_review: current evidence required
+  BLOCKED account_signup_recovery_deletion_device_test: current evidence required
+  BLOCKED privacy_policy_labels_sdk_manifest: current evidence required
+  BLOCKED billing_path_and_territories: current evidence required
+  BLOCKED iphone_ipad_accessibility_offline_qa: current evidence required
+  BLOCKED signed_archive_validation: current evidence required
+  BLOCKED apple_membership_agreements_bundle_record: current evidence required
+  BLOCKED screenshots_age_rating_support_metadata: current evidence required
+  BLOCKED reviewer_access: current evidence required
+  BLOCKED dependency_security_review: current evidence required
