@@ -127,8 +127,8 @@
         "desc": "Lerne mit motivierten Menschen weltweit."
       },
       "certificate": {
-        "title": "Zertifikat",
-        "desc": "Erhalte ein anerkanntes Zertifikat für dein Niveau."
+        "title": "Lernfortschritt",
+        "desc": "Behalte deine abgeschlossenen Übungen im Blick."
       },
       "retreats": {
         "title": "Retreats",
@@ -213,7 +213,7 @@
       },
       "certify": {
         "title": "Zertifizieren",
-        "desc": "Erhalte dein anerkanntes Zertifikat."
+        "desc": "Behalte deine abgeschlossenen Übungen im Blick."
       }
     }
   },
@@ -725,7 +725,7 @@
     "homeCourseDescription": "Themenräume, Übungen und Checkpoint-Quiz für alle Niveaus von A1 bis C1 — Hören, Lesen, Sprechen und Schreiben.",
     "layoutTitle": "DeutschPilot – Deutschkurse, Sprachreisen & Retreats",
     "layoutDescription": "Deutsch lernen mit strukturierten Onlinekursen, Sprachreisen und Retreats. DeutschPilot begleitet Lernende mit klaren Lernwegen und persönlicher Unterstützung.",
-    "layoutKeywords": "Deutsch lernen, Deutsch lernen online, Deutschkurs online, Deutschkurs A1, Deutschkurs B1, Deutschkurs B2, Deutsch C1, Deutsch \u00fcben, Einstufungstest Deutsch, Deutschpr\u00fcfung Vorbereitung, telc Vorbereitung, Goethe-Zertifikat Vorbereitung, Deutsch f\u00fcr den Beruf, Sprachschule online, Sprachreise Deutsch, Deutsch Retreat, F\u00fchrerschein Theorie auf Deutsch, DeutschPilot",
+    "layoutKeywords": "Deutsch lernen, Deutsch lernen online, Deutschkurs online, Deutschkurs A1, Deutschkurs B1, Deutschkurs B2, Deutsch C1, Deutsch üben, Einstufungstest Deutsch, Deutschprüfung Vorbereitung, telc Vorbereitung, Goethe-Zertifikat Vorbereitung, Deutsch für den Beruf, Sprachschule online, Sprachreise Deutsch, Deutsch Retreat, Führerschein Theorie auf Deutsch, DeutschPilot",
     "orgDescription": "Deutschkurse, Sprachreisen und Retreats für strukturierte Lernfortschritte.",
     "contactTitle": "Kontakt | DeutschPilot",
     "contactDescription": "Fragen zu Kursen, Niveaus oder Retreats? Kontaktiere das DeutschPilot-Team.",
@@ -1228,7 +1228,7 @@
   "dashboardPreview": {
     "eyebrow": "Dein Dashboard",
     "title": "Verfolge jeden Schritt deines Fortschritts",
-    "subtitle": "Ein klarer, fokussierter Überblick über deine Lernreise – Statistiken, Serien und nächste Schritte an einem Ort.",
+    "subtitle": "Ein klarer, fokussierter Überblick über deine Lernreise – Statistiken, Serien und nächste Schritte an einem Ort. Die angezeigten Zahlen und Aktivitäten sind Beispieldaten.",
     "statLessonsLabel": "Abgeschlossene Lektionen",
     "statLessonsValue": "24",
     "statStreakLabel": "Aktuelle Serie",
@@ -1256,28 +1256,28 @@
     "totalHours": "18,3 Std."
   },
   "certificateSection": {
-    "badge": "Zertifikatspfad",
-    "title": "Erhalte ein anerkanntes Zertifikat",
-    "subtitle": "Schließe den gesamten A1–C1-Lernpfad ab und bestehe jedes Checkpoint-Quiz, um dein offizielles DeutschPilot-GER-Zertifikat freizuschalten.",
-    "cardTitle": "DeutschPilot-Zertifikat",
-    "cardSubtitle": "Anerkannter GER-Sprachnachweis",
+    "badge": "Lernpfad – Beispiel",
+    "title": "Behalte deine Lernschritte im Blick",
+    "subtitle": "Diese Vorschau zeigt mögliche Lernschritte. DeutschPilot stellt keinen staatlich oder extern anerkannten Sprachnachweis aus.",
+    "cardTitle": "DeutschPilot-Lernübersicht",
+    "cardSubtitle": "Beispielansicht · keine Prüfungsbescheinigung",
     "levelLabel": "Niveau",
     "levelValue": "C1 – Fortgeschritten",
     "statusLabel": "Status",
     "statusLocked": "Gesperrt",
     "progressLabel": "Fortschritt",
-    "verifiedNote": "Blockchain-verifiziert · Teilbar · Professionell",
+    "verifiedNote": "Selbstlernfortschritt · keine externe Zertifizierung",
     "req1": "Schließe alle A1-Räume ab",
     "req2": "Bestehe das A1-Checkpoint-Quiz (≥60%)",
     "req3": "Schließe alle A2-Räume ab",
     "req4": "Bestehe das A2-Checkpoint-Quiz (≥60%)",
     "req5": "Schließe den B1–C1-Lernpfad ab",
-    "req6": "Abschlussprüfung C1"
+    "req6": "C1-Selbsttest"
   },
   "finalCta": {
     "badge": "Starte noch heute",
     "title": "Bereit für deine Deutsch-Reise?",
-    "subtitle": "Schließ dich Tausenden Lernenden an, die mit DeutschPilot schon heute echte Fortschritte machen. Dein erster Raum wartet auf dich.",
+    "subtitle": "Übe Deutsch in deinem Tempo mit Lernräumen und Selbsttests. Wähle deinen ersten Lernschritt.",
     "primaryCta": "Jetzt starten",
     "secondaryCta": "Niveau bestimmen",
     "point1": "Kostenloser Start",

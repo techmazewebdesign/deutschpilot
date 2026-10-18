@@ -127,8 +127,8 @@
         "desc": "Learn alongside motivated people worldwide."
       },
       "certificate": {
-        "title": "Certificate",
-        "desc": "Earn a recognised certificate for your level."
+        "title": "Learning progress",
+        "desc": "Keep track of the exercises you complete."
       },
       "retreats": {
         "title": "Retreats",
@@ -1228,7 +1228,7 @@
   "dashboardPreview": {
     "eyebrow": "Your Dashboard",
     "title": "Track Every Step of Your Progress",
-    "subtitle": "A clean, focused overview of your learning journey — stats, streaks, and next steps all in one place.",
+    "subtitle": "A clean, focused overview of your learning journey — stats, streaks, and next steps all in one place. The numbers and activities shown are sample data.",
     "statLessonsLabel": "Lessons Completed",
     "statLessonsValue": "24",
     "statStreakLabel": "Current Streak",
@@ -1256,28 +1256,28 @@
     "totalHours": "18.3 hrs"
   },
   "certificateSection": {
-    "badge": "Certificate Path",
-    "title": "Earn a Recognized Certificate",
-    "subtitle": "Complete the full A1–C1 learning path and pass each checkpoint quiz to unlock your official DeutschPilot CEFR certificate.",
-    "cardTitle": "DeutschPilot Certificate",
-    "cardSubtitle": "Recognized CEFR Language Proficiency",
+    "badge": "Learning path — example",
+    "title": "Keep track of your learning steps",
+    "subtitle": "This preview illustrates learning steps. DeutschPilot does not issue a government or externally recognized language qualification.",
+    "cardTitle": "DeutschPilot learning overview",
+    "cardSubtitle": "Example view · not an exam certificate",
     "levelLabel": "Level",
     "levelValue": "C1 — Advanced",
     "statusLabel": "Status",
     "statusLocked": "Locked",
     "progressLabel": "Progress",
-    "verifiedNote": "Blockchain-verified · Shareable · Professional",
+    "verifiedNote": "Self-study progress · no external certification",
     "req1": "Complete all A1 Rooms",
     "req2": "Pass A1 Checkpoint Quiz (≥60%)",
     "req3": "Complete all A2 Rooms",
     "req4": "Pass A2 Checkpoint Quiz (≥60%)",
     "req5": "Finish B1–C1 Learning Path",
-    "req6": "Final C1 Assessment"
+    "req6": "C1 self-assessment"
   },
   "finalCta": {
     "badge": "Start Learning Today",
     "title": "Ready for Your German Journey?",
-    "subtitle": "Join thousands of learners who are already making real progress with DeutschPilot. Your first room is waiting.",
+    "subtitle": "Practice German at your own pace with learning rooms and self-assessments. Choose your first learning step.",
     "primaryCta": "Start Your Journey",
     "secondaryCta": "Determine Your Level",
     "point1": "Free to start",
