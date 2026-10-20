@@ -1,7 +1,7 @@
 import { timingSafeEqual } from "node:crypto";
 import { createAdminSupabaseClient } from "@/lib/supabaseAdmin";
-import { errorResponse, privateHeaders, repositoryRpc } from "@/lib/school/server";
-import { SchoolError } from "@/lib/school/engine";
+import { errorResponse, privateHeaders, repositoryRpc, schoolId } from "@/lib/school/server";
+import { SchoolError, retentionPolicyConfigured } from "@/lib/school/engine";
 export const dynamic = "force-dynamic";
 /** Operator scheduler only; dry-run default. Uses configured owner identity for audited maintenance. */
 export async function POST(request: Request) {
@@ -25,11 +25,29 @@ export async function POST(request: Request) {
       verified: true,
       admin: false,
     };
+    // Read only the single server-configured settings row; no pupil records hydrated.
+    const { data: configuredSettings, error: policyError } = await createAdminSupabaseClient()
+      .from("school_settings")
+      .select("payload")
+      .eq("school_id", schoolId())
+      .eq("id", "settings")
+      .maybeSingle();
+    if (policyError) throw new SchoolError("POLICY_UNAVAILABLE", "School policy unavailable", 503);
+    if (!retentionPolicyConfigured(configuredSettings?.payload))
+      throw new SchoolError(
+        "POLICY_REQUIRED",
+        "Controller and complete retention policy required",
+        409
+      );
     const records = await repositoryRpc("school_repository_record_retention", {
       p_actor: actor,
       p_dry_run: dryRun,
     });
-    if (dryRun) return Response.json({ records, dryRun: true }, { headers: privateHeaders });
+    if (dryRun)
+      return Response.json(
+        { records, dryRun: true, policyConfigured: true },
+        { headers: privateHeaders }
+      );
     const paths = await repositoryRpc<string[]>("school_repository_retention", { p_actor: actor });
     if (paths.length) {
       const { error } = await createAdminSupabaseClient()
@@ -44,7 +62,13 @@ export async function POST(request: Request) {
       await repositoryRpc("school_cleanup_ack", { p_paths: paths });
     }
     return Response.json(
-      { dryRun: false, records, privateFilesRemoved: paths.length, boundedBatch: true },
+      {
+        dryRun: false,
+        policyConfigured: true,
+        records,
+        privateFilesRemoved: paths.length,
+        boundedBatch: true,
+      },
       { headers: privateHeaders }
     );
   } catch (e) {

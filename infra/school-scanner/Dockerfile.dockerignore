@@ -1,0 +1,10 @@
+**
+!scripts/
+!scripts/school-scanner.ts
+!lib/
+!lib/school/
+!lib/school/scanner-health.ts
+!infra/
+!infra/school-scanner/
+!infra/school-scanner/entry.mjs
+!infra/school-scanner/health.mjs

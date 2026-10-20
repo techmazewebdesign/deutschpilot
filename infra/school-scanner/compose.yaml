@@ -1,0 +1,69 @@
+# Run from repository root with an explicit --env-file OUTSIDE the checkout.
+name: school-scanner
+services:
+  clamav:
+    image: ${CLAMAV_IMAGE:?Set reviewed ClamAV image reference}
+    restart: unless-stopped
+    networks: [scan_private, signature_updates]
+    volumes: [clam_signatures:/var/lib/clamav]
+    mem_limit: 4g
+    cpus: 2
+    pids_limit: 256
+    logging: {driver: json-file, options: {max-size: 10m, max-file: "3"}}
+  adapter:
+    build:
+      context: ../..
+      dockerfile: infra/school-scanner/Dockerfile
+      args:
+        NODE_IMAGE: ${NODE_IMAGE:?Set reviewed Node 24 image reference}
+    restart: unless-stopped
+    depends_on: [clamav]
+    networks: [scan_private]
+    secrets: [scanner_token]
+    environment:
+      CLAMAV_HOST: clamav
+      CLAMAV_PORT: "3310"
+      SCHOOL_SCANNER_BIND_HOST: 0.0.0.0
+      SCHOOL_SCANNER_PORT: "3311"
+      SCHOOL_SCANNER_TOKEN_FILE: /run/secrets/scanner_token
+      SCHOOL_SCANNER_MAX_SIGNATURE_AGE_HOURS: "72"
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    mem_limit: 256m
+    cpus: 1
+    pids_limit: 64
+    healthcheck:
+      test: [CMD, node, /app/health.mjs]
+      interval: 60s
+      timeout: 25s
+      retries: 3
+      start_period: 180s
+    logging: {driver: json-file, options: {max-size: 10m, max-file: "3"}}
+  proxy:
+    image: ${CADDY_IMAGE:?Set reviewed Caddy image reference}
+    restart: unless-stopped
+    depends_on: [adapter]
+    networks: [scan_private, tls_edge]
+    ports: ["${SCANNER_HTTPS_BIND:-0.0.0.0}:443:443"]
+    environment:
+      SCANNER_DOMAIN: ${SCANNER_DOMAIN:?Set owned scanner DNS name}
+      TLS_OPERATOR_EMAIL: ${TLS_OPERATOR_EMAIL:?Set responsible TLS operator email}
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    mem_limit: 256m
+    pids_limit: 128
+    logging: {driver: json-file, options: {max-size: 10m, max-file: "3"}}
+networks:
+  scan_private: {internal: true}
+  signature_updates: {}
+  tls_edge: {}
+volumes:
+  clam_signatures: {}
+  caddy_data: {}
+  caddy_config: {}
+secrets:
+  scanner_token:
+    file: ${SCANNER_TOKEN_FILE:?Set absolute external secret file path}

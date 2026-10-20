@@ -295,6 +295,24 @@ export function assigned(s: SchoolState, m: SchoolMember, studentId: string) {
 export function canReadDocument(s: SchoolState, m: SchoolMember, d: SchoolDocument) {
   return office(m) || d.studentId === m.id;
 }
+/** Cleanup policy is independent of permission to collect health documents. */
+export function retentionPolicyConfigured(settings: unknown) {
+  const result = settingsSchema
+    .pick({
+      operator: true,
+      privacyContact: true,
+      legalBasis: true,
+      retentionDays: true,
+      retentionByCategory: true,
+      recordRetentionDays: true,
+      retentionPolicyNote: true,
+      chatRetentionDays: true,
+    })
+    .required()
+    .passthrough()
+    .safeParse(settings);
+  return result.success && result.data.legalBasis.trim().length > 0;
+}
 export function uploadsEnabled(s: SchoolState) {
   const x = s.settings;
   return !!(

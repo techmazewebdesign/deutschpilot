@@ -81,6 +81,8 @@ createServer(async (req, res) => {
   } catch {
     res.writeHead(503).end(JSON.stringify({ error: "Scanner unavailable" }));
   }
-}).listen(Number(process.env.SCHOOL_SCANNER_PORT || 3311), "127.0.0.1", () =>
-  process.stdout.write("School scanner listening on loopback; TLS proxy required\n")
+}).listen(
+  Number(process.env.SCHOOL_SCANNER_PORT || 3311),
+  process.env.SCHOOL_SCANNER_BIND_HOST || "127.0.0.1",
+  () => process.stdout.write("School scanner listening; private network and TLS proxy required\n")
 );

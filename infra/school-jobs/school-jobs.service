@@ -1,0 +1,22 @@
+[Unit]
+Description=Bounded school reminder and retention job (disabled/dry-run defaults)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=school-jobs
+Group=school-jobs
+EnvironmentFile=/etc/school-jobs/operator.env
+WorkingDirectory=/opt/school-module
+ExecStart=/usr/bin/node /opt/school-module/infra/school-jobs/run.mjs
+TimeoutStartSec=180
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+RestrictSUIDSGID=true
+LockPersonality=true
+RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX
+UMask=0077
+# systemd serializes a running oneshot; timer does not overlap it.

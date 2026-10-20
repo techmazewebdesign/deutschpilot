@@ -16,7 +16,25 @@ import { fileURLToPath } from "node:url";
 import { gzipSync } from "node:zlib";
 import assert from "node:assert/strict";
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
+const infrastructure = [
+  "infra/school-scanner/Dockerfile",
+  "infra/school-scanner/Dockerfile.dockerignore",
+  "infra/school-scanner/Caddyfile",
+  "infra/school-scanner/compose.yaml",
+  "infra/school-scanner/entry.mjs",
+  "infra/school-scanner/health.mjs",
+  "infra/school-scanner/operator.env.example",
+  "infra/school-scanner/README.md",
+  "infra/school-scanner/LOCAL_CHECKS_2026-10-20.md",
+  "infra/school-jobs/run.mjs",
+  "infra/school-jobs/run.test.mjs",
+  "infra/school-jobs/school-jobs.service",
+  "infra/school-jobs/school-jobs.timer",
+  "infra/school-jobs/operator.env.example",
+  "infra/school-jobs/README.md",
+];
 const exact = new Set([
+  ...infrastructure,
   "scripts/package-school-module.mjs",
   "scripts/school-scanner.ts",
   "scripts/school-check-activation.ts",
@@ -102,6 +120,9 @@ function main() {
     for (const path of [
       ".env",
       "lib/school/.env.local",
+      "infra/school-scanner/operator.env",
+      "infra/school-scanner/token",
+      "infra/school-jobs/secrets/jobs-token",
       "mobile/src/firebase-config.ts",
       "mobile/src/SchoolSecrets.p12",
       "lib/school/../../.env",
@@ -113,6 +134,7 @@ function main() {
     ])
       assert.equal(allowed(path), false, path);
     for (const path of [
+      ...infrastructure,
       "lib/school/server.ts",
       "components/school/school.css",
       "app/api/school/route.ts",
@@ -138,6 +160,7 @@ function main() {
     .filter(allowed)
     .sort();
   for (const migration of [
+    ...infrastructure,
     "supabase/migration-school-platform.sql",
     "supabase/migration-school-extension-path.sql",
     "supabase/migration-school-recovery-hold-lock.sql",

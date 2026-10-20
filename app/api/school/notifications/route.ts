@@ -11,7 +11,7 @@ export async function POST(request: Request) {
     if (!secret || supplied.length !== expected.length || !timingSafeEqual(supplied, expected))
       throw new SchoolError("FORBIDDEN", "Forbidden");
     const reminders = await repositoryRpc<number>("school_reminders", {});
-    if (!pushConfigured())
+    if (new URL(request.url).searchParams.get("push") === "false" || !pushConfigured())
       return Response.json(
         { remindersCreated: reminders, pushDisabled: true },
         { headers: privateHeaders }

@@ -1,0 +1,11 @@
+[Unit]
+Description=School jobs every 15 minutes (installation does not enable it)
+
+[Timer]
+OnCalendar=*-*-* *:00/15:00 UTC
+RandomizedDelaySec=90
+Persistent=false
+Unit=school-jobs.service
+
+[Install]
+WantedBy=timers.target
