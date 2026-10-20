@@ -317,6 +317,17 @@ alter table public.school_audit add column if not exists retention_at timestampt
 alter table public.school_invites add column if not exists retention_at timestamptz not null default now();
 alter table public.school_deletion_requests add column if not exists retention_at timestamptz not null default now();
 alter table public.school_cleanup add column if not exists retention_at timestamptz not null default now();
+-- A reservation survives crashes/ambiguous storage writes. No time-based lease expiry.
+create table if not exists public.school_upload_reservations(
+ school_id text not null references school_orgs(id)on delete cascade,id text not null,
+ student_id text not null,storage_path text not null,status text not null check(status in('reserved','writing','unknown','stored','cancelled')),
+ lease uuid,cleanup_requested boolean not null default false,created_at timestamptz not null default now(),updated_at timestamptz not null default now(),
+ primary key(school_id,id),unique(school_id,storage_path)
+);
+alter table school_upload_reservations enable row level security;
+revoke all on school_upload_reservations from anon,authenticated;
+grant all on school_upload_reservations to service_role;
+create index if not exists school_upload_owner_status_idx on school_upload_reservations(school_id,student_id,status,id);
 create table if not exists public.school_assignments(school_id text not null,class_id text not null,user_id text not null,role text not null check(role in ('teacher','student')),primary key(school_id,class_id,user_id),foreign key(school_id,class_id) references public.school_classes(school_id,id) on delete cascade);
 alter table public.school_assignments enable row level security;
 revoke all on public.school_assignments from anon,authenticated;
@@ -420,7 +431,7 @@ declare uid text:=p_actor->>'id'; role_name text; act text:=coalesce(p_action->>
   if not office then raise exception 'SCHOOL_FORBIDDEN';end if;
   if act='class.save' then class_ref:=p_action->>'id';perform 1 from school_members where school_id=p_school and id in(select jsonb_array_elements_text(p_action->'teacherIds')union select jsonb_array_elements_text(p_action->'studentIds'))order by id for share;
    if exists(select 1 from jsonb_array_elements_text(p_action->'teacherIds')x where not exists(select 1 from school_members where school_id=p_school and id=x.value and payload->>'role'='teacher'and(payload->>'active')::boolean))or exists(select 1 from jsonb_array_elements_text(p_action->'studentIds')x where not exists(select 1 from school_members where school_id=p_school and id=x.value and payload->>'role'='student'and(payload->>'active')::boolean))then raise exception 'SCHOOL_FORBIDDEN';end if;end if;
-  if act='document.hold' then perform 1 from school_members where school_id=p_school and id=(select student_id from school_documents where school_id=p_school and id=p_action->>'documentId')for share;end if;
+  if act='document.hold' then perform 1 from school_members where school_id=p_school and id=(select student_id from school_documents where school_id=p_school and id=p_action->>'documentId')for share;perform 1 from school_documents where school_id=p_school and id=p_action->>'documentId'for update;if exists(select 1 from school_cleanup where school_id=p_school and id=p_action->>'documentId')then raise exception 'SCHOOL_DELETION_IN_PROGRESS';end if;end if;
   if act='document.hold' and exists(select 1 from school_documents d join school_deletion_requests r on r.school_id=d.school_id and r.id=d.student_id where d.school_id=p_school and d.id=p_action->>'documentId' and r.payload->>'status'='cleanup_pending') then raise exception 'SCHOOL_DELETION_IN_PROGRESS';end if;
  when 'attendance.set' then
   if not office and role_name<>'teacher' then raise exception 'SCHOOL_FORBIDDEN';end if;
@@ -442,6 +453,7 @@ declare uid text:=p_actor->>'id'; role_name text; act text:=coalesce(p_action->>
  when 'document.download','document.scan' then
   select payload into row_payload from school_documents where school_id=p_school and id=p_action->>'documentId' for update;
   if row_payload is null or (not office and row_payload->>'studentId'<>uid) then raise exception 'SCHOOL_FORBIDDEN';end if;
+  if act='document.scan'and exists(select 1 from school_upload_reservations where school_id=p_school and id=p_action->>'documentId'and(status<>'stored'or cleanup_requested))then raise exception 'SCHOOL_UPLOAD_PENDING';end if;
   if act='document.download' and (row_payload->>'scanStatus'<>'clean' or (row_payload->>'expiresAt')::timestamptz<=now()) then raise exception 'SCHOOL_DOCUMENT_UNAVAILABLE';end if;
  when 'device.register','device.unregister','privacy.deletion.request' then null;
  when 'privacy.prepare','privacy.finalize' then raise exception 'SCHOOL_PRIVACY_RPC_REQUIRED';
@@ -492,6 +504,7 @@ declare uid text:=p_actor->>'id'; role_name text; act text:=coalesce(p_action->>
    execute format('insert into school_%I(school_id,id,payload,retention_at)values($1,$2,$3,$5) on conflict(school_id,id)do update set payload=excluded.payload,retention_at=excluded.retention_at,revision=nextval(''school_event_sequence'') where school_%I.revision=$4 returning revision',tbl,tbl) into next_revision using p_school,change->>'id',row_payload,(change->>'expected')::bigint,anchor_at;
    if next_revision is null then raise exception 'SCHOOL_CONFLICT' using errcode='40001';end if;
    end if;
+   if k='documents'and old_revision is null and act='document.upload'then insert into school_upload_reservations(school_id,id,student_id,storage_path,status)values(p_school,change->>'id',row_payload->>'studentId',row_payload->>'storagePath','reserved');end if;
    if k='chatMessages'and old_revision is null then chat_inserted:=true;end if;
    if k='classes' then
     delete from school_assignments where school_id=p_school and class_id=change->>'id';
@@ -537,6 +550,7 @@ declare uid text:=p_actor->>'id'; role_name text; act text:=coalesce(p_action->>
   target:=p_action->>'memberId';
   update school_classes c set payload=jsonb_set(jsonb_set(payload,'{studentIds}',case when p_action->>'role'='student'and(p_action->>'active')::boolean then payload->'studentIds'else coalesce((select jsonb_agg(value)from jsonb_array_elements_text(c.payload->'studentIds')where value<>target),'[]')end),'{teacherIds}',case when p_action->>'role'='teacher'and(p_action->>'active')::boolean then payload->'teacherIds'else coalesce((select jsonb_agg(value)from jsonb_array_elements_text(c.payload->'teacherIds')where value<>target),'[]')end),revision=nextval('school_event_sequence')where school_id=p_school and exists(select 1 from school_assignments a where a.school_id=p_school and a.class_id=c.id and a.user_id=target);
   delete from school_assignments where school_id=p_school and user_id=target and (role<>p_action->>'role' or not(p_action->>'active')::boolean);
+  if not(p_action->>'active')::boolean or p_action->>'role'<>'student'then for cls in select jsonb_build_object('id',id)from school_upload_reservations where school_id=p_school and student_id=target and status in('reserved','writing','unknown')order by id loop perform school_upload_request_cleanup(p_school,cls->>'id','revoked-upload');end loop;end if;
  end if;
  return coalesce(next_revision,0);
 end;$$;
@@ -565,9 +579,9 @@ returns jsonb language plpgsql security invoker set search_path=public as $$
 declare uid text:=p_actor->>'id';r text;d record;paths jsonb;days int;begin
  select payload->>'role' into r from school_members where school_id=p_school and id=uid and (payload->>'active')::boolean for share;
  if r not in('owner','office') or r is null then raise exception 'SCHOOL_FORBIDDEN';end if;
- for d in select * from school_documents where school_id=p_school and payload->>'expiresAt'<=to_char(now() at time zone 'UTC','YYYY-MM-DD"T"HH24:MI:SS.MS"Z"') and coalesce((payload->>'legalHold')::boolean,false)=false order by payload->>'expiresAt',id limit 100 for update skip locked loop
-  insert into school_cleanup(school_id,id,payload)values(p_school,d.id,jsonb_build_object('path',d.payload->>'storagePath','studentId',d.student_id,'reason','retention'))on conflict do nothing;
-  delete from school_documents where school_id=p_school and id=d.id;
+ for d in select * from school_documents where school_id=p_school and payload->>'expiresAt'<=to_char(now() at time zone 'UTC','YYYY-MM-DD"T"HH24:MI:SS.MS"Z"') and coalesce((payload->>'legalHold')::boolean,false)=false order by payload->>'expiresAt',id limit 100 loop
+  perform school_upload_request_cleanup(p_school,d.id,'retention');
+  -- Metadata is removed only by cleanup acknowledgment after a terminal writer state.
  end loop;
  select (payload->>'chatRetentionDays')::int into days from school_settings where school_id=p_school and id='settings';
  if days is not null then
@@ -575,7 +589,7 @@ declare uid text:=p_actor->>'id';r text;d record;paths jsonb;days int;begin
   update school_chat_messages m set payload=m.payload||jsonb_build_object('body','','deletedAt',now(),'deletedBy','retention'),revision=nextval('school_event_sequence') from expired e where m.school_id=p_school and m.id=e.id;
  end if;
  insert into school_audit(school_id,id,payload)values(p_school,gen_random_uuid()::text,jsonb_build_object('id',gen_random_uuid(),'actorId',uid,'action','retention.run','target','batch','at',now()));
- select coalesce(jsonb_agg(payload->>'path'),'[]')into paths from(select payload from school_cleanup where school_id=p_school order by created_at,id limit 100)x;
+ select coalesce(jsonb_agg(payload->>'path'),'[]')into paths from(select payload from school_cleanup where school_id=p_school and not exists(select 1 from school_upload_reservations r where r.school_id=p_school and r.storage_path=school_cleanup.payload->>'path'and r.status in('reserved','writing','unknown'))order by created_at,id limit 100)x;
  return paths;
 end;$$;
 create or replace function public.school_cleanup_ack(p_school text,p_paths jsonb)
@@ -585,22 +599,26 @@ returns jsonb language plpgsql security invoker set search_path=public as $$
 declare uid text:=p_actor->>'id';m jsonb;reason text;begin
  perform 1 from school_members where school_id=p_school and payload->>'role'='owner' order by id for update;
  select payload into m from school_members where school_id=p_school and id=uid for update;
- if m is null and not exists(select 1 from school_documents where school_id=p_school and student_id=uid)and not exists(select 1 from school_progress where school_id=p_school and student_id=uid)and not exists(select 1 from school_chat_messages where school_id=p_school and actor_id=uid)then return jsonb_build_object('blocked',false,'empty',true);end if;
+ if m is null and not exists(select 1 from school_upload_reservations where school_id=p_school and student_id=uid)and not exists(select 1 from school_documents where school_id=p_school and student_id=uid)and not exists(select 1 from school_progress where school_id=p_school and student_id=uid)and not exists(select 1 from school_chat_messages where school_id=p_school and actor_id=uid)then return jsonb_build_object('blocked',false,'empty',true);end if;
  if coalesce((p_actor->>'verified')::boolean,false)=false then raise exception 'SCHOOL_UNAUTHENTICATED';end if;
  if m->>'role'='owner' and not exists(select 1 from school_members where school_id=p_school and id<>uid and payload->>'role'='owner' and (payload->>'active')::boolean)then reason:='Transfer ownership before deleting the last school owner.';end if;
  if exists(select 1 from school_documents where school_id=p_school and student_id=uid and coalesce((payload->>'legalHold')::boolean,false))then reason:='School records have an explicit legal hold. Contact the privacy office for review.';end if;
  insert into school_deletion_requests(school_id,id,payload)values(p_school,uid,jsonb_build_object('userId',uid,'requestedAt',now(),'status',case when reason is null then 'cleanup_pending' else 'pending_review' end,'reason',coalesce(reason,'Private file removal pending')))on conflict(school_id,id)do update set payload=excluded.payload,revision=nextval('school_event_sequence');
  if reason is not null then return jsonb_build_object('blocked',true,'reason',reason);end if;
  update school_members set payload=jsonb_set(payload,'{active}','false'),revision=nextval('school_event_sequence')where school_id=p_school and id=uid;
+ for m in select jsonb_build_object('id',id)from school_upload_reservations where school_id=p_school and student_id=uid order by id loop perform school_upload_request_cleanup(p_school,m->>'id','deletion');end loop;
  insert into school_cleanup(school_id,id,payload)select p_school,id,jsonb_build_object('studentId',uid,'path',payload->>'storagePath','reason','deletion')from school_documents where school_id=p_school and student_id=uid on conflict(school_id,id)do nothing;
  return jsonb_build_object('blocked',false,'empty',false);
 end;$$;
 create or replace function public.school_privacy_cleanup_batch(p_school text,p_uid text)
-returns jsonb language sql security invoker set search_path=public as $$select coalesce(jsonb_agg(payload->>'path'),'[]')from(select payload from school_cleanup where school_id=p_school and student_id=p_uid order by created_at,id limit 100)x$$;
+returns jsonb language sql security invoker set search_path=public as $$select coalesce(jsonb_agg(payload->>'path'),'[]')from(select payload from school_cleanup where school_id=p_school and student_id=p_uid and not exists(select 1 from school_upload_reservations r where r.school_id=p_school and r.storage_path=school_cleanup.payload->>'path'and r.status in('reserved','writing','unknown'))order by created_at,id limit 100)x$$;
 create or replace function public.school_privacy_finalize(p_school text,p_actor jsonb)
 returns void language plpgsql security invoker set search_path=public as $$
 declare uid text:=p_actor->>'id'; pseudonym text:='deleted-'||gen_random_uuid()::text;email text;begin
  perform 1 from school_members where school_id=p_school and id=uid for update;
+ perform 1 from school_upload_reservations where school_id=p_school and student_id=uid order by id for update;
+ if exists(select 1 from school_upload_reservations where school_id=p_school and student_id=uid and status in('reserved','writing','unknown'))then raise exception 'SCHOOL_UPLOAD_PENDING';end if;
+ if exists(select 1 from school_upload_reservations where school_id=p_school and student_id=uid)then raise exception 'SCHOOL_CLEANUP_PENDING';end if;
  if exists(select 1 from school_cleanup where school_id=p_school and student_id=uid)then raise exception 'SCHOOL_CLEANUP_PENDING';end if;
  if not exists(select 1 from school_deletion_requests where school_id=p_school and id=uid and payload->>'status'='cleanup_pending')then raise exception 'SCHOOL_DELETION_NOT_PREPARED';end if;
  select payload->>'email' into email from school_members where school_id=p_school and id=uid;
@@ -626,6 +644,7 @@ declare uid text:=p_actor->>'id'; pseudonym text:='deleted-'||gen_random_uuid():
  update school_audit set payload=payload||jsonb_build_object('actorId',case when actor_id=uid then pseudonym else payload->>'actorId'end,'target',case when (position(uid in(payload->>'target'))>0 or lower(payload->>'target')=lower(email))then 'redacted'else payload->>'target'end),revision=nextval('school_event_sequence')where school_id=p_school and (actor_id=uid or (position(uid in(payload->>'target'))>0 or lower(payload->>'target')=lower(email)));
  delete from school_invites where school_id=p_school and payload->>'email'=lower(email);
  delete from school_deletion_requests where school_id=p_school and id=uid;
+ delete from school_upload_reservations where school_id=p_school and student_id=uid;
  delete from school_members where school_id=p_school and id=uid;
 end;$$;
 create or replace function public.school_push_authorized(p_school text,p_id text)
@@ -830,3 +849,71 @@ create index if not exists school_notifications_retention_idx on school_notifica
 create index if not exists school_progress_retention_idx on school_progress(school_id,retention_at,id);
 
 create index if not exists school_audit_retention_idx on school_audit(school_id,retention_at,id);
+-- Upload/deletion handshake. These RPCs are server-only; lease IDs never reach clients.
+create or replace function public.school_upload_request_cleanup(p_school text,p_document_id text,p_reason text)
+returns void language plpgsql security invoker set search_path=public as $$declare d jsonb;u text;object_path text;begin
+ select student_id into u from school_documents where school_id=p_school and id=p_document_id;
+ if u is null then select student_id into u from school_upload_reservations where school_id=p_school and id=p_document_id;end if;
+ perform 1 from school_members where school_id=p_school and id=u for share;
+ select payload into d from school_documents where school_id=p_school and id=p_document_id for update;
+ if coalesce((d->>'legalHold')::boolean,false)then return;end if;
+ update school_upload_reservations set cleanup_requested=true,status=case when status='reserved'then'cancelled'else status end,updated_at=now()where school_id=p_school and id=p_document_id;
+ object_path:=coalesce(d->>'storagePath',(select storage_path from school_upload_reservations where school_id=p_school and id=p_document_id));
+ if object_path is not null then insert into school_cleanup(school_id,id,payload)values(p_school,p_document_id,jsonb_build_object('studentId',u,'path',object_path,'reason',p_reason))on conflict(school_id,id)do nothing;end if;
+end;$$;
+create or replace function public.school_upload_begin(p_school text,p_actor jsonb,p_document_id text)
+returns jsonb language plpgsql security invoker set search_path=public as $$declare r school_upload_reservations%rowtype;m jsonb;d jsonb;begin
+ select payload into m from school_members where school_id=p_school and id=p_actor->>'id'for share;
+ if not coalesce((p_actor->>'verified')::boolean,false)or not coalesce((m->>'active')::boolean,false)or m->>'role'<>'student'then raise exception 'SCHOOL_NOT_MEMBER';end if;
+ select*into r from school_upload_reservations where school_id=p_school and id=p_document_id for update;
+ select payload into d from school_documents where school_id=p_school and id=p_document_id;
+ if not found or r.id is null or r.student_id<>p_actor->>'id'or r.status<>'reserved'or r.cleanup_requested or d->>'studentId'<>p_actor->>'id'or(d->>'expiresAt')::timestamptz<=now()or exists(select 1 from school_deletion_requests where school_id=p_school and id=p_actor->>'id'and payload->>'status'='cleanup_pending')then raise exception 'SCHOOL_UPLOAD_CANCELLED';end if;
+ update school_upload_reservations set status='writing',lease=gen_random_uuid(),updated_at=now()where school_id=p_school and id=p_document_id returning*into r;
+ insert into school_audit(school_id,id,payload)values(p_school,gen_random_uuid()::text,jsonb_build_object('id',gen_random_uuid(),'actorId',p_actor->>'id','action','document.upload.begin','target',p_document_id,'at',now()));
+ return jsonb_build_object('lease',r.lease,'path',r.storage_path);
+end;$$;
+create or replace function public.school_upload_finish(p_school text,p_actor jsonb,p_document_id text,p_lease uuid,p_outcome text)
+returns jsonb language plpgsql security invoker set search_path=public as $$declare r school_upload_reservations%rowtype;m jsonb;d jsonb;can_continue boolean;begin
+ if p_outcome not in('stored','unknown')then raise exception 'SCHOOL_INVALID_STATUS';end if;
+ select payload into m from school_members where school_id=p_school and id=p_actor->>'id'for share;
+ select*into r from school_upload_reservations where school_id=p_school and id=p_document_id for update;
+ if r.id is null or r.student_id<>p_actor->>'id'or r.lease is distinct from p_lease or r.status not in('writing','unknown','stored')then raise exception 'SCHOOL_UPLOAD_PENDING';end if;
+ -- Unknown outcomes can only be cleared by fenced operator recovery, never by a late retry.
+ if r.status='unknown'or p_outcome='unknown'then
+  update school_upload_reservations set status='unknown',updated_at=now()where school_id=p_school and id=p_document_id;
+  insert into school_audit(school_id,id,payload)values(p_school,gen_random_uuid()::text,jsonb_build_object('id',gen_random_uuid(),'actorId',p_actor->>'id','action','document.upload.unknown','target',p_document_id,'at',now()));
+  return jsonb_build_object('continue',false,'state','unknown');
+ end if;
+ select payload into d from school_documents where school_id=p_school and id=p_document_id;
+ can_continue:=coalesce((m->>'active')::boolean,false)and not r.cleanup_requested and d is not null and(d->>'expiresAt')::timestamptz>now()and not exists(select 1 from school_deletion_requests where school_id=p_school and id=r.student_id and payload->>'status'='cleanup_pending');
+ update school_upload_reservations set status='stored',cleanup_requested=not can_continue,updated_at=now()where school_id=p_school and id=p_document_id;
+ if not can_continue then insert into school_cleanup(school_id,id,payload)values(p_school,p_document_id,jsonb_build_object('studentId',r.student_id,'path',r.storage_path,'reason','cancelled-upload'))on conflict(school_id,id)do nothing;end if;
+ insert into school_audit(school_id,id,payload)values(p_school,gen_random_uuid()::text,jsonb_build_object('id',gen_random_uuid(),'actorId',p_actor->>'id','action','document.upload.stored','target',p_document_id,'cleanupRequested',not can_continue,'at',now()));
+ return jsonb_build_object('continue',can_continue,'state','stored');
+end;$$;
+create or replace function public.school_cleanup_ack(p_school text,p_paths jsonb)
+returns void language plpgsql security invoker set search_path=public as $$begin
+ -- Same lock order as privacy preparation and upload begin/finish: member, document, reservation.
+ perform 1 from school_members where school_id=p_school and id in(select student_id from school_cleanup where school_id=p_school and payload->>'path'in(select jsonb_array_elements_text(p_paths)))order by id for share;
+ perform 1 from school_documents where school_id=p_school and payload->>'storagePath'in(select jsonb_array_elements_text(p_paths))order by id for update;
+ perform 1 from school_upload_reservations where school_id=p_school and storage_path in(select jsonb_array_elements_text(p_paths))order by id for update;
+ if exists(select 1 from school_upload_reservations where school_id=p_school and storage_path in(select jsonb_array_elements_text(p_paths))and status in('reserved','writing','unknown'))then raise exception 'SCHOOL_UPLOAD_PENDING';end if;
+ if exists(select 1 from school_documents where school_id=p_school and payload->>'storagePath'in(select jsonb_array_elements_text(p_paths))and coalesce((payload->>'legalHold')::boolean,false))then raise exception 'SCHOOL_RECORDS_HOLD';end if;
+ delete from school_documents d where d.school_id=p_school and exists(select 1 from school_cleanup c where c.school_id=p_school and c.id=d.id and c.payload->>'path'in(select jsonb_array_elements_text(p_paths))and c.payload->>'reason'<>'deletion');
+ delete from school_upload_reservations r where r.school_id=p_school and r.status in('stored','cancelled')and exists(select 1 from school_cleanup c where c.school_id=p_school and c.payload->>'path'=r.storage_path and c.payload->>'path'in(select jsonb_array_elements_text(p_paths)));
+ delete from school_cleanup where school_id=p_school and payload->>'path'in(select jsonb_array_elements_text(p_paths));
+end;$$;
+create or replace function public.school_upload_recover(p_school text,p_actor jsonb,p_document_id text,p_confirmation text,p_fence_reference text,p_drain_reference text)
+returns text language plpgsql security invoker set search_path=public as $$declare r school_upload_reservations%rowtype;begin
+ if p_confirmation<>'WRITERS FENCED AND STORAGE DRAINED'or length(p_fence_reference)<12 or length(p_drain_reference)<12 then raise exception 'SCHOOL_RECOVERY_GUARD';end if;
+ perform 1 from school_members where school_id=p_school and id=p_actor->>'id'and payload->>'role'='owner'and(payload->>'active')::boolean for share;
+ if not found or not coalesce((p_actor->>'verified')::boolean,false)then raise exception 'SCHOOL_FORBIDDEN';end if;
+ select*into r from school_upload_reservations where school_id=p_school and id=p_document_id for update;
+ if r.id is null or r.status not in('writing','unknown')then raise exception 'SCHOOL_RECOVERY_NOT_REQUIRED';end if;
+ if exists(select 1 from school_documents where school_id=p_school and id=p_document_id and coalesce((payload->>'legalHold')::boolean,false))then raise exception 'SCHOOL_RECORDS_HOLD';end if;
+ update school_upload_reservations set status='cancelled',cleanup_requested=true,updated_at=now()where school_id=p_school and id=p_document_id;
+ insert into school_cleanup(school_id,id,payload)values(p_school,p_document_id,jsonb_build_object('studentId',r.student_id,'path',r.storage_path,'reason','reviewed-upload-recovery'))on conflict(school_id,id)do nothing;
+ insert into school_audit(school_id,id,payload)values(p_school,gen_random_uuid()::text,jsonb_build_object('id',gen_random_uuid(),'actorId',p_actor->>'id','action','document.upload.reviewed_recovery','target',p_document_id,'writerFenceReference',p_fence_reference,'providerDrainReference',p_drain_reference,'at',now()));
+ return r.storage_path;
+end;$$;
+do $$declare f record;begin for f in select p.oid::regprocedure signature from pg_proc p join pg_namespace n on n.oid=p.pronamespace where n.nspname='public'and(p.proname like'school_upload_%'or p.proname='school_cleanup_ack')loop execute'revoke all on function '||f.signature||' from public,anon,authenticated';execute'grant execute on function '||f.signature||' to service_role';end loop;end;$$;

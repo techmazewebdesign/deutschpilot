@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-10-20T17:52:23.682Z",
-  "school": "browser-db-99182068-ee2b-48df-9691-5d27a624c1c2",
+  "timestamp": "2026-10-20T18:13:34.672Z",
+  "school": "browser-db-ff62bedb-8743-4bcb-9f5d-a1a5eee013f9",
   "container": "deutschpilot-school-test-20261020",
-  "scope": "Actual browser UI plus real normalized PostgreSQL repository reads/transactions/paging. Explicit synthetic identities and intercepted HTTP transport; synthetic file bytes and scanner verdicts only. No live Firebase authentication, provider storage, remote scanner or push verification.",
+  "scope": "Actual browser UI plus real normalized PostgreSQL repository reads/transactions/paging and upload reservation/begin/finish handshake. Explicit synthetic identities and intercepted HTTP transport; synthetic file bytes and scanner verdicts only. No live Firebase authentication, provider storage, remote scanner or push verification.",
   "base": "http://localhost:3017",
   "results": [
     {
@@ -78,7 +78,7 @@
       "status": "PASS"
     },
     {
-      "step": "Student uploads PDF tied to absence/request; quarantine blocks download",
+      "step": "Student upload acquires and finishes real SQL reservation; quarantine blocks download",
       "status": "PASS",
       "screenshot": "/Users/rooz/Documents/Codex/2026-10-18/deutschpilot-release/docs/verification-school-2026-10-20/browser-db-17-student-private-upload.png"
     },

@@ -21,6 +21,7 @@ const exact = new Set([
   "scripts/school-scanner.ts",
   "scripts/school-check-activation.ts",
   "scripts/school-import-aggregate.ts",
+  "scripts/school-recover-upload.ts",
   "scripts/school-README.md",
   "lib/learningProgressClient.ts",
   "app/api/learning/progress/route.ts",

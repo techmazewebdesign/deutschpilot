@@ -1,0 +1,17 @@
+✔ actual POST + real PostgreSQL: delayed storage write blocks completed account deletion until settled and removed (9367.970083ms)
+✔ actual POST: deletion safely cancels RESERVED before begin; resuming handler cannot write bytes (6828.609833ms)
+✔ actual POST: ambiguous timeout plus late provider write stays UNKNOWN until explicit fenced recovery (7826.922917ms)
+✔ WRITING crash-state has no automatic expiry; owner recovery requires fence and drain evidence (9737.264583ms)
+✔ actual POST: member revocation during write queues terminal cleanup and prevents scan (5418.472083ms)
+✔ actual POST: retention never acknowledges or deletes metadata while bytes can still arrive (5572.017959ms)
+✔ actual POST: successful stored/clean file retains a durable reservation until ordinary safe deletion (2814.487708ms)
+✔ terminal writer ledger still requires object cleanup when document metadata is unexpectedly absent (4112.8605ms)
+✔ retention cleanup approval freezes late hold updates before any storage deletion (3247.44475ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 58309.168333

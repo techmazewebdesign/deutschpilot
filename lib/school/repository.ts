@@ -38,6 +38,12 @@ export function databaseError(error: { code?: string; message?: string } | null)
     message.includes("SCHOOL_CONFLICT")
   )
     throw new SchoolError("CONFLICT", "Records changed; retry request", 409);
+  if (message.includes("SCHOOL_UPLOAD_PENDING"))
+    throw new SchoolError(
+      "UPLOAD_PENDING",
+      "A private upload is unresolved; deletion awaits secure cleanup or reviewed recovery",
+      503
+    );
   if (message.includes("SCHOOL_NOT_MEMBER"))
     throw new SchoolError("NOT_MEMBER", "Verified school membership required", 403);
   if (message.includes("SCHOOL_"))

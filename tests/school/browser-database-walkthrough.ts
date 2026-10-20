@@ -166,7 +166,21 @@ async function main() {
             document = registerDocument(state, current, input, documentId);
           }
         );
+        const reservation = rpc("school_upload_begin", str(school), q(current), str(document.id));
+        assert.equal(reservation.path, document.storagePath);
+        assert.ok(reservation.lease);
+        // Synthetic provider write is permitted only after the real database acquired the lease.
         files.set(document.id, bytes);
+        const stored = rpc(
+          "school_upload_finish",
+          str(school),
+          q(current),
+          str(document.id),
+          str(reservation.lease),
+          str("stored")
+        );
+        assert.equal(stored.continue, true);
+        assert.equal(stored.state, "stored");
         // Explicit provider fixture: upload is persisted, scanner is pending. Actual production API also returns a scan-pending failure.
         return await route.fulfill({
           status: 503,
@@ -586,11 +600,11 @@ async function main() {
       true
     );
     await pass(
-      "Student uploads PDF tied to absence/request; quarantine blocks download",
+      "Student upload acquires and finishes real SQL reservation; quarantine blocks download",
       "student-private-upload"
     );
     const doc = state.documents[0];
-    commit(owner, { action: "document.scan", documentId: doc.id }, (state) =>
+    commit(id("student"), { action: "document.scan", documentId: doc.id }, (state) =>
       applyScanResult(state, doc.id, doc.sha256!, "clean")
     );
     await page.getByRole("button", { name: "Refresh", exact: true }).click();
@@ -615,7 +629,7 @@ async function main() {
     const signed = state.documents.find((d) => d.category === "signed_letter")!;
     assert.ok(signed);
     assert.equal(state.letters[0].returnedDocuments.student, undefined);
-    commit(owner, { action: "document.scan", documentId: signed.id }, (state) =>
+    commit(id("student"), { action: "document.scan", documentId: signed.id }, (state) =>
       applyScanResult(state, signed.id, signed.sha256!, "clean")
     );
     await pass("Student uploads signed letter; return remains pending until trusted scan");
@@ -891,7 +905,7 @@ async function main() {
           school,
           container,
           scope:
-            "Actual browser UI plus real normalized PostgreSQL repository reads/transactions/paging. Explicit synthetic identities and intercepted HTTP transport; synthetic file bytes and scanner verdicts only. No live Firebase authentication, provider storage, remote scanner or push verification.",
+            "Actual browser UI plus real normalized PostgreSQL repository reads/transactions/paging and upload reservation/begin/finish handshake. Explicit synthetic identities and intercepted HTTP transport; synthetic file bytes and scanner verdicts only. No live Firebase authentication, provider storage, remote scanner or push verification.",
           base,
           results,
           browserErrors,

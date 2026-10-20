@@ -49,7 +49,7 @@ Export follows keyset pages; the web interface labels partial exports and offers
 
 | Check | Current evidence | Boundary |
 |---|---|---|
-| Real PostgreSQL browser walkthrough | **37 passed, 0 failed**, 16 screenshots, zero uncaught browser errors; `docs/verification-school-2026-10-20/browser-db-results.json`, timestamp `2026-10-20T17:52:23.682Z` | Actual UI plus normalized SQL reads/transactions; explicit synthetic identities and intercepted HTTP; file bytes and scanner verdicts are declared fixtures |
+| Real PostgreSQL browser walkthrough | **37 passed, 0 failed**, 16 screenshots, zero uncaught browser errors; `docs/verification-school-2026-10-20/browser-db-results.json`, timestamp `2026-10-20T18:13:34.672Z` | Actual UI plus normalized SQL reads/transactions; explicit synthetic identities and intercepted HTTP; file bytes and scanner verdicts are declared fixtures |
 | Earlier browser walkthrough | **27 passed, 0 failed**; `browser-results.json` | Real Chrome UI with synthetic in-memory domain transport; historical evidence, not database/provider proof |
 | Web progress/auth boundary | **9 passed**; `tests/learning-progress.test.ts` | Verified-identity/origin path, strict bounded payloads, canonical lesson/course relation, no caller UID, save failure and honest pending school sync |
 | Real scanner adapter | **4/4 passed**; `scanner-results.json` | Isolated actual ClamAV engine accepted harmless PDF, rejected benign EICAR bytes, denied bad authorization and rejected hash mismatch; no deployed school-storage/provider claim |
@@ -61,7 +61,7 @@ Export follows keyset pages; the web interface labels partial exports and offers
 
 The 37-step database-backed browser run exercised UI bootstrap, invitation creation, multiple teacher assignments, blank/partial/full policy configuration, attendance, student illness/absence, private PDF quarantine and fixture scan release, letters and signed return, notification read state, both teachers' complete paged class history and moderation, unrelated/revoked-user denial, active-session revocation clearing private UI, 1,005-record archive loading, complete paginated own export, held deletion request, UI hold release and real SQL erasure after synthetic file cleanup, German mobile layout, tracker-free public-to-school navigation and signup invitation guidance without creating an account.
 
-The final run used only school `browser-db-99182068-ee2b-48df-9691-5d27a624c1c2` in local Docker container `deutschpilot-school-test-20261020`; it did not truncate another school's fixtures. Browser policy values are synthetic test inputs, not legal retention recommendations.
+The final run used only school `browser-db-ff62bedb-8743-4bcb-9f5d-a1a5eee013f9` in local Docker container `deutschpilot-school-test-20261020`; it did not truncate another school's fixtures. Browser policy values are synthetic test inputs, not legal retention recommendations.
 
 ## Release and operator gates
 
@@ -89,3 +89,18 @@ Use `docs/school-platform/PORTING_GUIDE.md` and `scripts/package-school-module.m
 ## Sales-document status
 
 English/German proposal PDFs and a German non-payable draft invoice are being prepared outside the source checkout under `/Users/rooz/Documents/Desivo/DeutschPilot/Sales`. Commercial figures are indicative negotiation assumptions, not a binding quote: asking price EUR 34,900; optional support EUR 790/month for five hours, additional work EUR 100/hour; infrastructure/provider costs separate. Seller, buyer, tax treatment and final scope must be verified before issuance. No sales email or invoice issuance is authorised by this document. Sending remains paused.
+
+
+## Final correction and verification wave
+
+The first independent review rejected candidate `3cfef1b5252583562f8ec883a4ace23240349c97`: a delayed private upload could recreate bytes after account deletion completed. The corrected source uses `school_upload_reservations` and service-only begin/finish RPCs. Metadata creates a reservation atomically; a writer must acquire its lease before storage access. Reserved writes can be cancelled safely; writing/unknown outcomes block cleanup acknowledgment and completed deletion. There is no automatic expiry. Settled cancelled/revoked/expired writes enter durable cleanup. Even missing document metadata cannot discard a surviving ledger path. Cleanup approval freezes late hold changes before bytes are removed.
+
+The manual `scripts/school-recover-upload.ts` tool defaults to read-only inspection. Recovery requires actual fencing of all possible writers/credentials and provider-drain evidence, explicit operator confirmations and active-owner authority. A note or elapsed time is not proof that a pending writer cannot resume. See `scripts/school-README.md` before activation or recovery. Pre-protocol deployments must fence/drain old writers before migrating; this new module was not deployed during this work.
+
+Final correction checks: actual HTTP handler plus real local PostgreSQL **9/9 passed** (delayed write, reserved cancellation, ambiguous late object, crash/no expiry, recovery authorization, revocation, retention, normal upload/deletion, missing metadata and late hold); normalized PostgreSQL **12/12 passed**; school unit/auth/HTTP/deletion **31 passed** with the 21 database cases explicitly skipped in that separate command and run independently. Logs are in `tests/school/evidence/`. Root TypeScript and the actual production Next.js build passed after the route correction. Build warnings include existing lint/deprecation and absent local admin credentials; a successful build is not live-provider authentication proof.
+
+The final database-backed browser run again passed **37/37** including actual upload begin/store/finish before fixture scanning. Its timestamp is `2026-10-20T18:13:34.672Z`; the last stricter missing-metadata/finalization edge guards were added afterward and covered by the final 9 HTTP/database tests. Provider bytes, identities and scan verdicts in the browser remain synthetic.
+
+Native **1.1.0 (5)**: all **31** tests and TypeScript passed. Unsigned Release simulator compilation, installation and guest School sign-in boundary passed. Actual lesson wrong-answer/retry/completion and relaunch persistence were exercised. A discovered Dynamic Island/header overlap was corrected with a modal-local safe-area provider; the rebuilt binary verified visible Back tap, a further completed lesson and relaunch persistence (2 lessons/40 XP). Evidence copies are in `docs/verification-school-2026-10-20/native-*`. Authenticated native school workflows, physical devices, APNs, signing and TestFlight delivery remain separate release gates.
+
+Second independent source review is pending at this commit. No deployment, live migration, sales sending or invoice issuance is established by these local checks.

@@ -249,6 +249,20 @@ test(
         id
       )
     );
+    // Synthetic bytes are known stored in this domain/SQL fixture. Real POST/storage is
+    // separately interleaved in upload-deletion-handshake.test.ts.
+    const reservation = rpc("school_upload_begin", str(school), q(student), str(id));
+    assert.equal(
+      rpc(
+        "school_upload_finish",
+        str(school),
+        q(student),
+        str(id),
+        str(reservation.lease),
+        str("stored")
+      ).continue,
+      true
+    );
     const scan = { action: "document.scan", documentId: id };
     commit(student, scan, load(student, scan), (s) => applyScanResult(s, id, d.sha256, "clean"));
     assert.equal(load(student).state.documentRequests[0].fulfilledBy, id);

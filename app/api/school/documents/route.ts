@@ -14,6 +14,7 @@ import {
   privateHeaders,
   schoolIdentity,
   readSnapshot,
+  repositoryRpc,
 } from "@/lib/school/server";
 export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
@@ -82,14 +83,43 @@ export async function POST(request: Request) {
     );
     const d = saved.result;
     const db = createAdminSupabaseClient();
-    const { error } = await db.storage
-      .from("school-private")
-      .upload(d.storagePath!, bytes, { contentType: d.mime, upsert: false });
-    if (error)
+    const reservation = await repositoryRpc<{ lease: string; path: string }>(
+      "school_upload_begin",
+      { p_actor: u, p_document_id: id }
+    );
+    let uploadError: unknown;
+    try {
+      const uploaded = await db.storage
+        .from("school-private")
+        .upload(reservation.path, bytes, { contentType: d.mime, upsert: false });
+      uploadError = uploaded.error;
+    } catch (error) {
+      uploadError = error;
+    }
+    if (uploadError) {
+      // A rejected/timed-out storage request may still commit remotely. Keep a durable barrier.
+      // Even failure to record UNKNOWN is safe: WRITING remains unresolved and blocks deletion.
+      await repositoryRpc("school_upload_finish", {
+        p_actor: u,
+        p_document_id: id,
+        p_lease: reservation.lease,
+        p_outcome: "unknown",
+      }).catch(() => {});
       throw new SchoolError(
-        "UPLOAD_FAILED",
-        "Upload failed; quarantined record retained for review",
+        "UPLOAD_UNCERTAIN",
+        "Upload outcome requires secure review; cleanup cannot yet be confirmed",
         503
+      );
+    }
+    const completion = await repositoryRpc<{ continue: boolean; state: string }>(
+      "school_upload_finish",
+      { p_actor: u, p_document_id: id, p_lease: reservation.lease, p_outcome: "stored" }
+    );
+    if (!completion.continue)
+      throw new SchoolError(
+        "UPLOAD_CANCELLED",
+        "Upload stopped; safe private cleanup remains queued",
+        409
       );
     // Scanner contract: authenticated binary POST, exact sha256 echoed and verdict clean/rejected.
     // No client endpoint can mark a document clean. Failed scans leave inaccessible quarantine.

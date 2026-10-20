@@ -1,25 +1,25 @@
-✔ normalized realPG bootstrap, hashed invitation and class assignments persisted without aggregate (526.757041ms)
-✔ normalized realPG attendance atomic audit, office excuse, native/web monotonic progress (1653.556417ms)
-✔ normalized realPG letter/private file scan workflow and role denial (1899.465042ms)
-✔ normalized realPG group chat idempotence, multiple teachers, moderation and revocation (1041.945666ms)
-✔ normalized realPG read receipts, devices, outbox leases and generic daily idempotent reminders (2783.285625ms)
-✔ normalized realPG retention cleanup retries, health/legal holds and privacy erase (2193.554917ms)
-✔ normalized realPG parallel students avoid school-wide conflict and progress merges in SQL (1403.308167ms)
+✔ normalized realPG bootstrap, hashed invitation and class assignments persisted without aggregate (1386.390584ms)
+✔ normalized realPG attendance atomic audit, office excuse, native/web monotonic progress (4985.999125ms)
+✔ normalized realPG letter/private file scan workflow and role denial (11800.6625ms)
+✔ normalized realPG group chat idempotence, multiple teachers, moderation and revocation (3736.751041ms)
+✔ normalized realPG read receipts, devices, outbox leases and generic daily idempotent reminders (7879.7295ms)
+✔ normalized realPG retention cleanup retries, health/legal holds and privacy erase (2679.75975ms)
+✔ normalized realPG parallel students avoid school-wide conflict and progress merges in SQL (1722.124375ms)
 CAPACITY PLAN
-Limit  (cost=0.55..316.14 rows=100 width=374) (actual time=0.151..0.209 rows=100 loops=1)
+Limit  (cost=0.55..335.73 rows=100 width=374) (actual time=0.043..0.101 rows=100 loops=1)
   Buffers: shared hit=14
-  ->  Index Scan using school_chat_history_idx on school_chat_messages  (cost=0.55..62810.24 rows=19902 width=374) (actual time=0.150..0.200 rows=100 loops=1)
-        Index Cond: ((school_id = 'normalized-test-b940648b'::text) AND (class_id = '1dccd826-162e-4d04-9dc7-a0ee6fa22e8b'::text))
+  ->  Index Scan using school_chat_history_idx on school_chat_messages  (cost=0.55..35897.98 rows=10710 width=374) (actual time=0.041..0.090 rows=100 loops=1)
+        Index Cond: ((school_id = 'normalized-test-dde9f297'::text) AND (class_id = 'affb31d8-31e5-4d54-aaea-72a02359d554'::text))
         Buffers: shared hit=14
 Planning:
   Buffers: shared hit=233
-Planning Time: 1.415 ms
-Execution Time: 0.269 ms
-✔ normalized realPG concurrent retry dedupes chat and stale revoked actor cannot commit (1281.560375ms)
-✔ normalized realPG 100k history uses bounded keyset index beyond old aggregate limit (12890.202583ms)
-✔ normalized realPG absence approval before rollcall, reversal and overlap preserve manual/present records (24367.581667ms)
-✔ normalized realPG transaction permissions independently reject forged workflow patches and direct client access (899.756ms)
-✔ normalized realPG explicit record retention hides expired illness and preserves held linked records (2329.324542ms)
+Planning Time: 1.109 ms
+Execution Time: 0.146 ms
+✔ normalized realPG concurrent retry dedupes chat and stale revoked actor cannot commit (2956.246708ms)
+✔ normalized realPG 100k history uses bounded keyset index beyond old aggregate limit (13112.337667ms)
+✔ normalized realPG absence approval before rollcall, reversal and overlap preserve manual/present records (6630.534791ms)
+✔ normalized realPG transaction permissions independently reject forged workflow patches and direct client access (664.21875ms)
+✔ normalized realPG explicit record retention hides expired illness and preserves held linked records (1685.227042ms)
 ℹ tests 12
 ℹ suites 0
 ℹ pass 12
@@ -27,4 +27,4 @@ Execution Time: 0.269 ms
 ℹ cancelled 0
 ℹ skipped 0
 ℹ todo 0
-ℹ duration_ms 56412.224292
+ℹ duration_ms 76524.154917

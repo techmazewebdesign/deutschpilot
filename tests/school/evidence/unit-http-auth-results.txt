@@ -1,0 +1,60 @@
+✔ authenticated foreign/missing cookie Origin stops before school cleanup, Stripe and data access (368.364292ms)
+✔ revoked-checked own authentication permits deletion after email change without weakening school read (30.144334ms)
+✔ verified bearer identity takes precedence over another cookie; invalid bearer never falls back (191.821208ms)
+✔ native bearer and cookie identity both check revocation; teacher claim is not school permission (209.164958ms)
+✔ forged, revoked, unverified, absent and malformed credentials fail closed (3.195125ms)
+✔ cookie mutations enforce same-origin; bearer handled by revoked-checked auth (1.204708ms)
+✔ JSON reader enforces streamed byte limit even without content-length and rejects malformed JSON (8.974292ms)
+﹣ normalized realPG bootstrap, hashed invitation and class assignments persisted without aggregate (50.481208ms) # SKIP
+﹣ normalized realPG attendance atomic audit, office excuse, native/web monotonic progress (54.658667ms) # SKIP
+﹣ normalized realPG letter/private file scan workflow and role denial (5.498167ms) # SKIP
+﹣ normalized realPG group chat idempotence, multiple teachers, moderation and revocation (0.95275ms) # SKIP
+﹣ normalized realPG read receipts, devices, outbox leases and generic daily idempotent reminders (0.737416ms) # SKIP
+﹣ normalized realPG retention cleanup retries, health/legal holds and privacy erase (0.196458ms) # SKIP
+﹣ normalized realPG parallel students avoid school-wide conflict and progress merges in SQL (0.104667ms) # SKIP
+﹣ normalized realPG concurrent retry dedupes chat and stale revoked actor cannot commit (0.090417ms) # SKIP
+﹣ normalized realPG 100k history uses bounded keyset index beyond old aggregate limit (10.271333ms) # SKIP
+﹣ normalized realPG absence approval before rollcall, reversal and overlap preserve manual/present records (0.509ms) # SKIP
+﹣ normalized realPG transaction permissions independently reject forged workflow patches and direct client access (0.426208ms) # SKIP
+﹣ normalized realPG explicit record retention hides expired illness and preserves held linked records (0.330375ms) # SKIP
+✔ native progress uses shipped lesson labels and keeps self-reported score unchanged (1.712666ms)
+✔ signature health rejects stale, future, invalid and disabled-age verdicts (1.428458ms)
+✔ clamd VERSION is queried and short health cache still rechecks signature age (302.573417ms)
+✔ unavailable clamd fails closed (9.060625ms)
+✔ production DSN never enables school rollout telemetry or imports a capture SDK (152.238083ms)
+﹣ actual POST + real PostgreSQL: delayed storage write blocks completed account deletion until settled and removed (2.617709ms) # SKIP
+﹣ actual POST: deletion safely cancels RESERVED before begin; resuming handler cannot write bytes (0.42275ms) # SKIP
+﹣ actual POST: ambiguous timeout plus late provider write stays UNKNOWN until explicit fenced recovery (0.27575ms) # SKIP
+﹣ WRITING crash-state has no automatic expiry; owner recovery requires fence and drain evidence (0.558792ms) # SKIP
+﹣ actual POST: member revocation during write queues terminal cleanup and prevents scan (0.152333ms) # SKIP
+﹣ actual POST: retention never acknowledges or deletes metadata while bytes can still arrive (0.421125ms) # SKIP
+﹣ actual POST: successful stored/clean file retains a durable reservation until ordinary safe deletion (0.326375ms) # SKIP
+﹣ terminal writer ledger still requires object cleanup when document metadata is unexpectedly absent (0.088208ms) # SKIP
+﹣ retention cleanup approval freezes late hold updates before any storage deletion (0.158833ms) # SKIP
+✔ explicit membership, verified email invitations, expiring hashed token and bootstrap ownership (310.640375ms)
+✔ last owner preserved and student cannot self-promote or assign roster (180.811209ms)
+✔ attendance class boundary and office-only excuse (9.601625ms)
+✔ strict commands reject invalid date, reversed range, spoofed author and extra keys (7.159125ms)
+✔ progress synchronisation is account scoped, monotonic and teacher class scoped (6.338334ms)
+✔ multi-recipient letters redact recipient/read/return metadata, acknowledge without QES (2.990834ms)
+✔ notifications have actual own read state and generic content (1.304333ms)
+✔ documents require policy, sniff bytes and size, quarantine even general files, never teacher accessible (3.187208ms)
+✔ signed copy and document request are fulfilled only after trusted clean result, rejection stays inaccessible (3.561083ms)
+✔ expired files are blocked immediately and cleanup queue survives retry (3.08225ms)
+✔ class group chat allows multiple teachers full paged history, excludes unrelated and revoked members (58.451708ms)
+✔ data export scoped and ordinary student deletion has no blanket school-membership hold (19.593208ms)
+✔ health reason blocked without policy, category retention and legal hold honored (1.78125ms)
+✔ chat retry idempotent and history retention removes content (90.783917ms)
+✔ device registration is own-account and token never exposed in snapshot/export (3.388667ms)
+✔ deletion purge removes own data and pseudonymises identifiers while clearing authored text, explicit hold persists request (2.30875ms)
+✔ push outbox prevents token-reassignment leaks and distinguishes tickets, receipts, unknown transport (16.159625ms)
+✔ owner audit is bounded, paged and denied to office/teacher/student (2.710958ms)
+✔ new legal hold cannot race an approved in-progress private-file deletion (1.292583ms)
+ℹ tests 52
+ℹ suites 0
+ℹ pass 31
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 21
+ℹ todo 0
+ℹ duration_ms 4004.090166
