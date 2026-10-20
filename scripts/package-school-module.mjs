@@ -47,6 +47,7 @@ const exact = new Set([
   "supabase/migration-school-extension-path.sql",
   "supabase/migration-school-recovery-hold-lock.sql",
   "supabase/migration-legacy-private-access.sql",
+  "supabase/migration-learning-placement-compat.sql",
   "tests/learning-progress.test.ts",
   "mobile/src/SchoolRegression.test.cjs",
   "docs/school-platform/BUILD_RECORD.md",

@@ -6,10 +6,12 @@ import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { firebaseAuth } from "@/lib/firebase";
+import { signInDestination } from "@/lib/school/auth-return";
 import { GoogleSigninButton } from "@/components/auth/google-signin-button";
 
 interface Props {
   locale: string;
+  returnTo?: string | null;
   loginLabel: string;
   forgotPasswordLabel: string;
   passwordLabel: string;
@@ -18,6 +20,7 @@ interface Props {
 
 export function SigninFormClient({
   locale,
+  returnTo,
   loginLabel,
   forgotPasswordLabel,
   passwordLabel,
@@ -77,11 +80,7 @@ export function SigninFormClient({
         return;
       }
 
-      // Redirect based on role
-      const dest =
-        detectedRole === "admin" ? `/${locale}/admin` :
-        detectedRole === "teacher" ? `/${locale}/teacher` :
-        `/${locale}/rooms`;
+      const dest = signInDestination(locale, detectedRole, returnTo);
 
       if (process.env.NODE_ENV === "development") {
         console.log("[signin] Redirect target:", dest);
@@ -99,58 +98,61 @@ export function SigninFormClient({
 
   return (
     <>
-    <form onSubmit={handleSubmit} className="space-y-4">
-      {error && (
-        <p className="text-sm text-red-400 bg-red-400/10 border border-red-400/20 rounded-md px-4 py-3">
-          {error}
-        </p>
-      )}
+      <form onSubmit={handleSubmit} className="space-y-4">
+        {error && (
+          <p className="rounded-md border border-red-400/20 bg-red-400/10 px-4 py-3 text-sm text-red-400">
+            {error}
+          </p>
+        )}
 
-      <div>
-        <label className="block text-xs font-medium text-white/60 uppercase tracking-wider mb-1.5">
-          {emailLabel}
-        </label>
-        <input
-          type="email"
-          autoComplete="email"
-          required
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          className={inputClass}
-          placeholder="email@example.com"
-        />
-      </div>
-
-      <div>
-        <div className="flex justify-between mb-1.5">
-          <label className="text-xs font-medium text-white/60 uppercase tracking-wider">
-            {passwordLabel}
+        <div>
+          <label className="mb-1.5 block text-xs font-medium uppercase tracking-wider text-white/60">
+            {emailLabel}
           </label>
-          <Link href={`/${locale}/forgot-password`} className="text-xs text-[#CEA66F] hover:underline">
-            {forgotPasswordLabel}
-          </Link>
+          <input
+            type="email"
+            autoComplete="email"
+            required
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className={inputClass}
+            placeholder="email@example.com"
+          />
         </div>
-        <input
-          type="password"
-          autoComplete="current-password"
-          required
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          className={inputClass}
-          placeholder="••••••••"
-        />
-      </div>
 
-      <button
-        type="submit"
-        disabled={loading}
-        className="w-full bg-[#D9B173] text-[#071424] font-semibold py-3 rounded-md hover:bg-[#B98A4E] transition-colors mt-2 disabled:opacity-60 disabled:cursor-not-allowed"
-      >
-        {loading ? t("signingIn") : loginLabel}
-      </button>
-    </form>
+        <div>
+          <div className="mb-1.5 flex justify-between">
+            <label className="text-xs font-medium uppercase tracking-wider text-white/60">
+              {passwordLabel}
+            </label>
+            <Link
+              href={`/${locale}/forgot-password`}
+              className="text-xs text-[#CEA66F] hover:underline"
+            >
+              {forgotPasswordLabel}
+            </Link>
+          </div>
+          <input
+            type="password"
+            autoComplete="current-password"
+            required
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className={inputClass}
+            placeholder="••••••••"
+          />
+        </div>
 
-    <GoogleSigninButton locale={locale} variant="signin" />
+        <button
+          type="submit"
+          disabled={loading}
+          className="mt-2 w-full rounded-md bg-[#D9B173] py-3 font-semibold text-[#071424] transition-colors hover:bg-[#B98A4E] disabled:cursor-not-allowed disabled:opacity-60"
+        >
+          {loading ? t("signingIn") : loginLabel}
+        </button>
+      </form>
+
+      <GoogleSigninButton locale={locale} variant="signin" returnTo={returnTo} />
     </>
   );
 }

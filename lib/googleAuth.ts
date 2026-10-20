@@ -1,5 +1,6 @@
 "use client";
 
+import { schoolReturnTarget } from "@/lib/school/auth-return";
 import { signInWithPopup, type User } from "firebase/auth";
 import { firebaseAuth, googleAuthProvider } from "@/lib/firebase";
 
@@ -19,7 +20,10 @@ export type GoogleSignInResult = {
  * claim exists yet, i.e. a brand-new account) and auto-creates the
  * Supabase profile row, so it's safe to call on every Google sign-in.
  */
-export async function signInWithGoogle(): Promise<GoogleSignInResult> {
+export async function signInWithGoogle(options?: {
+  locale: string;
+  returnTo?: unknown;
+}): Promise<GoogleSignInResult> {
   const cred = await signInWithPopup(firebaseAuth, googleAuthProvider);
   const user = cred.user;
 
@@ -32,6 +36,14 @@ export async function signInWithGoogle(): Promise<GoogleSignInResult> {
   });
   if (!sessionRes.ok) {
     throw new Error("session-failed");
+  }
+
+  // A school invitation depends on verified identity and school membership, not a legacy profile.
+  if (options && schoolReturnTarget(options.returnTo, options.locale)) {
+    const refreshed = await user.getIdTokenResult(true);
+    const claim = refreshed.claims.role;
+    const role = claim === "admin" || claim === "teacher" ? claim : "student";
+    return { user, role };
   }
 
   const profileRes = await fetch("/api/auth/profile", {

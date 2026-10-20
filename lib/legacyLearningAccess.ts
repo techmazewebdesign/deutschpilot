@@ -13,11 +13,19 @@ export async function legacyAdminClient() {
   if (session?.user.role !== "admin") throw new Error("Administrator access required.");
   return createAdminSupabaseClient();
 }
-export function requireQuery<T>(result: T): T {
-  if ((result as { error?: unknown }).error)
-    throw new Error("Learning data could not be loaded. Please retry.");
+export function requireQuery<T>(result: T, dependency?: string | number): T {
+  const error = (result as { error?: { code?: unknown } | null }).error;
+  if (error) {
+    const code =
+      typeof error.code === "string" && /^[A-Z0-9_]{1,20}$/i.test(error.code)
+        ? error.code
+        : "UNAVAILABLE";
+    const operation = typeof dependency === "string" ? dependency : "learning";
+    throw new Error(`Learning data could not be loaded [${operation}; ${code}]. Please retry.`);
+  }
   return result;
 }
+
 export function publicDirectoryId(uid: string) {
   return createHash("sha256").update(`deutschpilot-directory:${uid}`).digest("hex").slice(0, 24);
 }

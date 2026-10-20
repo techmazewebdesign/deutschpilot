@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useState, useRef, type ReactNode } from "react";
 import Link from "next/link";
+import { schoolSignInUrl } from "@/lib/school/auth-return";
 import {
   ArrowLeft,
   RefreshCw,
@@ -514,7 +515,7 @@ export function SchoolPortal({ locale }: { locale: string }) {
             {errorCode && <small> ({errorCode})</small>}
             {errorCode === "401" && (
               <p>
-                <Link href={`/${locale}/signin`}>{t("Sign in", "Anmelden")}</Link>
+                <Link href={schoolSignInUrl(locale)}>{t("Sign in", "Anmelden")}</Link>
               </p>
             )}
           </div>

@@ -379,7 +379,8 @@ export default async function RoomsPage({
         .limit(1)
         .maybeSingle(),
     ]);
-    [profileRes, placementRes].forEach(requireQuery);
+    requireQuery(profileRes, "rooms.profile");
+    requireQuery(placementRes, "rooms.placement");
     userLevel = (placementRes.data?.level_result ?? profileRes.data?.german_level ?? "A1") as Level;
   }
 
@@ -415,7 +416,8 @@ export default async function RoomsPage({
       : Promise.resolve({ data: [] }),
   ]);
 
-  [coursesRes, progressRes].forEach(requireQuery);
+  requireQuery(coursesRes, "rooms.courses");
+  requireQuery(progressRes, "rooms.progress");
   const courses = (coursesRes.data ?? []) as { id: string; slug: string; level: string }[];
   const progress = (progressRes.data ?? []) as {
     lesson_id: string;
@@ -434,7 +436,7 @@ export default async function RoomsPage({
         "course_id",
         courses.map((c) => c.id)
       );
-    requireQuery(lessonCountRes);
+    requireQuery(lessonCountRes, "rooms.lessons");
     allLessons = (lessonCountRes.data ?? []) as {
       id: string;
       course_id: string;

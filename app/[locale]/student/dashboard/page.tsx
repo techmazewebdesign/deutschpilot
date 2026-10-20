@@ -1,3 +1,4 @@
+import { LearningRecovery } from "../../dashboard/recovery";
 import { redirect } from "next/navigation";
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
@@ -48,10 +49,7 @@ export default async function StudentDashboardPage({ params }: { params: { local
     await supabase.from("profiles").select("id").eq("firebase_uid", session.user.id).maybeSingle()
   );
   const profileId = profileResult.data?.id;
-  if (!profileId)
-    throw new Error(
-      "Your school profile must be linked by a verified administrator before using classes."
-    );
+  if (!profileId) return <LearningRecovery locale={locale} missingProfile />;
   const userId = session.user.id;
   const userName = session.user.name || session.user.email?.split("@")[0] || t("studentFallback");
 
@@ -77,7 +75,9 @@ export default async function StudentDashboardPage({ params }: { params: { local
       .maybeSingle(),
   ]);
 
-  [progressRes, enrollmentsRes, placementRes].forEach(requireQuery);
+  requireQuery(progressRes, "student.progress");
+  requireQuery(enrollmentsRes, "student.enrollments");
+  requireQuery(placementRes, "student.placement");
   const progress = progressRes.data ?? [];
   type EnrolledClass = {
     id: string;

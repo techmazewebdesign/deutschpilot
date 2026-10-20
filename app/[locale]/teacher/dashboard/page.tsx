@@ -1,3 +1,4 @@
+import { LearningRecovery } from "../../dashboard/recovery";
 import { redirect } from "next/navigation";
 import Link from "next/link";
 import { auth } from "@/lib/auth";
@@ -47,7 +48,7 @@ export default async function TeacherDashboardPage({ params }: { params: { local
   if (session.user.role === "admin") redirect(`/${locale}/admin`);
 
   const profile = await findProfile(session.user.id);
-  if (!profile) throw new Error("Teacher profile is unavailable. Contact school support.");
+  if (!profile) return <LearningRecovery locale={locale} missingProfile />;
   const supabase = createAdminSupabaseClient();
   const teacherId = profile.id;
   const teacherName = session.user.name || session.user.email?.split("@")[0] || "Teacher";
