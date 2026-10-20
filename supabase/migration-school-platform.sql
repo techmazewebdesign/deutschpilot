@@ -342,12 +342,12 @@ create index if not exists school_outbox_pending_idx on public.school_outbox(sch
 create index if not exists school_notification_recipient_idx on public.school_notifications(school_id,student_id,created_at desc,id desc);
 create index if not exists school_letter_recipient_idx on public.school_letter_recipients(school_id,student_id,(payload->>'letterId'));
 create unique index if not exists school_device_token_idx on public.school_devices(school_id,(payload->>'token'));
-create or replace function public.school_has_class(p_school text,p_uid text,p_class text) returns boolean language sql stable security invoker set search_path=public as $$select exists(select 1 from school_assignments where school_id=p_school and class_id=p_class and user_id=p_uid)$$;
-create or replace function public.school_can_student(p_school text,p_uid text,p_student text) returns boolean language sql stable security invoker set search_path=public as $$select p_uid=p_student or exists(select 1 from school_assignments teacher join school_assignments student on student.school_id=teacher.school_id and student.class_id=teacher.class_id where teacher.school_id=p_school and teacher.user_id=p_uid and teacher.role='teacher' and student.user_id=p_student and student.role='student')$$;
+create or replace function public.school_has_class(p_school text,p_uid text,p_class text) returns boolean language sql stable security invoker set search_path=public,extensions as $$select exists(select 1 from school_assignments where school_id=p_school and class_id=p_class and user_id=p_uid)$$;
+create or replace function public.school_can_student(p_school text,p_uid text,p_student text) returns boolean language sql stable security invoker set search_path=public,extensions as $$select p_uid=p_student or exists(select 1 from school_assignments teacher join school_assignments student on student.school_id=teacher.school_id and student.class_id=teacher.class_id where teacher.school_id=p_school and teacher.user_id=p_uid and teacher.role='teacher' and student.user_id=p_student and student.role='student')$$;
 -- Scoped bounded repository hydration. Each kind uses its own tenant/owner/class index.
 -- All rows remain server-side; SchoolSnapshot applies a second, defensive redaction pass.
 create or replace function public.school_repository_read(p_school text,p_actor jsonb,p_action jsonb default '{}'::jsonb)
-returns jsonb language plpgsql security invoker set search_path=public as $$
+returns jsonb language plpgsql security invoker set search_path=public,extensions as $$
 declare uid text:=p_actor->>'id'; r text; kind text; tbl text; cond text; rows jsonb; result jsonb:='{}'; limits jsonb:='{}'; maximum int; act text:=coalesce(p_action->>'action',''); target text;ordering text;selected_ids text[]:=array(select jsonb_array_elements_text(coalesce(p_action->'studentIds','[]')||coalesce(p_action->'teacherIds','[]')));begin
  if uid is null or coalesce((p_actor->>'verified')::boolean,false)=false then raise exception 'SCHOOL_UNAUTHENTICATED';end if;
  select payload->>'role' into r from school_members where school_id=p_school and id=uid and (payload->>'active')::boolean;
@@ -402,7 +402,7 @@ declare uid text:=p_actor->>'id'; r text; kind text; tbl text; cond text; rows j
  return jsonb_build_object('records',result,'pagination',limits);
 end;$$;
 create or replace function public.school_repository_commit(p_school text,p_actor jsonb,p_action jsonb,p_changes jsonb,p_bootstrap_uid text default null)
-returns bigint language plpgsql security invoker set search_path=public as $$
+returns bigint language plpgsql security invoker set search_path=public,extensions as $$
 declare uid text:=p_actor->>'id'; role_name text; act text:=coalesce(p_action->>'action',''); class_ref text:=p_action->>'classId'; target text; cls jsonb; m jsonb; change jsonb; tbl text; old_revision bigint; prior_payload jsonb; row_payload jsonb; next_revision bigint; anchor_at timestamptz;k text; office boolean; owner_count int;chat_inserted boolean:=false;begin
  if uid is null or coalesce((p_actor->>'verified')::boolean,false)=false or jsonb_typeof(p_changes)<>'array' or jsonb_array_length(p_changes)>2500 then raise exception 'SCHOOL_UNAUTHENTICATED';end if;
  -- Owner mutations serialize only the small owners set, not the school or chat stream.
@@ -555,7 +555,7 @@ declare uid text:=p_actor->>'id'; role_name text; act text:=coalesce(p_action->>
  return coalesce(next_revision,0);
 end;$$;
 create or replace function public.school_repository_history(p_school text,p_actor jsonb,p_kind text,p_class text default null,p_before text default null)
-returns jsonb language plpgsql security invoker set search_path=public as $$
+returns jsonb language plpgsql security invoker set search_path=public,extensions as $$
 declare uid text:=p_actor->>'id';role_name text; cursor_at timestamptz;cursor_id text;result jsonb;begin
  select payload->>'role' into role_name from school_members where school_id=p_school and id=uid and (payload->>'active')::boolean;
  if role_name is null or coalesce((p_actor->>'verified')::boolean,false)=false then raise exception 'SCHOOL_NOT_MEMBER';end if;
@@ -575,7 +575,7 @@ create index if not exists school_audit_actor_idx on public.school_audit(school_
 create index if not exists school_letters_author_idx on public.school_letters(school_id,actor_id);
 -- Indexed batch retention: durable object cleanup queue is committed BEFORE storage deletion.
 create or replace function public.school_repository_retention(p_school text,p_actor jsonb)
-returns jsonb language plpgsql security invoker set search_path=public as $$
+returns jsonb language plpgsql security invoker set search_path=public,extensions as $$
 declare uid text:=p_actor->>'id';r text;d record;paths jsonb;days int;begin
  select payload->>'role' into r from school_members where school_id=p_school and id=uid and (payload->>'active')::boolean for share;
  if r not in('owner','office') or r is null then raise exception 'SCHOOL_FORBIDDEN';end if;
@@ -593,9 +593,9 @@ declare uid text:=p_actor->>'id';r text;d record;paths jsonb;days int;begin
  return paths;
 end;$$;
 create or replace function public.school_cleanup_ack(p_school text,p_paths jsonb)
-returns void language sql security invoker set search_path=public as $$delete from school_cleanup where school_id=p_school and payload->>'path' in(select jsonb_array_elements_text(p_paths))$$;
+returns void language sql security invoker set search_path=public,extensions as $$delete from school_cleanup where school_id=p_school and payload->>'path' in(select jsonb_array_elements_text(p_paths))$$;
 create or replace function public.school_privacy_prepare(p_school text,p_actor jsonb)
-returns jsonb language plpgsql security invoker set search_path=public as $$
+returns jsonb language plpgsql security invoker set search_path=public,extensions as $$
 declare uid text:=p_actor->>'id';m jsonb;reason text;begin
  perform 1 from school_members where school_id=p_school and payload->>'role'='owner' order by id for update;
  select payload into m from school_members where school_id=p_school and id=uid for update;
@@ -611,9 +611,9 @@ declare uid text:=p_actor->>'id';m jsonb;reason text;begin
  return jsonb_build_object('blocked',false,'empty',false);
 end;$$;
 create or replace function public.school_privacy_cleanup_batch(p_school text,p_uid text)
-returns jsonb language sql security invoker set search_path=public as $$select coalesce(jsonb_agg(payload->>'path'),'[]')from(select payload from school_cleanup where school_id=p_school and student_id=p_uid and not exists(select 1 from school_upload_reservations r where r.school_id=p_school and r.storage_path=school_cleanup.payload->>'path'and r.status in('reserved','writing','unknown'))order by created_at,id limit 100)x$$;
+returns jsonb language sql security invoker set search_path=public,extensions as $$select coalesce(jsonb_agg(payload->>'path'),'[]')from(select payload from school_cleanup where school_id=p_school and student_id=p_uid and not exists(select 1 from school_upload_reservations r where r.school_id=p_school and r.storage_path=school_cleanup.payload->>'path'and r.status in('reserved','writing','unknown'))order by created_at,id limit 100)x$$;
 create or replace function public.school_privacy_finalize(p_school text,p_actor jsonb)
-returns void language plpgsql security invoker set search_path=public as $$
+returns void language plpgsql security invoker set search_path=public,extensions as $$
 declare uid text:=p_actor->>'id'; pseudonym text:='deleted-'||gen_random_uuid()::text;email text;begin
  perform 1 from school_members where school_id=p_school and id=uid for update;
  perform 1 from school_upload_reservations where school_id=p_school and student_id=uid order by id for update;
@@ -648,18 +648,18 @@ declare uid text:=p_actor->>'id'; pseudonym text:='deleted-'||gen_random_uuid():
  delete from school_members where school_id=p_school and id=uid;
 end;$$;
 create or replace function public.school_push_authorized(p_school text,p_id text)
-returns boolean language sql stable security invoker set search_path=public as $$select exists(select 1 from school_outbox o join school_notifications n on n.school_id=o.school_id and n.id=o.payload->>'notificationId' join school_devices d on d.school_id=o.school_id and d.payload->>'token'=o.payload->>'token' join school_members m on m.school_id=d.school_id and m.id=d.student_id where o.school_id=p_school and o.id=p_id and n.student_id=d.student_id and n.payload->>'readAt' is null and o.student_id=d.student_id and(m.payload->>'active')::boolean)$$;
+returns boolean language sql stable security invoker set search_path=public,extensions as $$select exists(select 1 from school_outbox o join school_notifications n on n.school_id=o.school_id and n.id=o.payload->>'notificationId' join school_devices d on d.school_id=o.school_id and d.payload->>'token'=o.payload->>'token' join school_members m on m.school_id=d.school_id and m.id=d.student_id where o.school_id=p_school and o.id=p_id and n.student_id=d.student_id and n.payload->>'readAt' is null and o.student_id=d.student_id and(m.payload->>'active')::boolean)$$;
 create or replace function public.school_push_claim(p_school text)
-returns jsonb language plpgsql security invoker set search_path=public as $$declare result jsonb;begin
+returns jsonb language plpgsql security invoker set search_path=public,extensions as $$declare result jsonb;begin
  update school_outbox set payload=payload||jsonb_build_object('status','unknown','updatedAt',now()),revision=nextval('school_event_sequence')where school_id=p_school and payload->>'status'='sending' and (payload->>'updatedAt')::timestamptz<now()-interval '60 seconds';
  with candidates as(select id from school_outbox where school_id=p_school and payload->>'status'='pending' order by created_at,id limit 50 for update skip locked),claimed as(update school_outbox o set payload=o.payload||jsonb_build_object('status',case when school_push_authorized(p_school,o.id)then 'sending'else 'failed'end,'lease',gen_random_uuid(),'updatedAt',now(),'attempts',coalesce((o.payload->>'attempts')::int,0)+1),revision=nextval('school_event_sequence')from candidates c where o.school_id=p_school and o.id=c.id returning o.payload)select coalesce(jsonb_agg(payload),'[]')into result from claimed where payload->>'status'='sending';return result;
 end;$$;
 create or replace function public.school_push_finish(p_school text,p_id text,p_lease text,p_result jsonb)
-returns void language sql security invoker set search_path=public as $$update school_outbox set payload=payload||p_result||jsonb_build_object('updatedAt',now()),revision=nextval('school_event_sequence')where school_id=p_school and id=p_id and payload->>'lease'=p_lease and payload->>'status'='sending'$$;
+returns void language sql security invoker set search_path=public,extensions as $$update school_outbox set payload=payload||p_result||jsonb_build_object('updatedAt',now()),revision=nextval('school_event_sequence')where school_id=p_school and id=p_id and payload->>'lease'=p_lease and payload->>'status'='sending'$$;
 create or replace function public.school_push_receipts(p_school text)
-returns jsonb language sql security invoker set search_path=public as $$select coalesce(jsonb_agg(payload),'[]')from(select payload from school_outbox where school_id=p_school and payload->>'status'='ticket' and school_push_authorized(p_school,id)order by created_at,id limit 100)x$$;
+returns jsonb language sql security invoker set search_path=public,extensions as $$select coalesce(jsonb_agg(payload),'[]')from(select payload from school_outbox where school_id=p_school and payload->>'status'='ticket' and school_push_authorized(p_school,id)order by created_at,id limit 100)x$$;
 create or replace function public.school_push_receipt_apply(p_school text,p_id text,p_status text)
-returns void language plpgsql security invoker set search_path=public as $$begin if p_status not in('delivered','failed')then raise exception 'SCHOOL_INVALID_STATUS';end if;update school_outbox set payload=payload||jsonb_build_object('status',p_status,'updatedAt',now()),revision=nextval('school_event_sequence')where school_id=p_school and id=p_id and payload->>'status'='ticket';end;$$;
+returns void language plpgsql security invoker set search_path=public,extensions as $$begin if p_status not in('delivered','failed')then raise exception 'SCHOOL_INVALID_STATUS';end if;update school_outbox set payload=payload||jsonb_build_object('status',p_status,'updatedAt',now()),revision=nextval('school_event_sequence')where school_id=p_school and id=p_id and payload->>'status'='ticket';end;$$;
 -- Direct access remains unavailable even in projects with unrelated permissive storage policies.
 insert into storage.buckets(id,name,public,file_size_limit,allowed_mime_types)values('school-private','school-private',false,10485760,array['application/pdf','image/jpeg','image/png'])on conflict(id)do update set public=false,file_size_limit=10485760,allowed_mime_types=excluded.allowed_mime_types;
 drop policy if exists school_private_deny_direct on storage.objects;
@@ -668,7 +668,7 @@ create policy school_private_deny_direct on storage.objects as restrictive for a
 -- If a pilot aggregate was activated elsewhere, stop writes, export encrypted backup, run the
 -- guarded scripts/school-import-aggregate.ts manually, verify counts/permissions, then retire it.
 create or replace function public.school_repository_export(p_school text,p_actor jsonb,p_before text default null)
-returns jsonb language plpgsql security invoker set search_path=public as $$
+returns jsonb language plpgsql security invoker set search_path=public,extensions as $$
 declare uid text:=p_actor->>'id';k text;tbl text;cond text;cursor jsonb:=coalesce(p_before,'{}')::jsonb;last_kind text:=cursor->>'kind';last_id text:=cursor->>'id';collect boolean:=last_kind is null; row_data record;result jsonb:='[]';next_cursor text;begin
  if coalesce((p_actor->>'verified')::boolean,false)=false or not exists(select 1 from school_members where school_id=p_school and id=uid)then raise exception 'SCHOOL_NOT_MEMBER';end if;
  for k,tbl in select*from(values('members','members'),('attendance','attendance'),('absences','absences'),('documents','documents'),('documentRequests','document_requests'),('letters','letters'),('chatMessages','chat_messages'),('notifications','notifications'),('progress','progress'),('devices','devices'),('deletionRequests','deletion_requests'))t(k,tbl)loop
@@ -696,7 +696,7 @@ create index if not exists school_devices_export_idx on public.school_devices(sc
 create index if not exists school_deletion_requests_export_idx on public.school_deletion_requests(school_id,student_id,id);
 create index if not exists school_chat_export_idx on public.school_chat_messages(school_id,actor_id,id);
 create or replace function public.school_reminders(p_school text)
-returns integer language plpgsql security invoker set search_path=public as $$declare pending record;nid text;n jsonb;inserted text;total int:=0;begin
+returns integer language plpgsql security invoker set search_path=public,extensions as $$declare pending record;nid text;n jsonb;inserted text;total int:=0;begin
  for pending in select*from(
   select 'request' kind,r.id,r.student_id from school_document_requests r where r.school_id=p_school and not(r.payload ? 'fulfilledBy')and r.payload->>'dueDate' between(current_date-30)::text and(current_date+2)::text
   union all
@@ -718,7 +718,7 @@ grant execute on function public.school_reminders(text)to service_role;
 create index if not exists school_request_due_idx on public.school_document_requests(school_id,((payload->>'dueDate')),id)where not(payload ? 'fulfilledBy');
 create index if not exists school_letter_due_idx on public.school_letters(school_id,((payload->>'dueDate')),id);
 create or replace function public.school_repository_page(p_school text,p_actor jsonb,p_section text,p_before text default null)
-returns jsonb language plpgsql security invoker set search_path=public as $$
+returns jsonb language plpgsql security invoker set search_path=public,extensions as $$
 declare uid text:=p_actor->>'id';r text;tbl text;cond text;cursor_at timestamptz;rows jsonb;count_rows int;begin
  select payload->>'role'into r from school_members where school_id=p_school and id=uid and(payload->>'active')::boolean;
  if r is null or coalesce((p_actor->>'verified')::boolean,false)=false then raise exception 'SCHOOL_NOT_MEMBER';end if;
@@ -758,7 +758,7 @@ create index if not exists school_cleanup_recent_idx on public.school_cleanup(sc
 create index if not exists school_attendance_date_idx on school_attendance(school_id,student_id,((payload->>'date')));
 -- Explicit one-time offline migration helper. Never invoked by application routes.
 create or replace function public.school_import_aggregate(p_school text,p_state jsonb,p_confirmation text)
-returns jsonb language plpgsql security invoker set search_path=public as $$
+returns jsonb language plpgsql security invoker set search_path=public,extensions as $$
 declare pair record;v jsonb;rid text;counts jsonb:='{}';inserted int;begin
  if p_confirmation<>'IMPORT SCHOOL BACKUP' or p_state->>'schoolId' is distinct from p_school or jsonb_typeof(p_state->'members')is distinct from'array'then raise exception 'SCHOOL_IMPORT_GUARD';end if;
  perform pg_advisory_xact_lock(hashtextextended('bootstrap:'||p_school,0));
@@ -788,7 +788,7 @@ grant execute on function public.school_import_aggregate(text,jsonb,text)to serv
 create index if not exists school_absence_range_idx on school_absences(school_id,student_id,((payload->>'status')),((payload->>'from')),((payload->>'to')));
 -- Generic, idempotent unread notification. Private content never copied into push payloads.
 create or replace function public.school_notify_generic(p_school text,p_uid text,p_title text,p_key text)
-returns void language plpgsql security invoker set search_path=public as $$declare prior jsonb;n jsonb;event_id text:=gen_random_uuid()::text;begin
+returns void language plpgsql security invoker set search_path=public,extensions as $$declare prior jsonb;n jsonb;event_id text:=gen_random_uuid()::text;begin
  perform 1 from school_members where school_id=p_school and id=p_uid and(payload->>'active')::boolean for share;if not found then return;end if;
  select payload into prior from school_notifications where school_id=p_school and id=p_key for update;if prior is not null and prior->>'readAt'is null then return;end if;
  n:=jsonb_build_object('id',p_key,'userId',p_uid,'title',p_title,'body','Open your secure school dashboard for details.','createdAt',now(),'readAt',null,'delivery','in_app');
@@ -799,12 +799,12 @@ revoke all on function public.school_notify_generic(text,text,text,text)from pub
 grant execute on function public.school_notify_generic(text,text,text,text)to service_role;
 create index if not exists school_letter_members_idx on school_letter_recipients(school_id,((payload->>'letterId')),student_id);
 create or replace function public.school_letter_payload(p_school text,p_id text,p_body jsonb)
-returns jsonb language sql stable security invoker set search_path=public as $$select p_body||jsonb_build_object('readBy',coalesce(jsonb_object_agg(student_id,payload->'readAt')filter(where payload->>'readAt'is not null),'{}'),'acknowledgements',coalesce(jsonb_object_agg(student_id,payload->'acknowledgedAt')filter(where payload->>'acknowledgedAt'is not null),'{}'),'returnedDocuments',coalesce(jsonb_object_agg(student_id,payload->'returnedDocumentId')filter(where payload->>'returnedDocumentId'is not null),'{}'))from school_letter_recipients where school_id=p_school and payload->>'letterId'=p_id$$;
+returns jsonb language sql stable security invoker set search_path=public,extensions as $$select p_body||jsonb_build_object('readBy',coalesce(jsonb_object_agg(student_id,payload->'readAt')filter(where payload->>'readAt'is not null),'{}'),'acknowledgements',coalesce(jsonb_object_agg(student_id,payload->'acknowledgedAt')filter(where payload->>'acknowledgedAt'is not null),'{}'),'returnedDocuments',coalesce(jsonb_object_agg(student_id,payload->'returnedDocumentId')filter(where payload->>'returnedDocumentId'is not null),'{}'))from school_letter_recipients where school_id=p_school and payload->>'letterId'=p_id$$;
 revoke all on function public.school_letter_payload(text,text,jsonb)from public,anon,authenticated;
 grant execute on function public.school_letter_payload(text,text,jsonb)to service_role;
 -- Operator-defined periods only. No period is inferred from a general German-law claim.
 create or replace function public.school_record_visible(p_school text,p_kind text,p_payload jsonb,p_created timestamptz)
-returns boolean language plpgsql stable security invoker set search_path=public as $$declare days int;anchor_at timestamptz;begin
+returns boolean language plpgsql stable security invoker set search_path=public,extensions as $$declare days int;anchor_at timestamptz;begin
  if p_kind='chatMessages'then select(payload->>'chatRetentionDays')::int into days from school_settings where school_id=p_school and id='settings';else
  select(payload->'recordRetentionDays'->>p_kind)::int into days from school_settings where school_id=p_school and id='settings';end if;if days is null then return true;end if;
  anchor_at:=case p_kind when'absences'then(p_payload->>'to')::date::timestamptz when'attendance'then(p_payload->>'date')::date::timestamptz when'letters'then(p_payload->>'dueDate')::date::timestamptz when'progress'then coalesce((p_payload->>'updatedAt')::timestamptz,p_created)else p_created end;
@@ -815,11 +815,11 @@ returns boolean language plpgsql stable security invoker set search_path=public 
  return false;
 end;$$;
 create or replace function public.school_record_linked_file(p_school text,p_kind text,p_payload jsonb)
-returns boolean language sql stable security invoker set search_path=public as $$select exists(select 1 from school_documents where school_id=p_school and(coalesce((payload->>'legalHold')::boolean,false)or(payload->>'expiresAt')::timestamptz>now())and((p_kind='absences'and payload->>'absenceId'=p_payload->>'id')or(p_kind='letters'and payload->>'letterId'=p_payload->>'id')or(p_kind='attendance'and payload->>'absenceId'=p_payload->>'excusedByAbsenceId')))$$;
+returns boolean language sql stable security invoker set search_path=public,extensions as $$select exists(select 1 from school_documents where school_id=p_school and(coalesce((payload->>'legalHold')::boolean,false)or(payload->>'expiresAt')::timestamptz>now())and((p_kind='absences'and payload->>'absenceId'=p_payload->>'id')or(p_kind='letters'and payload->>'letterId'=p_payload->>'id')or(p_kind='attendance'and payload->>'absenceId'=p_payload->>'excusedByAbsenceId')))$$;
 create index if not exists school_document_absence_link_idx on school_documents(school_id,((payload->>'absenceId')));
 create index if not exists school_document_letter_link_idx on school_documents(school_id,((payload->>'letterId')));
 create or replace function public.school_repository_record_retention(p_school text,p_actor jsonb,p_dry_run boolean default true)
-returns jsonb language plpgsql security invoker set search_path=public as $$declare r text;k text;rows_found record;totals jsonb:='{}';n int;policies jsonb;days int;begin
+returns jsonb language plpgsql security invoker set search_path=public,extensions as $$declare r text;k text;rows_found record;totals jsonb:='{}';n int;policies jsonb;days int;begin
  select payload->>'role'into r from school_members where school_id=p_school and id=p_actor->>'id'and(payload->>'active')::boolean for share;if r not in('owner','office')or r is null or coalesce((p_actor->>'verified')::boolean,false)=false then raise exception 'SCHOOL_FORBIDDEN';end if;
  select payload->'recordRetentionDays'into policies from school_settings where school_id=p_school and id='settings'for share;
  for k in select unnest(array['attendance','absences','letters','notifications','progress','audit'])loop
@@ -851,7 +851,7 @@ create index if not exists school_progress_retention_idx on school_progress(scho
 create index if not exists school_audit_retention_idx on school_audit(school_id,retention_at,id);
 -- Upload/deletion handshake. These RPCs are server-only; lease IDs never reach clients.
 create or replace function public.school_upload_request_cleanup(p_school text,p_document_id text,p_reason text)
-returns void language plpgsql security invoker set search_path=public as $$declare d jsonb;u text;object_path text;begin
+returns void language plpgsql security invoker set search_path=public,extensions as $$declare d jsonb;u text;object_path text;begin
  select student_id into u from school_documents where school_id=p_school and id=p_document_id;
  if u is null then select student_id into u from school_upload_reservations where school_id=p_school and id=p_document_id;end if;
  perform 1 from school_members where school_id=p_school and id=u for share;
@@ -862,7 +862,7 @@ returns void language plpgsql security invoker set search_path=public as $$decla
  if object_path is not null then insert into school_cleanup(school_id,id,payload)values(p_school,p_document_id,jsonb_build_object('studentId',u,'path',object_path,'reason',p_reason))on conflict(school_id,id)do nothing;end if;
 end;$$;
 create or replace function public.school_upload_begin(p_school text,p_actor jsonb,p_document_id text)
-returns jsonb language plpgsql security invoker set search_path=public as $$declare r school_upload_reservations%rowtype;m jsonb;d jsonb;begin
+returns jsonb language plpgsql security invoker set search_path=public,extensions as $$declare r school_upload_reservations%rowtype;m jsonb;d jsonb;begin
  select payload into m from school_members where school_id=p_school and id=p_actor->>'id'for share;
  if not coalesce((p_actor->>'verified')::boolean,false)or not coalesce((m->>'active')::boolean,false)or m->>'role'<>'student'then raise exception 'SCHOOL_NOT_MEMBER';end if;
  select*into r from school_upload_reservations where school_id=p_school and id=p_document_id for update;
@@ -873,7 +873,7 @@ returns jsonb language plpgsql security invoker set search_path=public as $$decl
  return jsonb_build_object('lease',r.lease,'path',r.storage_path);
 end;$$;
 create or replace function public.school_upload_finish(p_school text,p_actor jsonb,p_document_id text,p_lease uuid,p_outcome text)
-returns jsonb language plpgsql security invoker set search_path=public as $$declare r school_upload_reservations%rowtype;m jsonb;d jsonb;can_continue boolean;begin
+returns jsonb language plpgsql security invoker set search_path=public,extensions as $$declare r school_upload_reservations%rowtype;m jsonb;d jsonb;can_continue boolean;begin
  if p_outcome not in('stored','unknown')then raise exception 'SCHOOL_INVALID_STATUS';end if;
  select payload into m from school_members where school_id=p_school and id=p_actor->>'id'for share;
  select*into r from school_upload_reservations where school_id=p_school and id=p_document_id for update;
@@ -892,7 +892,7 @@ returns jsonb language plpgsql security invoker set search_path=public as $$decl
  return jsonb_build_object('continue',can_continue,'state','stored');
 end;$$;
 create or replace function public.school_cleanup_ack(p_school text,p_paths jsonb)
-returns void language plpgsql security invoker set search_path=public as $$begin
+returns void language plpgsql security invoker set search_path=public,extensions as $$begin
  -- Same lock order as privacy preparation and upload begin/finish: member, document, reservation.
  perform 1 from school_members where school_id=p_school and id in(select student_id from school_cleanup where school_id=p_school and payload->>'path'in(select jsonb_array_elements_text(p_paths)))order by id for share;
  perform 1 from school_documents where school_id=p_school and payload->>'storagePath'in(select jsonb_array_elements_text(p_paths))order by id for update;
@@ -904,7 +904,7 @@ returns void language plpgsql security invoker set search_path=public as $$begin
  delete from school_cleanup where school_id=p_school and payload->>'path'in(select jsonb_array_elements_text(p_paths));
 end;$$;
 create or replace function public.school_upload_recover(p_school text,p_actor jsonb,p_document_id text,p_confirmation text,p_fence_reference text,p_drain_reference text)
-returns text language plpgsql security invoker set search_path=public as $$declare r school_upload_reservations%rowtype;begin
+returns text language plpgsql security invoker set search_path=public,extensions as $$declare r school_upload_reservations%rowtype;begin
  if p_confirmation<>'WRITERS FENCED AND STORAGE DRAINED'or length(p_fence_reference)<12 or length(p_drain_reference)<12 then raise exception 'SCHOOL_RECOVERY_GUARD';end if;
  perform 1 from school_members where school_id=p_school and id=p_actor->>'id'and payload->>'role'='owner'and(payload->>'active')::boolean for share;
  if not found or not coalesce((p_actor->>'verified')::boolean,false)then raise exception 'SCHOOL_FORBIDDEN';end if;

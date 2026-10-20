@@ -106,3 +106,15 @@ Native **1.1.0 (5)**: all **31** tests and TypeScript passed. Unsigned Release s
 Second independent source review of code commit `a1a8c81e0d466d24c38bc510fb83199ff669ed52` was blocked by an automated safeguard citing “possible cybersecurity risk”; it produced no final code verdict. The first review remains FAIL for the earlier candidate; the correction has local test evidence, not completed independent verification. The source worktree remained clean and HEAD unchanged through the blocked review. No alternative reviewer was dispatched to bypass that safeguard.
 
 Status: **TESTED LOCAL CHECKPOINT — INDEPENDENT REVIEW BLOCKED — NOT A RELEASE APPROVAL**. The required review workflow (`/Users/rooz/.agents/skills/fable-foreman/SKILL.md`) states “The verifier is required for every accepted change”. Therefore the final reusable release archive is held; the source remains preserved in the Git checkpoint, with instructions and evidence copied to Documents. Resolve independent verification through an authorised review process before accepting/porting this candidate. All provider, physical-device, privacy/legal and distribution gates also remain. No deployment, live migration, sales sending or invoice issuance is established by these local checks.
+
+## Hosted activation checkpoint - 20 October 2026
+
+The isolated preview is deployed at https://deutschpilot-3t640hu5u-techmazewebdesigns-projects.vercel.app (Vercel deployment dpl_AQYhjLHDiEUK1UjXjayxpmRvg4n5, web source 7559e2e). Production domain and TestFlight remain unchanged. Direct deployment avoids publishing shared source into the public GitHub repository.
+
+The connected EU Supabase project now contains 22 normalized school tables, all with RLS and no anon/authenticated table SELECT or function EXECUTE access. The school-private bucket is private. Existing learning tables and the legacy-private-access migration were left unchanged.
+
+The first hosted RPC check exposed pgcrypto installed in Supabase's extensions schema, while local PostgreSQL used public. The fresh migration now sets a fixed public,extensions lookup path; migration-school-extension-path.sql corrects already-installed school routines without changing non-school routines. Apply this compatibility migration when reusing the module in Polish School.
+
+Thirteen subsequent hosted RPC checks passed using disposable synthetic trusted identities: bootstrap, invitations, two-teacher class/chat, denied nonmember and escalation, attendance, absence approval, letters/read/acknowledgement, notifications, monotonic progress, disabled sensitive uploads and tenant cleanup. This tests real remote storage/RPCs, not Firebase/browser sign-in, file scanning or physical push receipt. Evidence is in Documents/Desivo/School Platform/Activation/2026-10-20/REMOTE_DATABASE_CHECKS.json.
+
+Preview school ID and owner bootstrap UID are configured. Real owner initialization and deployed browser workflows are pending authentication acceptance. Scanner hosting, controller-approved legal/processor/retention records, scheduled operations, physical push tests and independent production review remain pending. Sales sending stays paused.
