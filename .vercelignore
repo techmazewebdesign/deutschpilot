@@ -1,7 +1,15 @@
 .git
 .next
 node_modules
-mobile
+mobile/**
+!mobile/src/
+!mobile/src/content.ts
+!mobile/src/models.ts
+!mobile/src/data/
+!mobile/src/data/web-lessons.json
+!mobile/src/data/web-vocabulary.json
+tests/school/browser-walkthrough.ts
+tests/school/browser-database-walkthrough.ts
 android
 ios
 capacitor-shell
