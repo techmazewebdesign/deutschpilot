@@ -2,9 +2,11 @@
 .next
 node_modules
 mobile/**
+!mobile/src
 !mobile/src/
 !mobile/src/content.ts
 !mobile/src/models.ts
+!mobile/src/data
 !mobile/src/data/
 !mobile/src/data/web-lessons.json
 !mobile/src/data/web-vocabulary.json
