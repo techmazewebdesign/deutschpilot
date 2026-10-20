@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation";
 import type { Metadata } from "next";
 import { auth } from "@/lib/auth";
-import { createServerSupabaseClient } from "@/lib/supabaseServer";
+import { legacyLearningClient, requireQuery } from "@/lib/legacyLearningAccess";
 import { AppLayout } from "@/components/app/app-layout";
 import { CertificateCard } from "@/components/certificates/certificate-card";
 import { Award } from "lucide-react";
@@ -20,7 +20,7 @@ export default async function CertificatesPage({ params }: { params: { locale: s
   const session = await auth();
   if (!session?.user) redirect(`/${locale}/signin`);
 
-  const supabase = createServerSupabaseClient();
+  const supabase = await legacyLearningClient(session.user.id);
   const userName = session.user.name ?? session.user.email?.split("@")[0] ?? "Student";
 
   const [coursesRes, progressRes] = await Promise.all([
@@ -28,12 +28,15 @@ export default async function CertificatesPage({ params }: { params: { locale: s
     supabase.from("student_progress").select("lesson_id, completed").eq("user_id", session.user.id),
   ]);
 
+  [coursesRes, progressRes].forEach(requireQuery);
   const courses = (coursesRes.data ?? []) as { id: string; level: string }[];
   const progress = (progressRes.data ?? []) as { lesson_id: string; completed: boolean }[];
 
   const courseIds = courses.map((c) => c.id);
   const { data: lessonsData } = courseIds.length
-    ? await supabase.from("lessons").select("id, course_id").in("course_id", courseIds)
+    ? requireQuery(
+        await supabase.from("lessons").select("id, course_id").in("course_id", courseIds)
+      )
     : { data: [] };
   const lessons = (lessonsData ?? []) as { id: string; course_id: string }[];
 
@@ -42,7 +45,10 @@ export default async function CertificatesPage({ params }: { params: { locale: s
 
   const lessonsByLevel: Record<string, number> = {};
   const completedByLevel: Record<string, number> = {};
-  for (const level of LEVELS) { lessonsByLevel[level] = 0; completedByLevel[level] = 0; }
+  for (const level of LEVELS) {
+    lessonsByLevel[level] = 0;
+    completedByLevel[level] = 0;
+  }
 
   for (const lesson of lessons) {
     const course = courseById.get(lesson.course_id);
@@ -51,28 +57,32 @@ export default async function CertificatesPage({ params }: { params: { locale: s
     if (completedLessonIds.has(lesson.id)) completedByLevel[course.level] += 1;
   }
 
-  const earnedLevels = LEVELS.filter((level) => lessonsByLevel[level] > 0 && completedByLevel[level] === lessonsByLevel[level]);
-  const nextLevel = LEVELS.find((level) => lessonsByLevel[level] > 0 && completedByLevel[level] < lessonsByLevel[level]);
+  const earnedLevels = LEVELS.filter(
+    (level) => lessonsByLevel[level] > 0 && completedByLevel[level] === lessonsByLevel[level]
+  );
+  const nextLevel = LEVELS.find(
+    (level) => lessonsByLevel[level] > 0 && completedByLevel[level] < lessonsByLevel[level]
+  );
 
   return (
     <AppLayout locale={locale} userName={userName}>
-      <div className="px-5 lg:px-8 py-6 lg:py-8 max-w-3xl w-full mx-auto">
+      <div className="mx-auto w-full max-w-3xl px-5 py-6 lg:px-8 lg:py-8">
         <div className="mb-8">
-          <div className="flex items-center gap-2 mb-2">
+          <div className="mb-2 flex items-center gap-2">
             <Award className="h-4 w-4 text-[#E0B873]" />
-            <span className="text-xs font-semibold text-[#E0B873]/70 uppercase tracking-[0.2em]">
+            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-[#E0B873]/70">
               {de ? "Zertifikate" : "Certificates"}
             </span>
           </div>
-          <h1 className="text-3xl font-serif font-bold text-white">
+          <h1 className="font-serif text-3xl font-bold text-white">
             {de ? "Deine Zertifikate" : "Your Certificates"}
           </h1>
         </div>
 
         {earnedLevels.length === 0 ? (
-          <div className="rounded-2xl border border-white/8 bg-[#0A1E35]/50 p-8 text-center">
-            <Award className="h-8 w-8 text-white/20 mx-auto mb-3" />
-            <p className="text-sm text-white/45 mb-1">
+          <div className="border-white/8 rounded-2xl border bg-[#0A1E35]/50 p-8 text-center">
+            <Award className="mx-auto mb-3 h-8 w-8 text-white/20" />
+            <p className="mb-1 text-sm text-white/45">
               {de ? "Noch kein Zertifikat verdient." : "No certificate earned yet."}
             </p>
             <p className="text-xs text-white/30">

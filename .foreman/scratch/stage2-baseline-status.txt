@@ -1,0 +1,26 @@
+ M app/[locale]/teacher/classes/[id]/students/page.tsx
+ M app/[locale]/teacher/dashboard/page.tsx
+ M app/api/account/delete/route.ts
+ M mobile/App.tsx
+ M mobile/app.json
+ M mobile/package-lock.json
+ M mobile/package.json
+?? .foreman/
+?? app/[locale]/school/
+?? app/api/school/
+?? components/school/
+?? docs/school-platform/
+?? docs/verification-school-2026-10-20/
+?? lib/school/
+?? mobile/src/SchoolChat.tsx
+?? mobile/src/SchoolClient.ts
+?? mobile/src/SchoolLetter.ts
+?? mobile/src/SchoolPortal.tsx
+?? mobile/src/SchoolProgress.ts
+?? mobile/src/SchoolPush.ts
+?? mobile/src/SchoolRegression.test.cjs
+?? mobile/src/SchoolSync.ts
+?? scripts/school-README.md
+?? scripts/school-scanner.ts
+?? supabase/migration-school-platform.sql
+?? tests/

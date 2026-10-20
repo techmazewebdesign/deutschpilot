@@ -2,7 +2,7 @@ import { redirect } from "next/navigation";
 import { getTranslations } from "next-intl/server";
 import { AppLayout } from "@/components/app/app-layout";
 import { auth } from "@/lib/auth";
-import { createServerSupabaseClient } from "@/lib/supabaseServer";
+import { legacyLearningClient, requireQuery } from "@/lib/legacyLearningAccess";
 import { isPlaceholderLocale } from "@/i18n";
 import { Navigation } from "@/components/navigation";
 import { PlaceholderPage } from "@/components/placeholder-page";
@@ -30,13 +30,28 @@ export default async function AITrainerPage({ params }: { params: { locale: stri
 
   const t = await getTranslations({ locale, namespace: "aiTrainer" });
 
-  const supabase = createServerSupabaseClient();
+  const supabase = await legacyLearningClient(session.user.id);
   const [profileRes, placementRes] = await Promise.all([
-    supabase.from("profiles").select("full_name, german_level").eq("id", session.user.id).single(),
-    supabase.from("placement_tests").select("level_result").eq("user_id", session.user.id).order("created_at", { ascending: false }).limit(1).single(),
+    supabase
+      .from("profiles")
+      .select("full_name, german_level")
+      .eq("firebase_uid", session.user.id)
+      .maybeSingle(),
+    supabase
+      .from("placement_tests")
+      .select("level_result")
+      .eq("user_id", session.user.id)
+      .order("created_at", { ascending: false })
+      .limit(1)
+      .maybeSingle(),
   ]);
 
-  const userName = profileRes.data?.full_name ?? session.user.name ?? session.user.email?.split("@")[0] ?? t("defaultStudentName");
+  [profileRes, placementRes].forEach(requireQuery);
+  const userName =
+    profileRes.data?.full_name ??
+    session.user.name ??
+    session.user.email?.split("@")[0] ??
+    t("defaultStudentName");
   const userLevel = placementRes.data?.level_result ?? profileRes.data?.german_level ?? "A1";
   const trainerAccess = await getAITrainerAccess(session.user);
 

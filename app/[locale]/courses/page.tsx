@@ -1,3 +1,4 @@
+import { legacyLearningClient, requireQuery } from "@/lib/legacyLearningAccess";
 import { getTranslations } from "next-intl/server";
 import type { Metadata } from "next";
 import Link from "next/link";
@@ -11,7 +12,11 @@ import { auth } from "@/lib/auth";
 import { BookOpen, ChevronRight, Lock } from "lucide-react";
 import { SITE_URL, pageAlternates } from "@/lib/seo";
 
-export async function generateMetadata({ params }: { params: { locale: string } }): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: {
+  params: { locale: string };
+}): Promise<Metadata> {
   const t = await getTranslations({ locale: params.locale, namespace: "courses" });
   return {
     alternates: pageAlternates(params.locale, "/courses"),
@@ -58,20 +63,25 @@ export default async function CoursesPage({
 
   const supabase = createServerSupabaseClient();
 
-  let query = supabase.from("courses").select("*").eq("is_published", true);
+  let query = supabase
+    .from("courses")
+    .select("id, slug, title, description, level")
+    .eq("is_published", true);
   if (levelFilter && (LEVELS as readonly string[]).includes(levelFilter)) {
     query = query.eq("level", levelFilter);
   }
-  const { data: courses } = await query.order("level").order("title");
+  const { data: courses } = requireQuery(await query.order("level").order("title"));
 
   // If logged in, also fetch their progress to show on course cards
   let userProgress: { course_id: string; completed: boolean }[] = [];
   let userName = "";
   if (session?.user) {
-    const progressRes = await supabase
+    const privateDb = await legacyLearningClient(session.user.id);
+    const progressRes = await privateDb
       .from("student_progress")
       .select("course_id, completed")
       .eq("user_id", session.user.id);
+    requireQuery(progressRes);
     userProgress = progressRes.data ?? [];
     userName = session.user.name ?? session.user.email?.split("@")[0] ?? "Student";
   }
@@ -85,19 +95,22 @@ export default async function CoursesPage({
   }
 
   const courseList = (courses ?? []) as {
-    id: string; slug: string; title: string;
-    description: string | null; level: string;
+    id: string;
+    slug: string;
+    title: string;
+    description: string | null;
+    level: string;
     lesson_count?: number;
   }[];
 
   const filterBar = (
-    <div className="flex flex-wrap gap-2 mb-8">
+    <div className="mb-8 flex flex-wrap gap-2">
       <Link
         href={`/${locale}/courses`}
-        className={`px-4 py-1.5 rounded-full text-sm font-medium border transition-colors ${
+        className={`rounded-full border px-4 py-1.5 text-sm font-medium transition-colors ${
           !levelFilter
-            ? "bg-[#E0B873] text-[#05101E] border-[#E0B873]"
-            : "border-white/20 text-white/60 hover:text-white hover:border-white/40"
+            ? "border-[#E0B873] bg-[#E0B873] text-[#05101E]"
+            : "border-white/20 text-white/60 hover:border-white/40 hover:text-white"
         }`}
       >
         {tLearn("allLevels")}
@@ -106,10 +119,10 @@ export default async function CoursesPage({
         <Link
           key={lvl}
           href={`/${locale}/courses?level=${lvl}`}
-          className={`px-4 py-1.5 rounded-full text-sm font-medium border transition-colors ${
+          className={`rounded-full border px-4 py-1.5 text-sm font-medium transition-colors ${
             levelFilter === lvl
-              ? "bg-[#E0B873] text-[#05101E] border-[#E0B873]"
-              : "border-white/20 text-white/60 hover:text-white hover:border-white/40"
+              ? "border-[#E0B873] bg-[#E0B873] text-[#05101E]"
+              : "border-white/20 text-white/60 hover:border-white/40 hover:text-white"
           }`}
         >
           {lvl}
@@ -121,12 +134,12 @@ export default async function CoursesPage({
   const courseGrid = (
     <>
       {!courseList.length ? (
-        <div className="text-center py-16 text-white/40">
-          <BookOpen className="h-10 w-10 mx-auto mb-3 opacity-40" />
+        <div className="py-16 text-center text-white/40">
+          <BookOpen className="mx-auto mb-3 h-10 w-10 opacity-40" />
           <p>{tLearn("noCourses")}</p>
         </div>
       ) : (
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {courseList.map((course) => {
             const done = completedByCourse.get(course.id) ?? 0;
             const isStarted = done > 0;
@@ -134,29 +147,33 @@ export default async function CoursesPage({
               <Link
                 key={course.id}
                 href={`/${locale}/courses/${course.slug}`}
-                className="group relative rounded-2xl border border-white/10 bg-[#0A1E35]/70 hover:border-[#E0B873]/30 hover:bg-[#0A1E35] transition-all overflow-hidden flex flex-col"
+                className="group relative flex flex-col overflow-hidden rounded-2xl border border-white/10 bg-[#0A1E35]/70 transition-all hover:border-[#E0B873]/30 hover:bg-[#0A1E35]"
               >
                 <div className="h-1 w-full bg-gradient-to-r from-[#E0B873] to-[#C99B50]" />
-                <div className="p-5 flex-1 flex flex-col">
-                  <div className="flex items-center justify-between mb-3">
-                    <span className={`text-[10px] font-bold tracking-widest uppercase px-2 py-0.5 rounded-full border ${levelColors[course.level] ?? levelColors.A1}`}>
+                <div className="flex flex-1 flex-col p-5">
+                  <div className="mb-3 flex items-center justify-between">
+                    <span
+                      className={`rounded-full border px-2 py-0.5 text-[10px] font-bold uppercase tracking-widest ${levelColors[course.level] ?? levelColors.A1}`}
+                    >
                       {course.level}
                     </span>
                     {isStarted && session?.user && (
-                      <span className="text-[10px] text-[#E0B873]/70 font-medium">
+                      <span className="text-[10px] font-medium text-[#E0B873]/70">
                         {done} {t("doneShort")}
                       </span>
                     )}
                   </div>
-                  <h2 className="text-base font-serif font-bold text-white mb-1.5 group-hover:text-[#E0B873] transition-colors leading-snug">
+                  <h2 className="mb-1.5 font-serif text-base font-bold leading-snug text-white transition-colors group-hover:text-[#E0B873]">
                     {course.title}
                   </h2>
-                  <p className="text-xs text-white/45 leading-relaxed flex-1 line-clamp-3 mb-4">
+                  <p className="mb-4 line-clamp-3 flex-1 text-xs leading-relaxed text-white/45">
                     {course.description}
                   </p>
-                  <div className="flex items-center gap-1.5 text-[#E0B873] text-xs font-semibold">
+                  <div className="flex items-center gap-1.5 text-xs font-semibold text-[#E0B873]">
                     {session?.user
-                      ? (isStarted ? tLearn("continueCourse") : t("start"))
+                      ? isStarted
+                        ? tLearn("continueCourse")
+                        : t("start")
                       : tLearn("startCourse")}
                     <ChevronRight className="h-3.5 w-3.5" />
                   </div>
@@ -173,26 +190,22 @@ export default async function CoursesPage({
   if (session?.user) {
     return (
       <AppLayout locale={locale} userName={userName}>
-        <div className="px-5 lg:px-8 py-6 lg:py-8 max-w-5xl w-full mx-auto">
+        <div className="mx-auto w-full max-w-5xl px-5 py-6 lg:px-8 lg:py-8">
           <div className="mb-8">
-            <div className="flex items-center gap-2 mb-2">
+            <div className="mb-2 flex items-center gap-2">
               <BookOpen className="h-4 w-4 text-[#E0B873]" />
-              <span className="text-xs font-semibold text-[#E0B873]/70 uppercase tracking-[0.2em]">
+              <span className="text-xs font-semibold uppercase tracking-[0.2em] text-[#E0B873]/70">
                 {t("sectionLabel")}
               </span>
             </div>
-            <h1 className="text-3xl font-serif font-bold text-white mb-2">{t("title")}</h1>
-            <p className="text-sm text-white/45 max-w-xl">
-              {t("introLoggedIn")}
-            </p>
+            <h1 className="mb-2 font-serif text-3xl font-bold text-white">{t("title")}</h1>
+            <p className="max-w-xl text-sm text-white/45">{t("introLoggedIn")}</p>
           </div>
           {filterBar}
           {courseGrid}
-          <div className="mt-8 p-4 rounded-2xl bg-white/3 border border-white/6 flex items-start gap-3">
-            <Lock className="h-4 w-4 text-white/30 flex-shrink-0 mt-0.5" />
-            <p className="text-xs text-white/35">
-              {t("orderNote")}
-            </p>
+          <div className="bg-white/3 border-white/6 mt-8 flex items-start gap-3 rounded-2xl border p-4">
+            <Lock className="mt-0.5 h-4 w-4 flex-shrink-0 text-white/30" />
+            <p className="text-xs text-white/35">{t("orderNote")}</p>
           </div>
         </div>
       </AppLayout>
@@ -224,20 +237,22 @@ export default async function CoursesPage({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(coursesJsonLd) }}
         />
-        <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
-          <div className="text-center mb-12">
-            <p className="text-xs font-medium tracking-wider text-[#E0B873] uppercase mb-3">{t("subtitle")}</p>
-            <h1 className="text-4xl sm:text-5xl font-serif font-bold text-white mb-4">{t("title")}</h1>
-            <p className="text-[#C9D2DE] max-w-xl mx-auto">
-              {t("introPublic")}
+        <section className="mx-auto max-w-6xl px-4 py-20 sm:px-6 lg:px-8">
+          <div className="mb-12 text-center">
+            <p className="mb-3 text-xs font-medium uppercase tracking-wider text-[#E0B873]">
+              {t("subtitle")}
             </p>
+            <h1 className="mb-4 font-serif text-4xl font-bold text-white sm:text-5xl">
+              {t("title")}
+            </h1>
+            <p className="mx-auto max-w-xl text-[#C9D2DE]">{t("introPublic")}</p>
           </div>
           {filterBar}
           {courseGrid}
-          <div className="text-center mt-14">
+          <div className="mt-14 text-center">
             <Link
               href={`/${locale}/signup`}
-              className="inline-block bg-[#E0B873] text-[#072143] font-semibold px-8 py-3 rounded-xl hover:bg-[#C99B50] transition-colors"
+              className="inline-block rounded-xl bg-[#E0B873] px-8 py-3 font-semibold text-[#072143] transition-colors hover:bg-[#C99B50]"
             >
               {t("ctaStart")}
             </Link>

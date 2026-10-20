@@ -3,10 +3,26 @@
 import { useState, useCallback, useRef, useEffect } from "react";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
-import { createClient } from "@/lib/supabaseClient";
 import {
-  CheckCircle2, XCircle, Loader2, RotateCcw,
-  ArrowRight, Trophy, Zap, Target, Sparkles, PenLine, Mic, Square, Play, Pause,
+  saveLearningProgress,
+  learningProgressNotice,
+  type SchoolSyncStatus,
+} from "@/lib/learningProgressClient";
+import {
+  CheckCircle2,
+  XCircle,
+  Loader2,
+  RotateCcw,
+  ArrowRight,
+  Trophy,
+  Zap,
+  Target,
+  Sparkles,
+  PenLine,
+  Mic,
+  Square,
+  Play,
+  Pause,
 } from "lucide-react";
 
 interface Exercise {
@@ -63,9 +79,9 @@ function WordOrderExercise({
   return (
     <div className="space-y-4">
       {/* Answer area */}
-      <div className="min-h-[52px] flex flex-wrap gap-2 p-3 rounded-xl border border-[#E0B873]/30 bg-[#E0B873]/5">
+      <div className="flex min-h-[52px] flex-wrap gap-2 rounded-xl border border-[#E0B873]/30 bg-[#E0B873]/5 p-3">
         {chosen.length === 0 && (
-          <span className="text-xs text-white/20 self-center px-1">
+          <span className="self-center px-1 text-xs text-white/20">
             {answer || t("wordOrderHint")}
           </span>
         )}
@@ -73,7 +89,7 @@ function WordOrderExercise({
           <button
             key={item.id}
             onClick={() => unpick(item)}
-            className="px-3 py-1.5 rounded-lg bg-[#E0B873]/20 border border-[#E0B873]/40 text-sm text-white font-medium hover:bg-red-500/20 hover:border-red-500/40 transition-colors"
+            className="rounded-lg border border-[#E0B873]/40 bg-[#E0B873]/20 px-3 py-1.5 text-sm font-medium text-white transition-colors hover:border-red-500/40 hover:bg-red-500/20"
           >
             {item.w}
           </button>
@@ -85,7 +101,7 @@ function WordOrderExercise({
           <button
             key={item.id}
             onClick={() => pick(item)}
-            className="px-3 py-1.5 rounded-lg bg-white/5 border border-white/15 text-sm text-white/80 hover:border-[#E0B873]/40 hover:text-white transition-colors"
+            className="rounded-lg border border-white/15 bg-white/5 px-3 py-1.5 text-sm text-white/80 transition-colors hover:border-[#E0B873]/40 hover:text-white"
           >
             {item.w}
           </button>
@@ -170,14 +186,14 @@ function WritingPromptExercise({
         disabled={requested}
         rows={5}
         placeholder={t("writingPlaceholder")}
-        className="w-full rounded-xl bg-white/5 border border-white/10 text-white px-4 py-3 text-sm placeholder:text-white/20 focus:outline-none focus:border-[#E0B873]/50 transition-all resize-none disabled:opacity-70"
+        className="w-full resize-none rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white transition-all placeholder:text-white/20 focus:border-[#E0B873]/50 focus:outline-none disabled:opacity-70"
       />
 
       {!requested && (
         <button
           onClick={getFeedback}
           disabled={!text.trim() || loading}
-          className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#E0B873] text-[#071424] text-sm font-bold hover:bg-[#C99B50] transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+          className="flex items-center gap-2 rounded-xl bg-[#E0B873] px-5 py-2.5 text-sm font-bold text-[#071424] transition-colors hover:bg-[#C99B50] disabled:cursor-not-allowed disabled:opacity-40"
         >
           <Sparkles className="h-4 w-4" />
           {t("getAiFeedback")}
@@ -185,20 +201,20 @@ function WritingPromptExercise({
       )}
 
       {requested && (
-        <div className="rounded-xl border border-[#E0B873]/25 bg-[#E0B873]/8 p-4">
-          <div className="flex items-center gap-2 mb-2">
+        <div className="bg-[#E0B873]/8 rounded-xl border border-[#E0B873]/25 p-4">
+          <div className="mb-2 flex items-center gap-2">
             <Sparkles className="h-3.5 w-3.5 text-[#E0B873]" />
             <span className="text-[10px] font-bold uppercase tracking-[0.15em] text-[#E0B873]/70">
               {t("aiFeedbackLabel")}
             </span>
           </div>
-          <p className="text-sm text-white/85 whitespace-pre-wrap leading-relaxed">
+          <p className="whitespace-pre-wrap text-sm leading-relaxed text-white/85">
             {feedback || (
-              <span className="flex gap-1 items-center h-5">
+              <span className="flex h-5 items-center gap-1">
                 {[0, 1, 2].map((i) => (
                   <span
                     key={i}
-                    className="h-2 w-2 rounded-full bg-[#E0B873]/50 animate-bounce inline-block"
+                    className="inline-block h-2 w-2 animate-bounce rounded-full bg-[#E0B873]/50"
                     style={{ animationDelay: `${i * 0.15}s` }}
                   />
                 ))}
@@ -209,23 +225,21 @@ function WritingPromptExercise({
       )}
 
       {requested && !loading && sampleAnswer && (
-        <div className="rounded-xl border border-white/10 bg-white/3 p-4">
-          <p className="text-[10px] font-bold uppercase tracking-[0.15em] text-white/40 mb-1.5">
+        <div className="bg-white/3 rounded-xl border border-white/10 p-4">
+          <p className="mb-1.5 text-[10px] font-bold uppercase tracking-[0.15em] text-white/40">
             {t("sampleAnswer")}
           </p>
-          <p className="text-sm text-white/60 italic">{sampleAnswer}</p>
+          <p className="text-sm italic text-white/60">{sampleAnswer}</p>
         </div>
       )}
 
-      {tip && (
-        <p className="text-xs text-white/35 italic">{tip}</p>
-      )}
+      {tip && <p className="text-xs italic text-white/35">{tip}</p>}
 
       {requested && !loading && (
         <div className="flex justify-end">
           <button
             onClick={() => onContinue(text)}
-            className="flex items-center gap-2 px-6 py-2.5 rounded-xl bg-[#E0B873] text-[#071424] text-sm font-bold hover:bg-[#C99B50] transition-colors"
+            className="flex items-center gap-2 rounded-xl bg-[#E0B873] px-6 py-2.5 text-sm font-bold text-[#071424] transition-colors hover:bg-[#C99B50]"
           >
             {t("continue")}
             <ArrowRight className="h-4 w-4" />
@@ -314,18 +328,18 @@ function SpeakingPromptExercise({
 
   return (
     <div className="space-y-4">
-      <div className="rounded-xl border border-white/10 bg-white/3 p-4">
-        <p className="text-[10px] font-bold uppercase tracking-[0.15em] text-white/40 mb-1.5">
+      <div className="bg-white/3 rounded-xl border border-white/10 p-4">
+        <p className="mb-1.5 text-[10px] font-bold uppercase tracking-[0.15em] text-white/40">
           {t("modelAnswer")}
         </p>
-        <p className="text-sm text-white/60 italic">{modelAnswer}</p>
+        <p className="text-sm italic text-white/60">{modelAnswer}</p>
       </div>
 
       <div className="flex items-center gap-3">
         {!recording ? (
           <button
             onClick={startRecording}
-            className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#E0B873] text-[#071424] text-sm font-bold hover:bg-[#C99B50] transition-colors"
+            className="flex items-center gap-2 rounded-xl bg-[#E0B873] px-5 py-2.5 text-sm font-bold text-[#071424] transition-colors hover:bg-[#C99B50]"
           >
             <Mic className="h-4 w-4" />
             {hasRecording ? t("recordAgain") : t("record")}
@@ -333,18 +347,18 @@ function SpeakingPromptExercise({
         ) : (
           <button
             onClick={stopRecording}
-            className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-red-500/90 text-white text-sm font-bold hover:bg-red-500 transition-colors"
+            className="flex items-center gap-2 rounded-xl bg-red-500/90 px-5 py-2.5 text-sm font-bold text-white transition-colors hover:bg-red-500"
           >
             <Square className="h-3.5 w-3.5" />
             {t("stop")}
-            <span className="h-2 w-2 rounded-full bg-white animate-pulse" />
+            <span className="h-2 w-2 animate-pulse rounded-full bg-white" />
           </button>
         )}
 
         {hasRecording && audioUrl && (
           <button
             onClick={togglePlayback}
-            className="flex items-center gap-2 px-5 py-2.5 rounded-xl border border-[#E0B873]/30 text-[#E0B873] text-sm font-medium hover:bg-[#E0B873]/10 transition-colors"
+            className="flex items-center gap-2 rounded-xl border border-[#E0B873]/30 px-5 py-2.5 text-sm font-medium text-[#E0B873] transition-colors hover:bg-[#E0B873]/10"
           >
             {playing ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4" />}
             {t("playBack")}
@@ -363,21 +377,17 @@ function SpeakingPromptExercise({
         />
       )}
 
-      {permissionError && (
-        <p className="text-xs text-red-300">{permissionError}</p>
-      )}
+      {permissionError && <p className="text-xs text-red-300">{permissionError}</p>}
 
-      <p className="text-xs text-white/35 italic">
-        {t("recordingNotSaved")}
-      </p>
+      <p className="text-xs italic text-white/35">{t("recordingNotSaved")}</p>
 
-      {tip && <p className="text-xs text-white/35 italic">{tip}</p>}
+      {tip && <p className="text-xs italic text-white/35">{tip}</p>}
 
       {hasRecording && (
         <div className="flex justify-end">
           <button
             onClick={onContinue}
-            className="flex items-center gap-2 px-6 py-2.5 rounded-xl bg-[#E0B873] text-[#071424] text-sm font-bold hover:bg-[#C99B50] transition-colors"
+            className="flex items-center gap-2 rounded-xl bg-[#E0B873] px-6 py-2.5 text-sm font-bold text-[#071424] transition-colors hover:bg-[#C99B50]"
           >
             {t("continue")}
             <ArrowRight className="h-4 w-4" />
@@ -389,7 +399,14 @@ function SpeakingPromptExercise({
 }
 
 // ── Main Quiz ─────────────────────────────────────────────────────────────────
-export function Quiz({ exercises, lessonId, courseId, userId, locale, lessonSlug, courseLevel = "A1" }: Props) {
+export function Quiz({
+  exercises,
+  lessonId,
+  courseId,
+  locale,
+  lessonSlug,
+  courseLevel = "A1",
+}: Props) {
   const t = useTranslations("learn");
 
   const [currentIdx, setCurrentIdx] = useState(0);
@@ -397,6 +414,8 @@ export function Quiz({ exercises, lessonId, courseId, userId, locale, lessonSlug
   const [answerState, setAnswerState] = useState<AnswerState>("idle");
   const [saving, setSaving] = useState(false);
   const [done, setDone] = useState(false);
+  const [saveError, setSaveError] = useState("");
+  const [schoolSync, setSchoolSync] = useState<SchoolSyncStatus | null>(null);
   const [score, setScore] = useState(0);
 
   const current = exercises[currentIdx];
@@ -412,7 +431,8 @@ export function Quiz({ exercises, lessonId, courseId, userId, locale, lessonSlug
   // itself (AI feedback / self-review), not an exact match.
   const isCorrectForScoring = useCallback(
     (ex: Exercise, given: string) => {
-      if (ex.type === "writing_prompt" || ex.type === "speaking_prompt") return given.trim().length > 0;
+      if (ex.type === "writing_prompt" || ex.type === "speaking_prompt")
+        return given.trim().length > 0;
       return checkAnswer(given, ex.correct_answer);
     },
     [checkAnswer]
@@ -427,6 +447,29 @@ export function Quiz({ exercises, lessonId, courseId, userId, locale, lessonSlug
     if (!currentAnswer || answerState !== "idle") return;
     const correct = checkAnswer(currentAnswer, current.correct_answer);
     setAnswerState(correct ? "correct" : "wrong");
+  }
+
+  async function persistResult(pct: number) {
+    setSaving(true);
+    setSaveError("");
+    setSchoolSync(null);
+    try {
+      const result = await saveLearningProgress({
+        lessonId,
+        courseId,
+        score: pct,
+        completed: pct >= 60,
+      });
+      setSchoolSync(result.schoolSync);
+    } catch {
+      setSaveError(
+        locale === "de"
+          ? "Ihr Ergebnis wurde nicht gespeichert. Bitte anmelden und erneut versuchen."
+          : "Your result was not saved. Please sign in and retry."
+      );
+    } finally {
+      setSaving(false);
+    }
   }
 
   async function next(pendingAnswer?: { id: string; text: string }) {
@@ -446,21 +489,8 @@ export function Quiz({ exercises, lessonId, courseId, userId, locale, lessonSlug
       const pct = totalQ > 0 ? Math.round((correctCount / totalQ) * 100) : 0;
       setScore(pct);
 
-      const supabase = createClient();
-      await supabase.from("student_progress").upsert(
-        {
-          user_id: userId,
-          lesson_id: lessonId,
-          course_id: courseId,
-          score: pct,
-          completed: pct >= 60,
-          updated_at: new Date().toISOString(),
-        },
-        { onConflict: "user_id,lesson_id" }
-      );
-
-      setSaving(false);
       setDone(true);
+      await persistResult(pct);
     }
   }
 
@@ -470,15 +500,20 @@ export function Quiz({ exercises, lessonId, courseId, userId, locale, lessonSlug
     setAnswerState("idle");
     setDone(false);
     setScore(0);
+    setSaveError("");
+    setSchoolSync(null);
   }
 
   // ── Empty state ───────────────────────────────────────────────────────────
   if (exercises.length === 0) {
     return (
-      <div className="text-center py-16 text-white/40">
-        <Target className="h-10 w-10 mx-auto mb-3 opacity-30" />
+      <div className="py-16 text-center text-white/40">
+        <Target className="mx-auto mb-3 h-10 w-10 opacity-30" />
         <p className="mb-4">{t("noExercises")}</p>
-        <Link href={`/${locale}/lessons/${lessonSlug}`} className="text-sm text-[#E0B873] hover:underline">
+        <Link
+          href={`/${locale}/lessons/${lessonSlug}`}
+          className="text-sm text-[#E0B873] hover:underline"
+        >
           {t("backToLesson")}
         </Link>
       </div>
@@ -493,58 +528,83 @@ export function Quiz({ exercises, lessonId, courseId, userId, locale, lessonSlug
 
     return (
       <div className="space-y-6">
+        {saving && (
+          <p role="status" className="text-sm text-white/70">
+            {locale === "de" ? "Ergebnis wird gespeichert…" : "Saving result…"}
+          </p>
+        )}
+        {saveError && (
+          <p role="alert" className="text-sm text-red-300">
+            {saveError}
+          </p>
+        )}
+        {schoolSync && (
+          <p role="status" className="text-sm text-white/70">
+            {learningProgressNotice(schoolSync, locale)}
+          </p>
+        )}
+        {(saveError || schoolSync === "pending") && (
+          <button
+            disabled={saving}
+            onClick={() => void persistResult(score)}
+            className="text-sm text-[#E0B873] underline"
+          >
+            {locale === "de" ? "Speichern erneut versuchen" : "Retry saving"}
+          </button>
+        )}
+
         {/* Score hero */}
-        <div className={`relative overflow-hidden rounded-2xl border p-8 text-center ${
-          perfect ? "border-[#E0B873]/40 bg-gradient-to-br from-[#E0B873]/15 to-[#E0B873]/5"
-          : passed ? "border-[#E0B873]/25 bg-[#E0B873]/8"
-          : "border-red-500/30 bg-red-500/8"
-        }`}>
-          {perfect && (
-            <div className="absolute top-4 right-4 text-2xl">🏆</div>
-          )}
-          <div className={`text-6xl font-bold mb-2 ${passed ? "text-[#E0B873]" : "text-red-400"}`}>
+        <div
+          className={`relative overflow-hidden rounded-2xl border p-8 text-center ${
+            perfect
+              ? "border-[#E0B873]/40 bg-gradient-to-br from-[#E0B873]/15 to-[#E0B873]/5"
+              : passed
+                ? "bg-[#E0B873]/8 border-[#E0B873]/25"
+                : "bg-red-500/8 border-red-500/30"
+          }`}
+        >
+          {perfect && <div className="absolute right-4 top-4 text-2xl">🏆</div>}
+          <div className={`mb-2 text-6xl font-bold ${passed ? "text-[#E0B873]" : "text-red-400"}`}>
             {score}%
           </div>
-          <p className="text-white font-semibold text-lg mb-1">
+          <p className="mb-1 text-lg font-semibold text-white">
             {correctCount} / {totalQ} {t("correct")}
           </p>
-          <p className={`text-sm mt-2 ${passed ? "text-[#E0B873]/80" : "text-red-300/80"}`}>
-            {perfect
-              ? t("perfectScore")
-              : passed
-              ? t("wellDone")
-              : t("notQuite")}
+          <p className={`mt-2 text-sm ${passed ? "text-[#E0B873]/80" : "text-red-300/80"}`}>
+            {perfect ? t("perfectScore") : passed ? t("wellDone") : t("notQuite")}
           </p>
         </div>
 
         {/* Per-question review */}
         <div className="space-y-3">
-          <h3 className="text-sm font-semibold text-white/60 uppercase tracking-wider">
+          <h3 className="text-sm font-semibold uppercase tracking-wider text-white/60">
             {t("review")}
           </h3>
           {exercises.map((ex, idx) => {
             const given = answers[ex.id] ?? "";
             const correct = isCorrectForScoring(ex, given);
             return (
-              <div key={ex.id} className={`rounded-xl border p-4 ${correct ? "border-[#E0B873]/20 bg-[#E0B873]/5" : "border-red-500/20 bg-red-500/5"}`}>
+              <div
+                key={ex.id}
+                className={`rounded-xl border p-4 ${correct ? "border-[#E0B873]/20 bg-[#E0B873]/5" : "border-red-500/20 bg-red-500/5"}`}
+              >
                 <div className="flex items-start gap-3">
-                  {correct
-                    ? <CheckCircle2 className="h-4 w-4 text-[#E0B873] flex-shrink-0 mt-0.5" />
-                    : <XCircle className="h-4 w-4 text-red-400 flex-shrink-0 mt-0.5" />
-                  }
-                  <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium text-white mb-1">
+                  {correct ? (
+                    <CheckCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0 text-[#E0B873]" />
+                  ) : (
+                    <XCircle className="mt-0.5 h-4 w-4 flex-shrink-0 text-red-400" />
+                  )}
+                  <div className="min-w-0 flex-1">
+                    <p className="mb-1 text-sm font-medium text-white">
                       {idx + 1}. {ex.question}
                     </p>
                     {ex.type === "writing_prompt" ? (
-                      <p className="text-xs text-white/50 mt-1 whitespace-pre-wrap">{given}</p>
+                      <p className="mt-1 whitespace-pre-wrap text-xs text-white/50">{given}</p>
                     ) : ex.type === "speaking_prompt" ? (
-                      <p className="text-xs text-white/35 mt-1 italic">
-                        {t("practiceCompleted")}
-                      </p>
+                      <p className="mt-1 text-xs italic text-white/35">{t("practiceCompleted")}</p>
                     ) : (
                       !correct && (
-                        <div className="space-y-0.5 mt-1">
+                        <div className="mt-1 space-y-0.5">
                           <p className="text-xs text-red-300">
                             {t("yourAnswerLabel")}{" "}
                             <span className="font-medium">{given || "–"}</span>
@@ -557,7 +617,7 @@ export function Quiz({ exercises, lessonId, courseId, userId, locale, lessonSlug
                       )
                     )}
                     {ex.explanation && (
-                      <p className="text-xs text-white/35 mt-1.5 italic">{ex.explanation}</p>
+                      <p className="mt-1.5 text-xs italic text-white/35">{ex.explanation}</p>
                     )}
                   </div>
                 </div>
@@ -570,14 +630,15 @@ export function Quiz({ exercises, lessonId, courseId, userId, locale, lessonSlug
         <div className="flex flex-wrap gap-3">
           <button
             onClick={reset}
-            className="flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-medium border border-white/15 text-white/60 hover:text-white hover:border-white/30 transition-colors"
+            disabled={saving}
+            className="flex items-center gap-2 rounded-xl border border-white/15 px-5 py-2.5 text-sm font-medium text-white/60 transition-colors hover:border-white/30 hover:text-white"
           >
             <RotateCcw className="h-4 w-4" />
             {t("tryAgain")}
           </button>
           <Link
             href={`/${locale}/lessons/${lessonSlug}`}
-            className="px-5 py-2.5 rounded-xl text-sm font-medium border border-[#E0B873]/30 text-[#E0B873] hover:bg-[#E0B873]/10 transition-colors"
+            className="rounded-xl border border-[#E0B873]/30 px-5 py-2.5 text-sm font-medium text-[#E0B873] transition-colors hover:bg-[#E0B873]/10"
           >
             {t("backToLesson")}
           </Link>
@@ -587,7 +648,7 @@ export function Quiz({ exercises, lessonId, courseId, userId, locale, lessonSlug
   }
 
   // ── Question screen ───────────────────────────────────────────────────────
-  const progress = ((currentIdx) / totalQ) * 100;
+  const progress = (currentIdx / totalQ) * 100;
   const isWordOrder = current.type === "word_order";
   const isMultipleChoice = current.type === "multiple_choice" && Array.isArray(current.options);
   const isWritingPrompt = current.type === "writing_prompt";
@@ -604,7 +665,7 @@ export function Quiz({ exercises, lessonId, courseId, userId, locale, lessonSlug
 
   const progressBar = (
     <div>
-      <div className="flex items-center justify-between text-xs text-white/35 mb-2">
+      <div className="mb-2 flex items-center justify-between text-xs text-white/35">
         <span>{t("questionOf", { current: currentIdx + 1, total: totalQ })}</span>
         <div className="flex gap-1">
           {exercises.map((_, i) => {
@@ -612,19 +673,25 @@ export function Quiz({ exercises, lessonId, courseId, userId, locale, lessonSlug
             const isDone = ans !== undefined && i < currentIdx;
             const isRight = isDone && isCorrectForScoring(exercises[i], ans ?? "");
             return (
-              <div key={i} className={`h-1.5 w-5 rounded-full transition-colors ${
-                i === currentIdx ? "bg-[#E0B873]" :
-                isDone && isRight ? "bg-emerald-400/70" :
-                isDone ? "bg-red-400/70" :
-                "bg-white/10"
-              }`} />
+              <div
+                key={i}
+                className={`h-1.5 w-5 rounded-full transition-colors ${
+                  i === currentIdx
+                    ? "bg-[#E0B873]"
+                    : isDone && isRight
+                      ? "bg-emerald-400/70"
+                      : isDone
+                        ? "bg-red-400/70"
+                        : "bg-white/10"
+                }`}
+              />
             );
           })}
         </div>
       </div>
-      <div className="h-1 bg-white/8 rounded-full overflow-hidden">
+      <div className="bg-white/8 h-1 overflow-hidden rounded-full">
         <div
-          className="h-full bg-gradient-to-r from-[#E0B873] to-[#C99B50] rounded-full transition-all duration-500"
+          className="h-full rounded-full bg-gradient-to-r from-[#E0B873] to-[#C99B50] transition-all duration-500"
           style={{ width: `${progress}%` }}
         />
       </div>
@@ -636,13 +703,13 @@ export function Quiz({ exercises, lessonId, courseId, userId, locale, lessonSlug
       <div className="space-y-5">
         {progressBar}
         <div className="rounded-2xl border border-white/10 bg-[#0A1E35]/60 p-6">
-          <div className="flex items-center gap-2 mb-4">
-            <span className="flex items-center gap-1.5 text-[9px] font-bold uppercase tracking-[0.2em] text-[#E0B873]/50 bg-[#E0B873]/8 px-2 py-1 rounded-md">
+          <div className="mb-4 flex items-center gap-2">
+            <span className="bg-[#E0B873]/8 flex items-center gap-1.5 rounded-md px-2 py-1 text-[9px] font-bold uppercase tracking-[0.2em] text-[#E0B873]/50">
               <PenLine className="h-3 w-3" />
               {t("writingPromptLabel")}
             </span>
           </div>
-          <p className="text-base font-semibold text-white leading-relaxed mb-5">
+          <p className="mb-5 text-base font-semibold leading-relaxed text-white">
             {current.question}
           </p>
           <WritingPromptExercise
@@ -667,13 +734,13 @@ export function Quiz({ exercises, lessonId, courseId, userId, locale, lessonSlug
       <div className="space-y-5">
         {progressBar}
         <div className="rounded-2xl border border-white/10 bg-[#0A1E35]/60 p-6">
-          <div className="flex items-center gap-2 mb-4">
-            <span className="flex items-center gap-1.5 text-[9px] font-bold uppercase tracking-[0.2em] text-[#E0B873]/50 bg-[#E0B873]/8 px-2 py-1 rounded-md">
+          <div className="mb-4 flex items-center gap-2">
+            <span className="bg-[#E0B873]/8 flex items-center gap-1.5 rounded-md px-2 py-1 text-[9px] font-bold uppercase tracking-[0.2em] text-[#E0B873]/50">
               <Mic className="h-3 w-3" />
               {t("speakingPromptLabel")}
             </span>
           </div>
-          <p className="text-base font-semibold text-white leading-relaxed mb-5">
+          <p className="mb-5 text-base font-semibold leading-relaxed text-white">
             {current.question}
           </p>
           <SpeakingPromptExercise
@@ -696,7 +763,7 @@ export function Quiz({ exercises, lessonId, courseId, userId, locale, lessonSlug
     <div className="space-y-5">
       {/* Progress bar */}
       <div>
-        <div className="flex items-center justify-between text-xs text-white/35 mb-2">
+        <div className="mb-2 flex items-center justify-between text-xs text-white/35">
           <span>{t("questionOf", { current: currentIdx + 1, total: totalQ })}</span>
           <div className="flex gap-1">
             {exercises.map((_, i) => {
@@ -704,42 +771,52 @@ export function Quiz({ exercises, lessonId, courseId, userId, locale, lessonSlug
               const isDone = ans !== undefined && i < currentIdx;
               const isRight = isDone && isCorrectForScoring(exercises[i], ans ?? "");
               return (
-                <div key={i} className={`h-1.5 w-5 rounded-full transition-colors ${
-                  i === currentIdx ? "bg-[#E0B873]" :
-                  isDone && isRight ? "bg-emerald-400/70" :
-                  isDone ? "bg-red-400/70" :
-                  "bg-white/10"
-                }`} />
+                <div
+                  key={i}
+                  className={`h-1.5 w-5 rounded-full transition-colors ${
+                    i === currentIdx
+                      ? "bg-[#E0B873]"
+                      : isDone && isRight
+                        ? "bg-emerald-400/70"
+                        : isDone
+                          ? "bg-red-400/70"
+                          : "bg-white/10"
+                  }`}
+                />
               );
             })}
           </div>
         </div>
-        <div className="h-1 bg-white/8 rounded-full overflow-hidden">
+        <div className="bg-white/8 h-1 overflow-hidden rounded-full">
           <div
-            className="h-full bg-gradient-to-r from-[#E0B873] to-[#C99B50] rounded-full transition-all duration-500"
+            className="h-full rounded-full bg-gradient-to-r from-[#E0B873] to-[#C99B50] transition-all duration-500"
             style={{ width: `${progress}%` }}
           />
         </div>
       </div>
 
       {/* Question card */}
-      <div className={`rounded-2xl border p-6 transition-all duration-300 ${
-        answerState === "correct" ? "border-emerald-400/40 bg-emerald-400/8" :
-        answerState === "wrong" ? "border-red-400/40 bg-red-400/8" :
-        "border-white/10 bg-[#0A1E35]/60"
-      }`}>
+      <div
+        className={`rounded-2xl border p-6 transition-all duration-300 ${
+          answerState === "correct"
+            ? "bg-emerald-400/8 border-emerald-400/40"
+            : answerState === "wrong"
+              ? "bg-red-400/8 border-red-400/40"
+              : "border-white/10 bg-[#0A1E35]/60"
+        }`}
+      >
         {/* Type badge */}
-        <div className="flex items-center gap-2 mb-4">
-          <span className="text-[9px] font-bold uppercase tracking-[0.2em] text-[#E0B873]/50 bg-[#E0B873]/8 px-2 py-1 rounded-md">
+        <div className="mb-4 flex items-center gap-2">
+          <span className="bg-[#E0B873]/8 rounded-md px-2 py-1 text-[9px] font-bold uppercase tracking-[0.2em] text-[#E0B873]/50">
             {isWordOrder
               ? t("buildSentence")
               : isMultipleChoice
-              ? t("chooseAnswer")
-              : t("fillBlank")}
+                ? t("chooseAnswer")
+                : t("fillBlank")}
           </span>
         </div>
 
-        <p className="text-base font-semibold text-white leading-relaxed mb-5">
+        <p className="mb-5 text-base font-semibold leading-relaxed text-white">
           {current.question}
         </p>
 
@@ -748,7 +825,8 @@ export function Quiz({ exercises, lessonId, courseId, userId, locale, lessonSlug
           <div className="space-y-2.5">
             {current.options!.map((opt) => {
               const isSelected = currentAnswer === opt;
-              const isCorrectOpt = opt.trim().toLowerCase() === current.correct_answer.trim().toLowerCase();
+              const isCorrectOpt =
+                opt.trim().toLowerCase() === current.correct_answer.trim().toLowerCase();
               let cls = "w-full text-left px-4 py-3 rounded-xl border text-sm transition-all ";
               if (answerState === "idle") {
                 cls += isSelected
@@ -760,9 +838,18 @@ export function Quiz({ exercises, lessonId, courseId, userId, locale, lessonSlug
                 else cls += "border-white/6 bg-white/2 text-white/30";
               }
               return (
-                <button key={opt} onClick={() => handleAnswer(opt)} disabled={answerState !== "idle"} className={cls}>
-                  {answerState !== "idle" && isCorrectOpt && <CheckCircle2 className="h-4 w-4 inline mr-2 text-emerald-400" />}
-                  {answerState !== "idle" && isSelected && !isCorrectOpt && <XCircle className="h-4 w-4 inline mr-2 text-red-400" />}
+                <button
+                  key={opt}
+                  onClick={() => handleAnswer(opt)}
+                  disabled={answerState !== "idle"}
+                  className={cls}
+                >
+                  {answerState !== "idle" && isCorrectOpt && (
+                    <CheckCircle2 className="mr-2 inline h-4 w-4 text-emerald-400" />
+                  )}
+                  {answerState !== "idle" && isSelected && !isCorrectOpt && (
+                    <XCircle className="mr-2 inline h-4 w-4 text-red-400" />
+                  )}
                   {opt}
                 </button>
               );
@@ -776,7 +863,7 @@ export function Quiz({ exercises, lessonId, courseId, userId, locale, lessonSlug
               onAnswer={handleAnswer}
             />
           ) : (
-            <div className="p-3 rounded-xl border border-[#E0B873]/30 bg-[#E0B873]/5">
+            <div className="rounded-xl border border-[#E0B873]/30 bg-[#E0B873]/5 p-3">
               <p className="text-sm text-white">{currentAnswer}</p>
             </div>
           )
@@ -785,30 +872,39 @@ export function Quiz({ exercises, lessonId, courseId, userId, locale, lessonSlug
             type="text"
             value={currentAnswer}
             onChange={(e) => handleAnswer(e.target.value)}
-            onKeyDown={(e) => e.key === "Enter" && answerState === "idle" && currentAnswer && confirm()}
+            onKeyDown={(e) =>
+              e.key === "Enter" && answerState === "idle" && currentAnswer && confirm()
+            }
             disabled={answerState !== "idle"}
             placeholder={t("answerPlaceholderEllipsis")}
-            className="w-full rounded-xl bg-white/5 border border-white/10 text-white px-4 py-3 text-sm placeholder:text-white/20 focus:outline-none focus:border-[#E0B873]/50 transition-all disabled:opacity-60"
+            className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white transition-all placeholder:text-white/20 focus:border-[#E0B873]/50 focus:outline-none disabled:opacity-60"
           />
         )}
 
         {/* Feedback */}
         {answerState !== "idle" && (
-          <div className={`mt-4 flex items-start gap-2.5 p-3.5 rounded-xl ${
-            answerState === "correct" ? "bg-emerald-400/10 border border-emerald-400/25" : "bg-red-400/10 border border-red-400/25"
-          }`}>
-            {answerState === "correct"
-              ? <CheckCircle2 className="h-4 w-4 text-emerald-400 flex-shrink-0 mt-0.5" />
-              : <XCircle className="h-4 w-4 text-red-400 flex-shrink-0 mt-0.5" />
-            }
+          <div
+            className={`mt-4 flex items-start gap-2.5 rounded-xl p-3.5 ${
+              answerState === "correct"
+                ? "border border-emerald-400/25 bg-emerald-400/10"
+                : "border border-red-400/25 bg-red-400/10"
+            }`}
+          >
+            {answerState === "correct" ? (
+              <CheckCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0 text-emerald-400" />
+            ) : (
+              <XCircle className="mt-0.5 h-4 w-4 flex-shrink-0 text-red-400" />
+            )}
             <div>
-              <p className={`text-sm font-semibold ${answerState === "correct" ? "text-emerald-300" : "text-red-300"}`}>
+              <p
+                className={`text-sm font-semibold ${answerState === "correct" ? "text-emerald-300" : "text-red-300"}`}
+              >
                 {answerState === "correct"
                   ? t("correctExclaim")
                   : t("wrongAnswer", { answer: current.correct_answer })}
               </p>
               {current.explanation && (
-                <p className="text-xs text-white/50 mt-1">{current.explanation}</p>
+                <p className="mt-1 text-xs text-white/50">{current.explanation}</p>
               )}
             </div>
           </div>
@@ -821,7 +917,7 @@ export function Quiz({ exercises, lessonId, courseId, userId, locale, lessonSlug
           <button
             onClick={confirm}
             disabled={!currentAnswer}
-            className="flex items-center gap-2 px-6 py-2.5 rounded-xl bg-[#E0B873] text-[#071424] text-sm font-bold hover:bg-[#C99B50] transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+            className="flex items-center gap-2 rounded-xl bg-[#E0B873] px-6 py-2.5 text-sm font-bold text-[#071424] transition-colors hover:bg-[#C99B50] disabled:cursor-not-allowed disabled:opacity-40"
           >
             {t("check")}
             <Zap className="h-4 w-4" />
@@ -830,13 +926,16 @@ export function Quiz({ exercises, lessonId, courseId, userId, locale, lessonSlug
           <button
             onClick={() => next()}
             disabled={saving}
-            className="flex items-center gap-2 px-6 py-2.5 rounded-xl bg-[#E0B873] text-[#071424] text-sm font-bold hover:bg-[#C99B50] transition-colors"
+            className="flex items-center gap-2 rounded-xl bg-[#E0B873] px-6 py-2.5 text-sm font-bold text-[#071424] transition-colors hover:bg-[#C99B50]"
           >
             {saving && <Loader2 className="h-4 w-4 animate-spin" />}
-            {currentIdx < totalQ - 1
-              ? t("next")
-              : t("results")}
-            {!saving && (currentIdx < totalQ - 1 ? <ArrowRight className="h-4 w-4" /> : <Trophy className="h-4 w-4" />)}
+            {currentIdx < totalQ - 1 ? t("next") : t("results")}
+            {!saving &&
+              (currentIdx < totalQ - 1 ? (
+                <ArrowRight className="h-4 w-4" />
+              ) : (
+                <Trophy className="h-4 w-4" />
+              ))}
           </button>
         )}
       </div>

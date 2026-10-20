@@ -21,7 +21,13 @@
     "postinstall": "prisma generate",
     "prepare": "husky || true",
     "test:fernusg": "tsx --test lib/fernusg.test.ts",
-    "test:release": "node --test scripts/release-regression.test.cjs"
+    "test:release": "node --test scripts/release-regression.test.cjs",
+    "test:school": "tsx --test tests/school/*.test.ts",
+    "test:school:postgres": "tsx --test tests/school/normalized-postgres.test.ts",
+    "test:legacy-access": "tsx --test tests/legacy-private-access.test.ts",
+    "test:learning-progress": "tsx --test tests/learning-progress.test.ts",
+    "check:school-activation": "tsx scripts/school-check-activation.ts",
+    "package:school": "node scripts/package-school-module.mjs"
   },
   "dependencies": {
     "@capacitor/android": "^8.5.0",

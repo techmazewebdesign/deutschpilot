@@ -11,6 +11,7 @@
  * accounts) — if no Firebase user exists for that email, it returns
  * a clear 404 rather than creating one.
  */
+import { timingSafeEqual } from "node:crypto";
 import { NextRequest, NextResponse } from "next/server";
 import { getAdminAuth } from "@/lib/firebase-admin";
 import { findOrCreateProfile } from "@/lib/profileHelper";
@@ -32,10 +33,14 @@ export async function POST(req: NextRequest) {
 
   const { email, secret: providedSecret } = body as { email?: string; secret?: string };
 
-  if (providedSecret !== secret) {
+  if (
+    typeof providedSecret !== "string" ||
+    Buffer.byteLength(providedSecret) !== Buffer.byteLength(secret) ||
+    !timingSafeEqual(Buffer.from(providedSecret), Buffer.from(secret))
+  ) {
     return NextResponse.json({ error: "Unauthorized." }, { status: 401 });
   }
-  if (!email) {
+  if (typeof email !== "string" || email.length > 254 || !email.includes("@")) {
     return NextResponse.json({ error: "Missing email." }, { status: 400 });
   }
 
@@ -44,12 +49,21 @@ export async function POST(req: NextRequest) {
     firebaseUser = await getAdminAuth().getUserByEmail(email);
   } catch {
     return NextResponse.json(
-      { error: `No account found for ${email}. They need to sign up first — this route cannot create accounts.` },
+      {
+        error: `No account found for ${email}. They need to sign up first — this route cannot create accounts.`,
+      },
       { status: 404 }
     );
   }
 
-  await getAdminAuth().setCustomUserClaims(firebaseUser.uid, { role: "admin" });
+  if (!firebaseUser.emailVerified || firebaseUser.disabled)
+    return NextResponse.json({ error: "A verified active account is required." }, { status: 409 });
+  await getAdminAuth().revokeRefreshTokens(firebaseUser.uid);
+  await getAdminAuth().setCustomUserClaims(firebaseUser.uid, {
+    ...(firebaseUser.customClaims || {}),
+    role: "admin",
+  });
+  await getAdminAuth().revokeRefreshTokens(firebaseUser.uid);
 
   const profile = await findOrCreateProfile({
     firebaseUid: firebaseUser.uid,
@@ -58,5 +72,10 @@ export async function POST(req: NextRequest) {
     role: "admin",
   });
 
-  return NextResponse.json({ ok: true, uid: firebaseUser.uid, supabaseId: profile.id, role: "admin" });
+  return NextResponse.json({
+    ok: true,
+    uid: firebaseUser.uid,
+    supabaseId: profile.id,
+    role: "admin",
+  });
 }

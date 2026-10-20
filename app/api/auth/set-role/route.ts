@@ -17,15 +17,14 @@ import { findOrCreateProfile } from "@/lib/profileHelper";
 export const runtime = "nodejs";
 
 const isDev = process.env.NODE_ENV === "development";
-const ALLOWED_ROLES = ["student", "teacher"] as const;
+const ALLOWED_ROLES = ["student"] as const;
 type SignupRole = (typeof ALLOWED_ROLES)[number];
 
 export async function POST(req: NextRequest) {
   // ── 0. Env guard ──────────────────────────────────────────────────────────
-  console.log("[set-role] SUPABASE_SERVICE_ROLE_KEY exists:", !!process.env.SUPABASE_SERVICE_ROLE_KEY);
   if (!process.env.SUPABASE_SERVICE_ROLE_KEY) {
     return NextResponse.json(
-      { error: "Server misconfiguration: SUPABASE_SERVICE_ROLE_KEY not set in .env.local" },
+      { error: "Account setup is temporarily unavailable." },
       { status: 500 }
     );
   }
@@ -46,10 +45,12 @@ export async function POST(req: NextRequest) {
     germanLevel?: string | null;
   };
 
-  if (!idToken)   return NextResponse.json({ error: "Missing idToken."  }, { status: 400 });
-  if (!fullName)  return NextResponse.json({ error: "Missing fullName." }, { status: 400 });
+  if (typeof idToken !== "string" || !idToken || idToken.length > 10000)
+    return NextResponse.json({ error: "Missing idToken." }, { status: 400 });
+  if (typeof fullName !== "string" || fullName.trim().length < 2 || fullName.length > 100)
+    return NextResponse.json({ error: "Missing fullName." }, { status: 400 });
 
-  let safeRole: SignupRole | 'admin' = ALLOWED_ROLES.includes(role as SignupRole)
+  let safeRole: SignupRole | "teacher" | "admin" = ALLOWED_ROLES.includes(role as SignupRole)
     ? (role as SignupRole)
     : "student";
 
@@ -57,10 +58,9 @@ export async function POST(req: NextRequest) {
   let firebaseUid: string;
   let userEmail: string;
   try {
-    const decoded = await getAdminAuth().verifyIdToken(idToken);
+    const decoded = await getAdminAuth().verifyIdToken(idToken, true);
     firebaseUid = decoded.uid;
     userEmail = decoded.email ?? "";
-    console.log(`[set-role] ✓ Token verified  firebase_uid=${firebaseUid}  email=${userEmail}  role=${safeRole}`);
   } catch (err) {
     const msg = err instanceof Error ? err.message : String(err);
     console.error("[set-role] verifyIdToken failed:", msg);
@@ -74,13 +74,25 @@ export async function POST(req: NextRequest) {
   try {
     const existing = await getAdminAuth().getUser(firebaseUid);
     const currentRole = existing.customClaims?.role;
-    if (currentRole === 'admin' || currentRole === 'teacher' || currentRole === 'student') safeRole = currentRole;
+    if (!currentRole && role && role !== "student")
+      return NextResponse.json(
+        { error: "Staff access must be assigned by an administrator." },
+        { status: 403 }
+      );
+    if (currentRole === "admin" || currentRole === "teacher" || currentRole === "student")
+      safeRole = currentRole;
     if (!existing.customClaims?.role) {
-      await getAdminAuth().setCustomUserClaims(firebaseUid, { ...existing.customClaims, role: safeRole });
+      await getAdminAuth().setCustomUserClaims(firebaseUid, {
+        ...existing.customClaims,
+        role: safeRole,
+      });
     }
     console.log(`[set-role] ✓ Firebase custom claims set  role=${safeRole}`);
   } catch (err) {
-    console.warn("[set-role] ⚠ setCustomUserClaims failed (non-blocking):", err);
+    return NextResponse.json(
+      { error: "Account role could not be verified. Please retry." },
+      { status: 503 }
+    );
   }
 
   // ── 4. Find or create Supabase profile (BLOCKING) ─────────────────────────
@@ -92,9 +104,11 @@ export async function POST(req: NextRequest) {
       email: userEmail,
       fullName: String(fullName),
       role: safeRole,
-      germanLevel: typeof germanLevel === "string" ? germanLevel : null,
+      germanLevel:
+        typeof germanLevel === "string" && ["A1", "A2", "B1", "B2", "C1"].includes(germanLevel)
+          ? germanLevel
+          : null,
     });
-    console.log(`[set-role] ✓ Supabase profile ready  supabase_id=${profile.id}  firebase_uid=${profile.firebase_uid}  role=${profile.role}`);
   } catch (err) {
     const msg = err instanceof Error ? err.message : String(err);
     console.error("[set-role] ✗ Profile creation failed:", msg);
@@ -106,20 +120,23 @@ export async function POST(req: NextRequest) {
 
   // ── 5. Save to Firestore (non-blocking secondary store) ───────────────────
   try {
-    await getAdminDb().doc(`users/${firebaseUid}`).set(
-      {
-        firebase_uid: firebaseUid,
-        supabase_profile_id: profile.id,
-        fullName,
-        email: userEmail,
-        role: safeRole,
-        germanLevel: germanLevel ?? null,
-        createdAt: new Date(),
-        emailVerified: false,
-        disabled: false,
-      },
-      { merge: true }
-    );
+    await getAdminDb()
+      .doc(`users/${firebaseUid}`)
+      .set(
+        {
+          firebase_uid: firebaseUid,
+          supabase_profile_id: profile.id,
+          fullName,
+          email: userEmail,
+          role: safeRole,
+          germanLevel:
+            typeof germanLevel === "string" && ["A1", "A2", "B1", "B2", "C1"].includes(germanLevel)
+              ? germanLevel
+              : null,
+          createdAt: new Date(),
+        },
+        { merge: true }
+      );
     console.log(`[set-role] ✓ Firestore record saved`);
   } catch (err) {
     console.warn("[set-role] ⚠ Firestore save failed (non-blocking):", err);

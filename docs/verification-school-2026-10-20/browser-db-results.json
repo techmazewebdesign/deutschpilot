@@ -1,0 +1,178 @@
+{
+  "timestamp": "2026-10-20T17:52:23.682Z",
+  "school": "browser-db-99182068-ee2b-48df-9691-5d27a624c1c2",
+  "container": "deutschpilot-school-test-20261020",
+  "scope": "Actual browser UI plus real normalized PostgreSQL repository reads/transactions/paging. Explicit synthetic identities and intercepted HTTP transport; synthetic file bytes and scanner verdicts only. No live Firebase authentication, provider storage, remote scanner or push verification.",
+  "base": "http://localhost:3017",
+  "results": [
+    {
+      "step": "Owner bootstraps unique school through UI into real PostgreSQL",
+      "status": "PASS",
+      "screenshot": "/Users/rooz/Documents/Codex/2026-10-18/deutschpilot-release/docs/verification-school-2026-10-20/browser-db-01-bootstrap.png"
+    },
+    {
+      "step": "Owner workspace loads authenticated synthetic membership",
+      "status": "PASS",
+      "screenshot": "/Users/rooz/Documents/Codex/2026-10-18/deutschpilot-release/docs/verification-school-2026-10-20/browser-db-02-owner-overview.png"
+    },
+    {
+      "step": "Owner creates email-bound private invitation and sees code",
+      "status": "PASS"
+    },
+    {
+      "step": "Owner creates class with two teachers and student assignment",
+      "status": "PASS",
+      "screenshot": "/Users/rooz/Documents/Codex/2026-10-18/deutschpilot-release/docs/verification-school-2026-10-20/browser-db-04-owner-classes.png"
+    },
+    {
+      "step": "Record policy starts unconfigured; partial entries are preserved and cleanup remains disabled",
+      "status": "PASS"
+    },
+    {
+      "step": "Owner saves identity, privacy configuration and category retention",
+      "status": "PASS",
+      "screenshot": "/Users/rooz/Documents/Codex/2026-10-18/deutschpilot-release/docs/verification-school-2026-10-20/browser-db-06-owner-settings.png"
+    },
+    {
+      "step": "Owner sends school letter with reply deadline",
+      "status": "PASS"
+    },
+    {
+      "step": "Owner inspects actual role-restricted school audit trail",
+      "status": "PASS",
+      "screenshot": "/Users/rooz/Documents/Codex/2026-10-18/deutschpilot-release/docs/verification-school-2026-10-20/browser-db-08-owner-audit.png"
+    },
+    {
+      "step": "Office workflow requests private medical evidence",
+      "status": "PASS"
+    },
+    {
+      "step": "Teacher records attendance; office-only excused status unavailable",
+      "status": "PASS",
+      "screenshot": "/Users/rooz/Documents/Codex/2026-10-18/deutschpilot-release/docs/verification-school-2026-10-20/browser-db-10-teacher-attendance.png"
+    },
+    {
+      "step": "First assigned teacher sends class message",
+      "status": "PASS"
+    },
+    {
+      "step": "Second assigned teacher accesses complete paged class history",
+      "status": "PASS",
+      "screenshot": "/Users/rooz/Documents/Codex/2026-10-18/deutschpilot-release/docs/verification-school-2026-10-20/browser-db-12-teacher2-full-chat.png"
+    },
+    {
+      "step": "Assigned teacher moderates existing class message",
+      "status": "PASS"
+    },
+    {
+      "step": "Refresh updates older loaded pages after another teacher moderates",
+      "status": "PASS"
+    },
+    {
+      "step": "Student submits own illness absence after policy configuration",
+      "status": "PASS",
+      "screenshot": "/Users/rooz/Documents/Codex/2026-10-18/deutschpilot-release/docs/verification-school-2026-10-20/browser-db-15-student-absence.png"
+    },
+    {
+      "step": "Student reads and acknowledges school letter",
+      "status": "PASS"
+    },
+    {
+      "step": "Student uploads PDF tied to absence/request; quarantine blocks download",
+      "status": "PASS",
+      "screenshot": "/Users/rooz/Documents/Codex/2026-10-18/deutschpilot-release/docs/verification-school-2026-10-20/browser-db-17-student-private-upload.png"
+    },
+    {
+      "step": "Declared synthetic clean scan fulfils request and authorises own PDF download",
+      "status": "PASS"
+    },
+    {
+      "step": "Student uploads signed letter; return remains pending until trusted scan",
+      "status": "PASS"
+    },
+    {
+      "step": "Student marks own notification as read",
+      "status": "PASS"
+    },
+    {
+      "step": "Office approves absence and existing attendance becomes excused",
+      "status": "PASS",
+      "screenshot": "/Users/rooz/Documents/Codex/2026-10-18/deutschpilot-release/docs/verification-school-2026-10-20/browser-db-21-office-absence-review.png"
+    },
+    {
+      "step": "Office records document-specific retention hold",
+      "status": "PASS"
+    },
+    {
+      "step": "Teacher cannot see or fetch medical document",
+      "status": "PASS",
+      "screenshot": "/Users/rooz/Documents/Codex/2026-10-18/deutschpilot-release/docs/verification-school-2026-10-20/browser-db-23-teacher-private-view.png"
+    },
+    {
+      "step": "Teacher sees approved absence summary without health reason or files",
+      "status": "PASS"
+    },
+    {
+      "step": "Unassigned teacher cannot see or fetch other class history",
+      "status": "PASS",
+      "screenshot": "/Users/rooz/Documents/Codex/2026-10-18/deutschpilot-release/docs/verification-school-2026-10-20/browser-db-25-unassigned-teacher.png"
+    },
+    {
+      "step": "Other student cannot see letter or private certificate",
+      "status": "PASS"
+    },
+    {
+      "step": "Owner revokes teacher access; both UI and history query deny revoked member",
+      "status": "PASS"
+    },
+    {
+      "step": "Progress archive loads all 1005 real PostgreSQL records beyond initial1000 cap",
+      "status": "PASS"
+    },
+    {
+      "step": "Own-data export follows real database pages and includes every practice record",
+      "status": "PASS"
+    },
+    {
+      "step": "Active-session membership revocation clears previously loaded private UI on refresh",
+      "status": "PASS"
+    },
+    {
+      "step": "UI deletion review request persists; recorded legal hold blocks erasure",
+      "status": "PASS"
+    },
+    {
+      "step": "Office releases hold through UI; real SQL privacy cleanup removes own records after synthetic file cleanup",
+      "status": "PASS"
+    },
+    {
+      "step": "Non-member receives access denial with no school records",
+      "status": "PASS",
+      "screenshot": "/Users/rooz/Documents/Codex/2026-10-18/deutschpilot-release/docs/verification-school-2026-10-20/browser-db-33-outsider-denied.png"
+    },
+    {
+      "step": "German mobile-width class portal renders without horizontal page overflow",
+      "status": "PASS",
+      "screenshot": "/Users/rooz/Documents/Codex/2026-10-18/deutschpilot-release/docs/verification-school-2026-10-20/browser-db-34-german-mobile.png"
+    },
+    {
+      "step": "No marketing trackers in school HTML or public-to-school SPA navigation",
+      "status": "PASS",
+      "screenshot": "/Users/rooz/Documents/Codex/2026-10-18/deutschpilot-release/docs/verification-school-2026-10-20/browser-db-35-school-tracker-free.png"
+    },
+    {
+      "step": "Student signup form validates; teacher query cannot grant staff access (no account created)",
+      "status": "PASS",
+      "screenshot": "/Users/rooz/Documents/Codex/2026-10-18/deutschpilot-release/docs/verification-school-2026-10-20/browser-db-36-signup-invitation-boundary.png"
+    },
+    {
+      "step": "No uncaught browser runtime errors across walkthrough",
+      "status": "PASS"
+    }
+  ],
+  "browserErrors": [],
+  "counts": {
+    "passed": 37,
+    "failed": 0
+  }
+}

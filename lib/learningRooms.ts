@@ -1,3 +1,5 @@
+import "server-only";
+import { legacyLearningClient } from "./legacyLearningAccess";
 import { createServerSupabaseClient } from "@/lib/supabaseServer";
 import type {
   Room,
@@ -80,9 +82,9 @@ export function resolveTaskLocale(task: Task, locale: string) {
 /* ------------------------------------------------------------------ */
 /* 1. getAllRooms                                                      */
 /* ------------------------------------------------------------------ */
-export async function getAllRooms(locale: string): Promise<
-  Array<Room & { title: string; description: string | null; purpose: string | null }>
-> {
+export async function getAllRooms(
+  locale: string
+): Promise<Array<Room & { title: string; description: string | null; purpose: string | null }>> {
   const supabase = createServerSupabaseClient();
   const { data, error } = await supabase
     .from("learning_rooms")
@@ -122,9 +124,11 @@ export async function getRoomBySlug(
     .from("learning_rooms")
     .select("*")
     .eq("slug", slug)
-    .single();
+    .eq("is_active", true)
+    .maybeSingle();
 
-  if (roomError || !roomData) return null;
+  if (roomError) throw new Error("Room data could not be loaded.");
+  if (!roomData) return null;
   const room = roomData as Room;
 
   const { data: taskData, error: taskError } = await supabase
@@ -154,7 +158,7 @@ export async function getRoomBySlug(
 /* 3. initializeUserProgress                                           */
 /* ------------------------------------------------------------------ */
 export async function initializeUserProgress(userId: string): Promise<void> {
-  const supabase = createServerSupabaseClient();
+  const supabase = await legacyLearningClient(userId);
 
   const { count, error: countError } = await supabase
     .from("student_room_progress")
@@ -183,7 +187,7 @@ export async function initializeUserProgress(userId: string): Promise<void> {
 
   const { error } = await supabase
     .from("student_room_progress")
-    .upsert(progressRows, { onConflict: "user_id,room_id" });
+    .upsert(progressRows, { onConflict: "user_id,room_id", ignoreDuplicates: true });
 
   if (error && !error.message.includes("duplicate")) throw new Error(error.message);
 }
@@ -192,7 +196,7 @@ export async function initializeUserProgress(userId: string): Promise<void> {
 /* 4. getUserProgress                                                  */
 /* ------------------------------------------------------------------ */
 export async function getUserProgress(userId: string): Promise<RoomWithProgress[]> {
-  const supabase = createServerSupabaseClient();
+  const supabase = await legacyLearningClient(userId);
 
   const { data, error } = await supabase
     .from("learning_rooms")
@@ -230,7 +234,11 @@ export async function getUserProgress(userId: string): Promise<RoomWithProgress[
   }
 
   return rows.map((row) => {
-    const srp = (row.student_room_progress ?? {}) as Record<string, unknown>;
+    const joined = row.student_room_progress;
+    const srp = (Array.isArray(joined) ? (joined[0] ?? {}) : (joined ?? {})) as Record<
+      string,
+      unknown
+    >;
     return toRoomWithProgress({
       ...row,
       status: srp.status ?? "locked",
@@ -249,7 +257,7 @@ export async function getUserTaskProgress(
   userId: string,
   roomId: string
 ): Promise<TaskWithProgress[]> {
-  const supabase = createServerSupabaseClient();
+  const supabase = await legacyLearningClient(userId);
 
   const { data, error } = await supabase
     .from("room_tasks")
@@ -284,7 +292,11 @@ export async function getUserTaskProgress(
   }
 
   return rows.map((row) => {
-    const stp = (row.student_task_progress ?? {}) as Record<string, unknown>;
+    const joined = row.student_task_progress;
+    const stp = (Array.isArray(joined) ? (joined[0] ?? {}) : (joined ?? {})) as Record<
+      string,
+      unknown
+    >;
     return toTaskWithProgress({
       ...row,
       completed: stp.completed ?? false,
@@ -297,7 +309,7 @@ export async function getUserTaskProgress(
 /* 6. markTaskCompleted                                                */
 /* ------------------------------------------------------------------ */
 export async function markTaskCompleted(userId: string, taskId: string): Promise<void> {
-  const supabase = createServerSupabaseClient();
+  const supabase = await legacyLearningClient(userId);
 
   // Find the room this task belongs to
   const { data: taskData, error: taskErr } = await supabase
@@ -337,9 +349,7 @@ export async function markTaskCompleted(userId: string, taskId: string): Promise
     .eq("user_id", userId)
     .in(
       "task_id",
-      (
-        await supabase.from("room_tasks").select("id").eq("room_id", roomId)
-      ).data?.map((t) => t.id) ?? []
+      (totalData ?? []).map((t) => t.id)
     )
     .eq("completed", true);
 
@@ -376,7 +386,7 @@ export async function markTaskCompleted(userId: string, taskId: string): Promise
 /* 7. markRoomCompleted                                                */
 /* ------------------------------------------------------------------ */
 export async function markRoomCompleted(userId: string, roomId: string): Promise<void> {
-  const supabase = createServerSupabaseClient();
+  const supabase = await legacyLearningClient(userId);
 
   const { error } = await supabase
     .from("student_room_progress")
@@ -398,7 +408,7 @@ export async function markRoomCompleted(userId: string, roomId: string): Promise
 /* 8. unlockNextRoom                                                   */
 /* ------------------------------------------------------------------ */
 export async function unlockNextRoom(userId: string, completedRoomId: string): Promise<void> {
-  const supabase = createServerSupabaseClient();
+  const supabase = await legacyLearningClient(userId);
 
   const { data: roomData, error: roomErr } = await supabase
     .from("learning_rooms")
@@ -406,7 +416,8 @@ export async function unlockNextRoom(userId: string, completedRoomId: string): P
     .eq("id", completedRoomId)
     .single();
 
-  if (roomErr || !roomData) return;
+  if (roomErr) throw new Error("Room data could not be loaded.");
+  if (!roomData) return;
   const currentOrder = Number(roomData.unlock_order);
 
   const { data: nextRoom, error: nextErr } = await supabase
@@ -416,7 +427,8 @@ export async function unlockNextRoom(userId: string, completedRoomId: string): P
     .eq("unlock_order", currentOrder + 1)
     .single();
 
-  if (nextErr || !nextRoom) return;
+  if (nextErr && nextErr.code !== "PGRST116") throw new Error("Room data could not be loaded.");
+  if (!nextRoom) return;
   const nextRoomId = String(nextRoom.id);
 
   const { error: updErr } = await supabase
@@ -433,7 +445,7 @@ export async function unlockNextRoom(userId: string, completedRoomId: string): P
 /* 9. setRoomActive                                                    */
 /* ------------------------------------------------------------------ */
 export async function setRoomActive(userId: string, roomId: string): Promise<void> {
-  const supabase = createServerSupabaseClient();
+  const supabase = await legacyLearningClient(userId);
 
   const { error } = await supabase
     .from("student_room_progress")
@@ -460,9 +472,7 @@ export async function getOverallProgress(userId: string): Promise<OverallProgres
   const percentage = totalRooms > 0 ? Math.round((completedRooms / totalRooms) * 100) : 0;
 
   const currentRoom =
-    rooms.find((r) => r.status === "active") ??
-    rooms.find((r) => r.status === "available") ??
-    null;
+    rooms.find((r) => r.status === "active") ?? rooms.find((r) => r.status === "available") ?? null;
 
   let nextRecommendedRoom: RoomWithProgress | null = null;
   if (currentRoom) {

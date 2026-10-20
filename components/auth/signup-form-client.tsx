@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { useTranslations } from "next-intl";
 import {
   createUserWithEmailAndPassword,
@@ -16,7 +17,6 @@ interface Props {
   registerLabel: string;
 }
 
-type Role = "student" | "teacher";
 type SignupPlan = "standard" | "tester_trial";
 const LEVELS = ["A1", "A2", "B1", "B2", "C1", "C2"] as const;
 
@@ -43,7 +43,7 @@ export function SignupFormClient({ locale, registerLabel }: Props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirm, setConfirm] = useState("");
-  const [role, setRole] = useState<Role>("student");
+  const role = "student" as const;
   const [level, setLevel] = useState("A1");
   const [plan, setPlan] = useState<SignupPlan>("standard");
   const [loading, setLoading] = useState(false);
@@ -146,156 +146,176 @@ export function SignupFormClient({ locale, registerLabel }: Props) {
 
   return (
     <>
-    <form onSubmit={handleSubmit} className="space-y-4">
-      {error && (
-        <p className="text-sm text-red-400 bg-red-400/10 border border-red-400/20 rounded-md px-4 py-3">
-          {error}
-        </p>
-      )}
-
-      {/* Role selection */}
-      <div>
-        <p className="text-xs font-medium text-white/60 uppercase tracking-wider mb-2">
-          {t("iAmA")}
-        </p>
-        <div className="grid grid-cols-2 gap-2">
-          {(["student", "teacher"] as Role[]).map((r) => (
-            <button
-              key={r}
-              type="button"
-              onClick={() => setRole(r)}
-              className={`py-2.5 rounded-md text-sm font-medium border transition-all ${
-                role === r
-                  ? "bg-[#CEA66F]/15 border-[#CEA66F]/60 text-[#CEA66F]"
-                  : "bg-white/3 border-white/10 text-white/50 hover:border-white/20"
-              }`}
-            >
-              {r === "student" ? t("roleStudent") : t("roleTeacher")}
-            </button>
-          ))}
-        </div>
-      </div>
-
-      <div>
-        <label className="block text-xs font-medium text-white/60 uppercase tracking-wider mb-1.5">
-          {t("fullNameLabel")}
-        </label>
-        <input
-          type="text"
-          autoComplete="name"
-          required
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          className={inputClass}
-          placeholder={t("fullNamePlaceholder")}
-        />
-      </div>
-
-      <div>
-        <label className="block text-xs font-medium text-white/60 uppercase tracking-wider mb-1.5">
-          {t("email")}
-        </label>
-        <input
-          type="email"
-          autoComplete="email"
-          required
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          className={inputClass}
-          placeholder="email@example.com"
-        />
-      </div>
-
-      <div>
-        <label className="block text-xs font-medium text-white/60 uppercase tracking-wider mb-1.5">
-          {t("password")}
-        </label>
-        <input
-          type="password"
-          autoComplete="new-password"
-          required
-          minLength={6}
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          className={inputClass}
-          placeholder="••••••••"
-        />
-      </div>
-
-      <div>
-        <label className="block text-xs font-medium text-white/60 uppercase tracking-wider mb-1.5">
-          {t("confirmPassword")}
-        </label>
-        <input
-          type="password"
-          autoComplete="new-password"
-          required
-          minLength={6}
-          value={confirm}
-          onChange={(e) => setConfirm(e.target.value)}
-          className={inputClass}
-          placeholder="••••••••"
-        />
-      </div>
-
-      {role === "student" && (
-        <div>
-          <label className="block text-xs font-medium text-white/60 uppercase tracking-wider mb-1.5">
-            {t("currentGermanLevel")}
-          </label>
-          <div className="grid grid-cols-6 gap-1.5">
-            {LEVELS.map((l) => (
-              <button
-                key={l}
-                type="button"
-                onClick={() => setLevel(l)}
-                className={`py-2 rounded-md text-xs font-semibold border transition-all ${
-                  level === l
-                    ? "bg-[#CEA66F] border-[#CEA66F] text-[#071424]"
-                    : "bg-white/3 border-white/10 text-white/50 hover:border-white/25"
-                }`}
-              >
-                {l}
-              </button>
-            ))}
-          </div>
-        </div>
-      )}
-
-      {role === "student" && (
-        <div className="space-y-2">
-          <p className="text-xs font-medium text-white/60 uppercase tracking-wider">
-            Access plan
+      <form onSubmit={handleSubmit} className="space-y-4">
+        {error && (
+          <p className="rounded-md border border-red-400/20 bg-red-400/10 px-4 py-3 text-sm text-red-400">
+            {error}
           </p>
-          <button
-            type="button"
-            onClick={() => setPlan("standard")}
-            className={`w-full rounded-md border px-4 py-3 text-left transition-all ${plan === "standard" ? "border-[#CEA66F]/60 bg-[#CEA66F]/10" : "border-white/10 bg-white/3"}`}
-          >
-            <span className="block text-sm font-semibold text-white">Standard access — free</span>
-            <span className="block text-xs text-white/45 mt-1">Limited access. No bank card required.</span>
-          </button>
-          <button
-            type="button"
-            onClick={() => setPlan("tester_trial")}
-            className={`w-full rounded-md border px-4 py-3 text-left transition-all ${plan === "tester_trial" ? "border-[#CEA66F]/60 bg-[#CEA66F]/10" : "border-white/10 bg-white/3"}`}
-          >
-            <span className="block text-sm font-semibold text-white">Tester access — 3 months full access</span>
-            <span className="block text-xs text-white/45 mt-1">After email confirmation, full access is activated automatically for 90 days. No card, charge, or subscription during the pilot.</span>
-          </button>
+        )}
+
+        <div className="rounded-md border border-[#CEA66F]/30 bg-[#CEA66F]/10 p-4 text-sm text-white/80">
+          <p>
+            {locale === "de"
+              ? "Erstellen Sie ein persönliches Konto. Der Zugriff als Lehrkraft oder Schulmitarbeiter wird nach der E-Mail-Bestätigung ausschließlich durch eine Einladung Ihrer Schule vergeben."
+              : "Create a personal account. Teacher and school staff access is assigned only through your school’s invitation after email verification."}
+          </p>
+          <Link href={`/${locale}/school`} className="mt-2 inline-block text-[#E0B873] underline">
+            {locale === "de"
+              ? "Bereits eingeladen? Schulbereich öffnen"
+              : "Already invited? Open your school workspace"}
+          </Link>
         </div>
-      )}
 
-      <button
-        type="submit"
-        disabled={loading}
-        className="w-full bg-[#D9B173] text-[#071424] font-semibold py-3 rounded-md hover:bg-[#B98A4E] transition-colors mt-2 disabled:opacity-60 disabled:cursor-not-allowed"
-      >
-        {loading ? t("creatingAccount") : registerLabel}
-      </button>
-    </form>
+        <div>
+          <label
+            htmlFor="signup-name"
+            className="mb-1.5 block text-xs font-medium uppercase tracking-wider text-white/60"
+          >
+            {t("fullNameLabel")}
+          </label>
+          <input
+            id="signup-name"
+            type="text"
+            autoComplete="name"
+            required
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            className={inputClass}
+            placeholder={t("fullNamePlaceholder")}
+          />
+        </div>
 
-    <GoogleSigninButton locale={locale} variant="signup" />
+        <div>
+          <label
+            htmlFor="signup-email"
+            className="mb-1.5 block text-xs font-medium uppercase tracking-wider text-white/60"
+          >
+            {t("email")}
+          </label>
+          <input
+            id="signup-email"
+            type="email"
+            autoComplete="email"
+            required
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className={inputClass}
+            placeholder="email@example.com"
+          />
+        </div>
+
+        <div>
+          <label
+            htmlFor="signup-password"
+            className="mb-1.5 block text-xs font-medium uppercase tracking-wider text-white/60"
+          >
+            {t("password")}
+          </label>
+          <input
+            id="signup-password"
+            type="password"
+            autoComplete="new-password"
+            required
+            minLength={6}
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className={inputClass}
+            placeholder="••••••••"
+          />
+        </div>
+
+        <div>
+          <label
+            htmlFor="signup-confirm"
+            className="mb-1.5 block text-xs font-medium uppercase tracking-wider text-white/60"
+          >
+            {t("confirmPassword")}
+          </label>
+          <input
+            id="signup-confirm"
+            type="password"
+            autoComplete="new-password"
+            required
+            minLength={6}
+            value={confirm}
+            onChange={(e) => setConfirm(e.target.value)}
+            className={inputClass}
+            placeholder="••••••••"
+          />
+        </div>
+
+        {role === "student" && (
+          <div>
+            <label className="mb-1.5 block text-xs font-medium uppercase tracking-wider text-white/60">
+              {t("currentGermanLevel")}
+            </label>
+            <div className="grid grid-cols-6 gap-1.5">
+              {LEVELS.map((l) => (
+                <button
+                  key={l}
+                  type="button"
+                  onClick={() => setLevel(l)}
+                  className={`rounded-md border py-2 text-xs font-semibold transition-all ${
+                    level === l
+                      ? "border-[#CEA66F] bg-[#CEA66F] text-[#071424]"
+                      : "bg-white/3 border-white/10 text-white/50 hover:border-white/25"
+                  }`}
+                >
+                  {l}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {role === "student" && (
+          <div className="space-y-2">
+            <p className="text-xs font-medium uppercase tracking-wider text-white/60">
+              {locale === "de" ? "Zugangsplan" : "Access plan"}
+            </p>
+            <button
+              type="button"
+              onClick={() => setPlan("standard")}
+              className={`w-full rounded-md border px-4 py-3 text-left transition-all ${plan === "standard" ? "border-[#CEA66F]/60 bg-[#CEA66F]/10" : "bg-white/3 border-white/10"}`}
+            >
+              <span className="block text-sm font-semibold text-white">
+                {locale === "de" ? "Standardzugang — kostenlos" : "Standard access — free"}
+              </span>
+              <span className="mt-1 block text-xs text-white/45">
+                {locale === "de"
+                  ? "Begrenzter Zugang. Keine Bankkarte erforderlich."
+                  : "Limited access. No bank card required."}
+              </span>
+            </button>
+            <button
+              type="button"
+              onClick={() => setPlan("tester_trial")}
+              className={`w-full rounded-md border px-4 py-3 text-left transition-all ${plan === "tester_trial" ? "border-[#CEA66F]/60 bg-[#CEA66F]/10" : "bg-white/3 border-white/10"}`}
+            >
+              <span className="block text-sm font-semibold text-white">
+                {locale === "de"
+                  ? "Testzugang — 3 Monate voller Zugang"
+                  : "Tester access — 3 months full access"}
+              </span>
+              <span className="mt-1 block text-xs text-white/45">
+                {locale === "de"
+                  ? "Nach der E-Mail-Bestätigung wird der volle Zugang automatisch für 90 Tage aktiviert. Während der Pilotphase keine Karte, Zahlung oder Abonnement."
+                  : "After email confirmation, full access is activated automatically for 90 days. No card, charge, or subscription during the pilot."}
+              </span>
+            </button>
+          </div>
+        )}
+
+        <button
+          type="submit"
+          disabled={loading}
+          className="mt-2 w-full rounded-md bg-[#D9B173] py-3 font-semibold text-[#071424] transition-colors hover:bg-[#B98A4E] disabled:cursor-not-allowed disabled:opacity-60"
+        >
+          {loading ? t("creatingAccount") : registerLabel}
+        </button>
+      </form>
+
+      <GoogleSigninButton locale={locale} variant="signup" />
     </>
   );
 }

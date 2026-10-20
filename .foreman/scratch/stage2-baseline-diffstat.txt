@@ -1,0 +1,8 @@
+ .../teacher/classes/[id]/students/page.tsx         |  72 +++---
+ app/[locale]/teacher/dashboard/page.tsx            | 242 +++++++++++++++------
+ app/api/account/delete/route.ts                    |  96 ++++++--
+ mobile/App.tsx                                     |  58 +++--
+ mobile/app.json                                    |   6 +
+ mobile/package-lock.json                           |  85 +++++++-
+ mobile/package.json                                |  13 +-
+ 7 files changed, 440 insertions(+), 132 deletions(-)

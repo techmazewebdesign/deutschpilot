@@ -3,7 +3,7 @@ import { createAdminSupabaseClient } from "@/lib/supabaseAdmin";
 
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
-  const limit = Math.min(parseInt(searchParams.get("limit") ?? "6"), 20);
+  const limit = Math.max(1, Math.min(Number(searchParams.get("limit")) || 6, 20));
 
   const supabase = createAdminSupabaseClient();
   const now = new Date().toISOString();
@@ -16,6 +16,6 @@ export async function GET(req: NextRequest) {
     .order("start_time", { ascending: true })
     .limit(limit);
 
-  if (error) return NextResponse.json({ classes: [] });
+  if (error) return NextResponse.json({ error: "Classes unavailable." }, { status: 503 });
   return NextResponse.json({ classes: data ?? [] });
 }

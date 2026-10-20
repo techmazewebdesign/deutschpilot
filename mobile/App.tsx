@@ -1,3 +1,4 @@
+import Constants from "expo-constants";
 import { StatusBar } from "expo-status-bar";
 import { LinearGradient } from "expo-linear-gradient";
 import * as Haptics from "expo-haptics";
@@ -23,7 +24,7 @@ import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import type { User } from "firebase/auth";
 import { lessons, vocabulary } from "./src/content";
 import { deleteAccountPermanently, login, logout, register, resetPassword, resendVerification, watchUser } from "./src/auth";
-import { applyStudyAction, clearProgress, emptyProgress, loadProgress, saveProgress, type StudyAction } from "./src/progress";
+import { applyStudyAction, emptyProgress, type StudyAction } from "./src/progress";
 import type { Lesson, Level, LocalProgress } from "./src/models";
 import { ThemeProvider, useTheme, type Colors } from "./src/theme";
 import { LoadingScreen } from "./src/LoadingScreen";
@@ -31,24 +32,30 @@ import { loginWithGoogle } from "./src/social";
 import { getFirebaseRuntime } from "./src/firebase";
 import { validEmail } from './src/validation';
 import { TodayScreen, LearnScreen, WordsScreen, PracticeScreen, speakGerman, NativeLessonModal } from './src/LearningScreens';
+import { prepareSchoolSignOut, forgetDeletedSchoolPush, retrySchoolPushCleanup } from './src/SchoolPush';
+import { SchoolPortal } from './src/SchoolPortal';
+import { loadAccountProgress, saveAccountProgress, clearAccountProgress } from './src/SchoolProgress';
+import { useSchoolProgressSync } from './src/SchoolSync';
 function useStyles() { const theme = useTheme(); return { ...theme, s: useMemo(() => createStyles(theme.C), [theme.C]) }; }
 
-type Tab = "today" | "learn" | "words" | "practice" | "account";
+type Tab = "today" | "learn" | "words" | "practice" | "school" | "account";
 const levels: Level[] = ["A1", "A2", "B1", "B2", "C1"];
 const tabs: Array<{ id: Tab; icon: string; label: string }> = [
   { id: "today", icon: "⌂", label: "HEUTE" },
   { id: "learn", icon: "▤", label: "LERNEN" },
   { id: "words", icon: "Aa", label: "WÖRTER" },
   { id: "practice", icon: "✓", label: "ÜBEN" },
+  { id: "school", icon: "▣", label: "SCHULE" },
   { id: "account", icon: "◉", label: "KONTO" },
 ];
 
-function AccountScreen({ user, progress, openAuth, openDelete, onLogout, onClear }: { user: User | null; progress: LocalProgress; openAuth: () => void; openDelete: () => void; onLogout: () => void; onClear: () => void }) {
+function AccountScreen({ user, progress, openAuth, openDelete, onLogout, onClear, syncStatus }: { user: User | null; progress: LocalProgress; openAuth: () => void; openDelete: () => void; onLogout: () => void; onClear: () => void; syncStatus: string }) {
   const { s, C, mode: colorMode, toggle } = useStyles();
   return <ScrollView contentContainerStyle={s.scroll}><Text style={s.kicker}>DEIN KONTO</Text><Text style={s.pageTitle}>{user ? `Hallo, ${user.displayName || user.email?.split("@")[0] || "Lernende:r"}.` : "Lerne sofort. Verbinde später."}</Text>
     <View style={[s.accountCard, { backgroundColor: C.panel, borderColor: C.line, borderWidth: 1 }]}>{user ? <><Text style={s.accountMail}>{user.email}</Text><Text style={s.accountState}>{user.emailVerified ? "E-MAIL BESTÄTIGT" : "E-MAIL NOCH NICHT BESTÄTIGT"}</Text>{!user.emailVerified && <Pressable accessibilityRole="button" onPress={openAuth} style={s.textButton}><Text style={s.textButtonLabel}>E-Mail bestätigen / erneut anmelden</Text></Pressable>}<Pressable accessibilityRole="button" onPress={onLogout} style={s.lightButton}><Text style={s.lightButtonText}>Abmelden</Text></Pressable></> : <><Text style={s.accountLead}>Dein lokaler Lernfortschritt funktioniert ohne Konto. Melde dich an, um dieselbe DeutschPilot-Identität wie im Web zu verwenden.</Text><Pressable accessibilityRole="button" onPress={openAuth} style={s.goldButton}><Text style={s.goldButtonText}>Anmelden oder registrieren</Text></Pressable></>}</View>
-    <View style={s.settingsCard}><View style={s.settingRow}><View><Text style={s.settingTitle}>Lokaler Fortschritt</Text><Text style={s.muted}>{progress.completed.length} Lektionen · {progress.xp} XP</Text></View><Pressable accessibilityRole="button" hitSlop={12} style={{ minHeight: 44, justifyContent: "center" }} onPress={onClear}><Text style={s.dangerLink}>Zurücksetzen</Text></Pressable></View>{user && <View style={s.settingRow}><View style={s.settingCopy}><Text style={s.settingTitle}>Cloud-Konto löschen</Text><Text style={s.muted}>Entfernt Anmeldung und verbundene persönliche Daten dauerhaft.</Text></View><Pressable accessibilityRole="button" hitSlop={12} style={{ minHeight: 44, justifyContent: "center" }} onPress={openDelete}><Text style={s.dangerLink}>Löschen</Text></Pressable></View>}</View>
-    <View style={s.promise}><Text style={s.promiseTitle}>Datenschutz im Kern.</Text><Text style={s.promiseCopy}>Deine Anmeldung verwendet dasselbe Konto wie die Website. Offline-Lernfortschritt wird auf diesem Gerät gespeichert und noch nicht mit der Website synchronisiert.</Text><View style={{ flexDirection: "row", gap: 20, marginTop: 12 }}><Pressable accessibilityRole="link" onPress={() => Linking.openURL("https://www.deutschpilot.de/de/privacy")}><Text style={s.textButtonLabel}>Datenschutz</Text></Pressable><Pressable accessibilityRole="link" onPress={() => Linking.openURL("https://www.deutschpilot.de/de/terms")}><Text style={s.textButtonLabel}>AGB</Text></Pressable></View><View style={{ marginTop: 16, gap: 10 }}><Pressable accessibilityRole="link" onPress={() => Linking.openURL("https://www.deutschpilot.de/de/impressum")} style={s.textButton}><Text style={s.textButtonLabel}>Impressum</Text></Pressable><Pressable accessibilityRole="link" onPress={() => Linking.openURL("mailto:info@deutschpilot.de")} style={s.textButton}><Text style={s.textButtonLabel}>Hilfe · info@deutschpilot.de</Text></Pressable></View></View>
+    <View style={s.settingsCard}><View style={s.settingRow}><View><Text style={s.settingTitle}>Lokaler Fortschritt</Text><Text style={s.muted}>{progress.completed.length} Lektionen · {progress.xp} XP</Text></View><Pressable accessibilityRole="button" hitSlop={12} style={{ minHeight: 44, justifyContent: "center" }} onPress={onClear}><Text style={s.dangerLink}>Zurücksetzen</Text></Pressable></View>{user && <View style={s.settingRow}><View style={s.settingCopy}><Text style={s.settingTitle}>Cloud-Konto löschen</Text><Text style={s.muted}>Löscht dein Konto. Gesetzlich erforderliche Schulnachweise können gesperrt aufbewahrt werden.</Text></View><Pressable accessibilityRole="button" hitSlop={12} style={{ minHeight: 44, justifyContent: "center" }} onPress={openDelete}><Text style={s.dangerLink}>Löschen</Text></Pressable></View>}</View>
+    <View style={s.promise}><Text style={s.promiseTitle}>Datenschutz im Kern.</Text><Text style={s.promiseCopy}>Deine Anmeldung verwendet dasselbe Konto wie die Website. {syncStatus} Angemeldete Konten und Gastfortschritt werden getrennt gespeichert.</Text><View style={{ flexDirection: "row", gap: 20, marginTop: 12 }}><Pressable accessibilityRole="link" onPress={() => Linking.openURL("https://www.deutschpilot.de/de/privacy")}><Text style={s.textButtonLabel}>Datenschutz</Text></Pressable><Pressable accessibilityRole="link" onPress={() => Linking.openURL("https://www.deutschpilot.de/de/terms")}><Text style={s.textButtonLabel}>AGB</Text></Pressable></View><View style={{ marginTop: 16, gap: 10 }}><Pressable accessibilityRole="link" onPress={() => Linking.openURL("https://www.deutschpilot.de/de/impressum")} style={s.textButton}><Text style={s.textButtonLabel}>Impressum</Text></Pressable><Pressable accessibilityRole="link" onPress={() => Linking.openURL("mailto:info@deutschpilot.de")} style={s.textButton}><Text style={s.textButtonLabel}>Hilfe · info@deutschpilot.de</Text></Pressable></View></View>
+    <Text style={s.muted}>Version {Constants.expoConfig?.version || "1.1.0"} ({Platform.OS === "ios" ? Constants.expoConfig?.ios?.buildNumber || "5" : Constants.expoConfig?.android?.versionCode || 5})</Text>
   </ScrollView>;
 }
 
@@ -131,8 +138,8 @@ function DeleteModal({ visible, close }: { visible: boolean; close: () => void }
   const { s, C, mode: colorMode, toggle } = useStyles();
   const phrase = "DELETE MY DEUTSCHPILOT ACCOUNT"; const [value, setValue] = useState(""); const [working, setWorking] = useState(false);
   useEffect(() => { if (!visible) setValue(""); }, [visible]);
-  const remove = async () => { setWorking(true); try { await deleteAccountPermanently(value); setValue(""); close(); Alert.alert("Konto gelöscht", "Dein Cloud-Konto wurde dauerhaft gelöscht."); } catch (error) { Alert.alert("Nicht gelöscht", error instanceof Error ? error.message : "Bitte versuche es erneut."); } finally { setWorking(false); } };
-  return <Modal visible={visible} transparent animationType="slide" onRequestClose={() => { if (!working) close(); }}><KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : undefined} style={s.backdrop}><Pressable disabled={working} style={StyleSheet.absoluteFill} onPress={close} /><View style={s.sheet}><View style={s.sheetHandle} /><Text style={s.kicker}>ENDGÜLTIGE AKTION</Text><Text style={s.sheetTitle}>Cloud-Konto löschen?</Text><Text style={s.muted}>Aktive Web-Abonnements werden zuerst gekündigt. Danach werden Profil, Fortschritt, Kommentare, Nutzung und Anmeldung gelöscht. Dies kann nicht rückgängig gemacht werden.</Text><Text style={s.noteLabel}>{phrase} EINGEBEN</Text><TextInput autoCapitalize="characters" autoCorrect={false} value={value} onChangeText={setValue} placeholder={phrase} placeholderTextColor={C.muted} style={s.input} /><Pressable accessibilityRole="button" disabled={value !== phrase || working} onPress={remove} style={[s.deleteButton, (value !== phrase || working) && s.disabled]}>{working ? <ActivityIndicator color={C.white} /> : <Text style={s.deleteButtonText}>Dauerhaft löschen</Text>}</Pressable><Pressable accessibilityRole="button" disabled={working} onPress={close} style={s.textButton}><Text style={s.textButtonLabel}>Behalten und schließen</Text></Pressable></View></KeyboardAvoidingView></Modal>;
+  const remove = async () => { setWorking(true); try { const { auth } = await getFirebaseRuntime(); const uid = auth.currentUser?.uid; await deleteAccountPermanently(value); if (uid) await clearAccountProgress(uid); await forgetDeletedSchoolPush(); setValue(""); close(); Alert.alert("Konto gelöscht", "Dein Cloud-Konto wurde dauerhaft gelöscht."); } catch (error) { Alert.alert("Nicht gelöscht", error instanceof Error ? error.message : "Bitte versuche es erneut."); } finally { setWorking(false); } };
+  return <Modal visible={visible} transparent animationType="slide" onRequestClose={() => { if (!working) close(); }}><KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : undefined} style={s.backdrop}><Pressable disabled={working} style={StyleSheet.absoluteFill} onPress={close} /><View style={s.sheet}><View style={s.sheetHandle} /><Text style={s.kicker}>ENDGÜLTIGE AKTION</Text><Text style={s.sheetTitle}>Cloud-Konto löschen?</Text><Text style={s.muted}>Aktive Web-Abonnements werden zuerst gekündigt. Danach werden persönliche Kontodaten und Anmeldung gelöscht; erforderliche Schulnachweise werden gemäß den Aufbewahrungsregeln behandelt. Dies kann nicht rückgängig gemacht werden.</Text><Text style={s.noteLabel}>{phrase} EINGEBEN</Text><TextInput autoCapitalize="characters" autoCorrect={false} value={value} onChangeText={setValue} placeholder={phrase} placeholderTextColor={C.muted} style={s.input} /><Pressable accessibilityRole="button" disabled={value !== phrase || working} onPress={remove} style={[s.deleteButton, (value !== phrase || working) && s.disabled]}>{working ? <ActivityIndicator color={C.white} /> : <Text style={s.deleteButtonText}>Dauerhaft löschen</Text>}</Pressable><Pressable accessibilityRole="button" disabled={working} onPress={close} style={s.textButton}><Text style={s.textButtonLabel}>Behalten und schließen</Text></Pressable></View></KeyboardAvoidingView></Modal>;
 }
 
 function AppContent() {
@@ -140,17 +147,21 @@ function AppContent() {
   const [loading, setLoading] = useState(true); const [connectionError, setConnectionError] = useState(false); const [connectionAttempt, setConnectionAttempt] = useState(0);
   const [tab, setTab] = useState<Tab>("today"); const [progress, setProgress] = useState<LocalProgress>(emptyProgress); const [selected, setSelected] = useState<Lesson | null>(null); const [user, setUser] = useState<User | null>(null); const [cloudReady, setCloudReady] = useState(false); const [authOpen, setAuthOpen] = useState(false); const [deleteOpen, setDeleteOpen] = useState(false);
   const progressRef = useRef(progress);
+  const scopeRef = useRef<string | null>(null);
+  const [progressReady, setProgressReady] = useState(false);
   const writes = useRef<Promise<void>>(Promise.resolve());
   const [storageError, setStorageError] = useState(false);
   const [finishing, setFinishing] = useState(false);
   const finishLock = useRef(false);
-  useEffect(() => { loadProgress().then(value => { progressRef.current = value; setProgress(value); }).catch(() => setStorageError(true)).finally(() => setLoading(false)); }, []);
+  useEffect(() => { loadAccountProgress(null).then(value => { if (scopeRef.current === null) { progressRef.current = value; setProgress(value); } }).catch(() => setStorageError(true)).finally(() => { if (scopeRef.current === null) { setLoading(false); setProgressReady(true); } }); }, []);
   // Serialize read/modify/write operations so rapid taps cannot overwrite newer progress.
   const update = (action: StudyAction) => {
+    const scope = scopeRef.current;
     const task = writes.current.catch(() => undefined).then(async () => {
+      if (scope !== scopeRef.current || !progressReady) throw new Error("account changed");
       if (storageError) throw new Error("storage unavailable");
       const next = applyStudyAction(progressRef.current, action);
-      await saveProgress(next); progressRef.current = next; setProgress(next);
+      await saveAccountProgress(scope, next); if (scopeRef.current === scope) { progressRef.current = next; setProgress(next); }
     });
     writes.current = task;
     return task.catch(error => { Alert.alert("Fortschritt nicht gespeichert", "Dein Gerätespeicher ist nicht verfügbar. Bitte versuche es erneut. Die Übung bleibt geöffnet."); throw error; });
@@ -161,22 +172,43 @@ function AppContent() {
   useEffect(() => {
     let active = true; let stop: (() => void) | undefined;
     setConnectionError(false);
-    watchUser(next => { if (active) { setUser(next); setCloudReady(true); } }).then(unsubscribe => { if (!active) unsubscribe(); else stop = unsubscribe; }).catch(() => { if (active) { setCloudReady(false); setConnectionError(true); } });
+    watchUser(next => { if (active) {
+      const scope = next?.uid || null;
+      const changed = scopeRef.current !== scope;
+      scopeRef.current = scope; setUser(next); setCloudReady(true); if (scope) void retrySchoolPushCleanup(scope).catch(() => undefined);
+      if (changed) {
+        setProgressReady(false); setLoading(true); setSelected(null); progressRef.current = { ...emptyProgress, completed: [], reviews: {} }; setProgress(progressRef.current);
+        writes.current = writes.current.catch(() => undefined).then(async () => {
+          const value = await loadAccountProgress(scope);
+          if (active && scopeRef.current === scope) { progressRef.current = value; setProgress(value); setStorageError(false); setProgressReady(true); setLoading(false); }
+        }).catch(() => { if (active && scopeRef.current === scope) { setStorageError(true); setLoading(false); } });
+      }
+    } }).then(unsubscribe => { if (!active) unsubscribe(); else stop = unsubscribe; }).catch(() => { if (active) { setCloudReady(false); setConnectionError(true); } });
     const subscription = AppState.addEventListener("change", state => { if (state === "active") { getFirebaseRuntime().then(async ({ auth }) => { if (auth.currentUser) { await auth.currentUser.reload(); if (active) setUser(auth.currentUser); } }).catch(() => { if (active) setConnectionAttempt(n => n + 1); }); } });
     return () => { active = false; stop?.(); subscription.remove(); };
   }, [connectionAttempt]);
 
+  const syncStatus = useSchoolProgressSync(user, progress, progressReady, async (value, uid) => {
+    writes.current = writes.current.catch(() => undefined).then(async () => {
+      if (scopeRef.current !== uid) return;
+      const combined = { ...progressRef.current, completed: [...new Set([...progressRef.current.completed, ...value.completed])] };
+      combined.xp = Math.max(combined.xp, combined.completed.length * 20);
+      await saveAccountProgress(uid, combined);
+      if (scopeRef.current === uid) { progressRef.current = combined; setProgress(combined); }
+    });
+    await writes.current;
+  });
   const finish = async (lesson: Lesson) => {
     if (finishLock.current) return; finishLock.current = true; setFinishing(true);
     const repeated = progressRef.current.completed.includes(lesson.id);
     try { await update({ type: "lesson", id: lesson.id }); Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success).catch(() => undefined); setSelected(null); Alert.alert(repeated ? "Gut wiederholt" : "Etappe geschafft", repeated ? "Deine Wiederholung zählt zu deinem Tagesziel." : "+20 XP · Ein weiterer Schritt auf deinem Lernweg."); } catch { /* leave lesson open for retry */ } finally { finishLock.current = false; setFinishing(false); }
   };
-  const reset = () => Alert.alert("Lokalen Fortschritt löschen?", "Entfernt XP, Serie, Wortwiederholungen, Tagesziel und abgeschlossene Lektionen auf diesem Gerät.", [{ text: "Abbrechen", style: "cancel" }, { text: "Zurücksetzen", style: "destructive", onPress: () => {
-    writes.current = writes.current.catch(() => undefined).then(async () => { await clearProgress(); const fresh = { ...emptyProgress, completed: [], reviews: {} }; progressRef.current = fresh; setProgress(fresh); setStorageError(false); }).catch(() => Alert.alert("Nicht zurückgesetzt", "Der Gerätespeicher ist nicht verfügbar. Bitte erneut versuchen."));
+  const reset = () => Alert.alert("Lokalen Fortschritt löschen?", "Entfernt lokale XP, Serie und Wortwiederholungen. Bereits mit der Schule synchronisierte Abschlüsse werden anschließend erneut geladen.", [{ text: "Abbrechen", style: "cancel" }, { text: "Zurücksetzen", style: "destructive", onPress: () => {
+    const scope = scopeRef.current; writes.current = writes.current.catch(() => undefined).then(async () => { await clearAccountProgress(scope); if (scopeRef.current !== scope) return; const fresh = { ...emptyProgress, completed: [], reviews: {} }; progressRef.current = fresh; setProgress(fresh); setStorageError(false); }).catch(() => Alert.alert("Nicht zurückgesetzt", "Der Gerätespeicher ist nicht verfügbar. Bitte erneut versuchen."));
   } }]);
-  const screen = tab === "today" ? <TodayScreen progress={progress} update={updateScreen} openLesson={setSelected} setTab={setTab} /> : tab === "learn" ? <LearnScreen progress={progress} update={updateScreen} openLesson={setSelected} /> : tab === "words" ? <WordsScreen progress={progress} update={updateScreen} /> : tab === "practice" ? <PracticeScreen progress={progress} update={updateScreen} /> : <AccountScreen user={user} progress={progress} openAuth={() => setAuthOpen(true)} openDelete={() => setDeleteOpen(true)} onLogout={() => logout().catch(() => Alert.alert("Abmeldung fehlgeschlagen"))} onClear={reset} />;
+  const screen = tab === "today" ? <TodayScreen progress={progress} update={updateScreen} openLesson={setSelected} setTab={setTab} /> : tab === "learn" ? <LearnScreen progress={progress} update={updateScreen} openLesson={setSelected} /> : tab === "words" ? <WordsScreen progress={progress} update={updateScreen} /> : tab === "practice" ? <PracticeScreen progress={progress} update={updateScreen} /> : tab === "school" ? <SchoolPortal key={user?.uid || "guest"} user={user} openAuth={() => setAuthOpen(true)} /> : <AccountScreen syncStatus={syncStatus} user={user} progress={progress} openAuth={() => setAuthOpen(true)} openDelete={() => setDeleteOpen(true)} onLogout={() => prepareSchoolSignOut().then(async pending => { await logout(); if (pending) Alert.alert("Abgemeldet", "Die entfernte Push-Abmeldung steht wegen fehlender Verbindung aus. Allgemeine Schulhinweise können bis zur erneuten Anmeldung weiterhin erscheinen. Du kannst Mitteilungen auch in den iPhone-Einstellungen ausschalten."); }).catch(() => Alert.alert("Abmeldung fehlgeschlagen", "Bitte erneut versuchen."))} onClear={reset} />;
   if (loading) return <LoadingScreen />;
-  return <SafeAreaView edges={["top", "bottom"]} style={s.safe}><StatusBar style={colorMode === "dark" ? "light" : "dark"} /><View style={s.topStatus}><Text style={s.topStatusText}>DEIN DEUTSCH. DEIN TEMPO.</Text><Pressable accessibilityRole="switch" accessibilityLabel="Dunkler Modus" accessibilityState={{ checked: colorMode === "dark" }} onPress={toggle} style={{ minHeight: 44, justifyContent: "center" }}><Text style={{ color: C.white, fontSize: 13 }}>{colorMode === "dark" ? "☀ Hell" : "☾ Dunkel"}</Text></Pressable></View>{connectionError && <Pressable accessibilityRole="button" onPress={() => setConnectionAttempt(n => n + 1)} style={{ padding: 12 }}><Text style={{ color: C.red }}>Konto-Verbindung fehlgeschlagen · Erneut versuchen</Text></Pressable>}{storageError && <View style={{ padding: 16 }}><Text accessibilityRole="alert" style={{ color: C.red }}>Der lokale Fortschritt konnte nicht geladen werden. Deine Daten werden nicht überschrieben.</Text><Pressable accessibilityRole="button" onPress={() => { loadProgress().then(value => { progressRef.current = value; setProgress(value); setStorageError(false); }).catch(() => Alert.alert("Speicher nicht verfügbar", "Bitte prüfe den freien Gerätespeicher.")); }} style={s.textButton}><Text style={s.textButtonLabel}>Erneut laden</Text></Pressable></View>}<View style={s.body}>{screen}</View><View style={s.tabs}>{tabs.map((item) => <Pressable accessibilityRole="tab" accessibilityState={{ selected: tab === item.id }} key={item.id} onPress={() => setTab(item.id)} style={s.tab}><Text style={[s.tabIcon, tab === item.id && s.tabOn]}>{item.icon}</Text><Text style={[s.tabLabel, tab === item.id && s.tabOn]}>{item.label}</Text></Pressable>)}</View><NativeLessonModal busy={finishing} lesson={selected} visible={Boolean(selected)} close={() => setSelected(null)} completed={Boolean(selected && progress.completed.includes(selected.id))} finish={lesson => { if (!finishing) void finish(lesson); }} /><AuthModal visible={authOpen} close={() => setAuthOpen(false)} /><DeleteModal visible={deleteOpen} close={() => setDeleteOpen(false)} /></SafeAreaView>;
+  return <SafeAreaView edges={["top", "bottom"]} style={s.safe}><StatusBar style={colorMode === "dark" ? "light" : "dark"} /><View style={s.topStatus}><Text style={s.topStatusText}>DEIN DEUTSCH. DEIN TEMPO.</Text><Pressable accessibilityRole="switch" accessibilityLabel="Dunkler Modus" accessibilityState={{ checked: colorMode === "dark" }} onPress={toggle} style={{ minHeight: 44, justifyContent: "center" }}><Text style={{ color: C.white, fontSize: 13 }}>{colorMode === "dark" ? "☀ Hell" : "☾ Dunkel"}</Text></Pressable></View>{connectionError && <Pressable accessibilityRole="button" onPress={() => setConnectionAttempt(n => n + 1)} style={{ padding: 12 }}><Text style={{ color: C.red }}>Konto-Verbindung fehlgeschlagen · Erneut versuchen</Text></Pressable>}{storageError && <View style={{ padding: 16 }}><Text accessibilityRole="alert" style={{ color: C.red }}>Der lokale Fortschritt konnte nicht geladen werden. Deine Daten werden nicht überschrieben.</Text><Pressable accessibilityRole="button" onPress={() => { (() => { const scope = scopeRef.current; return loadAccountProgress(scope).then(value => { if (scope !== scopeRef.current) return; progressRef.current = value; setProgress(value); setStorageError(false); setProgressReady(true); }); })().catch(() => Alert.alert("Speicher nicht verfügbar", "Bitte prüfe den freien Gerätespeicher.")); }} style={s.textButton}><Text style={s.textButtonLabel}>Erneut laden</Text></Pressable></View>}<View style={s.body}>{screen}</View><View style={s.tabs}>{tabs.map((item) => <Pressable accessibilityRole="tab" accessibilityState={{ selected: tab === item.id }} key={item.id} onPress={() => setTab(item.id)} style={s.tab}><Text style={[s.tabIcon, tab === item.id && s.tabOn]}>{item.icon}</Text><Text style={[s.tabLabel, tab === item.id && s.tabOn]}>{item.label}</Text></Pressable>)}</View><NativeLessonModal busy={finishing} lesson={selected} visible={Boolean(selected)} close={() => setSelected(null)} completed={Boolean(selected && progress.completed.includes(selected.id))} finish={lesson => { if (!finishing) void finish(lesson); }} /><AuthModal visible={authOpen} close={() => setAuthOpen(false)} /><DeleteModal visible={deleteOpen} close={() => setDeleteOpen(false)} /></SafeAreaView>;
 }
 
 export default function App() { return <SafeAreaProvider><ThemeProvider><AppContent /></ThemeProvider></SafeAreaProvider>; }

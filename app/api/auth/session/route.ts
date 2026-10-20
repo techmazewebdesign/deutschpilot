@@ -5,8 +5,8 @@ import { sendWelcomeEmail } from "@/lib/email";
 const SESSION_DURATION_MS = 14 * 24 * 60 * 60 * 1000;
 
 export async function POST(req: NextRequest) {
-  if (req.headers.get('origin') !== new URL(req.url).origin) {
-    return NextResponse.json({ error: 'Invalid origin.' }, { status: 403 });
+  if (req.headers.get("origin") !== new URL(req.url).origin) {
+    return NextResponse.json({ error: "Invalid origin." }, { status: 403 });
   }
   try {
     const { idToken } = await req.json();
@@ -16,7 +16,7 @@ export async function POST(req: NextRequest) {
 
     const identity = await getAdminAuth().verifyIdToken(idToken, true);
     if (!identity.email_verified || Date.now() / 1000 - identity.auth_time > 300) {
-      return NextResponse.json({ error: 'Verify your email and sign in again.' }, { status: 401 });
+      return NextResponse.json({ error: "Verify your email and sign in again." }, { status: 401 });
     }
     const sessionCookie = await getAdminAuth().createSessionCookie(idToken, {
       expiresIn: SESSION_DURATION_MS,
@@ -24,7 +24,7 @@ export async function POST(req: NextRequest) {
 
     // Send welcome email on first verified session (fire-and-forget)
     try {
-      const decoded = await getAdminAuth().verifyIdToken(idToken);
+      const decoded = identity;
       if (decoded.email_verified) {
         const userDoc = await getAdminDb().doc(`users/${decoded.uid}`).get();
         const data = userDoc.data();
@@ -34,7 +34,9 @@ export async function POST(req: NextRequest) {
           sendWelcomeEmail({
             to: decoded.email,
             name: data.fullName ?? decoded.name ?? decoded.email.split("@")[0],
-          }).catch(() => {/* non-blocking */});
+          }).catch(() => {
+            /* non-blocking */
+          });
         }
       }
     } catch {

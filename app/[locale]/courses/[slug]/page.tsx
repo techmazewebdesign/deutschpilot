@@ -1,3 +1,5 @@
+import { auth } from "@/lib/auth";
+import { legacyLearningClient, requireQuery } from "@/lib/legacyLearningAccess";
 import { getTranslations } from "next-intl/server";
 import { notFound } from "next/navigation";
 import Link from "next/link";
@@ -26,12 +28,14 @@ export default async function CourseDetailPage({
   const supabase = createServerSupabaseClient();
 
   // Load course + lessons in one query
-  const { data: course } = await supabase
-    .from("courses")
-    .select("*, lessons(*)")
-    .eq("slug", slug)
-    .eq("is_published", true)
-    .single();
+  const { data: course } = requireQuery(
+    await supabase
+      .from("courses")
+      .select("id, slug, title, description, level, lessons(id, slug, title, order_index)")
+      .eq("slug", slug)
+      .eq("is_published", true)
+      .maybeSingle()
+  );
 
   if (!course) notFound();
 
@@ -41,24 +45,24 @@ export default async function CourseDetailPage({
     .sort((a, b) => a.order_index - b.order_index);
 
   // Check if user is logged in to show progress
-  const { data: { session } } = await supabase.auth.getSession();
+  const session = await auth();
   let completedLessonIds = new Set<string>();
 
-  if (session) {
-    const { data: progress } = await supabase
+  if (session?.user) {
+    const privateDb = await legacyLearningClient(session.user.id);
+    const { data: progress, error: progressError } = await privateDb
       .from("student_progress")
       .select("lesson_id")
       .eq("user_id", session.user.id)
       .eq("course_id", course.id)
       .eq("completed", true);
+    requireQuery({ error: progressError });
     completedLessonIds = new Set(progress?.map((p: { lesson_id: string }) => p.lesson_id) ?? []);
   }
 
   const firstLesson = lessons[0];
   const completedCount = completedLessonIds.size;
-  const progressPct = lessons.length > 0
-    ? Math.round((completedCount / lessons.length) * 100)
-    : 0;
+  const progressPct = lessons.length > 0 ? Math.round((completedCount / lessons.length) * 100) : 0;
 
   const levelColors: Record<string, string> = {
     A1: "text-emerald-300 bg-emerald-500/15 border-emerald-500/30",
@@ -72,26 +76,29 @@ export default async function CourseDetailPage({
     <>
       <Navigation />
       <main className="min-h-screen bg-[#072143]">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-
+        <div className="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8">
           {/* Back link */}
           <Link
             href={`/${locale}/courses`}
-            className="inline-flex items-center gap-1.5 text-sm text-white/50 hover:text-[#E0B873] transition-colors mb-8"
+            className="mb-8 inline-flex items-center gap-1.5 text-sm text-white/50 transition-colors hover:text-[#E0B873]"
           >
             <ArrowLeft className="h-4 w-4" />
             {tLearn("backToCourses")}
           </Link>
 
           {/* Course header */}
-          <div className="bg-[#0A2A50]/60 border border-white/10 rounded-2xl p-8 mb-8">
-            <span className={`inline-block text-[10px] font-bold tracking-widest uppercase px-2.5 py-1 rounded-full border mb-4 ${levelColors[course.level] ?? levelColors.A1}`}>
+          <div className="mb-8 rounded-2xl border border-white/10 bg-[#0A2A50]/60 p-8">
+            <span
+              className={`mb-4 inline-block rounded-full border px-2.5 py-1 text-[10px] font-bold uppercase tracking-widest ${levelColors[course.level] ?? levelColors.A1}`}
+            >
               {course.level}
             </span>
-            <h1 className="text-3xl sm:text-4xl font-serif font-bold text-white mb-3">{course.title}</h1>
-            <p className="text-[#C9D2DE] leading-relaxed mb-6">{course.description}</p>
+            <h1 className="mb-3 font-serif text-3xl font-bold text-white sm:text-4xl">
+              {course.title}
+            </h1>
+            <p className="mb-6 leading-relaxed text-[#C9D2DE]">{course.description}</p>
 
-            <div className="flex items-center gap-6 text-sm text-white/50 mb-6">
+            <div className="mb-6 flex items-center gap-6 text-sm text-white/50">
               <span className="flex items-center gap-1.5">
                 <BookOpen className="h-4 w-4" />
                 {lessons.length} {tLearn("lessons")}
@@ -107,13 +114,13 @@ export default async function CourseDetailPage({
             {/* Progress bar (logged in only) */}
             {session && lessons.length > 0 && (
               <div className="mb-6">
-                <div className="flex justify-between text-xs text-white/40 mb-1.5">
+                <div className="mb-1.5 flex justify-between text-xs text-white/40">
                   <span>{tLearn("courseProgress")}</span>
                   <span className="text-[#E0B873]">{progressPct}%</span>
                 </div>
-                <div className="h-2 bg-white/5 rounded-full overflow-hidden">
+                <div className="h-2 overflow-hidden rounded-full bg-white/5">
                   <div
-                    className="h-full bg-gradient-to-r from-[#E0B873] to-[#C99B50] rounded-full transition-all"
+                    className="h-full rounded-full bg-gradient-to-r from-[#E0B873] to-[#C99B50] transition-all"
                     style={{ width: `${progressPct}%` }}
                   />
                 </div>
@@ -123,7 +130,7 @@ export default async function CourseDetailPage({
             {firstLesson && (
               <Link
                 href={`/${locale}/lessons/${firstLesson.slug}`}
-                className="inline-flex items-center gap-2 bg-[#E0B873] text-[#05101E] font-semibold px-6 py-3 rounded-md hover:bg-[#C99B50] transition-colors"
+                className="inline-flex items-center gap-2 rounded-md bg-[#E0B873] px-6 py-3 font-semibold text-[#05101E] transition-colors hover:bg-[#C99B50]"
               >
                 {tLearn("startFirstLesson")}
                 <ChevronRight className="h-4 w-4" />
@@ -133,7 +140,7 @@ export default async function CourseDetailPage({
             {!session && (
               <Link
                 href={`/${locale}/signup`}
-                className="ml-4 inline-flex items-center gap-2 border border-[#E0B873]/30 text-[#E0B873] font-medium px-6 py-3 rounded-md hover:bg-[#E0B873]/10 transition-colors"
+                className="ml-4 inline-flex items-center gap-2 rounded-md border border-[#E0B873]/30 px-6 py-3 font-medium text-[#E0B873] transition-colors hover:bg-[#E0B873]/10"
               >
                 {t("signUpFree")}
               </Link>
@@ -141,8 +148,8 @@ export default async function CourseDetailPage({
           </div>
 
           {/* Lessons list */}
-          <div className="bg-[#0A2A50]/40 border border-white/8 rounded-2xl overflow-hidden">
-            <div className="px-6 py-4 border-b border-white/8">
+          <div className="border-white/8 overflow-hidden rounded-2xl border bg-[#0A2A50]/40">
+            <div className="border-white/8 border-b px-6 py-4">
               <h2 className="text-base font-semibold text-white">{tLearn("lessons")}</h2>
             </div>
 
@@ -156,22 +163,26 @@ export default async function CourseDetailPage({
                     <li key={lesson.id} className="border-b border-white/5 last:border-0">
                       <Link
                         href={`/${locale}/lessons/${lesson.slug}`}
-                        className="flex items-center gap-4 px-6 py-4 hover:bg-white/4 transition-colors group"
+                        className="hover:bg-white/4 group flex items-center gap-4 px-6 py-4 transition-colors"
                       >
-                        <div className={`flex-shrink-0 h-8 w-8 rounded-full border flex items-center justify-center text-xs font-bold
-                          ${isDone
-                            ? "bg-[#E0B873]/20 border-[#E0B873]/40 text-[#E0B873]"
-                            : "bg-white/5 border-white/15 text-white/40"
+                        <div
+                          className={`flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full border text-xs font-bold
+                          ${
+                            isDone
+                              ? "border-[#E0B873]/40 bg-[#E0B873]/20 text-[#E0B873]"
+                              : "border-white/15 bg-white/5 text-white/40"
                           }`}
                         >
                           {isDone ? <CheckCircle2 className="h-4 w-4" /> : idx + 1}
                         </div>
-                        <div className="flex-1 min-w-0">
-                          <p className={`text-sm font-medium truncate ${isDone ? "text-white/50 line-through" : "text-white"}`}>
+                        <div className="min-w-0 flex-1">
+                          <p
+                            className={`truncate text-sm font-medium ${isDone ? "text-white/50 line-through" : "text-white"}`}
+                          >
                             {lesson.title}
                           </p>
                         </div>
-                        <ChevronRight className="h-4 w-4 text-white/20 group-hover:text-[#E0B873] transition-colors flex-shrink-0" />
+                        <ChevronRight className="h-4 w-4 flex-shrink-0 text-white/20 transition-colors group-hover:text-[#E0B873]" />
                       </Link>
                     </li>
                   );
@@ -179,7 +190,6 @@ export default async function CourseDetailPage({
               </ul>
             )}
           </div>
-
         </div>
       </main>
       <Footer />

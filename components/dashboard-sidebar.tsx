@@ -6,7 +6,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import { cn } from "@/lib/utils";
-import { createClient } from "@/lib/supabaseClient";
+import { useAuth } from "@/contexts/auth-context";
 import {
   LayoutDashboard,
   BookOpen,
@@ -32,28 +32,20 @@ export function DashboardSidebar({ locale }: SidebarProps) {
   const [level, setLevel] = useState("");
   const [loggingOut, setLoggingOut] = useState(false);
 
+  const { user, profile, signOut } = useAuth();
   useEffect(() => {
-    const supabase = createClient();
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      if (!session) return;
-      supabase
-        .from("profiles")
-        .select("full_name, german_level")
-        .eq("id", session.user.id)
-        .single()
-        .then(({ data }) => {
-          setDisplayName(data?.full_name || session.user.email?.split("@")[0] || t("studentFallback"));
-          setLevel(data?.german_level || "");
-        });
-    });
-  }, []);
-
+    setDisplayName(profile?.fullName || user?.displayName || user?.email?.split("@")[0] || "");
+    setLevel(profile?.germanLevel || "");
+  }, [profile, user]);
   async function handleLogout() {
     setLoggingOut(true);
-    const supabase = createClient();
-    await supabase.auth.signOut();
-    router.push(`/${locale}`);
-    router.refresh();
+    try {
+      await signOut();
+      router.push(`/${locale}`);
+      router.refresh();
+    } finally {
+      setLoggingOut(false);
+    }
   }
 
   const navItems = [
@@ -73,16 +65,24 @@ export function DashboardSidebar({ locale }: SidebarProps) {
   const isActive = (href: string) => pathname === href;
 
   return (
-    <aside className="hidden lg:flex flex-col w-64 min-h-screen bg-[#071424] border-r border-[#E0B873]/8 flex-shrink-0">
+    <aside className="border-[#E0B873]/8 hidden min-h-screen w-64 flex-shrink-0 flex-col border-r bg-[#071424] lg:flex">
       {/* Logo */}
-      <div className="px-6 py-5 border-b border-white/5">
+      <div className="border-b border-white/5 px-6 py-5">
         <Link href={`/${locale}`} className="flex items-center gap-2">
           <div style={{ mixBlendMode: "screen" }} className="flex-shrink-0">
-            <Image src="/Images/Deurschpilot_logo.png" alt="DeutschPilot" width={36} height={36} className="h-8 w-8 object-contain" />
+            <Image
+              src="/Images/Deurschpilot_logo.png"
+              alt="DeutschPilot"
+              width={36}
+              height={36}
+              className="h-8 w-8 object-contain"
+            />
           </div>
           <div className="flex flex-col leading-none">
-            <span className="text-[12px] font-bold tracking-[0.18em] text-[#F8F5EF] uppercase">DeutschPilot</span>
-            <span className="text-[8px] tracking-[0.22em] text-[#E0B873] uppercase mt-[2px]">
+            <span className="text-[12px] font-bold uppercase tracking-[0.18em] text-[#F8F5EF]">
+              DeutschPilot
+            </span>
+            <span className="mt-[2px] text-[8px] uppercase tracking-[0.22em] text-[#E0B873]">
               {t("tagline")}
             </span>
           </div>
@@ -90,52 +90,68 @@ export function DashboardSidebar({ locale }: SidebarProps) {
       </div>
 
       {/* User card */}
-      <div className="px-4 py-4 border-b border-white/5">
-        <div className="flex items-center gap-3 p-3 rounded-lg bg-white/4">
-          <div className="h-9 w-9 rounded-full bg-[#E0B873]/20 border border-[#E0B873]/30 flex items-center justify-center flex-shrink-0">
+      <div className="border-b border-white/5 px-4 py-4">
+        <div className="bg-white/4 flex items-center gap-3 rounded-lg p-3">
+          <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full border border-[#E0B873]/30 bg-[#E0B873]/20">
             <span className="text-sm font-bold text-[#E0B873]">
               {displayName ? displayName.charAt(0).toUpperCase() : "S"}
             </span>
           </div>
           <div className="min-w-0">
-            <p className="text-sm font-medium text-white truncate">{displayName || t("studentFallback")}</p>
+            <p className="truncate text-sm font-medium text-white">
+              {displayName || t("studentFallback")}
+            </p>
             {level && (
-              <p className="text-xs text-[#E0B873]">{t("levelLabel")} {level}</p>
+              <p className="text-xs text-[#E0B873]">
+                {t("levelLabel")} {level}
+              </p>
             )}
           </div>
         </div>
       </div>
 
       {/* Main nav */}
-      <nav className="flex-1 px-3 py-4 space-y-1 overflow-y-auto">
-        <p className="text-[9px] font-medium text-white/30 uppercase tracking-widest px-3 mb-2">
+      <nav className="flex-1 space-y-1 overflow-y-auto px-3 py-4">
+        <p className="mb-2 px-3 text-[9px] font-medium uppercase tracking-widest text-white/30">
           {t("learningHeading")}
         </p>
         {navItems.map((item) => {
           const Icon = item.icon;
           const active = isActive(item.href);
           return (
-            <Link key={item.href} href={item.href}
-              className={cn("flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-all",
-                active ? "bg-[#E0B873]/12 text-[#E0B873] border border-[#E0B873]/20" : "text-white/60 hover:text-white hover:bg-white/5"
-              )}>
+            <Link
+              key={item.href}
+              href={item.href}
+              className={cn(
+                "flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm transition-all",
+                active
+                  ? "bg-[#E0B873]/12 border border-[#E0B873]/20 text-[#E0B873]"
+                  : "text-white/60 hover:bg-white/5 hover:text-white"
+              )}
+            >
               <Icon className={cn("h-4 w-4 flex-shrink-0", active ? "text-[#E0B873]" : "")} />
               {item.label}
             </Link>
           );
         })}
         <div className="pt-4">
-          <p className="text-[9px] font-medium text-white/30 uppercase tracking-widest px-3 mb-2">
+          <p className="mb-2 px-3 text-[9px] font-medium uppercase tracking-widest text-white/30">
             {t("accountHeading")}
           </p>
           {bottomItems.map((item) => {
             const Icon = item.icon;
             const active = isActive(item.href);
             return (
-              <Link key={item.href} href={item.href}
-                className={cn("flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-all",
-                  active ? "bg-[#E0B873]/12 text-[#E0B873] border border-[#E0B873]/20" : "text-white/60 hover:text-white hover:bg-white/5"
-                )}>
+              <Link
+                key={item.href}
+                href={item.href}
+                className={cn(
+                  "flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm transition-all",
+                  active
+                    ? "bg-[#E0B873]/12 border border-[#E0B873]/20 text-[#E0B873]"
+                    : "text-white/60 hover:bg-white/5 hover:text-white"
+                )}
+              >
                 <Icon className={cn("h-4 w-4 flex-shrink-0", active ? "text-[#E0B873]" : "")} />
                 {item.label}
               </Link>
@@ -145,10 +161,17 @@ export function DashboardSidebar({ locale }: SidebarProps) {
       </nav>
 
       {/* Logout */}
-      <div className="px-3 py-4 border-t border-white/5">
-        <button onClick={handleLogout} disabled={loggingOut}
-          className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-white/40 hover:text-white hover:bg-white/5 transition-all disabled:opacity-50">
-          {loggingOut ? <Loader2 className="h-4 w-4 flex-shrink-0 animate-spin" /> : <LogOut className="h-4 w-4 flex-shrink-0" />}
+      <div className="border-t border-white/5 px-3 py-4">
+        <button
+          onClick={handleLogout}
+          disabled={loggingOut}
+          className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm text-white/40 transition-all hover:bg-white/5 hover:text-white disabled:opacity-50"
+        >
+          {loggingOut ? (
+            <Loader2 className="h-4 w-4 flex-shrink-0 animate-spin" />
+          ) : (
+            <LogOut className="h-4 w-4 flex-shrink-0" />
+          )}
           {t("signOut")}
         </button>
       </div>

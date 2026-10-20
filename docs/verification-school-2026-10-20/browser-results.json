@@ -1,0 +1,134 @@
+{
+  "timestamp": "2026-10-20T17:18:12.787Z",
+  "scope": "Actual browser UI with synthetic in-process engine and intercepted transport. No live auth, database, scanner, storage or push verification.",
+  "base": "http://localhost:3017",
+  "results": [
+    {
+      "step": "Owner workspace loads authenticated synthetic membership",
+      "status": "PASS",
+      "screenshot": "/Users/rooz/Documents/Codex/2026-10-18/deutschpilot-release/docs/verification-school-2026-10-20/browser-01-owner-overview.png"
+    },
+    {
+      "step": "Owner creates email-bound private invitation and sees code",
+      "status": "PASS"
+    },
+    {
+      "step": "Owner creates class with two teachers and student assignment",
+      "status": "PASS",
+      "screenshot": "/Users/rooz/Documents/Codex/2026-10-18/deutschpilot-release/docs/verification-school-2026-10-20/browser-03-owner-classes.png"
+    },
+    {
+      "step": "Owner saves identity, privacy configuration and category retention",
+      "status": "PASS",
+      "screenshot": "/Users/rooz/Documents/Codex/2026-10-18/deutschpilot-release/docs/verification-school-2026-10-20/browser-04-owner-settings.png"
+    },
+    {
+      "step": "Owner sends school letter with reply deadline",
+      "status": "PASS"
+    },
+    {
+      "step": "Owner inspects actual role-restricted school audit trail",
+      "status": "PASS",
+      "screenshot": "/Users/rooz/Documents/Codex/2026-10-18/deutschpilot-release/docs/verification-school-2026-10-20/browser-06-owner-audit.png"
+    },
+    {
+      "step": "Office workflow requests private medical evidence",
+      "status": "PASS"
+    },
+    {
+      "step": "Teacher records attendance; office-only excused status unavailable",
+      "status": "PASS",
+      "screenshot": "/Users/rooz/Documents/Codex/2026-10-18/deutschpilot-release/docs/verification-school-2026-10-20/browser-08-teacher-attendance.png"
+    },
+    {
+      "step": "First assigned teacher sends class message",
+      "status": "PASS"
+    },
+    {
+      "step": "Second assigned teacher accesses complete paged class history",
+      "status": "PASS",
+      "screenshot": "/Users/rooz/Documents/Codex/2026-10-18/deutschpilot-release/docs/verification-school-2026-10-20/browser-10-teacher2-full-chat.png"
+    },
+    {
+      "step": "Assigned teacher moderates existing class message",
+      "status": "PASS"
+    },
+    {
+      "step": "Refresh updates older loaded pages after another teacher moderates",
+      "status": "PASS"
+    },
+    {
+      "step": "Student submits own illness absence after policy configuration",
+      "status": "PASS",
+      "screenshot": "/Users/rooz/Documents/Codex/2026-10-18/deutschpilot-release/docs/verification-school-2026-10-20/browser-13-student-absence.png"
+    },
+    {
+      "step": "Student reads and acknowledges school letter",
+      "status": "PASS"
+    },
+    {
+      "step": "Student uploads PDF tied to absence/request; quarantine blocks download",
+      "status": "PASS",
+      "screenshot": "/Users/rooz/Documents/Codex/2026-10-18/deutschpilot-release/docs/verification-school-2026-10-20/browser-15-student-private-upload.png"
+    },
+    {
+      "step": "Declared synthetic clean scan fulfils request and authorises own PDF download",
+      "status": "PASS"
+    },
+    {
+      "step": "Student uploads signed letter; return remains pending until trusted scan",
+      "status": "PASS"
+    },
+    {
+      "step": "Student marks own notification as read",
+      "status": "PASS"
+    },
+    {
+      "step": "Office approves absence and existing attendance becomes excused",
+      "status": "PASS",
+      "screenshot": "/Users/rooz/Documents/Codex/2026-10-18/deutschpilot-release/docs/verification-school-2026-10-20/browser-19-office-absence-review.png"
+    },
+    {
+      "step": "Office records document-specific retention hold",
+      "status": "PASS"
+    },
+    {
+      "step": "Teacher cannot see or fetch medical document",
+      "status": "PASS",
+      "screenshot": "/Users/rooz/Documents/Codex/2026-10-18/deutschpilot-release/docs/verification-school-2026-10-20/browser-21-teacher-private-view.png"
+    },
+    {
+      "step": "Unassigned teacher cannot see or fetch other class history",
+      "status": "PASS",
+      "screenshot": "/Users/rooz/Documents/Codex/2026-10-18/deutschpilot-release/docs/verification-school-2026-10-20/browser-22-unassigned-teacher.png"
+    },
+    {
+      "step": "Other student cannot see letter or private certificate",
+      "status": "PASS"
+    },
+    {
+      "step": "Non-member receives access denial with no school records",
+      "status": "PASS",
+      "screenshot": "/Users/rooz/Documents/Codex/2026-10-18/deutschpilot-release/docs/verification-school-2026-10-20/browser-24-outsider-denied.png"
+    },
+    {
+      "step": "German mobile-width class portal renders without horizontal page overflow",
+      "status": "PASS",
+      "screenshot": "/Users/rooz/Documents/Codex/2026-10-18/deutschpilot-release/docs/verification-school-2026-10-20/browser-25-german-mobile.png"
+    },
+    {
+      "step": "No marketing trackers in school HTML or public-to-school SPA navigation",
+      "status": "PASS",
+      "screenshot": "/Users/rooz/Documents/Codex/2026-10-18/deutschpilot-release/docs/verification-school-2026-10-20/browser-26-school-tracker-free.png"
+    },
+    {
+      "step": "No uncaught browser runtime errors across walkthrough",
+      "status": "PASS"
+    }
+  ],
+  "browserErrors": [],
+  "counts": {
+    "passed": 27,
+    "failed": 0
+  }
+}

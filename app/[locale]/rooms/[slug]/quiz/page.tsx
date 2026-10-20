@@ -3,7 +3,7 @@ import Link from "next/link";
 import { AppLayout } from "@/components/app/app-layout";
 import { auth } from "@/lib/auth";
 import { isPlaceholderLocale } from "@/i18n";
-import { createServerSupabaseClient } from "@/lib/supabaseServer";
+import { legacyLearningClient, requireQuery } from "@/lib/legacyLearningAccess";
 import { Navigation } from "@/components/navigation";
 import { PlaceholderPage } from "@/components/placeholder-page";
 import { Footer } from "@/components/footer";
@@ -54,20 +54,22 @@ export default async function RoomQuizPage({
   const session = await auth();
   if (!session?.user) redirect(`/${locale}/signin`);
 
-  const supabase = createServerSupabaseClient();
+  const supabase = await legacyLearningClient(session.user.id);
   const de = locale === "de";
 
-  const { data: courseData } = await supabase
-    .from("courses")
-    .select("id, title, level")
-    .eq("slug", slug)
-    .single();
+  const { data: courseData } = requireQuery(
+    await supabase
+      .from("courses")
+      .select("id, title, level")
+      .eq("slug", slug)
+      .eq("is_published", true)
+      .maybeSingle()
+  );
 
   if (!courseData) notFound();
   const course = courseData as CourseRow;
 
-  const userName =
-    session.user.name ?? session.user.email?.split("@")[0] ?? "Student";
+  const userName = session.user.name ?? session.user.email?.split("@")[0] ?? "Student";
 
   if (!(await hasLevelAccess(session.user.id, course.level, session.user.role))) {
     return (
@@ -81,56 +83,58 @@ export default async function RoomQuizPage({
     );
   }
 
-  const { data: quizLessonData } = await supabase
-    .from("lessons")
-    .select("id, title")
-    .eq("course_id", course.id)
-    .eq("order_index", 99)
-    .single();
+  const { data: quizLessonData } = requireQuery(
+    await supabase
+      .from("lessons")
+      .select("id, title")
+      .eq("course_id", course.id)
+      .eq("order_index", 99)
+      .maybeSingle()
+  );
 
   if (!quizLessonData) notFound();
   const quizLesson = quizLessonData as QuizLessonRow;
 
-  const { data: exercisesData } = await supabase
-    .from("exercises")
-    .select("id, question, type, options, correct_answer, explanation")
-    .eq("lesson_id", quizLesson.id)
-    .order("created_at");
-
-  const exercises: ExerciseRow[] = ((exercisesData ?? []) as ExerciseRow[]).map(
-    (e) => ({
-      id: e.id,
-      question: e.question,
-      type: e.type,
-      options: Array.isArray(e.options) ? (e.options as string[]) : null,
-      correct_answer: e.correct_answer,
-      explanation: typeof e.explanation === "string" ? e.explanation : null,
-    })
+  const { data: exercisesData } = requireQuery(
+    await supabase
+      .from("exercises")
+      .select("id, question, type, options, correct_answer, explanation")
+      .eq("lesson_id", quizLesson.id)
+      .order("created_at")
   );
+
+  const exercises: ExerciseRow[] = ((exercisesData ?? []) as ExerciseRow[]).map((e) => ({
+    id: e.id,
+    question: e.question,
+    type: e.type,
+    options: Array.isArray(e.options) ? (e.options as string[]) : null,
+    correct_answer: e.correct_answer,
+    explanation: typeof e.explanation === "string" ? e.explanation : null,
+  }));
 
   return (
     <AppLayout locale={locale} userName={userName}>
-      <div className="px-5 lg:px-8 py-6 lg:py-8 max-w-3xl w-full mx-auto">
+      <div className="mx-auto w-full max-w-3xl px-5 py-6 lg:px-8 lg:py-8">
         <Link
           href={`/${locale}/rooms/${slug}`}
-          className="inline-flex items-center gap-1.5 text-xs text-white/35 hover:text-[#E0B873] transition-colors mb-6"
+          className="mb-6 inline-flex items-center gap-1.5 text-xs text-white/35 transition-colors hover:text-[#E0B873]"
         >
           <ArrowLeft className="h-3.5 w-3.5" />
           {de ? "Zurück zum Raum" : "Back to Room"}
         </Link>
 
-        <div className="relative overflow-hidden rounded-2xl border border-[#E0B873]/20 bg-gradient-to-br from-[#0E2845] via-[#0A1E35] to-[#071424] p-6 mb-6">
+        <div className="relative mb-6 overflow-hidden rounded-2xl border border-[#E0B873]/20 bg-gradient-to-br from-[#0E2845] via-[#0A1E35] to-[#071424] p-6">
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,_rgba(224,184,115,0.08)_0%,_transparent_60%)]" />
           <div className="relative">
-            <div className="flex items-center gap-2.5 mb-3">
-              <div className="h-7 w-7 rounded-lg bg-[#E0B873]/15 border border-[#E0B873]/25 flex items-center justify-center">
+            <div className="mb-3 flex items-center gap-2.5">
+              <div className="flex h-7 w-7 items-center justify-center rounded-lg border border-[#E0B873]/25 bg-[#E0B873]/15">
                 <Award className="h-4 w-4 text-[#E0B873]" />
               </div>
-              <span className="text-[10px] font-semibold text-[#E0B873]/70 uppercase tracking-[0.2em]">
+              <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#E0B873]/70">
                 {de ? "Checkpoint Quiz" : "Checkpoint Quiz"}
               </span>
             </div>
-            <h1 className="text-2xl lg:text-3xl font-serif font-bold text-white mb-1">
+            <h1 className="mb-1 font-serif text-2xl font-bold text-white lg:text-3xl">
               {course.title}
             </h1>
             <p className="text-sm text-white/45">

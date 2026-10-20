@@ -1,5 +1,7 @@
 # DeutschPilot mobile candidate — 18 October 2026
 
+Historical record: superseded by [20 October candidate notes](APP_STORE_CANDIDATE_2026-10-20.md), version 1.1.0 (5). The statements below describe the earlier candidate only.
+
 Status: substantial local upgrade; **not ready for submission or publication**. No App Store upload, review submission, production deployment, payment activation, authority filing or external message was made during this work.
 
 ## Implemented

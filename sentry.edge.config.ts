@@ -1,10 +1,5 @@
-// Sentry is optional — only initializes when NEXT_PUBLIC_SENTRY_DSN is set.
-import * as Sentry from "@sentry/nextjs";
-
-if (process.env.NEXT_PUBLIC_SENTRY_DSN) {
-  Sentry.init({
-    dsn: process.env.NEXT_PUBLIC_SENTRY_DSN,
-    tracesSampleRate: 0.1,
-    enabled: process.env.NODE_ENV === "production",
-  });
-}
+/** School rollout privacy gate: Sentry capture, tracing, sessions and replay disabled.
+ * A DSN alone must never enable transmission of school messages or private records.
+ * Re-enabling requires a reviewed scrubbing/processor/consent policy and new tests.
+ */
+export {};

@@ -15,6 +15,7 @@ import { getAdminAuth } from "@/lib/firebase-admin";
 import { findOrCreateProfile } from "@/lib/profileHelper";
 
 export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
 
 export async function GET(req: NextRequest) {
   if (!process.env.SUPABASE_SERVICE_ROLE_KEY) {
@@ -47,7 +48,7 @@ export async function GET(req: NextRequest) {
     }
 
     try {
-      const decoded = await getAdminAuth().verifyIdToken(bearerToken);
+      const decoded = await getAdminAuth().verifyIdToken(bearerToken, true);
       firebaseUid = decoded.uid;
       email = decoded.email ?? "";
       name = (decoded.name as string) ?? "";
@@ -60,8 +61,7 @@ export async function GET(req: NextRequest) {
   }
 
   // ── 2. Find or create Supabase profile ────────────────────────────────────
-  const safeRole =
-    role === "teacher" || role === "admin" ? role : "student";
+  const safeRole = role === "teacher" || role === "admin" ? role : "student";
 
   try {
     const profile = await findOrCreateProfile({
@@ -72,23 +72,22 @@ export async function GET(req: NextRequest) {
       germanLevel: safeRole === "student" ? "A1" : null,
     });
 
-    console.log(
-      `[profile] ✓ Resolved  supabase_id=${profile.id}  firebase_uid=${profile.firebase_uid}  role=${profile.role}`
-    );
-
-    return NextResponse.json({
-      profile: {
-        id: profile.id,
-        firebase_uid: profile.firebase_uid,
-        email: profile.email,
-        full_name: profile.full_name,
-        role: profile.role,
-        german_level: profile.german_level,
+    return NextResponse.json(
+      {
+        profile: {
+          id: profile.id,
+          firebase_uid: profile.firebase_uid,
+          email: profile.email,
+          full_name: profile.full_name,
+          role: profile.role,
+          german_level: profile.german_level,
+        },
       },
-    });
+      { headers: { "Cache-Control": "no-store" } }
+    );
   } catch (err) {
     const msg = err instanceof Error ? err.message : String(err);
-    console.error("[profile] ✗ findOrCreateProfile failed:", msg);
+    console.error("[profile] Profile resolution failed.");
     return NextResponse.json(
       { error: "Could not load your profile. Please sign out and sign in again." },
       { status: 500 }

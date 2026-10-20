@@ -1,8 +1,27 @@
 # DeutschPilot — Database and Auth Map
 
-> Last updated: 2026-05-20
-> Status: Active architecture audit. Migration in planning.
+> Last updated: 2026-10-20
+> Status: Normalized school module implemented and locally verified; production activation pending. Legacy learning notes below remain descriptive of their separate storage.
 > Do not modify this file without updating it to reflect actual changes.
+
+---
+
+## 0. School platform architecture — current source
+
+The new module is separate from dormant Prisma Message/Notification/UploadedDocument models. Its actual schema is `supabase/migration-school-platform.sql`; legacy private-table hardening is `supabase/migration-legacy-private-access.sql`. No production migrations or public App Store submission were performed by this build.
+
+- `school_orgs`, `school_settings`, `school_members`, `school_classes`, `school_assignments` define tenant/membership/class scope. `SCHOOL_ID` is server configuration; clients cannot choose another tenant. Global Firebase teacher/admin claims never create school membership. Bootstrap requires verified global admin plus configured owner UID.
+- Normalized records: `school_attendance`, `school_absences`, `school_documents`, `school_document_requests`, `school_letters`, `school_letter_recipients`, `school_chat_messages`, `school_chat_reads`, `school_notifications`, `school_devices`, `school_outbox`, `school_progress`, `school_audit`, `school_invites`, `school_deletion_requests`, `school_cleanup`. File bytes live only in private `school-private` storage. No aggregate fallback is read by the application.
+- API code uses service-role-only RPCs after revoked-checked Firebase cookie/native bearer verification. Transactions recheck current membership, class and recipient authorization, lock relevant rows and atomically commit entity changes/audit/notifications. All direct anon/authenticated grants are revoked. Restrictive storage policy protects private objects even alongside unrelated permissive policies.
+- `lib/school/contract.ts` is shared web/native contract; `repository.ts` performs bounded scoped reads/entity diffs and transactional persistence. Snapshot collections expose truncation/cursors. Chat/audit use indexed keyset paging; exports consume explicit cursor pages. SQL merges progress monotonically; chat retries dedupe; letter receipts update per recipient.
+- Office/owner/student-self can access private files. Teachers receive assigned-class progress/attendance and minimal absence status/date summaries, never illness reasons/files. Uploads remain quarantined until exact-hash trusted scan, and scanning fails closed on unavailable/stale signatures. Letter acknowledgements/uploaded copies are not QES.
+- `app/api/account/delete/route.ts` invokes `deleteSchoolAccountData` before other data/identity deletion. Explicit holds/last owner block with review requests. Otherwise private storage cleanup is queued/retried, then scoped records/assignments/recipient maps/tokens are removed; authored chat text is cleared, identifiers receive random pseudonyms and known composite UID/email audit targets are redacted. Third-party free-text mentions and legal holds still require controller review. Authenticated own-account deletion does not require an unchanged verified email; school read/invitation access does.
+- Owner-defined retention: file categories, chat, attendance, absences, letters, notifications, progress and audit, plus documented controller policy note. No German retention periods are inferred. Indexed bounded maintenance skips holds/retained linked files; expired health data is hidden while cleanup is pending. Scheduled maintenance is operator-secret protected and dry-run by default. Missing policy never triggers guessed mass deletion.
+- Outbox sends only generic messages, uses leases and rechecks current device/recipient/read state. Acceptance/receipt/unknown statuses remain distinct from physical-device display. Real EAS/APNs delivery still needs device activation/testing.
+- Web learning progress uses canonical lesson/course lookup and authenticated server storage; mirror helper returns synced/not-member/not-configured/pending. Display labels derive from shipped native content or canonical web lesson metadata, never arbitrary client-provided titles.
+- Sentry instrumentation/client/server/edge capture and tracing are disabled for this school rollout even if a DSN exists. Re-enabling requires a separate reviewed telemetry policy. No replay is configured.
+
+Read-only activation check: `npm run check:school-activation`. Reusable build/activation/import record: `scripts/school-README.md`. Local PostgreSQL synthetic tests and browser walkthroughs are evidence of implementation; they do not certify German-law compliance, production compatibility or physical-device delivery.
 
 ---
 
@@ -13,6 +32,7 @@
 DeutschPilot uses **Firebase Authentication** as the single source of truth for user identity.
 
 **Client-side flow:**
+
 1. User submits sign-up or sign-in form
 2. Firebase client SDK (`firebase/auth`) creates or verifies the user in Firebase Auth
 3. Firebase returns an **ID token** to the browser
@@ -21,10 +41,12 @@ DeutschPilot uses **Firebase Authentication** as the single source of truth for 
 6. All subsequent server requests are authenticated by verifying `__session` via Firebase Admin SDK
 
 **Session verification:**
+
 - `lib/session.ts` → `getServerSession()` reads `__session` cookie and calls `getAdminAuth().verifySessionCookie()`
 - `middleware.ts` checks for presence of `__session` cookie on protected routes
 
 **Role management:**
+
 - Roles (`student`, `teacher`, `admin`) are stored as **Firebase custom claims** on the JWT
 - Also mirrored to Firestore `users/{uid}` document for admin queries
 - Set via `/api/auth/set-role` (POST) during onboarding
@@ -35,19 +57,21 @@ DeutschPilot uses **Firebase Authentication** as the single source of truth for 
 
 ### A. Firebase Firestore
 
-| Property | Value |
-|----------|-------|
-| Type | NoSQL document database |
-| Package | `firebase-admin` (server), `firebase` (client) |
-| SDK version | firebase-admin v13, firebase v12 |
-| Access | Server-only via Firebase Admin SDK |
+| Property    | Value                                          |
+| ----------- | ---------------------------------------------- |
+| Type        | NoSQL document database                        |
+| Package     | `firebase-admin` (server), `firebase` (client) |
+| SDK version | firebase-admin v13, firebase v12               |
+| Access      | Server-only via Firebase Admin SDK             |
 
 **Responsible for:**
+
 - User records (`users/{uid}` collection)
 - Admin user management (list, update role, disable, delete)
 - Role mirroring alongside Firebase custom claims
 
 **User document shape (`users/{uid}`):**
+
 ```
 uid: string
 email: string
@@ -60,19 +84,19 @@ emailVerified: boolean
 createdAt: Timestamp
 ```
 
-
 ---
 
 ### B. Supabase (PostgreSQL)
 
-| Property | Value |
-|----------|-------|
-| Type | Hosted PostgreSQL |
-| Package | `@supabase/ssr`, `@supabase/supabase-js` |
-| SDK version | @supabase/ssr v0.10, @supabase/supabase-js v2 |
-| Access | Server-side via `createServerSupabaseClient()`, client-side via `createClient()` |
+| Property    | Value                                                                            |
+| ----------- | -------------------------------------------------------------------------------- |
+| Type        | Hosted PostgreSQL                                                                |
+| Package     | `@supabase/ssr`, `@supabase/supabase-js`                                         |
+| SDK version | @supabase/ssr v0.10, @supabase/supabase-js v2                                    |
+| Access      | Server-side via `createServerSupabaseClient()`, client-side via `createClient()` |
 
 **Responsible for:**
+
 - Courses (course metadata, slugs, descriptions, levels)
 - Lessons (lesson content, slugs, associated course)
 - Exercises (exercise tasks, lesson associations)
@@ -84,6 +108,7 @@ createdAt: Timestamp
 - All public-facing learning content
 
 **Key tables (inferred from query patterns):**
+
 - `courses`
 - `lessons`
 - `exercises`
@@ -97,23 +122,26 @@ createdAt: Timestamp
 
 ### C. Prisma + PostgreSQL (Neon) — TRANSITIONAL STATE
 
-| Property | Value |
-|----------|-------|
-| Type | Hosted PostgreSQL (Neon serverless) |
-| Package | `@prisma/client`, `prisma` |
-| SDK version | Prisma v5.13 |
-| Access | Server-only via `lib/prisma.ts` |
+| Property    | Value                               |
+| ----------- | ----------------------------------- |
+| Type        | Hosted PostgreSQL (Neon serverless) |
+| Package     | `@prisma/client`, `prisma`          |
+| SDK version | Prisma v5.13                        |
+| Access      | Server-only via `lib/prisma.ts`     |
 
 **Currently responsible for:**
+
 - Email/password auth only: `passwordHash`, `emailVerified`, `confirmationCode`, `passwordResetToken`
 - User creation during sign-up (`api/auth/signup`)
 - Email verification code flow (`api/auth/verify-email`, `api/auth/resend-code`)
 - Password reset flow (`api/auth/forgot-password`, `api/auth/reset-password`)
 
 **Not yet active (schema exists, not used):**
+
 - Course, Lesson, Enrollment, Payment, Certificate, Retreat, Message, Notification, AdminNote, BlogPost, Testimonial models exist in schema but are not queried anywhere in the app
 
 **Migration target:**
+
 - Password auth responsibility to be removed once Firebase Auth handles the full sign-up/sign-in flow
 - Prisma/Neon may be retained for relational transactional data (enrollments, payments) in a future phase
 - `Account`, `Session`, `VerificationToken` models exist solely for NextAuth (currently disabled) and should be removed
@@ -122,11 +150,11 @@ createdAt: Timestamp
 
 ### D. MongoDB / Mongoose — UNUSED
 
-| Property | Value |
-|----------|-------|
-| Type | NoSQL document database |
-| Package | `mongoose` v9 |
-| Status | **Installed but completely unused in main project** |
+| Property | Value                                               |
+| -------- | --------------------------------------------------- |
+| Type     | NoSQL document database                             |
+| Package  | `mongoose` v9                                       |
+| Status   | **Installed but completely unused in main project** |
 
 `mongoose` remains in `package.json` as a leftover from an older architecture (visible in the `charming-turing-ad191c` worktree). It has no imports or usage in the current main codebase. Safe to remove from dependencies.
 
@@ -136,61 +164,61 @@ createdAt: Timestamp
 
 ### Authentication
 
-| File | Role |
-|------|------|
-| `lib/firebase.ts` | Initializes Firebase client app, exports `firebaseAuth` and `firebaseDb` |
-| `lib/firebase-admin.ts` | Initializes Firebase Admin SDK, exports `getAdminAuth()` and `getAdminDb()` |
-| `lib/session.ts` | Server session helper — verifies `__session` cookie via Firebase Admin |
-| `lib/auth.ts` | Re-exports `getServerSession` and session types (thin wrapper) |
+| File                        | Role                                                                                 |
+| --------------------------- | ------------------------------------------------------------------------------------ |
+| `lib/firebase.ts`           | Initializes Firebase client app, exports `firebaseAuth` and `firebaseDb`             |
+| `lib/firebase-admin.ts`     | Initializes Firebase Admin SDK, exports `getAdminAuth()` and `getAdminDb()`          |
+| `lib/session.ts`            | Server session helper — verifies `__session` cookie via Firebase Admin               |
+| `lib/auth.ts`               | Re-exports `getServerSession` and session types (thin wrapper)                       |
 | `contexts/auth-context.tsx` | Client-side React context — wraps `onAuthStateChanged`, exposes `user` and `signOut` |
-| `middleware.ts` | Route protection — checks `__session` cookie, redirects to `/signin` if missing |
+| `middleware.ts`             | Route protection — checks `__session` cookie, redirects to `/signin` if missing      |
 
 ### Auth API Routes
 
-| File | Role |
-|------|------|
-| `app/api/auth/session/route.ts` | POST: exchange Firebase ID token → session cookie. DELETE: clear cookie |
-| `app/api/auth/set-role/route.ts` | POST: verify ID token, set custom claim + write Firestore user doc |
-| `app/api/auth/signup/route.ts` | POST: create user in Prisma with bcrypt hash + send email code *(legacy — to be replaced)* |
-| `app/api/auth/signin/route.ts` | POST: verify password against Prisma hash *(legacy — to be replaced)* |
-| `app/api/auth/verify-email/route.ts` | POST: validate 6-digit code in Prisma, mark emailVerified *(legacy — to be replaced)* |
-| `app/api/auth/forgot-password/route.ts` | POST: Prisma-based reset token *(legacy — to be replaced)* |
-| `app/api/auth/reset-password/route.ts` | POST: Prisma-based reset *(legacy — to be replaced)* |
-| `app/api/auth/resend-code/route.ts` | POST: regenerate Prisma confirmation code *(legacy — to be replaced)* |
-| `app/api/auth/[...nextauth]/route.ts` | **Returns 404 — NextAuth is disabled** |
+| File                                    | Role                                                                                       |
+| --------------------------------------- | ------------------------------------------------------------------------------------------ |
+| `app/api/auth/session/route.ts`         | POST: exchange Firebase ID token → session cookie. DELETE: clear cookie                    |
+| `app/api/auth/set-role/route.ts`        | POST: verify ID token, set custom claim + write Firestore user doc                         |
+| `app/api/auth/signup/route.ts`          | POST: create user in Prisma with bcrypt hash + send email code _(legacy — to be replaced)_ |
+| `app/api/auth/signin/route.ts`          | POST: verify password against Prisma hash _(legacy — to be replaced)_                      |
+| `app/api/auth/verify-email/route.ts`    | POST: validate 6-digit code in Prisma, mark emailVerified _(legacy — to be replaced)_      |
+| `app/api/auth/forgot-password/route.ts` | POST: Prisma-based reset token _(legacy — to be replaced)_                                 |
+| `app/api/auth/reset-password/route.ts`  | POST: Prisma-based reset _(legacy — to be replaced)_                                       |
+| `app/api/auth/resend-code/route.ts`     | POST: regenerate Prisma confirmation code _(legacy — to be replaced)_                      |
+| `app/api/auth/[...nextauth]/route.ts`   | **Returns 404 — NextAuth is disabled**                                                     |
 
 ### Admin
 
-| File | Role |
-|------|------|
-| `app/api/admin/users/route.ts` | GET/PATCH/DELETE users — reads/writes Firestore + Firebase Auth custom claims |
-| `app/[locale]/admin/page.tsx` | Admin dashboard — counts users from Firestore |
-| `components/admin/users-table.tsx` | Admin UI — displays user list from Firestore |
-| `app/api/sales-training/route.ts` | Authenticated sales-video catalog and per-user progress writes |
-| `lib/sales-training.ts` | Server-side sales assignment rules and approved video catalog |
-| `app/[locale]/sales/presentations/page.tsx` | Assigned presentation-video library |
+| File                                        | Role                                                                          |
+| ------------------------------------------- | ----------------------------------------------------------------------------- |
+| `app/api/admin/users/route.ts`              | GET/PATCH/DELETE users — reads/writes Firestore + Firebase Auth custom claims |
+| `app/[locale]/admin/page.tsx`               | Admin dashboard — counts users from Firestore                                 |
+| `components/admin/users-table.tsx`          | Admin UI — displays user list from Firestore                                  |
+| `app/api/sales-training/route.ts`           | Authenticated sales-video catalog and per-user progress writes                |
+| `lib/sales-training.ts`                     | Server-side sales assignment rules and approved video catalog                 |
+| `app/[locale]/sales/presentations/page.tsx` | Assigned presentation-video library                                           |
 
 ### Learning Content (Supabase)
 
-| File | Role |
-|------|------|
-| `lib/supabaseClient.ts` | Browser Supabase client factory |
-| `lib/supabaseServer.ts` | Server Supabase client factory (cookie-based SSR) |
-| `lib/learningRooms.ts` | All room/task/progress queries against Supabase |
-| `app/[locale]/courses/page.tsx` | Fetches courses from Supabase |
-| `app/[locale]/courses/[slug]/page.tsx` | Fetches single course from Supabase |
-| `app/[locale]/lessons/[slug]/page.tsx` | Fetches lesson from Supabase |
-| `app/[locale]/exercises/[lessonId]/page.tsx` | Fetches exercises from Supabase |
-| `app/[locale]/rooms/[slug]/page.tsx` | Fetches room from Supabase |
-| `app/[locale]/placement-test/page.tsx` | Fetches placement test from Supabase |
-| `app/[locale]/dashboard/page.tsx` | Fetches dashboard data from Supabase |
-| `app/[locale]/dashboard/_actions.ts` | Server actions — progress upsert via Supabase |
+| File                                         | Role                                              |
+| -------------------------------------------- | ------------------------------------------------- |
+| `lib/supabaseClient.ts`                      | Browser Supabase client factory                   |
+| `lib/supabaseServer.ts`                      | Server Supabase client factory (cookie-based SSR) |
+| `lib/learningRooms.ts`                       | All room/task/progress queries against Supabase   |
+| `app/[locale]/courses/page.tsx`              | Fetches courses from Supabase                     |
+| `app/[locale]/courses/[slug]/page.tsx`       | Fetches single course from Supabase               |
+| `app/[locale]/lessons/[slug]/page.tsx`       | Fetches lesson from Supabase                      |
+| `app/[locale]/exercises/[lessonId]/page.tsx` | Fetches exercises from Supabase                   |
+| `app/[locale]/rooms/[slug]/page.tsx`         | Fetches room from Supabase                        |
+| `app/[locale]/placement-test/page.tsx`       | Fetches placement test from Supabase              |
+| `app/[locale]/dashboard/page.tsx`            | Fetches dashboard data from Supabase              |
+| `app/[locale]/dashboard/_actions.ts`         | Server actions — progress upsert via Supabase     |
 
 ### Prisma (Legacy Auth)
 
-| File | Role |
-|------|------|
-| `lib/prisma.ts` | Prisma client singleton |
+| File                   | Role                                                      |
+| ---------------------- | --------------------------------------------------------- |
+| `lib/prisma.ts`        | Prisma client singleton                                   |
 | `prisma/schema.prisma` | Full schema — User (auth fields), plus many unused models |
 
 ---
@@ -224,6 +252,7 @@ FIREBASE_ADMIN_PRIVATE_KEY
 NEXT_PUBLIC_SUPABASE_URL
 NEXT_PUBLIC_SUPABASE_ANON_KEY
 ```
+
 > Note: Only the anon key is used. No service role key is currently in use.
 
 ### Prisma / Neon PostgreSQL (legacy auth)
@@ -314,33 +343,33 @@ GOOGLE_CLIENT_SECRET
 
 ## 7. What System to Use for New Features
 
-| Feature type | Use |
-|---|---|
-| New login / OAuth provider | Firebase Auth (add provider in Firebase Console) |
-| New user profile field | Firestore `users/{uid}` document |
-| New learning content type | Supabase (new table) |
-| New student progress metric | Supabase `student_task_progress` or new Supabase table |
-| Admin dashboard data | Firestore collections + Firebase Admin SDK |
-| Transactional data (enrollments, payments) | Prisma/Neon — but only after migration plan is finalized |
-| File uploads | UploadThing (already installed: `uploadthing`, `@uploadthing/react`) |
-| Emails | Nodemailer via SMTP (already wired in `lib/email.ts`) |
-| Payments | Stripe — do not implement until architecture review |
-| Real-time features (chat, live session status) | Supabase Realtime or Firebase Realtime Database — decision pending |
+| Feature type                                   | Use                                                                  |
+| ---------------------------------------------- | -------------------------------------------------------------------- |
+| New login / OAuth provider                     | Firebase Auth (add provider in Firebase Console)                     |
+| New user profile field                         | Firestore `users/{uid}` document                                     |
+| New learning content type                      | Supabase (new table)                                                 |
+| New student progress metric                    | Supabase `student_task_progress` or new Supabase table               |
+| Admin dashboard data                           | Firestore collections + Firebase Admin SDK                           |
+| Transactional data (enrollments, payments)     | Prisma/Neon — but only after migration plan is finalized             |
+| File uploads                                   | UploadThing (already installed: `uploadthing`, `@uploadthing/react`) |
+| Emails                                         | Nodemailer via SMTP (already wired in `lib/email.ts`)                |
+| Payments                                       | Stripe — do not implement until architecture review                  |
+| Real-time features (chat, live session status) | Supabase Realtime or Firebase Realtime Database — decision pending   |
 
 ---
 
 ## 8. Known Conflicts (Migration Backlog)
 
-| Conflict | Risk Level | Status |
-|----------|-----------|--------|
-| Sign-up creates user in both Firebase Auth AND Prisma | High | Needs migration |
-| Password verification is in Prisma, not Firebase | High | Needs migration |
-| `forgot-password` page uses Firebase `sendPasswordResetEmail` but API route uses Prisma tokens | High | Contradictory flows |
-| `emailVerified` tracked in both Prisma and Firebase Auth | Medium | Needs consolidation |
-| Prisma schema has `Course`, `Enrollment`, `Payment` models that duplicate Supabase's responsibility | Medium | Dead schema — should be cleaned |
-| `Account`, `Session`, `VerificationToken` Prisma models exist for disabled NextAuth | Low | Safe to remove after NextAuth removal confirmed |
-| `mongoose` installed with no usage | Low | Safe to remove from package.json |
-| Firebase credentials are placeholders in `.env.local` | Critical | Must be filled before any Firebase flow works locally |
+| Conflict                                                                                            | Risk Level | Status                                                |
+| --------------------------------------------------------------------------------------------------- | ---------- | ----------------------------------------------------- |
+| Sign-up creates user in both Firebase Auth AND Prisma                                               | High       | Needs migration                                       |
+| Password verification is in Prisma, not Firebase                                                    | High       | Needs migration                                       |
+| `forgot-password` page uses Firebase `sendPasswordResetEmail` but API route uses Prisma tokens      | High       | Contradictory flows                                   |
+| `emailVerified` tracked in both Prisma and Firebase Auth                                            | Medium     | Needs consolidation                                   |
+| Prisma schema has `Course`, `Enrollment`, `Payment` models that duplicate Supabase's responsibility | Medium     | Dead schema — should be cleaned                       |
+| `Account`, `Session`, `VerificationToken` Prisma models exist for disabled NextAuth                 | Low        | Safe to remove after NextAuth removal confirmed       |
+| `mongoose` installed with no usage                                                                  | Low        | Safe to remove from package.json                      |
+| Firebase credentials are placeholders in `.env.local`                                               | Critical   | Must be filled before any Firebase flow works locally |
 
 ---
 

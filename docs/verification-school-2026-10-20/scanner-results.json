@@ -1,0 +1,32 @@
+{
+  "time": "2026-10-20T17:28:00.545Z",
+  "scope": "Real ClamAV Docker engine via actual scanner adapter with signature-age gate (72h maximum). Synthetic bytes; no deployed storage/upload claim.",
+  "engine": "ClamAV 1.5.4 / database28157 dated2026-10-18T06:24:14UTC",
+  "image": "clamav/clamav@sha256:e19130cdebaeacc71fa46eab3ed6f69941f2f22aa5e08d55e9197f8edf43ce5e",
+  "results": [
+    {
+      "name": "unauthorised",
+      "status": 403,
+      "verdict": null,
+      "pass": true
+    },
+    {
+      "name": "hash mismatch",
+      "status": 400,
+      "verdict": null,
+      "pass": true
+    },
+    {
+      "name": "clean PDF",
+      "status": 200,
+      "verdict": "clean",
+      "pass": true
+    },
+    {
+      "name": "benign EICAR",
+      "status": 200,
+      "verdict": "rejected",
+      "pass": true
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 {
   "name": "deutschpilot-mobile",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "private": true,
   "main": "index.ts",
   "scripts": {
@@ -9,7 +9,7 @@
     "android": "expo run:android",
     "web": "expo start --web",
     "check": "tsc --noEmit",
-    "test": "node --test scripts/regression.test.cjs",
+    "test": "node --test scripts/regression.test.cjs src/SchoolRegression.test.cjs",
     "check:app-store": "node scripts/check-app-store-readiness.mjs",
     "sync:content": "node scripts/sync-content.mjs"
   },
@@ -19,9 +19,15 @@
     "@react-native-google-signin/google-signin": "^16.1.5",
     "expo": "~57.0.30",
     "expo-apple-authentication": "~57.0.2",
+    "expo-constants": "~57.0.22",
     "expo-crypto": "~57.0.4",
+    "expo-document-picker": "~57.0.3",
+    "expo-file-system": "~57.0.7",
     "expo-haptics": "~57.0.3",
     "expo-linear-gradient": "~57.0.2",
+    "expo-notifications": "~57.0.23",
+    "expo-print": "~57.0.2",
+    "expo-sharing": "~57.0.23",
     "expo-speech": "~57.0.3",
     "expo-status-bar": "~57.0.1",
     "firebase": "^12.18.0",
@@ -34,5 +40,10 @@
   "devDependencies": {
     "@types/react": "~19.2.2",
     "typescript": "~6.0.3"
+  },
+  "overrides": {
+    "@firebase/firestore": {
+      "@grpc/grpc-js": "1.13.6"
+    }
   }
 }

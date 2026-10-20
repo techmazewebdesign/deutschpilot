@@ -3,26 +3,33 @@
     "name": "DeutschPilot",
     "slug": "deutschpilot",
     "scheme": "deutschpilot",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "orientation": "portrait",
     "userInterfaceStyle": "automatic",
     "icon": "./assets/logo.png",
     "ios": {
       "supportsTablet": true,
       "appleTeamId": "HYBTH9WZQ6",
-      "buildNumber": "4",
+      "buildNumber": "5",
       "bundleIdentifier": "de.deutschpilot.app",
-      "googleServicesFile": "./ios/DeutschPilot/GoogleService-Info.plist"
+      "googleServicesFile": "./config/GoogleService-Info.plist"
     },
     "android": {
       "package": "de.deutschpilot.app",
-      "predictiveBackGestureEnabled": true
+      "predictiveBackGestureEnabled": true,
+      "versionCode": 5
     },
     "plugins": [
       [
         "@react-native-google-signin/google-signin",
         {
           "iosUrlScheme": "com.googleusercontent.apps.771631677984-aib6g6jmhdn1vf8cn8cnr3aa4b3ko5ha"
+        }
+      ],
+      [
+        "expo-notifications",
+        {
+          "defaultChannel": "school"
         }
       ]
     ],

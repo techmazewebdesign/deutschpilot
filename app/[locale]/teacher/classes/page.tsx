@@ -2,7 +2,7 @@ import { redirect } from "next/navigation";
 import Link from "next/link";
 import { auth } from "@/lib/auth";
 import { AppLayout } from "@/components/app/app-layout";
-import { createServerSupabaseClient } from "@/lib/supabaseServer";
+import { legacyLearningClient, requireQuery } from "@/lib/legacyLearningAccess";
 import { FadeIn, StaggerParent, StaggerChild } from "@/components/app/motion-card";
 import { Video, CalendarDays, Clock, Plus, Users, Edit2 } from "lucide-react";
 
@@ -17,8 +17,13 @@ const levelColors: Record<string, string> = {
 };
 
 type LiveClass = {
-  id: string; title: string; level: string; start_time: string;
-  duration_minutes: number; status: string; max_students: number;
+  id: string;
+  title: string;
+  level: string;
+  start_time: string;
+  duration_minutes: number;
+  status: string;
+  max_students: number;
 };
 
 export default async function TeacherClassesPage({ params }: { params: { locale: string } }) {
@@ -28,28 +33,43 @@ export default async function TeacherClassesPage({ params }: { params: { locale:
   if (!session?.user) redirect(`/${locale}/signin`);
   if (session.user.role !== "teacher") redirect(`/${locale}/student/dashboard`);
 
-  const supabase = createServerSupabaseClient();
-  const { data } = await supabase
-    .from("live_classes")
-    .select("id, title, level, start_time, duration_minutes, status, max_students")
-    .eq("teacher_id", session.user.id)
-    .order("start_time", { ascending: false });
+  const supabase = await legacyLearningClient(session.user.id);
+  const profileResult = requireQuery(
+    await supabase.from("profiles").select("id").eq("firebase_uid", session.user.id).maybeSingle()
+  );
+  const profileId = profileResult.data?.id;
+  if (!profileId)
+    throw new Error(
+      "Your school profile must be linked by a verified administrator before using classes."
+    );
+  const { data, error } = requireQuery(
+    await supabase
+      .from("live_classes")
+      .select("id, title, level, start_time, duration_minutes, status, max_students")
+      .eq("teacher_id", profileId)
+      .order("start_time", { ascending: false })
+  );
 
+  requireQuery({ error });
   const classes = (data ?? []) as LiveClass[];
   const userName = session.user.name || session.user.email?.split("@")[0] || "Teacher";
 
-  const fmtDate = (iso: string) => new Date(iso).toLocaleDateString("en-GB", { weekday: "short", day: "numeric", month: "short" });
-  const fmtTime = (iso: string) => new Date(iso).toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit" });
+  const fmtDate = (iso: string) =>
+    new Date(iso).toLocaleDateString("en-GB", { weekday: "short", day: "numeric", month: "short" });
+  const fmtTime = (iso: string) =>
+    new Date(iso).toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit" });
 
   // Get enrollment counts
   const classIds = classes.map((c) => c.id);
   const enrollmentCounts: Record<string, number> = {};
   if (classIds.length > 0) {
-    const { data: enrollments } = await supabase
-      .from("class_enrollments")
-      .select("class_id")
-      .in("class_id", classIds)
-      .eq("status", "enrolled");
+    const { data: enrollments } = requireQuery(
+      await supabase
+        .from("class_enrollments")
+        .select("class_id")
+        .in("class_id", classIds)
+        .eq("status", "enrolled")
+    );
     (enrollments ?? []).forEach((e: { class_id: string }) => {
       enrollmentCounts[e.class_id] = (enrollmentCounts[e.class_id] ?? 0) + 1;
     });
@@ -57,19 +77,21 @@ export default async function TeacherClassesPage({ params }: { params: { locale:
 
   return (
     <AppLayout locale={locale} userName={userName}>
-      <div className="px-4 sm:px-6 lg:px-8 py-6 lg:py-8 max-w-4xl w-full mx-auto">
+      <div className="mx-auto w-full max-w-4xl px-4 py-6 sm:px-6 lg:px-8 lg:py-8">
         <FadeIn>
-          <div className="flex items-center justify-between mb-8">
+          <div className="mb-8 flex items-center justify-between">
             <div>
-              <div className="flex items-center gap-2 mb-1">
+              <div className="mb-1 flex items-center gap-2">
                 <Video className="h-4 w-4 text-[#E0B873]" />
-                <span className="text-xs font-semibold text-[#E0B873]/70 uppercase tracking-[0.2em]">My Classes</span>
+                <span className="text-xs font-semibold uppercase tracking-[0.2em] text-[#E0B873]/70">
+                  My Classes
+                </span>
               </div>
-              <h1 className="text-2xl font-serif font-bold text-white">All Classes</h1>
+              <h1 className="font-serif text-2xl font-bold text-white">All Classes</h1>
             </div>
             <Link
               href={`/${locale}/teacher/classes/new`}
-              className="flex items-center gap-2 bg-[#E0B873] text-[#071424] font-bold text-sm px-4 py-2.5 rounded-xl hover:bg-[#C99B50] transition-colors"
+              className="flex items-center gap-2 rounded-xl bg-[#E0B873] px-4 py-2.5 text-sm font-bold text-[#071424] transition-colors hover:bg-[#C99B50]"
             >
               <Plus className="h-4 w-4" /> New Class
             </Link>
@@ -78,13 +100,15 @@ export default async function TeacherClassesPage({ params }: { params: { locale:
 
         {classes.length === 0 ? (
           <FadeIn delay={0.1}>
-            <div className="text-center py-16 rounded-2xl border border-white/8 bg-[#0A1E35]/50">
-              <Video className="h-12 w-12 mx-auto text-white/15 mb-4" />
-              <p className="text-white/50 font-medium">No classes yet.</p>
-              <p className="text-white/30 text-sm mt-1 mb-6">Create your first live class and start enrolling students.</p>
+            <div className="border-white/8 rounded-2xl border bg-[#0A1E35]/50 py-16 text-center">
+              <Video className="mx-auto mb-4 h-12 w-12 text-white/15" />
+              <p className="font-medium text-white/50">No classes yet.</p>
+              <p className="mb-6 mt-1 text-sm text-white/30">
+                Create your first live class and start enrolling students.
+              </p>
               <Link
                 href={`/${locale}/teacher/classes/new`}
-                className="inline-flex items-center gap-2 bg-[#E0B873] text-[#071424] font-bold text-sm px-6 py-2.5 rounded-xl hover:bg-[#C99B50] transition-colors"
+                className="inline-flex items-center gap-2 rounded-xl bg-[#E0B873] px-6 py-2.5 text-sm font-bold text-[#071424] transition-colors hover:bg-[#C99B50]"
               >
                 <Plus className="h-4 w-4" /> Create Class
               </Link>
@@ -96,35 +120,55 @@ export default async function TeacherClassesPage({ params }: { params: { locale:
               const enrolled = enrollmentCounts[cls.id] ?? 0;
               return (
                 <StaggerChild key={cls.id}>
-                  <div className="rounded-2xl border border-white/10 bg-[#0A1E35]/70 hover:border-[#E0B873]/20 transition-colors p-5">
-                    <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
-                      <div className="flex-1 min-w-0">
-                        <div className="flex items-center gap-2 mb-2 flex-wrap">
-                          <span className={`text-[10px] font-bold tracking-widest uppercase px-2 py-0.5 rounded-full border ${levelColors[cls.level] ?? levelColors.A1}`}>{cls.level}</span>
-                          <span className={`text-[10px] px-2 py-0.5 rounded-full font-medium capitalize ${
-                            cls.status === "active" ? "bg-emerald-500/15 text-emerald-300" :
-                            cls.status === "draft" ? "bg-white/10 text-white/50" :
-                            cls.status === "completed" ? "bg-blue-500/15 text-blue-300" :
-                            "bg-red-500/15 text-red-300"
-                          }`}>{cls.status}</span>
+                  <div className="rounded-2xl border border-white/10 bg-[#0A1E35]/70 p-5 transition-colors hover:border-[#E0B873]/20">
+                    <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-start">
+                      <div className="min-w-0 flex-1">
+                        <div className="mb-2 flex flex-wrap items-center gap-2">
+                          <span
+                            className={`rounded-full border px-2 py-0.5 text-[10px] font-bold uppercase tracking-widest ${levelColors[cls.level] ?? levelColors.A1}`}
+                          >
+                            {cls.level}
+                          </span>
+                          <span
+                            className={`rounded-full px-2 py-0.5 text-[10px] font-medium capitalize ${
+                              cls.status === "active"
+                                ? "bg-emerald-500/15 text-emerald-300"
+                                : cls.status === "draft"
+                                  ? "bg-white/10 text-white/50"
+                                  : cls.status === "completed"
+                                    ? "bg-blue-500/15 text-blue-300"
+                                    : "bg-red-500/15 text-red-300"
+                            }`}
+                          >
+                            {cls.status}
+                          </span>
                         </div>
-                        <h3 className="text-base font-serif font-bold text-white">{cls.title}</h3>
-                        <div className="flex flex-wrap gap-3 mt-2 text-xs text-white/40">
-                          <span className="flex items-center gap-1"><CalendarDays className="h-3 w-3" />{fmtDate(cls.start_time)}</span>
-                          <span className="flex items-center gap-1"><Clock className="h-3 w-3" />{fmtTime(cls.start_time)} · {cls.duration_minutes} min</span>
-                          <span className="flex items-center gap-1"><Users className="h-3 w-3" />{enrolled}/{cls.max_students} students</span>
+                        <h3 className="font-serif text-base font-bold text-white">{cls.title}</h3>
+                        <div className="mt-2 flex flex-wrap gap-3 text-xs text-white/40">
+                          <span className="flex items-center gap-1">
+                            <CalendarDays className="h-3 w-3" />
+                            {fmtDate(cls.start_time)}
+                          </span>
+                          <span className="flex items-center gap-1">
+                            <Clock className="h-3 w-3" />
+                            {fmtTime(cls.start_time)} · {cls.duration_minutes} min
+                          </span>
+                          <span className="flex items-center gap-1">
+                            <Users className="h-3 w-3" />
+                            {enrolled}/{cls.max_students} students
+                          </span>
                         </div>
                       </div>
-                      <div className="flex gap-2 flex-shrink-0">
+                      <div className="flex flex-shrink-0 gap-2">
                         <Link
                           href={`/${locale}/teacher/classes/${cls.id}/students`}
-                          className="flex items-center gap-1.5 text-xs font-semibold text-white/60 hover:text-white border border-white/15 hover:border-white/30 px-3 py-2 rounded-lg transition-colors"
+                          className="flex items-center gap-1.5 rounded-lg border border-white/15 px-3 py-2 text-xs font-semibold text-white/60 transition-colors hover:border-white/30 hover:text-white"
                         >
                           <Users className="h-3.5 w-3.5" /> Students
                         </Link>
                         <Link
                           href={`/${locale}/teacher/classes/${cls.id}/edit`}
-                          className="flex items-center gap-1.5 text-xs font-semibold text-[#E0B873] hover:text-[#C99B50] border border-[#E0B873]/30 hover:border-[#E0B873]/50 px-3 py-2 rounded-lg transition-colors"
+                          className="flex items-center gap-1.5 rounded-lg border border-[#E0B873]/30 px-3 py-2 text-xs font-semibold text-[#E0B873] transition-colors hover:border-[#E0B873]/50 hover:text-[#C99B50]"
                         >
                           <Edit2 className="h-3.5 w-3.5" /> Edit
                         </Link>
