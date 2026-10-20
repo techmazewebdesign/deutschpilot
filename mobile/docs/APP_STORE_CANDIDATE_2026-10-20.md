@@ -46,3 +46,6 @@ School-specific operator/controller details, processing agreements, sensitive-da
 ## Current activation continuation
 
 See [Native activation checkpoint](NATIVE_ACTIVATION_2026-10-20.md). Fresh TypeScript, all 31 regressions, SDK compatibility and iOS Hermes export pass. The current audit remains 16 high / 8 moderate records; no safe supported dependency remedy was available. Actual existing-profile archive failed because the DeutschPilot provisioning profiles lack Push Notifications/`aps-environment`; no signed IPA was produced. Parent-observed accepted Apple agreements remove the stale pending-agreement concern, but do not clear profile, API, provider, physical-device, legal or independent-review gates. TestFlight is unchanged.
+
+
+Subsequent authorized push-profile correction resolved local signing: **Release archive and local App Store IPA export 1.1.0 (5) succeeded** using the existing distribution certificate and refreshed exact-bundle push profile. Both archive and exported IPA signatures/production push entitlements passed verification. Artifact/hash and logs are in the native activation checkpoint. No TestFlight upload occurred, no API endpoint changed, and native school backend/physical push/release acceptance remain pending.
