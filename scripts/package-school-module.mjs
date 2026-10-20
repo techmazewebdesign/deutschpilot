@@ -26,6 +26,8 @@ const exact = new Set([
   "lib/learningProgressClient.ts",
   "app/api/learning/progress/route.ts",
   "supabase/migration-school-platform.sql",
+  "supabase/migration-school-extension-path.sql",
+  "supabase/migration-school-recovery-hold-lock.sql",
   "supabase/migration-legacy-private-access.sql",
   "tests/learning-progress.test.ts",
   "mobile/src/SchoolRegression.test.cjs",
@@ -116,6 +118,8 @@ function main() {
       "app/api/school/route.ts",
       "mobile/src/SchoolPortal.tsx",
       "supabase/migration-school-platform.sql",
+      "supabase/migration-school-extension-path.sql",
+      "supabase/migration-school-recovery-hold-lock.sql",
     ])
       assert.equal(allowed(path), true, path);
     console.log("Allowlist self-test passed");
@@ -133,6 +137,12 @@ function main() {
     .filter(Boolean)
     .filter(allowed)
     .sort();
+  for (const migration of [
+    "supabase/migration-school-platform.sql",
+    "supabase/migration-school-extension-path.sql",
+    "supabase/migration-school-recovery-hold-lock.sql",
+  ])
+    assert.ok(paths.includes(migration), `Required migration missing from inventory: ${migration}`);
   const entries = paths.map((path) => {
     const absolute = resolve(root, path);
     if (!existsSync(absolute)) throw new Error(`Source missing: ${path}`);

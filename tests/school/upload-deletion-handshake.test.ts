@@ -3,7 +3,7 @@ import { strict as assert } from "node:assert";
 import { readFileSync } from "node:fs";
 import { createRequire } from "node:module";
 import { runInNewContext } from "node:vm";
-import { execFileSync } from "node:child_process";
+import { execFileSync, spawn } from "node:child_process";
 import { randomUUID } from "node:crypto";
 import * as crypto from "node:crypto";
 import * as engine from "../../lib/school/engine";
@@ -481,6 +481,166 @@ test(
       })
     );
     h.clean(paths);
+    assert.equal(h.objects.size, 0);
+    assert.equal(h.counts(), "1|0|0|0");
+  }
+);
+
+// Real open transactions, not timers around a simulated lock. Each competing
+// backend must be observed waiting on PostgreSQL's lock manager before release.
+function interactiveTransaction(statement: string, application: string) {
+  const child = spawn("/usr/local/bin/docker", [
+    "exec",
+    "-i",
+    container!,
+    "psql",
+    "-U",
+    "postgres",
+    "-Atq",
+    "-v",
+    "ON_ERROR_STOP=1",
+  ]);
+  let output = "",
+    errors = "";
+  const exited = new Promise<{ code: number | null; output: string; errors: string }>((resolve) => {
+    child.on("close", (code) => resolve({ code, output, errors }));
+  });
+  child.stderr.on("data", (b) => {
+    errors += b.toString();
+  });
+  const ready = new Promise<void>((resolve, reject) => {
+    child.stdout.on("data", (b) => {
+      output += b.toString();
+      if (output.includes("TRANSACTION_READY")) resolve();
+    });
+    child.on("close", (code) => {
+      if (!output.includes("TRANSACTION_READY"))
+        reject(new Error(`transaction failed ${code}: ${errors}`));
+    });
+  });
+  child.stdin.write(
+    `set application_name=${str(application)};set statement_timeout='10s';set role service_role;begin;${statement};select 'TRANSACTION_READY';\n`
+  );
+  return {
+    ready,
+    exited,
+    commit: () => child.stdin.end("commit;\n"),
+    rollback: () => child.stdin.end("rollback;\n"),
+  };
+}
+async function waitForDatabaseLock(application: string) {
+  for (let attempt = 0; attempt < 80; attempt++) {
+    if (
+      sql(
+        `select exists(select 1 from pg_stat_activity where application_name=${str(application)}and wait_event_type='Lock'and cardinality(pg_blocking_pids(pid))>0);`
+      ) === "t"
+    )
+      return;
+    await new Promise((resolve) => setTimeout(resolve, 25));
+  }
+  throw new Error("competing transaction never reached real PostgreSQL lock wait");
+}
+function holdStatement(h: ReturnType<typeof setup>, documentId: string) {
+  const action = {
+    action: "document.hold",
+    documentId,
+    hold: true,
+    reason: "Synthetic concurrent preservation order",
+  };
+  const loaded = h.rpc("school_repository_read", q(h.owner), q(action));
+  const before = hydrate(h.school, loaded.records, loaded.pagination),
+    state = structuredClone(before.state);
+  engine.apply(state, h.owner, action, h.owner.id);
+  return `select school_repository_commit(${str(h.school)},${q(h.owner)},${q(action)},${q(changesBetween(before, state))},${str(h.owner.id)})`;
+}
+function recoveryStatement(h: ReturnType<typeof setup>, documentId: string) {
+  return `select school_upload_recover(${str(h.school)},${q(h.owner)},${str(documentId)},'WRITERS FENCED AND STORAGE DRAINED','SYNTHETIC writers fenced','SYNTHETIC provider drained')`;
+}
+test(
+  "real concurrent PG: in-flight committed hold blocks recovery before any storage remove",
+  { skip: !container },
+  async () => {
+    const h = setup();
+    assert.equal((await h.post()).status, 201);
+    const d = h.doc();
+    sql(`update school_upload_reservations set status='unknown'where school_id=${str(h.school)};`);
+    const hold = interactiveTransaction(holdStatement(h, d.id), "hold-first-" + randomUUID());
+    await hold.ready;
+    const name = "recover-wait-" + randomUUID(),
+      recovery = interactiveTransaction(recoveryStatement(h, d.id), name);
+    const recoveryReady = recovery.ready.catch((e) => e);
+    try {
+      await waitForDatabaseLock(name);
+      assert.ok(h.objects.has(d.storagePath));
+    } finally {
+      hold.commit();
+    }
+    assert.equal((await hold.exited).code, 0);
+    const result = await recovery.exited;
+    await recoveryReady;
+    assert.notEqual(result.code, 0);
+    assert.match(result.errors, /SCHOOL_RECORDS_HOLD/);
+    assert.equal(h.doc().legalHold, true);
+    assert.ok(h.objects.has(d.storagePath));
+    assert.equal(sql(`select count(*)from school_cleanup where school_id=${str(h.school)};`), "0");
+  }
+);
+test(
+  "real concurrent PG: recovery authorization commits before blocked late hold; deletion remains authorized",
+  { skip: !container },
+  async () => {
+    const h = setup();
+    assert.equal((await h.post()).status, 201);
+    const d = h.doc();
+    sql(`update school_upload_reservations set status='unknown'where school_id=${str(h.school)};`);
+    const holdSql = holdStatement(h, d.id),
+      recovery = interactiveTransaction(
+        recoveryStatement(h, d.id),
+        "recover-first-" + randomUUID()
+      );
+    await recovery.ready;
+    const name = "hold-wait-" + randomUUID(),
+      hold = interactiveTransaction(holdSql, name),
+      holdReady = hold.ready.catch((e) => e);
+    try {
+      await waitForDatabaseLock(name);
+      assert.ok(h.objects.has(d.storagePath));
+    } finally {
+      recovery.commit();
+    }
+    assert.equal((await recovery.exited).code, 0);
+    const result = await hold.exited;
+    await holdReady;
+    assert.notEqual(result.code, 0);
+    assert.match(result.errors, /SCHOOL_DELETION_IN_PROGRESS/);
+    assert.notEqual(h.doc().legalHold, true);
+    assert.deepEqual(h.rpc("school_privacy_cleanup_batch", str(h.student.id)), [d.storagePath]);
+    h.clean([d.storagePath]);
+    assert.equal(h.objects.size, 0);
+    assert.equal(h.counts(), "1|0|0|0");
+  }
+);
+test(
+  "reviewed recovery uses durable reservation owner/path when document metadata is missing",
+  { skip: !container },
+  async () => {
+    const h = setup();
+    assert.equal((await h.post()).status, 201);
+    const d = h.doc();
+    sql(
+      `update school_upload_reservations set status='unknown'where school_id=${str(h.school)};delete from school_documents where school_id=${str(h.school)};`
+    );
+    const recovered = h.rpc(
+      "school_upload_recover",
+      q(h.owner),
+      str(d.id),
+      str("WRITERS FENCED AND STORAGE DRAINED"),
+      str("SYNTHETIC writers fenced"),
+      str("SYNTHETIC provider drained")
+    );
+    assert.equal(recovered, d.storagePath);
+    assert.ok(h.objects.has(recovered));
+    h.clean([recovered]);
     assert.equal(h.objects.size, 0);
     assert.equal(h.counts(), "1|0|0|0");
   }

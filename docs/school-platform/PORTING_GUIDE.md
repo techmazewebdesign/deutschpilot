@@ -57,3 +57,9 @@ Sensitive uploads and illness reporting remain blocked until the complete policy
 ### Hosted PostgreSQL extension compatibility
 
 Supabase installs pgcrypto in extensions, while a local PostgreSQL installation may use public. School routines must retain search_path=public,extensions. The fresh school migration includes this; existing installs must also apply supabase/migration-school-extension-path.sql. Verify bootstrap/invitations against the actual target database, not only local PostgreSQL.
+
+## Recovery/hold transaction correction
+
+Include `supabase/migration-school-recovery-hold-lock.sql` for existing normalized installs, after the base tables and extension-path compatibility migration. It is idempotent and grants execution only to `service_role`, using fixed `public,extensions` search path. Fresh installs include the corrected function in the base migration. Review/apply through the recipient project's authorised migration process; this build record is not permission to migrate a hosted database.
+
+This correction serializes the operator recovery decision with preservation holds before returning a private storage path: member → document → reservation. Missing document metadata uses the reservation owner/path while retaining the existing unresolved-upload barrier. Retain the actual writer-fencing and provider-drain operating procedure; no automatic timeout clears an unknown write. Package check mode now requires the extension-path and recovery-lock supplemental migrations in its exact source inventory. No final archive or independent release approval was produced by these checks.
