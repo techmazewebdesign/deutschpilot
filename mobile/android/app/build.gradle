@@ -105,7 +105,7 @@ android {
         buildConfigField "String", "REACT_NATIVE_RELEASE_LEVEL", "\"${findProperty('reactNativeReleaseLevel') ?: 'stable'}\""
     }
     signingConfigs {
-        if (hasUploadSigning) {
+        if (hasUploadSigning && !allowUnsignedCandidate) {
             upload {
                 storeFile file(uploadValue('DEUTSCHPILOT_UPLOAD_STORE_FILE'))
                 storePassword uploadValue('DEUTSCHPILOT_UPLOAD_STORE_PASSWORD')
@@ -125,7 +125,7 @@ android {
             signingConfig signingConfigs.debug
         }
         release {
-            if (hasUploadSigning) signingConfig signingConfigs.upload
+            if (hasUploadSigning && !allowUnsignedCandidate) signingConfig signingConfigs.upload
             else signingConfig null
             def enableShrinkResources = findProperty('android.enableShrinkResourcesInReleaseBuilds') ?: 'false'
             shrinkResources enableShrinkResources.toBoolean()
@@ -201,7 +201,7 @@ tasks.register('verifyUploadSigning') {
         if (!hasUploadSigning && !allowUnsignedCandidate) {
             throw new GradleException('Release signing is missing. Supply private DEUTSCHPILOT_UPLOAD_* credentials, or explicitly use -Pdeutschpilot.allowUnsignedCandidate=true for a NON-UPLOADABLE unsigned local candidate.')
         }
-        if (hasUploadSigning) {
+        if (hasUploadSigning && !allowUnsignedCandidate) {
             def ks = java.security.KeyStore.getInstance(java.security.KeyStore.getDefaultType())
             file(uploadValue('DEUTSCHPILOT_UPLOAD_STORE_FILE')).withInputStream { ks.load(it, uploadValue('DEUTSCHPILOT_UPLOAD_STORE_PASSWORD').toCharArray()) }
             def cert = ks.getCertificate(uploadValue('DEUTSCHPILOT_UPLOAD_KEY_ALIAS'))
