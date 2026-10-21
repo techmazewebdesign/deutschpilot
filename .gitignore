@@ -54,3 +54,7 @@ mobile/ios/build
 mobile/ios/.xcode.env.local
 *.keystore
 *.log
+
+# Private Android upload keys and local signing inputs
+*.jks
+mobile/android/signing.properties

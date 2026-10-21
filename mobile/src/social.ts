@@ -4,9 +4,14 @@ import * as AppleAuthentication from 'expo-apple-authentication';
 import * as Crypto from 'expo-crypto';
 import { getFirebaseRuntime } from './firebase';
 import config from './google-config.json';
+import { Platform } from 'react-native';
+import { canUseGoogleSignIn, type GoogleSignInConfig } from './google-readiness';
 
-GoogleSignin.configure({ iosClientId: config.iosClientId });
+const googleConfig: GoogleSignInConfig = config;
+export const googleSignInAvailable = canUseGoogleSignIn(Platform.OS, googleConfig);
+GoogleSignin.configure({ iosClientId: config.iosClientId, ...(googleConfig.webClientId ? { webClientId: googleConfig.webClientId } : {}) });
 export async function loginWithGoogle() {
+  if (!googleSignInAvailable) throw new Error('Google-Anmeldung ist auf diesem Gerät noch nicht eingerichtet. Bitte E-Mail und Passwort verwenden.');
   // Always start a fresh provider session so the native chooser is shown.
   // Firebase sign-out alone does not clear Google Sign-In's cached account.
   try { await GoogleSignin.signOut(); } catch { /* no cached Google session */ }

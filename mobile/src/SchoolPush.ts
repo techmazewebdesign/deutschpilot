@@ -20,6 +20,8 @@ export async function enableSchoolPush(uid: string) {
     throw new Error(
       "Die Schule hat den Push-Dienst noch nicht vollständig eingerichtet. Das App-Postfach bleibt verfügbar."
     );
+  if (Platform.OS === "android" && !Constants.expoConfig?.android?.googleServicesFile)
+    throw new Error("Android-Push ist in dieser App-Version noch nicht eingerichtet. Das App-Postfach bleibt verfügbar.");
   const projectId =
     process.env.EXPO_PUBLIC_EAS_PROJECT_ID ||
     Constants.easConfig?.projectId ||

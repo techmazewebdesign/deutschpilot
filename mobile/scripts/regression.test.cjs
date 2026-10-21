@@ -137,3 +137,18 @@ test('imported lesson sections render as text and all self-test answers belong t
   const vocab = require('../src/data/web-vocabulary.json'); assert.ok(vocab.length > 600);
   assert.equal(new Set(vocab.map(w => w.id)).size, vocab.length);
 });
+
+// Native OAuth is unavailable until its exact Android package/certificate has been configured.
+test('Android Google login stays hidden without verified OAuth configuration; web remains available', () => {
+  const { canUseGoogleSignIn } = load('src/google-readiness.ts');
+  assert.equal(canUseGoogleSignIn('web', {}), true);
+  const web = load('src/social.web.ts', { 'firebase/auth': {}, './firebase': {} });
+  assert.equal(web.googleSignInAvailable, true);
+  assert.equal(canUseGoogleSignIn('ios', { iosClientId: 'existing-ios-client' }), false);
+  assert.equal(canUseGoogleSignIn('android', {}), false);
+  assert.equal(canUseGoogleSignIn('android', { webClientId: '123-abc.apps.googleusercontent.com' }), false);
+  assert.equal(canUseGoogleSignIn('android', { androidConfigured: true, webClientId: 'placeholder' }), false);
+  assert.equal(canUseGoogleSignIn('android', { androidConfigured: true, webClientId: '123-abc.apps.googleusercontent.com' }), true);
+  const app = fs.readFileSync(path.join(root, 'App.tsx'), 'utf8');
+  assert.match(app, /googleSignInAvailable && <Pressable accessibilityRole="button" onPress=\{google\}/);
+});

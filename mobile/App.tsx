@@ -28,7 +28,7 @@ import { applyStudyAction, emptyProgress, type StudyAction } from "./src/progres
 import type { Lesson, Level, LocalProgress } from "./src/models";
 import { ThemeProvider, useTheme, type Colors } from "./src/theme";
 import { LoadingScreen } from "./src/LoadingScreen";
-import { loginWithGoogle } from "./src/social";
+import { loginWithGoogle, googleSignInAvailable } from "./src/social";
 import { getFirebaseRuntime } from "./src/firebase";
 import { validEmail } from './src/validation';
 import { TodayScreen, LearnScreen, WordsScreen, PracticeScreen, speakGerman, NativeLessonModal } from './src/LearningScreens';
@@ -124,7 +124,7 @@ function AuthModal({ visible, close }: { visible: boolean; close: () => void }) 
             {mode === "register" && <><Pressable accessibilityRole="checkbox" accessibilityState={{ checked: accepted }} onPress={() => setAccepted(v => !v)}><Text style={s.muted}>{accepted ? "☑" : "☐"} Ich akzeptiere die AGB und habe die Datenschutzhinweise gelesen.</Text></Pressable><View style={{ flexDirection: "row", gap: 20 }}><Pressable accessibilityRole="button" onPress={() => Linking.openURL("https://www.deutschpilot.de/de/terms")}><Text style={s.textButtonLabel}>AGB</Text></Pressable><Pressable accessibilityRole="button" onPress={() => Linking.openURL("https://www.deutschpilot.de/de/privacy")}><Text style={s.textButtonLabel}>Datenschutz</Text></Pressable></View></>}
             <Pressable accessibilityRole="button" disabled={!valid} onPress={submit} style={[s.goldButton, !valid && s.disabled]}><Text style={s.goldButtonText}>{mode === "login" ? "Sicher anmelden" : "Konto erstellen"}</Text></Pressable>
             {mode === "login" && <Pressable accessibilityRole="button" onPress={reset} style={s.textButton}><Text style={s.textButtonLabel}>Passwort vergessen?</Text></Pressable>}
-            {Platform.OS !== "ios" && <Pressable accessibilityRole="button" onPress={google} style={[s.option, { justifyContent: "center" }]}><Text style={{ color: C.white, fontWeight: "700" }}>Mit Google anmelden</Text></Pressable>}
+            {googleSignInAvailable && <Pressable accessibilityRole="button" onPress={google} style={[s.option, { justifyContent: "center" }]}><Text style={{ color: C.white, fontWeight: "700" }}>Mit Google anmelden</Text></Pressable>}
           </>}
           {!!message && <Text accessibilityLiveRegion="polite" style={s.muted}>{message}</Text>}
           {!!error && <Text accessibilityRole="alert" style={{ color: C.red, lineHeight: 21 }}>{error}</Text>}

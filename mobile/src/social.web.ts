@@ -1,5 +1,6 @@
 import { GoogleAuthProvider, OAuthProvider, signInWithPopup } from 'firebase/auth';
 import { getFirebaseRuntime } from './firebase';
+export const googleSignInAvailable = true;
 export async function loginWithGoogle() {
   const { auth } = await getFirebaseRuntime();
   try { return (await signInWithPopup(auth, new GoogleAuthProvider())).user; }

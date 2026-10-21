@@ -488,3 +488,23 @@ test("paged sections append and dedupe, preserve other sections, and reject chan
     /vollständig/
   );
 });
+
+
+test("Android push without Firebase configuration never asks permission or registers", async () => {
+  let notificationCalls = 0;
+  const push = load("SchoolPush.ts", {
+    "react-native": { Platform: { OS: "android" } },
+    "@react-native-async-storage/async-storage": {},
+    "expo-constants": { expoConfig: { android: {} }, easConfig: { projectId: "00000000-0000-0000-0000-000000000000" } },
+    "expo-notifications": {
+      setNotificationChannelAsync: async () => { notificationCalls++; },
+      getPermissionsAsync: async () => { notificationCalls++; return { status: "undetermined" }; },
+      requestPermissionsAsync: async () => { notificationCalls++; return { status: "denied" }; },
+      getExpoPushTokenAsync: async () => { notificationCalls++; throw Error("Must not request native push"); },
+    },
+    "./SchoolClient": { loadSchool: async () => ({ capabilities: { push: true } }), schoolCommand: async () => { throw Error("Must not register"); } },
+    "./firebase": {},
+  }, { process: { env: {} } });
+  await assert.rejects(push.enableSchoolPush("a"), /Android-Push/);
+  assert.equal(notificationCalls, 0);
+});

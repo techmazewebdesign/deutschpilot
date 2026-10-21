@@ -17,7 +17,14 @@
     "android": {
       "package": "de.deutschpilot.app",
       "predictiveBackGestureEnabled": true,
-      "versionCode": 5
+      "versionCode": 5,
+      "allowBackup": false,
+      "usesCleartextTraffic": false,
+      "blockedPermissions": [
+        "android.permission.READ_EXTERNAL_STORAGE",
+        "android.permission.WRITE_EXTERNAL_STORAGE",
+        "android.permission.SYSTEM_ALERT_WINDOW"
+      ]
     },
     "plugins": [
       [

@@ -81,6 +81,13 @@ def enableMinifyInReleaseBuilds = (findProperty('android.enableMinifyInReleaseBu
  */
 def jscFlavor = 'io.github.react-native-community:jsc-android:2026004.+'
 
+// Upload credentials are supplied privately via environment or Gradle properties.
+// A locally inspectable unsigned candidate requires an explicit opt-in and is not uploadable.
+def uploadValue = { name -> System.getenv(name) ?: findProperty(name) }
+def uploadNames = ['DEUTSCHPILOT_UPLOAD_STORE_FILE', 'DEUTSCHPILOT_UPLOAD_STORE_PASSWORD', 'DEUTSCHPILOT_UPLOAD_KEY_ALIAS', 'DEUTSCHPILOT_UPLOAD_KEY_PASSWORD']
+def hasUploadSigning = uploadNames.every { uploadValue(it) }
+def allowUnsignedCandidate = (findProperty('deutschpilot.allowUnsignedCandidate') ?: 'false').toBoolean()
+
 android {
     ndkVersion rootProject.ext.ndkVersion
 
@@ -92,14 +99,22 @@ android {
         applicationId 'de.deutschpilot.app'
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 1
-        versionName "1.0.0"
+        versionCode 5
+        versionName "1.1.0"
 
         buildConfigField "String", "REACT_NATIVE_RELEASE_LEVEL", "\"${findProperty('reactNativeReleaseLevel') ?: 'stable'}\""
     }
     signingConfigs {
+        if (hasUploadSigning) {
+            upload {
+                storeFile file(uploadValue('DEUTSCHPILOT_UPLOAD_STORE_FILE'))
+                storePassword uploadValue('DEUTSCHPILOT_UPLOAD_STORE_PASSWORD')
+                keyAlias uploadValue('DEUTSCHPILOT_UPLOAD_KEY_ALIAS')
+                keyPassword uploadValue('DEUTSCHPILOT_UPLOAD_KEY_PASSWORD')
+            }
+        }
         debug {
-            storeFile file('debug.keystore')
+            storeFile new File(System.getProperty('user.home'), '.android/debug.keystore')
             storePassword 'android'
             keyAlias 'androiddebugkey'
             keyPassword 'android'
@@ -110,9 +125,8 @@ android {
             signingConfig signingConfigs.debug
         }
         release {
-            // Caution! In production, you need to generate your own keystore file.
-            // see https://reactnative.dev/docs/signed-apk-android.
-            signingConfig signingConfigs.debug
+            if (hasUploadSigning) signingConfig signingConfigs.upload
+            else signingConfig null
             def enableShrinkResources = findProperty('android.enableShrinkResourcesInReleaseBuilds') ?: 'false'
             shrinkResources enableShrinkResources.toBoolean()
             minifyEnabled enableMinifyInReleaseBuilds
@@ -179,4 +193,24 @@ dependencies {
     } else {
         implementation jscFlavor
     }
+}
+
+// Never silently sign a Play candidate with the shared Android debug identity.
+tasks.register('verifyUploadSigning') {
+    doLast {
+        if (!hasUploadSigning && !allowUnsignedCandidate) {
+            throw new GradleException('Release signing is missing. Supply private DEUTSCHPILOT_UPLOAD_* credentials, or explicitly use -Pdeutschpilot.allowUnsignedCandidate=true for a NON-UPLOADABLE unsigned local candidate.')
+        }
+        if (hasUploadSigning) {
+            def ks = java.security.KeyStore.getInstance(java.security.KeyStore.getDefaultType())
+            file(uploadValue('DEUTSCHPILOT_UPLOAD_STORE_FILE')).withInputStream { ks.load(it, uploadValue('DEUTSCHPILOT_UPLOAD_STORE_PASSWORD').toCharArray()) }
+            def cert = ks.getCertificate(uploadValue('DEUTSCHPILOT_UPLOAD_KEY_ALIAS'))
+            if (cert == null || cert.subjectX500Principal.name.toLowerCase().contains('android debug')) {
+                throw new GradleException('A real upload certificate is required; Android Debug signing is forbidden for release.')
+            }
+        }
+    }
+}
+tasks.configureEach { task ->
+    if (task.name == 'preReleaseBuild') task.dependsOn('verifyUploadSigning')
 }
