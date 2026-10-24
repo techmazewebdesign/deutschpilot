@@ -10,14 +10,14 @@
     "ios": {
       "supportsTablet": true,
       "appleTeamId": "HYBTH9WZQ6",
-      "buildNumber": "5",
+      "buildNumber": "6",
       "bundleIdentifier": "de.deutschpilot.app",
       "googleServicesFile": "./config/GoogleService-Info.plist"
     },
     "android": {
       "package": "de.deutschpilot.app",
       "predictiveBackGestureEnabled": true,
-      "versionCode": 5,
+      "versionCode": 6,
       "allowBackup": false,
       "usesCleartextTraffic": false,
       "blockedPermissions": [
