@@ -6,7 +6,7 @@ INSERT INTO public.courses (id, slug, title, description, level, language, is_pu
 VALUES (
   'a0000000-0000-0000-0000-000000000006',
   'a1-getting-around',
-  'A1 Room 06 – Getting Around',
+  'A1 Room 06: Getting Around',
   'Learn to name places in the city, ask for directions, use public transport, and describe locations with prepositions.',
   'A1', 'de', true, NOW()
 ) ON CONFLICT (id) DO NOTHING;
@@ -255,7 +255,7 @@ VALUES (
   'a0000000-0000-0000-0006-000000000099',
   'a0000000-0000-0000-0000-000000000006',
   'room-06-quiz-getting-around',
-  'Room 06 Quiz – Getting Around',
+  'Room 06 Quiz: Getting Around',
   '<h2>Checkpoint Quiz</h2><p>Test your knowledge of city places, directions, public transport, prepositions, and trip planning.</p>',
   99, NOW()
 ) ON CONFLICT (id) DO NOTHING;

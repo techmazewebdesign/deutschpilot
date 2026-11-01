@@ -126,7 +126,7 @@ export function ClassChat({
         <label className="school-field school-filter">
           {t("Chat class", "Chat-Klasse")}
           <select value={classId} onChange={(e) => setClassId(e.target.value)}>
-            {!snapshot.classes.length && <option value="">—</option>}
+            {!snapshot.classes.length && <option value=""> bis </option>}
             {snapshot.classes.map((c) => (
               <option key={c.id} value={c.id}>
                 {c.name}

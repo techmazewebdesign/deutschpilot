@@ -234,7 +234,7 @@ export function UsersTable({ locale, currentUserId }: Props) {
                             </span>
                           </div>
                           <div>
-                            <p className="font-medium text-white">{user.name || "—"}</p>
+                            <p className="font-medium text-white">{user.name || "…"}</p>
                             <p className="text-xs text-white/40">{user.email}</p>
                           </div>
                         </div>
@@ -271,7 +271,7 @@ export function UsersTable({ locale, currentUserId }: Props) {
                       </td>
 
                       <td className="hidden px-5 py-4 sm:table-cell">
-                        <span className="text-xs text-white/50">{user.level ?? "—"}</span>
+                        <span className="text-xs text-white/50">{user.level ?? "…"}</span>
                       </td>
 
                       <td className="px-5 py-4">
@@ -310,7 +310,7 @@ export function UsersTable({ locale, currentUserId }: Props) {
                         <span className="text-xs text-white/35">
                           {user.createdAt
                             ? new Date(user.createdAt).toLocaleDateString(de ? "de-DE" : "en-GB")
-                            : "—"}
+                            : "…"}
                         </span>
                       </td>
 

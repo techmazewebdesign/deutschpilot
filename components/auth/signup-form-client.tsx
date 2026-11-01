@@ -128,7 +128,7 @@ export function SignupFormClient({ locale, registerLabel }: Props) {
         console.warn("[signup] sendEmailVerification failed (non-blocking):", e);
       }
 
-      console.log("[signup] ✓ Signup complete — redirecting to verify-email");
+      console.log("[signup] ✓ Signup complete: redirecting to verify-email");
       const params = new URLSearchParams();
       if (sendFailed) params.set("sent", "0");
       if (plan === "tester_trial") params.set("plan", "tester_trial");
@@ -279,7 +279,7 @@ export function SignupFormClient({ locale, registerLabel }: Props) {
               className={`w-full rounded-md border px-4 py-3 text-left transition-all ${plan === "standard" ? "border-[#CEA66F]/60 bg-[#CEA66F]/10" : "bg-white/3 border-white/10"}`}
             >
               <span className="block text-sm font-semibold text-white">
-                {locale === "de" ? "Standardzugang — kostenlos" : "Standard access — free"}
+                {locale === "de" ? "Standardzugang: kostenlos" : "Standard access: free"}
               </span>
               <span className="mt-1 block text-xs text-white/45">
                 {locale === "de"
@@ -294,8 +294,8 @@ export function SignupFormClient({ locale, registerLabel }: Props) {
             >
               <span className="block text-sm font-semibold text-white">
                 {locale === "de"
-                  ? "Testzugang — 3 Monate voller Zugang"
-                  : "Tester access — 3 months full access"}
+                  ? "Testzugang: 3 Monate voller Zugang"
+                  : "Tester access: 3 months full access"}
               </span>
               <span className="mt-1 block text-xs text-white/45">
                 {locale === "de"

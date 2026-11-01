@@ -9,15 +9,15 @@
 INSERT INTO public.courses (id, slug, title, description, level, language, is_published, created_at)
 VALUES
   ('c1000000-0000-0000-0000-000000000001','science-research-c1',
-   'C1 Room 01 – Wissenschaft & Forschung',
+   'C1 Room 01: Wissenschaft & Forschung',
    'Master academic register: advanced Nominalstil, cautious hedging with Konjunktiv II, citing sources, and research methodology vocabulary.',
    'C1','de',TRUE,NOW()),
   ('c1000000-0000-0000-0000-000000000002','literature-style-analysis-c1',
-   'C1 Room 02 – Literatur & Stilanalyse',
+   'C1 Room 02: Literatur & Stilanalyse',
    'Analyse literary texts, name rhetorical devices with precision, discuss narrative perspective, and write a proper Textinterpretation.',
    'C1','de',TRUE,NOW()),
   ('c1000000-0000-0000-0000-000000000003','business-negotiation-c1',
-   'C1 Room 03 – Wirtschaft & Verhandlung',
+   'C1 Room 03: Wirtschaft & Verhandlung',
    'Negotiate in idiomatic business German, report business speech in Konjunktiv I, and disagree diplomatically over contracts.',
    'C1','de',TRUE,NOW())
 ON CONFLICT (id) DO NOTHING;
@@ -31,7 +31,7 @@ VALUES
    'c1-nominalstil-advanced','Nominalstil auf C1-Niveau',
    '<h2>Nominalstil auf C1-Niveau</h2>
 <h3>1. Vom B2- zum C1-Nominalstil</h3>
-<p>Auf B2 reicht es, einzelne Verben zu Nomen zu verdichten (<em>untersuchen → die Untersuchung</em>). Auf C1 verdichtest du ganze Satzketten: mehrere Nominalisierungen werden über Genitive und Präpositionen zu einer einzigen, kompakten Nominalphrase gestapelt — der typische Stil von Fachaufsätzen und Dissertationen.</p>
+<p>Auf B2 reicht es, einzelne Verben zu Nomen zu verdichten (<em>untersuchen → die Untersuchung</em>). Auf C1 verdichtest du ganze Satzketten: mehrere Nominalisierungen werden über Genitive und Präpositionen zu einer einzigen, kompakten Nominalphrase gestapelt: der typische Stil von Fachaufsätzen und Dissertationen.</p>
 <h3>2. Gestapelte Nominalphrasen</h3>
 <ul>
 <li>Verbal: <em>Weil die Forscher die Daten systematisch ausgewertet haben und weil sich dabei Auffälligkeiten zeigten, wurde die Hypothese revidiert.</em></li>
@@ -55,13 +55,13 @@ VALUES
 </tbody>
 </table>
 <h3>5. Die Kehrseite: Lesbarkeit</h3>
-<p>Guter wissenschaftlicher Stil auf C1 stapelt nicht endlos — nach zwei, maximal drei Nominalisierungen in Folge lohnt sich ein neuer Satz. Wer alles in einen Bandwurmsatz presst, schreibt nicht akademisch, sondern unverständlich.</p>',
+<p>Guter wissenschaftlicher Stil auf C1 stapelt nicht endlos: nach zwei, maximal drei Nominalisierungen in Folge lohnt sich ein neuer Satz. Wer alles in einen Bandwurmsatz presst, schreibt nicht akademisch, sondern unverständlich.</p>',
    1,NOW()),
   ('c1000000-0000-0000-0001-000000000002','c1000000-0000-0000-0000-000000000001',
    'c1-vorsichtig-formulieren','Vorsichtig formulieren: Hedging im Wissenschaftsstil',
    '<h2>Vorsichtig formulieren: Hedging im Wissenschaftsstil</h2>
 <h3>1. Warum Wissenschaftler vorsichtig formulieren</h3>
-<p>Eine seriöse Studie behauptet selten etwas absolut. Ergebnisse gelten unter Vorbehalt, Stichproben sind begrenzt, Kausalität ist schwer zu beweisen. Diese Vorsicht drückt sich sprachlich im <strong>Hedging</strong> aus — der bewussten Abschwächung von Aussagen.</p>
+<p>Eine seriöse Studie behauptet selten etwas absolut. Ergebnisse gelten unter Vorbehalt, Stichproben sind begrenzt, Kausalität ist schwer zu beweisen. Diese Vorsicht drückt sich sprachlich im <strong>Hedging</strong> aus: der bewussten Abschwächung von Aussagen.</p>
 <h3>2. Konjunktiv II als Vorsichts-Werkzeug</h3>
 <ul>
 <li><em>Es <strong>lässt sich vermuten</strong>, dass der beobachtete Effekt auf externe Faktoren zurückzuführen <strong>wäre</strong>.</em></li>
@@ -83,7 +83,7 @@ VALUES
 <h3>4. Grenzen der Studie benennen</h3>
 <p>Ein eigener Abschnitt (<em>Limitationen</em>) ist Standard: <em>Einschränkend ist anzumerken, dass die Stichprobe nicht repräsentativ war und die Ergebnisse daher nicht ohne Weiteres auf die Gesamtbevölkerung übertragen werden können.</em></p>
 <h3>5. Übertreiben vermeiden</h3>
-<p>Zu starkes Hedging ("könnte eventuell vielleicht möglicherweise") wirkt unsicher statt seriös. Eine präzise Abstufung — sicher, wahrscheinlich, denkbar, unwahrscheinlich — reicht völlig aus.</p>',
+<p>Zu starkes Hedging ("könnte eventuell vielleicht möglicherweise") wirkt unsicher statt seriös. Eine präzise Abstufung, sicher, wahrscheinlich, denkbar, unwahrscheinlich, reicht völlig aus.</p>',
    2,NOW()),
   ('c1000000-0000-0000-0001-000000000003','c1000000-0000-0000-0000-000000000001',
    'c1-quellen-methodik','Quellen zitieren & Forschungsmethodik',
@@ -112,12 +112,12 @@ VALUES
 <p>Forschungsberichte reihen oft mehrere Nebensätze, um Bedingungen und Einschränkungen präzise zu benennen:</p>
 <p><em>Da die Stichprobe, <strong>die</strong> aus 214 Teilnehmenden bestand, <strong>die</strong> nicht zufällig ausgewählt worden waren, <strong>obwohl</strong> dies methodisch wünschenswert gewesen wäre, keine repräsentative Auswahl darstellte, <strong>müssen</strong> die Ergebnisse mit Vorsicht interpretiert werden.</em></p>
 <p>Lesetechnik: zuerst Hauptsatz-Kern suchen (Ergebnisse müssen mit Vorsicht interpretiert werden), dann jede eingeschobene <em>die/dass/obwohl</em>-Klammer einzeln entpacken.</p>
-<h3>4. Kausalität vs. Korrelation — die wichtigste Unterscheidung</h3>
+<h3>4. Kausalität vs. Korrelation: die wichtigste Unterscheidung</h3>
 <p><em>Ein Zusammenhang zwischen X und Y</em> beweist noch keine <em>Verursachung</em>. Seriöse Texte markieren das ausdrücklich: <em>Die Daten legen einen Zusammenhang nahe, erlauben jedoch keine kausalen Schlüsse.</em></p>',
    3,NOW()),
   ('c1000000-0000-0000-0001-000000000099','c1000000-0000-0000-0000-000000000001',
    'c1-room01-quiz','Checkpoint: Wissenschaft & Forschung',
-   '<h2>Checkpoint Quiz</h2><p>Nominalstil, Hedging und Forschungsmethodik — der Wissenschafts-Check auf C1-Niveau!</p>',
+   '<h2>Checkpoint Quiz</h2><p>Nominalstil, Hedging und Forschungsmethodik: der Wissenschafts-Check auf C1-Niveau!</p>',
    99,NOW())
 ON CONFLICT (id) DO NOTHING;
 
@@ -132,7 +132,7 @@ VALUES
    '"infolge" verlangt welchen Kasus?','multiple_choice',
    '["Genitiv", "Dativ", "Akkusativ", "Nominativ"]'::jsonb,
    'Genitiv',
-   'infolge der Datenlage — wie die meisten Präpositionen des Nominalstils steht infolge mit Genitiv.',NOW()),
+   'infolge der Datenlage: wie die meisten Präpositionen des Nominalstils steht infolge mit Genitiv.',NOW()),
   ('c1000000-0000-0001-0001-000000000003','c1000000-0000-0000-0001-000000000001',
    'Warum sollte man nicht endlos Nominalisierungen stapeln?','multiple_choice',
    '["Es geht auf Kosten der Lesbarkeit", "Es ist grammatisch verboten", "Es klingt zu locker", "Es verändert die Bedeutung"]'::jsonb,
@@ -148,7 +148,7 @@ VALUES
    'Der vorsichtigste Ausdruck in dieser Liste ist:','multiple_choice',
    '["tendenziell zeigt sich, dass ...", "es ist davon auszugehen, dass ...", "es steht fest, dass ...", "zweifellos gilt, dass ..."]'::jsonb,
    'tendenziell zeigt sich, dass ...',
-   '"tendenziell" markiert eine Tendenz, keinen Beweis — schwächer als "davon auszugehen".',NOW()),
+   '"tendenziell" markiert eine Tendenz, keinen Beweis: schwächer als "davon auszugehen".',NOW()),
   ('c1000000-0000-0001-0002-000000000003','c1000000-0000-0000-0001-000000000002',
    'Ein Limitationen-Abschnitt dient dazu:','multiple_choice',
    '["Die Grenzen der Studie zu benennen", "Die Ergebnisse zu übertreiben", "Quellen zu verstecken", "Den Text zu kürzen"]'::jsonb,
@@ -164,7 +164,7 @@ VALUES
    'Die "Validität" einer Studie meint:','multiple_choice',
    '["Die Gültigkeit / Genauigkeit der Messung", "Die Anzahl der Teilnehmenden", "Das Erscheinungsjahr", "Die Zuverlässigkeit bei Wiederholung"]'::jsonb,
    'Die Gültigkeit / Genauigkeit der Messung',
-   'Validität ≠ Reliabilität (Wiederholbarkeit) — häufige Verwechslung.',NOW()),
+   'Validität ≠ Reliabilität (Wiederholbarkeit): häufige Verwechslung.',NOW()),
   ('c1000000-0000-0001-0003-000000000003','c1000000-0000-0000-0001-000000000003',
    'Eine Korrelation zwischen X und Y beweist:','multiple_choice',
    '["Noch keine Verursachung", "Immer eine Verursachung", "Dass X falsch ist", "Nichts Messbares"]'::jsonb,
@@ -180,7 +180,7 @@ VALUES
    '"aufgrund" verlangt:','multiple_choice',
    '["Genitiv", "Dativ", "Akkusativ", "Nominativ"]'::jsonb,
    'Genitiv',
-   'aufgrund methodischer Einschränkungen — Genitiv wie die meisten Nominalstil-Präpositionen.',NOW()),
+   'aufgrund methodischer Einschränkungen: Genitiv wie die meisten Nominalstil-Präpositionen.',NOW()),
   ('c1000000-0000-0001-0099-000000000003','c1000000-0000-0000-0001-000000000099',
    'Ein erweitertes Partizipialattribut ersetzt typischerweise:','multiple_choice',
    '["Einen Relativsatz", "Ein Modalverb", "Eine Präposition", "Ein Adverb"]'::jsonb,
@@ -190,7 +190,7 @@ VALUES
    'Zu starkes Hedging ("könnte eventuell vielleicht") wirkt:','multiple_choice',
    '["Unsicher statt seriös", "Besonders wissenschaftlich", "Neutral", "Objektiv"]'::jsonb,
    'Unsicher statt seriös',
-   'Eine klare Abstufung reicht — Übertreibung schadet der Glaubwürdigkeit.',NOW()),
+   'Eine klare Abstufung reicht: Übertreibung schadet der Glaubwürdigkeit.',NOW()),
   ('c1000000-0000-0001-0099-000000000005','c1000000-0000-0000-0001-000000000099',
    '"Wie Schmidt et al. (2019) zeigen konnten, ..." ist eine Formel für:','multiple_choice',
    '["Das Einbauen einer Quelle in den Satzfluss", "Eine direkte Rede", "Eine Ablehnung der Quelle", "Eine Fußnote ohne Text"]'::jsonb,
@@ -207,7 +207,7 @@ VALUES
    'c1-rhetorische-mittel','Rhetorische Mittel erkennen und benennen',
    '<h2>Rhetorische Mittel erkennen und benennen</h2>
 <h3>1. Warum Stilmittel-Vokabular zählt</h3>
-<p>Auf C1 reicht es nicht, einen Text zu verstehen — du musst benennen können, <strong>wie</strong> er wirkt. Literaturkritik und Textanalyse verlangen ein präzises Metavokabular.</p>
+<p>Auf C1 reicht es nicht, einen Text zu verstehen: du musst benennen können, <strong>wie</strong> er wirkt. Literaturkritik und Textanalyse verlangen ein präzises Metavokabular.</p>
 <h3>2. Die wichtigsten Stilmittel</h3>
 <table>
 <thead><tr><th>Stilmittel</th><th>Definition</th><th>Beispiel</th></tr></thead>
@@ -222,7 +222,7 @@ VALUES
 </tbody>
 </table>
 <h3>3. Wirkung beschreiben, nicht nur benennen</h3>
-<p>Ein Stilmittel zu erkennen genügt für C1 nicht — die Analyse braucht die Wirkung: <em>Durch die Anapher "Wir kämpfen, wir hoffen, wir gewinnen" entsteht ein steigernder Rhythmus, der Entschlossenheit suggeriert.</em></p>
+<p>Ein Stilmittel zu erkennen genügt für C1 nicht: die Analyse braucht die Wirkung: <em>Durch die Anapher "Wir kämpfen, wir hoffen, wir gewinnen" entsteht ein steigernder Rhythmus, der Entschlossenheit suggeriert.</em></p>
 <h3>4. Formulierungen für die Stilanalyse</h3>
 <ul>
 <li><em>Auffällig ist die Verwendung von ...</em></li>
@@ -245,7 +245,7 @@ VALUES
 </tbody>
 </table>
 <h3>2. Zuverlässigkeit des Erzählers</h3>
-<p>Ein zentrales C1-Konzept ist der <strong>unzuverlässige Erzähler</strong> (unreliable narrator): Er berichtet, aber der Text signalisiert Widersprüche, die Zweifel an seiner Version wecken. <em>Der Ich-Erzähler behauptet, unschuldig zu sein — doch seine eigenen Beschreibungen widersprechen dieser Behauptung.</em></p>
+<p>Ein zentrales C1-Konzept ist der <strong>unzuverlässige Erzähler</strong> (unreliable narrator): Er berichtet, aber der Text signalisiert Widersprüche, die Zweifel an seiner Version wecken. <em>Der Ich-Erzähler behauptet, unschuldig zu sein: doch seine eigenen Beschreibungen widersprechen dieser Behauptung.</em></p>
 <h3>3. Erzählzeit vs. erzählte Zeit</h3>
 <ul>
 <li><strong>Zeitdeckend:</strong> Erzählzeit = erzählte Zeit (Dialoge in Echtzeit)</li>
@@ -269,14 +269,14 @@ VALUES
 <li><strong>Schluss:</strong> Zusammenfassung der Deutung, ggf. Bezug zum historischen/gesellschaftlichen Kontext</li>
 </ol>
 <h3>2. Das literarische Präsens</h3>
-<p>Über literarische Texte spricht man im Präsens, auch wenn die Handlung "in der Vergangenheit" spielt: <em>Werther verliebt sich in Lotte, obwohl sie bereits verlobt ist.</em> — nicht "verliebte sich".</p>
+<p>Über literarische Texte spricht man im Präsens, auch wenn die Handlung "in der Vergangenheit" spielt: <em>Werther verliebt sich in Lotte, obwohl sie bereits verlobt ist.</em>: nicht "verliebte sich".</p>
 <h3>3. Belege korrekt einbinden</h3>
 <ul>
 <li><em>Wie es im Text heißt: "..." (Z. 14 f.), zeigt sich hier ...</em></li>
 <li><em>Diese Deutung stützt sich auf die Formulierung "..." in Zeile 22.</em></li>
 </ul>
-<h3>4. Der deutsche Kanon — kurz und knapp</h3>
-<p>Zwei Namen, die in jeder Interpretations-Übung auftauchen: <strong>Goethe</strong> (Klassik, z. B. <em>Die Leiden des jungen Werthers</em> — Gefühl vs. Vernunft) und <strong>Kafka</strong> (Moderne, z. B. <em>Die Verwandlung</em> — Entfremdung, das Absurde). Für die Interpretationsübung reicht es, Epoche und Grundthema einordnen zu können, ohne die Werke im Detail zu kennen.</p>
+<h3>4. Der deutsche Kanon: kurz und knapp</h3>
+<p>Zwei Namen, die in jeder Interpretations-Übung auftauchen: <strong>Goethe</strong> (Klassik, z. B. <em>Die Leiden des jungen Werthers</em>: Gefühl vs. Vernunft) und <strong>Kafka</strong> (Moderne, z. B. <em>Die Verwandlung</em>: Entfremdung, das Absurde). Für die Interpretationsübung reicht es, Epoche und Grundthema einordnen zu können, ohne die Werke im Detail zu kennen.</p>
 <h3>5. Typische Deutungsformeln</h3>
 <ul>
 <li><em>Der Text lässt sich als Kritik an ... lesen.</em></li>
@@ -286,7 +286,7 @@ VALUES
    3,NOW()),
   ('c1000000-0000-0000-0002-000000000099','c1000000-0000-0000-0000-000000000002',
    'c1-room02-quiz','Checkpoint: Literatur & Stilanalyse',
-   '<h2>Checkpoint Quiz</h2><p>Stilmittel, Erzählperspektive und Textinterpretation — der Feuilleton-Check auf C1-Niveau!</p>',
+   '<h2>Checkpoint Quiz</h2><p>Stilmittel, Erzählperspektive und Textinterpretation: der Feuilleton-Check auf C1-Niveau!</p>',
    99,NOW())
 ON CONFLICT (id) DO NOTHING;
 
@@ -306,7 +306,7 @@ VALUES
    'Eine gute Stilanalyse benennt nicht nur das Mittel, sondern auch:','multiple_choice',
    '["Die Wirkung auf den Leser", "Das Erscheinungsjahr", "Die Seitenzahl", "Den Verlag"]'::jsonb,
    'Die Wirkung auf den Leser',
-   'Reines Benennen reicht auf C1 nicht — die Wirkung muss erklärt werden.',NOW()),
+   'Reines Benennen reicht auf C1 nicht: die Wirkung muss erklärt werden.',NOW()),
 
   ('c1000000-0000-0002-0002-000000000001','c1000000-0000-0000-0002-000000000002',
    'Ein Erzähler, der alle Gedanken aller Figuren kennt und kommentiert, ist:','multiple_choice',
@@ -328,12 +328,12 @@ VALUES
    'Über literarische Texte spricht man im:','multiple_choice',
    '["Literarischen Präsens", "Präteritum", "Perfekt", "Futur I"]'::jsonb,
    'Literarischen Präsens',
-   '"Werther verliebt sich" — nicht "verliebte sich", auch wenn die Handlung fiktiv in der Vergangenheit spielt.',NOW()),
+   '"Werther verliebt sich": nicht "verliebte sich", auch wenn die Handlung fiktiv in der Vergangenheit spielt.',NOW()),
   ('c1000000-0000-0002-0003-000000000002','c1000000-0000-0000-0002-000000000003',
    'Kafkas Grundthema wird meist verbunden mit:','multiple_choice',
    '["Entfremdung und dem Absurden", "Aufklärung und Vernunft", "Ritterromantik", "Naturlyrik"]'::jsonb,
    'Entfremdung und dem Absurden',
-   'Wie in "Die Verwandlung" — ein Klassiker der literarischen Moderne.',NOW()),
+   'Wie in "Die Verwandlung": ein Klassiker der literarischen Moderne.',NOW()),
   ('c1000000-0000-0002-0003-000000000003','c1000000-0000-0000-0002-000000000003',
    'Ein Beleg im Interpretationstext wird eingebunden als:','multiple_choice',
    '["Wie es im Text heißt: \"...\" (Z. 14 f.)", "Irgendwo stand mal", "Man liest so", "Ich glaube, dass"]'::jsonb,
@@ -416,7 +416,7 @@ VALUES
 <h3>3. Ausweichen auf Konjunktiv II</h3>
 <p>Wo Konjunktiv I mit dem Indikativ identisch aussieht (z. B. bei "sie haben"), springt Konjunktiv II ein: <em>Die Kunden erklärten, sie <strong>hätten</strong> (nicht: "haben") bereits reklamiert.</em></p>
 <h3>4. Die diplomatische Funktion</h3>
-<p>Ein Protokoll mit Konjunktiv I schützt: <em>Der Verhandlungspartner erklärte, das Angebot sei sein letztes Wort gewesen</em> — das Protokoll gibt die Aussage wieder, ohne sie zu bewerten oder zu bestätigen. Genau diese Distanz ist im Geschäftsleben Gold wert.</p>',
+<p>Ein Protokoll mit Konjunktiv I schützt: <em>Der Verhandlungspartner erklärte, das Angebot sei sein letztes Wort gewesen</em>: das Protokoll gibt die Aussage wieder, ohne sie zu bewerten oder zu bestätigen. Genau diese Distanz ist im Geschäftsleben Gold wert.</p>',
    2,NOW()),
   ('c1000000-0000-0000-0003-000000000003','c1000000-0000-0000-0000-000000000003',
    'c1-vertrag-widerspruch','Vertragsvokabular & diplomatischer Widerspruch',
@@ -433,7 +433,7 @@ VALUES
 <tr><td>die Nachverhandlung</td><td>erneutes Verhandeln bereits vereinbarter Punkte</td></tr>
 </tbody>
 </table>
-<h3>2. Diplomatisch widersprechen — die Eskalationsleiter</h3>
+<h3>2. Diplomatisch widersprechen: die Eskalationsleiter</h3>
 <ol>
 <li><strong>Vorsichtig einleiten:</strong> <em>Ich verstehe Ihren Standpunkt, allerdings sehe ich das etwas anders.</em></li>
 <li><strong>Sachlich begründen:</strong> <em>Aus unserer Sicht lässt sich das nicht ohne Weiteres so umsetzen, da ...</em></li>
@@ -461,7 +461,7 @@ VALUES
    '"An einem Strang ziehen" bedeutet:','multiple_choice',
    '["Zusammenarbeiten, gleiches Ziel verfolgen", "Sich streiten", "Ein Seil kaufen", "Aufgeben"]'::jsonb,
    'Zusammenarbeiten, gleiches Ziel verfolgen',
-   'Ein Bild aus dem gemeinsamen Ziehen — beide Seiten arbeiten zusammen.',NOW()),
+   'Ein Bild aus dem gemeinsamen Ziehen: beide Seiten arbeiten zusammen.',NOW()),
   ('c1000000-0000-0003-0001-000000000002','c1000000-0000-0000-0003-000000000001',
    '"Die Katze im Sack kaufen" heißt:','multiple_choice',
    '["Ohne Prüfung etwas Ungewisses akzeptieren", "Ein Haustier kaufen", "Ein gutes Geschäft machen", "Vorsichtig verhandeln"]'::jsonb,
@@ -471,7 +471,7 @@ VALUES
    '"Wir könnten uns vorstellen, beim Preis entgegenzukommen, ___ die Menge steigt."','multiple_choice',
    '["sofern", "obwohl", "trotzdem", "weil nicht"]'::jsonb,
    'sofern',
-   'sofern = unter der Bedingung, dass — passt zum konditionalen Zugeständnis.',NOW()),
+   'sofern = unter der Bedingung, dass: passt zum konditionalen Zugeständnis.',NOW()),
 
   ('c1000000-0000-0003-0002-000000000001','c1000000-0000-0000-0003-000000000002',
    '"Der Lieferant teilte mit, die Verzögerung ___ auf einen Rohstoffmangel zurückzuführen."','multiple_choice',
@@ -487,7 +487,7 @@ VALUES
    'Konjunktiv I in einem Geschäftsprotokoll dient vor allem dazu:','multiple_choice',
    '["Aussagen wiederzugeben, ohne sie zu bestätigen", "Höflicher zu klingen", "Vergangenheit auszudrücken", "Befehle zu mildern"]'::jsonb,
    'Aussagen wiederzugeben, ohne sie zu bestätigen',
-   'Diplomatische Distanz zur wiedergegebenen Aussage — wichtig im Geschäftsleben.',NOW()),
+   'Diplomatische Distanz zur wiedergegebenen Aussage: wichtig im Geschäftsleben.',NOW()),
 
   ('c1000000-0000-0003-0003-000000000001','c1000000-0000-0000-0003-000000000003',
    'Eine "Vertragsstrafe" ist:','multiple_choice',
@@ -529,5 +529,5 @@ VALUES
    '"Wir bitten um eine Anpassung von Klausel 4.2, ___ die Frist zu knapp ist."','multiple_choice',
    '["da", "obwohl", "damit", "als ob"]'::jsonb,
    'da',
-   'da = weil, begründend — passt zur höflichen Bitte um Anpassung.',NOW())
+   'da = weil, begründend: passt zur höflichen Bitte um Anpassung.',NOW())
 ON CONFLICT (id) DO NOTHING;

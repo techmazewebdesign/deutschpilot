@@ -1,4 +1,5 @@
 "use client";
+import { displayText } from "@/lib/displayText";
 
 import { useState, useCallback, useRef, useEffect } from "react";
 import { useTranslations } from "next-intl";
@@ -229,11 +230,11 @@ function WritingPromptExercise({
           <p className="mb-1.5 text-[10px] font-bold uppercase tracking-[0.15em] text-white/40">
             {t("sampleAnswer")}
           </p>
-          <p className="text-sm italic text-white/60">{sampleAnswer}</p>
+          <p className="text-sm italic text-white/60">{displayText(sampleAnswer)}</p>
         </div>
       )}
 
-      {tip && <p className="text-xs italic text-white/35">{tip}</p>}
+      {tip && <p className="text-xs italic text-white/35">{displayText(tip)}</p>}
 
       {requested && !loading && (
         <div className="flex justify-end">
@@ -332,7 +333,7 @@ function SpeakingPromptExercise({
         <p className="mb-1.5 text-[10px] font-bold uppercase tracking-[0.15em] text-white/40">
           {t("modelAnswer")}
         </p>
-        <p className="text-sm italic text-white/60">{modelAnswer}</p>
+        <p className="text-sm italic text-white/60">{displayText(modelAnswer)}</p>
       </div>
 
       <div className="flex items-center gap-3">
@@ -381,7 +382,7 @@ function SpeakingPromptExercise({
 
       <p className="text-xs italic text-white/35">{t("recordingNotSaved")}</p>
 
-      {tip && <p className="text-xs italic text-white/35">{tip}</p>}
+      {tip && <p className="text-xs italic text-white/35">{displayText(tip)}</p>}
 
       {hasRecording && (
         <div className="flex justify-end">
@@ -596,7 +597,7 @@ export function Quiz({
                   )}
                   <div className="min-w-0 flex-1">
                     <p className="mb-1 text-sm font-medium text-white">
-                      {idx + 1}. {ex.question}
+                      {idx + 1}. {displayText(ex.question)}
                     </p>
                     {ex.type === "writing_prompt" ? (
                       <p className="mt-1 whitespace-pre-wrap text-xs text-white/50">{given}</p>
@@ -607,17 +608,17 @@ export function Quiz({
                         <div className="mt-1 space-y-0.5">
                           <p className="text-xs text-red-300">
                             {t("yourAnswerLabel")}{" "}
-                            <span className="font-medium">{given || "–"}</span>
+                            <span className="font-medium">{given || "…"}</span>
                           </p>
                           <p className="text-xs text-[#E0B873]">
                             {t("correctShort")}{" "}
-                            <span className="font-medium">{ex.correct_answer}</span>
+                            <span className="font-medium">{displayText(ex.correct_answer)}</span>
                           </p>
                         </div>
                       )
                     )}
                     {ex.explanation && (
-                      <p className="mt-1.5 text-xs italic text-white/35">{ex.explanation}</p>
+                      <p className="mt-1.5 text-xs italic text-white/35">{displayText(ex.explanation)}</p>
                     )}
                   </div>
                 </div>
@@ -710,7 +711,7 @@ export function Quiz({
             </span>
           </div>
           <p className="mb-5 text-base font-semibold leading-relaxed text-white">
-            {current.question}
+            {displayText(current.question)}
           </p>
           <WritingPromptExercise
             key={current.id}
@@ -741,7 +742,7 @@ export function Quiz({
             </span>
           </div>
           <p className="mb-5 text-base font-semibold leading-relaxed text-white">
-            {current.question}
+            {displayText(current.question)}
           </p>
           <SpeakingPromptExercise
             key={current.id}
@@ -817,7 +818,7 @@ export function Quiz({
         </div>
 
         <p className="mb-5 text-base font-semibold leading-relaxed text-white">
-          {current.question}
+          {displayText(current.question)}
         </p>
 
         {/* Answer input by type */}
@@ -850,7 +851,7 @@ export function Quiz({
                   {answerState !== "idle" && isSelected && !isCorrectOpt && (
                     <XCircle className="mr-2 inline h-4 w-4 text-red-400" />
                   )}
-                  {opt}
+                  {displayText(opt)}
                 </button>
               );
             })}
@@ -901,10 +902,10 @@ export function Quiz({
               >
                 {answerState === "correct"
                   ? t("correctExclaim")
-                  : t("wrongAnswer", { answer: current.correct_answer })}
+                  : t("wrongAnswer", { answer: displayText(current.correct_answer) })}
               </p>
               {current.explanation && (
-                <p className="mt-1 text-xs text-white/50">{current.explanation}</p>
+                <p className="mt-1 text-xs text-white/50">{displayText(current.explanation)}</p>
               )}
             </div>
           </div>

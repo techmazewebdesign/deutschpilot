@@ -1,4 +1,5 @@
 "use client";
+import { displayText } from "@/lib/displayText";
 
 import { useState, useRef, useEffect, useMemo } from "react";
 import { useTranslations } from "next-intl";
@@ -543,7 +544,7 @@ function QuestionBlock({
 }: { question: string; options: string[]; selected: string | undefined; onSelect: (v: string) => void }) {
   return (
     <div className="mb-4">
-      <p className="text-sm font-medium text-white mb-3">{question}</p>
+      <p className="text-sm font-medium text-white mb-3">{displayText(question)}</p>
       <div className="space-y-2">
         {options.map((opt) => (
           <button
@@ -555,7 +556,7 @@ function QuestionBlock({
                 : "border-white/10 text-white/60 hover:border-white/25"
             }`}
           >
-            {opt}
+            {displayText(opt)}
           </button>
         ))}
       </div>

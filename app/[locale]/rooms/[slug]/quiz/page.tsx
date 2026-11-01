@@ -1,3 +1,4 @@
+import { displayText } from "@/lib/displayText";
 import { notFound, redirect } from "next/navigation";
 import Link from "next/link";
 import { AppLayout } from "@/components/app/app-layout";
@@ -135,7 +136,7 @@ export default async function RoomQuizPage({
               </span>
             </div>
             <h1 className="mb-1 font-serif text-2xl font-bold text-white lg:text-3xl">
-              {course.title}
+              {displayText(course.title)}
             </h1>
             <p className="text-sm text-white/45">
               {de

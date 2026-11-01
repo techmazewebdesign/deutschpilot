@@ -8,13 +8,13 @@ export const article: MagazineArticle = {
   title_en: "14 Everyday German Idioms (With Literal Translations)",
   title_de: "14 alltägliche deutsche Redewendungen (mit wörtlicher Übersetzung)",
   description_en:
-    "14 real everyday German idioms explained: literal translation, actual meaning, and an example sentence for each — from Schwein haben to die Nase voll haben.",
+    "14 real everyday German idioms explained: literal translation, actual meaning, and an example sentence for each: from Schwein haben to die Nase voll haben.",
   description_de:
-    "14 echte deutsche Redewendungen erklärt: wörtliche Übersetzung, tatsächliche Bedeutung und ein Beispielsatz — von Schwein haben bis die Nase voll haben.",
+    "14 echte deutsche Redewendungen erklärt: wörtliche Übersetzung, tatsächliche Bedeutung und ein Beispielsatz: von Schwein haben bis die Nase voll haben.",
   body_en: `<p>Idioms are where textbook German and real German diverge the most. Understanding grammar gets you through a sentence; understanding idioms gets you the joke, the sigh, and the eye-roll. Here are 14 that come up constantly in everyday speech.</p>
 
 <h2>1. Schwein haben</h2>
-<p><strong>Literally:</strong> to have pig. <strong>Meaning:</strong> to be lucky. <strong>Example:</strong> <em>Ich habe den letzten Zug noch erwischt — Schwein gehabt!</em> (I just caught the last train — lucky me!)</p>
+<p><strong>Literally:</strong> to have pig. <strong>Meaning:</strong> to be lucky. <strong>Example:</strong> <em>Ich habe den letzten Zug noch erwischt: Schwein gehabt!</em> (I just caught the last train: lucky me!)</p>
 
 <h2>2. Die Daumen drücken</h2>
 <p><strong>Literally:</strong> to press the thumbs. <strong>Meaning:</strong> to keep your fingers crossed for someone. <strong>Example:</strong> <em>Ich drücke dir die Daumen für die Prüfung.</em> (I'll keep my fingers crossed for you for the exam.)</p>
@@ -26,7 +26,7 @@ export const article: MagazineArticle = {
 <p><strong>Literally:</strong> to step into the little fat pot. <strong>Meaning:</strong> to put your foot in it, to say something embarrassing or tactless. <strong>Example:</strong> <em>Ich bin voll ins Fettnäpfchen getreten, als ich nach ihrem Ex gefragt habe.</em> (I really put my foot in it when I asked about her ex.)</p>
 
 <h2>5. Da liegt der Hund begraben</h2>
-<p><strong>Literally:</strong> that's where the dog is buried. <strong>Meaning:</strong> that's the real root of the problem. <strong>Example:</strong> <em>Ah, da liegt der Hund begraben — das Passwort war falsch.</em> (Ah, that's the real issue — the password was wrong.)</p>
+<p><strong>Literally:</strong> that's where the dog is buried. <strong>Meaning:</strong> that's the real root of the problem. <strong>Example:</strong> <em>Ah, da liegt der Hund begraben: das Passwort war falsch.</em> (Ah, that's the real issue: the password was wrong.)</p>
 
 <h2>6. Jemandem einen Bären aufbinden</h2>
 <p><strong>Literally:</strong> to tie a bear onto someone. <strong>Meaning:</strong> to tell someone a tall tale, to trick them into believing something false. <strong>Example:</strong> <em>Glaub ihm nicht, der bindet dir einen Bären auf.</em> (Don't believe him, he's spinning you a tall tale.)</p>
@@ -38,16 +38,16 @@ export const article: MagazineArticle = {
 <p><strong>Literally:</strong> everything in butter. <strong>Meaning:</strong> everything is fine, all good. <strong>Example:</strong> <em>Keine Sorge, alles in Butter!</em> (Don't worry, everything's fine!)</p>
 
 <h2>9. Tomaten auf den Augen haben</h2>
-<p><strong>Literally:</strong> to have tomatoes on your eyes. <strong>Meaning:</strong> to fail to notice something obvious. <strong>Example:</strong> <em>Der Schlüssel lag direkt vor dir — hast du Tomaten auf den Augen?</em> (The key was right in front of you — are you blind?)</p>
+<p><strong>Literally:</strong> to have tomatoes on your eyes. <strong>Meaning:</strong> to fail to notice something obvious. <strong>Example:</strong> <em>Der Schlüssel lag direkt vor dir: hast du Tomaten auf den Augen?</em> (The key was right in front of you: are you blind?)</p>
 
 <h2>10. Ich verstehe nur Bahnhof</h2>
 <p><strong>Literally:</strong> I only understand train station. <strong>Meaning:</strong> I don't understand a thing (about a topic or explanation). <strong>Example:</strong> <em>Bei diesem Steuerformular verstehe ich nur Bahnhof.</em> (I don't understand a word of this tax form.)</p>
 
 <h2>11. Jemandem die Daumen halten</h2>
-<p><strong>Note:</strong> a regional variant of #2, meaning the same "keeping fingers crossed" — you'll hear both <em>Daumen drücken</em> and <em>Daumen halten</em> depending on the region.</p>
+<p><strong>Note:</strong> a regional variant of #2, meaning the same "keeping fingers crossed": you'll hear both <em>Daumen drücken</em> and <em>Daumen halten</em> depending on the region.</p>
 
 <h2>12. Die Kirche im Dorf lassen</h2>
-<p><strong>Literally:</strong> to leave the church in the village. <strong>Meaning:</strong> to not exaggerate, to keep things in proportion. <strong>Example:</strong> <em>Es war nur ein kleiner Fehler — lass die Kirche im Dorf.</em> (It was just a small mistake — don't blow it out of proportion.)</p>
+<p><strong>Literally:</strong> to leave the church in the village. <strong>Meaning:</strong> to not exaggerate, to keep things in proportion. <strong>Example:</strong> <em>Es war nur ein kleiner Fehler: lass die Kirche im Dorf.</em> (It was just a small mistake: don't blow it out of proportion.)</p>
 
 <h2>13. Jacke wie Hose</h2>
 <p><strong>Literally:</strong> jacket like trousers. <strong>Meaning:</strong> it makes no difference, it's all the same. <strong>Example:</strong> <em>Ob wir heute oder morgen fahren, ist mir Jacke wie Hose.</em> (Whether we go today or tomorrow makes no difference to me.)</p>
@@ -62,7 +62,7 @@ export const article: MagazineArticle = {
   body_de: `<p>Redewendungen sind der Punkt, an dem Lehrbuch-Deutsch und echtes Deutsch am weitesten auseinandergehen. Grammatik bringt dich durch einen Satz; Redewendungen bringen dir den Witz, das Seufzen und das Augenrollen. Hier sind 14, die im Alltag ständig vorkommen.</p>
 
 <h2>1. Schwein haben</h2>
-<p><strong>Bedeutung:</strong> Glück haben. <strong>Beispiel:</strong> <em>Ich habe den letzten Zug noch erwischt — Schwein gehabt!</em></p>
+<p><strong>Bedeutung:</strong> Glück haben. <strong>Beispiel:</strong> <em>Ich habe den letzten Zug noch erwischt: Schwein gehabt!</em></p>
 
 <h2>2. Die Daumen drücken</h2>
 <p><strong>Bedeutung:</strong> jemandem Glück wünschen. <strong>Beispiel:</strong> <em>Ich drücke dir die Daumen für die Prüfung.</em></p>
@@ -74,7 +74,7 @@ export const article: MagazineArticle = {
 <p><strong>Bedeutung:</strong> etwas Peinliches oder Taktloses sagen. <strong>Beispiel:</strong> <em>Ich bin voll ins Fettnäpfchen getreten, als ich nach ihrem Ex gefragt habe.</em></p>
 
 <h2>5. Da liegt der Hund begraben</h2>
-<p><strong>Bedeutung:</strong> das ist der eigentliche Kern des Problems. <strong>Beispiel:</strong> <em>Ah, da liegt der Hund begraben — das Passwort war falsch.</em></p>
+<p><strong>Bedeutung:</strong> das ist der eigentliche Kern des Problems. <strong>Beispiel:</strong> <em>Ah, da liegt der Hund begraben: das Passwort war falsch.</em></p>
 
 <h2>6. Jemandem einen Bären aufbinden</h2>
 <p><strong>Bedeutung:</strong> jemandem eine Lügengeschichte auftischen. <strong>Beispiel:</strong> <em>Glaub ihm nicht, der bindet dir einen Bären auf.</em></p>
@@ -86,16 +86,16 @@ export const article: MagazineArticle = {
 <p><strong>Bedeutung:</strong> alles ist in Ordnung. <strong>Beispiel:</strong> <em>Keine Sorge, alles in Butter!</em></p>
 
 <h2>9. Tomaten auf den Augen haben</h2>
-<p><strong>Bedeutung:</strong> etwas Offensichtliches nicht bemerken. <strong>Beispiel:</strong> <em>Der Schlüssel lag direkt vor dir — hast du Tomaten auf den Augen?</em></p>
+<p><strong>Bedeutung:</strong> etwas Offensichtliches nicht bemerken. <strong>Beispiel:</strong> <em>Der Schlüssel lag direkt vor dir: hast du Tomaten auf den Augen?</em></p>
 
 <h2>10. Ich verstehe nur Bahnhof</h2>
 <p><strong>Bedeutung:</strong> überhaupt nichts verstehen (bei einem Thema oder einer Erklärung). <strong>Beispiel:</strong> <em>Bei diesem Steuerformular verstehe ich nur Bahnhof.</em></p>
 
 <h2>11. Jemandem die Daumen halten</h2>
-<p><strong>Hinweis:</strong> eine regionale Variante von Nr. 2, gleiche Bedeutung — je nach Region hört man sowohl <em>Daumen drücken</em> als auch <em>Daumen halten</em>.</p>
+<p><strong>Hinweis:</strong> eine regionale Variante von Nr. 2, gleiche Bedeutung: je nach Region hört man sowohl <em>Daumen drücken</em> als auch <em>Daumen halten</em>.</p>
 
 <h2>12. Die Kirche im Dorf lassen</h2>
-<p><strong>Bedeutung:</strong> nichts übertreiben, die Dinge im Verhältnis lassen. <strong>Beispiel:</strong> <em>Es war nur ein kleiner Fehler — lass die Kirche im Dorf.</em></p>
+<p><strong>Bedeutung:</strong> nichts übertreiben, die Dinge im Verhältnis lassen. <strong>Beispiel:</strong> <em>Es war nur ein kleiner Fehler: lass die Kirche im Dorf.</em></p>
 
 <h2>13. Jacke wie Hose</h2>
 <p><strong>Bedeutung:</strong> es macht keinen Unterschied, völlig egal. <strong>Beispiel:</strong> <em>Ob wir heute oder morgen fahren, ist mir Jacke wie Hose.</em></p>

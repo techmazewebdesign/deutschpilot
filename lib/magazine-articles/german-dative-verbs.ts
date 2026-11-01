@@ -8,10 +8,10 @@ export const article: MagazineArticle = {
   title_en: "German Dative Verbs: The 15 You Actually Need",
   title_de: "Verben mit Dativ: Die 15, die du wirklich brauchst",
   description_en:
-    "helfen, danken, gefallen & co. — why 'Ich helfe dir' not 'dich', the 15 high-frequency dative verbs, and memory tricks that stick.",
+    "helfen, danken, gefallen & co. why 'Ich helfe dir' not 'dich', the 15 high-frequency dative verbs, and memory tricks that stick.",
   description_de:
-    "helfen, danken, gefallen & Co. — warum es 'Ich helfe dir' heißt, die 15 häufigsten Dativ-Verben und Merktricks, die wirklich hängen bleiben.",
-  body_en: `<p>Every learner eventually writes <em>"Ich helfe dich"</em> — and gets corrected to <em><strong>dir</strong></em>. Welcome to dative verbs: a closed club of verbs whose object takes the dative case even though English treats it as a direct object. The good news: the club is small, and 15 members cover nearly everything you'll say.</p>
+    "helfen, danken, gefallen & Co. warum es 'Ich helfe dir' heißt, die 15 häufigsten Dativ-Verben und Merktricks, die wirklich hängen bleiben.",
+  body_en: `<p>Every learner eventually writes <em>"Ich helfe dich"</em>: and gets corrected to <em><strong>dir</strong></em>. Welcome to dative verbs: a closed club of verbs whose object takes the dative case even though English treats it as a direct object. The good news: the club is small, and 15 members cover nearly everything you'll say.</p>
 
 <h2>The essential 15</h2>
 <table>
@@ -36,17 +36,17 @@ export const article: MagazineArticle = {
 </table>
 
 <h2>Why these verbs? A trick that makes them stick</h2>
-<p>Most dative verbs describe something happening <strong>to or for a person's benefit/experience</strong> rather than acting on them directly. Nothing happens to <em>you</em> when soup tastes good — the experience flows toward you. German marks that "receiver of the experience" with dative. Not a perfect rule, but it turns memorization into intuition.</p>
+<p>Most dative verbs describe something happening <strong>to or for a person's benefit/experience</strong> rather than acting on them directly. Nothing happens to <em>you</em> when soup tastes good: the experience flows toward you. German marks that "receiver of the experience" with dative. Not a perfect rule, but it turns memorization into intuition.</p>
 
 <h2>Three traps</h2>
 <ul>
-  <li><strong>gefallen flips the sentence:</strong> the thing liked is the subject. <em>Der Film gefällt mir</em> — the film pleases me. Never <em>"Ich gefalle den Film."</em></li>
+  <li><strong>gefallen flips the sentence:</strong> the thing liked is the subject. <em>Der Film gefällt mir</em>: the film pleases me. Never <em>"Ich gefalle den Film."</em></li>
   <li><strong>fehlen flips too:</strong> <em>Du fehlst mir</em> = I miss you (literally: you are-missing to-me).</li>
-  <li><strong>fragen is NOT dative:</strong> <em>Ich frage <strong>dich</strong></em> (accusative) — the most common false friend in the club.</li>
+  <li><strong>fragen is NOT dative:</strong> <em>Ich frage <strong>dich</strong></em> (accusative): the most common false friend in the club.</li>
 </ul>
 
-<p>Practice these in context in our <a href="/en/courses">writing courses with AI feedback</a> — the AI flags exactly this kind of case error and explains why.</p>`,
-  body_de: `<p>Jeder Lernende schreibt irgendwann <em>"Ich helfe dich"</em> — und wird zu <em><strong>dir</strong></em> korrigiert. Willkommen bei den Dativ-Verben: ein geschlossener Club von Verben, deren Objekt im Dativ steht. Die gute Nachricht: Der Club ist klein, und 15 Mitglieder decken fast alles ab.</p>
+<p>Practice these in context in our <a href="/en/courses">writing courses with AI feedback</a>: the AI flags exactly this kind of case error and explains why.</p>`,
+  body_de: `<p>Jeder Lernende schreibt irgendwann <em>"Ich helfe dich"</em>: und wird zu <em><strong>dir</strong></em> korrigiert. Willkommen bei den Dativ-Verben: ein geschlossener Club von Verben, deren Objekt im Dativ steht. Die gute Nachricht: Der Club ist klein, und 15 Mitglieder decken fast alles ab.</p>
 
 <h2>Die wichtigsten 15</h2>
 <table>
@@ -71,14 +71,14 @@ export const article: MagazineArticle = {
 </table>
 
 <h2>Warum gerade diese Verben? Ein Merktrick</h2>
-<p>Die meisten Dativ-Verben beschreiben etwas, das <strong>zu einer Person hinfließt</strong> — ein Nutzen, ein Eindruck, eine Erfahrung — statt direkt an ihr zu handeln. Wenn Suppe schmeckt, passiert <em>dir</em> nichts; das Erlebnis fließt zu dir. Genau diesen "Empfänger" markiert der Dativ. Keine perfekte Regel, aber sie macht aus Auswendiglernen Intuition.</p>
+<p>Die meisten Dativ-Verben beschreiben etwas, das <strong>zu einer Person hinfließt</strong>, ein Nutzen, ein Eindruck, eine Erfahrung, statt direkt an ihr zu handeln. Wenn Suppe schmeckt, passiert <em>dir</em> nichts; das Erlebnis fließt zu dir. Genau diesen "Empfänger" markiert der Dativ. Keine perfekte Regel, aber sie macht aus Auswendiglernen Intuition.</p>
 
 <h2>Drei Fallen</h2>
 <ul>
   <li><strong>gefallen dreht den Satz um:</strong> Das Gemochte ist Subjekt. <em>Der Film gefällt mir.</em> Niemals <em>"Ich gefalle den Film."</em></li>
   <li><strong>fehlen dreht auch:</strong> <em>Du fehlst mir</em> = ich vermisse dich.</li>
-  <li><strong>fragen ist NICHT dativ:</strong> <em>Ich frage <strong>dich</strong></em> (Akkusativ) — der häufigste falsche Freund.</li>
+  <li><strong>fragen ist NICHT dativ:</strong> <em>Ich frage <strong>dich</strong></em> (Akkusativ): der häufigste falsche Freund.</li>
 </ul>
 
-<p>Übe das im Kontext in unseren <a href="/de/courses">Schreibkursen mit KI-Feedback</a> — die KI markiert genau solche Kasusfehler und erklärt das Warum.</p>`,
+<p>Übe das im Kontext in unseren <a href="/de/courses">Schreibkursen mit KI-Feedback</a>: die KI markiert genau solche Kasusfehler und erklärt das Warum.</p>`,
 };

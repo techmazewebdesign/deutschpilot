@@ -15,8 +15,8 @@ export function generateMetadata({ params }: { params: { locale: string } }): Me
       ? "Führerschein Theorie üben | DeutschPilot"
       : "Practice German Driving Theory | DeutschPilot",
     description: de
-      ? "Essenzielle Verkehrsregeln zum Üben für Klasse A (Motorrad) und Klasse B (PKW) — kostenlos, kein Konto nötig."
-      : "Essential traffic-law questions to practice for Class A (motorcycle) and Class B (car) — free, no account needed.",
+      ? "Essenzielle Verkehrsregeln zum Üben für Klasse A (Motorrad) und Klasse B (PKW): kostenlos, kein Konto nötig."
+      : "Essential traffic-law questions to practice for Class A (motorcycle) and Class B (car): free, no account needed.",
   };
 }
 
@@ -24,16 +24,16 @@ const CLASSES = [
   {
     cls: "B",
     icon: Car,
-    titleDE: "Klasse B — PKW",
-    titleEN: "Class B — Car",
+    titleDE: "Klasse B: PKW",
+    titleEN: "Class B: Car",
     descDE: "Der Standard-Autoführerschein.",
     descEN: "The standard car license.",
   },
   {
     cls: "A",
     icon: Bike,
-    titleDE: "Klasse A — Motorrad",
-    titleEN: "Class A — Motorcycle",
+    titleDE: "Klasse A: Motorrad",
+    titleEN: "Class A: Motorcycle",
     descDE: "Für Motorräder ohne Leistungsbeschränkung.",
     descEN: "For motorcycles without a power restriction.",
   },
@@ -97,8 +97,8 @@ export default function DrivingTheoryLandingPage({ params }: { params: { locale:
             <AlertTriangle className="h-5 w-5 text-amber-400 flex-shrink-0 mt-0.5" />
             <p className="text-xs text-amber-200/80 leading-relaxed">
               {de
-                ? "Hinweis: Dies sind eigene Übungsfragen zu wichtigen Verkehrsregeln — keine wortgetreue Wiedergabe des amtlichen Fragenkatalogs."
-                : "Note: these are original practice questions on important traffic rules — not verbatim reproductions of the official question catalog."}
+                ? "Hinweis: Dies sind eigene Übungsfragen zu wichtigen Verkehrsregeln: keine wortgetreue Wiedergabe des amtlichen Fragenkatalogs."
+                : "Note: these are original practice questions on important traffic rules: not verbatim reproductions of the official question catalog."}
             </p>
           </div>
         </div>

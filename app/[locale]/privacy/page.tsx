@@ -73,8 +73,8 @@ export default function PrivacyPage({ params }: { params: { locale: string } }) 
             <div className="rounded-xl border border-white/10 bg-[#0B1B33]/50 p-6">
               <h2 className="mb-3 font-semibold text-white">
                 {isDE
-                  ? "4. Schulbereich — nur nach Aktivierung durch Ihre Schule"
-                  : "4. School workspace — only after activation by your school"}
+                  ? "4. Schulbereich: nur nach Aktivierung durch Ihre Schule"
+                  : "4. School workspace: only after activation by your school"}
               </h2>
               <div className="space-y-4 leading-relaxed">
                 <Link href={`/${locale}/school`} className="inline-block text-[#E0B873] underline">

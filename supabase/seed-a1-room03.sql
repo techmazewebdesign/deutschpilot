@@ -5,7 +5,7 @@ INSERT INTO courses (id, slug, title, description, level, language, is_published
 VALUES (
   'a0000000-0000-0000-0000-000000000003',
   'a1-family-life',
-  'A1 Room 03 – Family & Personal Life',
+  'A1 Room 03: Family & Personal Life',
   'Learn to talk about your family, describe people, hobbies, personality, and daily routines.',
   'A1', 'de', true, NOW()
 ) ON CONFLICT (id) DO NOTHING;
@@ -16,8 +16,8 @@ VALUES (
   'a0000000-0000-0000-0003-000000000001',
   'a0000000-0000-0000-0000-000000000003',
   'familie-die-familienmitglieder',
-  'Familie – Die Familienmitglieder',
-  '# Familie – Die Familienmitglieder
+  'Familie: Die Familienmitglieder',
+  '# Familie: Die Familienmitglieder
 
 ## Vocabulary
 
@@ -98,8 +98,8 @@ Use **er ist** (he is) or **sie ist** (she is):
 
 ## Question
 
-- Wie ist dein Vater? — **Er ist nett und freundlich.**
-- Wie ist deine Mutter? — **Sie ist ruhig und groß.**',
+- Wie ist dein Vater?: **Er ist nett und freundlich.**
+- Wie ist deine Mutter?: **Sie ist ruhig und groß.**',
   2, true
 ) ON CONFLICT (id) DO NOTHING;
 
@@ -183,8 +183,8 @@ VALUES (
   'a0000000-0000-0000-0003-000000000004',
   'a0000000-0000-0000-0000-000000000003',
   'wie-bist-du-persoenlichkeit',
-  'Wie bist du? – Persönlichkeit',
-  '# Wie bist du? – Persönlichkeit
+  'Wie bist du?: Persönlichkeit',
+  '# Wie bist du?: Persönlichkeit
 
 ## Personality Adjectives
 
@@ -211,7 +211,7 @@ Use **Ich bin ...** (I am ...):
 ## Asking About Personality
 
 - Wie bist du? (What are you like?)
-- Bist du geduldig? — Ja, ich bin sehr geduldig. (Are you patient? — Yes, I am very patient.)
+- Bist du geduldig?: Ja, ich bin sehr geduldig. (Are you patient?: Yes, I am very patient.)
 - Er ist sehr **fleißig**. (He is very hardworking.)',
   4, true
 ) ON CONFLICT (id) DO NOTHING;
@@ -292,7 +292,7 @@ VALUES (
   'a0000000-0000-0000-0003-000000000099',
   'a0000000-0000-0000-0000-000000000003',
   'room-03-quiz-family-personal-life',
-  'Room 03 Quiz – Family & Personal Life',
+  'Room 03 Quiz: Family & Personal Life',
   'Test your knowledge of family vocabulary, descriptions, hobbies, personality, and daily routines.',
   99
 ) ON CONFLICT (id) DO NOTHING;

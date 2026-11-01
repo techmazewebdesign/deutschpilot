@@ -16,7 +16,7 @@ VALUES
    'im-supermarkt-lesen',
    '<h2>Lesetext: Im Supermarkt</h2>
 <p>Frau Berger geht am Freitag in den Supermarkt. Sie braucht Brot, Milch, Eier und Obst. Zuerst nimmt sie einen Einkaufswagen.</p>
-<p>Das Brot findet sie gleich am Eingang. Die Milch steht im Kühlregal, neben dem Käse. Bei den Eiern muss sie suchen — sie sind heute in einem anderen Regal.</p>
+<p>Das Brot findet sie gleich am Eingang. Die Milch steht im Kühlregal, neben dem Käse. Bei den Eiern muss sie suchen: sie sind heute in einem anderen Regal.</p>
 <p>Am Ende kauft sie noch drei Äpfel und zwei Bananen. An der Kasse bezahlt sie 14 Euro 80 mit Karte. Die Kassiererin sagt: "Schönes Wochenende!"</p>',
    4, NULL, NOW()),
   ('00000000-0000-0000-0005-000000000005',
@@ -33,7 +33,7 @@ VALUES
    'Das Wetter heute',
    'das-wetter-heute-lesen',
    '<h2>Lesetext: Das Wetter heute</h2>
-<p>Heute ist das Wetter sehr wechselhaft. Am Morgen scheint die Sonne und es ist warm — 22 Grad.</p>
+<p>Heute ist das Wetter sehr wechselhaft. Am Morgen scheint die Sonne und es ist warm: 22 Grad.</p>
 <p>Am Mittag kommen dunkle Wolken. Um zwei Uhr regnet es stark. Viele Menschen haben keinen Regenschirm dabei und laufen schnell nach Hause.</p>
 <p>Am Abend ist der Himmel wieder klar. Morgen soll es den ganzen Tag sonnig sein, sagt der Wetterbericht. Am Wochenende wird es aber wieder kalt.</p>',
    6, NULL, NOW())
@@ -58,7 +58,7 @@ VALUES
    'Der Umzug',
    'der-umzug-lesen',
    '<h2>Lesetext: Der Umzug</h2>
-<p>Familie Yilmaz ist letzte Woche umgezogen — von einer kleinen Wohnung in ein Reihenhaus am Stadtrand. Der Umzug war anstrengend: Sie haben über fünfzig Kartons gepackt.</p>
+<p>Familie Yilmaz ist letzte Woche umgezogen: von einer kleinen Wohnung in ein Reihenhaus am Stadtrand. Der Umzug war anstrengend: Sie haben über fünfzig Kartons gepackt.</p>
 <p>Drei Freunde haben beim Tragen geholfen, und für die Möbel haben sie einen Transporter gemietet. Am Abend waren alle müde, aber glücklich.</p>
 <p>Die Kinder freuen sich besonders über den Garten. Frau Yilmaz braucht jetzt zwanzig Minuten länger zur Arbeit, aber sie sagt: "Dafür haben wir endlich mehr Platz. Das ist es wert."</p>',
    5, NULL, NOW()),
@@ -69,7 +69,7 @@ VALUES
    '<h2>Lesetext: Das Klassentreffen</h2>
 <p>Nach zehn Jahren hat Sandras alte Schulklasse ein Klassentreffen organisiert. Es fand in einem Restaurant in ihrer Heimatstadt statt.</p>
 <p>Von 25 ehemaligen Mitschülern sind 18 gekommen. Manche haben sich kaum verändert, andere hat Sandra fast nicht erkannt. Ihr früherer Banknachbar lebt jetzt in Kanada und ist nur für das Treffen nach Deutschland geflogen.</p>
-<p>Sie haben alte Fotos angeschaut und viel gelacht. Am Ende haben alle versprochen: Das nächste Treffen kommt in fünf Jahren — nicht erst in zehn.</p>',
+<p>Sie haben alte Fotos angeschaut und viel gelacht. Am Ende haben alle versprochen: Das nächste Treffen kommt in fünf Jahren: nicht erst in zehn.</p>',
    6, NULL, NOW())
 ON CONFLICT (id) DO NOTHING;
 
@@ -83,7 +83,7 @@ VALUES
    'Ehrenamt in Deutschland',
    'ehrenamt-in-deutschland-lesen',
    '<h2>Lesetext: Ehrenamt in Deutschland</h2>
-<p>In Deutschland engagieren sich Millionen Menschen ehrenamtlich — bei der Freiwilligen Feuerwehr, in Sportvereinen, in der Flüchtlingshilfe oder im Tierschutz. Sie arbeiten ohne Bezahlung, oft mehrere Stunden pro Woche.</p>
+<p>In Deutschland engagieren sich Millionen Menschen ehrenamtlich: bei der Freiwilligen Feuerwehr, in Sportvereinen, in der Flüchtlingshilfe oder im Tierschutz. Sie arbeiten ohne Bezahlung, oft mehrere Stunden pro Woche.</p>
 <p>Warum machen sie das? Viele sagen, dass ihnen die Arbeit Sinn gibt und sie neue Menschen kennenlernen. Andere möchten der Gesellschaft etwas zurückgeben.</p>
 <p>Auch für Zugewanderte kann ein Ehrenamt eine Brücke sein: Man übt die Sprache in echten Situationen, knüpft Kontakte und lernt den Alltag in Deutschland besser kennen. Viele Städte haben Freiwilligenagenturen, die passende Aufgaben vermitteln.</p>',
    4, NULL, NOW()),
@@ -94,7 +94,7 @@ VALUES
    '<h2>Lesetext: Weniger Auto, mehr Fahrrad?</h2>
 <p>Immer mehr deutsche Städte bauen ihre Radwege aus und machen Innenstädte autofrei. Befürworter freuen sich über bessere Luft und weniger Lärm. Wer mit dem Rad zur Arbeit fährt, tut außerdem etwas für die Gesundheit.</p>
 <p>Doch es gibt auch Kritik: Handwerker und Lieferdienste brauchen ihre Fahrzeuge, und ältere Menschen können nicht jede Strecke mit dem Rad fahren. Auf dem Land ist das Auto oft die einzige Möglichkeit, zur Arbeit zu kommen.</p>
-<p>Die Diskussion zeigt: Es geht nicht um Auto <em>oder</em> Fahrrad, sondern um kluge Lösungen für beide — bessere Busverbindungen, sichere Radwege und Parkplätze am Stadtrand.</p>',
+<p>Die Diskussion zeigt: Es geht nicht um Auto <em>oder</em> Fahrrad, sondern um kluge Lösungen für beide: bessere Busverbindungen, sichere Radwege und Parkplätze am Stadtrand.</p>',
    5, NULL, NOW()),
   ('00000000-0000-0000-0007-000000000006',
    '00000000-0000-0000-0000-000000000007',
@@ -103,7 +103,7 @@ VALUES
    '<h2>Lesetext: Ein Jahr im Ausland</h2>
 <p>Nach dem Abitur wusste Jana nicht, was sie studieren wollte. Deshalb entschied sie sich für ein freiwilliges Jahr in Spanien, wo sie in einem Umweltprojekt arbeitete.</p>
 <p>Am Anfang war vieles schwierig: Sie verstand die Sprache kaum, vermisste ihre Freunde und musste zum ersten Mal ganz allein für sich sorgen. Nach einigen Monaten änderte sich das. Sie fand Freunde aus fünf Ländern und wurde immer selbstständiger.</p>
-<p>Heute sagt Jana: "Dieses Jahr hat mir mehr beigebracht als jede Schule. Ich habe gelernt, Probleme selbst zu lösen — und dass man fast überall auf der Welt zu Hause sein kann."</p>',
+<p>Heute sagt Jana: "Dieses Jahr hat mir mehr beigebracht als jede Schule. Ich habe gelernt, Probleme selbst zu lösen: und dass man fast überall auf der Welt zu Hause sein kann."</p>',
    6, NULL, NOW())
 ON CONFLICT (id) DO NOTHING;
 
@@ -118,7 +118,7 @@ VALUES
    'die-vier-tage-woche-lesen',
    '<h2>Lesetext: Die Vier-Tage-Woche</h2>
 <p>Die Vier-Tage-Woche wird in vielen Ländern erprobt: Beschäftigte arbeiten weniger Tage bei gleichem Gehalt. Erste Pilotprojekte berichten von zufriedeneren Mitarbeitenden, weniger Krankmeldungen und erstaunlich stabiler Produktivität.</p>
-<p>Kritiker halten dagegen, dass sich das Modell nicht auf alle Branchen übertragen lässt. In der Pflege, im Einzelhandel oder in der Produktion lässt sich Arbeit nicht einfach verdichten — dort würde eine Vier-Tage-Woche zusätzliches Personal erfordern, das vielerorts fehlt.</p>
+<p>Kritiker halten dagegen, dass sich das Modell nicht auf alle Branchen übertragen lässt. In der Pflege, im Einzelhandel oder in der Produktion lässt sich Arbeit nicht einfach verdichten: dort würde eine Vier-Tage-Woche zusätzliches Personal erfordern, das vielerorts fehlt.</p>
 <p>Ökonomen weisen zudem darauf hin, dass die Ergebnisse der Pilotprojekte mit Vorsicht zu interpretieren sind: Teilnehmende Firmen melden sich freiwillig und sind daher kaum repräsentativ. Ob die Vier-Tage-Woche zum Standard wird, dürfte sich weniger an Idealen als am Arbeitsmarkt entscheiden.</p>',
    4, NULL, NOW()),
   ('00000000-0000-0000-0008-000000000005',
@@ -127,7 +127,7 @@ VALUES
    'soziale-medien-meinungsbildung-lesen',
    '<h2>Lesetext: Soziale Medien und Meinungsbildung</h2>
 <p>Für viele Menschen sind soziale Medien inzwischen die wichtigste Nachrichtenquelle. Das hat Vorteile: Informationen verbreiten sich schnell, und jede Stimme kann theoretisch ein Publikum finden.</p>
-<p>Problematisch wird es durch die Empfehlungsalgorithmen. Sie zeigen bevorzugt Inhalte, die starke Reaktionen auslösen — und verstärken damit oft Empörung statt Einordnung. Wer nur noch Beiträge sieht, die die eigene Meinung bestätigen, hält abweichende Positionen schnell für Randmeinungen.</p>
+<p>Problematisch wird es durch die Empfehlungsalgorithmen. Sie zeigen bevorzugt Inhalte, die starke Reaktionen auslösen: und verstärken damit oft Empörung statt Einordnung. Wer nur noch Beiträge sieht, die die eigene Meinung bestätigen, hält abweichende Positionen schnell für Randmeinungen.</p>
 <p>Medienkompetenz gilt daher als Schlüsselfähigkeit: Quellen prüfen, Absender hinterfragen, bewusst auch Perspektiven lesen, die der eigenen widersprechen. Einige Länder haben Medienbildung inzwischen fest in die Lehrpläne aufgenommen.</p>',
    5, NULL, NOW()),
   ('00000000-0000-0000-0008-000000000006',
@@ -136,8 +136,8 @@ VALUES
    'wohnungsmarkt-grossstaedte-lesen',
    '<h2>Lesetext: Wohnungsmarkt in Großstädten</h2>
 <p>In deutschen Großstädten sind die Mieten in den vergangenen zehn Jahren deutlich stärker gestiegen als die Einkommen. Für Normalverdiener wird es zunehmend schwierig, bezahlbaren Wohnraum in zentraler Lage zu finden.</p>
-<p>Die Ursachen sind vielschichtig: Zuzug in die Städte, zu wenig Neubau, steigende Baukosten und Flächenknappheit. Politische Instrumente wie die Mietpreisbremse dämpfen die Entwicklung allenfalls, beheben aber nicht den Kern des Problems — das knappe Angebot.</p>
-<p>Fachleute fordern deshalb vor allem eines: mehr bauen, dichter bauen und Genehmigungen beschleunigen. Zugleich gewinnen Alternativen an Bedeutung, etwa genossenschaftliches Wohnen oder die Umwandlung leerstehender Büroflächen in Wohnungen — ein Trend, den das Homeoffice zusätzlich verstärkt.</p>',
+<p>Die Ursachen sind vielschichtig: Zuzug in die Städte, zu wenig Neubau, steigende Baukosten und Flächenknappheit. Politische Instrumente wie die Mietpreisbremse dämpfen die Entwicklung allenfalls, beheben aber nicht den Kern des Problems: das knappe Angebot.</p>
+<p>Fachleute fordern deshalb vor allem eines: mehr bauen, dichter bauen und Genehmigungen beschleunigen. Zugleich gewinnen Alternativen an Bedeutung, etwa genossenschaftliches Wohnen oder die Umwandlung leerstehender Büroflächen in Wohnungen: ein Trend, den das Homeoffice zusätzlich verstärkt.</p>',
    6, NULL, NOW())
 ON CONFLICT (id) DO NOTHING;
 
@@ -149,7 +149,7 @@ VALUES
   ('00000000-0000-0005-0004-000000000001','00000000-0000-0000-0005-000000000004',
    'Was braucht Frau Berger NICHT?','multiple_choice',
    '["Brot", "Milch", "Fleisch", "Eier"]'::jsonb,'Fleisch',
-   'Der Text nennt Brot, Milch, Eier und Obst — Fleisch nicht.',NOW()),
+   'Der Text nennt Brot, Milch, Eier und Obst: Fleisch nicht.',NOW()),
   ('00000000-0000-0005-0004-000000000002','00000000-0000-0000-0005-000000000004',
    'Wo steht die Milch?','multiple_choice',
    '["Am Eingang", "Im Kühlregal", "An der Kasse", "Beim Obst"]'::jsonb,'Im Kühlregal',
@@ -358,7 +358,7 @@ VALUES
   ('00000000-0000-0008-0006-000000000002','00000000-0000-0000-0008-000000000006',
    'Was ist laut Text der Kern des Problems?','multiple_choice',
    '["Zu hohe Zinsen", "Das knappe Angebot", "Zu viele Touristen", "Zu große Wohnungen"]'::jsonb,'Das knappe Angebot',
-   'Der Text sagt: "...beheben aber nicht den Kern des Problems — das knappe Angebot."',NOW()),
+   'Der Text sagt: "...beheben aber nicht den Kern des Problems: das knappe Angebot."',NOW()),
   ('00000000-0000-0008-0006-000000000003','00000000-0000-0000-0008-000000000006',
    'Was fordern Fachleute vor allem?','multiple_choice',
    '["Höhere Mieten", "Mehr bauen und Genehmigungen beschleunigen", "Weniger Zuzug", "Mehr Büros"]'::jsonb,'Mehr bauen und Genehmigungen beschleunigen',

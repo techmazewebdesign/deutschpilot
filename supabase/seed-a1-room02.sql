@@ -9,7 +9,7 @@ INSERT INTO public.courses (id, slug, title, description, level, language, is_pu
 VALUES (
   'a0000000-0000-0000-0000-000000000002',
   'numbers-time',
-  'A1 Room 02 – Numbers, Time & Dates',
+  'A1 Room 02: Numbers, Time & Dates',
   'Learn numbers from 0 to 100, ask and tell the time, talk about days of the week, months, dates, and make simple appointments in German.',
   'A1', 'de', TRUE, NOW()
 )
@@ -24,10 +24,10 @@ VALUES (
   'a0000000-0000-0000-0000-000000000002',
   'a1-zahlen-0-bis-100',
   'Zahlen von 0 bis 100',
-  '<h2>Zahlen von 0 bis 100 – Numbers from 0 to 100</h2>
+  '<h2>Zahlen von 0 bis 100: Numbers from 0 to 100</h2>
 <p>Numbers are one of the most essential tools in any language. In this lesson you will learn to count, read, and use German numbers from 0 to 100.</p>
 
-<h3>1. Numbers 0–20</h3>
+<h3>1. Numbers 0 bis 20</h3>
 <table>
   <thead><tr><th>Number</th><th>German</th><th>Number</th><th>German</th></tr></thead>
   <tbody>
@@ -44,7 +44,7 @@ VALUES (
   </tbody>
 </table>
 
-<h3>2. Tens 20–100</h3>
+<h3>2. Tens 20 bis 100</h3>
 <table>
   <thead><tr><th>Number</th><th>German</th></tr></thead>
   <tbody>
@@ -60,7 +60,7 @@ VALUES (
   </tbody>
 </table>
 
-<h3>3. Grammar Note – Compound Numbers 21–99</h3>
+<h3>3. Grammar Note: Compound Numbers 21 bis 99</h3>
 <p>German compound numbers follow the pattern: <strong>ones + und + tens</strong></p>
 <ul>
   <li>21 = <strong>einundzwanzig</strong> (one-and-twenty)</li>
@@ -72,19 +72,19 @@ VALUES (
 
 <h3>4. Key Vocabulary</h3>
 <ul>
-  <li><strong>die Zahl</strong> – the number</li>
-  <li><strong>zählen</strong> – to count</li>
-  <li><strong>wie viel?</strong> – how much / how many?</li>
-  <li><strong>das Alter</strong> – the age</li>
-  <li><strong>die Telefonnummer</strong> – the phone number</li>
+  <li><strong>die Zahl</strong>: the number</li>
+  <li><strong>zählen</strong>: to count</li>
+  <li><strong>wie viel?</strong>: how much / how many?</li>
+  <li><strong>das Alter</strong>: the age</li>
+  <li><strong>die Telefonnummer</strong>: the phone number</li>
 </ul>
 
 <h3>5. Example Sentences</h3>
 <ul>
-  <li>Ich bin <strong>dreißig</strong> Jahre alt. – I am 30 years old.</li>
-  <li>Meine Telefonnummer ist <strong>null vier eins</strong>... – My phone number is 041...</li>
-  <li>Das kostet <strong>fünfzehn</strong> Euro. – That costs 15 euros.</li>
-  <li>Wir haben <strong>zwölf</strong> Studenten. – We have 12 students.</li>
+  <li>Ich bin <strong>dreißig</strong> Jahre alt.: I am 30 years old.</li>
+  <li>Meine Telefonnummer ist <strong>null vier eins</strong>...: My phone number is 041...</li>
+  <li>Das kostet <strong>fünfzehn</strong> Euro.: That costs 15 euros.</li>
+  <li>Wir haben <strong>zwölf</strong> Studenten.: We have 12 students.</li>
 </ul>
 
 <h3>6. Mini Dialogue</h3>
@@ -93,7 +93,7 @@ VALUES (
 <strong>A:</strong> Ich bin siebenundzwanzig.</p>
 
 <hr>
-<p><em>Explanation (EN): German numbers 1–19 are unique words. From 21–99 they combine ones + "und" + tens. The number 1 in compounds becomes "ein" not "eins".</em></p>
+<p><em>Explanation (EN): German numbers 1 bis 19 are unique words. From 21 bis 99 they combine ones + "und" + tens. The number 1 in compounds becomes "ein" not "eins".</em></p>
 <p><em>توضیح (FA): اعداد آلمانی از ۲۱ به بالا به صورت "یکان + und + دهگان" ساخته می‌شوند.</em></p>
 <p><em>شرح (AR): الأعداد الألمانية من ٢١ إلى ٩٩ تُبنى بنمط: الآحاد + "und" + العشرات.</em></p>',
   1, NOW()
@@ -107,17 +107,17 @@ VALUES (
   'a0000000-0000-0000-0000-000000000002',
   'a1-wie-spaet-ist-es',
   'Wie spät ist es?',
-  '<h2>Wie spät ist es? – What time is it?</h2>
+  '<h2>Wie spät ist es?: What time is it?</h2>
 <p>In this lesson you will learn how to ask and tell the time in German using both the official 24-hour clock and everyday informal expressions.</p>
 
 <h3>1. Asking the Time</h3>
 <ul>
-  <li><strong>Wie spät ist es?</strong> – What time is it?</li>
-  <li><strong>Wie viel Uhr ist es?</strong> – What o'clock is it?</li>
-  <li><strong>Entschuldigung, haben Sie die Uhrzeit?</strong> – Excuse me, do you have the time?</li>
+  <li><strong>Wie spät ist es?</strong>: What time is it?</li>
+  <li><strong>Wie viel Uhr ist es?</strong>: What o'clock is it?</li>
+  <li><strong>Entschuldigung, haben Sie die Uhrzeit?</strong>: Excuse me, do you have the time?</li>
 </ul>
 
-<h3>2. Telling the Time – Official (24-hour)</h3>
+<h3>2. Telling the Time: Official (24-hour)</h3>
 <table>
   <thead><tr><th>Time</th><th>German</th></tr></thead>
   <tbody>
@@ -128,7 +128,7 @@ VALUES (
   </tbody>
 </table>
 
-<h3>3. Telling the Time – Informal (Everyday)</h3>
+<h3>3. Telling the Time: Informal (Everyday)</h3>
 <table>
   <thead><tr><th>Time</th><th>Informal German</th><th>Meaning</th></tr></thead>
   <tbody>
@@ -142,21 +142,21 @@ VALUES (
 
 <h3>4. Key Vocabulary</h3>
 <ul>
-  <li><strong>die Uhr</strong> – the clock / o'clock</li>
-  <li><strong>die Uhrzeit</strong> – the time</li>
-  <li><strong>nach</strong> – past / after</li>
-  <li><strong>vor</strong> – before / to</li>
-  <li><strong>halb</strong> – half (30 minutes before the next hour)</li>
-  <li><strong>Viertel</strong> – quarter (15 minutes)</li>
-  <li><strong>Mittag</strong> – noon / midday</li>
-  <li><strong>Mitternacht</strong> – midnight</li>
+  <li><strong>die Uhr</strong>: the clock / o'clock</li>
+  <li><strong>die Uhrzeit</strong>: the time</li>
+  <li><strong>nach</strong>: past / after</li>
+  <li><strong>vor</strong>: before / to</li>
+  <li><strong>halb</strong>: half (30 minutes before the next hour)</li>
+  <li><strong>Viertel</strong>: quarter (15 minutes)</li>
+  <li><strong>Mittag</strong>: noon / midday</li>
+  <li><strong>Mitternacht</strong>: midnight</li>
 </ul>
 
 <h3>5. Example Sentences</h3>
 <ul>
-  <li><strong>Es ist halb neun.</strong> – It is 8:30.</li>
-  <li><strong>Der Zug kommt um Viertel nach fünf.</strong> – The train arrives at 5:15.</li>
-  <li><strong>Das Meeting beginnt um neun Uhr.</strong> – The meeting starts at 9:00.</li>
+  <li><strong>Es ist halb neun.</strong>: It is 8:30.</li>
+  <li><strong>Der Zug kommt um Viertel nach fünf.</strong>: The train arrives at 5:15.</li>
+  <li><strong>Das Meeting beginnt um neun Uhr.</strong>: The meeting starts at 9:00.</li>
 </ul>
 
 <h3>6. Mini Dialogue</h3>
@@ -180,7 +180,7 @@ VALUES (
   'a0000000-0000-0000-0000-000000000002',
   'a1-tage-der-woche',
   'Tage der Woche',
-  '<h2>Tage der Woche – Days of the Week</h2>
+  '<h2>Tage der Woche: Days of the Week</h2>
 <p>In this lesson you will learn all seven days of the week and how to use them naturally in everyday German sentences.</p>
 
 <h3>1. Days of the Week</h3>
@@ -197,7 +197,7 @@ VALUES (
   </tbody>
 </table>
 
-<h3>2. Grammar Note – Using Days</h3>
+<h3>2. Grammar Note: Using Days</h3>
 <ul>
   <li>Use <strong>am</strong> + day for "on [day]": <em>am Montag</em> = on Monday.</li>
   <li>Days are always <strong>masculine</strong> (der): <em>der Montag</em>.</li>
@@ -206,27 +206,27 @@ VALUES (
 
 <h3>3. Useful Time Expressions</h3>
 <ul>
-  <li><strong>heute</strong> – today</li>
-  <li><strong>morgen</strong> – tomorrow</li>
-  <li><strong>gestern</strong> – yesterday</li>
-  <li><strong>übermorgen</strong> – the day after tomorrow</li>
-  <li><strong>das Wochenende</strong> – the weekend</li>
-  <li><strong>die Woche</strong> – the week</li>
-  <li><strong>werktags</strong> – on weekdays</li>
+  <li><strong>heute</strong>: today</li>
+  <li><strong>morgen</strong>: tomorrow</li>
+  <li><strong>gestern</strong>: yesterday</li>
+  <li><strong>übermorgen</strong>: the day after tomorrow</li>
+  <li><strong>das Wochenende</strong>: the weekend</li>
+  <li><strong>die Woche</strong>: the week</li>
+  <li><strong>werktags</strong>: on weekdays</li>
 </ul>
 
 <h3>4. Example Sentences</h3>
 <ul>
-  <li><strong>Am Montag habe ich Deutschkurs.</strong> – On Monday I have German class.</li>
-  <li><strong>Heute ist Mittwoch.</strong> – Today is Wednesday.</li>
-  <li><strong>Am Wochenende schlafe ich lang.</strong> – On the weekend I sleep in.</li>
-  <li><strong>Jeden Dienstag gehe ich zum Sport.</strong> – Every Tuesday I go to sports.</li>
+  <li><strong>Am Montag habe ich Deutschkurs.</strong>: On Monday I have German class.</li>
+  <li><strong>Heute ist Mittwoch.</strong>: Today is Wednesday.</li>
+  <li><strong>Am Wochenende schlafe ich lang.</strong>: On the weekend I sleep in.</li>
+  <li><strong>Jeden Dienstag gehe ich zum Sport.</strong>: Every Tuesday I go to sports.</li>
 </ul>
 
 <h3>5. Mini Dialogue</h3>
 <p><strong>A:</strong> Welcher Tag ist heute?<br>
 <strong>B:</strong> Heute ist Donnerstag.<br>
-<strong>A:</strong> Und morgen ist Freitag – super!<br>
+<strong>A:</strong> Und morgen ist Freitag: super!<br>
 <strong>B:</strong> Ja, das Wochenende kommt bald!</p>
 
 <hr>
@@ -244,7 +244,7 @@ VALUES (
   'a0000000-0000-0000-0000-000000000002',
   'a1-monate-und-datum',
   'Monate und Datum',
-  '<h2>Monate und Datum – Months and Dates</h2>
+  '<h2>Monate und Datum: Months and Dates</h2>
 <p>In this lesson you will learn the twelve months of the year and how to read, write, and say dates in German.</p>
 
 <h3>1. Months of the Year</h3>
@@ -260,7 +260,7 @@ VALUES (
   </tbody>
 </table>
 
-<h3>2. Grammar Note – Dates</h3>
+<h3>2. Grammar Note: Dates</h3>
 <ul>
   <li>Use <strong>im</strong> + month: <em>im Januar</em> = in January.</li>
   <li>Months are always <strong>masculine</strong> (der): <em>der März</em>.</li>
@@ -275,7 +275,7 @@ VALUES (
     <tr><td>1st</td><td>erste(n)</td></tr>
     <tr><td>2nd</td><td>zweite(n)</td></tr>
     <tr><td>3rd</td><td>dritte(n)</td></tr>
-    <tr><td>4th–19th</td><td>vierte(n)... + pattern "-te"</td></tr>
+    <tr><td>4th: 19th</td><td>vierte(n)... + pattern "-te"</td></tr>
     <tr><td>20th+</td><td>zwanzigste(n)... + pattern "-ste"</td></tr>
   </tbody>
 </table>
@@ -283,24 +283,24 @@ VALUES (
 
 <h3>4. Key Vocabulary</h3>
 <ul>
-  <li><strong>der Monat</strong> – the month</li>
-  <li><strong>das Jahr</strong> – the year</li>
-  <li><strong>das Datum</strong> – the date</li>
-  <li><strong>der Geburtstag</strong> – the birthday</li>
-  <li><strong>Wann?</strong> – When?</li>
+  <li><strong>der Monat</strong>: the month</li>
+  <li><strong>das Jahr</strong>: the year</li>
+  <li><strong>das Datum</strong>: the date</li>
+  <li><strong>der Geburtstag</strong>: the birthday</li>
+  <li><strong>Wann?</strong>: When?</li>
 </ul>
 
 <h3>5. Example Sentences</h3>
 <ul>
-  <li><strong>Im März beginnt der Frühling.</strong> – In March spring begins.</li>
-  <li><strong>Mein Geburtstag ist am fünfzehnten Juli.</strong> – My birthday is on the 15th of July.</li>
-  <li><strong>Das Meeting ist am ersten Dezember.</strong> – The meeting is on the 1st of December.</li>
+  <li><strong>Im März beginnt der Frühling.</strong>: In March spring begins.</li>
+  <li><strong>Mein Geburtstag ist am fünfzehnten Juli.</strong>: My birthday is on the 15th of July.</li>
+  <li><strong>Das Meeting ist am ersten Dezember.</strong>: The meeting is on the 1st of December.</li>
 </ul>
 
 <h3>6. Mini Dialogue</h3>
 <p><strong>A:</strong> Wann hast du Geburtstag?<br>
 <strong>B:</strong> Am dritten März. Und du?<br>
-<strong>A:</strong> Ich habe im Oktober Geburtstag – am zwanzigsten.<br>
+<strong>A:</strong> Ich habe im Oktober Geburtstag: am zwanzigsten.<br>
 <strong>B:</strong> Schön! Das ist bald!</p>
 
 <hr>
@@ -318,23 +318,23 @@ VALUES (
   'a0000000-0000-0000-0000-000000000002',
   'a1-termine-und-uhrzeiten',
   'Termine und Uhrzeiten',
-  '<h2>Termine und Uhrzeiten – Appointments and Times</h2>
+  '<h2>Termine und Uhrzeiten: Appointments and Times</h2>
 <p>In this final lesson you will combine everything you have learned to schedule appointments, ask about availability, and confirm times in German.</p>
 
 <h3>1. Making an Appointment</h3>
 <ul>
-  <li><strong>Ich möchte einen Termin machen.</strong> – I would like to make an appointment.</li>
-  <li><strong>Wann haben Sie Zeit?</strong> – When do you have time?</li>
-  <li><strong>Passt es Ihnen am Montag?</strong> – Does Monday work for you?</li>
-  <li><strong>Um wie viel Uhr?</strong> – At what time?</li>
+  <li><strong>Ich möchte einen Termin machen.</strong>: I would like to make an appointment.</li>
+  <li><strong>Wann haben Sie Zeit?</strong>: When do you have time?</li>
+  <li><strong>Passt es Ihnen am Montag?</strong>: Does Monday work for you?</li>
+  <li><strong>Um wie viel Uhr?</strong>: At what time?</li>
 </ul>
 
 <h3>2. Confirming and Declining</h3>
 <ul>
-  <li><strong>Ja, das passt gut.</strong> – Yes, that works well.</li>
-  <li><strong>Leider kann ich nicht.</strong> – Unfortunately I cannot.</li>
-  <li><strong>Können wir es auf Dienstag verschieben?</strong> – Can we move it to Tuesday?</li>
-  <li><strong>Ich bestätige den Termin.</strong> – I confirm the appointment.</li>
+  <li><strong>Ja, das passt gut.</strong>: Yes, that works well.</li>
+  <li><strong>Leider kann ich nicht.</strong>: Unfortunately I cannot.</li>
+  <li><strong>Können wir es auf Dienstag verschieben?</strong>: Can we move it to Tuesday?</li>
+  <li><strong>Ich bestätige den Termin.</strong>: I confirm the appointment.</li>
 </ul>
 
 <h3>3. Common Time Prepositions</h3>
@@ -350,19 +350,19 @@ VALUES (
 
 <h3>4. Key Vocabulary</h3>
 <ul>
-  <li><strong>der Termin</strong> – the appointment</li>
-  <li><strong>die Uhrzeit</strong> – the time</li>
-  <li><strong>verfügbar</strong> – available</li>
-  <li><strong>verschieben</strong> – to postpone / reschedule</li>
-  <li><strong>bestätigen</strong> – to confirm</li>
-  <li><strong>absagen</strong> – to cancel</li>
+  <li><strong>der Termin</strong>: the appointment</li>
+  <li><strong>die Uhrzeit</strong>: the time</li>
+  <li><strong>verfügbar</strong>: available</li>
+  <li><strong>verschieben</strong>: to postpone / reschedule</li>
+  <li><strong>bestätigen</strong>: to confirm</li>
+  <li><strong>absagen</strong>: to cancel</li>
 </ul>
 
 <h3>5. Example Sentences</h3>
 <ul>
-  <li><strong>Der Termin ist am Mittwoch um zehn Uhr.</strong> – The appointment is on Wednesday at 10:00.</li>
-  <li><strong>Das Kurs beginnt von Montag bis Freitag.</strong> – The course runs Monday to Friday.</li>
-  <li><strong>Ich habe am Donnerstag von 14 bis 16 Uhr Zeit.</strong> – I am free Thursday from 2 to 4 pm.</li>
+  <li><strong>Der Termin ist am Mittwoch um zehn Uhr.</strong>: The appointment is on Wednesday at 10:00.</li>
+  <li><strong>Das Kurs beginnt von Montag bis Freitag.</strong>: The course runs Monday to Friday.</li>
+  <li><strong>Ich habe am Donnerstag von 14 bis 16 Uhr Zeit.</strong>: I am free Thursday from 2 to 4 pm.</li>
 </ul>
 
 <h3>6. Mini Dialogue</h3>
@@ -386,7 +386,7 @@ VALUES (
   'a0000000-0000-0000-0002-000000000099',
   'a0000000-0000-0000-0000-000000000002',
   'a1-room02-checkpoint',
-  'A1 Room 02 – Checkpoint Quiz',
+  'A1 Room 02: Checkpoint Quiz',
   '',
   99, NOW()
 )

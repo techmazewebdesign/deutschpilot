@@ -37,8 +37,8 @@ export type SalesTrainingProgress = {
 export const SALES_TRAINING_VIDEOS: SalesTrainingVideo[] = [
   {
     id: "deutschpilot-sales-playbook-v1",
-    titleDe: "DeutschPilot verkaufen – Sales Playbook",
-    titleEn: "How to sell DeutschPilot – Sales Playbook",
+    titleDe: "DeutschPilot verkaufen: Sales Playbook",
+    titleEn: "How to sell DeutschPilot: Sales Playbook",
     descriptionDe: "Rolle, Prioritäten, Discovery, Demo, Einwände, Follow-up und Wochenziele für das DeutschPilot Sales Team.",
     descriptionEn: "Role, priorities, discovery, demo, objections, follow-up, and weekly targets for the DeutschPilot sales team.",
     videoUrl: "/training/deutschpilot-sales/annekatrin-sales-playbook-de.mp4",

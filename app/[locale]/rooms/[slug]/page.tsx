@@ -1,3 +1,4 @@
+import { displayText } from "@/lib/displayText";
 import { notFound, redirect } from "next/navigation";
 import Link from "next/link";
 import { AppLayout } from "@/components/app/app-layout";
@@ -149,10 +150,10 @@ export default async function RoomDetailPage({
               </span>
             </div>
             <h1 className="mb-2 font-serif text-2xl font-bold text-white lg:text-3xl">
-              {course.title}
+              {displayText(course.title)}
             </h1>
             {course.description && (
-              <p className="mb-5 max-w-xl text-sm text-white/45">{course.description}</p>
+              <p className="mb-5 max-w-xl text-sm text-white/45">{displayText(course.description)}</p>
             )}
             <div className="flex items-center gap-3">
               <div className="bg-white/8 h-1.5 flex-1 overflow-hidden rounded-full">
@@ -208,7 +209,7 @@ export default async function RoomDetailPage({
                             : "text-white group-hover:text-[#E0B873]"
                         }`}
                       >
-                        {lesson.title}
+                        {displayText(lesson.title)}
                       </p>
                     </div>
                     {done ? (
@@ -235,8 +236,8 @@ export default async function RoomDetailPage({
                 </p>
                 <p className="text-sm font-semibold text-white">
                   {de
-                    ? `${course.level} Raum ${roomNum || "01"} – Abschlussquiz`
-                    : `${course.level} Room ${roomNum || "01"} – Checkpoint Quiz`}
+                    ? `${course.level} Raum ${roomNum || "01"}: Abschlussquiz`
+                    : `${course.level} Room ${roomNum || "01"}: Checkpoint Quiz`}
                 </p>
                 <p className="mt-0.5 text-xs text-white/35">
                   {de ? "10 Fragen · 70% zum Bestehen" : "10 questions · 70% to pass"}

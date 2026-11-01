@@ -347,7 +347,7 @@ export function SchoolPortal({ locale }: { locale: string }) {
   const date = (v: string) =>
     v
       ? new Date(v.length === 10 ? `${v}T12:00:00` : v).toLocaleDateString(de ? "de-DE" : "en-GB")
-      : "—";
+      : "…";
   const empty = (
     <div className="school-empty">
       {t(
@@ -979,7 +979,7 @@ export function SchoolPortal({ locale }: { locale: string }) {
                               {badge(a.status)}
                             </div>
                             <p>
-                              {date(a.from)} – {date(a.to)}
+                              {date(a.from)} {de ? "bis" : "to"} {date(a.to)}
                             </p>
                             {manager && a.status === "pending" && (
                               <div className="school-actions">
@@ -1035,7 +1035,7 @@ export function SchoolPortal({ locale }: { locale: string }) {
                             ),
                             options: snapshot.absences.map((a) => ({
                               value: a.id,
-                              label: `${date(a.from)} – ${date(a.to)}`,
+                              label: `${date(a.from)} ${de ? "bis" : "to"} ${date(a.to)}`,
                             })),
                           },
                           {
@@ -1351,11 +1351,11 @@ export function SchoolPortal({ locale }: { locale: string }) {
                                 ]}
                                 rows={letter.studentIds.map((id) => [
                                   memberName(id),
-                                  letter.readBy[id] ? date(letter.readBy[id]) : "—",
+                                  letter.readBy[id] ? date(letter.readBy[id]) : "…",
                                   letter.acknowledgements[id]
                                     ? date(letter.acknowledgements[id])
-                                    : "—",
-                                  letter.returnedDocuments[id] ? t("Uploaded", "Hochgeladen") : "—",
+                                    : "…",
+                                  letter.returnedDocuments[id] ? t("Uploaded", "Hochgeladen") : "…",
                                 ])}
                                 empty={empty}
                               />

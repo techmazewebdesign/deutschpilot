@@ -88,7 +88,7 @@ export function SchoolAudit({
                   <td>{new Date(e.at).toLocaleString(de ? "de-DE" : "en-GB")}</td>
                   <td>{e.actorId}</td>
                   <td>{e.action}</td>
-                  <td style={{ overflowWrap: "anywhere" }}>{e.target || "—"}</td>
+                  <td style={{ overflowWrap: "anywhere" }}>{e.target || "…"}</td>
                 </tr>
               ))}
             </tbody>

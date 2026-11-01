@@ -50,7 +50,7 @@ export async function POST(req: NextRequest) {
   } catch {
     return NextResponse.json(
       {
-        error: `No account found for ${email}. They need to sign up first — this route cannot create accounts.`,
+        error: `No account found for ${email}. They need to sign up first: this route cannot create accounts.`,
       },
       { status: 404 }
     );

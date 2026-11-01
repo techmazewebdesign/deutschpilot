@@ -38,7 +38,7 @@ async function sendEmail(opts: {
   const transporter = createTransporter();
   if (!transporter) {
     if (process.env.NODE_ENV !== "production") {
-      console.warn("[email] SMTP not configured – skipping:", opts.to, opts.subject);
+      console.warn("[email] SMTP not configured: skipping:", opts.to, opts.subject);
     }
     return { ok: false, error: "Email service is not configured." };
   }
@@ -113,7 +113,7 @@ export async function sendVerificationEmail({
 }): Promise<EmailResult> {
   return sendEmail({
     to,
-    subject: "DeutschPilot – Bestätigungscode / Confirmation code",
+    subject: "DeutschPilot: Bestätigungscode / Confirmation code",
     text: `Hallo ${name},\n\nDein DeutschPilot-Bestätigungscode: ${code}\n\nDieser Code läuft in 15 Minuten ab.\n\nDeutschPilot`,
     html: emailWrap(
       heading("E-Mail bestätigen") +
@@ -143,7 +143,7 @@ export async function sendPasswordResetEmail({
 }): Promise<EmailResult> {
   return sendEmail({
     to,
-    subject: "DeutschPilot – Passwort zurücksetzen / Password reset",
+    subject: "DeutschPilot: Passwort zurücksetzen / Password reset",
     text: `Hallo ${name},\n\nPasswort zurücksetzen:\n${resetUrl}\n\nDieser Link läuft in 1 Stunde ab.\n\nDeutschPilot`,
     html: emailWrap(
       heading("Passwort zurücksetzen") +
@@ -232,7 +232,7 @@ export async function sendContactFormEmail({
   return sendEmail({
     to: receiver,
     replyTo: email,
-    subject: `DeutschPilot Kontaktanfrage – ${name}`,
+    subject: `DeutschPilot Kontaktanfrage: ${name}`,
     text: `Neue Kontaktanfrage\n\nVon: ${name} <${email}>\nDatum: ${sentAt}${source ? `\nQuelle: ${source}` : ""}\n\n${message}`,
     html: emailWrap(
       heading("Neue Kontaktanfrage") +

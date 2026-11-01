@@ -187,7 +187,7 @@ export default async function TeacherDashboardPage({ params }: { params: { local
                   </p>
                 ) : (
                   <p className="mt-1 text-xs text-amber-400/70">
-                    No Meet link yet — add one via Edit Class
+                    No Meet link yet: add one via Edit Class
                   </p>
                 )}
               </div>

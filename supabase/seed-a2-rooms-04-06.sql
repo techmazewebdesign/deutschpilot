@@ -8,15 +8,15 @@
 INSERT INTO public.courses (id, slug, title, description, level, language, is_published, created_at)
 VALUES
   ('a2000000-0000-0000-0000-000000000004','work-career-a2',
-   'A2 Room 04 – Arbeit & Beruf',
+   'A2 Room 04: Arbeit & Beruf',
    'Talk about your job, understand workplace communication, and give reasons with weil and dass.',
    'A2','de',TRUE,NOW()),
   ('a2000000-0000-0000-0000-000000000005','living-together-a2',
-   'A2 Room 05 – Wohnen & Zusammenleben',
+   'A2 Room 05: Wohnen & Zusammenleben',
    'Describe your home, compare flats, and master two-way prepositions for locations.',
    'A2','de',TRUE,NOW()),
   ('a2000000-0000-0000-0000-000000000006','celebrations-culture-a2',
-   'A2 Room 06 – Feste & Kultur',
+   'A2 Room 06: Feste & Kultur',
    'German holidays and traditions, invitations, and telling stories with war and hatte.',
    'A2','de',TRUE,NOW())
 ON CONFLICT (id) DO NOTHING;
@@ -38,21 +38,21 @@ VALUES
 </ul>
 <h3>2. Der Arbeitsalltag</h3>
 <ul>
-<li>die Besprechung – das Meeting</li>
-<li>die Pause – Um 12 Uhr mache ich Mittagspause.</li>
-<li>der Feierabend – Nach Feierabend gehe ich einkaufen.</li>
-<li>der Urlaub – Ich habe 28 Tage Urlaub im Jahr.</li>
-<li>die Überstunde – Diese Woche habe ich fünf Überstunden gemacht.</li>
+<li>die Besprechung: das Meeting</li>
+<li>die Pause: Um 12 Uhr mache ich Mittagspause.</li>
+<li>der Feierabend: Nach Feierabend gehe ich einkaufen.</li>
+<li>der Urlaub: Ich habe 28 Tage Urlaub im Jahr.</li>
+<li>die Überstunde: Diese Woche habe ich fünf Überstunden gemacht.</li>
 </ul>
 <h3>3. Small Talk im Büro</h3>
-<p><em>— Na, wie läuft dein Projekt?<br>
-— Ganz gut, danke! Aber wir haben viel zu tun. Und bei dir?<br>
-— Auch viel Arbeit. Zum Glück ist bald Wochenende!</em></p>',
+<p><em>: Na, wie läuft dein Projekt?<br>
+: Ganz gut, danke! Aber wir haben viel zu tun. Und bei dir?<br>
+: Auch viel Arbeit. Zum Glück ist bald Wochenende!</em></p>',
    1,NOW()),
   ('a2000000-0000-0000-0004-000000000002','a2000000-0000-0000-0000-000000000004',
    'a2-weil-dass','Gründe nennen: weil & dass',
    '<h2>Gründe nennen: weil & dass</h2>
-<p>Mit <strong>weil</strong> und <strong>dass</strong> baust du echte A2-Sätze — Achtung: Das Verb wandert ans Ende!</p>
+<p>Mit <strong>weil</strong> und <strong>dass</strong> baust du echte A2-Sätze: Achtung: Das Verb wandert ans Ende!</p>
 <h3>1. weil (Grund)</h3>
 <ul>
 <li>Ich lerne Deutsch, <strong>weil</strong> ich in Deutschland <strong>arbeite</strong>.</li>
@@ -74,16 +74,16 @@ VALUES
    'a2-telefonieren-email','Telefonieren & kurze E-Mails',
    '<h2>Telefonieren & kurze E-Mails im Job</h2>
 <h3>1. Am Telefon</h3>
-<p><em>— Firma Bauer, Schmidt am Apparat. Was kann ich für Sie tun?<br>
-— Guten Tag, hier ist Ali Khan. Könnte ich bitte mit Frau Weber sprechen?<br>
-— Frau Weber ist gerade in einer Besprechung. Möchten Sie eine Nachricht hinterlassen?<br>
-— Ja, gern. Sie kann mich unter 0176 123456 zurückrufen.</em></p>
+<p><em>: Firma Bauer, Schmidt am Apparat. Was kann ich für Sie tun?<br>
+: Guten Tag, hier ist Ali Khan. Könnte ich bitte mit Frau Weber sprechen?<br>
+: Frau Weber ist gerade in einer Besprechung. Möchten Sie eine Nachricht hinterlassen?<br>
+: Ja, gern. Sie kann mich unter 0176 123456 zurückrufen.</em></p>
 <h3>2. Nützliche Telefon-Sätze</h3>
 <ul>
 <li><strong>Könnte ich bitte mit ... sprechen?</strong></li>
-<li><strong>Worum geht es?</strong> – What is it about?</li>
+<li><strong>Worum geht es?</strong>: What is it about?</li>
 <li><strong>Können Sie das bitte wiederholen?</strong></li>
-<li><strong>Ich verbinde Sie.</strong> – I''ll put you through.</li>
+<li><strong>Ich verbinde Sie.</strong>: I''ll put you through.</li>
 </ul>
 <h3>3. Die kurze Arbeits-E-Mail</h3>
 <p><em>Betreff: Krankmeldung<br><br>
@@ -94,7 +94,7 @@ Ali Khan</em></p>',
    3,NOW()),
   ('a2000000-0000-0000-0004-000000000099','a2000000-0000-0000-0000-000000000004',
    'a2-room04-quiz','Checkpoint: Arbeit & Beruf',
-   '<h2>Checkpoint Quiz</h2><p>Berufe, weil/dass und Bürokommunikation — zeig dein Können!</p>',
+   '<h2>Checkpoint Quiz</h2><p>Berufe, weil/dass und Bürokommunikation: zeig dein Können!</p>',
    99,NOW())
 ON CONFLICT (id) DO NOTHING;
 
@@ -117,7 +117,7 @@ VALUES
   ('a2000000-0000-0004-0002-000000000001','a2000000-0000-0000-0004-000000000002',
    'Ergänze richtig: "Ich lerne Deutsch, weil ich in Deutschland ___."','multiple_choice',
    '["arbeite", "arbeiten", "arbeitet", "gearbeitet"]'::jsonb,'arbeite',
-   'Nach "weil": konjugiertes Verb am Ende — ich arbeite.',NOW()),
+   'Nach "weil": konjugiertes Verb am Ende: ich arbeite.',NOW()),
   ('a2000000-0000-0004-0002-000000000002','a2000000-0000-0000-0004-000000000002',
    'Welcher Satz ist richtig?','multiple_choice',
    '["Ich finde, dass mein Job interessant ist.", "Ich finde, dass mein Job ist interessant.", "Ich finde, dass ist mein Job interessant.", "Ich finde, mein Job dass interessant ist."]'::jsonb,
@@ -127,7 +127,7 @@ VALUES
    'Welcher Satz ist FALSCH?','multiple_choice',
    '["Sie kommt später, weil ihr Zug Verspätung hat.", "Er ist müde, weil er Überstunden gemacht hat.", "Ich bleibe zu Hause, weil ich bin krank.", "Ich hoffe, dass ich bald Urlaub bekomme."]'::jsonb,
    'Ich bleibe zu Hause, weil ich bin krank.',
-   'Richtig: "...weil ich krank bin." — Verb ans Ende!',NOW()),
+   'Richtig: "...weil ich krank bin.": Verb ans Ende!',NOW()),
 
   ('a2000000-0000-0004-0003-000000000001','a2000000-0000-0000-0004-000000000003',
    'Du willst mit Frau Weber telefonieren. Was sagst du?','multiple_choice',
@@ -174,11 +174,11 @@ VALUES
    '<h2>Die Wohnungssuche</h2>
 <h3>1. Wohnungsanzeigen verstehen</h3>
 <ul>
-<li><strong>2-Zimmer-Wohnung, 55 m², 3. OG</strong> – zwei Zimmer, 55 Quadratmeter, 3. Obergeschoss</li>
-<li><strong>Kaltmiete / Warmmiete</strong> – ohne / mit Nebenkosten</li>
-<li><strong>die Kaution</strong> – meist 2–3 Kaltmieten als Sicherheit</li>
-<li><strong>ab sofort / ab 1.9.</strong> – frei ab wann</li>
-<li><strong>WG-Zimmer</strong> – ein Zimmer in einer Wohngemeinschaft</li>
+<li><strong>2-Zimmer-Wohnung, 55 m², 3. OG</strong>: zwei Zimmer, 55 Quadratmeter, 3. Obergeschoss</li>
+<li><strong>Kaltmiete / Warmmiete</strong>: ohne / mit Nebenkosten</li>
+<li><strong>die Kaution</strong>: meist 2 bis 3 Kaltmieten als Sicherheit</li>
+<li><strong>ab sofort / ab 1.9.</strong>: frei ab wann</li>
+<li><strong>WG-Zimmer</strong>: ein Zimmer in einer Wohngemeinschaft</li>
 </ul>
 <h3>2. Bei der Besichtigung fragen</h3>
 <ul>
@@ -188,15 +188,15 @@ VALUES
 <li>Sind <strong>Haustiere</strong> erlaubt?</li>
 </ul>
 <h3>3. Mini-Dialog</h3>
-<p><em>— Die Wohnung gefällt mir sehr. Wie hoch ist die Kaution?<br>
-— Zwei Kaltmieten, also 1300 Euro.<br>
-— Und ab wann ist die Wohnung frei?<br>
-— Ab dem ersten Oktober.</em></p>',
+<p><em>: Die Wohnung gefällt mir sehr. Wie hoch ist die Kaution?<br>
+: Zwei Kaltmieten, also 1300 Euro.<br>
+: Und ab wann ist die Wohnung frei?<br>
+: Ab dem ersten Oktober.</em></p>',
    1,NOW()),
   ('a2000000-0000-0000-0005-000000000002','a2000000-0000-0000-0000-000000000005',
    'a2-wechselpraepositionen','Wo ist was? Wechselpräpositionen',
    '<h2>Wo ist was? Wechselpräpositionen</h2>
-<p>in, an, auf, über, unter, vor, hinter, neben, zwischen — die wichtigsten Präpositionen fürs Wohnen.</p>
+<p>in, an, auf, über, unter, vor, hinter, neben, zwischen: die wichtigsten Präpositionen fürs Wohnen.</p>
 <h3>1. WO? → Dativ (Position)</h3>
 <ul>
 <li>Die Lampe hängt <strong>über dem</strong> Tisch.</li>
@@ -241,12 +241,12 @@ VALUES
 <li><strong>Willkommen im Haus! Ich bin Ihre Nachbarin aus dem zweiten Stock.</strong></li>
 <li><strong>Entschuldigung, könnten Sie die Musik etwas leiser machen?</strong></li>
 <li><strong>Könnten Sie mein Paket annehmen? Ich bin morgen nicht da.</strong></li>
-<li>die Hausordnung – Regeln für alle im Haus (z. B. Ruhezeiten ab 22 Uhr)</li>
+<li>die Hausordnung: Regeln für alle im Haus (z. B. Ruhezeiten ab 22 Uhr)</li>
 </ul>',
    3,NOW()),
   ('a2000000-0000-0000-0005-000000000099','a2000000-0000-0000-0000-000000000005',
    'a2-room05-quiz','Checkpoint: Wohnen & Zusammenleben',
-   '<h2>Checkpoint Quiz</h2><p>Wohnungssuche, Wechselpräpositionen und Vergleiche — auf zum nächsten Raum!</p>',
+   '<h2>Checkpoint Quiz</h2><p>Wohnungssuche, Wechselpräpositionen und Vergleiche: auf zum nächsten Raum!</p>',
    99,NOW())
 ON CONFLICT (id) DO NOTHING;
 
@@ -261,7 +261,7 @@ VALUES
    'Was ist die Kaution?','multiple_choice',
    '["Eine Sicherheitszahlung", "Die erste Miete", "Eine Strafe", "Die Nebenkosten"]'::jsonb,
    'Eine Sicherheitszahlung',
-   'Die Kaution (meist 2–3 Kaltmieten) bekommst du beim Auszug zurück.',NOW()),
+   'Die Kaution (meist 2 bis 3 Kaltmieten) bekommst du beim Auszug zurück.',NOW()),
   ('a2000000-0000-0005-0001-000000000003','a2000000-0000-0000-0005-000000000001',
    '"3. OG" bedeutet:','multiple_choice',
    '["Drittes Obergeschoss", "Drei Zimmer", "Drei Personen", "Dritter Oktober"]'::jsonb,
@@ -324,19 +324,19 @@ VALUES
    '<h2>Feste in Deutschland</h2>
 <h3>1. Die wichtigsten Feste im Jahr</h3>
 <ul>
-<li><strong>Karneval / Fasching</strong> (Februar) – Kostüme, Umzüge, besonders in Köln und Mainz</li>
-<li><strong>Ostern</strong> (März/April) – Ostereier suchen, Familienessen</li>
-<li><strong>der Tag der Deutschen Einheit</strong> (3. Oktober) – Nationalfeiertag</li>
-<li><strong>das Oktoberfest</strong> (September/Oktober) – das größte Volksfest der Welt, in München</li>
-<li><strong>der Advent & Weihnachten</strong> (Dezember) – Weihnachtsmärkte, Plätzchen, Geschenke am 24.12.</li>
-<li><strong>Silvester</strong> (31. Dezember) – Feuerwerk und "Frohes neues Jahr!"</li>
+<li><strong>Karneval / Fasching</strong> (Februar): Kostüme, Umzüge, besonders in Köln und Mainz</li>
+<li><strong>Ostern</strong> (März/April): Ostereier suchen, Familienessen</li>
+<li><strong>der Tag der Deutschen Einheit</strong> (3. Oktober): Nationalfeiertag</li>
+<li><strong>das Oktoberfest</strong> (September/Oktober): das größte Volksfest der Welt, in München</li>
+<li><strong>der Advent & Weihnachten</strong> (Dezember): Weihnachtsmärkte, Plätzchen, Geschenke am 24.12.</li>
+<li><strong>Silvester</strong> (31. Dezember): Feuerwerk und "Frohes neues Jahr!"</li>
 </ul>
 <h3>2. Glückwünsche</h3>
 <ul>
 <li><strong>Herzlichen Glückwunsch zum Geburtstag!</strong></li>
 <li><strong>Frohe Weihnachten!</strong> / <strong>Frohe Ostern!</strong></li>
 <li><strong>Einen guten Rutsch ins neue Jahr!</strong> (vor Silvester)</li>
-<li><strong>Alles Gute!</strong> – passt fast immer</li>
+<li><strong>Alles Gute!</strong>: passt fast immer</li>
 </ul>
 <h3>3. Kulturtipp</h3>
 <p>Auf Weihnachtsmärkten trinkt man <strong>Glühwein</strong> und isst <strong>gebrannte Mandeln</strong>. Die Märkte öffnen meist Ende November.</p>',
@@ -354,7 +354,7 @@ VALUES
 <ul>
 <li><strong>Ja, gern! Ich komme.</strong></li>
 <li><strong>Danke für die Einladung! Ich freue mich.</strong></li>
-<li><strong>Soll ich etwas mitbringen?</strong> – die wichtigste deutsche Partyfrage!</li>
+<li><strong>Soll ich etwas mitbringen?</strong>: die wichtigste deutsche Partyfrage!</li>
 </ul>
 <h3>3. Höflich absagen</h3>
 <ul>
@@ -362,12 +362,12 @@ VALUES
 <li><strong>Schade, da habe ich schon etwas vor.</strong></li>
 <li><strong>Vielleicht klappt es beim nächsten Mal!</strong></li>
 </ul>
-<p>Tipp: In Deutschland sagt man bei Einladungen fast immer klar zu oder ab — ein unverbindliches "mal sehen" gilt als unhöflich.</p>',
+<p>Tipp: In Deutschland sagt man bei Einladungen fast immer klar zu oder ab: ein unverbindliches "mal sehen" gilt als unhöflich.</p>',
    2,NOW()),
   ('a2000000-0000-0000-0006-000000000003','a2000000-0000-0000-0000-000000000006',
    'a2-war-hatte','Erzählen mit war & hatte',
    '<h2>Erzählen mit war & hatte</h2>
-<p>Beim Erzählen benutzt man "sein" und "haben" meist im <strong>Präteritum</strong> — auch beim Sprechen.</p>
+<p>Beim Erzählen benutzt man "sein" und "haben" meist im <strong>Präteritum</strong>: auch beim Sprechen.</p>
 <h3>1. Die Formen</h3>
 <table>
 <thead><tr><th></th><th>sein → war</th><th>haben → hatte</th></tr></thead>
@@ -381,17 +381,17 @@ VALUES
 </tbody>
 </table>
 <h3>2. Vom Fest erzählen</h3>
-<p><em>Die Party <strong>war</strong> super! Wir <strong>waren</strong> ungefähr zwanzig Leute. Das Essen <strong>war</strong> lecker, und wir <strong>hatten</strong> viel Spaß. Nur das Wetter <strong>war</strong> schlecht — aber das <strong>war</strong> egal!</em></p>
+<p><em>Die Party <strong>war</strong> super! Wir <strong>waren</strong> ungefähr zwanzig Leute. Das Essen <strong>war</strong> lecker, und wir <strong>hatten</strong> viel Spaß. Nur das Wetter <strong>war</strong> schlecht: aber das <strong>war</strong> egal!</em></p>
 <h3>3. Typische Fragen</h3>
 <ul>
-<li><strong>Wie war dein Wochenende?</strong> – Es war schön / anstrengend / ruhig.</li>
-<li><strong>Wie war das Fest?</strong> – Es war toll! Wir hatten viel Spaß.</li>
-<li><strong>Wart ihr auch da?</strong> – Nein, wir hatten leider keine Zeit.</li>
+<li><strong>Wie war dein Wochenende?</strong>: Es war schön / anstrengend / ruhig.</li>
+<li><strong>Wie war das Fest?</strong>: Es war toll! Wir hatten viel Spaß.</li>
+<li><strong>Wart ihr auch da?</strong>: Nein, wir hatten leider keine Zeit.</li>
 </ul>',
    3,NOW()),
   ('a2000000-0000-0000-0006-000000000099','a2000000-0000-0000-0000-000000000006',
    'a2-room06-quiz','Checkpoint: Feste & Kultur',
-   '<h2>Checkpoint Quiz</h2><p>Feste, Einladungen und war/hatte — das große A2-Finale!</p>',
+   '<h2>Checkpoint Quiz</h2><p>Feste, Einladungen und war/hatte: das große A2-Finale!</p>',
    99,NOW())
 ON CONFLICT (id) DO NOTHING;
 
@@ -411,7 +411,7 @@ VALUES
    'Wo findet das Oktoberfest statt?','multiple_choice',
    '["In Berlin", "In München", "In Köln", "In Hamburg"]'::jsonb,
    'In München',
-   'Das Oktoberfest ist das größte Volksfest der Welt — in München.',NOW()),
+   'Das Oktoberfest ist das größte Volksfest der Welt: in München.',NOW()),
 
   ('a2000000-0000-0006-0002-000000000001','a2000000-0000-0000-0006-000000000002',
    'Die klassische deutsche Partyfrage:','multiple_choice',
@@ -422,7 +422,7 @@ VALUES
    'Höflich absagen:','multiple_choice',
    '["Es tut mir leid, aber ich kann leider nicht kommen.", "Nein.", "Keine Lust.", "Vielleicht, mal sehen."]'::jsonb,
    'Es tut mir leid, aber ich kann leider nicht kommen.',
-   'Klar und höflich absagen — "mal sehen" gilt als unhöflich.',NOW()),
+   'Klar und höflich absagen: "mal sehen" gilt als unhöflich.',NOW()),
 
   ('a2000000-0000-0006-0003-000000000001','a2000000-0000-0000-0006-000000000003',
    'Präteritum: "Wie ___ dein Wochenende?"','multiple_choice',

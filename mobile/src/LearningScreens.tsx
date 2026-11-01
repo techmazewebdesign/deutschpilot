@@ -84,7 +84,7 @@ export function PracticeScreen({ progress, update }: Props) {
   const [mode, setMode] = useState<PracticeMode | null>(null); const [round, setRound] = useState(0); const [index, setIndex] = useState(0); const [choice, setChoice] = useState<number | null>(null); const [score, setScore] = useState(0); const [busy, setBusy] = useState(false);
   const questions = useMemo(() => {
     const words = vocabulary.filter(word => word.level === level);
-    const pool = mode === 'listening' ? words.map((word, i, all) => ({ id: word.id, question: 'Was hast du gehört?', options: [word.en, all[(i + 1) % all.length].en, all[(i + 2) % all.length].en].map((_, j, options) => options[(j + i) % options.length]), answer: (3 - i % 3) % 3, note: `${word.de} — ${word.en}. ${word.example}`, audio: word.de })) : lessons.filter(item => item.level === level).flatMap(item => (item.exercises ?? [item]).map((exercise, i) => ({ ...exercise, id: `${item.id}-${i}`, audio: '' })));
+    const pool = mode === 'listening' ? words.map((word, i, all) => ({ id: word.id, question: 'Was hast du gehört?', options: [word.en, all[(i + 1) % all.length].en, all[(i + 2) % all.length].en].map((_, j, options) => options[(j + i) % options.length]), answer: (3 - i % 3) % 3, note: `${word.de}: ${word.en}. ${word.example}`, audio: word.de })) : lessons.filter(item => item.level === level).flatMap(item => (item.exercises ?? [item]).map((exercise, i) => ({ ...exercise, id: `${item.id}-${i}`, audio: '' })));
     const offset = Math.max(0, round - 1) * 5 % pool.length;
     return Array.from({ length: Math.min(5, pool.length) }, (_, i) => pool[(offset + i) % pool.length]);
   }, [mode, level, round]);

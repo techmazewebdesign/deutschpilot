@@ -9,15 +9,15 @@
 INSERT INTO public.courses (id, slug, title, description, level, language, is_published, created_at)
 VALUES
   ('a2000000-0000-0000-0000-000000000001','daily-routines-a2',
-   'A2 Room 01 – Alltag & Tagesablauf',
+   'A2 Room 01: Alltag & Tagesablauf',
    'Talk about your daily routine with reflexive verbs, separable verbs and precise time expressions.',
    'A2','de',TRUE,NOW()),
   ('a2000000-0000-0000-0000-000000000002','travel-transport-a2',
-   'A2 Room 02 – Reisen & Verkehr',
+   'A2 Room 02: Reisen & Verkehr',
    'Book tickets, describe journeys in the Perfekt, and handle travel problems in German.',
    'A2','de',TRUE,NOW()),
   ('a2000000-0000-0000-0000-000000000003','health-body-a2',
-   'A2 Room 03 – Gesundheit & Körper',
+   'A2 Room 03: Gesundheit & Körper',
    'Describe symptoms at the doctor, understand advice, and use the imperative for instructions.',
    'A2','de',TRUE,NOW())
 ON CONFLICT (id) DO NOTHING;
@@ -30,14 +30,14 @@ VALUES
   ('a2000000-0000-0000-0001-000000000001','a2000000-0000-0000-0000-000000000001',
    'a2-reflexive-verben','Reflexive Verben im Alltag',
    '<h2>Reflexive Verben im Alltag</h2>
-<p>Viele Alltagsverben im Deutschen sind reflexiv — die Handlung richtet sich auf die Person selbst.</p>
+<p>Viele Alltagsverben im Deutschen sind reflexiv: die Handlung richtet sich auf die Person selbst.</p>
 <h3>1. Die wichtigsten reflexiven Alltagsverben</h3>
 <ul>
-<li><strong>sich waschen</strong> – Ich wasche mich jeden Morgen.</li>
-<li><strong>sich anziehen</strong> – Er zieht sich schnell an.</li>
-<li><strong>sich beeilen</strong> – Wir müssen uns beeilen!</li>
-<li><strong>sich ausruhen</strong> – Am Abend ruhe ich mich aus.</li>
-<li><strong>sich freuen auf</strong> – Sie freut sich auf das Wochenende.</li>
+<li><strong>sich waschen</strong>: Ich wasche mich jeden Morgen.</li>
+<li><strong>sich anziehen</strong>: Er zieht sich schnell an.</li>
+<li><strong>sich beeilen</strong>: Wir müssen uns beeilen!</li>
+<li><strong>sich ausruhen</strong>: Am Abend ruhe ich mich aus.</li>
+<li><strong>sich freuen auf</strong>: Sie freut sich auf das Wochenende.</li>
 </ul>
 <h3>2. Die Reflexivpronomen</h3>
 <table>
@@ -67,13 +67,13 @@ VALUES
 <li>an|rufen → Er <strong>ruft</strong> seine Mutter <strong>an</strong>.</li>
 </ul>
 <h3>2. Mit Modalverben bleibt alles zusammen</h3>
-<p><em>Ich muss um 7 Uhr <strong>aufstehen</strong>.</em> — Nach Modalverben steht der Infinitiv ungetrennt am Ende.</p>
+<p><em>Ich muss um 7 Uhr <strong>aufstehen</strong>.</em>: Nach Modalverben steht der Infinitiv ungetrennt am Ende.</p>
 <h3>3. Zeitangaben präzise machen</h3>
 <ul>
-<li><strong>zuerst</strong> – zuerst frühstücke ich</li>
-<li><strong>danach / dann</strong> – danach fahre ich zur Arbeit</li>
-<li><strong>gegen</strong> – gegen 18 Uhr komme ich nach Hause</li>
-<li><strong>schließlich</strong> – schließlich gehe ich schlafen</li>
+<li><strong>zuerst</strong>: zuerst frühstücke ich</li>
+<li><strong>danach / dann</strong>: danach fahre ich zur Arbeit</li>
+<li><strong>gegen</strong>: gegen 18 Uhr komme ich nach Hause</li>
+<li><strong>schließlich</strong>: schließlich gehe ich schlafen</li>
 </ul>',
    2,NOW()),
   ('a2000000-0000-0000-0001-000000000003','a2000000-0000-0000-0000-000000000001',
@@ -101,9 +101,9 @@ VALUES
 </ul>
 <h3>3. Konkrete Angaben</h3>
 <ul>
-<li><strong>einmal / zweimal pro Woche</strong> – Ich koche dreimal pro Woche.</li>
-<li><strong>jeden Tag / jede Woche / jedes Wochenende</strong> – Jeden Tag lerne ich Deutsch.</li>
-<li><strong>alle zwei Tage</strong> – Alle zwei Tage gehe ich joggen.</li>
+<li><strong>einmal / zweimal pro Woche</strong>: Ich koche dreimal pro Woche.</li>
+<li><strong>jeden Tag / jede Woche / jedes Wochenende</strong>: Jeden Tag lerne ich Deutsch.</li>
+<li><strong>alle zwei Tage</strong>: Alle zwei Tage gehe ich joggen.</li>
 </ul>',
    3,NOW()),
   ('a2000000-0000-0000-0001-000000000099','a2000000-0000-0000-0000-000000000001',
@@ -131,7 +131,7 @@ VALUES
   ('a2000000-0000-0001-0002-000000000001','a2000000-0000-0000-0001-000000000002',
    'Ergänze: Ich ___ um 7 Uhr ___. (aufstehen)','multiple_choice',
    '["stehe ... auf", "aufstehe ...", "stehe auf ...", "auf ... stehe"]'::jsonb,'stehe ... auf',
-   'Trennbares Verb im Hauptsatz: Präfix ans Ende — Ich stehe um 7 Uhr auf.',NOW()),
+   'Trennbares Verb im Hauptsatz: Präfix ans Ende: Ich stehe um 7 Uhr auf.',NOW()),
   ('a2000000-0000-0001-0002-000000000002','a2000000-0000-0000-0001-000000000002',
    'Welcher Satz mit Modalverb ist richtig?','multiple_choice',
    '["Ich muss um 7 Uhr aufstehen.", "Ich muss um 7 Uhr stehe auf.", "Ich aufstehen muss um 7 Uhr.", "Ich muss aufstehe um 7 Uhr."]'::jsonb,
@@ -170,7 +170,7 @@ VALUES
    'Welcher Satz ist FALSCH?','multiple_choice',
    '["Wir ruhen uns am Sonntag aus.", "Ich sehe abends fern.", "Er ruft an seine Mutter.", "Du kämmst dich."]'::jsonb,
    'Er ruft an seine Mutter.',
-   'Richtig wäre: "Er ruft seine Mutter an." — das Präfix gehört ans Satzende.',NOW()),
+   'Richtig wäre: "Er ruft seine Mutter an.": das Präfix gehört ans Satzende.',NOW()),
   ('a2000000-0000-0001-0099-000000000005','a2000000-0000-0000-0001-000000000099',
    'Ergänze: Ihr ruht ___ am Wochenende aus.','multiple_choice',
    '["sich", "uns", "euch", "ihr"]'::jsonb,'euch',
@@ -187,18 +187,18 @@ VALUES
    '<h2>Am Bahnhof & Tickets kaufen</h2>
 <h3>1. Wichtige Wörter</h3>
 <ul>
-<li><strong>die Fahrkarte / das Ticket</strong> – einfach oder hin und zurück?</li>
-<li><strong>das Gleis</strong> – Der Zug fährt von Gleis 7 ab.</li>
-<li><strong>die Verspätung</strong> – Der ICE hat 20 Minuten Verspätung.</li>
-<li><strong>umsteigen</strong> – Sie müssen in Köln umsteigen.</li>
-<li><strong>die Verbindung</strong> – Gibt es eine direkte Verbindung?</li>
+<li><strong>die Fahrkarte / das Ticket</strong>: einfach oder hin und zurück?</li>
+<li><strong>das Gleis</strong>: Der Zug fährt von Gleis 7 ab.</li>
+<li><strong>die Verspätung</strong>: Der ICE hat 20 Minuten Verspätung.</li>
+<li><strong>umsteigen</strong>: Sie müssen in Köln umsteigen.</li>
+<li><strong>die Verbindung</strong>: Gibt es eine direkte Verbindung?</li>
 </ul>
 <h3>2. Dialog am Schalter</h3>
-<p><em>— Guten Tag, eine Fahrkarte nach München, bitte.<br>
-— Einfach oder hin und zurück?<br>
-— Hin und zurück, bitte. Mit Bahncard 25.<br>
-— Gern. Der nächste Zug fährt um 14:32 von Gleis 12. Sie müssen in Nürnberg umsteigen.<br>
-— Vielen Dank!</em></p>
+<p><em>: Guten Tag, eine Fahrkarte nach München, bitte.<br>
+: Einfach oder hin und zurück?<br>
+: Hin und zurück, bitte. Mit Bahncard 25.<br>
+: Gern. Der nächste Zug fährt um 14:32 von Gleis 12. Sie müssen in Nürnberg umsteigen.<br>
+: Vielen Dank!</em></p>
 <h3>3. Nützliche Fragen</h3>
 <ul>
 <li>Wann fährt der nächste Zug nach ...?</li>
@@ -210,7 +210,7 @@ VALUES
   ('a2000000-0000-0000-0002-000000000002','a2000000-0000-0000-0000-000000000002',
    'a2-perfekt-reisen','Über Reisen sprechen: das Perfekt',
    '<h2>Über Reisen sprechen: das Perfekt</h2>
-<p>Wenn du von einer Reise erzählst, brauchst du das Perfekt — und bei Bewegungsverben das Hilfsverb <strong>sein</strong>.</p>
+<p>Wenn du von einer Reise erzählst, brauchst du das Perfekt: und bei Bewegungsverben das Hilfsverb <strong>sein</strong>.</p>
 <h3>1. sein oder haben?</h3>
 <table>
 <thead><tr><th>Mit SEIN (Bewegung/Zustandswechsel)</th><th>Mit HABEN (alles andere)</th></tr></thead>
@@ -220,7 +220,7 @@ VALUES
 <tr><td>Sie <strong>ist</strong> spät <strong>angekommen</strong>.</td><td>Sie <strong>hat</strong> Souvenirs <strong>gekauft</strong>.</td></tr>
 </tbody>
 </table>
-<h3>2. Eine Reise erzählen — Mustertext</h3>
+<h3>2. Eine Reise erzählen: Mustertext</h3>
 <p><em>Letzten Sommer bin ich nach Österreich gefahren. Ich habe in einem kleinen Hotel in den Bergen gewohnt. Jeden Tag bin ich gewandert und habe die Natur fotografiert. Das Essen hat mir sehr gut geschmeckt. Nach einer Woche bin ich müde, aber glücklich nach Hause gekommen.</em></p>
 <h3>3. Typische Reiseverben im Perfekt</h3>
 <ul>
@@ -231,7 +231,7 @@ VALUES
   ('a2000000-0000-0000-0002-000000000003','a2000000-0000-0000-0000-000000000002',
    'a2-reiseprobleme','Probleme unterwegs lösen',
    '<h2>Probleme unterwegs lösen</h2>
-<p>Verspätung, verlorenes Gepäck, falsches Zimmer — auf Reisen geht nicht immer alles glatt.</p>
+<p>Verspätung, verlorenes Gepäck, falsches Zimmer: auf Reisen geht nicht immer alles glatt.</p>
 <h3>1. Probleme benennen</h3>
 <ul>
 <li>Mein Zug <strong>hatte Verspätung</strong>, deshalb habe ich den Anschluss <strong>verpasst</strong>.</li>
@@ -247,14 +247,14 @@ VALUES
 <li><strong>Gibt es einen späteren Zug?</strong></li>
 </ul>
 <h3>3. Am Fundbüro</h3>
-<p><em>— Guten Tag, ich habe meine Tasche in der U-Bahn vergessen.<br>
-— Wie sieht die Tasche aus?<br>
-— Sie ist schwarz und ziemlich groß. Mein Laptop ist darin.<br>
-— Einen Moment... Sie haben Glück! Jemand hat sie abgegeben.</em></p>',
+<p><em>: Guten Tag, ich habe meine Tasche in der U-Bahn vergessen.<br>
+: Wie sieht die Tasche aus?<br>
+: Sie ist schwarz und ziemlich groß. Mein Laptop ist darin.<br>
+: Einen Moment... Sie haben Glück! Jemand hat sie abgegeben.</em></p>',
    3,NOW()),
   ('a2000000-0000-0000-0002-000000000099','a2000000-0000-0000-0000-000000000002',
    'a2-room02-quiz','Checkpoint: Reisen & Verkehr',
-   '<h2>Checkpoint Quiz</h2><p>Bahnhof, Perfekt mit sein/haben, Reiseprobleme — zeig, was du kannst!</p>',
+   '<h2>Checkpoint Quiz</h2><p>Bahnhof, Perfekt mit sein/haben, Reiseprobleme: zeig, was du kannst!</p>',
    99,NOW())
 ON CONFLICT (id) DO NOTHING;
 
@@ -314,7 +314,7 @@ VALUES
    'Gibt es einen späteren Zug?',
    'Die praktische Frage nach der nächsten Verbindung.',NOW()),
   ('a2000000-0000-0002-0099-000000000004','a2000000-0000-0000-0002-000000000099',
-   '"Muss ich umsteigen?" — Was möchtest du wissen?','multiple_choice',
+   '"Muss ich umsteigen?": Was möchtest du wissen?','multiple_choice',
    '["Ob die Fahrt direkt ist", "Ob der Zug pünktlich ist", "Was das Ticket kostet", "Wo der Bahnhof ist"]'::jsonb,
    'Ob die Fahrt direkt ist',
    'Wer nicht umsteigen muss, hat eine direkte Verbindung.',NOW()),
@@ -335,13 +335,13 @@ VALUES
    '<h2>Der Körper & Schmerzen beschreiben</h2>
 <h3>1. Die wichtigsten Körperteile</h3>
 <ul>
-<li><strong>der Kopf</strong> – head | <strong>der Hals</strong> – throat/neck</li>
-<li><strong>der Bauch</strong> – belly | <strong>der Rücken</strong> – back</li>
-<li><strong>das Bein</strong> – leg | <strong>der Arm</strong> – arm</li>
-<li><strong>die Hand</strong> – hand | <strong>der Fuß</strong> – foot</li>
-<li><strong>das Auge</strong> – eye | <strong>das Ohr</strong> – ear</li>
+<li><strong>der Kopf</strong>: head | <strong>der Hals</strong>: throat/neck</li>
+<li><strong>der Bauch</strong>: belly | <strong>der Rücken</strong>: back</li>
+<li><strong>das Bein</strong>: leg | <strong>der Arm</strong>: arm</li>
+<li><strong>die Hand</strong>: hand | <strong>der Fuß</strong>: foot</li>
+<li><strong>das Auge</strong>: eye | <strong>das Ohr</strong>: ear</li>
 </ul>
-<h3>2. Schmerzen ausdrücken — drei Wege</h3>
+<h3>2. Schmerzen ausdrücken: drei Wege</h3>
 <ul>
 <li><strong>Ich habe Kopfschmerzen.</strong> (Körperteil + schmerzen)</li>
 <li><strong>Mein Rücken tut weh.</strong> (tut weh / tun weh)</li>
@@ -358,10 +358,10 @@ VALUES
    'a2-beim-arzt','Beim Arzt: der Termin',
    '<h2>Beim Arzt: der Termin</h2>
 <h3>1. Einen Termin vereinbaren</h3>
-<p><em>— Praxis Dr. Weber, guten Tag.<br>
-— Guten Tag, ich hätte gern einen Termin. Ich habe seit drei Tagen starke Halsschmerzen.<br>
-— Können Sie morgen um 9:30 Uhr kommen?<br>
-— Ja, das passt. Vielen Dank!</em></p>
+<p><em>: Praxis Dr. Weber, guten Tag.<br>
+: Guten Tag, ich hätte gern einen Termin. Ich habe seit drei Tagen starke Halsschmerzen.<br>
+: Können Sie morgen um 9:30 Uhr kommen?<br>
+: Ja, das passt. Vielen Dank!</em></p>
 <h3>2. Im Sprechzimmer</h3>
 <ul>
 <li>Arzt: <strong>Was fehlt Ihnen?</strong> / <strong>Wo tut es weh?</strong></li>
@@ -371,16 +371,16 @@ VALUES
 </ul>
 <h3>3. Wichtige Wörter in der Praxis</h3>
 <ul>
-<li><strong>die Versichertenkarte</strong> – bitte an der Anmeldung zeigen</li>
-<li><strong>das Wartezimmer</strong> – bitte nehmen Sie Platz</li>
-<li><strong>das Rezept</strong> – damit holst du Medikamente in der Apotheke</li>
-<li><strong>die Krankschreibung</strong> – für den Arbeitgeber</li>
+<li><strong>die Versichertenkarte</strong>: bitte an der Anmeldung zeigen</li>
+<li><strong>das Wartezimmer</strong>: bitte nehmen Sie Platz</li>
+<li><strong>das Rezept</strong>: damit holst du Medikamente in der Apotheke</li>
+<li><strong>die Krankschreibung</strong>: für den Arbeitgeber</li>
 </ul>',
    2,NOW()),
   ('a2000000-0000-0000-0003-000000000003','a2000000-0000-0000-0000-000000000003',
    'a2-imperativ-ratschlaege','Ratschläge geben: der Imperativ',
    '<h2>Ratschläge geben: der Imperativ</h2>
-<p>Der Arzt sagt dir, was du tun sollst — mit dem Imperativ oder mit "sollten".</p>
+<p>Der Arzt sagt dir, was du tun sollst: mit dem Imperativ oder mit "sollten".</p>
 <h3>1. Imperativ-Formen</h3>
 <table>
 <thead><tr><th>Infinitiv</th><th>du</th><th>Sie</th></tr></thead>
@@ -398,13 +398,13 @@ VALUES
 </ul>
 <h3>3. Typische Arzt-Ratschläge</h3>
 <ul>
-<li>Nehmen Sie die Medikamente <strong>dreimal täglich</strong> — <strong>vor dem Essen</strong>.</li>
+<li>Nehmen Sie die Medikamente <strong>dreimal täglich</strong>: <strong>vor dem Essen</strong>.</li>
 <li>Kommen Sie <strong>in einer Woche</strong> wieder, wenn es nicht besser wird.</li>
 </ul>',
    3,NOW()),
   ('a2000000-0000-0000-0003-000000000099','a2000000-0000-0000-0000-000000000003',
    'a2-room03-quiz','Checkpoint: Gesundheit & Körper',
-   '<h2>Checkpoint Quiz</h2><p>Körperteile, Arztbesuch und Imperativ — der letzte Schritt in diesem Raum.</p>',
+   '<h2>Checkpoint Quiz</h2><p>Körperteile, Arztbesuch und Imperativ: der letzte Schritt in diesem Raum.</p>',
    99,NOW())
 ON CONFLICT (id) DO NOTHING;
 
@@ -436,7 +436,7 @@ VALUES
    'Mit dem Rezept',
    'Das Rezept (prescription) ist für die Apotheke.',NOW()),
   ('a2000000-0000-0003-0002-000000000003','a2000000-0000-0000-0003-000000000002',
-   '"Seit wann haben Sie die Beschwerden?" — Gute Antwort:','multiple_choice',
+   '"Seit wann haben Sie die Beschwerden?": Gute Antwort:','multiple_choice',
    '["Seit ungefähr einer Woche.", "Um 9:30 Uhr.", "Dreimal täglich.", "In der Apotheke."]'::jsonb,
    'Seit ungefähr einer Woche.',
    '"Seit wann" fragt nach dem Beginn → "Seit einer Woche."',NOW()),
@@ -449,7 +449,7 @@ VALUES
   ('a2000000-0000-0003-0003-000000000002','a2000000-0000-0000-0003-000000000003',
    'Höfliche Sie-Form: "___ Sie viel Wasser!"','multiple_choice',
    '["Trink", "Trinken", "Trinkt", "Trank"]'::jsonb,'Trinken',
-   'Sie-Imperativ: Infinitiv + Sie — Trinken Sie!',NOW()),
+   'Sie-Imperativ: Infinitiv + Sie: Trinken Sie!',NOW()),
 
   ('a2000000-0000-0003-0099-000000000001','a2000000-0000-0000-0003-000000000099',
    '"Ich habe seit Montag Husten und ___."','multiple_choice',
@@ -473,5 +473,5 @@ VALUES
    'Du-Imperativ von "schlafen":','multiple_choice',
    '["Schlaf genug!", "Schläfst genug!", "Schlafen genug!", "Schlief genug!"]'::jsonb,
    'Schlaf genug!',
-   'Du-Imperativ: Verbstamm ohne -st — Schlaf!',NOW())
+   'Du-Imperativ: Verbstamm ohne -st: Schlaf!',NOW())
 ON CONFLICT (id) DO NOTHING;

@@ -1,4 +1,5 @@
 "use client";
+import { displayText } from "@/lib/displayText";
 
 import { useState } from "react";
 import { useTranslations } from "next-intl";
@@ -178,22 +179,22 @@ export function RoomCheckpointQuiz({ exercises, courseId, quizLessonId, locale, 
                     <XCircle className="mt-0.5 h-5 w-5 flex-shrink-0 text-red-400" />
                   )}
                   <p className="text-sm font-medium text-white">
-                    Q{idx + 1}. {ex.question}
+                    Q{idx + 1}. {displayText(ex.question)}
                   </p>
                 </div>
                 {!isCorrect && (
                   <div className="ml-8 space-y-1">
                     <p className="text-xs text-red-300">
-                      {t("yourAnswerColon")} <span className="font-medium">{given || "–"}</span>
+                      {t("yourAnswerColon")} <span className="font-medium">{given || "…"}</span>
                     </p>
                     <p className="text-xs text-[#E0B873]">
                       {t("correctAnswerColon")}{" "}
-                      <span className="font-medium">{ex.correct_answer}</span>
+                      <span className="font-medium">{displayText(ex.correct_answer)}</span>
                     </p>
                   </div>
                 )}
                 {ex.explanation && (
-                  <p className="ml-8 mt-1.5 text-xs text-white/35">{ex.explanation}</p>
+                  <p className="ml-8 mt-1.5 text-xs text-white/35">{displayText(ex.explanation)}</p>
                 )}
               </div>
             );
@@ -227,7 +228,7 @@ export function RoomCheckpointQuiz({ exercises, courseId, quizLessonId, locale, 
           <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-[#E0B873]/70">
             {idx + 1} / {exercises.length}
           </p>
-          <p className="mb-4 text-sm font-semibold text-white">{ex.question}</p>
+          <p className="mb-4 text-sm font-semibold text-white">{displayText(ex.question)}</p>
 
           {ex.type === "multiple_choice" && Array.isArray(ex.options) ? (
             <div className="space-y-2">
@@ -241,7 +242,7 @@ export function RoomCheckpointQuiz({ exercises, courseId, quizLessonId, locale, 
                       : "bg-white/3 border-white/10 text-white/70 hover:border-white/25 hover:text-white"
                   }`}
                 >
-                  {opt}
+                  {displayText(opt)}
                 </button>
               ))}
             </div>

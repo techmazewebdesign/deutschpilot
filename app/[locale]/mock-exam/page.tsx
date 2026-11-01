@@ -15,21 +15,21 @@ export function generateMetadata({ params }: { params: { locale: string } }): Me
       ? "B1 & B2 Modellprüfung: Teste dich vor der echten Prüfung | DeutschPilot"
       : "B1 & B2 Mock Exam: Test yourself before the real exam | DeutschPilot",
     description: de
-      ? "Simuliere die echte Goethe/telc-Prüfungsstruktur — Lesen, Hören, Schreiben, Sprechen — und erhalte eine ehrliche Einschätzung deiner Prüfungsreife."
-      : "Simulate the real Goethe/telc exam structure — Reading, Listening, Writing, Speaking — and get an honest readiness assessment.",
+      ? "Simuliere die echte Goethe/telc-Prüfungsstruktur, Lesen, Hören, Schreiben, Sprechen, und erhalte eine ehrliche Einschätzung deiner Prüfungsreife."
+      : "Simulate the real Goethe/telc exam structure, Reading, Listening, Writing, Speaking, and get an honest readiness assessment.",
   };
 }
 
 const LEVELS = [
   {
     level: "B1",
-    descDE: "Mittelstufe — die häufigste Prüfung für Einbürgerung und Beruf.",
-    descEN: "Intermediate — the most common exam for citizenship and work purposes.",
+    descDE: "Mittelstufe: die häufigste Prüfung für Einbürgerung und Beruf.",
+    descEN: "Intermediate: the most common exam for citizenship and work purposes.",
   },
   {
     level: "B2",
-    descDE: "Gehobene Mittelstufe — oft für Studium und qualifizierte Berufe gefordert.",
-    descEN: "Upper-intermediate — often required for university and skilled professions.",
+    descDE: "Gehobene Mittelstufe: oft für Studium und qualifizierte Berufe gefordert.",
+    descEN: "Upper-intermediate: often required for university and skilled professions.",
   },
 ];
 
@@ -62,8 +62,8 @@ export default function MockExamLandingPage({ params }: { params: { locale: stri
             </h1>
             <p className="text-[#C9D2DE] max-w-xl mx-auto">
               {de
-                ? "Bevor du zur echten Prüfung gehst: teste dich mit einer Modellprüfung im echten Format — Lesen, Hören, Schreiben und Sprechen — und sieh, wo du stehst."
-                : "Before you go to the real exam: test yourself with a mock exam in the real format — Reading, Listening, Writing, and Speaking — and see where you stand."}
+                ? "Bevor du zur echten Prüfung gehst: teste dich mit einer Modellprüfung im echten Format, Lesen, Hören, Schreiben und Sprechen, und sieh, wo du stehst."
+                : "Before you go to the real exam: test yourself with a mock exam in the real format, Reading, Listening, Writing, and Speaking, and see where you stand."}
             </p>
           </div>
 

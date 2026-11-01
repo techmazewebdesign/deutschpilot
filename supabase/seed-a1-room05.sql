@@ -5,7 +5,7 @@ INSERT INTO public.courses (id, slug, title, description, level, language, is_pu
 VALUES (
   'a0000000-0000-0000-0000-000000000005',
   'a1-food-restaurants',
-  'A1 Room 05 – Food & Restaurants',
+  'A1 Room 05: Food & Restaurants',
   'Learn to talk about meals, order food in a restaurant, discuss drinks and preferences, and read simple recipes.',
   'A1', 'de', true, NOW()
 ) ON CONFLICT (id) DO NOTHING;
@@ -171,8 +171,8 @@ VALUES (
   'a0000000-0000-0000-0005-000000000004',
   'a0000000-0000-0000-0000-000000000005',
   'essen-moegen-vorlieben',
-  'Essen mögen – Vorlieben',
-  '<h2>Essen mögen – Vorlieben</h2>
+  'Essen mögen: Vorlieben',
+  '<h2>Essen mögen: Vorlieben</h2>
 <h3>The Verb "mögen" (to like)</h3>
 <table>
 <thead><tr><th>Person</th><th>Form</th></tr></thead>
@@ -210,7 +210,7 @@ VALUES
    'How do you ask "Do you like chocolate?"',
    '["Magst du Schokolade?","Ich mag Schokolade.","Hast du Schokolade?","Isst du Schokolade?"]'::jsonb, 'Magst du Schokolade?', NOW()),
   ('a0000000-0000-0005-0004-000000000003', 'a0000000-0000-0000-0005-000000000004', 'fill_blank',
-   'Complete: Das schmeckt mir ___. (doesn''t taste good — use "nicht")',
+   'Complete: Das schmeckt mir ___. (doesn''t taste good: use "nicht")',
    null, 'nicht', NOW()),
   ('a0000000-0000-0005-0004-000000000004', 'a0000000-0000-0000-0005-000000000004', 'word_order',
    'Arrange: "My favourite food is pizza."',
@@ -246,9 +246,9 @@ VALUES (
 </ol>
 <h3>Imperative Forms (Instructions)</h3>
 <ul>
-<li>Koch(e)! (Cook! – informal singular)</li>
-<li>Kocht! (Cook! – informal plural)</li>
-<li>Kochen Sie! (Cook! – formal)</li>
+<li>Koch(e)! (Cook!: informal singular)</li>
+<li>Kocht! (Cook!: informal plural)</li>
+<li>Kochen Sie! (Cook!: formal)</li>
 </ul>',
   5, NOW()
 ) ON CONFLICT (id) DO NOTHING;
@@ -262,7 +262,7 @@ VALUES
    'What does "Guten Appetit!" mean?',
    '["Enjoy your meal!","Good morning!","Good luck!","Thank you!"]'::jsonb, 'Enjoy your meal!', NOW()),
   ('a0000000-0000-0005-0005-000000000003', 'a0000000-0000-0000-0005-000000000005', 'fill_blank',
-   'Complete: ___ die Nudeln. (Cook the pasta — informal singular imperative)',
+   'Complete: ___ die Nudeln. (Cook the pasta: informal singular imperative)',
    null, 'Koch', NOW()),
   ('a0000000-0000-0005-0005-000000000004', 'a0000000-0000-0000-0005-000000000005', 'word_order',
    'Arrange: "Mix the pasta with the vegetables."',
@@ -275,7 +275,7 @@ VALUES (
   'a0000000-0000-0000-0005-000000000099',
   'a0000000-0000-0000-0000-000000000005',
   'room-05-quiz-food-restaurants',
-  'Room 05 Quiz – Food & Restaurants',
+  'Room 05 Quiz: Food & Restaurants',
   '<h2>Checkpoint Quiz</h2><p>Test your knowledge of meals, restaurant ordering, drinks, preferences, and recipes.</p>',
   99, NOW()
 ) ON CONFLICT (id) DO NOTHING;

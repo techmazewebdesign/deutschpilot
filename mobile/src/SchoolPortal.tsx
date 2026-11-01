@@ -558,7 +558,7 @@ export function SchoolPortal({ user, openAuth }: { user: User | null; openAuth: 
                   <View key={summary.id} style={s.card}>
                     <Text style={s.heading}>{memberName(summary.studentId)}</Text>
                     {copy(
-                      `${summary.from} – ${summary.to} · ${{ pending: "Geplant / Prüfung offen", approved: "Genehmigt", rejected: "Abgelehnt" }[summary.status]}`
+                      `${summary.from} bis ${summary.to} · ${{ pending: "Geplant / Prüfung offen", approved: "Genehmigt", rejected: "Abgelehnt" }[summary.status]}`
                     )}
                     {copy(
                       "Für die Unterrichtsplanung. Private Gründe und Nachweise sind ausschließlich im berechtigten Schulbüro sichtbar."
@@ -603,7 +603,7 @@ export function SchoolPortal({ user, openAuth }: { user: User | null; openAuth: 
               {snapshot.absences.map((a) => (
                 <View key={a.id} style={s.card}>
                   <Text style={s.heading}>
-                    {memberName(a.studentId)} · {a.from} – {a.to}
+                    {memberName(a.studentId)} · {a.from} bis {a.to}
                   </Text>
                   {copy(
                     `Status: ${{ pending: "Offen", approved: "Genehmigt", rejected: "Abgelehnt" }[a.status]}`

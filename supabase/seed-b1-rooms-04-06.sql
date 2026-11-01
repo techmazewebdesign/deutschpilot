@@ -8,15 +8,15 @@
 INSERT INTO public.courses (id, slug, title, description, level, language, is_published, created_at)
 VALUES
   ('b1000000-0000-0000-0000-000000000004','education-b1',
-   'B1 Room 04 – Bildung & Weiterbildung',
+   'B1 Room 04: Bildung & Weiterbildung',
    'Talk about your education path, understand course offers, and use Infinitiv mit zu.',
    'B1','de',TRUE,NOW()),
   ('b1000000-0000-0000-0000-000000000005','bureaucracy-b1',
-   'B1 Room 05 – Behörden & Formalitäten',
+   'B1 Room 05: Behörden & Formalitäten',
    'Survive German bureaucracy: Anmeldung, forms, official letters, and polite formal requests.',
    'B1','de',TRUE,NOW()),
   ('b1000000-0000-0000-0000-000000000006','society-relationships-b1',
-   'B1 Room 06 – Beziehungen & Gesellschaft',
+   'B1 Room 06: Beziehungen & Gesellschaft',
    'Talk about relationships and social life, use relative clauses, and describe people precisely.',
    'B1','de',TRUE,NOW())
 ON CONFLICT (id) DO NOTHING;
@@ -31,11 +31,11 @@ VALUES
    '<h2>Der Bildungsweg in Deutschland</h2>
 <h3>1. Die Stationen</h3>
 <ul>
-<li><strong>die Grundschule</strong> (Klasse 1–4) → danach verschiedene Schulformen</li>
+<li><strong>die Grundschule</strong> (Klasse 1 bis 4) → danach verschiedene Schulformen</li>
 <li><strong>das Gymnasium</strong> → endet mit dem <strong>Abitur</strong> (Studienberechtigung)</li>
-<li><strong>die Ausbildung</strong> – praktischer Beruf + Berufsschule (das duale System)</li>
+<li><strong>die Ausbildung</strong>: praktischer Beruf + Berufsschule (das duale System)</li>
 <li><strong>das Studium</strong> an Universität oder Fachhochschule → Bachelor, Master</li>
-<li><strong>die Weiterbildung</strong> – Kurse neben dem Beruf, z. B. an der Volkshochschule (VHS)</li>
+<li><strong>die Weiterbildung</strong>: Kurse neben dem Beruf, z. B. an der Volkshochschule (VHS)</li>
 </ul>
 <h3>2. Über den eigenen Weg sprechen</h3>
 <ul>
@@ -45,7 +45,7 @@ VALUES
 <li>Mein Abschluss wurde in Deutschland <strong>anerkannt</strong>. (wichtig für Zugewanderte!)</li>
 </ul>
 <h3>3. Nützlich zu wissen</h3>
-<p>Die <strong>Anerkennung ausländischer Abschlüsse</strong> läuft über die Website "Anerkennung in Deutschland". Die <strong>VHS</strong> bietet günstige Kurse — von Deutsch bis Computerkurse.</p>',
+<p>Die <strong>Anerkennung ausländischer Abschlüsse</strong> läuft über die Website "Anerkennung in Deutschland". Die <strong>VHS</strong> bietet günstige Kurse: von Deutsch bis Computerkurse.</p>',
    1,NOW()),
   ('b1000000-0000-0000-0004-000000000002','b1000000-0000-0000-0000-000000000004',
    'b1-infinitiv-zu','Pläne & Ziele: Infinitiv mit zu',
@@ -74,11 +74,11 @@ VALUES
    '<h2>Kursangebote verstehen & buchen</h2>
 <h3>1. Die Kursbeschreibung entschlüsseln</h3>
 <ul>
-<li><strong>der Einstufungstest</strong> – zeigt dein Niveau vor Kursbeginn</li>
-<li><strong>die Teilnahmegebühr</strong> – was der Kurs kostet</li>
-<li><strong>die Ermäßigung</strong> – Rabatt (z. B. für Studierende, Arbeitslose)</li>
+<li><strong>der Einstufungstest</strong>: zeigt dein Niveau vor Kursbeginn</li>
+<li><strong>die Teilnahmegebühr</strong>: was der Kurs kostet</li>
+<li><strong>die Ermäßigung</strong>: Rabatt (z. B. für Studierende, Arbeitslose)</li>
 <li><strong>der Präsenzkurs ↔ der Onlinekurs</strong></li>
-<li><strong>die Teilnahmebescheinigung</strong> – Nachweis am Ende</li>
+<li><strong>die Teilnahmebescheinigung</strong>: Nachweis am Ende</li>
 </ul>
 <h3>2. Fragen zur Anmeldung</h3>
 <ul>
@@ -94,7 +94,7 @@ Mit freundlichen Grüßen</em></p>',
    3,NOW()),
   ('b1000000-0000-0000-0004-000000000099','b1000000-0000-0000-0000-000000000004',
    'b1-room04-quiz','Checkpoint: Bildung & Weiterbildung',
-   '<h2>Checkpoint Quiz</h2><p>Bildungsweg, Infinitiv mit zu und Kursangebote — weiter geht es!</p>',
+   '<h2>Checkpoint Quiz</h2><p>Bildungsweg, Infinitiv mit zu und Kursangebote: weiter geht es!</p>',
    99,NOW())
 ON CONFLICT (id) DO NOTHING;
 
@@ -179,30 +179,30 @@ VALUES
 <ul>
 <li>den <strong>Personalausweis oder Reisepass</strong></li>
 <li>die <strong>Wohnungsgeberbestätigung</strong> (vom Vermieter!)</li>
-<li>oft einen <strong>Termin</strong> — online buchen, Wochen im Voraus</li>
+<li>oft einen <strong>Termin</strong>: online buchen, Wochen im Voraus</li>
 </ul>
 <h3>2. Wichtige Behörden-Wörter</h3>
 <ul>
-<li><strong>das Formular</strong> – ausfüllen, unterschreiben, abgeben</li>
-<li><strong>die Bescheinigung</strong> – offizielles Dokument als Nachweis</li>
-<li><strong>der Bescheid</strong> – offizielle Entscheidung per Brief</li>
-<li><strong>die Frist</strong> – bis wann etwas erledigt sein muss</li>
-<li><strong>beantragen</strong> – offiziell um etwas bitten (einen Antrag stellen)</li>
+<li><strong>das Formular</strong>: ausfüllen, unterschreiben, abgeben</li>
+<li><strong>die Bescheinigung</strong>: offizielles Dokument als Nachweis</li>
+<li><strong>der Bescheid</strong>: offizielle Entscheidung per Brief</li>
+<li><strong>die Frist</strong>: bis wann etwas erledigt sein muss</li>
+<li><strong>beantragen</strong>: offiziell um etwas bitten (einen Antrag stellen)</li>
 </ul>
 <h3>3. Am Schalter</h3>
-<p><em>— Guten Tag, ich möchte mich anmelden. Ich bin letzte Woche umgezogen.<br>
-— Haben Sie die Wohnungsgeberbestätigung dabei?<br>
-— Ja, hier bitte. Und mein Reisepass.<br>
-— Danke. Füllen Sie bitte noch dieses Formular aus.</em></p>',
+<p><em>: Guten Tag, ich möchte mich anmelden. Ich bin letzte Woche umgezogen.<br>
+: Haben Sie die Wohnungsgeberbestätigung dabei?<br>
+: Ja, hier bitte. Und mein Reisepass.<br>
+: Danke. Füllen Sie bitte noch dieses Formular aus.</em></p>',
    1,NOW()),
   ('b1000000-0000-0000-0005-000000000002','b1000000-0000-0000-0000-000000000005',
    'b1-briefe-verstehen','Offizielle Briefe verstehen',
    '<h2>Offizielle Briefe verstehen</h2>
 <h3>1. Die Struktur eines Behördenbriefs</h3>
 <ul>
-<li><strong>Betreff</strong> – das Thema in einer Zeile (immer zuerst lesen!)</li>
-<li><strong>Aktenzeichen</strong> – die Nummer deines Falls (bei Antworten angeben)</li>
-<li><strong>die Frist</strong> – "bis zum 15.08." — im Kalender markieren!</li>
+<li><strong>Betreff</strong>: das Thema in einer Zeile (immer zuerst lesen!)</li>
+<li><strong>Aktenzeichen</strong>: die Nummer deines Falls (bei Antworten angeben)</li>
+<li><strong>die Frist</strong>: "bis zum 15.08.": im Kalender markieren!</li>
 </ul>
 <h3>2. Typische Formulierungen übersetzt</h3>
 <ul>
@@ -241,13 +241,13 @@ VALUES
 <h3>3. Nachfragen, wenn etwas unklar ist</h3>
 <ul>
 <li><strong>Entschuldigung, das habe ich nicht verstanden. Könnten Sie das bitte wiederholen?</strong></li>
-<li><strong>Was bedeutet dieses Wort?</strong> – Fragen ist erlaubt und normal!</li>
+<li><strong>Was bedeutet dieses Wort?</strong>: Fragen ist erlaubt und normal!</li>
 <li><strong>Könnten Sie bitte etwas langsamer sprechen?</strong></li>
 </ul>',
    3,NOW()),
   ('b1000000-0000-0000-0005-000000000099','b1000000-0000-0000-0000-000000000005',
    'b1-room05-quiz','Checkpoint: Behörden & Formalitäten',
-   '<h2>Checkpoint Quiz</h2><p>Anmeldung, Behördenbriefe und höfliche Anfragen — der Bürokratie-Check!</p>',
+   '<h2>Checkpoint Quiz</h2><p>Anmeldung, Behördenbriefe und höfliche Anfragen: der Bürokratie-Check!</p>',
    99,NOW())
 ON CONFLICT (id) DO NOTHING;
 
@@ -283,7 +283,7 @@ VALUES
    '"Andernfalls..." in einem Brief kündigt an:','multiple_choice',
    '["Was passiert, wenn du nicht reagierst", "Ein Geschenk", "Das Ende des Briefes", "Eine Entschuldigung"]'::jsonb,
    'Was passiert, wenn du nicht reagierst',
-   '"Andernfalls" = sonst — meist eine Konsequenz.',NOW()),
+   '"Andernfalls" = sonst: meist eine Konsequenz.',NOW()),
 
   ('b1000000-0000-0005-0003-000000000001','b1000000-0000-0000-0005-000000000003',
    'Höflich statt "Ich will einen Termin":','multiple_choice',
@@ -293,7 +293,7 @@ VALUES
   ('b1000000-0000-0005-0003-000000000002','b1000000-0000-0000-0005-000000000003',
    '"___ es möglich, den Termin zu verschieben?"','multiple_choice',
    '["Wäre", "Ist war", "Würde sein", "Hätte"]'::jsonb,'Wäre',
-   '"Wäre es möglich..." — die höfliche Standardfrage.',NOW()),
+   '"Wäre es möglich...": die höfliche Standardfrage.',NOW()),
 
   ('b1000000-0000-0005-0099-000000000001','b1000000-0000-0000-0005-000000000099',
    'Innerhalb welcher Zeit musst du dich nach einem Umzug anmelden?','multiple_choice',
@@ -331,7 +331,7 @@ VALUES
    'b1-relativsaetze','Menschen beschreiben: Relativsätze',
    '<h2>Menschen beschreiben: Relativsätze</h2>
 <h3>1. Warum Relativsätze?</h3>
-<p>Statt zwei kurzer Sätze — ein eleganter:</p>
+<p>Statt zwei kurzer Sätze: ein eleganter:</p>
 <ul>
 <li><em>Das ist mein Kollege. Er arbeitet in Berlin.</em> →<br>
 <em>Das ist mein Kollege, <strong>der</strong> in Berlin <strong>arbeitet</strong>.</em></li>
@@ -362,12 +362,12 @@ VALUES
 <ul>
 <li><strong>Sie</strong> + Nachname: Arbeit (anfangs), Behörden, Fremde</li>
 <li><strong>du</strong> + Vorname: Freunde, Familie, oft unter Jungen, im Sportverein</li>
-<li>Der Wechsel: <em>"Wollen wir uns duzen?"</em> — meist bietet es die ältere/ranghöhere Person an.</li>
+<li>Der Wechsel: <em>"Wollen wir uns duzen?"</em>: meist bietet es die ältere/ranghöhere Person an.</li>
 </ul>
 <h3>2. Small-Talk-Themen, die funktionieren</h3>
 <ul>
 <li>Das Wetter (der Klassiker), Urlaub & Reisen, Essen, Sport, die Region</li>
-<li>Vorsicht bei: Gehalt, Politik, Religion, Alter — eher private Themen.</li>
+<li>Vorsicht bei: Gehalt, Politik, Religion, Alter: eher private Themen.</li>
 </ul>
 <h3>3. Gespräche am Laufen halten</h3>
 <ul>
@@ -375,18 +375,18 @@ VALUES
 <li><strong>Das kenne ich!</strong> / <strong>Bei mir war das ähnlich.</strong></li>
 <li>Rückfragen stellen zeigt Interesse: <strong>Und wie findest du ...?</strong></li>
 </ul>
-<p>Kulturhinweis: Deutsche Freundschaften wachsen oft langsam, sind dafür aber stabil. Ein "Wie geht''s?" ist hier eine echte Frage — eine ehrliche Antwort ist völlig okay.</p>',
+<p>Kulturhinweis: Deutsche Freundschaften wachsen oft langsam, sind dafür aber stabil. Ein "Wie geht''s?" ist hier eine echte Frage: eine ehrliche Antwort ist völlig okay.</p>',
    2,NOW()),
   ('b1000000-0000-0000-0006-000000000003','b1000000-0000-0000-0000-000000000006',
    'b1-gefuehle-konflikte','Gefühle ausdrücken & Konflikte lösen',
    '<h2>Gefühle ausdrücken & Konflikte lösen</h2>
 <h3>1. Gefühle differenziert benennen</h3>
 <ul>
-<li><strong>sich freuen über</strong> (+Akk.) – Ich freue mich über deine Nachricht.</li>
-<li><strong>sich ärgern über</strong> (+Akk.) – Er ärgert sich über den Lärm.</li>
-<li><strong>enttäuscht sein von</strong> – Ich bin enttäuscht von dem Ergebnis.</li>
-<li><strong>stolz sein auf</strong> (+Akk.) – Sie ist stolz auf ihre Tochter.</li>
-<li><strong>Angst haben vor</strong> (+Dat.) – Ich habe Angst vor der Prüfung.</li>
+<li><strong>sich freuen über</strong> (+Akk.): Ich freue mich über deine Nachricht.</li>
+<li><strong>sich ärgern über</strong> (+Akk.): Er ärgert sich über den Lärm.</li>
+<li><strong>enttäuscht sein von</strong>: Ich bin enttäuscht von dem Ergebnis.</li>
+<li><strong>stolz sein auf</strong> (+Akk.): Sie ist stolz auf ihre Tochter.</li>
+<li><strong>Angst haben vor</strong> (+Dat.): Ich habe Angst vor der Prüfung.</li>
 </ul>
 <h3>2. Ich-Botschaften statt Vorwürfe</h3>
 <table>
@@ -406,7 +406,7 @@ VALUES
    3,NOW()),
   ('b1000000-0000-0000-0006-000000000099','b1000000-0000-0000-0000-000000000006',
    'b1-room06-quiz','Checkpoint: Beziehungen & Gesellschaft',
-   '<h2>Checkpoint Quiz</h2><p>Relativsätze, Small Talk und Gefühle — das große B1-Finale!</p>',
+   '<h2>Checkpoint Quiz</h2><p>Relativsätze, Small Talk und Gefühle: das große B1-Finale!</p>',
    99,NOW())
 ON CONFLICT (id) DO NOTHING;
 
@@ -469,7 +469,7 @@ VALUES
    'Ruhig ansprechen, dann Ich-Botschaft, dann Lösung suchen.',NOW()),
   ('b1000000-0000-0006-0099-000000000005','b1000000-0000-0000-0006-000000000099',
    '"Wie geht''s?" ist in Deutschland:','multiple_choice',
-   '["Eine echte Frage — ehrliche Antwort okay", "Nur eine Floskel ohne Antwort", "Unhöflich", "Nur schriftlich üblich"]'::jsonb,
-   'Eine echte Frage — ehrliche Antwort okay',
+   '["Eine echte Frage: ehrliche Antwort okay", "Nur eine Floskel ohne Antwort", "Unhöflich", "Nur schriftlich üblich"]'::jsonb,
+   'Eine echte Frage: ehrliche Antwort okay',
    'Anders als das englische "How are you?" erwartet es oft eine echte Antwort.',NOW())
 ON CONFLICT (id) DO NOTHING;

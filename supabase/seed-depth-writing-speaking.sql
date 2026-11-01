@@ -51,7 +51,7 @@ VALUES
 
   ('00000000-0000-0000-0014-000000000004','00000000-0000-0000-0000-000000000014',
    'Bewerbung: Motivationsabsatz','bewerbung-motivation-schreiben',
-   '<h2>Schreibaufgabe: Motivationsabsatz einer Bewerbung</h2><p>Schreibe den Kernabsatz eines Bewerbungsschreibens (6-8 Sätze): Warum passt du auf die Stelle? Nenne Erfahrung, Stärken und Motivation — formell und präzise.</p>',
+   '<h2>Schreibaufgabe: Motivationsabsatz einer Bewerbung</h2><p>Schreibe den Kernabsatz eines Bewerbungsschreibens (6-8 Sätze): Warum passt du auf die Stelle? Nenne Erfahrung, Stärken und Motivation: formell und präzise.</p>',
    4, NULL, NOW()),
   ('00000000-0000-0000-0014-000000000005','00000000-0000-0000-0000-000000000014',
    'Stellungnahme: Homeoffice-Pflicht?','stellungnahme-homeoffice-schreiben',
@@ -91,7 +91,7 @@ VALUES
    'Wichtig: absagen + entschuldigen + neuen Vorschlag machen ("Wäre ... möglich?").',NOW()),
   ('00000000-0000-0012-0006-000000000001','00000000-0000-0000-0012-000000000006',
    'Empfiehl deine Stadt einem Besucher. (4-5 Sätze)','writing_prompt',NULL,
-   'Du musst unbedingt die Altstadt sehen — sie ist sehr schön. Im Zentrum gibt es einen großen Markt, dort kannst du gut und günstig essen. Abends empfehle ich dir den Park am Fluss. Vergiss deine Kamera nicht!',
+   'Du musst unbedingt die Altstadt sehen: sie ist sehr schön. Im Zentrum gibt es einen großen Markt, dort kannst du gut und günstig essen. Abends empfehle ich dir den Park am Fluss. Vergiss deine Kamera nicht!',
    'Benutze Empfehlungen: "Du musst... sehen", "Ich empfehle dir...", "Dort kannst du...".',NOW()),
 
   ('00000000-0000-0013-0004-000000000001','00000000-0000-0000-0013-000000000004',
@@ -183,7 +183,7 @@ VALUES
   ('00000000-0000-0010-0006-000000000001','00000000-0000-0000-0010-000000000006',
    'Sag laut: ''Die Rechnung, bitte. Kann ich mit Karte zahlen?''','speaking_prompt',NULL,
    'Die Rechnung, bitte. Kann ich mit Karte zahlen?',
-   'Zwei kurze Sätze — mach eine kleine Pause dazwischen.',NOW()),
+   'Zwei kurze Sätze: mach eine kleine Pause dazwischen.',NOW()),
 
   ('00000000-0000-0015-0004-000000000001','00000000-0000-0000-0015-000000000004',
    'Sag laut: ''Ich habe seit drei Tagen Halsschmerzen und fühle mich sehr müde.''','speaking_prompt',NULL,
@@ -196,7 +196,7 @@ VALUES
   ('00000000-0000-0015-0006-000000000001','00000000-0000-0000-0015-000000000006',
    'Sag laut: ''Entschuldigung, dieses Gerät funktioniert nicht. Ich möchte es umtauschen.''','speaking_prompt',NULL,
    'Entschuldigung, dieses Gerät funktioniert nicht. Ich möchte es umtauschen.',
-   'Freundlich, aber bestimmt sprechen — das ist der Ton einer guten Reklamation.',NOW()),
+   'Freundlich, aber bestimmt sprechen: das ist der Ton einer guten Reklamation.',NOW()),
 
   ('00000000-0000-0016-0004-000000000001','00000000-0000-0000-0016-000000000004',
    'Sag laut: ''Da stimme ich Ihnen grundsätzlich zu, aber ich sehe einen wichtigen Punkt anders.''','speaking_prompt',NULL,
@@ -205,7 +205,7 @@ VALUES
   ('00000000-0000-0016-0005-000000000001','00000000-0000-0000-0016-000000000005',
    'Sag laut: ''Ich schlage vor, dass wir uns nächste Woche noch einmal zusammensetzen.''','speaking_prompt',NULL,
    'Ich schlage vor, dass wir uns nächste Woche noch einmal zusammensetzen.',
-   'Nebensatz mit "dass" — das Verb "zusammensetzen" steht ganz am Ende.',NOW()),
+   'Nebensatz mit "dass": das Verb "zusammensetzen" steht ganz am Ende.',NOW()),
   ('00000000-0000-0016-0006-000000000001','00000000-0000-0000-0016-000000000006',
    'Sag laut: ''Entschuldigung, ich suche das Bürgeramt. In welchem Stock finde ich Zimmer 214?''','speaking_prompt',NULL,
    'Entschuldigung, ich suche das Bürgeramt. In welchem Stock finde ich Zimmer 214?',
@@ -218,7 +218,7 @@ VALUES
   ('00000000-0000-0017-0005-000000000001','00000000-0000-0000-0017-000000000005',
    'Sag laut: ''Habe ich Sie richtig verstanden, dass die Frist auf Ende des Monats verschoben wird?''','speaking_prompt',NULL,
    'Habe ich Sie richtig verstanden, dass die Frist auf Ende des Monats verschoben wird?',
-   'Diese Rückfrage-Formel rettet jedes Meeting — sprich sie, bis sie automatisch kommt.',NOW()),
+   'Diese Rückfrage-Formel rettet jedes Meeting: sprich sie, bis sie automatisch kommt.',NOW()),
   ('00000000-0000-0017-0006-000000000001','00000000-0000-0000-0017-000000000006',
    'Sag laut: ''Zusammenfassend halten wir fest: Wir starten am Montag, und Frau Weber übernimmt die Koordination.''','speaking_prompt',NULL,
    'Zusammenfassend halten wir fest: Wir starten am Montag, und Frau Weber übernimmt die Koordination.',

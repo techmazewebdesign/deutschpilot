@@ -24,8 +24,8 @@ export function GET(_req: Request, { params }: { params: { locale: string } }) {
 
   const de = locale === "de";
   const siteTitle = de
-    ? "DeutschPilot Magazin — Deutsch lernen"
-    : "DeutschPilot Magazine — Learn German";
+    ? "DeutschPilot Magazin: Deutsch lernen"
+    : "DeutschPilot Magazine: Learn German";
   const siteDescription = de
     ? "Grammatik, Prüfungsguides und Lerntipps für Deutschlernende."
     : "Grammar, exam guides, and learning tips for German learners.";

@@ -1,3 +1,4 @@
+import { displayText } from "@/lib/displayText";
 import { auth } from "@/lib/auth";
 import { legacyLearningClient, requireQuery } from "@/lib/legacyLearningAccess";
 import { getTranslations } from "next-intl/server";
@@ -94,9 +95,9 @@ export default async function CourseDetailPage({
               {course.level}
             </span>
             <h1 className="mb-3 font-serif text-3xl font-bold text-white sm:text-4xl">
-              {course.title}
+              {displayText(course.title)}
             </h1>
-            <p className="mb-6 leading-relaxed text-[#C9D2DE]">{course.description}</p>
+            <p className="mb-6 leading-relaxed text-[#C9D2DE]">{displayText(course.description)}</p>
 
             <div className="mb-6 flex items-center gap-6 text-sm text-white/50">
               <span className="flex items-center gap-1.5">
@@ -179,7 +180,7 @@ export default async function CourseDetailPage({
                           <p
                             className={`truncate text-sm font-medium ${isDone ? "text-white/50 line-through" : "text-white"}`}
                           >
-                            {lesson.title}
+                            {displayText(lesson.title)}
                           </p>
                         </div>
                         <ChevronRight className="h-4 w-4 flex-shrink-0 text-white/20 transition-colors group-hover:text-[#E0B873]" />

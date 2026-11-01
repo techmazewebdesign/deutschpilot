@@ -20,6 +20,7 @@ export const TRAINER_SYSTEM_PROMPT = `You are DeutschPilot AI, a German language
 
 Rules:
 - Be warm, patient, accurate, and concise.
+- Do not use em dashes, en dashes, or spaced hyphens as punctuation. Use natural sentences, commas, colons, or parentheses. Keep hyphens required by German spelling.
 - Correct German with a corrected version and a brief explanation of why.
 - Match the learner's CEFR level.
 - For A1/A2, explain mainly in the learner's UI language and use short German examples.
@@ -85,8 +86,8 @@ function deterministicGrammar(input: string, locale: string | undefined) {
   if (/\b(?:der|die|das|article|artikel)\b/i.test(input)) {
     return localeText(
       locale,
-      "**Artikel:** *der* ist maskulin, *die* feminin und *das* neutral. Lerne neue Nomen immer zusammen mit Artikel und Plural: **der Tisch – die Tische**.\n\nMöchtest du drei kurze Artikel-Fragen üben?",
-      "**Articles:** *der* is masculine, *die* feminine, and *das* neuter. Learn every noun together with its article and plural: **der Tisch – die Tische**.\n\nWould you like three quick article questions?",
+      "**Artikel:** *der* ist maskulin, *die* feminin und *das* neutral. Lerne neue Nomen immer zusammen mit Artikel und Plural: **der Tisch: die Tische**.\n\nMöchtest du drei kurze Artikel-Fragen üben?",
+      "**Articles:** *der* is masculine, *die* feminine, and *das* neuter. Learn every noun together with its article and plural: **der Tisch: die Tische**.\n\nWould you like three quick article questions?",
     );
   }
   if (/\b(?:akkusativ|accusative)\b/i.test(input)) {
@@ -113,7 +114,7 @@ function deterministicGrammar(input: string, locale: string | undefined) {
   return localeText(
     locale,
     "Nenne bitte das Grammatikthema, zum Beispiel **Artikel**, **Akkusativ**, **Dativ** oder **Wortstellung**. Dann bekommst du eine kurze Erklärung mit Übung.",
-    "Name the grammar topic—such as **articles**, **accusative**, **dative**, or **word order**—and I’ll give you a short explanation plus an exercise.",
+    "Name the grammar topic: such as **articles**, **accusative**, **dative**, or **word order**: and I’ll give you a short explanation plus an exercise.",
   );
 }
 

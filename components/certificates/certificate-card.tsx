@@ -31,7 +31,7 @@ export function CertificateCard({ level, userName, locale }: { level: string; us
         <p className="text-sm text-white/60 mb-6 leading-relaxed print:text-black">
           {t("completingLevel")}
           {" "}
-          <strong className="text-[#E0B873] print:text-black">{level} — {de ? LEVEL_NAMES[level]?.de : LEVEL_NAMES[level]?.en}</strong>
+          <strong className="text-[#E0B873] print:text-black">{level}  bis {de ? LEVEL_NAMES[level]?.de : LEVEL_NAMES[level]?.en}</strong>
           {" "}
           ({t("cefrAbbreviation")})
         </p>

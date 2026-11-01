@@ -6,7 +6,7 @@ INSERT INTO public.courses (id, slug, title, description, level, language, is_pu
 VALUES (
   'a0000000-0000-0000-0000-000000000004',
   'a1-shopping',
-  'A1 Room 04 – Shopping & Daily Needs',
+  'A1 Room 04: Shopping & Daily Needs',
   'Learn to shop for food and clothes, understand prices, use modal verbs, and ask for help in stores.',
   'A1', 'de', true, NOW()
 ) ON CONFLICT (id) DO NOTHING;
@@ -17,8 +17,8 @@ VALUES (
   'a0000000-0000-0000-0004-000000000001',
   'a0000000-0000-0000-0000-000000000004',
   'im-supermarkt-lebensmittel',
-  'Im Supermarkt – Lebensmittel',
-  '<h2>Im Supermarkt – Lebensmittel</h2>
+  'Im Supermarkt: Lebensmittel',
+  '<h2>Im Supermarkt: Lebensmittel</h2>
 <h3>Food Vocabulary with Articles</h3>
 <table>
 <thead><tr><th>German</th><th>English</th></tr></thead>
@@ -76,7 +76,7 @@ VALUES (
 <li>Das kostet <strong>zwei Euro</strong>. (That costs two euros.)</li>
 <li>Das kostet <strong>1,50 Euro</strong>. (That costs 1.50 euros.)</li>
 </ul>
-<h3>Numbers Review (1–100)</h3>
+<h3>Numbers Review (1 bis 100)</h3>
 <table>
 <thead><tr><th>Number</th><th>German</th></tr></thead>
 <tbody>
@@ -141,7 +141,7 @@ VALUES (
 </table>
 <h3>Sizes and Colors</h3>
 <ul>
-<li>Welche Größe haben Sie? — Ich habe Größe M. (What size are you? — I''m size M.)</li>
+<li>Welche Größe haben Sie?: Ich habe Größe M. (What size are you?: I''m size M.)</li>
 <li>Welche Farbe möchten Sie? (What colour would you like?)</li>
 <li>Ich möchte das Hemd <strong>in Blau</strong>. (I would like the shirt in blue.)</li>
 <li>Haben Sie die Jacke <strong>in Größe L</strong>? (Do you have the jacket in size L?)</li>
@@ -177,8 +177,8 @@ VALUES (
   'a0000000-0000-0000-0004-000000000004',
   'a0000000-0000-0000-0000-000000000004',
   'modal-verben-koennen-moechten',
-  'Modal Verbs – können & möchten',
-  '<h2>Modal Verbs – können &amp; möchten</h2>
+  'Modal Verbs: können & möchten',
+  '<h2>Modal Verbs: können &amp; möchten</h2>
 <h3>können (can / to be able to)</h3>
 <table>
 <thead><tr><th>Person</th><th>Form</th></tr></thead>
@@ -234,15 +234,15 @@ VALUES (
   'a0000000-0000-0000-0004-000000000005',
   'a0000000-0000-0000-0000-000000000004',
   'im-geschaeft-einkaufsgespraech',
-  'Im Geschäft – Einkaufsgespräch',
-  '<h2>Im Geschäft – Einkaufsgespräch</h2>
+  'Im Geschäft: Einkaufsgespräch',
+  '<h2>Im Geschäft: Einkaufsgespräch</h2>
 <h3>A Shopping Dialogue</h3>
 <p><strong>Verkäufer:</strong> Guten Tag! Kann ich Ihnen helfen? (Good day! Can I help you?)<br>
 <strong>Kunde:</strong> Ja, ich suche eine Jacke in Größe M. (Yes, I am looking for a jacket in size M.)<br>
 <strong>Verkäufer:</strong> Welche Farbe möchten Sie? (What colour would you like?)<br>
 <strong>Kunde:</strong> Blau, bitte. (Blue, please.)<br>
 <strong>Verkäufer:</strong> Hier ist eine blaue Jacke. Möchten Sie sie anprobieren? (Here is a blue jacket. Would you like to try it on?)<br>
-<strong>Kunde:</strong> Ja, gerne. — Das passt gut. Wie viel kostet sie? (Yes, please. — It fits well. How much does it cost?)<br>
+<strong>Kunde:</strong> Ja, gerne.: Das passt gut. Wie viel kostet sie? (Yes, please.: It fits well. How much does it cost?)<br>
 <strong>Verkäufer:</strong> Sie kostet 35 Euro. (It costs 35 euros.)<br>
 <strong>Kunde:</strong> Gut, ich nehme sie. (Good, I''ll take it.)</p>
 <h3>Key Phrases</h3>
@@ -278,7 +278,7 @@ VALUES (
   'a0000000-0000-0000-0004-000000000099',
   'a0000000-0000-0000-0000-000000000004',
   'room-04-quiz-shopping-daily-needs',
-  'Room 04 Quiz – Shopping & Daily Needs',
+  'Room 04 Quiz: Shopping & Daily Needs',
   '<h2>Checkpoint Quiz</h2><p>Test your knowledge of food vocabulary, prices, clothing, modal verbs, and shopping conversations.</p>',
   99, NOW()
 ) ON CONFLICT (id) DO NOTHING;

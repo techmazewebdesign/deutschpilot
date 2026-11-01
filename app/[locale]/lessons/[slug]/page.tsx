@@ -1,3 +1,4 @@
+import { displayText, displayHtml } from "@/lib/displayText";
 import { getTranslations } from "next-intl/server";
 import { notFound, redirect } from "next/navigation";
 import Link from "next/link";
@@ -101,12 +102,12 @@ export default async function LessonPage({ params }: { params: { locale: string;
                 href={`/${locale}/rooms/${course.slug}`}
                 className="max-w-[120px] truncate transition-colors hover:text-[#E0B873]"
               >
-                {course.title}
+                {displayText(course.title)}
               </Link>
             </>
           )}
           <ChevronRight className="h-3 w-3 flex-shrink-0" />
-          <span className="max-w-[140px] truncate text-white/55">{lesson.title}</span>
+          <span className="max-w-[140px] truncate text-white/55">{displayText(lesson.title)}</span>
         </div>
 
         {/* Lesson header card */}
@@ -122,9 +123,9 @@ export default async function LessonPage({ params }: { params: { locale: string;
               </span>
             </div>
             <h1 className="mb-2 font-serif text-2xl font-bold text-white lg:text-3xl">
-              {lesson.title}
+              {displayText(lesson.title)}
             </h1>
-            {course && <p className="text-sm text-white/45">{course.title}</p>}
+            {course && <p className="text-sm text-white/45">{displayText(course.title)}</p>}
             {/* Progress stepper */}
             {totalLessons > 0 && (
               <div className="mt-4 flex items-center gap-1">
@@ -189,7 +190,7 @@ export default async function LessonPage({ params }: { params: { locale: string;
           rounded-2xl border
           bg-[#0A1E35]/70 p-6 backdrop-blur-sm lg:p-8"
         >
-          <div dangerouslySetInnerHTML={{ __html: lesson.content ?? "" }} />
+          <div dangerouslySetInnerHTML={{ __html: displayHtml(lesson.content) }} />
         </div>
 
         {/* Complete / actions */}

@@ -9,7 +9,7 @@ INSERT INTO public.courses (id, slug, title, description, level, language, is_pu
 VALUES (
   'a0000000-0000-0000-0000-000000000001',
   'greetings',
-  'A1 Room 01 – Greetings & Introductions',
+  'A1 Room 01: Greetings & Introductions',
   'Your first step into German. Master essential greetings, introduce yourself, and hold your first basic conversations with confidence.',
   'A1', 'de', TRUE, NOW()
 )
@@ -24,15 +24,15 @@ VALUES (
   'a0000000-0000-0000-0000-000000000001',
   'a1-hallo-begrussungen',
   'Hallo & Begrüßungen',
-  '<h2>Hallo! – Greetings in German</h2>
-<p>In this lesson you will learn the most important German greetings for different times of day and different situations – both formal and informal.</p>
+  '<h2>Hallo!: Greetings in German</h2>
+<p>In this lesson you will learn the most important German greetings for different times of day and different situations: both formal and informal.</p>
 
 <h3>1. Greetings by Time of Day</h3>
 <table>
   <thead><tr><th>German</th><th>English</th><th>When</th></tr></thead>
   <tbody>
     <tr><td><strong>Guten Morgen</strong></td><td>Good morning</td><td>Until ~10:00 am</td></tr>
-    <tr><td><strong>Guten Tag</strong></td><td>Good day / Hello</td><td>10:00 – 18:00</td></tr>
+    <tr><td><strong>Guten Tag</strong></td><td>Good day / Hello</td><td>10:00 bis 18:00</td></tr>
     <tr><td><strong>Guten Abend</strong></td><td>Good evening</td><td>After 18:00</td></tr>
     <tr><td><strong>Gute Nacht</strong></td><td>Good night</td><td>Before sleeping</td></tr>
   </tbody>
@@ -40,36 +40,36 @@ VALUES (
 
 <h3>2. Casual / Informal Greetings</h3>
 <ul>
-  <li><strong>Hallo</strong> – Hello (any time, with friends and family)</li>
-  <li><strong>Hi</strong> – Hi (very casual, mostly with young people)</li>
-  <li><strong>Hey</strong> – Hey (very informal)</li>
-  <li><strong>Servus</strong> – Hey / Bye (southern Germany and Austria)</li>
-  <li><strong>Moin</strong> – Morning / Hello (northern Germany)</li>
+  <li><strong>Hallo</strong>: Hello (any time, with friends and family)</li>
+  <li><strong>Hi</strong>: Hi (very casual, mostly with young people)</li>
+  <li><strong>Hey</strong>: Hey (very informal)</li>
+  <li><strong>Servus</strong>: Hey / Bye (southern Germany and Austria)</li>
+  <li><strong>Moin</strong>: Morning / Hello (northern Germany)</li>
 </ul>
 
-<h3>3. Grammar Note – Formal vs. Informal</h3>
+<h3>3. Grammar Note: Formal vs. Informal</h3>
 <p>German has two ways to address people:</p>
 <ul>
   <li>Use <strong>du</strong> (informal) with friends, family, children, and peers.</li>
   <li>Use <strong>Sie</strong> (formal) with strangers, officials, and older people.</li>
 </ul>
-<p>When in doubt, use the formal <em>Sie</em> – it is always polite.</p>
+<p>When in doubt, use the formal <em>Sie</em>: it is always polite.</p>
 
 <h3>4. Key Vocabulary</h3>
 <ul>
-  <li><strong>der Gruß</strong> – the greeting</li>
-  <li><strong>begrüßen</strong> – to greet</li>
-  <li><strong>formell</strong> – formal</li>
-  <li><strong>informell</strong> – informal</li>
-  <li><strong>willkommen</strong> – welcome</li>
+  <li><strong>der Gruß</strong>: the greeting</li>
+  <li><strong>begrüßen</strong>: to greet</li>
+  <li><strong>formell</strong>: formal</li>
+  <li><strong>informell</strong>: informal</li>
+  <li><strong>willkommen</strong>: welcome</li>
 </ul>
 
 <h3>5. Example Sentences</h3>
 <ul>
-  <li>Guten Morgen, Frau Müller! – Good morning, Ms. Müller!</li>
-  <li>Hallo! Wie geht es dir? – Hello! How are you? (informal)</li>
-  <li>Guten Tag! Wie heißen Sie? – Good day! What is your name? (formal)</li>
-  <li>Guten Abend! Schön, Sie zu sehen. – Good evening! Nice to see you.</li>
+  <li>Guten Morgen, Frau Müller!: Good morning, Ms. Müller!</li>
+  <li>Hallo! Wie geht es dir?: Hello! How are you? (informal)</li>
+  <li>Guten Tag! Wie heißen Sie?: Good day! What is your name? (formal)</li>
+  <li>Guten Abend! Schön, Sie zu sehen.: Good evening! Nice to see you.</li>
 </ul>
 
 <h3>6. Mini Dialogue</h3>
@@ -89,7 +89,7 @@ VALUES (
   'a0000000-0000-0000-0000-000000000001',
   'a1-ich-heisse',
   'Ich heiße … / Mein Name ist …',
-  '<h2>Sich vorstellen – Introducing Yourself</h2>
+  '<h2>Sich vorstellen: Introducing Yourself</h2>
 <p>In this lesson you will learn how to introduce yourself in German: your name, your age, and how to ask others for their name.</p>
 
 <h3>1. Saying Your Name</h3>
@@ -102,7 +102,7 @@ VALUES (
   </tbody>
 </table>
 
-<h3>2. Grammar – Verb "heißen" (to be called)</h3>
+<h3>2. Grammar: Verb "heißen" (to be called)</h3>
 <table>
   <thead><tr><th>Pronoun</th><th>Form</th><th>Example</th></tr></thead>
   <tbody>
@@ -116,29 +116,29 @@ VALUES (
 
 <h3>3. Asking for Someone's Name</h3>
 <ul>
-  <li><strong>Wie heißt du?</strong> – What is your name? (informal)</li>
-  <li><strong>Wie heißen Sie?</strong> – What is your name? (formal)</li>
-  <li><strong>Wie ist dein Name?</strong> – What is your name? (casual written)</li>
-  <li><strong>Darf ich fragen, wie Sie heißen?</strong> – May I ask your name? (very polite)</li>
+  <li><strong>Wie heißt du?</strong>: What is your name? (informal)</li>
+  <li><strong>Wie heißen Sie?</strong>: What is your name? (formal)</li>
+  <li><strong>Wie ist dein Name?</strong>: What is your name? (casual written)</li>
+  <li><strong>Darf ich fragen, wie Sie heißen?</strong>: May I ask your name? (very polite)</li>
 </ul>
 
 <h3>4. Key Vocabulary</h3>
 <ul>
-  <li><strong>der Vorname</strong> – first name</li>
-  <li><strong>der Nachname / Familienname</strong> – last name / surname</li>
-  <li><strong>das Alter</strong> – age</li>
-  <li><strong>Ich bin … Jahre alt.</strong> – I am … years old.</li>
-  <li><strong>Wie alt bist du?</strong> – How old are you? (informal)</li>
-  <li><strong>Schön, dich kennenzulernen!</strong> – Nice to meet you! (informal)</li>
-  <li><strong>Schön, Sie kennenzulernen!</strong> – Nice to meet you! (formal)</li>
+  <li><strong>der Vorname</strong>: first name</li>
+  <li><strong>der Nachname / Familienname</strong>: last name / surname</li>
+  <li><strong>das Alter</strong>: age</li>
+  <li><strong>Ich bin … Jahre alt.</strong>: I am … years old.</li>
+  <li><strong>Wie alt bist du?</strong>: How old are you? (informal)</li>
+  <li><strong>Schön, dich kennenzulernen!</strong>: Nice to meet you! (informal)</li>
+  <li><strong>Schön, Sie kennenzulernen!</strong>: Nice to meet you! (formal)</li>
 </ul>
 
 <h3>5. Example Sentences</h3>
 <ul>
-  <li>Hallo! Ich heiße Sara. Wie heißt du? – Hello! My name is Sara. What is your name?</li>
-  <li>Mein Name ist Klaus Bauer. – My name is Klaus Bauer.</li>
-  <li>Ich bin 28 Jahre alt. – I am 28 years old.</li>
-  <li>Schön, dich kennenzulernen, Marco! – Nice to meet you, Marco!</li>
+  <li>Hallo! Ich heiße Sara. Wie heißt du?: Hello! My name is Sara. What is your name?</li>
+  <li>Mein Name ist Klaus Bauer.: My name is Klaus Bauer.</li>
+  <li>Ich bin 28 Jahre alt.: I am 28 years old.</li>
+  <li>Schön, dich kennenzulernen, Marco!: Nice to meet you, Marco!</li>
 </ul>
 
 <h3>6. Mini Dialogue</h3>
@@ -160,7 +160,7 @@ VALUES (
   'a0000000-0000-0000-0000-000000000001',
   'a1-wie-geht-es-dir',
   'Wie geht es dir?',
-  '<h2>Wie geht es dir? – How Are You?</h2>
+  '<h2>Wie geht es dir?: How Are You?</h2>
 <p>In this lesson you will learn how to ask someone how they are and how to respond naturally in German.</p>
 
 <h3>1. How to Ask "How Are You?"</h3>
@@ -188,32 +188,32 @@ VALUES (
   </tbody>
 </table>
 
-<h3>3. Grammar – "es geht mir …"</h3>
+<h3>3. Grammar: "es geht mir …"</h3>
 <p>The structure <em>Es geht mir gut</em> uses the dative pronoun:</p>
 <ul>
-  <li>Es geht <strong>mir</strong> gut. – I am doing well. (lit. "It goes well for me.")</li>
-  <li>Es geht <strong>dir</strong> gut. – You are doing well. (informal)</li>
-  <li>Es geht <strong>ihm/ihr</strong> gut. – He/She is doing well.</li>
-  <li>Wie geht es <strong>Ihnen</strong>? – How are you? (formal)</li>
+  <li>Es geht <strong>mir</strong> gut.: I am doing well. (lit. "It goes well for me.")</li>
+  <li>Es geht <strong>dir</strong> gut.: You are doing well. (informal)</li>
+  <li>Es geht <strong>ihm/ihr</strong> gut.: He/She is doing well.</li>
+  <li>Wie geht es <strong>Ihnen</strong>?: How are you? (formal)</li>
 </ul>
 
 <h3>4. Key Vocabulary</h3>
 <ul>
-  <li><strong>danke</strong> – thank you</li>
-  <li><strong>bitte</strong> – please / you're welcome</li>
-  <li><strong>und dir? / und Ihnen?</strong> – and you? (informal / formal)</li>
-  <li><strong>müde</strong> – tired</li>
-  <li><strong>krank</strong> – sick / ill</li>
-  <li><strong>glücklich</strong> – happy</li>
-  <li><strong>gestresst</strong> – stressed</li>
+  <li><strong>danke</strong>: thank you</li>
+  <li><strong>bitte</strong>: please / you're welcome</li>
+  <li><strong>und dir? / und Ihnen?</strong>: and you? (informal / formal)</li>
+  <li><strong>müde</strong>: tired</li>
+  <li><strong>krank</strong>: sick / ill</li>
+  <li><strong>glücklich</strong>: happy</li>
+  <li><strong>gestresst</strong>: stressed</li>
 </ul>
 
 <h3>5. Example Sentences</h3>
 <ul>
-  <li>Wie geht es dir, Maria? – How are you, Maria?</li>
-  <li>Danke, sehr gut! Und dir? – Thank you, very good! And you?</li>
-  <li>Es geht mir nicht so gut heute. – I am not feeling so well today.</li>
-  <li>Prima, danke! Wie geht es Ihnen? – Great, thank you! How are you? (formal)</li>
+  <li>Wie geht es dir, Maria?: How are you, Maria?</li>
+  <li>Danke, sehr gut! Und dir?: Thank you, very good! And you?</li>
+  <li>Es geht mir nicht so gut heute.: I am not feeling so well today.</li>
+  <li>Prima, danke! Wie geht es Ihnen?: Great, thank you! How are you? (formal)</li>
 </ul>
 
 <h3>6. Mini Dialogue</h3>
@@ -233,7 +233,7 @@ VALUES (
   'a0000000-0000-0000-0000-000000000001',
   'a1-woher-kommst-du',
   'Woher kommst du?',
-  '<h2>Woher kommst du? – Where Are You From?</h2>
+  '<h2>Woher kommst du?: Where Are You From?</h2>
 <p>In this lesson you will learn how to say where you are from and ask others about their origin.</p>
 
 <h3>1. Asking About Origin</h3>
@@ -249,14 +249,14 @@ VALUES (
 
 <h3>2. Saying Where You Are From</h3>
 <ul>
-  <li><strong>Ich komme aus Deutschland.</strong> – I am from Germany.</li>
-  <li><strong>Ich komme aus dem Iran.</strong> – I am from Iran.</li>
-  <li><strong>Ich komme aus der Türkei.</strong> – I am from Turkey.</li>
-  <li><strong>Ich komme aus den USA.</strong> – I am from the USA.</li>
+  <li><strong>Ich komme aus Deutschland.</strong>: I am from Germany.</li>
+  <li><strong>Ich komme aus dem Iran.</strong>: I am from Iran.</li>
+  <li><strong>Ich komme aus der Türkei.</strong>: I am from Turkey.</li>
+  <li><strong>Ich komme aus den USA.</strong>: I am from the USA.</li>
   <li>Note: Use <em>dem</em> for masculine/neuter countries, <em>der</em> for feminine countries, <em>den</em> for plural country names.</li>
 </ul>
 
-<h3>3. Grammar – Verb "kommen" (to come)</h3>
+<h3>3. Grammar: Verb "kommen" (to come)</h3>
 <table>
   <thead><tr><th>Pronoun</th><th>Form</th><th>Example</th></tr></thead>
   <tbody>
@@ -270,24 +270,24 @@ VALUES (
 
 <h3>4. Country Vocabulary</h3>
 <ul>
-  <li><strong>Deutschland</strong> – Germany</li>
-  <li><strong>Österreich</strong> – Austria</li>
-  <li><strong>die Schweiz</strong> – Switzerland</li>
-  <li><strong>die Türkei</strong> – Turkey</li>
-  <li><strong>der Iran</strong> – Iran</li>
-  <li><strong>Großbritannien</strong> – Great Britain</li>
-  <li><strong>die USA / Amerika</strong> – the USA / America</li>
-  <li><strong>Brasilien</strong> – Brazil</li>
-  <li><strong>China</strong> – China</li>
-  <li><strong>Indien</strong> – India</li>
-  <li><strong>die Arabische Welt</strong> – the Arab world</li>
+  <li><strong>Deutschland</strong>: Germany</li>
+  <li><strong>Österreich</strong>: Austria</li>
+  <li><strong>die Schweiz</strong>: Switzerland</li>
+  <li><strong>die Türkei</strong>: Turkey</li>
+  <li><strong>der Iran</strong>: Iran</li>
+  <li><strong>Großbritannien</strong>: Great Britain</li>
+  <li><strong>die USA / Amerika</strong>: the USA / America</li>
+  <li><strong>Brasilien</strong>: Brazil</li>
+  <li><strong>China</strong>: China</li>
+  <li><strong>Indien</strong>: India</li>
+  <li><strong>die Arabische Welt</strong>: the Arab world</li>
 </ul>
 
 <h3>5. Example Sentences</h3>
 <ul>
-  <li>Ich komme aus Österreich. Und du? – I am from Austria. And you?</li>
-  <li>Woher kommen Sie, Herr Schmidt? – Where are you from, Mr. Schmidt?</li>
-  <li>Sie kommt aus Japan. Er kommt aus Ägypten. – She is from Japan. He is from Egypt.</li>
+  <li>Ich komme aus Österreich. Und du?: I am from Austria. And you?</li>
+  <li>Woher kommen Sie, Herr Schmidt?: Where are you from, Mr. Schmidt?</li>
+  <li>Sie kommt aus Japan. Er kommt aus Ägypten.: She is from Japan. He is from Egypt.</li>
 </ul>
 
 <h3>6. Mini Dialogue</h3>
@@ -308,7 +308,7 @@ VALUES (
   'a0000000-0000-0000-0000-000000000001',
   'a1-tschuss-bis-bald',
   'Tschüss, bis bald!',
-  '<h2>Auf Wiedersehen! – Saying Goodbye in German</h2>
+  '<h2>Auf Wiedersehen!: Saying Goodbye in German</h2>
 <p>In this lesson you will learn the many ways to say goodbye in German and which to use in different situations.</p>
 
 <h3>1. Common Farewells</h3>
@@ -329,32 +329,32 @@ VALUES (
   </tbody>
 </table>
 
-<h3>2. Grammar – "bis" (until)</h3>
+<h3>2. Grammar: "bis" (until)</h3>
 <p>The word <em>bis</em> is used to form many farewell expressions:</p>
 <ul>
-  <li><strong>bis bald</strong> – until soon (= see you soon)</li>
-  <li><strong>bis später</strong> – until later (= see you later)</li>
-  <li><strong>bis morgen</strong> – until tomorrow</li>
-  <li><strong>bis nächste Woche</strong> – until next week</li>
-  <li><strong>bis Montag</strong> – until Monday</li>
+  <li><strong>bis bald</strong>: until soon (= see you soon)</li>
+  <li><strong>bis später</strong>: until later (= see you later)</li>
+  <li><strong>bis morgen</strong>: until tomorrow</li>
+  <li><strong>bis nächste Woche</strong>: until next week</li>
+  <li><strong>bis Montag</strong>: until Monday</li>
 </ul>
 
 <h3>3. Polite Additions</h3>
 <ul>
-  <li><strong>Vielen Dank!</strong> – Thank you very much!</li>
-  <li><strong>Danke schön!</strong> – Thank you kindly!</li>
-  <li><strong>Es war schön, dich zu sehen.</strong> – It was nice to see you. (informal)</li>
-  <li><strong>Alles Gute!</strong> – All the best!</li>
-  <li><strong>Pass auf dich auf!</strong> – Take care! (informal)</li>
-  <li><strong>Mach's gut!</strong> – Take care! (informal, lit. "Do it well!")</li>
+  <li><strong>Vielen Dank!</strong>: Thank you very much!</li>
+  <li><strong>Danke schön!</strong>: Thank you kindly!</li>
+  <li><strong>Es war schön, dich zu sehen.</strong>: It was nice to see you. (informal)</li>
+  <li><strong>Alles Gute!</strong>: All the best!</li>
+  <li><strong>Pass auf dich auf!</strong>: Take care! (informal)</li>
+  <li><strong>Mach's gut!</strong>: Take care! (informal, lit. "Do it well!")</li>
 </ul>
 
 <h3>4. Example Sentences</h3>
 <ul>
-  <li>Tschüss, Lisa! Bis morgen! – Bye, Lisa! See you tomorrow!</li>
-  <li>Auf Wiedersehen, Herr Meier. Schönes Wochenende! – Goodbye, Mr. Meier. Have a nice weekend!</li>
-  <li>Mach's gut! Bis bald! – Take care! See you soon!</li>
-  <li>Gute Nacht! Schlaf gut! – Good night! Sleep well!</li>
+  <li>Tschüss, Lisa! Bis morgen!: Bye, Lisa! See you tomorrow!</li>
+  <li>Auf Wiedersehen, Herr Meier. Schönes Wochenende!: Goodbye, Mr. Meier. Have a nice weekend!</li>
+  <li>Mach's gut! Bis bald!: Take care! See you soon!</li>
+  <li>Gute Nacht! Schlaf gut!: Good night! Sleep well!</li>
 </ul>
 
 <h3>5. Mini Dialogue</h3>
@@ -375,7 +375,7 @@ VALUES (
   'a0000000-0000-0000-0001-000000000099',
   'a0000000-0000-0000-0000-000000000001',
   'a1-room01-checkpoint',
-  'A1 Room 01 – Checkpoint Quiz',
+  'A1 Room 01: Checkpoint Quiz',
   '',
   99, NOW()
 )
@@ -474,7 +474,7 @@ VALUES
     'multiple_choice',
     '["Sehr gut", "Schlecht", "Es geht", "Super"]'::jsonb,
     'Es geht',
-    '"Es geht" means "so-so" or "not bad" – a neutral, moderate response.',
+    '"Es geht" means "so-so" or "not bad": a neutral, moderate response.',
     NOW()
   ),
   (
@@ -516,11 +516,11 @@ VALUES
   (
     'a0000000-0000-0001-0004-000000000003',
     'a0000000-0000-0000-0001-000000000004',
-    'Fill in the blank: "Woher ___ du?" (Where are you from? – informal)',
+    'Fill in the blank: "Woher ___ du?" (Where are you from?: informal)',
     'fill_blank',
     NULL,
     'kommst',
-    '"Woher kommst du?" – "kommen" conjugated for "du" is "kommst".',
+    '"Woher kommst du?": "kommen" conjugated for "du" is "kommst".',
     NOW()
   )
 ON CONFLICT (id) DO NOTHING;

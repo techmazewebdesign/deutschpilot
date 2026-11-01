@@ -11,7 +11,7 @@ export const article: MagazineArticle = {
     "The six German modal verbs explained with meaning differences, full conjugation, word order, and the mistakes learners make most often.",
   description_de:
     "Die sechs deutschen Modalverben mit Bedeutungsunterschieden, vollständiger Konjugation, Satzstellung und den häufigsten Lernerfehlern.",
-  body_en: `<p>Modal verbs are some of the most useful words in German — they let you talk about ability, obligation, permission, and desire without a single extra clause. The catch: their meanings overlap in ways that don't map cleanly onto English, and their word order rules trip up learners at every level.</p>
+  body_en: `<p>Modal verbs are some of the most useful words in German: they let you talk about ability, obligation, permission, and desire without a single extra clause. The catch: their meanings overlap in ways that don't map cleanly onto English, and their word order rules trip up learners at every level.</p>
 
 <h2>The six modal verbs and what they really mean</h2>
 <table>
@@ -29,16 +29,16 @@ export const article: MagazineArticle = {
 <h2>The trap: nicht müssen vs. nicht dürfen</h2>
 <p>This is the single most common modal-verb mistake, and it reverses the meaning completely:</p>
 <ul>
-  <li><strong>nicht müssen</strong> = don't have to (no obligation): <em>Du musst das nicht machen.</em> (You don't have to do that — it's optional.)</li>
-  <li><strong>nicht dürfen</strong> = must not, forbidden: <em>Du darfst das nicht machen.</em> (You must not do that — it's forbidden.)</li>
+  <li><strong>nicht müssen</strong> = don't have to (no obligation): <em>Du musst das nicht machen.</em> (You don't have to do that: it's optional.)</li>
+  <li><strong>nicht dürfen</strong> = must not, forbidden: <em>Du darfst das nicht machen.</em> (You must not do that: it's forbidden.)</li>
 </ul>
 <p>English speakers often reach for "must not" when they mean "don't have to," and say the opposite of what they intend. Read the two examples above until the difference feels automatic.</p>
 
 <h2>sollen vs. müssen</h2>
-<p>Both translate loosely as "should/must," but the source of the obligation differs. <strong>müssen</strong> is a hard necessity — a rule, a deadline, a fact of life. <strong>sollen</strong> reports someone else's expectation or advice: <em>Der Arzt sagt, ich soll mehr schlafen.</em> (The doctor says I should sleep more — it's the doctor's opinion, not an iron rule.)</p>
+<p>Both translate loosely as "should/must," but the source of the obligation differs. <strong>müssen</strong> is a hard necessity: a rule, a deadline, a fact of life. <strong>sollen</strong> reports someone else's expectation or advice: <em>Der Arzt sagt, ich soll mehr schlafen.</em> (The doctor says I should sleep more: it's the doctor's opinion, not an iron rule.)</p>
 
 <h2>Conjugation: the irregular present tense</h2>
-<p>All six modals are irregular in the singular — the vowel changes and there's no <em>-e</em> or <em>-t</em> ending in <em>ich</em>/<em>er/sie/es</em> forms.</p>
+<p>All six modals are irregular in the singular: the vowel changes and there's no <em>-e</em> or <em>-t</em> ending in <em>ich</em>/<em>er/sie/es</em> forms.</p>
 <table>
   <thead><tr><th></th><th>können</th><th>müssen</th><th>dürfen</th><th>sollen</th><th>wollen</th><th>mögen</th></tr></thead>
   <tbody>
@@ -61,18 +61,18 @@ export const article: MagazineArticle = {
 <p>In a subordinate clause, both verbs move to the end together, modal last: <em>Ich weiß, dass er das nicht machen darf.</em> (I know that he's not allowed to do that.)</p>
 
 <h2>Past tense: simple, unlike most verbs</h2>
-<p>Modal verbs almost always use Präteritum, even in speech — their Perfekt forms sound stiff or old-fashioned. <em>ich konnte, ich musste, ich durfte, ich sollte, ich wollte, ich mochte</em>. Compare: <em>Ich konnte gestern nicht kommen.</em> (I couldn't come yesterday) rather than the clunky <em>Ich habe gestern nicht kommen können.</em></p>
+<p>Modal verbs almost always use Präteritum, even in speech: their Perfekt forms sound stiff or old-fashioned. <em>ich konnte, ich musste, ich durfte, ich sollte, ich wollte, ich mochte</em>. Compare: <em>Ich konnte gestern nicht kommen.</em> (I couldn't come yesterday) rather than the clunky <em>Ich habe gestern nicht kommen können.</em></p>
 
 <h2>Quick reference: common mistakes</h2>
 <ul>
   <li>Forgetting to move the main verb infinitive to the end of the clause.</li>
   <li>Confusing <em>nicht müssen</em> (optional) with <em>nicht dürfen</em> (forbidden).</li>
   <li>Conjugating the main verb instead of leaving it as a bare infinitive: wrong <em>Ich kann schwimmt</em>, right <em>Ich kann schwimmen</em>.</li>
-  <li>Using <em>mögen</em> where <em>möchte</em> is meant — <em>Ich mag einen Kaffee</em> sounds odd; <em>Ich möchte einen Kaffee</em> is the natural request.</li>
+  <li>Using <em>mögen</em> where <em>möchte</em> is meant: <em>Ich mag einen Kaffee</em> sounds odd; <em>Ich möchte einen Kaffee</em> is the natural request.</li>
 </ul>
 
 <p>Practice modal verbs with real dialogues in our <a href="/en/courses">A2 and B1 courses</a>, and check the full grammar reference in our <a href="/en/faq">FAQ</a> if a specific case still feels unclear.</p>`,
-  body_de: `<p>Modalverben gehören zu den nützlichsten Wörtern im Deutschen — sie erlauben es, über Fähigkeit, Pflicht, Erlaubnis und Wunsch zu sprechen, ganz ohne zusätzlichen Nebensatz. Der Haken: Ihre Bedeutungen überschneiden sich auf eine Weise, die sich nicht sauber auf andere Sprachen übertragen lässt, und die Satzstellung bringt Lernende auf jedem Niveau durcheinander.</p>
+  body_de: `<p>Modalverben gehören zu den nützlichsten Wörtern im Deutschen: sie erlauben es, über Fähigkeit, Pflicht, Erlaubnis und Wunsch zu sprechen, ganz ohne zusätzlichen Nebensatz. Der Haken: Ihre Bedeutungen überschneiden sich auf eine Weise, die sich nicht sauber auf andere Sprachen übertragen lässt, und die Satzstellung bringt Lernende auf jedem Niveau durcheinander.</p>
 
 <h2>Die sechs Modalverben und ihre wirkliche Bedeutung</h2>
 <table>
@@ -96,10 +96,10 @@ export const article: MagazineArticle = {
 <p>Englischsprachige greifen oft zu "must not", wenn sie "don't have to" meinen, und sagen dabei das Gegenteil dessen, was sie beabsichtigen. Lies die beiden Beispiele oben, bis sich der Unterschied automatisch anfühlt.</p>
 
 <h2>sollen vs. müssen</h2>
-<p>Beide werden oft mit "sollen/müssen" übersetzt, aber die Quelle der Verpflichtung unterscheidet sich. <strong>müssen</strong> ist eine harte Notwendigkeit — eine Regel, eine Frist, eine Tatsache. <strong>sollen</strong> gibt die Erwartung oder den Rat einer anderen Person wieder: <em>Der Arzt sagt, ich soll mehr schlafen.</em> (Das ist die Meinung des Arztes, keine unumstößliche Regel.)</p>
+<p>Beide werden oft mit "sollen/müssen" übersetzt, aber die Quelle der Verpflichtung unterscheidet sich. <strong>müssen</strong> ist eine harte Notwendigkeit: eine Regel, eine Frist, eine Tatsache. <strong>sollen</strong> gibt die Erwartung oder den Rat einer anderen Person wieder: <em>Der Arzt sagt, ich soll mehr schlafen.</em> (Das ist die Meinung des Arztes, keine unumstößliche Regel.)</p>
 
 <h2>Konjugation: das unregelmäßige Präsens</h2>
-<p>Alle sechs Modalverben sind im Singular unregelmäßig — der Vokal ändert sich, und es gibt keine <em>-e</em>- oder <em>-t</em>-Endung bei <em>ich</em>/<em>er/sie/es</em>.</p>
+<p>Alle sechs Modalverben sind im Singular unregelmäßig: der Vokal ändert sich, und es gibt keine <em>-e</em>- oder <em>-t</em>-Endung bei <em>ich</em>/<em>er/sie/es</em>.</p>
 <table>
   <thead><tr><th></th><th>können</th><th>müssen</th><th>dürfen</th><th>sollen</th><th>wollen</th><th>mögen</th></tr></thead>
   <tbody>
@@ -122,14 +122,14 @@ export const article: MagazineArticle = {
 <p>Im Nebensatz wandern beide Verben gemeinsam ans Ende, das Modalverb zuletzt: <em>Ich weiß, dass er das nicht machen darf.</em></p>
 
 <h2>Vergangenheit: einfacher als bei den meisten Verben</h2>
-<p>Modalverben stehen fast immer im Präteritum, auch beim Sprechen — ihre Perfekt-Formen klingen steif oder altmodisch. <em>ich konnte, ich musste, ich durfte, ich sollte, ich wollte, ich mochte</em>. Vergleiche: <em>Ich konnte gestern nicht kommen.</em> statt des umständlichen <em>Ich habe gestern nicht kommen können.</em></p>
+<p>Modalverben stehen fast immer im Präteritum, auch beim Sprechen: ihre Perfekt-Formen klingen steif oder altmodisch. <em>ich konnte, ich musste, ich durfte, ich sollte, ich wollte, ich mochte</em>. Vergleiche: <em>Ich konnte gestern nicht kommen.</em> statt des umständlichen <em>Ich habe gestern nicht kommen können.</em></p>
 
 <h2>Schnellübersicht: häufige Fehler</h2>
 <ul>
   <li>Vergessen, den Infinitiv des Hauptverbs ans Satzende zu schieben.</li>
   <li>Verwechslung von <em>nicht müssen</em> (optional) mit <em>nicht dürfen</em> (verboten).</li>
   <li>Konjugation des Hauptverbs statt des bloßen Infinitivs: falsch <em>Ich kann schwimmt</em>, richtig <em>Ich kann schwimmen</em>.</li>
-  <li>Verwendung von <em>mögen</em>, wo <em>möchte</em> gemeint ist — <em>Ich mag einen Kaffee</em> klingt seltsam; <em>Ich möchte einen Kaffee</em> ist die natürliche Bitte.</li>
+  <li>Verwendung von <em>mögen</em>, wo <em>möchte</em> gemeint ist: <em>Ich mag einen Kaffee</em> klingt seltsam; <em>Ich möchte einen Kaffee</em> ist die natürliche Bitte.</li>
 </ul>
 
 <p>Übe Modalverben mit echten Dialogen in unseren <a href="/de/courses">A2- und B1-Kursen</a> und schau in unserem <a href="/de/faq">FAQ</a> nach, falls ein Fall noch unklar ist.</p>`,

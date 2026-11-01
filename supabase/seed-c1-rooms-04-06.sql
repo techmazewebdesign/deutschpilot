@@ -8,15 +8,15 @@
 INSERT INTO public.courses (id, slug, title, description, level, language, is_published, created_at)
 VALUES
   ('c1000000-0000-0000-0000-000000000004','law-administration-c1',
-   'C1 Room 04 – Recht & Verwaltung',
+   'C1 Room 04: Recht & Verwaltung',
    'Decode Amtsdeutsch, understand contracts and official notices, master legal passive constructions, and file a formal Widerspruch.',
    'C1','de',TRUE,NOW()),
   ('c1000000-0000-0000-0000-000000000005','philosophy-abstraction-c1',
-   'C1 Room 05 – Philosophie & Abstraktion',
+   'C1 Room 05: Philosophie & Abstraktion',
    'Build abstract noun phrases, structure philosophical argumentation, and use precise genitive constructions for ethics and ideas.',
    'C1','de',TRUE,NOW()),
   ('c1000000-0000-0000-0000-000000000006','rhetoric-debate-c1',
-   'C1 Room 06 – Rhetorik & Debattieren',
+   'C1 Room 06: Rhetorik & Debattieren',
    'Structure formal debates, deploy persuasive rhetorical strategies, counter arguments, and use advanced Modalpartikeln precisely.',
    'C1','de',TRUE,NOW())
 ON CONFLICT (id) DO NOTHING;
@@ -44,11 +44,11 @@ VALUES
 </table>
 <h3>3. Substantivierte Verwaltungsbegriffe</h3>
 <ul>
-<li><strong>der Bescheid</strong> – die schriftliche Entscheidung einer Behörde</li>
-<li><strong>die Frist</strong> – der Zeitraum, in dem etwas erledigt werden muss</li>
-<li><strong>die Zuständigkeit</strong> – wer rechtlich verantwortlich ist</li>
-<li><strong>der Antragsteller / die Antragstellerin</strong> – wer etwas beantragt</li>
-<li><strong>die Rechtsgrundlage</strong> – das Gesetz, auf dem eine Entscheidung beruht</li>
+<li><strong>der Bescheid</strong>: die schriftliche Entscheidung einer Behörde</li>
+<li><strong>die Frist</strong>: der Zeitraum, in dem etwas erledigt werden muss</li>
+<li><strong>die Zuständigkeit</strong>: wer rechtlich verantwortlich ist</li>
+<li><strong>der Antragsteller / die Antragstellerin</strong>: wer etwas beantragt</li>
+<li><strong>die Rechtsgrundlage</strong>: das Gesetz, auf dem eine Entscheidung beruht</li>
 </ul>
 <h3>4. Strategie beim Lesen von Bescheiden</h3>
 <p>Zuerst den Kern suchen: Was wird entschieden (bewilligt/abgelehnt)? Dann: Welche Frist gilt? Zuletzt: Welche Rechtsmittel (Widerspruch, Klage) stehen offen? Der Rest ist meist Begründung und Formalie.</p>',
@@ -57,7 +57,7 @@ VALUES
    'c1-passiv-juristisch','Passiv mit juristischer Nuance',
    '<h2>Passiv mit juristischer Nuance</h2>
 <h3>1. Warum Juristen das Passiv lieben</h3>
-<p>Das Passiv verschweigt den Handelnden — praktisch, wenn die Behörde als Institution spricht, nicht als Person: <em>Der Antrag <strong>wurde geprüft</strong> und <strong>abgelehnt</strong>.</em> (nicht: "Herr Müller hat Ihren Antrag abgelehnt")</p>
+<p>Das Passiv verschweigt den Handelnden: praktisch, wenn die Behörde als Institution spricht, nicht als Person: <em>Der Antrag <strong>wurde geprüft</strong> und <strong>abgelehnt</strong>.</em> (nicht: "Herr Müller hat Ihren Antrag abgelehnt")</p>
 <h3>2. Das Zustandspassiv vs. das Vorgangspassiv</h3>
 <table>
 <thead><tr><th>Typ</th><th>Bildung</th><th>Bedeutung</th></tr></thead>
@@ -98,13 +98,13 @@ VALUES
 <li><em>Vorsorglich weise ich darauf hin, dass ...</em></li>
 </ul>
 <h3>4. Ton: bestimmt, aber nicht aggressiv</h3>
-<p>Ein Widerspruch bleibt sachlich und formell, auch wenn man mit einer Entscheidung unzufrieden ist. Aggressive Formulierungen ("Das ist eine Frechheit!") schwächen die eigene Position — Behörden reagieren auf klare Argumentation, nicht auf Emotion.</p>
+<p>Ein Widerspruch bleibt sachlich und formell, auch wenn man mit einer Entscheidung unzufrieden ist. Aggressive Formulierungen ("Das ist eine Frechheit!") schwächen die eigene Position: Behörden reagieren auf klare Argumentation, nicht auf Emotion.</p>
 <h3>5. Fristen ernst nehmen</h3>
-<p>Meist gilt: <strong>ein Monat</strong> ab Zustellung des Bescheids. Wird die Frist versäumt, ist der Bescheid in der Regel bestandskräftig — der Widerspruch nur noch in Ausnahmefällen möglich.</p>',
+<p>Meist gilt: <strong>ein Monat</strong> ab Zustellung des Bescheids. Wird die Frist versäumt, ist der Bescheid in der Regel bestandskräftig: der Widerspruch nur noch in Ausnahmefällen möglich.</p>',
    3,NOW()),
   ('c1000000-0000-0000-0004-000000000099','c1000000-0000-0000-0000-000000000004',
    'c1-room04-quiz','Checkpoint: Recht & Verwaltung',
-   '<h2>Checkpoint Quiz</h2><p>Amtsdeutsch, juristisches Passiv und Widerspruch einlegen — der Verwaltungs-Check!</p>',
+   '<h2>Checkpoint Quiz</h2><p>Amtsdeutsch, juristisches Passiv und Widerspruch einlegen: der Verwaltungs-Check!</p>',
    99,NOW())
 ON CONFLICT (id) DO NOTHING;
 
@@ -194,7 +194,7 @@ VALUES
    'c1-abstrakte-nominalphrasen','Abstrakte Nominalphrasen bilden',
    '<h2>Abstrakte Nominalphrasen bilden</h2>
 <h3>1. Warum Philosophie so nominal klingt</h3>
-<p>Philosophische Texte handeln von Begriffen, nicht von Handlungen — daher dominieren abstrakte Substantive: <strong>die Wahrnehmung, die Erkenntnis, das Bewusstsein, die Verantwortung, die Freiheit</strong>. Diese Substantive lassen sich zu komplexen Phrasen kombinieren.</p>
+<p>Philosophische Texte handeln von Begriffen, nicht von Handlungen: daher dominieren abstrakte Substantive: <strong>die Wahrnehmung, die Erkenntnis, das Bewusstsein, die Verantwortung, die Freiheit</strong>. Diese Substantive lassen sich zu komplexen Phrasen kombinieren.</p>
 <h3>2. Abstraktionsmuster</h3>
 <table>
 <thead><tr><th>Adjektiv/Verb</th><th>Abstraktes Nomen</th></tr></thead>
@@ -216,7 +216,7 @@ VALUES
 <h3>4. Präzision statt Vagheit</h3>
 <p>C1-Philosophiedeutsch verlangt Trennschärfe: <em>Wissen</em> (belegte Kenntnis) ist nicht <em>Meinung</em> (subjektive Ansicht), <em>Erkenntnis</em> (Prozess/Ergebnis des Erkennens) ist nicht dasselbe wie <em>Wahrnehmung</em> (sinnliche Aufnahme, ohne Deutung). Diese Unterschiede präzise zu benennen, ist der Kern philosophischen Schreibens.</p>
 <h3>5. Ein Beispielsatz</h3>
-<p><em>Die <strong>Frage nach den Grenzen menschlicher Erkenntnisfähigkeit</strong> beschäftigt die Philosophie seit der Antike — von der <strong>Wahrnehmungstäuschung</strong> bis zur <strong>Unmöglichkeit absoluter Gewissheit</strong>.</em></p>',
+<p><em>Die <strong>Frage nach den Grenzen menschlicher Erkenntnisfähigkeit</strong> beschäftigt die Philosophie seit der Antike: von der <strong>Wahrnehmungstäuschung</strong> bis zur <strong>Unmöglichkeit absoluter Gewissheit</strong>.</em></p>',
    1,NOW()),
   ('c1000000-0000-0000-0005-000000000002','c1000000-0000-0000-0000-000000000005',
    'c1-philosophische-argumentation','Philosophische Argumentation aufbauen',
@@ -237,7 +237,7 @@ VALUES
 <li><em>Dieser Einwand greift jedoch zu kurz, denn ...</em></li>
 </ul>
 <h3>3. Gedankenexperimente einführen</h3>
-<p><em>Man stelle sich vor, eine Person hätte niemals Kontakt zu anderen Menschen gehabt — würde sie dennoch ein moralisches Bewusstsein entwickeln?</em> Solche hypothetischen Konstruktionen (oft im Konjunktiv II) sind ein zentrales Werkzeug philosophischer Argumentation.</p>
+<p><em>Man stelle sich vor, eine Person hätte niemals Kontakt zu anderen Menschen gehabt: würde sie dennoch ein moralisches Bewusstsein entwickeln?</em> Solche hypothetischen Konstruktionen (oft im Konjunktiv II) sind ein zentrales Werkzeug philosophischer Argumentation.</p>
 <h3>4. Über Ethik sprechen</h3>
 <ul>
 <li><em>Aus utilitaristischer Sicht wäre eine Handlung dann zu rechtfertigen, wenn sie den größten Nutzen für die größte Zahl erzeugt.</em></li>
@@ -251,13 +251,13 @@ VALUES
    'c1-genitiv-praezision','Komplexe Genitivkonstruktionen & Präzisionsvokabular',
    '<h2>Komplexe Genitivkonstruktionen & Präzisionsvokabular</h2>
 <h3>1. Der Genitiv als Werkzeug der Präzision</h3>
-<p>Philosophisches Deutsch nutzt verschachtelte Genitivketten, um Beziehungen zwischen Begriffen exakt zu benennen — oft mehrere Genitive hintereinander:</p>
+<p>Philosophisches Deutsch nutzt verschachtelte Genitivketten, um Beziehungen zwischen Begriffen exakt zu benennen: oft mehrere Genitive hintereinander:</p>
 <ul>
 <li><em>die <strong>Grenzen der Erkenntnisfähigkeit des Menschen</strong></em> (2 Genitive)</li>
 <li><em>die <strong>Bedeutung der Freiheit des Einzelnen für das Zusammenleben der Gesellschaft</strong></em> (3 Genitive)</li>
 </ul>
 <h3>2. Genitiv vs. von-Konstruktion</h3>
-<p>Auf C1 gilt: der echte Genitiv wirkt schriftsprachlich-präzise, die von-Konstruktion umgangssprachlicher. <em>die Verantwortung des Einzelnen</em> (formal) statt <em>die Verantwortung von dem Einzelnen</em> (vermeiden!) — aber: <em>die Meinung von Kant</em> ist bei Eigennamen ohne Artikel meist mit "von" gebräuchlicher als "Kants Meinung".</p>
+<p>Auf C1 gilt: der echte Genitiv wirkt schriftsprachlich-präzise, die von-Konstruktion umgangssprachlicher. <em>die Verantwortung des Einzelnen</em> (formal) statt <em>die Verantwortung von dem Einzelnen</em> (vermeiden!): aber: <em>die Meinung von Kant</em> ist bei Eigennamen ohne Artikel meist mit "von" gebräuchlicher als "Kants Meinung".</p>
 <h3>3. Präzisionsvokabular: feine Unterschiede</h3>
 <table>
 <thead><tr><th>Begriff</th><th>Abgrenzung</th></tr></thead>
@@ -307,7 +307,7 @@ VALUES
    'Gedankenexperimente stehen oft im:','multiple_choice',
    '["Konjunktiv II", "Imperativ", "Präsens Indikativ", "Perfekt"]'::jsonb,
    'Konjunktiv II',
-   '"Man stelle sich vor, eine Person hätte ..." — hypothetische Konstruktion.',NOW()),
+   '"Man stelle sich vor, eine Person hätte ...": hypothetische Konstruktion.',NOW()),
   ('c1000000-0000-0005-0002-000000000003','c1000000-0000-0000-0005-000000000002',
    'Laut utilitaristischer Ethik ist eine Handlung zu rechtfertigen, wenn:','multiple_choice',
    '["Sie den größten Nutzen für die größte Zahl erzeugt", "Sie einer Person am meisten nützt", "Sie einem Gesetz widerspricht", "Sie keine Folgen hat"]'::jsonb,
@@ -318,12 +318,12 @@ VALUES
    '"Die Grenzen der Erkenntnisfähigkeit des Menschen" enthält wie viele Genitive?','multiple_choice',
    '["Zwei", "Eins", "Drei", "Keinen"]'::jsonb,
    'Zwei',
-   'der Erkenntnisfähigkeit + des Menschen — zwei verschachtelte Genitive.',NOW()),
+   'der Erkenntnisfähigkeit + des Menschen: zwei verschachtelte Genitive.',NOW()),
   ('c1000000-0000-0005-0003-000000000002','c1000000-0000-0000-0005-000000000003',
    'Was ist die praktische Obergrenze verschachtelter Genitive?','multiple_choice',
    '["Drei", "Zehn", "Eins", "Es gibt keine Grenze"]'::jsonb,
    'Drei',
-   'Danach leidet die Verständlichkeit — der Satz sollte aufgebrochen werden.',NOW()),
+   'Danach leidet die Verständlichkeit: der Satz sollte aufgebrochen werden.',NOW()),
   ('c1000000-0000-0005-0003-000000000003','c1000000-0000-0000-0005-000000000003',
    '"Gewissheit" bezeichnet:','multiple_choice',
    '["Den höchsten Grad subjektiver Sicherheit", "Eine unbewiesene Vermutung", "Eine sinnliche Wahrnehmung ohne Deutung", "Eine allgemein akzeptierte Meinung"]'::jsonb,
@@ -336,7 +336,7 @@ VALUES
    'Wahrnehmung ist sinnliche Aufnahme, Erkenntnis das Ergebnis eines Denkprozesses',
    'Wahrnehmung liefert Rohdaten, Erkenntnis interpretiert und ordnet sie ein.',NOW()),
   ('c1000000-0000-0005-0099-000000000002','c1000000-0000-0000-0005-000000000099',
-   '"Kant zufolge handelt moralisch, wer ..." — "zufolge" steht hier:','multiple_choice',
+   '"Kant zufolge handelt moralisch, wer ...": "zufolge" steht hier:','multiple_choice',
    '["Nach dem Bezugswort (Kant zufolge)", "Immer vor dem Bezugswort", "Nur mit Genitiv", "Nur in der gesprochenen Sprache"]'::jsonb,
    'Nach dem Bezugswort (Kant zufolge)',
    '"zufolge" kann nachgestellt (mit Dativ) oder vorangestellt (mit Genitiv) stehen; nachgestellt ist hier der Normalfall.',NOW()),
@@ -387,7 +387,7 @@ VALUES
    'c1-gegenargumente','Gegenargumente & rhetorische Strategien',
    '<h2>Gegenargumente & rhetorische Strategien</h2>
 <h3>1. Das stärkste Gegenargument zuerst</h3>
-<p>Wer nur schwache Gegenpositionen (Strohmänner) widerlegt, überzeugt niemanden. C1-Rhetorik verlangt, das stärkste Argument der Gegenseite ernst zu nehmen und dann zu entkräften — das schafft Glaubwürdigkeit.</p>
+<p>Wer nur schwache Gegenpositionen (Strohmänner) widerlegt, überzeugt niemanden. C1-Rhetorik verlangt, das stärkste Argument der Gegenseite ernst zu nehmen und dann zu entkräften: das schafft Glaubwürdigkeit.</p>
 <h3>2. Strategien der Widerlegung</h3>
 <table>
 <thead><tr><th>Strategie</th><th>Formulierung</th></tr></thead>
@@ -402,7 +402,7 @@ VALUES
 <ul>
 <li><strong>Dreierfigur (Tricolon):</strong> drei parallele Punkte wirken besonders überzeugend: <em>schneller, günstiger, nachhaltiger</em></li>
 <li><strong>Rhetorische Frage:</strong> <em>Wollen wir wirklich riskieren, dass ...?</em></li>
-<li><strong>Konzession vor Konter:</strong> <em>Zugegeben, der Ansatz hat Vorteile — dennoch überwiegen die Risiken.</em></li>
+<li><strong>Konzession vor Konter:</strong> <em>Zugegeben, der Ansatz hat Vorteile: dennoch überwiegen die Risiken.</em></li>
 </ul>
 <h3>4. Fairness bleibt Pflicht</h3>
 <p>Auch die überzeugendste Rhetorik darf nicht ad hominem werden: Das Argument angreifen, nie die Person.</p>',
@@ -411,7 +411,7 @@ VALUES
    'c1-modalpartikeln-rhetorik','Modalpartikeln & rhetorische Fragen auf C1-Niveau',
    '<h2>Modalpartikeln & rhetorische Fragen auf C1-Niveau</h2>
 <h3>1. Modalpartikeln in der gehobenen Rede</h3>
-<p>Modalpartikeln (doch, ja, eben, halt, schließlich, immerhin) gelten oft als umgangssprachlich — in der gehobenen Rhetorik gezielt eingesetzt, verleihen sie Aussagen Nachdruck, ohne aggressiv zu wirken.</p>
+<p>Modalpartikeln (doch, ja, eben, halt, schließlich, immerhin) gelten oft als umgangssprachlich: in der gehobenen Rhetorik gezielt eingesetzt, verleihen sie Aussagen Nachdruck, ohne aggressiv zu wirken.</p>
 <table>
 <thead><tr><th>Partikel</th><th>Wirkung im Redebeitrag</th></tr></thead>
 <tbody>
@@ -430,11 +430,11 @@ VALUES
 <h3>3. Dosierung: das C1-Feingefühl</h3>
 <p>Zu viele Modalpartikeln oder rhetorische Fragen hintereinander wirken manipulativ statt überzeugend. Eine gezielt platzierte rhetorische Frage am Ende eines Arguments wirkt stärker als drei in Folge.</p>
 <h3>4. Register bewahren</h3>
-<p>Auch mit Modalpartikeln bleibt der Rest der Rede formell — sie sind ein Würzmittel, kein Stilbruch, solange die grammatische und lexikalische Grundhaltung gehoben bleibt.</p>',
+<p>Auch mit Modalpartikeln bleibt der Rest der Rede formell: sie sind ein Würzmittel, kein Stilbruch, solange die grammatische und lexikalische Grundhaltung gehoben bleibt.</p>',
    3,NOW()),
   ('c1000000-0000-0000-0006-000000000099','c1000000-0000-0000-0000-000000000006',
    'c1-room06-quiz','Checkpoint: Rhetorik & Debattieren',
-   '<h2>Checkpoint Quiz</h2><p>Debattenstruktur, Gegenargumente und Modalpartikeln — das große C1-Finale!</p>',
+   '<h2>Checkpoint Quiz</h2><p>Debattenstruktur, Gegenargumente und Modalpartikeln: das große C1-Finale!</p>',
    99,NOW())
 ON CONFLICT (id) DO NOTHING;
 
@@ -473,7 +473,7 @@ VALUES
    'Das Argument angreifen, nie die Person.',NOW()),
 
   ('c1000000-0000-0006-0003-000000000001','c1000000-0000-0000-0006-000000000003',
-   '"Wir sprechen hier schließlich über die Zukunft ganzer Generationen" — "schließlich" wirkt hier:','multiple_choice',
+   '"Wir sprechen hier schließlich über die Zukunft ganzer Generationen": "schließlich" wirkt hier:','multiple_choice',
    '["Als Begründung mit Gewicht", "Als reine Zeitangabe (am Ende)", "Als Frage", "Als Verneinung"]'::jsonb,
    'Als Begründung mit Gewicht',
    'In dieser Funktion ist "schließlich" eine Modalpartikel, kein Temporaladverb.',NOW()),
@@ -486,7 +486,7 @@ VALUES
    'Zu viele rhetorische Fragen hintereinander wirken:','multiple_choice',
    '["Manipulativ statt überzeugend", "Immer überzeugender", "Neutral", "Wissenschaftlich"]'::jsonb,
    'Manipulativ statt überzeugend',
-   'Dosierung ist auch hier entscheidend — eine gezielt platzierte Frage wirkt stärker.',NOW()),
+   'Dosierung ist auch hier entscheidend: eine gezielt platzierte Frage wirkt stärker.',NOW()),
 
   ('c1000000-0000-0006-0099-000000000001','c1000000-0000-0000-0006-000000000099',
    '"Immerhin hat die Gegenseite einen Punkt" drückt aus:','multiple_choice',

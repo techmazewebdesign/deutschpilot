@@ -76,7 +76,7 @@ export function SchoolForm({
                     field.multiple ? (field.value?.split(",") ?? []) : (field.value ?? "")
                   }
                 >
-                  {!field.multiple && <option value="">—</option>}
+                  {!field.multiple && <option value=""> bis </option>}
                   {field.options.map((option) => (
                     <option key={option.value} value={option.value}>
                       {option.label}

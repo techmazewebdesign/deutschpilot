@@ -148,8 +148,8 @@ VALUES
  '["still wear full protective gear","skip protective gear to avoid overheating","only wear a helmet and nothing else","ride shorter distances with no gear at all"]'::jsonb,
  'weiterhin vollständige Schutzkleidung tragen',
  'still wear full protective gear',
- 'Es gibt spezielle atmungsaktive/belüftete Schutzkleidung für heiße Tage — Verzicht ist keine sichere Lösung.',
- 'There is specialized breathable/ventilated protective gear for hot days — skipping gear entirely isn''t a safe solution.',
+ 'Es gibt spezielle atmungsaktive/belüftete Schutzkleidung für heiße Tage: Verzicht ist keine sichere Lösung.',
+ 'There is specialized breathable/ventilated protective gear for hot days: skipping gear entirely isn''t a safe solution.',
  35),
 
 ('A','Wetter & Hitze',

@@ -9,15 +9,15 @@
 INSERT INTO public.courses (id, slug, title, description, level, language, is_published, created_at)
 VALUES
   ('b2000000-0000-0000-0000-000000000001','work-applications-b2',
-   'B2 Room 01 – Arbeitswelt & Bewerbung',
+   'B2 Room 01: Arbeitswelt & Bewerbung',
    'Write convincing applications, master formal correspondence, and shine in job interviews.',
    'B2','de',TRUE,NOW()),
   ('b2000000-0000-0000-0000-000000000002','science-technology-b2',
-   'B2 Room 02 – Wissenschaft & Technik',
+   'B2 Room 02: Wissenschaft & Technik',
    'Understand academic style: Nominalisierung, Passiv mit Modalverben, and describing processes.',
    'B2','de',TRUE,NOW()),
   ('b2000000-0000-0000-0000-000000000003','politics-society-b2',
-   'B2 Room 03 – Politik & Gesellschaft',
+   'B2 Room 03: Politik & Gesellschaft',
    'Debate skillfully, report claims with Konjunktiv I, and analyse arguments critically.',
    'B2','de',TRUE,NOW())
 ON CONFLICT (id) DO NOTHING;
@@ -32,22 +32,22 @@ VALUES
    '<h2>Die schriftliche Bewerbung</h2>
 <h3>1. Die Bestandteile</h3>
 <ul>
-<li><strong>das Anschreiben</strong> – eine Seite: Warum du? Warum diese Firma?</li>
-<li><strong>der Lebenslauf</strong> – tabellarisch, antichronologisch (Neuestes zuerst), mit Foto ist in Deutschland noch üblich, aber nicht Pflicht</li>
-<li><strong>die Zeugnisse</strong> – Arbeitszeugnisse und Abschlüsse als Anhang</li>
+<li><strong>das Anschreiben</strong>: eine Seite: Warum du? Warum diese Firma?</li>
+<li><strong>der Lebenslauf</strong>: tabellarisch, antichronologisch (Neuestes zuerst), mit Foto ist in Deutschland noch üblich, aber nicht Pflicht</li>
+<li><strong>die Zeugnisse</strong>: Arbeitszeugnisse und Abschlüsse als Anhang</li>
 </ul>
 <h3>2. Das Anschreiben: der Bauplan</h3>
 <ol>
 <li><strong>Betreff:</strong> Bewerbung als [Position], Referenznummer falls vorhanden</li>
 <li><strong>Einstieg ohne Floskel:</strong> statt "hiermit bewerbe ich mich" lieber ein konkreter Aufhänger: <em>"Als Projektleiterin mit fünf Jahren Erfahrung im E-Commerce hat mich Ihre Ausschreibung sofort angesprochen."</em></li>
-<li><strong>Hauptteil:</strong> zwei, drei Belege statt Behauptungen — nicht "Ich bin teamfähig", sondern <em>"In meinem letzten Projekt habe ich ein sechsköpfiges Team koordiniert."</em></li>
+<li><strong>Hauptteil:</strong> zwei, drei Belege statt Behauptungen: nicht "Ich bin teamfähig", sondern <em>"In meinem letzten Projekt habe ich ein sechsköpfiges Team koordiniert."</em></li>
 <li><strong>Schluss:</strong> Gesprächswunsch + Verfügbarkeit: <em>"Über die Gelegenheit, mich persönlich vorzustellen, freue ich mich sehr."</em></li>
 </ol>
 <h3>3. Stilregeln für B2</h3>
 <ul>
 <li>Aktiv statt Passiv: "Ich habe eingeführt" schlägt "Es wurde eingeführt".</li>
 <li>Konjunktiv II für Höflichkeit im Schluss: <em>"Gern würde ich Ihnen in einem Gespräch zeigen, ..."</em></li>
-<li>Keine Superlative ohne Beleg ("hochmotiviert", "absolut zuverlässig") — Personaler überlesen sie.</li>
+<li>Keine Superlative ohne Beleg ("hochmotiviert", "absolut zuverlässig"): Personaler überlesen sie.</li>
 </ul>',
    1,NOW()),
   ('b2000000-0000-0000-0001-000000000002','b2000000-0000-0000-0000-000000000001',
@@ -56,9 +56,9 @@ VALUES
 <h3>1. Die Standard-Dramaturgie</h3>
 <ol>
 <li>Small Talk zum Ankommen (Anreise, Wetter)</li>
-<li><strong>"Erzählen Sie etwas über sich"</strong> – 2 Minuten, roter Faden: Gegenwart → Erfahrung → Warum hier</li>
+<li><strong>"Erzählen Sie etwas über sich"</strong>: 2 Minuten, roter Faden: Gegenwart → Erfahrung → Warum hier</li>
 <li>Fachfragen + Verhaltensfragen ("Beschreiben Sie eine Situation, in der ...")</li>
-<li><strong>Deine Rückfragen</strong> – keine zu haben wirkt desinteressiert</li>
+<li><strong>Deine Rückfragen</strong>: keine zu haben wirkt desinteressiert</li>
 <li>Organisatorisches (Gehalt, Starttermin)</li>
 </ol>
 <h3>2. Verhaltensfragen mit der STAR-Methode</h3>
@@ -68,7 +68,7 @@ VALUES
 <ul>
 <li>Die Frage kommt meist am Ende: <em>"Welche Gehaltsvorstellung haben Sie?"</em></li>
 <li>Antwort als Jahresbrutto-Spanne: <em>"Ich stelle mir ein Jahresgehalt zwischen 48.000 und 52.000 Euro vor."</em></li>
-<li>Nachverhandeln ist normal — aber erst, wenn ein Angebot auf dem Tisch liegt.</li>
+<li>Nachverhandeln ist normal: aber erst, wenn ein Angebot auf dem Tisch liegt.</li>
 </ul>',
    2,NOW()),
   ('b2000000-0000-0000-0001-000000000003','b2000000-0000-0000-0000-000000000001',
@@ -96,7 +96,7 @@ VALUES
    3,NOW()),
   ('b2000000-0000-0000-0001-000000000099','b2000000-0000-0000-0000-000000000001',
    'b2-room01-quiz','Checkpoint: Arbeitswelt & Bewerbung',
-   '<h2>Checkpoint Quiz</h2><p>Bewerbung, Vorstellungsgespräch und formelle Korrespondenz — der Karriere-Check!</p>',
+   '<h2>Checkpoint Quiz</h2><p>Bewerbung, Vorstellungsgespräch und formelle Korrespondenz: der Karriere-Check!</p>',
    99,NOW())
 ON CONFLICT (id) DO NOTHING;
 
@@ -111,7 +111,7 @@ VALUES
    'Welcher Einstieg ist am stärksten?','multiple_choice',
    '["Als Projektleiterin mit fünf Jahren Erfahrung hat mich Ihre Ausschreibung sofort angesprochen.", "Hiermit bewerbe ich mich um die ausgeschriebene Stelle.", "Ich schreibe Ihnen, weil ich einen Job suche.", "Sehr geehrte Damen und Herren, ich bin sehr motiviert."]'::jsonb,
    'Als Projektleiterin mit fünf Jahren Erfahrung hat mich Ihre Ausschreibung sofort angesprochen.',
-   'Konkreter Aufhänger statt Floskel — das liest der Personaler weiter.',NOW()),
+   'Konkreter Aufhänger statt Floskel: das liest der Personaler weiter.',NOW()),
   ('b2000000-0000-0001-0001-000000000003','b2000000-0000-0000-0001-000000000001',
    'Statt "Ich bin teamfähig" schreibst du besser:','multiple_choice',
    '["In meinem letzten Projekt habe ich ein sechsköpfiges Team koordiniert.", "Ich bin wirklich sehr teamfähig.", "Alle sagen, ich bin teamfähig.", "Teamfähigkeit ist meine Stärke."]'::jsonb,
@@ -127,7 +127,7 @@ VALUES
    'Keine eigenen Rückfragen im Interview wirken:','multiple_choice',
    '["Desinteressiert", "Souverän", "Höflich", "Effizient"]'::jsonb,
    'Desinteressiert',
-   'Rückfragen zeigen echtes Interesse — immer 2–3 vorbereiten.',NOW()),
+   'Rückfragen zeigen echtes Interesse: immer 2 bis 3 vorbereiten.',NOW()),
   ('b2000000-0000-0001-0002-000000000003','b2000000-0000-0000-0001-000000000002',
    'Die Gehaltsvorstellung nennt man üblicherweise als:','multiple_choice',
    '["Jahresbrutto-Spanne", "Netto pro Woche", "Stundenlohn bar", "Gar nicht"]'::jsonb,
@@ -138,7 +138,7 @@ VALUES
    'Standard-Schlussformel im Geschäftsbrief:','multiple_choice',
    '["Mit freundlichen Grüßen", "Tschüss", "Hochachtungsvoll dein", "Bis bald mal"]'::jsonb,
    'Mit freundlichen Grüßen',
-   'MfG ausgeschrieben — die sichere Standardformel.',NOW()),
+   'MfG ausgeschrieben: die sichere Standardformel.',NOW()),
   ('b2000000-0000-0001-0003-000000000002','b2000000-0000-0000-0001-000000000003',
    '"Im ___ finden Sie den Bericht."','multiple_choice',
    '["Anhang", "Angang", "Abhang", "Umhang"]'::jsonb,'Anhang',
@@ -158,7 +158,7 @@ VALUES
    'Aktiv statt Passiv im Anschreiben heißt:','multiple_choice',
    '["Ich habe das System eingeführt.", "Das System wurde eingeführt.", "Das System ist eingeführt worden.", "Man führte das System ein."]'::jsonb,
    'Ich habe das System eingeführt.',
-   'Im Anschreiben zählt dein Beitrag — aktiv formulieren.',NOW()),
+   'Im Anschreiben zählt dein Beitrag: aktiv formulieren.',NOW()),
   ('b2000000-0000-0001-0099-000000000004','b2000000-0000-0000-0001-000000000099',
    'Fristen nennt man im deutschen Berufsalltag:','multiple_choice',
    '["Konkret mit Datum", "Mit ASAP", "Gar nicht", "Nur mündlich"]'::jsonb,
@@ -180,7 +180,7 @@ VALUES
    'b2-nominalisierung','Nominalstil: Verben zu Nomen',
    '<h2>Nominalstil: Verben zu Nomen</h2>
 <h3>1. Warum das wichtig ist</h3>
-<p>Wissenschaft, Verwaltung und Fachtexte verdichten Sätze zu Nomen. Wer B2-Texte lesen will, muss diesen Stil entpacken können — und für Berichte selbst beherrschen.</p>
+<p>Wissenschaft, Verwaltung und Fachtexte verdichten Sätze zu Nomen. Wer B2-Texte lesen will, muss diesen Stil entpacken können: und für Berichte selbst beherrschen.</p>
 <h3>2. Die Baumuster</h3>
 <table>
 <thead><tr><th>Verb</th><th>Nomen</th><th>Muster</th></tr></thead>
@@ -192,7 +192,7 @@ VALUES
 <tr><td>lesen</td><td>das Lesen</td><td>substantivierter Infinitiv</td></tr>
 </tbody>
 </table>
-<h3>3. Sätze umbauen — in beide Richtungen</h3>
+<h3>3. Sätze umbauen: in beide Richtungen</h3>
 <ul>
 <li>Verbal: <em>Nachdem die Daten analysiert wurden, ...</em><br>
 Nominal: <em><strong>Nach der Analyse</strong> der Daten ...</em></li>
@@ -214,7 +214,7 @@ Nominal: <em><strong>Wegen des Kostenanstiegs</strong> ...</em></li>
 <h3>2. Vergangenheit</h3>
 <ul>
 <li>Präteritum: Die Daten <strong>mussten gesichert werden</strong>.</li>
-<li>Perfekt (selten, sperrig): Die Daten <strong>haben gesichert werden müssen</strong> — im Alltag weicht man aufs Präteritum aus.</li>
+<li>Perfekt (selten, sperrig): Die Daten <strong>haben gesichert werden müssen</strong>: im Alltag weicht man aufs Präteritum aus.</li>
 </ul>
 <h3>3. Alternativen, die Profis nutzen</h3>
 <ul>
@@ -238,14 +238,14 @@ Nominal: <em><strong>Wegen des Kostenanstiegs</strong> ...</em></li>
 </ul>
 <h3>3. Vorsicht, präzise Sprache</h3>
 <ul>
-<li><em>deutlich / stark / leicht</em> gestiegen — Größenordnung immer mitliefern.</li>
+<li><em>deutlich / stark / leicht</em> gestiegen: Größenordnung immer mitliefern.</li>
 <li>Nicht übertreiben: "explodiert" gehört in die Boulevardpresse, nicht in den Bericht.</li>
 <li>Quelle nennen: <em>Laut Statistischem Bundesamt ...</em></li>
 </ul>',
    3,NOW()),
   ('b2000000-0000-0000-0002-000000000099','b2000000-0000-0000-0000-000000000002',
    'b2-room02-quiz','Checkpoint: Wissenschaft & Technik',
-   '<h2>Checkpoint Quiz</h2><p>Nominalstil, Passiv mit Modalverben und Prozessbeschreibung — der Fachsprache-Check!</p>',
+   '<h2>Checkpoint Quiz</h2><p>Nominalstil, Passiv mit Modalverben und Prozessbeschreibung: der Fachsprache-Check!</p>',
    99,NOW())
 ON CONFLICT (id) DO NOTHING;
 
@@ -284,13 +284,13 @@ VALUES
 
   ('b2000000-0000-0002-0003-000000000001','b2000000-0000-0000-0002-000000000003',
    'Reihenfolge-Konnektoren, richtig sortiert:','multiple_choice',
-   '["Zunächst – anschließend – schließlich", "Schließlich – zuerst – danach", "Dabei – zunächst – zuerst", "Abschließend – danach – zunächst"]'::jsonb,
-   'Zunächst – anschließend – schließlich',
+   '["Zunächst, anschließend, schließlich", "Schließlich, zuerst, danach", "Dabei, zunächst, zuerst", "Abschließend, danach, zunächst"]'::jsonb,
+   'Zunächst, anschließend, schließlich',
    'Anfang → Mitte → Ende.',NOW()),
   ('b2000000-0000-0002-0003-000000000002','b2000000-0000-0000-0002-000000000003',
    '"Die Grafik ___ die Entwicklung der Studierendenzahlen."','multiple_choice',
    '["zeigt", "schaut", "sieht", "guckt"]'::jsonb,'zeigt',
-   'zeigen / darstellen / Auskunft geben über — die Einstiegsverben.',NOW()),
+   'zeigen / darstellen / Auskunft geben über: die Einstiegsverben.',NOW()),
 
   ('b2000000-0000-0002-0099-000000000001','b2000000-0000-0000-0002-000000000099',
    '"Die Zahl hat sich verdoppelt" bedeutet:','multiple_choice',
@@ -303,7 +303,7 @@ VALUES
    'Er kann behoben werden',
    'lässt sich + Infinitiv = Passiv-Alternative der Möglichkeit.',NOW()),
   ('b2000000-0000-0002-0099-000000000003','b2000000-0000-0000-0002-000000000099',
-   '"Wegen ___ Kostenanstiegs" — welcher Kasus?','multiple_choice',
+   '"Wegen ___ Kostenanstiegs": welcher Kasus?','multiple_choice',
    '["des (Genitiv)", "dem (Dativ)", "den (Akkusativ)", "der (Nominativ)"]'::jsonb,
    'des (Genitiv)',
    'wegen + Genitiv im Standard: wegen des Kostenanstiegs.',NOW()),
@@ -343,7 +343,7 @@ VALUES
 <h3>3. Fairness-Regeln</h3>
 <ul>
 <li>Argument angreifen, nie die Person (<em>ad hominem</em> zerstört jede Debatte).</li>
-<li>Das stärkste Gegenargument zuerst ernst nehmen — wer nur Strohmänner widerlegt, überzeugt niemanden.</li>
+<li>Das stärkste Gegenargument zuerst ernst nehmen: wer nur Strohmänner widerlegt, überzeugt niemanden.</li>
 <li>Am Ende zusammenfassen: <em>Festzuhalten bleibt, dass ...</em></li>
 </ul>',
    1,NOW()),
@@ -351,9 +351,9 @@ VALUES
    'b2-konjunktiv-1','Konjunktiv I: Behauptungen wiedergeben',
    '<h2>Konjunktiv I: Behauptungen wiedergeben</h2>
 <h3>1. Wozu er da ist</h3>
-<p>Der Konjunktiv I signalisiert: <strong>Das ist nicht meine Aussage — ich gebe sie nur wieder.</strong> Er ist die Distanz-Maschine des Journalismus:</p>
+<p>Der Konjunktiv I signalisiert: <strong>Das ist nicht meine Aussage: ich gebe sie nur wieder.</strong> Er ist die Distanz-Maschine des Journalismus:</p>
 <ul>
-<li>Der Minister sagte, die Lage <strong>sei</strong> stabil. (er sagt es — ob es stimmt, offen)</li>
+<li>Der Minister sagte, die Lage <strong>sei</strong> stabil. (er sagt es: ob es stimmt, offen)</li>
 <li>Die Opposition erklärte, sie <strong>habe</strong> Beweise.</li>
 </ul>
 <h3>2. Die Formen, die du wirklich brauchst</h3>
@@ -366,27 +366,27 @@ VALUES
 </table>
 <p>*Wo Konjunktiv I wie Indikativ aussieht (sie haben), springt Konjunktiv II ein (sie hätten).</p>
 <h3>3. Lesen können reicht oft</h3>
-<p>Aktiv produzieren musst du den Konjunktiv I auf B2 selten — aber in jeder Zeitung steht er. Wer <em>sei/habe/wolle/könne</em> als "Zitat-Marker" erkennt, liest Nachrichten doppelt so kritisch: Steht dort <em>ist</em> oder <em>sei</em>? Das ist der Unterschied zwischen Fakt und Behauptung.</p>',
+<p>Aktiv produzieren musst du den Konjunktiv I auf B2 selten: aber in jeder Zeitung steht er. Wer <em>sei/habe/wolle/könne</em> als "Zitat-Marker" erkennt, liest Nachrichten doppelt so kritisch: Steht dort <em>ist</em> oder <em>sei</em>? Das ist der Unterschied zwischen Fakt und Behauptung.</p>',
    2,NOW()),
   ('b2000000-0000-0000-0003-000000000003','b2000000-0000-0000-0000-000000000003',
    'b2-politik-wortschatz','Politik-Wortschatz & das System',
    '<h2>Politik-Wortschatz & das politische System</h2>
 <h3>1. Die Institutionen in 60 Sekunden</h3>
 <ul>
-<li><strong>der Bundestag</strong> – das Parlament, direkt gewählt</li>
-<li><strong>der Bundesrat</strong> – die Vertretung der 16 Bundesländer</li>
-<li><strong>die Bundesregierung</strong> – Kanzler(in) + Minister(innen)</li>
-<li><strong>der/die Bundespräsident(in)</strong> – Staatsoberhaupt, vor allem repräsentativ</li>
-<li><strong>das Bundesverfassungsgericht</strong> – wacht über das Grundgesetz</li>
+<li><strong>der Bundestag</strong>: das Parlament, direkt gewählt</li>
+<li><strong>der Bundesrat</strong>: die Vertretung der 16 Bundesländer</li>
+<li><strong>die Bundesregierung</strong>: Kanzler(in) + Minister(innen)</li>
+<li><strong>der/die Bundespräsident(in)</strong>: Staatsoberhaupt, vor allem repräsentativ</li>
+<li><strong>das Bundesverfassungsgericht</strong>: wacht über das Grundgesetz</li>
 </ul>
 <h3>2. Wahl-Vokabular</h3>
 <ul>
 <li><strong>die Wahl, wählen, die Stimme abgeben</strong></li>
-<li><strong>die Koalition</strong> – Regierungsbündnis mehrerer Parteien (der Normalfall)</li>
+<li><strong>die Koalition</strong>: Regierungsbündnis mehrerer Parteien (der Normalfall)</li>
 <li><strong>die Mehrheit ↔ die Opposition</strong></li>
-<li><strong>der Kompromiss</strong> – das Lieblingswort deutscher Politik</li>
+<li><strong>der Kompromiss</strong>: das Lieblingswort deutscher Politik</li>
 </ul>
-<h3>3. Diskutieren über Politik — Formulierungen</h3>
+<h3>3. Diskutieren über Politik: Formulierungen</h3>
 <ul>
 <li><em>Ich halte diese Maßnahme für sinnvoll/problematisch, weil ...</em></li>
 <li><em>Kritiker wenden ein, dass ... Befürworter halten dagegen, dass ...</em></li>
@@ -395,7 +395,7 @@ VALUES
    3,NOW()),
   ('b2000000-0000-0000-0003-000000000099','b2000000-0000-0000-0000-000000000003',
    'b2-room03-quiz','Checkpoint: Politik & Gesellschaft',
-   '<h2>Checkpoint Quiz</h2><p>Debatte, Konjunktiv I und das politische System — der Gesellschafts-Check!</p>',
+   '<h2>Checkpoint Quiz</h2><p>Debatte, Konjunktiv I und das politische System: der Gesellschafts-Check!</p>',
    99,NOW())
 ON CONFLICT (id) DO NOTHING;
 
@@ -405,7 +405,7 @@ VALUES
    '"Zugegeben, ..., allerdings ..." ist die Technik des:','multiple_choice',
    '["Konzedierens und Konterns", "Beleidigens", "Themawechsels", "Zustimmens"]'::jsonb,
    'Konzedierens und Konterns',
-   'Erst einräumen, dann entkräften — die stärkste Debattenfigur.',NOW()),
+   'Erst einräumen, dann entkräften: die stärkste Debattenfigur.',NOW()),
   ('b2000000-0000-0003-0001-000000000002','b2000000-0000-0000-0003-000000000001',
    'Höflich unterbrechen:','multiple_choice',
    '["Darf ich da kurz einhaken?", "Stopp! Falsch!", "Ich rede jetzt!", "Sie verstehen das nicht."]'::jsonb,
@@ -415,7 +415,7 @@ VALUES
    'Ein Ad-hominem-Angriff richtet sich gegen:','multiple_choice',
    '["Die Person statt das Argument", "Das stärkste Argument", "Die Statistik", "Das Publikum"]'::jsonb,
    'Die Person statt das Argument',
-   'Unfair und wirkungslos — immer beim Argument bleiben.',NOW()),
+   'Unfair und wirkungslos: immer beim Argument bleiben.',NOW()),
 
   ('b2000000-0000-0003-0002-000000000001','b2000000-0000-0000-0003-000000000002',
    '"Der Minister sagte, die Lage ___ stabil."','multiple_choice',
@@ -429,7 +429,7 @@ VALUES
   ('b2000000-0000-0003-0002-000000000003','b2000000-0000-0000-0003-000000000002',
    'Konjunktiv I von "haben" (er/sie/es):','multiple_choice',
    '["habe", "hätte", "hat", "habte"]'::jsonb,'habe',
-   'er habe — bei Formgleichheit mit dem Indikativ springt sonst Konjunktiv II ein.',NOW()),
+   'er habe: bei Formgleichheit mit dem Indikativ springt sonst Konjunktiv II ein.',NOW()),
 
   ('b2000000-0000-0003-0003-000000000001','b2000000-0000-0000-0003-000000000003',
    'Wer vertritt die Bundesländer?','multiple_choice',
@@ -455,7 +455,7 @@ VALUES
    'Wer wacht über das Grundgesetz?','multiple_choice',
    '["Das Bundesverfassungsgericht", "Der Bundesrat", "Die Polizei", "Die Koalition"]'::jsonb,
    'Das Bundesverfassungsgericht',
-   'Sitz in Karlsruhe — die letzte Instanz für Verfassungsfragen.',NOW()),
+   'Sitz in Karlsruhe: die letzte Instanz für Verfassungsfragen.',NOW()),
   ('b2000000-0000-0003-0099-000000000004','b2000000-0000-0000-0003-000000000099',
    'Eine Debatte fair zusammenfassen beginnt mit:','multiple_choice',
    '["Festzuhalten bleibt, dass ...", "Ich hatte sowieso recht:", "Ende der Diskussion:", "Wie ich schon sagte:"]'::jsonb,

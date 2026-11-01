@@ -55,8 +55,8 @@ export function generateMetadata({ params }: { params: { locale: string } }): Me
       ? "Lernräume: Deutsch lernen Thema für Thema | DeutschPilot"
       : "Learning Rooms: Learn German Topic by Topic | DeutschPilot",
     description: de
-      ? "Themenräume mit Lektionen, Übungen und Checkpoint-Quiz — von Begrüßungen (A1) bis Feste & Kultur (A2). Schalte Raum für Raum frei."
-      : "Themed rooms with lessons, exercises, and checkpoint quizzes — from Greetings (A1) to Celebrations & Culture (A2). Unlock room by room.",
+      ? "Themenräume mit Lektionen, Übungen und Checkpoint-Quiz: von Begrüßungen (A1) bis Feste & Kultur (A2). Schalte Raum für Raum frei."
+      : "Themed rooms with lessons, exercises, and checkpoint quizzes: from Greetings (A1) to Celebrations & Culture (A2). Unlock room by room.",
   };
 }
 
@@ -652,7 +652,7 @@ export default async function RoomsPage({
                       <div className="flex items-center gap-1 text-xs text-white/35">
                         <BookOpen className="h-3 w-3" />
                         <span>
-                          {rd.totalLessons || "—"} {de ? "Lektionen" : "lessons"}
+                          {rd.totalLessons || "…"} {de ? "Lektionen" : "lessons"}
                         </span>
                       </div>
                       {rd.quizPassed ? (

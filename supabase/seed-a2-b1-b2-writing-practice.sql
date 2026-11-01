@@ -109,7 +109,7 @@ VALUES
    'Stadt oder Land?',
    'stadt-oder-land-schreiben',
    '<h2>Schreibaufgabe: Stadt oder Land?</h2>
-<p>Schreibe einen kurzen Absatz (6-8 Sätze): Was ist deiner Meinung nach besser – das Leben in der Stadt oder auf dem Land? Begründe deine Meinung.</p>',
+<p>Schreibe einen kurzen Absatz (6-8 Sätze): Was ist deiner Meinung nach besser: das Leben in der Stadt oder auf dem Land? Begründe deine Meinung.</p>',
    3, NULL, NOW())
 ON CONFLICT (id) DO NOTHING;
 
@@ -192,7 +192,7 @@ VALUES
 
   ('00000000-0000-0014-0003-000000000001',
    '00000000-0000-0000-0014-000000000003',
-   'Stadt oder Land – was ist deiner Meinung nach besser zum Leben (6-8 Sätze)?',
+   'Stadt oder Land: was ist deiner Meinung nach besser zum Leben (6-8 Sätze)?',
    'writing_prompt',
    NULL,
    'Sowohl das Leben in der Stadt als auch auf dem Land hat seine Vorzüge. Städte bieten bessere Infrastruktur und mehr Karrieremöglichkeiten, gehen jedoch oft mit hohen Mietpreisen einher. Das Landleben hingegen bietet Ruhe und günstigeren Wohnraum, wobei die Anbindung an öffentliche Verkehrsmittel eingeschränkt sein kann. Meiner Meinung nach hängt die Wahl stark von den persönlichen Prioritäten ab, etwa ob man Karriere oder Ruhe bevorzugt.',

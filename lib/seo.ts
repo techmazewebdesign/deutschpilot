@@ -4,7 +4,7 @@ export const OG_IMAGE = {
   url: `${SITE_URL}/Images/og-image.jpg`,
   width: 1200,
   height: 630,
-  alt: "DeutschPilot – Deutschkurse, Sprachreisen & Retreats",
+  alt: "DeutschPilot: Deutschkurse, Sprachreisen & Retreats",
 };
 
 /**

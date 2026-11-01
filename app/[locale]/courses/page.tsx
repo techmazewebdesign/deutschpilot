@@ -1,3 +1,4 @@
+import { displayText } from "@/lib/displayText";
 import { legacyLearningClient, requireQuery } from "@/lib/legacyLearningAccess";
 import { getTranslations } from "next-intl/server";
 import type { Metadata } from "next";
@@ -164,10 +165,10 @@ export default async function CoursesPage({
                     )}
                   </div>
                   <h2 className="mb-1.5 font-serif text-base font-bold leading-snug text-white transition-colors group-hover:text-[#E0B873]">
-                    {course.title}
+                    {displayText(course.title)}
                   </h2>
                   <p className="mb-4 line-clamp-3 flex-1 text-xs leading-relaxed text-white/45">
-                    {course.description}
+                    {displayText(course.description)}
                   </p>
                   <div className="flex items-center gap-1.5 text-xs font-semibold text-[#E0B873]">
                     {session?.user
