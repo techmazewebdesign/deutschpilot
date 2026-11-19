@@ -1,5 +1,6 @@
 "use client";
 import { displayText } from "@/lib/displayText";
+import { GermanAudio } from "@/components/learn/german-audio";
 
 import { useState, useCallback, useRef, useEffect } from "react";
 import { useTranslations } from "next-intl";
@@ -334,6 +335,7 @@ function SpeakingPromptExercise({
           {t("modelAnswer")}
         </p>
         <p className="text-sm italic text-white/60">{displayText(modelAnswer)}</p>
+        <GermanAudio text={displayText(modelAnswer)} locale={locale} />
       </div>
 
       <div className="flex items-center gap-3">

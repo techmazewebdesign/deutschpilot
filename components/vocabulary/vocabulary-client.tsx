@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useMemo } from "react";
+import { GermanAudio } from "@/components/learn/german-audio";
 import { useTranslations } from "next-intl";
 import { Languages, ChevronLeft, ChevronRight, RotateCw, Shuffle } from "lucide-react";
 
@@ -101,6 +102,9 @@ export function VocabularyClient({ words, locale }: { words: VocabWord[]; locale
               <RotateCw className="h-3 w-3" /> {t("tapToFlip")}
             </p>
           </button>
+
+          <GermanAudio key={card.id + "-word"} text={card.word_de} locale={locale} label={de ? "Wort anhören" : "Listen to word"} />
+          <GermanAudio key={card.id + "-example"} text={card.example_de} locale={locale} label={de ? "Beispielsatz anhören" : "Listen to example sentence"} />
 
           <div className="flex items-center justify-center gap-3">
             <button onClick={prev} className="p-3 rounded-xl border border-white/10 text-white/50 hover:text-white hover:border-white/25 transition-colors">

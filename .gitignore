@@ -58,3 +58,7 @@ mobile/ios/.xcode.env.local
 # Private Android upload keys and local signing inputs
 *.jks
 mobile/android/signing.properties
+
+# Local Google speech trial usage and incomplete recordings
+.german-voice-trial-usage.json
+public/audio/de/*.tmp
